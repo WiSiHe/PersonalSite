@@ -4,7 +4,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const mainCss = "flex-grow bg-gray-50 dark:bg-gray-800";
+  const mainCss = "flex-grow bg-gray-50 dark:bg-gray-800 transition-all";
 
   return (
     <>
@@ -31,7 +31,7 @@ export default function Home() {
         </section>
         <div className="container mx-auto">
           <div className="block sm:flex">
-            <div className="p-6 w-full md:w-4/12">
+            <div className="p-6 w-full lg:w-4/12">
               <h1 className="text-gray-900 dark:text-white">
                 Dark mode is here!
               </h1>
@@ -49,17 +49,18 @@ export default function Home() {
                 </button>
               </div>
             </div>
-
-            <picture>
-              <source
-                srcSet="https://w.wallhaven.cc/full/28/wallhaven-28ekym.jpg"
-                media="(min-width: 400px)"
-              />
-              <img
-                className="p-6 bg-cover bg-center w-full sm:w-8/12 h-80 object-cover "
-                src="https://w.wallhaven.cc/full/28/wallhaven-28ekym.jpg"
-              />
-            </picture>
+            <div className="sm:w-8/12 ">
+              <picture>
+                <source
+                  srcSet="https://w.wallhaven.cc/full/28/wallhaven-28ekym.jpg"
+                  media="(min-width: 400px)"
+                />
+                <img
+                  className="p-6 bg-cover bg-center w-full h-80 dark:h-full object-cover transition-all"
+                  src="https://w.wallhaven.cc/full/28/wallhaven-28ekym.jpg"
+                />
+              </picture>
+            </div>
           </div>
         </div>
       </main>
