@@ -3,13 +3,52 @@ import Head from "next/head";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
+const images = [
+  {
+    url:
+      "https://cdnb.artstation.com/p/assets/images/images/013/488/069/large/henrik-sissener-man-in-woods-6.jpg?1539813177",
+  },
+  {
+    url:
+      "https://cdna.artstation.com/p/assets/images/images/013/991/418/large/henrik-sissener-night-forest.jpg?1541993149",
+  },
+  {
+    url:
+      "https://cdnb.artstation.com/p/assets/images/images/005/955/563/large/henrik-wilhelm-sissener-woods-2-1.jpg?1494969561",
+  },
+  {
+    url:
+      "https://cdnb.artstation.com/p/assets/images/images/003/189/593/large/henrik-wilhelm-sissener-daw2.jpg?1470822001",
+  },
+  {
+    url:
+      "https://cdnb.artstation.com/p/assets/images/images/003/189/583/large/henrik-wilhelm-sissener-nature6.jpg?1470821845",
+  },
+  {
+    url:
+      "https://cdnb.artstation.com/p/assets/images/images/010/899/059/large/henrik-sissener-boat-universe-ice-2.jpg?1526838087",
+  },
+  {
+    url:
+      "https://cdna.artstation.com/p/assets/images/images/025/577/182/large/henrik-sissener-space-helm-profile-low.jpg?1586248553",
+  },
+];
+
 export default function Home() {
-  const mainCss = "flex-grow bg-gray-50 dark:bg-gray-800 transition-all";
+  const mainCss =
+    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out";
+
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const header = parseInt(getRandomArbitrary(0, images.length));
+  const small = parseInt(getRandomArbitrary(0, images.length));
 
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>wisihe.no</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation />
@@ -18,17 +57,9 @@ export default function Home() {
         <section
           className="container max-w-full  h-screen object-cover  bg-fixed flex flex-wrap content-center  "
           style={{
-            backgroundImage: `url("https://w.wallhaven.cc/full/j3/wallhaven-j3339m.jpg")`,
+            backgroundImage: `url(${images[header].url})`,
           }}
-        >
-          <div className="md:flex  p-8 md:p-0 max-w-md mx-8 ">
-            <div className="pt-6 md:p-8 text-center md:text-left space-y-4">
-              <h1 className="text-4xl font-bold">
-                Welcome to my little nextjs & tailwind project!
-              </h1>
-            </div>
-          </div>
-        </section>
+        ></section>
         <div className="container mx-auto">
           <div className="block sm:flex">
             <div className="p-6 w-full lg:w-4/12">
@@ -51,13 +82,10 @@ export default function Home() {
             </div>
             <div className="sm:w-8/12 ">
               <picture>
-                <source
-                  srcSet="https://w.wallhaven.cc/full/28/wallhaven-28ekym.jpg"
-                  media="(min-width: 400px)"
-                />
+                <source srcSet={images[small].url} media="(min-width: 400px)" />
                 <img
                   className="p-6 bg-cover bg-center w-full h-80 dark:h-full object-cover transition-all"
-                  src="https://w.wallhaven.cc/full/28/wallhaven-28ekym.jpg"
+                  src={images[small].url}
                 />
               </picture>
             </div>

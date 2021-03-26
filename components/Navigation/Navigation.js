@@ -15,9 +15,6 @@ export default function Navigation() {
   const [theme, setTheme] = useRecoilState(atomTheme);
   const isDarkMode = theme === "dark";
 
-  const darkTheme = "";
-  const lightTheme = "";
-
   const switchTheme = `w-6 h-6 relative rounded-full transition duration-500 transform bg-yellow-500 dark:bg-purple-900 ${
     isDarkMode ? "translate-x-2" : "translate-x-8"
   } p-1 text-white `;
@@ -45,7 +42,7 @@ export default function Navigation() {
             <a href="#">About</a>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <a href="#">Gallery</a>
           </li>
         </ul>
         <button
