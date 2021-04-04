@@ -1,40 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import Head from "next/head";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
-const images = [
-  {
-    url:
-      "https://cdnb.artstation.com/p/assets/images/images/013/488/069/large/henrik-sissener-man-in-woods-6.jpg?1539813177",
-  },
-  {
-    url:
-      "https://cdna.artstation.com/p/assets/images/images/013/991/418/large/henrik-sissener-night-forest.jpg?1541993149",
-  },
-  {
-    url:
-      "https://cdnb.artstation.com/p/assets/images/images/005/955/563/large/henrik-wilhelm-sissener-woods-2-1.jpg?1494969561",
-  },
-  {
-    url:
-      "https://cdnb.artstation.com/p/assets/images/images/003/189/593/large/henrik-wilhelm-sissener-daw2.jpg?1470822001",
-  },
-  {
-    url:
-      "https://cdnb.artstation.com/p/assets/images/images/003/189/583/large/henrik-wilhelm-sissener-nature6.jpg?1470821845",
-  },
-  {
-    url:
-      "https://cdnb.artstation.com/p/assets/images/images/010/899/059/large/henrik-sissener-boat-universe-ice-2.jpg?1526838087",
-  },
-  {
-    url:
-      "https://cdna.artstation.com/p/assets/images/images/025/577/182/large/henrik-sissener-space-helm-profile-low.jpg?1586248553",
-  },
-];
+import { getData } from "../services/sanity/sanity";
+import { urlFor } from "../services/sanity/sanityClient";
+import { getAllPaintings } from "../lib/api";
+import { imageBuilder } from "../lib/sanity";
 
-export default function Home() {
+export default function Home({ paintings = [] }) {
   const mainCss =
     "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out";
 
@@ -42,9 +18,12 @@ export default function Home() {
     return Math.random() * (max - min) + min;
   }
 
-  const header = parseInt(getRandomArbitrary(0, images.length));
-  const small = parseInt(getRandomArbitrary(0, images.length));
+  const header = parseInt(getRandomArbitrary(0, paintings.length));
+  const small = parseInt(getRandomArbitrary(0, paintings.length));
 
+  const headerImage = imageBuilder(paintings[header].image).fit("scale").url();
+
+  const smallImage = imageBuilder(paintings[small].image).fit("scale").url();
   return (
     <>
       <Head>
@@ -55,11 +34,11 @@ export default function Home() {
 
       <main className={mainCss}>
         <section
-          className="container max-w-full  h-screen object-cover  bg-fixed flex flex-wrap content-center  "
+          className="container max-w-full  h-screen object-cover  bg-fixed bg-cover flex flex-wrap content-center bg-center  "
           style={{
-            backgroundImage: `url(${images[header].url})`,
+            backgroundImage: `url(${headerImage})`,
           }}
-        ></section>
+        />
         <div className="container mx-auto">
           <div className="block sm:flex">
             <div className="p-6 w-full lg:w-4/12">
@@ -82,10 +61,10 @@ export default function Home() {
             </div>
             <div className="sm:w-8/12 ">
               <picture>
-                <source srcSet={images[small].url} media="(min-width: 400px)" />
+                <source srcSet={smallImage} media="(min-width: 400px)" />
                 <img
-                  className="p-6 bg-cover bg-center w-full h-80 dark:h-full object-cover transition-all"
-                  src={images[small].url}
+                  className="p-6 bg-cover bg-center w-full h-full object-cover transition-all"
+                  src={smallImage}
                 />
               </picture>
             </div>
@@ -95,4 +74,23 @@ export default function Home() {
       <Footer />
     </>
   );
+}
+
+Home.propTypes = {
+  paintings: PropTypes.array,
+};
+
+export async function getStaticProps({ preview = false }) {
+  const data = await getAllPaintings(preview);
+
+  if (data.length < 1) {
+    return { props: {} };
+  }
+
+  return {
+    props: {
+      paintings: data,
+    },
+    revalidate: 600, // 10 min
+  };
 }

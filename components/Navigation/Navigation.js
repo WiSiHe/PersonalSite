@@ -2,6 +2,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 
 import { theme as atomTheme } from "../../atoms/theme";
+import ActiveLink from "../ActiveLink/ActiveLink";
 
 const darkIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
@@ -13,6 +14,7 @@ const lightIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="
 
 export default function Navigation() {
   const [theme, setTheme] = useRecoilState(atomTheme);
+
   const isDarkMode = theme === "dark";
 
   const switchTheme = `w-6 h-6 relative rounded-full transition duration-500 transform bg-yellow-500 dark:bg-purple-900 ${
@@ -36,13 +38,13 @@ export default function Navigation() {
       <div className="container mx-auto px-4 flex justify-between">
         <ul className="inline-flex space-x-4">
           <li className="hover:bg-red-300 hover:p-2 transition duration-1000 ease-in-out">
-            <a href="#">Home</a>
+            <ActiveLink href="/">Home</ActiveLink>
           </li>
           <li className="hover:bg-blue-300 hover:p-2 transition duration-1000 ease-in-out">
             <a href="#">About</a>
           </li>
           <li>
-            <a href="#">Gallery</a>
+            <ActiveLink href={"/gallery"}>Gallery</ActiveLink>
           </li>
         </ul>
         <button
