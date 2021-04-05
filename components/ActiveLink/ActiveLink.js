@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-function ActiveLink({ children, href }) {
+function ActiveLink({ children, href, shallow = false }) {
   const router = useRouter();
   const style = {
     marginRight: 10,
@@ -9,7 +9,7 @@ function ActiveLink({ children, href }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    router.push(href);
+    router.push(href, undefined, { shallow: shallow });
   };
 
   return (

@@ -5,11 +5,12 @@ import Head from "next/head";
 import Navigation from "../../components/Navigation";
 import { getAllPaintings } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
-import Footer from "../../components/Footer";
+// import Footer from "../../components/Footer";
+import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 export default function Gallery({ paintings = [] }) {
   const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 h-screen";
+    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 ";
 
   return (
     <>
@@ -19,26 +20,34 @@ export default function Gallery({ paintings = [] }) {
       </Head>
       <Navigation />
       <main className={mainCss}>
-        <div className="container mx-auto pt-16">
-          <div className="flex flex-wrap -mx-1 overflow-hidden">
-            {paintings.map((p) => {
-              const { _id } = p;
-              return (
-                <div
-                  className="my-1 px-1 w-1/2 overflow-hidden lg:w-1/4 xl:w-1/6 h-64"
-                  key={_id}
-                >
+        {/* <div className="container mx-auto"> */}
+        <div className="flex flex-wrap -mx-1 overflow-hidden">
+          {paintings.map((p) => {
+            const { _id, title = "", slug: { current = "" } = {} } = p;
+            const linkString = `/painting/${current}`;
+            return (
+              <div
+                className="group w-1/2 overflow-hidden lg:w-1/4 xl:w-1/6 h-64 relative"
+                key={_id}
+              >
+                <ActiveLink href={linkString}>
                   <img
-                    className="g-cover bg-center w-full h-full object-cover transition-all"
+                    className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
                     src={imageBuilder(p.image).width(400).fit("fill").url()}
                   />
-                </div>
-              );
-            })}
-          </div>
+                  {title && (
+                    <div className="bg-gray-800 opacity-0 transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 bg-opacity-40 font text-white p-2 group-hover:opacity-100">
+                      <p>{title}</p>
+                    </div>
+                  )}
+                </ActiveLink>
+              </div>
+            );
+          })}
         </div>
+        {/* </div> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
