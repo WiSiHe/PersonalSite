@@ -24,7 +24,15 @@ export default function Gallery({ paintings = [] }) {
       <main className={mainCss}>
         <div className="flex flex-wrap -mx-1 overflow-hidden">
           {paintings.map((p) => {
-            const { _id, title = "", slug: { current = "" } = {} } = p;
+            const {
+              _id,
+              image = {},
+              title = "",
+              slug: { current = "" } = {},
+            } = p;
+            const { hotspot = {}, crop = {} } = image;
+            console.log("crop", crop);
+            console.log("hotspot", hotspot);
             const linkString = `/painting/${current}`;
             return (
               <div
@@ -33,7 +41,11 @@ export default function Gallery({ paintings = [] }) {
               >
                 <ActiveLink href={linkString}>
                   <Image
-                    src={imageBuilder(p.image).width(400).fit("fill").url()}
+                    src={imageBuilder(image)
+                      .width(300)
+                      .height(300)
+                      .fit("fill")
+                      .url()}
                     layout="fill"
                     className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
                   />
