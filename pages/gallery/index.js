@@ -30,9 +30,7 @@ export default function Gallery({ paintings = [] }) {
               title = "",
               slug: { current = "" } = {},
             } = p;
-            const { hotspot = {}, crop = {} } = image;
-            console.log("crop", crop);
-            console.log("hotspot", hotspot);
+
             const linkString = `/painting/${current}`;
             return (
               <div
@@ -49,10 +47,6 @@ export default function Gallery({ paintings = [] }) {
                     layout="fill"
                     className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
                   />
-                  {/* <img
-                    className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
-                    src={imageBuilder(p.image).width(400).fit("fill").url()}
-                  /> */}
                   {title && (
                     <div className="bg-gray-800 opacity-0 transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 bg-opacity-40 font text-white p-2 group-hover:opacity-100">
                       <p>{title}</p>
