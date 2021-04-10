@@ -8,6 +8,11 @@ import { getAllPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
 
 export default function Home({ paintings = [] }) {
+  const wallpaperPaintings =
+    paintings.filter(
+      (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
+    ) || [];
+  console.log({ wallpaperPaintings });
   const mainCss =
     "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out";
 
@@ -15,11 +20,12 @@ export default function Home({ paintings = [] }) {
     return Math.random() * (max - min) + min;
   }
 
-  const header = parseInt(getRandomArbitrary(0, paintings.length));
+  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
 
-  const headerImage = imageBuilder(paintings[header].image)
+  const headerImage = imageBuilder(wallpaperPaintings[header].image)
     .width(1200)
-    .fit("scale")
+    .height(800)
+    .fit("fill")
     .url();
 
   return (

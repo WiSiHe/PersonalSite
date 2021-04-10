@@ -35,7 +35,7 @@ export default function Navigation() {
   };
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white max-w-full p-4 text-lg  shadow-2xl z-10 dark:bg-gray-700 dark:text-white ">
-      <div className="container mx-auto px-4 flex justify-between">
+      <div className=" mx-auto flex justify-between">
         <ul className="inline-flex space-x-4">
           <li>
             <ActiveLink href="/">Home</ActiveLink>
