@@ -12,7 +12,7 @@ export default function Home({ paintings = [] }) {
     paintings.filter(
       (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
     ) || [];
-  console.log({ wallpaperPaintings });
+
   const mainCss =
     "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out";
 
