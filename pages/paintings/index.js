@@ -7,10 +7,10 @@ import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import { getAllPaintings } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
-// import Footer from "../../components/Footer";
+import Footer from "../../components/Footer";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
-export default function Gallery({ paintings = [] }) {
+export default function PaintingsPage({ paintings = [] }) {
   const mainCss =
     "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white";
 
@@ -58,12 +58,12 @@ export default function Gallery({ paintings = [] }) {
           })}
         </div>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
 
-Gallery.propTypes = {
+PaintingsPage.propTypes = {
   paintings: PropTypes.array,
 };
 

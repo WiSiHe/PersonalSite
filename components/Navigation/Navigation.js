@@ -41,7 +41,10 @@ export default function Navigation() {
             <ActiveLink href="/">Home</ActiveLink>
           </li>
           <li>
-            <ActiveLink href={"/gallery"}>Gallery</ActiveLink>
+            <ActiveLink href={"/paintings"}>Paintings</ActiveLink>
+          </li>
+          <li>
+            <ActiveLink href={"/gamedev"}>GameDev</ActiveLink>
           </li>
         </ul>
         <button

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import Head from "next/head";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 import { getAllPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
@@ -44,7 +45,7 @@ export default function Home({ paintings = [] }) {
           }}
         />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
