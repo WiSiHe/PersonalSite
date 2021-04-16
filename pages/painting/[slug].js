@@ -11,6 +11,7 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 import { useSpring, animated } from "react-spring";
+import Footer from "../../components/Footer";
 
 const placeHolderText =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique. ";
@@ -39,7 +40,7 @@ export default function Gallery({ painting = {} }) {
       <Navigation />
       <main className={mainCss}>
         <animated.div style={props}>
-          <div className=" pb-2 relative">
+          <div className=" pb-2 relative min-h-800">
             <img
               className="bg-cover w-full bg-gray-100 "
               src={imageBuilder(image).width(1200).url()}
@@ -72,14 +73,15 @@ export default function Gallery({ painting = {} }) {
           </div>
 
           <div className="fixed bottom-4 left-4">
-            <ActiveLink href="/gallery" shallow>
-              <p className="text-2xl flex justify-center items-center rounded-full shadow bg-white p-2 dark:bg-purple-700 dark:text-white">
-                <IoArrowBackSharp /> Back
+            <ActiveLink href="/paintings" shallow>
+              <p className="text-2xl flex justify-center items-center rounded-full shadow bg-white px-4 py-1 dark:bg-purple-700 dark:text-white">
+                <IoArrowBackSharp /> back
               </p>
             </ActiveLink>
           </div>
         </animated.div>
       </main>
+      {/* <Footer /> */}
     </>
   );
 }
