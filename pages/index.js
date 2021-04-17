@@ -33,7 +33,7 @@ export default function Home({ paintings = [] }) {
     <>
       <Head>
         <title>wisihe.no</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Navigation />
 

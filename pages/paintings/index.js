@@ -5,23 +5,51 @@ import Head from "next/head";
 import Image from "next/image";
 
 import Navigation from "../../components/Navigation";
-import { getAllPaintings } from "../../lib/api";
+import { getAllTagsAndPaintings } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
 import Footer from "../../components/Footer";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
-export default function PaintingsPage({ paintings = [] }) {
+export default function PaintingsPage({ paintings = [], tags = [] }) {
+  const filteredTags = tags.filter((tag) => tag !== null).flat();
+  const tagValues = filteredTags.map((tag) => tag.label);
+
+  let result = {};
+
+  for (var i = 0; i < tagValues.length; ++i) {
+    if (!result[tagValues[i]]) result[tagValues[i]] = 0;
+    ++result[tagValues[i]];
+  }
+
+  // const sortable = Object.entries(result).sort((a, b) => console.log(a));
+  // console.log("result", result);
+  // console.log("test", sortable);
+
+  let uniqueItems = [...new Set(tagValues)];
+
   const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white";
+    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white overflow-hidden";
 
   return (
     <>
       <Head>
         <title>wisihe.no</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Navigation />
       <main className={mainCss}>
+        <div className="flex py-4">
+          {uniqueItems.map((tag, i) => {
+            return (
+              <p
+                className="bg-purple-800 text-white text-xs px-2 py-1  whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+                key={i}
+              >
+                {tag}
+              </p>
+            );
+          })}
+        </div>
         <div className="flex flex-wrap -mx-1 overflow-hidden">
           {paintings.map((p) => {
             const {
@@ -45,6 +73,7 @@ export default function PaintingsPage({ paintings = [] }) {
                       .fit("fill")
                       .url()}
                     layout="fill"
+                    alt="title"
                     className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
                   />
                   {title && (
@@ -65,10 +94,11 @@ export default function PaintingsPage({ paintings = [] }) {
 
 PaintingsPage.propTypes = {
   paintings: PropTypes.array,
+  tags: PropTypes.array,
 };
 
 export async function getStaticProps({ preview = false }) {
-  const data = await getAllPaintings(preview);
+  const data = await getAllTagsAndPaintings(preview);
 
   if (data.length < 1) {
     return { props: {} };
@@ -76,7 +106,8 @@ export async function getStaticProps({ preview = false }) {
 
   return {
     props: {
-      paintings: data,
+      paintings: data.paintings,
+      tags: data.tags,
     },
     revalidate: 600, // 10 min
   };

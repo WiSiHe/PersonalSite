@@ -11,7 +11,6 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 import { useSpring, animated } from "react-spring";
-import Footer from "../../components/Footer";
 
 const placeHolderText =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique. ";
@@ -35,7 +34,7 @@ export default function Gallery({ painting = {} }) {
     <>
       <Head>
         <title>wisihe.no</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Navigation />
       <main className={mainCss}>
@@ -55,7 +54,7 @@ export default function Gallery({ painting = {} }) {
                   const { value } = tag;
                   return (
                     <p
-                      className="p-1 bg-purple-700 mr-2 text-white text-xs"
+                      className="p-1 bg-purple-800 mr-2 text-white text-xs"
                       key={i}
                     >
                       {value}
