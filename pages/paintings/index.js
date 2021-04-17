@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Head from "next/head";
@@ -11,6 +11,7 @@ import Footer from "../../components/Footer";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 export default function PaintingsPage({ paintings = [], tags = [] }) {
+  const [filterTag, setFilterTag] = useState("");
   const filteredTags = tags.filter((tag) => tag !== null).flat();
   const tagValues = filteredTags.map((tag) => tag.label);
 
@@ -28,7 +29,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
   let uniqueItems = [...new Set(tagValues)];
 
   const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white overflow-hidden";
+    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white overflow-hidden min-h-screen";
 
   return (
     <>
@@ -38,12 +39,19 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
       </Head>
       <Navigation />
       <main className={mainCss}>
-        <div className="flex py-4">
+        <div className="flex py-4 overflow-x-auto">
+          <p
+            onClick={() => setFilterTag("")}
+            className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+          >
+            All
+          </p>
           {uniqueItems.map((tag, i) => {
             return (
               <p
-                className="bg-purple-800 text-white text-xs px-2 py-1  whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+                className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
                 key={i}
+                onClick={() => setFilterTag(tag)}
               >
                 {tag}
               </p>
@@ -51,40 +59,44 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
           })}
         </div>
         <div className="flex flex-wrap -mx-1 overflow-hidden">
-          {paintings.map((p) => {
-            const {
-              _id,
-              image = {},
-              title = "",
-              slug: { current = "" } = {},
-            } = p;
+          {paintings
+            .filter(
+              (p) => p.tags?.find((t) => t.value === filterTag) || !filterTag
+            )
+            .map((p) => {
+              const {
+                _id,
+                image = {},
+                title = "",
+                slug: { current = "" } = {},
+              } = p;
 
-            const linkString = `/painting/${current}`;
-            return (
-              <div
-                className="group w-1/2 overflow-hidden lg:w-1/4 xl:w-1/6 h-64 relative"
-                key={_id}
-              >
-                <ActiveLink href={linkString}>
-                  <Image
-                    src={imageBuilder(image)
-                      .width(300)
-                      .height(300)
-                      .fit("fill")
-                      .url()}
-                    layout="fill"
-                    alt="title"
-                    className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
-                  />
-                  {title && (
-                    <div className="bg-gray-800 opacity-0 transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 bg-opacity-40 font text-white p-2 group-hover:opacity-100">
-                      <p>{title}</p>
-                    </div>
-                  )}
-                </ActiveLink>
-              </div>
-            );
-          })}
+              const linkString = `/painting/${current}`;
+              return (
+                <div
+                  className="group w-1/2 overflow-hidden lg:w-1/4 xl:w-1/6 h-64 relative"
+                  key={_id}
+                >
+                  <ActiveLink href={linkString}>
+                    <Image
+                      src={imageBuilder(image)
+                        .width(300)
+                        .height(300)
+                        .fit("fill")
+                        .url()}
+                      layout="fill"
+                      alt="title"
+                      className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
+                    />
+                    {title && (
+                      <div className="bg-gray-800 opacity-0 transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 bg-opacity-40 font text-white p-2 group-hover:opacity-100">
+                        <p>{title}</p>
+                      </div>
+                    )}
+                  </ActiveLink>
+                </div>
+              );
+            })}
         </div>
       </main>
       <Footer />

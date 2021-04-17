@@ -22,7 +22,7 @@ export default function Gallery({ painting = {} }) {
   const uniqueTags = [...new Set(tags)];
 
   const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 min-h-screen dark:text-white";
+    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 min-h-screen dark:text-white ";
 
   const props = useSpring({ opacity: loaded ? 1 : 0 });
 
