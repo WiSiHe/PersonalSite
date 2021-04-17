@@ -39,24 +39,28 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
       </Head>
       <Navigation />
       <main className={mainCss}>
-        <div className="flex py-4 overflow-x-auto">
-          <p
-            onClick={() => setFilterTag("")}
-            className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
-          >
-            All
-          </p>
-          {uniqueItems.map((tag, i) => {
-            return (
-              <p
-                className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
-                key={i}
-                onClick={() => setFilterTag(tag)}
-              >
-                {tag}
-              </p>
-            );
-          })}
+        <div className=" relative">
+          <div className="flex py-4 overflow-x-auto">
+            <p
+              onClick={() => setFilterTag("")}
+              className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+            >
+              All
+            </p>
+
+            {uniqueItems.map((tag, i) => {
+              return (
+                <p
+                  className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+                  key={i}
+                  onClick={() => setFilterTag(tag)}
+                >
+                  {tag}
+                </p>
+              );
+            })}
+          </div>
+          <div className=" bg-gradient-to-r  to-white  dark:to-black from-transparent absolute right-0 top-0 bottom-0 w-60 pointer-events-none" />
         </div>
         <div className="flex flex-wrap -mx-1 overflow-hidden">
           {paintings
