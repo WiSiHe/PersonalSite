@@ -12,8 +12,8 @@ import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 export default function PaintingsPage({ paintings = [], tags = [] }) {
   const [filterTag, setFilterTag] = useState("");
-  const filteredTags = tags.filter((tag) => tag !== null).flat();
-  const tagValues = filteredTags.map((tag) => tag.label);
+  const flattenedTags = tags.filter((tag) => tag !== null).flat();
+  const tagValues = flattenedTags.map((tag) => tag.label);
 
   let result = {};
 
@@ -22,7 +22,8 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
     ++result[tagValues[i]];
   }
 
-  // const sortable = Object.entries(result).sort((a, b) => console.log(a));
+  const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
+
   // console.log("result", result);
   // console.log("test", sortable);
 
@@ -48,17 +49,22 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               All
             </p>
 
-            {uniqueItems.map((tag, i) => {
-              return (
-                <p
-                  className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
-                  key={i}
-                  onClick={() => setFilterTag(tag)}
-                >
-                  {tag}
-                </p>
-              );
-            })}
+            {filteredTags
+              .sort((a, b) => b[1] - a[1])
+              .map((tag, i) => {
+                const label = tag[0];
+                console.log("label", label);
+                const amount = tag[1];
+                return (
+                  <p
+                    className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+                    key={i}
+                    onClick={() => setFilterTag(label)}
+                  >
+                    {label} ({amount})
+                  </p>
+                );
+              })}
           </div>
           <div className=" bg-gradient-to-r  to-white  dark:to-black from-transparent absolute right-0 top-0 bottom-0 w-60 pointer-events-none" />
         </div>
