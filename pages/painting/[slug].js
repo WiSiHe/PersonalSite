@@ -11,6 +11,8 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 import { useSpring, animated } from "react-spring";
+import Main from "../../components/Main";
+import Footer from "../../components/Footer";
 
 const placeHolderText =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique. ";
@@ -20,9 +22,6 @@ export default function Gallery({ painting = {} }) {
   const [loaded, setLoaded] = useState(false);
 
   const uniqueTags = [...new Set(tags)];
-
-  const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 min-h-screen dark:text-white ";
 
   const props = useSpring({ opacity: loaded ? 1 : 0 });
 
@@ -37,7 +36,7 @@ export default function Gallery({ painting = {} }) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Navigation />
-      <main className={mainCss}>
+      <Main>
         <animated.div style={props}>
           <div className=" pb-2 relative min-h-800">
             <img
@@ -71,16 +70,16 @@ export default function Gallery({ painting = {} }) {
             </div>
           </div>
 
-          <div className="fixed bottom-4 left-4">
+          <div className="fixed bottom-16 left-4">
             <ActiveLink href="/paintings" shallow>
-              <p className="text-2xl flex justify-center items-center rounded-full shadow bg-white px-4 py-1 dark:bg-purple-700 dark:text-white">
-                <IoArrowBackSharp /> back
+              <p className="text-2xl flex justify-center items-center rounded-full shadow bg-white p-4 transition-all duration-100 ease-in-out dark:bg-purple-700 dark:text-white hover:bg-opacity-80">
+                <IoArrowBackSharp />
               </p>
             </ActiveLink>
           </div>
         </animated.div>
-      </main>
-      {/* <Footer /> */}
+      </Main>
+      <Footer />
     </>
   );
 }

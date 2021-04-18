@@ -9,6 +9,7 @@ import { getAllTagsAndPaintings } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
 import Footer from "../../components/Footer";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
+import Main from "../../components/Main";
 
 export default function PaintingsPage({ paintings = [], tags = [] }) {
   const [filterTag, setFilterTag] = useState("");
@@ -29,9 +30,6 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
 
   let uniqueItems = [...new Set(tagValues)];
 
-  const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white overflow-hidden min-h-screen";
-
   return (
     <>
       <Head>
@@ -39,7 +37,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Navigation />
-      <main className={mainCss}>
+      <Main>
         <div className=" relative">
           <div className="flex py-4 overflow-x-auto">
             <p
@@ -108,7 +106,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               );
             })}
         </div>
-      </main>
+      </Main>
       <Footer />
     </>
   );

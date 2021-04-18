@@ -10,8 +10,8 @@ import {
 export default function Footer() {
   return (
     <footer className=" w-full p-4 bg-purple-800 text-white dark:bg-gray-800">
-      <div className="container">
-        <ul className="inline-flex space-x-4">
+      <div className="flex justify-center">
+        <ul className="inline-flex space-x-4 ">
           <li>
             <a
               href="https://www.redbubble.com/people/hws902/shop?asc=u&ref=account-nav-dropdown"

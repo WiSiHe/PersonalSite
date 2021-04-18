@@ -43,9 +43,9 @@ export default function Navigation() {
           <li>
             <ActiveLink href={"/paintings"}>Paintings</ActiveLink>
           </li>
-          {/* <li>
-            <ActiveLink href={"/gamedev"}>GameDev</ActiveLink>
-          </li> */}
+          <li>
+            <ActiveLink href={"/projects"}>Projects</ActiveLink>
+          </li>
         </ul>
         <button
           className="w-16 h-8 rounded-full bg-white dark:bg-gray-900 flex items-center transition duration-300 focus:outline-none shadow-inner"

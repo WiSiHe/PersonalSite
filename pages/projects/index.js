@@ -6,11 +6,9 @@ import Head from "next/head";
 import Navigation from "../../components/Navigation";
 
 import Footer from "../../components/Footer";
+import Main from "../../components/Main";
 
-export default function GameDevPage() {
-  const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out mt-16 dark:text-white";
-
+export default function ProjectsPage() {
   return (
     <>
       <Head>
@@ -18,20 +16,21 @@ export default function GameDevPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation />
-      <main className={mainCss}>
+      <Main>
         <div className="container mx-auto min-h-screen">
-          <div className="flex flex-wrap -mx-1 overflow-hidden">
-            <div className="py-4">
-              <p>Project Vör</p>
-            </div>
+          <div className="mt-20">
+            <h1>My Projects</h1>
+          </div>
+          <div className="p-4 shadow-lg w-8/12 bg-white mt-24">
+            <h2>Project vör / Babel</h2>
           </div>
         </div>
-      </main>
+      </Main>
       <Footer />
     </>
   );
 }
 
-GameDevPage.propTypes = {
+ProjectsPage.propTypes = {
   paintings: PropTypes.array,
 };

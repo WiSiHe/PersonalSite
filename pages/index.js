@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 
 import { getAllPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
+import Main from "../components/Main";
 
 export default function Home({ paintings = [] }) {
   const wallpaperPaintings =
@@ -37,14 +38,14 @@ export default function Home({ paintings = [] }) {
       </Head>
       <Navigation />
 
-      <main className={mainCss}>
+      <Main>
         <section
           className="container max-w-full  h-screen object-cover  bg-fixed bg-cover flex flex-wrap content-center bg-center  "
           style={{
             backgroundImage: `url(${headerImage})`,
           }}
         />
-      </main>
+      </Main>
       <Footer />
     </>
   );
