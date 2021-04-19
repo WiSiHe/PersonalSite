@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import Head from "next/head";
 import Image from "next/image";
 
 import Navigation from "../../components/Navigation";
@@ -10,6 +9,7 @@ import { imageBuilder } from "../../lib/sanity";
 import Footer from "../../components/Footer";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 import Main from "../../components/Main";
+import Meta from "../../components/Meta/Meta";
 
 export default function PaintingsPage({ paintings = [], tags = [] }) {
   const [filterTag, setFilterTag] = useState("");
@@ -32,10 +32,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
 
   return (
     <>
-      <Head>
-        <title>wisihe.no</title>
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+      <Meta />
       <Navigation />
       <Main>
         <div className=" relative">

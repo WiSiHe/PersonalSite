@@ -1,22 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Head from "next/head";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
+import Main from "../components/Main";
+import Meta from "../components/Meta/Meta";
+
 import { getAllPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
-import Main from "../components/Main";
 
 export default function Home({ paintings = [] }) {
   const wallpaperPaintings =
     paintings.filter(
       (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
     ) || [];
-
-  const mainCss =
-    "flex-grow bg-gray-50 dark:bg-gray-800 transition-all duration-1000 ease-in-out";
 
   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -32,10 +30,7 @@ export default function Home({ paintings = [] }) {
 
   return (
     <>
-      <Head>
-        <title>wisihe.no</title>
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+      <Meta />
       <Navigation />
 
       <Main>
