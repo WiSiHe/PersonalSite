@@ -32,7 +32,7 @@
     "eslint": "^7.22.0",
     "eslint-plugin-react": "^7.22.0",
     "postcss": "^8.2.8",
-    "tailwindcss": "^2.0.4",
-    "react-spring": "^9.1.0"
+    "react-spring": "^9.1.0",
+    "tailwindcss": "^2.1.1"
   }
 }
