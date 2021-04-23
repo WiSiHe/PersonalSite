@@ -25,9 +25,6 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
 
   const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
 
-  // console.log("result", result);
-  // console.log("test", sortable);
-
   let uniqueItems = [...new Set(tagValues)];
 
   return (
@@ -48,7 +45,6 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               .sort((a, b) => b[1] - a[1])
               .map((tag, i) => {
                 const label = tag[0];
-                console.log("label", label);
                 const amount = tag[1];
                 return (
                   <p
