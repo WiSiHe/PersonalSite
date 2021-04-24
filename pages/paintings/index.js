@@ -25,11 +25,11 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
 
   const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
 
-  let uniqueItems = [...new Set(tagValues)];
+  // let uniqueItems = [...new Set(tagValues)];
 
   return (
     <>
-      <Meta />
+      <Meta title="Paintings" description="Painting gallery" />
       <Navigation />
       <Main>
         <div className=" relative">
