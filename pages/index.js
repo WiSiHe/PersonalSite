@@ -34,13 +34,14 @@ export default function Home({ paintings = [] }) {
       <Navigation />
 
       <Main>
+        {/* Replace this with next image */}
         <section
-          className="container max-w-full  h-screen object-cover  bg-fixed bg-cover flex flex-wrap content-center bg-center  "
+          className="container max-w-full  h-screen object-cover bg-cover flex flex-wrap content-center bg-center  "
           style={{
             backgroundImage: `url(${headerImage})`,
           }}
         />
-        <div className="flex justify-center flex-col p-4 text-center">
+        <div className="flex justify-center flex-col mt-4 text-center bg-purple-800 dark:bg-gray-800">
           <h1 className="text-4xl">Henrik Wilhelm Sissener</h1>
           <h2 className="text-xl">WiSiHe</h2>
         </div>
