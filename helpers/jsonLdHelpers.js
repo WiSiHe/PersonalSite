@@ -1,11 +1,17 @@
 import { imageBuilder } from "../lib/sanity";
 
 function generatePaintingJsonLd(paintingData) {
-  const { slug, desciption, image, _createdAt, title } = paintingData;
+  const {
+    slug = {},
+    desciption = "",
+    image = {},
+    _createdAt = "",
+    title = "",
+  } = paintingData;
 
   const smallImage = imageBuilder(image).width(50).url();
 
-  const url = `https://wisihe.no/painting/${slug}}`;
+  const url = `https://wisihe.no/painting/${slug.current}}`;
 
   const jsonLd = `{
     "@context": "http://schema.org",

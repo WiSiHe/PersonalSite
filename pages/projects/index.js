@@ -12,7 +12,7 @@ export default function ProjectsPage() {
     <>
       <Meta
         title="Projects"
-        description="Various projects I've been working on"
+        description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
       <Navigation />
       <Main>
@@ -20,7 +20,7 @@ export default function ProjectsPage() {
           <div className="mt-20 text-4xl">
             <h1>My Projects</h1>
           </div>
-          <div className=" shadow-lg  bg-white mt-4 relative flex">
+          <div className=" shadow-lg  bg-white mt-4 relative md:flex">
             <div className="p-4">
               <h2 className=" text-xl">Project vör / Babel</h2>
               <p>
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
               </p>
             </div>
             <img
-              className="w-4/6"
+              className="sm: w-full md:w-4/6"
               src="https://cdna.artstation.com/p/assets/images/images/013/991/308/large/henrik-sissener-highresscreenshot00034.jpg?1541992611"
             />
           </div>

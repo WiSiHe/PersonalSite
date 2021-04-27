@@ -18,7 +18,14 @@ const placeHolderText =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique. ";
 
 export default function Gallery({ painting = {} }) {
-  const { image = {}, title = "", tags = [], description = "" } = painting;
+  const {
+    image = {},
+    title = "",
+    tags = [],
+    description = "",
+    slug,
+  } = painting;
+  console.log("painting", painting);
   const [loaded, setLoaded] = useState(false);
 
   const uniqueTags = [...new Set(tags)];
@@ -38,6 +45,7 @@ export default function Gallery({ painting = {} }) {
         description={description}
         image={smallImage}
         jsonLd={generatePaintingJsonLd(painting)}
+        url={`http://www.wisihe.no/painting/${slug.current}`}
       />
       <Navigation />
       <Main>

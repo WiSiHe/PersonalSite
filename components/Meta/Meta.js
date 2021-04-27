@@ -7,6 +7,7 @@ const DEFAULT_TAGS = {
   description:
     "Art, designs, game development, web development, and other various projects of Henrik Wilhelm Sissener - WiSiHe",
   image: "https://wisihe.no/images/woods.png",
+  url: "https://wisihe.no",
 };
 
 const Meta = ({
@@ -17,11 +18,14 @@ const Meta = ({
   ogDescription,
   ogImage,
   jsonLd,
+  url,
 }) => {
+  console.log(jsonLd);
   return (
     <Head>
       <title>{title ? `${title} - WiSiHe` : DEFAULT_TAGS.title}</title>
       <link rel="icon" href="/favicon.png" />
+      {url && <link rel="canonical" href={url || DEFAULT_TAGS.url} />}
       <meta
         name="description"
         content={description || DEFAULT_TAGS.description}
@@ -61,6 +65,7 @@ Meta.defaultProps = {
   ogDescription: "",
   ogImage: "",
   jsonLd: "",
+  url: "",
 };
 
 Meta.propTypes = {
@@ -71,6 +76,7 @@ Meta.propTypes = {
   ogDescription: PropTypes.string,
   ogImage: PropTypes.string,
   jsonLd: PropTypes.string,
+  url: PropTypes.string,
 };
 
 export default Meta;
