@@ -47,7 +47,7 @@ export default function Gallery({ painting = {} }) {
         description={description}
         image={smallImage}
         jsonLd={generatePaintingJsonLd(painting)}
-        url={`http://www.wisihe.no/painting/${current}`}
+        url={`https://www.wisihe.no/painting/${current}`}
       />
       <Navigation />
       <Main>
