@@ -30,7 +30,7 @@ export default function Home({ paintings = [] }) {
 
   return (
     <>
-      <Meta url="http://www.wisihe.no" />
+      <Meta url="https://wisihe.no" />
       <Navigation />
 
       <Main>

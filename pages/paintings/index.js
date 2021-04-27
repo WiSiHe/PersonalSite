@@ -32,7 +32,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
       <Meta
         title="Paintings"
         description="A collection of all of Henrik Wilhelm Sissener's digital drawings"
-        url={`http://www.wisihe.no/paintings`}
+        url={`https://wisihe.no/paintings`}
       />
       <Navigation />
       <Main>
