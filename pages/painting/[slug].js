@@ -23,8 +23,10 @@ export default function Gallery({ painting = {} }) {
     title = "",
     tags = [],
     description = "",
-    slug,
+    slug = {},
   } = painting;
+
+  const { current = "" } = slug;
 
   const [loaded, setLoaded] = useState(false);
 
@@ -45,7 +47,7 @@ export default function Gallery({ painting = {} }) {
         description={description}
         image={smallImage}
         jsonLd={generatePaintingJsonLd(painting)}
-        url={`http://www.wisihe.no/painting/${slug.current}`}
+        url={`http://www.wisihe.no/painting/${current}`}
       />
       <Navigation />
       <Main>
