@@ -25,7 +25,7 @@ export default function Gallery({ painting = {} }) {
     description = "",
     slug,
   } = painting;
-  console.log("painting", painting);
+
   const [loaded, setLoaded] = useState(false);
 
   const uniqueTags = [...new Set(tags)];

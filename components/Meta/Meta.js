@@ -20,7 +20,6 @@ const Meta = ({
   jsonLd,
   url,
 }) => {
-  console.log(jsonLd);
   return (
     <Head>
       <title>{title ? `${title} - WiSiHe` : DEFAULT_TAGS.title}</title>
