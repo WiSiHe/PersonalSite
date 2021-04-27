@@ -40,6 +40,10 @@ export default function Home({ paintings = [] }) {
             backgroundImage: `url(${headerImage})`,
           }}
         />
+        <div className="flex justify-center flex-col p-4 text-center">
+          <h1 className="text-4xl">Henrik Wilhelm Sissener</h1>
+          <h2 className="text-xl">WiSiHe</h2>
+        </div>
       </Main>
       <Footer />
     </>

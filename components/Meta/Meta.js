@@ -4,7 +4,8 @@ import Head from "next/head";
 
 const DEFAULT_TAGS = {
   title: "WiSiHe - Design",
-  description: "The art of Henrik Wilhelm Sissener",
+  description:
+    "Art, designs, game development, web development, and other various projects of Henrik Wilhelm Sissener - WiSiHe",
   image: "https://wisihe.no/images/woods.png",
 };
 

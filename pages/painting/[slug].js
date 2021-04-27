@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import Head from "next/head";
-
 import Navigation from "../../components/Navigation";
 import { getAllPaintings, getPainting } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
@@ -13,6 +11,8 @@ import ActiveLink from "../../components/ActiveLink/ActiveLink";
 import { useSpring, animated } from "react-spring";
 import Main from "../../components/Main";
 import Footer from "../../components/Footer";
+import Meta from "../../components/Meta/Meta";
+import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
 
 const placeHolderText =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique. ";
@@ -25,16 +25,20 @@ export default function Gallery({ painting = {} }) {
 
   const props = useSpring({ opacity: loaded ? 1 : 0 });
 
+  const smallImage = imageBuilder(image).width(50).url();
+
   useEffect(() => {
     setLoaded(true);
   }, []);
 
   return (
     <>
-      <Head>
-        <title>wisihe.no</title>
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+      <Meta
+        title={title}
+        description={description}
+        image={smallImage}
+        jsonLd={generatePaintingJsonLd(painting)}
+      />
       <Navigation />
       <Main>
         <animated.div style={props}>
@@ -45,7 +49,7 @@ export default function Gallery({ painting = {} }) {
             />
           </div>
 
-          <div className="container mx-auto pt-8 pb-32">
+          <div className="container mx-auto pt-8 pb-32 ">
             <div className="p-4 md:p-0">
               <h1 className="text-4xl pb-2">{title}</h1>
               <div className="flex pb-2">

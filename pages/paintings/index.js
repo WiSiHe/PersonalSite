@@ -29,7 +29,10 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
 
   return (
     <>
-      <Meta title="Paintings" description="Painting gallery" />
+      <Meta
+        title="Paintings"
+        description="A collection of all of Henrik Wilhelm Sissener's digital drawings"
+      />
       <Navigation />
       <Main>
         <div className=" relative">
@@ -58,6 +61,9 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               })}
           </div>
           <div className=" bg-gradient-to-r  to-white  dark:to-black from-transparent absolute right-0 top-0 bottom-0 w-60 pointer-events-none" />
+        </div>
+        <div className="p-4 ">
+          <h1 className="text-4xl">Gallery</h1>
         </div>
         <div className="flex flex-wrap -mx-1 overflow-hidden">
           {paintings
