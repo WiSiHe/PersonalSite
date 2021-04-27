@@ -4,19 +4,19 @@ import "tailwindcss/tailwind.css";
 
 import { RecoilRoot } from "recoil";
 
-import TagManager from "react-gtm-module";
+// import TagManager from "react-gtm-module";
 
 import { hotjar } from "react-hotjar";
 
-const tagManagerArgs = {
-  id: "GTM-K885GDV",
-};
+// const tagManagerArgs = {
+//   id: "GTM-K885GDV",
+// };
 
 import ThemeSwitcher from "../components/themeSwitcher";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    TagManager.initialize(tagManagerArgs);
+    // TagManager.initialize(tagManagerArgs);
     hotjar.initialize(2372362, 6);
   }, []);
 
