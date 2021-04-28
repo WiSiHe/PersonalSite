@@ -26,7 +26,6 @@ function generatePaintingJsonLd(paintingData) {
       "name": "Henrik Wilhelm Sissener"
     }
   }`;
-  console.log(jsonLd);
 
   return jsonLd;
 }
