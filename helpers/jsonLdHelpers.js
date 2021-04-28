@@ -22,7 +22,7 @@ function generatePaintingJsonLd(paintingData) {
     "image": "${smallImage}",
     "about":"${desciption}",
     "creator": {
-      "@type": "person",
+      "@type": "Person",
       "name": "Henrik Wilhelm Sissener"
     }
   }`;
