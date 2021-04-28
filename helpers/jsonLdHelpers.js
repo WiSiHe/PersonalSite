@@ -16,18 +16,18 @@ function generatePaintingJsonLd(paintingData) {
   const jsonLd = `{
     "@context": "http://schema.org",
     "@type": "Painting",
-    "author": "WiSiHe.no",
     "url": "${url}",
     "name": "${title}",
     "datePublished": "${_createdAt}",
     "image": "${smallImage}",
     "about":"${desciption}",
     "creator": {
-      "@type": "Person",
+      "@type": "person",
       "name": "Henrik Wilhelm Sissener"
-    },
     }
   }`;
+  console.log(jsonLd);
+
   return jsonLd;
 }
 
