@@ -93,7 +93,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
                         .fit("fill")
                         .url()}
                       layout="fill"
-                      alt="title"
+                      alt={title}
                       className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
                     />
                     {title && (

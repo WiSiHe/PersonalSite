@@ -56,6 +56,7 @@ export default function Gallery({ painting = {} }) {
             <img
               className="bg-cover w-full bg-gray-100 "
               src={imageBuilder(image).width(1200).url()}
+              alt={title}
             />
           </div>
 
