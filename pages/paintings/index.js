@@ -15,6 +15,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
   const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
   const tagValues = flattenedTags.map((tag) => tag.label);
+  const paintingsAmount = paintings.length;
 
   let result = {};
 
@@ -42,7 +43,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               onClick={() => setFilterTag("")}
               className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
             >
-              All
+              All ({paintingsAmount})
             </p>
 
             {filteredTags

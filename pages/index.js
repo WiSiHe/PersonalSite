@@ -9,6 +9,7 @@ import Meta from "../components/Meta/Meta";
 
 import { getAllPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
+import Image from "next/image";
 
 export default function Home({ paintings = [] }) {
   const wallpaperPaintings =
@@ -25,23 +26,18 @@ export default function Home({ paintings = [] }) {
   const headerImage = imageBuilder(wallpaperPaintings[header].image)
     .width(1200)
     .height(800)
-    .fit("fill")
     .url();
 
   return (
     <>
       <Meta url="https://wisihe.no" />
       <Navigation />
-
       <Main>
-        {/* Replace this with next image */}
-        <section
-          className="container max-w-full  h-screen object-cover bg-cover flex flex-wrap content-center bg-center  "
-          style={{
-            backgroundImage: `url(${headerImage})`,
-          }}
-        />
-        <div className="flex justify-center flex-col mt-4 text-center bg-purple-800 dark:bg-gray-800">
+        <section className="h-screen w-full relative">
+          <Image src={headerImage} layout="fill" className="object-cover" />
+        </section>
+
+        <div className="flex justify-center flex-col text-white pt-4 text-center bg-purple-800 dark:bg-gray-800">
           <h1 className="text-4xl">Henrik Wilhelm Sissener</h1>
           <h2 className="text-xl">WiSiHe</h2>
         </div>

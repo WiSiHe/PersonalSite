@@ -13,7 +13,9 @@ function ActiveLink({ children, href, shallow = false }) {
   const isActive = router.asPath === href;
 
   const darkStyle = `${isActive && "text-yellow-500"}`;
-  const lightStyle = `text-black  ${isActive && "text-purple-800"}`;
+  const lightStyle = `text-black hover:border-b-2 border-purple-800  ${
+    isActive && "text-purple-800"
+  }`;
 
   const style = isDarkMode ? darkStyle : lightStyle;
 

@@ -4,6 +4,8 @@ import { useRecoilState } from "recoil";
 import { theme as atomTheme } from "../../atoms/theme";
 import ActiveLink from "../ActiveLink/ActiveLink";
 
+import { GiHamburgerMenu } from "react-icons/Gi";
+
 export default function Navigation() {
   const [theme, setTheme] = useRecoilState(atomTheme);
 
@@ -27,8 +29,11 @@ export default function Navigation() {
   };
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white max-w-full p-4 text-lg  shadow-2xl z-10 dark:bg-gray-700 dark:text-white font-serif ">
-      <div className=" mx-auto flex justify-between">
-        <ul className="inline-flex space-x-4">
+      <div className=" mx-auto flex justify-between items-center">
+        {/* <div className="inline-flex md:hidden">
+          <GiHamburgerMenu />
+        </div> */}
+        <ul className=" space-x-4 inline-flex">
           <li>
             <ActiveLink href="/">Home</ActiveLink>
           </li>
