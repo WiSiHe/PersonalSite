@@ -1,7 +1,7 @@
 import React from "react";
 import FocusTrap from "focus-trap-react";
 
-import { RiCloseFill } from "react-icons/Ri";
+import { RiCloseFill } from "react-icons/ri";
 import { useRecoilState } from "recoil";
 import Overlay from "../Overlay";
 
