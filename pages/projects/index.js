@@ -6,6 +6,7 @@ import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Main from "../../components/Main";
 import Meta from "../../components/Meta/Meta";
+import NavigationDrawer from "../../components/NavigationDrawer";
 
 export default function ProjectsPage() {
   return (
@@ -15,6 +16,7 @@ export default function ProjectsPage() {
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
       <Navigation />
+      <NavigationDrawer />
       <Main>
         <div className="p-4 mx-auto min-h-screen">
           <div className="mt-20 text-4xl">

@@ -13,6 +13,7 @@ import Main from "../../components/Main";
 import Footer from "../../components/Footer";
 import Meta from "../../components/Meta/Meta";
 import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
+import NavigationDrawer from "../../components/NavigationDrawer";
 
 const placeHolderText =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique. ";
@@ -50,6 +51,7 @@ export default function Gallery({ painting = {} }) {
         url={`https://wisihe.no/painting/${current}`}
       />
       <Navigation />
+      <NavigationDrawer />
       <Main>
         <animated.div style={props}>
           <div className=" pb-2 relative min-h-800">

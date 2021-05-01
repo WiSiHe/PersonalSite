@@ -11,6 +11,8 @@ import ActiveLink from "../../components/ActiveLink/ActiveLink";
 import Main from "../../components/Main";
 import Meta from "../../components/Meta/Meta";
 
+import NavigationDrawer from "../../components/NavigationDrawer";
+
 export default function PaintingsPage({ paintings = [], tags = [] }) {
   const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
@@ -36,6 +38,8 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
         url={`https://wisihe.no/paintings`}
       />
       <Navigation />
+      <NavigationDrawer />
+
       <Main>
         <div className=" relative">
           <div className="flex py-4 overflow-x-auto">

@@ -10,6 +10,7 @@ import Meta from "../components/Meta/Meta";
 import { getAllPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
 import Image from "next/image";
+import NavigationDrawer from "../components/NavigationDrawer";
 
 export default function Home({ paintings = [] }) {
   const wallpaperPaintings =
@@ -32,6 +33,7 @@ export default function Home({ paintings = [] }) {
     <>
       <Meta url="https://wisihe.no" />
       <Navigation />
+      <NavigationDrawer />
       <Main>
         <section className="h-screen w-full relative">
           <Image src={headerImage} layout="fill" className="object-cover" />
