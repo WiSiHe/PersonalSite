@@ -18,29 +18,29 @@ const NavigationDrawer = () => {
 
   return (
     <>
-      <FocusTrap active={navdrawer}>
-        <nav className={navdrawer ? activeStyle : defaultStyle}>
-          <div className="flex justify-between items-center py-4">
-            <p>wisihe.no</p>
-            <button onClick={() => hideNavDrawer(false)}>
-              <RiCloseFill className="text-4xl dark:text-white hover:opacity-50" />
-            </button>
-          </div>
-          <hr />
-          <ul className=" space-y-4 pt-4  ">
-            <li>
-              <ActiveLink href="/">Home</ActiveLink>
-            </li>
-            <li>
-              <ActiveLink href={"/paintings"}>Paintings</ActiveLink>
-            </li>
-            <li>
-              <ActiveLink href={"/projects"}>Projects</ActiveLink>
-            </li>
-          </ul>
-        </nav>
-      </FocusTrap>
-      <Overlay display={navdrawer} />
+      {/* <FocusTrap active={navdrawer}> */}
+      <nav className={navdrawer ? activeStyle : defaultStyle}>
+        <div className="flex justify-between items-center py-4">
+          <p>wisihe.no</p>
+          <button onClick={() => hideNavDrawer(false)}>
+            <RiCloseFill className="text-4xl dark:text-white hover:opacity-50" />
+          </button>
+        </div>
+        <hr />
+        <ul className=" space-y-4 pt-4  ">
+          <li>
+            <ActiveLink href="/">Home</ActiveLink>
+          </li>
+          <li>
+            <ActiveLink href={"/paintings"}>Paintings</ActiveLink>
+          </li>
+          <li>
+            <ActiveLink href={"/projects"}>Projects</ActiveLink>
+          </li>
+        </ul>
+      </nav>
+      {/* </FocusTrap> */}
+      <Overlay display={navdrawer} close={() => hideNavDrawer(false)} />
     </>
   );
 };
