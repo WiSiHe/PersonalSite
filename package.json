@@ -13,6 +13,7 @@
   "dependencies": {
     "@sanity/client": "^2.7.1",
     "@sanity/image-url": "^0.140.22",
+    "focus-trap-react": "^8.5.0",
     "next": "^10.2.0",
     "next-sanity": "^0.1.12",
     "next-sitemap": "^1.6.25",
