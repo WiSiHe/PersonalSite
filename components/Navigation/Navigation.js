@@ -1,12 +1,12 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 
+import { GiHamburgerMenu } from "react-icons/gi";
+
 import { theme as atomTheme } from "../../atoms/theme";
 import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
 
 import ActiveLink from "../ActiveLink/ActiveLink";
-
-import { GiHamburgerMenu } from "react-icons/Gi";
 
 export default function Navigation() {
   const [theme, setTheme] = useRecoilState(atomTheme);
