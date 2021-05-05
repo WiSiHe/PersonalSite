@@ -12,6 +12,7 @@ import Main from "../../components/Main";
 import Meta from "../../components/Meta/Meta";
 
 import NavigationDrawer from "../../components/NavigationDrawer";
+import Filters from "../../components/Filters";
 
 export default function PaintingsPage({ paintings = [], tags = [] }) {
   const [filterTag, setFilterTag] = useState("");
@@ -41,35 +42,20 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
       <NavigationDrawer />
 
       <Main>
-        <div className=" relative">
-          <div className="flex py-4 overflow-x-auto">
-            <p
-              onClick={() => setFilterTag("")}
-              className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
-            >
-              All ({paintingsAmount})
-            </p>
-
-            {filteredTags
-              .sort((a, b) => b[1] - a[1])
-              .map((tag, i) => {
-                const label = tag[0];
-                const amount = tag[1];
-                return (
-                  <p
-                    className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
-                    key={i}
-                    onClick={() => setFilterTag(label)}
-                  >
-                    {label} ({amount})
-                  </p>
-                );
-              })}
-          </div>
+        <div className="relative">
+          <Filters
+            setFilter={setFilterTag}
+            paintingsAmount={paintingsAmount}
+            filteredTags={filteredTags}
+          />
           <div className=" bg-gradient-to-r  to-white  dark:to-black from-transparent absolute right-0 top-0 bottom-0 w-60 pointer-events-none" />
         </div>
         <div className="p-4 ">
-          <h1 className="text-4xl">Gallery</h1>
+          <h1 className="text-4xl">Paintings</h1>
+          <p>
+            Hi! This is a collection of my various digital paintings that I've
+            made over the years.
+          </p>
         </div>
         <div className="flex flex-wrap -mx-1 overflow-hidden">
           {paintings
@@ -87,7 +73,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               const linkString = `/painting/${current}`;
               return (
                 <div
-                  className="group w-1/2 overflow-hidden lg:w-1/4 xl:w-1/6 h-64 relative"
+                  className="group w-1/2 h-64 lg:h-32 xl:h-64 overflow-hidden lg:w-1/4 xl:w-1/6  relative"
                   key={_id}
                 >
                   <ActiveLink href={linkString}>
