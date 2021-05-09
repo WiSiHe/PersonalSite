@@ -62,7 +62,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
             .filter(
               (p) => p.tags?.find((t) => t.value === filterTag) || !filterTag
             )
-            .map((p) => {
+            .map((p, i) => {
               const {
                 _id,
                 image = {},
@@ -73,8 +73,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               const linkString = `/painting/${current}`;
               return (
                 <div
-                  className="w-full h-40 md:h-40 lg:h-32 relative "
-                  // className="group w-1/2 h-64 xl:h-32 overflow-hidden md:w-1/4 lg:w-1/6 xl:w-1/12  relative"
+                  className="w-full h-40 md:h-40 lg:h-32 relative focus:outline-none group "
                   key={_id}
                 >
                   <ActiveLink href={linkString}>

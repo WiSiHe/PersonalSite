@@ -1,12 +1,13 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import Link from "next/link";
-import Image from "next/image";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { theme as atomTheme } from "../../atoms/theme";
 import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
+import Logo from "../../icons/logo";
+// import Switch from "../Switch";
 
 export default function Navigation() {
   const [theme, setTheme] = useRecoilState(atomTheme);
@@ -32,20 +33,16 @@ export default function Navigation() {
   };
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white max-w-full  text-lg  shadow-2xl z-10 dark:bg-gray-700 dark:text-white font-serif ">
-      <div className="py-3 px-8 mx-auto flex justify-between items-center">
+      <div className="py-4 px-8 mx-auto flex justify-between items-center">
         <button className="inline-flex " onClick={() => showNavDrawer(true)}>
           <GiHamburgerMenu />
         </button>
         <Link href="/">
-          <a className="h-12 w-12 relative">
-            <Image
-              src="/images/Logo.png"
-              layout="fill"
-              alt="logo"
-              className="filter object-cover hover:brightness-200 hover:drop-shadow hover:contrast-200"
-            />
+          <a className="font-xs relative h-2 transform -translate-y-5 filter hover:contrast-200 hover:brightness-200  ">
+            <Logo />
           </a>
         </Link>
+        {/* <Switch /> */}
         <button
           className="w-16 h-8 rounded-full bg-white dark:bg-gray-900 flex items-center transition duration-300 focus:outline-none shadow-inner"
           onClick={() => _changeTheme()}

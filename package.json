@@ -11,8 +11,10 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@headlessui/react": "^1.1.1",
     "@sanity/client": "^2.7.1",
     "@sanity/image-url": "^0.140.22",
+    "clsx": "^1.1.1",
     "focus-trap-react": "^8.5.0",
     "next": "^10.2.0",
     "next-sanity": "^0.1.12",
@@ -37,6 +39,6 @@
     "eslint-plugin-react": "^7.22.0",
     "postcss": "^8.2.8",
     "react-spring": "^9.1.0",
-    "tailwindcss": "^2.1.1"
+    "tailwindcss": "^2.1.2"
   }
 }
