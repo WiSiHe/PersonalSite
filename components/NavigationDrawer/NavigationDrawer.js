@@ -14,6 +14,7 @@ import {
   SiInstagram,
   SiLinkedin,
 } from "react-icons/si";
+import Image from "next/image";
 
 const NavigationDrawer = () => {
   const [navdrawer, hideNavDrawer] = useRecoilState(atomNavdrawer);
@@ -29,7 +30,12 @@ const NavigationDrawer = () => {
         <div>
           <nav className={navdrawer ? activeStyle : defaultStyle}>
             <div className="flex justify-between items-center py-4">
-              <p>wisihe.no</p>
+              <Image
+                src="/images/Logo.png"
+                layout="fill"
+                alt="logo"
+                className="filter object-cover hover:brightness-200 hover:drop-shadow hover:contrast-200"
+              />
               <button onClick={() => hideNavDrawer(false)}>
                 <RiCloseFill className="text-2xl dark:text-white hover:opacity-50" />
               </button>
