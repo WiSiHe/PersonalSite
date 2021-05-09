@@ -107,7 +107,10 @@ Gallery.propTypes = {
 
 export async function getStaticProps({ params, preview = false }) {
   const { slug = "" } = params;
+  console.log("slug", slug);
+  // if (!slug) return { props: {} };
   const data = await getPainting(slug, preview);
+  console.log("data", data);
 
   if (data.length < 1) {
     return { props: {} };
@@ -132,6 +135,6 @@ export async function getStaticPaths() {
           slug: painting.slug.current,
         },
       })) || [],
-    fallback: true,
+    fallback: false,
   };
 }

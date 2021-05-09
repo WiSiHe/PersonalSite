@@ -48,7 +48,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
             paintingsAmount={paintingsAmount}
             filteredTags={filteredTags}
           />
-          <div className=" bg-gradient-to-r  to-white  dark:to-black from-transparent absolute right-0 top-0 bottom-0 w-60 pointer-events-none" />
+          {/* <div className=" bg-gradient-to-r  to-white  dark:to-black from-transparent absolute right-0 top-0 bottom-0 w-60 pointer-events-none" /> */}
         </div>
         <div className="p-4 ">
           <h1 className="text-4xl">Paintings</h1>
@@ -57,7 +57,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
             made over the years.
           </p>
         </div>
-        <div className="flex flex-wrap -mx-1 overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-12 auto-rows-auto">
           {paintings
             .filter(
               (p) => p.tags?.find((t) => t.value === filterTag) || !filterTag
@@ -73,7 +73,8 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
               const linkString = `/painting/${current}`;
               return (
                 <div
-                  className="group w-1/2 h-64 lg:h-32 xl:h-64 overflow-hidden lg:w-1/4 xl:w-1/6  relative"
+                  className="w-full h-40 md:h-40 lg:h-32 relative "
+                  // className="group w-1/2 h-64 xl:h-32 overflow-hidden md:w-1/4 lg:w-1/6 xl:w-1/12  relative"
                   key={_id}
                 >
                   <ActiveLink href={linkString}>
@@ -85,7 +86,7 @@ export default function PaintingsPage({ paintings = [], tags = [] }) {
                         .url()}
                       layout="fill"
                       alt={title}
-                      className="g-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
+                      className="bg-cover bg-center w-full h-full object-cover transition-all transform duration-1000 ease-in-out hover:scale-110 "
                     />
                     {title && (
                       <div className="bg-gray-800 opacity-0 transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 bg-opacity-40 font text-white p-2 group-hover:opacity-100">

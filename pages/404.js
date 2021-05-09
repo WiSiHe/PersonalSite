@@ -5,12 +5,14 @@ import Main from "../components/Main";
 import Meta from "../components/Meta/Meta";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import NavigationDrawer from "../components/NavigationDrawer";
 
 export default function Custom404() {
   return (
     <>
       <Meta />
       <Navigation />
+      <NavigationDrawer />
       <Main>
         <section className="w-full h-72 md:h-screen flex relative justify-center items-center  ">
           <Image

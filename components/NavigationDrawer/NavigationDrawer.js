@@ -8,6 +8,13 @@ import Overlay from "../Overlay";
 import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
 import ActiveLink from "../ActiveLink/ActiveLink";
 
+import {
+  SiRedbubble,
+  SiArtstation,
+  SiInstagram,
+  SiLinkedin,
+} from "react-icons/si";
+
 const NavigationDrawer = () => {
   const [navdrawer, hideNavDrawer] = useRecoilState(atomNavdrawer);
 
@@ -19,28 +26,73 @@ const NavigationDrawer = () => {
   return (
     <>
       <FocusTrap active={navdrawer}>
-        <nav className={navdrawer ? activeStyle : defaultStyle}>
-          <div className="flex justify-between items-center py-4">
-            <p>wisihe.no</p>
-            <button onClick={() => hideNavDrawer(false)}>
-              <RiCloseFill className="text-4xl dark:text-white hover:opacity-50" />
-            </button>
-          </div>
-          <hr />
-          <ul className=" space-y-4 pt-4  ">
-            <li>
-              <ActiveLink href="/">Home</ActiveLink>
-            </li>
-            <li>
-              <ActiveLink href={"/paintings"}>Paintings</ActiveLink>
-            </li>
-            {/* <li>
-            <ActiveLink href={"/projects"}>Projects</ActiveLink>
-          </li> */}
-          </ul>
-        </nav>
+        <div>
+          <nav className={navdrawer ? activeStyle : defaultStyle}>
+            <div className="flex justify-between items-center py-4">
+              <p>wisihe.no</p>
+              <button onClick={() => hideNavDrawer(false)}>
+                <RiCloseFill className="text-2xl dark:text-white hover:opacity-50" />
+              </button>
+            </div>
+            <hr />
+            <ul className="space-y-4 pt-4">
+              <li>
+                <ActiveLink href="/">Home</ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href={"/paintings"}>Paintings</ActiveLink>
+              </li>
+            </ul>
+
+            <div className="flex justify-center absolute left-0 right-0 bottom-4">
+              <ul className="inline-flex space-x-4 ">
+                <li className="hover:text-yellow-500">
+                  <a
+                    href="https://www.redbubble.com/people/hws902/shop?asc=u&ref=account-nav-dropdown"
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label="redbubble"
+                  >
+                    <SiRedbubble alt="redbubble" aria-hidden="true" />
+                  </a>
+                </li>
+                <li className="hover:text-yellow-500">
+                  <a
+                    href="https://www.artstation.com/wisihe"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="artstation"
+                  >
+                    <SiArtstation alt="artstation" aria-hidden="true" />
+                  </a>
+                </li>
+                <li className="hover:text-yellow-500">
+                  <a
+                    href="https://www.instagram.com/wisihe/?hl=en"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="instagram"
+                  >
+                    <SiInstagram alt="instagram" aria-hidden="true" />
+                  </a>
+                </li>
+                <li className="hover:text-yellow-500">
+                  <a
+                    href="https://www.linkedin.com/in/henrik-wilhelm-sissener/"
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label="linkedin"
+                  >
+                    <SiLinkedin alt="linkedin" aria-hidden="true" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <Overlay display={navdrawer} close={() => hideNavDrawer(false)} />
+        </div>
       </FocusTrap>
-      <Overlay display={navdrawer} close={() => hideNavDrawer(false)} />
     </>
   );
 };
