@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FocusTrap from "focus-trap-react";
 
 import { RiCloseFill } from "react-icons/ri";
@@ -14,10 +14,17 @@ import SocialLinks from "../SocialLinks/SocialLinks";
 const NavigationDrawer = () => {
   const [navdrawer, hideNavDrawer] = useRecoilState(atomNavdrawer);
 
+  // rewrite this
   const defaultStyle =
     "h-full fixed bg-white dark:bg-gray-800 w-full sm:w-96 z-30 top-0 shadow-lg p-4 transform -translate-x-full transition-all duration-500 ease-in-out dark:text-white";
   const activeStyle =
     "h-full fixed bg-white dark:bg-gray-800 w-full sm:w-96 z-30 top-0 shadow-lg p-4 transform transition-all duration-500 ease-in-out dark:text-white";
+
+  useEffect(() => {
+    return () => {
+      hideNavDrawer(false);
+    };
+  }, []);
 
   return (
     <>
