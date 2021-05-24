@@ -64,7 +64,7 @@ export default function Home({ paintings = [], tags = [] }) {
       <Main noTopPadding>
         <section className="relative w-full h-70v md:h-100v ">
           <Image src={headerImage} layout="fill" className="object-cover" />
-          <div className="absolute left-0 right-0 flex justify-center bottom-2 ">
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
             <button onClick={executeScroll}>
               <BsChevronDown className="p-2 text-4xl text-center transition rounded-full animate-bounce hover:bg-white hover:text-black" />
             </button>
