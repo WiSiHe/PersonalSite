@@ -50,27 +50,27 @@ export default function Gallery({ painting = {} }) {
         jsonLd={generatePaintingJsonLd(painting)}
         url={`https://wisihe.no/painting/${current}`}
       />
-      <Navigation />
-      <NavigationDrawer />
-      <Main>
+      {/* <Navigation /> */}
+      {/* <NavigationDrawer /> */}
+      <Main noTopPadding>
         <animated.div style={props}>
-          <div className=" pb-2 relative min-h-800">
+          <div className="relative pb-2 min-h-800">
             <img
-              className="bg-cover w-full bg-gray-100 "
+              className="w-full bg-gray-100 bg-cover "
               src={imageBuilder(image).width(1200).url()}
               alt={title}
             />
           </div>
 
-          <div className="container mx-auto pt-8 pb-32 ">
+          <div className="container pt-8 pb-32 mx-auto ">
             <div className="p-4 md:p-0">
-              <h1 className="text-4xl pb-2">{title}</h1>
+              <h1 className="pb-2 text-4xl">{title}</h1>
               <div className="flex pb-2">
                 {uniqueTags.map((tag, i) => {
                   const { value } = tag;
                   return (
                     <p
-                      className="p-1 bg-purple-800 mr-2 text-white text-xs"
+                      className="p-1 mr-2 text-xs text-white bg-purple-800"
                       key={i}
                     >
                       {value}
@@ -87,9 +87,9 @@ export default function Gallery({ painting = {} }) {
             </div>
           </div>
 
-          <div className="fixed bottom-16 left-4">
-            <ActiveLink href="/paintings" shallow>
-              <p className="text-2xl flex justify-center items-center rounded-full shadow bg-white p-4 transition-all duration-100 ease-in-out dark:bg-purple-700 dark:text-white hover:bg-opacity-80">
+          <div className="fixed bottom-4 left-4">
+            <ActiveLink href="/" shallow>
+              <p className="flex items-center justify-center p-2 text-2xl transition-all duration-100 ease-in-out bg-white shadow dark:bg-purple-700 dark:text-white hover:bg-opacity-80">
                 <IoArrowBackSharp />
               </p>
             </ActiveLink>
@@ -107,10 +107,7 @@ Gallery.propTypes = {
 
 export async function getStaticProps({ params, preview = false }) {
   const { slug = "" } = params;
-  console.log("slug", slug);
-  // if (!slug) return { props: {} };
   const data = await getPainting(slug, preview);
-  console.log("data", data);
 
   if (data.length < 1) {
     return { props: {} };
