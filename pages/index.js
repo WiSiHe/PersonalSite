@@ -71,13 +71,13 @@ export default function Home({ paintings = [], tags = [] }) {
           </div>
         </section>
         <div
-          className="flex flex-col justify-center py-4 text-center text-white bg-purple-800 dark:bg-gray-800"
+          className="flex flex-col justify-center py-4 text-center text-white bg-purple-800 "
           ref={myRef}
         >
           <h1 className="text-4xl">Henrik Wilhelm Sissener</h1>
           <h2 className="text-xl">WiSiHe</h2>
         </div>
-        <div className="relative">
+        <div className="relative ">
           <Filters
             setFilter={setFilterTag}
             paintingsAmount={paintingsAmount}
@@ -98,6 +98,7 @@ Home.propTypes = {
 
 export async function getStaticProps({ preview = false }) {
   const data = await getAllTagsAndPaintings(preview);
+  console.log("data", data);
 
   if (data.length < 1) {
     return { props: {} };

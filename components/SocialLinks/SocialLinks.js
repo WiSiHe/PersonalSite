@@ -7,10 +7,13 @@ import {
   SiInstagram,
   SiLinkedin,
 } from "react-icons/si";
+import clsx from "clsx";
 
-const SocialLinks = () => {
+const SocialLinks = ({ alignLeft = false }) => {
   return (
-    <div className="flex justify-center">
+    <div
+      className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}
+    >
       <ul className="inline-flex space-x-4 ">
         <li className="hover:text-yellow-500">
           <a
