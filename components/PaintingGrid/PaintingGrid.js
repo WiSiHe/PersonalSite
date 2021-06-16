@@ -38,12 +38,6 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                     .height(300)
                     .fit("fill")
                     .url()}
-                  placeholder="blur"
-                  blurDataURL={imageBuilder(image)
-                    .width(10)
-                    .height(10)
-                    .fit("fill")
-                    .url()}
                   layout="fill"
                   alt={title}
                   className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 "

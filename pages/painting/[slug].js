@@ -22,7 +22,7 @@ export default function Gallery({
   painting = {},
   smImage = "",
   lgImage = "",
-  xlImage = "",
+  // xlImage = "",
   title = "",
   tags = [],
   description = "",
@@ -55,7 +55,7 @@ export default function Gallery({
             <div className="relative h-60v lg:min-h-screen ">
               <animated.div style={props}>
                 <Image
-                  src={xlImage}
+                  src={lgImage}
                   placeholder="blur"
                   blurDataURL={smImage}
                   layout="fill"

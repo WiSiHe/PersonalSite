@@ -2,16 +2,16 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import Link from "next/link";
 
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 
 import { theme as atomTheme } from "../../atoms/theme";
-import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
+// import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
 import Logo from "../../icons/logo";
 // import Switch from "../Switch";
 
 export default function Navigation() {
   const [theme, setTheme] = useRecoilState(atomTheme);
-  const [navdrawer, showNavDrawer] = useRecoilState(atomNavdrawer);
+  // const [navdrawer, showNavDrawer] = useRecoilState(atomNavdrawer);
 
   const isDarkMode = theme === "dark";
 
@@ -32,19 +32,19 @@ export default function Navigation() {
     }
   };
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white max-w-full  text-lg  shadow-2xl z-10 dark:bg-gray-700 dark:text-white font-serif ">
-      <div className="py-4 px-8 mx-auto flex justify-between items-center">
-        <button className="inline-flex " onClick={() => showNavDrawer(true)}>
+    <nav className="fixed top-0 left-0 right-0 z-10 max-w-full font-serif text-lg bg-white shadow-2xl dark:bg-gray-700 dark:text-white ">
+      <div className="flex items-center justify-between px-8 py-4 mx-auto">
+        {/* <button className="inline-flex " onClick={() => showNavDrawer(true)}>
           <GiHamburgerMenu />
-        </button>
+        </button> */}
         <Link href="/">
-          <a className="font-xs relative h-2 transform -translate-y-5 filter hover:contrast-200 hover:brightness-200  ">
+          <a className="relative h-2 transform -translate-y-5 font-xs filter hover:contrast-200 hover:brightness-200 ">
             <Logo />
           </a>
         </Link>
         {/* <Switch /> */}
         <button
-          className="w-16 h-8 rounded-full bg-white dark:bg-gray-900 flex items-center transition duration-300 focus:outline-none shadow-inner"
+          className="flex items-center w-16 h-8 transition duration-300 bg-white rounded-full shadow-inner dark:bg-gray-900 focus:outline-none"
           onClick={() => _changeTheme()}
           aria-label="darkmode toggle"
         >

@@ -60,4 +60,8 @@ const SocialLinks = ({ alignLeft = false }) => {
   );
 };
 
+SocialLinks.propTypes = {
+  alignLeft: PropTypes.bool,
+};
+
 export default SocialLinks;
