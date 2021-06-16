@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import React from "react";
@@ -8,19 +9,26 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-12 auto-rows-auto">
       {paintings
-        .filter((p) => p.tags?.find((t) => t.value === filterTag) || !filterTag)
-        .map((p, i) => {
+        // .filter((p) => p.tags?.find((t) => t.value === filterTag) || !filterTag)
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .map((p) => {
           const {
             _id,
             image = {},
             title = "",
+            tags = [],
             slug: { current = "" } = {},
           } = p;
+
+          const isShow = tags?.find((t) => t.value === filterTag) || !filterTag;
 
           const linkString = `/painting/${current}`;
           return (
             <div
-              className="relative w-full h-40 md:h-40 lg:h-32 focus:outline-none group "
+              className={clsx(
+                "relative w-full h-40 md:h-40 lg:h-32 focus:outline-none group transition-all duration-1000",
+                !isShow && "opacity-10"
+              )}
               key={_id}
             >
               <ActiveLink href={linkString}>
@@ -28,6 +36,12 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                   src={imageBuilder(image)
                     .width(300)
                     .height(300)
+                    .fit("fill")
+                    .url()}
+                  placeholder="blur"
+                  blurDataURL={imageBuilder(image)
+                    .width(10)
+                    .height(10)
                     .fit("fill")
                     .url()}
                   layout="fill"
@@ -49,6 +63,8 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
 
 PaintingGrid.propTypes = {
   display: PropTypes.bool,
+  filterTag: PropTypes.string,
+  paintings: PropTypes.array,
 };
 
 export default PaintingGrid;

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports = {
   purge: [
     "./pages/**/*.{js,ts,jsx,tsx}",

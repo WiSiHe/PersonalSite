@@ -16,7 +16,12 @@ import PaintingGrid from "../components/PaintingGrid/PaintingGrid";
 
 import { BsChevronDown } from "react-icons/bs";
 
-export default function Home({ paintings = [], tags = [] }) {
+export default function Home({
+  paintings = [],
+  headerImage = "",
+  thumbnailImage = "",
+  tags = [],
+}) {
   const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
   const tagValues = flattenedTags.map((tag) => tag.label);
@@ -30,22 +35,6 @@ export default function Home({ paintings = [], tags = [] }) {
       inline: "nearest",
     });
 
-  const wallpaperPaintings =
-    paintings.filter(
-      (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
-    ) || [];
-
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
-
-  const headerImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(1200)
-    .height(800)
-    .url();
-
   let result = {};
 
   for (var i = 0; i < tagValues.length; ++i) {
@@ -58,12 +47,16 @@ export default function Home({ paintings = [], tags = [] }) {
   return (
     <>
       <Meta url="https://wisihe.no" />
-      {/* <Navigation />
-      <NavigationDrawer /> */}
 
       <Main noTopPadding>
-        <section className="relative w-full h-70v md:h-100v ">
-          <Image src={headerImage} layout="fill" className="object-cover" />
+        <section className="relative w-full h-screen">
+          <Image
+            src={headerImage}
+            placeholder="blur"
+            blurDataURL={thumbnailImage}
+            layout="fill"
+            className="object-cover"
+          />
           <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
             <button onClick={executeScroll}>
               <BsChevronDown className="p-2 text-4xl text-center transition rounded-full animate-bounce hover:bg-white hover:text-black" />
@@ -79,7 +72,7 @@ export default function Home({ paintings = [], tags = [] }) {
         </div>
         <div className="relative ">
           <Filters
-            setFilter={setFilterTag}
+            setFilterTag={setFilterTag}
             paintingsAmount={paintingsAmount}
             filteredTags={filteredTags}
           />
@@ -92,21 +85,44 @@ export default function Home({ paintings = [], tags = [] }) {
 }
 
 Home.propTypes = {
+  headerImage: PropTypes.string,
   paintings: PropTypes.array,
   tags: PropTypes.array,
+  thumbnailImage: PropTypes.string,
 };
 
 export async function getStaticProps({ preview = false }) {
   const data = await getAllTagsAndPaintings(preview);
-  console.log("data", data);
 
   if (data.length < 1) {
     return { props: {} };
   }
 
+  const wallpaperPaintings =
+    data.paintings.filter(
+      (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
+    ) || [];
+
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
+
+  const headerImage = imageBuilder(wallpaperPaintings[header].image)
+    .width(1200)
+    .height(800)
+    .url();
+  const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
+    .width(120)
+    .height(80)
+    .url();
+
   return {
     props: {
       paintings: data.paintings,
+      headerImage: headerImage,
+      thumbnailImage: thumbnailImage,
       tags: data.tags,
     },
     revalidate: 600, // 10 min

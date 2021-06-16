@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Filters = ({ filteredTags, paintingsAmount, setFilterTag }) => {
+const Filters = ({ filteredTags = [], paintingsAmount = 0, setFilterTag }) => {
   return (
     <div className="flex py-4 overflow-x-auto">
       <p
         onClick={() => setFilterTag("")}
-        className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+        className="p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500"
       >
         All ({paintingsAmount})
       </p>
@@ -18,7 +18,7 @@ const Filters = ({ filteredTags, paintingsAmount, setFilterTag }) => {
           const amount = tag[1];
           return (
             <p
-              className="bg-purple-800 text-white text-xs p-2 whitespace-nowrap ml-2 select-none cursor-pointer hover:bg-purple-500 rounded-lg"
+              className="p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500"
               key={i}
               onClick={() => setFilterTag(label)}
             >
@@ -32,6 +32,9 @@ const Filters = ({ filteredTags, paintingsAmount, setFilterTag }) => {
 
 Filters.propTypes = {
   children: PropTypes.node.isRequired,
+  filteredTags: PropTypes.array,
+  paintingsAmount: PropTypes.number,
+  setFilterTag: PropTypes.func,
 };
 
 export default Filters;

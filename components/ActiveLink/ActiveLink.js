@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { theme as atomTheme } from "../../atoms/theme";
 
-function ActiveLink({ children, href, shallow = false }) {
+function ActiveLink({ children, href, scrollToTop = true, shallow = false }) {
   const theme = useRecoilValue(atomTheme);
 
   const isDarkMode = theme === "dark";
@@ -21,7 +21,7 @@ function ActiveLink({ children, href, shallow = false }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    router.push(href, undefined, { shallow: shallow });
+    router.push(href, undefined, { scroll: scrollToTop, shallow: shallow });
   };
 
   return (
@@ -34,6 +34,7 @@ function ActiveLink({ children, href, shallow = false }) {
 ActiveLink.propTypes = {
   children: PropTypes.any,
   href: PropTypes.any,
+  scrollToTop: PropTypes.bool,
   shallow: PropTypes.bool,
 };
 
