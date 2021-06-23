@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-// import Navigation from "../../components/Navigation";
-// import NavigationDrawer from "../../components/NavigationDrawer";
 import { getAllPaintings, getPainting } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
 
@@ -16,14 +14,10 @@ import Meta from "../../components/Meta/Meta";
 import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
 
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
-import Image from "next/image";
 
 export default function Gallery({
   painting = {},
-  image,
-  // smImage = "",
-  // lgImage = "",
-  // xlImage = "",
+  image = {},
   title = "",
   tags = [],
   description = "",
@@ -110,6 +104,7 @@ export default function Gallery({
 
 Gallery.propTypes = {
   description: PropTypes.string,
+  image: PropTypes.object,
   lgImage: PropTypes.string,
   painting: PropTypes.object,
   slug: PropTypes.object,
@@ -138,9 +133,6 @@ export async function getStaticProps({ params, preview = false }) {
       description: description,
       tags: tags,
       image: image,
-      // smImage: smallImage,
-      // lgImage: largeImage,
-      // xlImage: xlImage,
     },
     revalidate: 600, // 10 min
   };
