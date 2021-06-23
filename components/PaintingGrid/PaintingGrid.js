@@ -7,7 +7,7 @@ import ActiveLink from "../ActiveLink/ActiveLink";
 
 const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 xl:grid-cols-12 auto-rows-auto">
+    <div className="grid min-h-screen grid-cols-2 md:grid-cols-4 lg:grid-cols-8 auto-rows-min">
       {paintings
         // .filter((p) => p.tags?.find((t) => t.value === filterTag) || !filterTag)
         .sort((a, b) => a.title.localeCompare(b.title))
@@ -26,7 +26,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
           return (
             <div
               className={clsx(
-                "relative w-full h-40 md:h-40 lg:h-32 focus:outline-none group transition-all duration-1000",
+                "relative w-full h-60 focus:outline-none group transition-all duration-1000",
                 !isShow && "opacity-10"
               )}
               key={_id}

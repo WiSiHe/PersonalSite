@@ -59,7 +59,7 @@ export default function Home({
           />
           <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
             <button onClick={executeScroll}>
-              <BsChevronDown className="p-2 text-4xl text-center transition rounded-full animate-bounce hover:bg-white hover:text-black" />
+              <BsChevronDown className="p-2 text-5xl text-center text-black transition bg-white rounded-full animate-bounce" />
             </button>
           </div>
         </section>
@@ -72,6 +72,7 @@ export default function Home({
         </div>
         <div className="relative ">
           <Filters
+            activeFilter={filterTag}
             setFilterTag={setFilterTag}
             paintingsAmount={paintingsAmount}
             filteredTags={filteredTags}
@@ -110,12 +111,12 @@ export async function getStaticProps({ preview = false }) {
   const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
 
   const headerImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(1200)
-    .height(800)
+    .width(1920)
+    .height(1080)
     .url();
   const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(120)
-    .height(80)
+    .width(256)
+    .height(144)
     .url();
 
   return {

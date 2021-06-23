@@ -20,8 +20,9 @@ import Image from "next/image";
 
 export default function Gallery({
   painting = {},
-  smImage = "",
-  lgImage = "",
+  image,
+  // smImage = "",
+  // lgImage = "",
   // xlImage = "",
   title = "",
   tags = [],
@@ -29,6 +30,10 @@ export default function Gallery({
   slug = {},
 }) {
   const { current = "" } = slug;
+
+  const smallImage = imageBuilder(image).width(120).height(80).url();
+  const largeImage = imageBuilder(image).width(1200).url();
+  const xlImage = imageBuilder(image).width(2160).url();
 
   const [loaded, setLoaded] = useState(false);
   const uniqueTags = [...new Set(tags)];
@@ -44,39 +49,26 @@ export default function Gallery({
       <Meta
         title={title}
         description={description}
-        image={smImage}
+        image={smallImage}
         jsonLd={generatePaintingJsonLd(painting)}
         url={`https://wisihe.no/painting/${current}`}
       />
 
       <Main noTopPadding>
-        <div className="relative grid w-full h-full md:grid-cols-12">
-          <div className="relative min-h-full col-span-12 lg:col-span-9 ">
-            <div className="relative h-60v lg:min-h-screen ">
-              <animated.div style={props}>
-                <Image
-                  src={lgImage}
-                  placeholder="blur"
-                  blurDataURL={smImage}
-                  layout="fill"
-                  className="object-cover"
+        <div className="relative grid w-full lg:min-h-screen lg:grid-cols-12 ">
+          <div className="relative col-span-12 bg-yellow-800 lg:col-span-9 ">
+            <animated.div style={props} className="w-full ">
+              <picture>
+                <source media="(min-width:1440px)" srcSet={xlImage} />
+                <source media="(min-width:650px)" srcSet={largeImage} />
+                <source media="(min-width:465px)" srcSet={largeImage} />
+                <img
+                  className="object-cover w-full bg-gray-100 bg-cover lg:min-h-screen"
+                  src={xlImage}
+                  alt={title}
                 />
-              </animated.div>
-            </div>
-            {/* <animated.div style={props}>
-              <div className="relative w-full lg:min-h-screen ">
-                <picture>
-                  <source media="(min-width:1440px)" srcSet={xlImage} />
-                  <source media="(min-width:650px)" srcSet={lgImage} />
-                  <source media="(min-width:465px)" srcSet={lgImage} />
-                  <img
-                    className="object-cover w-full bg-gray-100 bg-cover lg:min-h-screen "
-                    src={lgImage}
-                    alt={title}
-                  />
-                </picture>
-              </div>
-            </animated.div> */}
+              </picture>
+            </animated.div>
           </div>
 
           <div className="top-0 h-[fit-content] block col-span-12 lg:sticky lg:col-span-3 ">
@@ -139,10 +131,6 @@ export async function getStaticProps({ params, preview = false }) {
 
   const { image = {}, title = "", tags = [], description = "" } = painting;
 
-  const smallImage = imageBuilder(image).width(120).height(80).url();
-  const largeImage = imageBuilder(image).width(1200).height(800).url();
-  const xlImage = imageBuilder(image).width(2160).height(1440).url();
-
   return {
     props: {
       painting: painting,
@@ -150,9 +138,9 @@ export async function getStaticProps({ params, preview = false }) {
       description: description,
       tags: tags,
       image: image,
-      smImage: smallImage,
-      lgImage: largeImage,
-      xlImage: xlImage,
+      // smImage: smallImage,
+      // lgImage: largeImage,
+      // xlImage: xlImage,
     },
     revalidate: 600, // 10 min
   };

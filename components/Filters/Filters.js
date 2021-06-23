@@ -1,12 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import clsx from "clsx";
 
-const Filters = ({ filteredTags = [], paintingsAmount = 0, setFilterTag }) => {
+const Filters = ({
+  filteredTags = [],
+  paintingsAmount = 0,
+  setFilterTag,
+  activeFilter = "",
+}) => {
   return (
-    <div className="flex py-4 overflow-x-auto">
+    <div className="flex py-2 overflow-x-auto">
       <p
         onClick={() => setFilterTag("")}
-        className="p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500"
+        className={clsx(
+          "p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-800",
+          activeFilter === "" &&
+            "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
+        )}
       >
         All ({paintingsAmount})
       </p>
@@ -18,7 +28,11 @@ const Filters = ({ filteredTags = [], paintingsAmount = 0, setFilterTag }) => {
           const amount = tag[1];
           return (
             <p
-              className="p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500"
+              className={clsx(
+                "transition p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500",
+                activeFilter === label &&
+                  "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
+              )}
               key={i}
               onClick={() => setFilterTag(label)}
             >
@@ -31,6 +45,7 @@ const Filters = ({ filteredTags = [], paintingsAmount = 0, setFilterTag }) => {
 };
 
 Filters.propTypes = {
+  activeFilter: PropTypes.string,
   children: PropTypes.node.isRequired,
   filteredTags: PropTypes.array,
   paintingsAmount: PropTypes.number,
