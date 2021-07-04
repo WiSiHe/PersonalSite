@@ -18,9 +18,8 @@ import { BsChevronDown } from "react-icons/bs";
 
 export default function Home({
   paintings = [],
-  headerImage = "",
-  thumbnailImage = "",
   tags = [],
+  wallpaperPaintings,
 }) {
   const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
@@ -44,12 +43,27 @@ export default function Home({
 
   const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
 
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
+
+  const headerImage = imageBuilder(wallpaperPaintings[header].image)
+    .width(1920)
+    .height(1080)
+    .url();
+  const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
+    .width(640)
+    .height(360)
+    .url();
+
   return (
     <>
       <Meta url="https://wisihe.no" />
 
       <Main noTopPadding>
-        <section className="relative w-full h-screen">
+        <section className="relative w-full h-40v lg:h-screen">
           <Image
             src={headerImage}
             placeholder="blur"
@@ -59,12 +73,12 @@ export default function Home({
           />
           <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
             <button onClick={executeScroll}>
-              <BsChevronDown className="p-2 text-5xl text-center text-black transition bg-white rounded-full animate-bounce" />
+              <BsChevronDown className="p-1 text-3xl text-center text-white transition rounded-full hover:text-black hover:bg-white animate-bounce" />
             </button>
           </div>
         </section>
         <div
-          className="flex flex-col justify-center py-4 text-center text-white bg-purple-800 "
+          className="flex flex-col justify-center px-2 py-4 text-center text-white bg-purple-800 "
           ref={myRef}
         >
           <h1 className="text-4xl">Henrik Wilhelm Sissener</h1>
@@ -86,10 +100,11 @@ export default function Home({
 }
 
 Home.propTypes = {
-  headerImage: PropTypes.string,
   paintings: PropTypes.array,
   tags: PropTypes.array,
-  thumbnailImage: PropTypes.string,
+  wallpaperPaintings: PropTypes.shape({
+    length: PropTypes.any,
+  }),
 };
 
 export async function getStaticProps({ preview = false }) {
@@ -104,26 +119,10 @@ export async function getStaticProps({ preview = false }) {
       (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
     ) || [];
 
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
-
-  const headerImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(1920)
-    .height(1080)
-    .url();
-  const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(256)
-    .height(144)
-    .url();
-
   return {
     props: {
       paintings: data.paintings,
-      headerImage: headerImage,
-      thumbnailImage: thumbnailImage,
+      wallpaperPaintings: wallpaperPaintings,
       tags: data.tags,
     },
     revalidate: 600, // 10 min

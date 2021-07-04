@@ -46,7 +46,6 @@ const Filters = ({
 
 Filters.propTypes = {
   activeFilter: PropTypes.string,
-  children: PropTypes.node.isRequired,
   filteredTags: PropTypes.array,
   paintingsAmount: PropTypes.number,
   setFilterTag: PropTypes.func,
