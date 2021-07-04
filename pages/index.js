@@ -52,10 +52,12 @@ export default function Home({
   const headerImage = imageBuilder(wallpaperPaintings[header].image)
     .width(1920)
     .height(1080)
+    .fit("fill")
     .url();
   const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
     .width(640)
     .height(360)
+    .fit("fill")
     .url();
 
   return (
@@ -78,7 +80,7 @@ export default function Home({
           </div>
         </section>
         <div
-          className="flex flex-col justify-center p-4 text-center text-white bg-dark "
+          className="flex flex-col justify-center p-4 text-center bg-dark "
           ref={myRef}
         >
           <h1 className="text-4xl font-playfair">Henrik Wilhelm Sissener</h1>
