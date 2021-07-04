@@ -9,6 +9,17 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        playfair: "'Playfair Display', serif",
+        roboto: "'Roboto', sansSerif",
+      },
+      colors: {
+        dark: "#12232E",
+        primary: "#007CC7",
+        secondary: "#4DA8DA",
+        shadow: "#203647",
+        bright: "#EEFBFB",
+      },
       height: {
         "10v": "10vh",
         "20v": "20vh",

@@ -43,7 +43,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                   className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 "
                 />
                 {title && (
-                  <div className="absolute bottom-0 left-0 right-0 p-2 text-white transition-all duration-500 ease-in-out bg-gray-800 opacity-0 bg-opacity-40 font group-hover:opacity-100">
+                  <div className="absolute bottom-0 left-0 right-0 p-2 text-white transition-all duration-500 ease-in-out opacity-0 bg-dark bg-opacity-40 font group-hover:opacity-100">
                     <p>{title}</p>
                   </div>
                 )}

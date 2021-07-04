@@ -27,6 +27,16 @@ class MyDocument extends Document {
           `,
             }}
           />
+          <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin
+          ></link>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Roboto&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <body>
           <Main />

@@ -78,11 +78,11 @@ export default function Home({
           </div>
         </section>
         <div
-          className="flex flex-col justify-center px-2 py-4 text-center text-white bg-purple-800 "
+          className="flex flex-col justify-center p-4 text-center text-white bg-dark "
           ref={myRef}
         >
-          <h1 className="text-4xl">Henrik Wilhelm Sissener</h1>
-          <h2 className="text-xl">WiSiHe</h2>
+          <h1 className="text-4xl font-playfair">Henrik Wilhelm Sissener</h1>
+          <h2 className="text-xl font-roboto">WiSiHe</h2>
         </div>
         <div className="relative ">
           <Filters

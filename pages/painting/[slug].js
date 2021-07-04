@@ -73,7 +73,7 @@ export default function Gallery({
                   const { value } = tag;
                   return (
                     <p
-                      className="p-2 mr-2 text-xs text-white bg-purple-800 rounded-lg"
+                      className="p-2 mr-2 text-xs text-white rounded-lg bg-primary"
                       key={i}
                     >
                       {value}
@@ -92,7 +92,7 @@ export default function Gallery({
         </div>
         <div className="fixed transition-all ease-in-out top-4 left-4">
           <ActiveLink href="/" shallow>
-            <p className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-purple-700 dark:text-white ">
+            <p className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
               <IoArrowBackSharp />
             </p>
           </ActiveLink>

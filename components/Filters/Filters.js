@@ -13,7 +13,7 @@ const Filters = ({
       <p
         onClick={() => setFilterTag("")}
         className={clsx(
-          "p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-800",
+          "p-2 ml-2 text-xs text-white bg-primary rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-primary",
           activeFilter === "" &&
             "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
         )}
@@ -29,7 +29,7 @@ const Filters = ({
           return (
             <p
               className={clsx(
-                "transition p-2 ml-2 text-xs text-white bg-purple-800 rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500",
+                "transition p-2 ml-2 text-xs text-white bg-primary rounded-lg cursor-pointer select-none whitespace-nowrap hover:bg-purple-500",
                 activeFilter === label &&
                   "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
               )}
