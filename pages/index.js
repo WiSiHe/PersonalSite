@@ -19,7 +19,9 @@ import { BsChevronDown } from "react-icons/bs";
 export default function Home({
   paintings = [],
   tags = [],
-  wallpaperPaintings,
+
+  headerImage,
+  thumbnailImage,
 }) {
   const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
@@ -42,23 +44,6 @@ export default function Home({
   }
 
   const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
-
-  function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
-
-  const headerImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(1920)
-    .height(1080)
-    .fit("fill")
-    .url();
-  const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(640)
-    .height(360)
-    .fit("fill")
-    .url();
 
   return (
     <>
@@ -102,8 +87,10 @@ export default function Home({
 }
 
 Home.propTypes = {
+  headerImage: PropTypes.any,
   paintings: PropTypes.array,
   tags: PropTypes.array,
+  thumbnailImage: PropTypes.any,
   wallpaperPaintings: PropTypes.shape({
     length: PropTypes.any,
   }),
@@ -116,16 +103,35 @@ export async function getStaticProps({ preview = false }) {
     return { props: {} };
   }
 
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
   const wallpaperPaintings =
     data.paintings.filter(
       (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
     ) || [];
+
+  const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
+
+  const headerImage = imageBuilder(wallpaperPaintings[header].image)
+    .width(1920)
+    .height(1080)
+    .fit("fill")
+    .url();
+  const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
+    .width(640)
+    .height(360)
+    .fit("fill")
+    .url();
 
   return {
     props: {
       paintings: data.paintings,
       wallpaperPaintings: wallpaperPaintings,
       tags: data.tags,
+      headerImage: headerImage,
+      thumbnailImage: thumbnailImage,
     },
     revalidate: 600, // 10 min
   };
