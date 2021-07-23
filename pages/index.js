@@ -118,11 +118,13 @@ export async function getStaticProps({ preview = false }) {
     .width(1920)
     .height(1080)
     .fit("fill")
+    .quality(75)
     .url();
   const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
     .width(640)
     .height(360)
     .fit("fill")
+    .quality(75)
     .url();
 
   return {

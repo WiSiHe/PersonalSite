@@ -2,14 +2,25 @@ import clsx from "clsx";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import React from "react";
-import { imageBuilder } from "../../lib/sanity";
+// import { builders } from "../../helpers/sanityHelpers";
+
 import ActiveLink from "../ActiveLink/ActiveLink";
+
+import { imageBuilder } from "../../lib/sanity";
+
+// const sanityLoader = ({ src, width = 300, height = 300, quality = 15 }) => {
+//   return builders.default
+//     .image(src)
+//     .width(width)
+//     .fit("fill")
+//     .height(height)
+//     .quality(quality);
+// };
 
 const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
   return (
     <div className="grid min-h-screen grid-cols-2 md:grid-cols-4 lg:grid-cols-8 auto-rows-min">
       {paintings
-        // .filter((p) => p.tags?.find((t) => t.value === filterTag) || !filterTag)
         .sort((a, b) => a.title.localeCompare(b.title))
         .map((p) => {
           const {
@@ -33,12 +44,16 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
             >
               <ActiveLink href={linkString}>
                 <Image
+                  // loader={sanityLoader}
+                  // src={image.asset?._ref}
                   src={imageBuilder(image)
                     .width(300)
                     .height(300)
                     .fit("fill")
+                    .quality(75)
                     .url()}
                   layout="fill"
+                  objectFit="cover"
                   alt={title}
                   className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 "
                 />
