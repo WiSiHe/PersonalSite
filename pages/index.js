@@ -71,7 +71,7 @@ export default function Home({
           <h1 className="text-4xl font-playfair">Henrik Wilhelm Sissener</h1>
           <h2 className="text-xl font-roboto">WiSiHe</h2>
         </div>
-        <div className="relative ">
+        <div className="bg-gray-900 ">
           <Filters
             activeFilter={filterTag}
             setFilterTag={setFilterTag}
@@ -91,9 +91,7 @@ Home.propTypes = {
   paintings: PropTypes.array,
   tags: PropTypes.array,
   thumbnailImage: PropTypes.any,
-  wallpaperPaintings: PropTypes.shape({
-    length: PropTypes.any,
-  }),
+  wallpaperPaintings: PropTypes.any,
 };
 
 export async function getStaticProps({ preview = false }) {

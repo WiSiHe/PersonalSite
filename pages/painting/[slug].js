@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
+import { IoArrowBackSharp } from "react-icons/io5";
+import { SiRedbubble } from "react-icons/si";
+
 import { getAllPaintings, getPainting } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
 
-import { IoArrowBackSharp } from "react-icons/io5";
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
 import { useSpring, animated } from "react-spring";
@@ -14,8 +16,6 @@ import Meta from "../../components/Meta/Meta";
 import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
 
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
-
-import { SiRedbubble } from "react-icons/si";
 
 export default function Gallery({
   painting = {},
