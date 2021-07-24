@@ -15,13 +15,16 @@ import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
 
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 
+import { SiRedbubble } from "react-icons/si";
+
 export default function Gallery({
   painting = {},
   image = {},
   title = "",
   tags = [],
-  description = "",
+  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat.",
   slug = {},
+  redbubbleUrl = "",
 }) {
   const { current = "" } = slug;
 
@@ -65,8 +68,8 @@ export default function Gallery({
             </animated.div>
           </div>
 
-          <div className="top-0 h-[fit-content] block col-span-12 lg:sticky lg:col-span-3 ">
-            <div className="w-full p-4">
+          <div className="top-0 block col-span-12 bg-gray-800 lg:h-screen lg:sticky lg:col-span-3 ">
+            <div className="w-full h-full p-4">
               <h1 className="pb-2 text-4xl">{title}</h1>
               <div className="flex pb-2">
                 {uniqueTags.map((tag, i) => {
@@ -84,9 +87,22 @@ export default function Gallery({
               <div className="p-4 bg-gray-900 rounded-sm">
                 {description && <p> {description}</p>}
               </div>
-              <div className="mt-4">
-                <SocialLinks alignLeft />
-              </div>
+              {redbubbleUrl && (
+                <a
+                  href={redbubbleUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                  aria-label="redbubble"
+                >
+                  <button className="flex items-center justify-center w-full p-2 mt-4 bg-[#e31421] border border-none hover:opacity-90">
+                    <SiRedbubble className="mr-2" />
+                    <strong>Redbubble store</strong>
+                  </button>
+                </a>
+              )}
+            </div>
+            <div className="w-full mt-4 lg:absolute bottom-10 ">
+              <SocialLinks />
             </div>
           </div>
         </div>
@@ -112,6 +128,7 @@ Gallery.propTypes = {
   tags: PropTypes.array,
   title: PropTypes.string,
   xlImage: PropTypes.string,
+  redbubbleUrl: PropTypes.string,
 };
 
 export async function getStaticProps({ params, preview = false }) {
@@ -124,7 +141,13 @@ export async function getStaticProps({ params, preview = false }) {
 
   const painting = data[0] || {};
 
-  const { image = {}, title = "", tags = [], description = "" } = painting;
+  const {
+    image = {},
+    title = "",
+    tags = [],
+    description = "",
+    redbubbleUrl = "",
+  } = painting;
 
   return {
     props: {
@@ -133,6 +156,7 @@ export async function getStaticProps({ params, preview = false }) {
       description: description,
       tags: tags,
       image: image,
+      redbubbleUrl: redbubbleUrl,
     },
     revalidate: 600, // 10 min
   };
