@@ -84,10 +84,10 @@ const Filters = ({
   return (
     <div className="relative flex">
       {currentPosition > 0 && !largeViewPort && (
-        <div className="flex items-center justify-center px-4">
+        <div className="absolute top-0 bottom-0 left-0 z-10 flex items-center justify-start w-32 bg-gradient-to-r from-black">
           <button
             onClick={() => scrollLeftDirection()}
-            className="text-3xl bg-yellow-500 rounded "
+            className="ml-2 text-3xl bg-yellow-500 rounded-full "
           >
             <MdChevronLeft />
           </button>
@@ -95,7 +95,7 @@ const Filters = ({
       )}
       <div
         className={clsx(
-          "flex py-2 mr-16 overflow-x-auto scrollbar-hidden",
+          "flex py-2 overflow-x-auto scrollbar-hidden",
           maxScrollRight && "mr-0"
         )}
         ref={element}
@@ -132,10 +132,10 @@ const Filters = ({
           })}
       </div>
       {!maxScrollRight && !largeViewPort && (
-        <div className="absolute top-0 bottom-0 flex items-center justify-center right-4 ">
+        <div className="absolute top-0 bottom-0 right-0 flex items-center justify-end w-32 bg-gradient-to-l from-black">
           <button
             onClick={() => scrollRightDirection()}
-            className="text-3xl bg-yellow-500 rounded "
+            className="mr-2 text-3xl bg-yellow-500 rounded-full "
           >
             <MdChevronRight />
           </button>

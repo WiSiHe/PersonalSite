@@ -16,6 +16,7 @@ import Meta from "../../components/Meta/Meta";
 import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
 
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Gallery({
   painting = {},
@@ -50,70 +51,80 @@ export default function Gallery({
         jsonLd={generatePaintingJsonLd(painting)}
         url={`https://wisihe.no/painting/${current}`}
       />
-
-      <Main noTopPadding>
-        <div className="relative grid w-full lg:min-h-screen lg:grid-cols-12 ">
-          <div className="relative col-span-12 bg-yellow-800 lg:col-span-9 ">
-            <animated.div style={props} className="w-full ">
-              <picture>
-                <source media="(min-width:1440px)" srcSet={xlImage} />
-                <source media="(min-width:650px)" srcSet={largeImage} />
-                <source media="(min-width:465px)" srcSet={largeImage} />
-                <img
-                  className="object-cover w-full bg-gray-100 bg-cover lg:min-h-screen"
-                  src={xlImage}
-                  alt={title}
-                />
-              </picture>
-            </animated.div>
-          </div>
-
-          <div className="top-0 block col-span-12 bg-gray-800 lg:h-screen lg:sticky lg:col-span-3 ">
-            <div className="w-full h-full p-4">
-              <h1 className="pb-2 text-4xl">{title}</h1>
-              <div className="flex pb-2">
-                {uniqueTags.map((tag, i) => {
-                  const { value } = tag;
-                  return (
-                    <p
-                      className="p-2 mr-2 text-xs text-white rounded-lg bg-primary"
-                      key={i}
-                    >
-                      {value}
-                    </p>
-                  );
-                })}
+      <AnimatePresence>
+        <Main noTopPadding>
+          <motion.div
+            key="painting"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ type: "spring" }}
+            className="relative grid w-full lg:min-h-screen lg:grid-cols-12 "
+          >
+            <div className="relative col-span-12 bg-yellow-800 lg:col-span-9 ">
+              <div style={props} className="w-full ">
+                <picture>
+                  <source media="(min-width:1440px)" srcSet={xlImage} />
+                  <source media="(min-width:650px)" srcSet={largeImage} />
+                  <source media="(min-width:465px)" srcSet={largeImage} />
+                  <img
+                    className="object-cover w-full bg-gray-100 bg-cover lg:min-h-screen"
+                    src={xlImage}
+                    alt={title}
+                  />
+                </picture>
               </div>
-              <div className="p-4 bg-gray-900 rounded-sm">
-                {description && <p> {description}</p>}
+            </div>
+
+            <div className="top-0 block col-span-12 bg-gray-800 lg:h-screen lg:sticky lg:col-span-3 ">
+              <div className="w-full p-4 lg:h-full">
+                <h1 className="pb-2 text-4xl">{title}</h1>
+                <div className="flex pb-2">
+                  {uniqueTags.map((tag, i) => {
+                    const { value } = tag;
+                    return (
+                      <p
+                        className="p-2 mr-2 text-xs text-white rounded-lg bg-primary"
+                        key={i}
+                      >
+                        {value}
+                      </p>
+                    );
+                  })}
+                </div>
+                {description && (
+                  <div className="p-4 bg-gray-900 rounded-sm">
+                    <p> {description}</p>
+                  </div>
+                )}
+                {redbubbleUrl && (
+                  <a
+                    href={redbubbleUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label="redbubble"
+                  >
+                    <button className="flex items-center justify-center w-full p-2 mt-4 bg-[#e31421] border border-none hover:opacity-90">
+                      <SiRedbubble className="mr-2" />
+                      <strong>Redbubble store</strong>
+                    </button>
+                  </a>
+                )}
               </div>
-              {redbubbleUrl && (
-                <a
-                  href={redbubbleUrl}
-                  rel="noreferrer"
-                  target="_blank"
-                  aria-label="redbubble"
-                >
-                  <button className="flex items-center justify-center w-full p-2 mt-4 bg-[#e31421] border border-none hover:opacity-90">
-                    <SiRedbubble className="mr-2" />
-                    <strong>Redbubble store</strong>
-                  </button>
-                </a>
-              )}
+              <div className="w-full mt-4 lg:absolute bottom-10 ">
+                <SocialLinks />
+              </div>
             </div>
-            <div className="w-full mt-4 lg:absolute bottom-10 ">
-              <SocialLinks />
-            </div>
+          </motion.div>
+          <div className="fixed transition-all ease-in-out top-4 left-4">
+            <ActiveLink href="/" shallow>
+              <p className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
+                <IoArrowBackSharp />
+              </p>
+            </ActiveLink>
           </div>
-        </div>
-        <div className="fixed transition-all ease-in-out top-4 left-4">
-          <ActiveLink href="/" shallow>
-            <p className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
-              <IoArrowBackSharp />
-            </p>
-          </ActiveLink>
-        </div>
-      </Main>
+        </Main>
+      </AnimatePresence>
     </>
   );
 }

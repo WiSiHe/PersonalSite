@@ -15,6 +15,7 @@ import Filters from "../components/Filters";
 import PaintingGrid from "../components/PaintingGrid/PaintingGrid";
 
 import { BsChevronDown } from "react-icons/bs";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home({
   paintings = [],
@@ -48,39 +49,50 @@ export default function Home({
   return (
     <>
       <Meta url="https://wisihe.no" />
-
-      <Main noTopPadding>
-        <section className="relative w-full h-40v lg:h-screen">
-          <Image
-            src={headerImage}
-            placeholder="blur"
-            blurDataURL={thumbnailImage}
-            layout="fill"
-            className="object-cover"
-          />
-          <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
-            <button onClick={executeScroll}>
-              <BsChevronDown className="p-1 text-3xl text-center text-white transition rounded-full hover:text-black hover:bg-white animate-bounce" />
-            </button>
-          </div>
-        </section>
-        <div
-          className="flex flex-col justify-center p-4 text-center bg-dark "
-          ref={myRef}
-        >
-          <h1 className="text-4xl font-playfair">Henrik Wilhelm Sissener</h1>
-          <h2 className="text-xl font-roboto">WiSiHe</h2>
-        </div>
-        <div className="bg-gray-900 ">
-          <Filters
-            activeFilter={filterTag}
-            setFilterTag={setFilterTag}
-            paintingsAmount={paintingsAmount}
-            filteredTags={filteredTags}
-          />
-        </div>
-        <PaintingGrid paintings={paintings} filterTag={filterTag} />
-      </Main>
+      <AnimatePresence>
+        <Main noTopPadding>
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ type: "spring" }}
+            key="main"
+          >
+            <section className="relative w-full h-40v lg:h-screen">
+              <Image
+                src={headerImage}
+                placeholder="blur"
+                blurDataURL={thumbnailImage}
+                layout="fill"
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
+                <button onClick={executeScroll}>
+                  <BsChevronDown className="p-1 text-3xl text-center text-white transition rounded-full hover:text-black hover:bg-white animate-bounce" />
+                </button>
+              </div>
+            </section>
+            <div
+              className="flex flex-col justify-center p-4 text-center bg-dark "
+              ref={myRef}
+            >
+              <h1 className="text-4xl font-playfair">
+                Henrik Wilhelm Sissener
+              </h1>
+              <h2 className="text-xl font-roboto">WiSiHe</h2>
+            </div>
+            <div className="bg-gray-900 ">
+              <Filters
+                activeFilter={filterTag}
+                setFilterTag={setFilterTag}
+                paintingsAmount={paintingsAmount}
+                filteredTags={filteredTags}
+              />
+            </div>
+            <PaintingGrid paintings={paintings} filterTag={filterTag} />
+          </motion.div>
+        </Main>
+      </AnimatePresence>
       <Footer />
     </>
   );
