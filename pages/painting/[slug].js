@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { IoArrowBackSharp } from "react-icons/io5";
@@ -9,7 +9,6 @@ import { imageBuilder } from "../../lib/sanity";
 
 import ActiveLink from "../../components/ActiveLink/ActiveLink";
 
-import { useSpring, animated } from "react-spring";
 import Main from "../../components/Main";
 
 import Meta from "../../components/Meta/Meta";
@@ -33,14 +32,7 @@ export default function Gallery({
   const largeImage = imageBuilder(image).width(1200).url();
   const xlImage = imageBuilder(image).width(2160).url();
 
-  const [loaded, setLoaded] = useState(false);
   const uniqueTags = [...new Set(tags)];
-
-  const props = useSpring({ opacity: loaded ? 1 : 0 });
-
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
 
   return (
     <>
@@ -62,7 +54,7 @@ export default function Gallery({
             className="relative grid w-full lg:min-h-screen lg:grid-cols-12 "
           >
             <div className="relative col-span-12 bg-yellow-800 lg:col-span-9 ">
-              <div style={props} className="w-full ">
+              <div className="w-full ">
                 <picture>
                   <source media="(min-width:1440px)" srcSet={xlImage} />
                   <source media="(min-width:650px)" srcSet={largeImage} />
