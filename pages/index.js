@@ -58,7 +58,7 @@ export default function Home({
             transition={{ type: "spring" }}
             key="main"
           >
-            <section className="relative w-full h-40v lg:h-screen">
+            <section className="relative w-full h-80v lg:h-screen">
               <Image
                 src={headerImage}
                 placeholder="blur"
@@ -68,7 +68,7 @@ export default function Home({
               />
               <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
                 <button onClick={executeScroll}>
-                  <BsChevronDown className="p-1 text-3xl text-center text-white transition rounded-full hover:text-black hover:bg-white animate-bounce" />
+                  <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce" />
                 </button>
               </div>
             </section>
@@ -81,14 +81,13 @@ export default function Home({
               </h1>
               <h2 className="text-xl font-roboto">WiSiHe</h2>
             </div>
-            <div className="bg-gray-900 ">
-              <Filters
-                activeFilter={filterTag}
-                setFilterTag={setFilterTag}
-                paintingsAmount={paintingsAmount}
-                filteredTags={filteredTags}
-              />
-            </div>
+
+            <Filters
+              activeFilter={filterTag}
+              setFilterTag={setFilterTag}
+              paintingsAmount={paintingsAmount}
+              filteredTags={filteredTags}
+            />
             <PaintingGrid paintings={paintings} filterTag={filterTag} />
           </motion.div>
         </Main>
