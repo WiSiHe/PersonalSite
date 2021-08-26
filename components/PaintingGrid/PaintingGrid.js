@@ -11,9 +11,15 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
     <div className="grid min-h-screen grid-cols-2 md:grid-cols-4 lg:grid-cols-8 auto-rows-min">
       {paintings
         .sort((a, b) => a.title.localeCompare(b.title))
-        .filter((p) => p.tags?.find((t) => t.value === filterTag))
+        // .filter((p) => p.tags?.find((t) => t.value === filterTag))
         .map((p) => {
-          const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = p;
+          const {
+            _id,
+            image = {},
+            title = "",
+            tags = [],
+            slug: { current = "" } = {},
+          } = p;
 
           const isShow = tags?.find((t) => t.value === filterTag) || !filterTag;
 
@@ -28,7 +34,12 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
             >
               <ActiveLink href={linkString}>
                 <Image
-                  src={imageBuilder(image).width(300).height(300).fit("fill").quality(75).url()}
+                  src={imageBuilder(image)
+                    .width(300)
+                    .height(300)
+                    .fit("fill")
+                    .quality(75)
+                    .url()}
                   layout="fill"
                   objectFit="cover"
                   alt={title}
