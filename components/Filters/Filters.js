@@ -1,15 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
 // import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 
-const Filters = ({
-  filteredTags = [],
-  paintingsAmount = 0,
-  setFilterTag,
-  activeFilter = "",
-}) => {
+const Filters = ({ filteredTags = [], paintingsAmount = 0, setFilterTag, activeFilter = "" }) => {
   // const [currentPosition, setCurrentPosition] = useState(0);
 
   // const [largeViewPort, setLargeViewPort] = useState(false);
@@ -104,8 +99,7 @@ const Filters = ({
           onClick={() => setFilterTag("")}
           className={clsx(
             "px-2 py-1 ml-2 text-xs text-white bg-primary cursor-pointer select-none whitespace-nowrap hover:opacity-60",
-            activeFilter === "" &&
-              "bg-yellow-600 hover:opacity-60 hover:text-black"
+            activeFilter === "" && "bg-yellow-600 hover:opacity-60 hover:text-black"
           )}
         >
           All ({paintingsAmount})
@@ -120,8 +114,7 @@ const Filters = ({
               <button
                 className={clsx(
                   "transition px-2 py-1 ml-2 text-xs text-white bg-primary  select-none whitespace-nowrap hover:opacity-60",
-                  activeFilter === label &&
-                    "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
+                  activeFilter === label && "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
                 )}
                 key={i}
                 onClick={() => setFilterTag(label)}
