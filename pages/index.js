@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
+import { AnimatePresence, motion } from "framer-motion";
+
 // import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
@@ -15,7 +17,6 @@ import Filters from "../components/Filters";
 import PaintingGrid from "../components/PaintingGrid/PaintingGrid";
 
 import { BsChevronDown } from "react-icons/bs";
-import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home({
   paintings = [],
@@ -27,7 +28,7 @@ export default function Home({
   const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
   const tagValues = flattenedTags.map((tag) => tag.label);
-  const paintingsAmount = paintings.length;
+  // const paintingsAmount = paintings.length;
 
   const myRef = useRef(null);
   const executeScroll = () =>
@@ -44,7 +45,7 @@ export default function Home({
     ++result[tagValues[i]];
   }
 
-  const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
+  // const filteredTags = Object.entries(result).filter((w) => w[1] > 1);
 
   return (
     <>
@@ -58,7 +59,7 @@ export default function Home({
             transition={{ type: "spring" }}
             key="main"
           >
-            <section className="relative w-full h-80v lg:h-screen">
+            <section className="relative h-full min-h-screen">
               <Image
                 src={headerImage}
                 placeholder="blur"
@@ -82,12 +83,12 @@ export default function Home({
               <h2 className="text-xl font-roboto">WiSiHe</h2>
             </div>
 
-            <Filters
+            {/* <Filters
               activeFilter={filterTag}
               setFilterTag={setFilterTag}
               paintingsAmount={paintingsAmount}
               filteredTags={filteredTags}
-            />
+            /> */}
             <PaintingGrid paintings={paintings} filterTag={filterTag} />
           </motion.div>
         </Main>

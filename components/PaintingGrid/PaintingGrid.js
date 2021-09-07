@@ -8,7 +8,7 @@ import { imageBuilder } from "../../lib/sanity";
 
 const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
   return (
-    <div className="grid min-h-screen grid-cols-2 md:grid-cols-4 lg:grid-cols-8 auto-rows-min">
+    <div className="grid min-h-screen grid-cols-4 lg:grid-cols-8 auto-rows-min">
       {paintings
         .sort((a, b) => a.title.localeCompare(b.title))
         // .filter((p) => p.tags?.find((t) => t.value === filterTag))
@@ -27,7 +27,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
           return (
             <div
               className={clsx(
-                "relative w-full h-60 focus:outline-none group transition-all duration-1000",
+                "relative w-full h-60 col-span-2 lg:col-span-1 focus:outline-none group transition-all duration-1000",
                 !isShow && "opacity-10"
               )}
               key={_id}
