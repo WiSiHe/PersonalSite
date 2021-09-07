@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,7 +13,7 @@ import { getAllTagsAndPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
 import Image from "next/image";
 // import NavigationDrawer from "../components/NavigationDrawer";
-import Filters from "../components/Filters";
+// import Filters from "../components/Filters";
 import PaintingGrid from "../components/PaintingGrid/PaintingGrid";
 
 import { BsChevronDown } from "react-icons/bs";
@@ -25,7 +25,7 @@ export default function Home({
   headerImage,
   thumbnailImage,
 }) {
-  const [filterTag, setFilterTag] = useState("");
+  // const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
   const tagValues = flattenedTags.map((tag) => tag.label);
   // const paintingsAmount = paintings.length;
@@ -89,7 +89,7 @@ export default function Home({
               paintingsAmount={paintingsAmount}
               filteredTags={filteredTags}
             /> */}
-            <PaintingGrid paintings={paintings} filterTag={filterTag} />
+            <PaintingGrid paintings={paintings} filterTag="" />
           </motion.div>
         </Main>
       </AnimatePresence>
