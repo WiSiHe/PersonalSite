@@ -2,7 +2,8 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
-import { BsFilterRight, BsGrid3X3Gap } from "react-icons/bs";
+import { BsFilterRight } from "react-icons/bs";
+// import { BsFilterRight, BsGrid3X3Gap } from "react-icons/bs";
 
 import Modal from "components/Modal";
 
@@ -39,9 +40,9 @@ const Filters = ({
             <BsFilterRight />
             <span className="ml-1">Filter</span>
           </button>
-          <button className="block p-2 transition-all rounded-full hover:bg-white hover:text-black md:hidden">
+          {/* <button className="block p-2 transition-all rounded-full hover:bg-white hover:text-black md:hidden">
             <BsGrid3X3Gap />
-          </button>
+          </button> */}
         </div>
 
         <div className="flex-wrap hidden lg:flex">

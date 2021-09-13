@@ -10,12 +10,12 @@ const Modal = ({ isOpen = false, closeModal, children }) => {
           as="div"
           key="modal"
           open={isOpen}
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-20 overflow-y-auto"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
             <Dialog.Overlay className="fixed inset-0 bg-dark opacity-80" />
-            <div className="fixed bottom-0 left-0 right-0 max-w-4xl p-4 mx-auto overflow-hidden text-left align-middle transition-all transform bg-white rounded-sm ">
+            <div className="fixed bottom-0 left-0 right-0 md;max-w-4xl p-4 mx-8 md:mx-auto overflow-hidden text-left align-middle transition-all transform bg-white rounded-sm ">
               <Dialog.Title
                 as="h3"
                 className="pb-2 text-lg font-medium text-center "
