@@ -1,22 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 import { AnimatePresence, motion } from "framer-motion";
-
-// import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-
-import Main from "../components/Main";
-import Meta from "../components/Meta/Meta";
+import Image from "next/image";
 
 import { getAllTagsAndPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
-import Image from "next/image";
+
 // import NavigationDrawer from "../components/NavigationDrawer";
-// import Filters from "../components/Filters";
+
 import PaintingGrid from "../components/PaintingGrid/PaintingGrid";
 
 import { BsChevronDown } from "react-icons/bs";
+import Filters from "components/Filters";
+import Meta from "components/Meta";
+import Main from "components/Main";
+import Footer from "components/Footer";
 
 export default function Home({
   paintings = [],
@@ -25,10 +24,10 @@ export default function Home({
   headerImage,
   thumbnailImage,
 }) {
-  // const [filterTag, setFilterTag] = useState("");
+  const [filterTag, setFilterTag] = useState("");
   const flattenedTags = tags.filter((tag) => tag !== null).flat();
   const tagValues = flattenedTags.map((tag) => tag.label);
-  // const paintingsAmount = paintings.length;
+  const paintingsAmount = paintings.length;
 
   const myRef = useRef(null);
   const executeScroll = () =>
@@ -45,7 +44,7 @@ export default function Home({
     ++result[tagValues[i]];
   }
 
-  // const filteredTags = Object.entries(result).filter((w) => w[1] > 1);
+  const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
 
   return (
     <>
@@ -69,7 +68,7 @@ export default function Home({
               />
               <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
                 <button onClick={executeScroll}>
-                  <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce" />
+                  <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
                 </button>
               </div>
             </section>
@@ -83,13 +82,13 @@ export default function Home({
               <h2 className="text-xl font-roboto">WiSiHe</h2>
             </div>
 
-            {/* <Filters
+            <Filters
               activeFilter={filterTag}
               setFilterTag={setFilterTag}
               paintingsAmount={paintingsAmount}
               filteredTags={filteredTags}
-            /> */}
-            <PaintingGrid paintings={paintings} filterTag="" />
+            />
+            <PaintingGrid paintings={paintings} filterTag={filterTag} />
           </motion.div>
         </Main>
       </AnimatePresence>

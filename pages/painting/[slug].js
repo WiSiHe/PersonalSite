@@ -7,8 +7,6 @@ import { SiRedbubble } from "react-icons/si";
 import { getAllPaintings, getPainting } from "../../lib/api";
 import { imageBuilder } from "../../lib/sanity";
 
-import ActiveLink from "../../components/ActiveLink/ActiveLink";
-
 import Main from "../../components/Main";
 
 import Meta from "../../components/Meta/Meta";
@@ -16,6 +14,8 @@ import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
 
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import { AnimatePresence, motion } from "framer-motion";
+import clsx from "clsx";
+import Link from "next/link";
 
 export default function Gallery({
   painting = {},
@@ -34,6 +34,8 @@ export default function Gallery({
 
   const uniqueTags = [...new Set(tags)];
 
+  const hasRedBubleLink = redbubbleUrl !== "";
+
   return (
     <>
       <Meta
@@ -43,6 +45,13 @@ export default function Gallery({
         jsonLd={generatePaintingJsonLd(painting)}
         url={`https://wisihe.no/painting/${current}`}
       />
+      <div className="fixed z-10 transition-all ease-in-out top-4 left-4">
+        <Link href="/">
+          <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
+            <IoArrowBackSharp />
+          </a>
+        </Link>
+      </div>
       <AnimatePresence>
         <Main noTopPadding>
           <motion.div
@@ -89,32 +98,32 @@ export default function Gallery({
                     <p> {description}</p>
                   </div>
                 )}
-                {redbubbleUrl && (
-                  <a
-                    href={redbubbleUrl}
-                    rel="noreferrer"
-                    target="_blank"
-                    aria-label="redbubble"
+
+                <a
+                  href={hasRedBubleLink ? redbubbleUrl : "#"}
+                  rel="noreferrer"
+                  target={redbubbleUrl && "_blank"}
+                  aria-label="redbubble"
+                >
+                  <button
+                    className={clsx(
+                      "flex items-center justify-center w-full p-2 mt-4 border border-none  bg-[#e31421]",
+                      hasRedBubleLink
+                        ? "hover:opacity-90"
+                        : "opacity-40 cursor-not-allowed"
+                    )}
+                    disabled
                   >
-                    <button className="flex items-center justify-center w-full p-2 mt-4 bg-[#e31421] border border-none hover:opacity-90">
-                      <SiRedbubble className="mr-2" />
-                      <strong>Redbubble store</strong>
-                    </button>
-                  </a>
-                )}
+                    <SiRedbubble className="mr-2" />
+                    <strong>Redbubble store</strong>
+                  </button>
+                </a>
               </div>
               <div className="w-full mt-4 lg:absolute bottom-10 ">
                 <SocialLinks />
               </div>
             </div>
           </motion.div>
-          <div className="fixed transition-all ease-in-out top-4 left-4">
-            <ActiveLink href="/" shallow>
-              <p className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
-                <IoArrowBackSharp />
-              </p>
-            </ActiveLink>
-          </div>
         </Main>
       </AnimatePresence>
     </>

@@ -11,7 +11,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@headlessui/react": "^1.1.1",
+    "@headlessui/react": "^1.4.1",
     "@sanity/client": "^2.7.1",
     "@sanity/image-url": "^0.140.22",
     "clsx": "^1.1.1",

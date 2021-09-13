@@ -8,9 +8,9 @@
   h3 {
     font-family: "Playfair Display", serif;
   }
-  /* body {
+  body {
     font-family: "Roboto", sans-serif;
-  } */
+  }
 }
 @layer utilities {
   .scrollbar-hidden::-webkit-scrollbar {
