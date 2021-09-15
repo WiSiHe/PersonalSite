@@ -31,10 +31,10 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
             // const test = i % 24 === 0;
             return (
               <motion.li
-                initial={{ opacity: 0, scale: 0.4 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.4 }}
-                transition={{ type: "spring" }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                // transition={{ type: "spring" }}
                 layout
                 className={clsx(
                   "relative w-full h-48 xl:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10",
