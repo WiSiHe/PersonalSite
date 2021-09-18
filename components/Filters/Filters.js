@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
+import { useRecoilState } from "recoil";
 
 import { BsFilterRight } from "react-icons/bs";
-// import { BsFilterRight, BsGrid3X3Gap } from "react-icons/bs";
+import { BsGrid3X3Gap } from "react-icons/bs";
 
 import Modal from "components/Modal";
+
+import { gridSize as atomGridSize } from "../../atoms/gridSize";
 
 const Filters = ({
   filteredTags = [],
@@ -14,6 +17,7 @@ const Filters = ({
   activeFilter = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [gridSize, setGridSize] = useRecoilState(atomGridSize);
 
   function openModal() {
     setIsOpen(true);
@@ -28,9 +32,17 @@ const Filters = ({
     setIsOpen(false);
   }
 
+  function handleGridAdjustment() {
+    if (gridSize === 1) {
+      setGridSize(3);
+    } else {
+      setGridSize(1);
+    }
+  }
+
   return (
     <>
-      <div className="sticky top-0 z-20 px-4 py-4 overflow-hidden bg-dark bg-opacity-40 backdrop-blur-lg">
+      <div className="sticky z-20 px-4 py-4 overflow-hidden -top-1 bg-dark bg-opacity-90 backdrop-blur-lg">
         <div className="flex items-center justify-between lg:hidden">
           <button
             className="flex items-center justify-center p-2 transition-all bg-primary hover:opacity-90"
@@ -40,9 +52,13 @@ const Filters = ({
             <BsFilterRight />
             <span className="ml-1">Filter</span>
           </button>
-          {/* <button className="block p-2 transition-all rounded-full hover:bg-white hover:text-black md:hidden">
+          <strong>{activeFilter}</strong>
+          <button
+            className="block p-2 transition-all rounded-full hover:bg-white hover:text-black md:hidden"
+            onClick={handleGridAdjustment}
+          >
             <BsGrid3X3Gap />
-          </button> */}
+          </button>
         </div>
 
         <div className="flex-wrap hidden lg:flex">

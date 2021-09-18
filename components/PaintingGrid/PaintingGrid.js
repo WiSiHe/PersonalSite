@@ -7,10 +7,21 @@ import ActiveLink from "../ActiveLink/ActiveLink";
 import { imageBuilder } from "../../lib/sanity";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { useRecoilValue } from "recoil";
+
+import { gridSize as atomGridSize } from "../../atoms/gridSize";
+
 const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
+  const gridSize = useRecoilValue(atomGridSize);
+
   return (
     <AnimatePresence>
-      <ul className="grid grid-cols-3 lg:grid-cols-8 auto-rows-min">
+      <ul
+        className={clsx(
+          "grid lg:grid-cols-8 auto-rows-min",
+          gridSize === 3 ? "grid-cols-3" : "grid-cols-1 gap-4"
+        )}
+      >
         {paintings
           // .sort((a, b) => a.title.localeCompare(b.title))
           .filter((p) =>
@@ -37,7 +48,8 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                 // transition={{ type: "spring" }}
                 layout
                 className={clsx(
-                  "relative w-full h-48 xl:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10",
+                  "relative w-full xl:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10",
+                  gridSize === 3 ? "h-48" : "h-64",
                   !isShow && "opacity-10"
                   // test
                   //   ? "lg:row-span-2 lg:col-span-2 !h-full"
@@ -56,7 +68,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                     layout="fill"
                     objectFit="cover"
                     alt={title}
-                    className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 "
+                    className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
                   />
                   {title && (
                     <div className="absolute bottom-0 left-0 right-0 p-2 text-white transition-all duration-500 ease-in-out opacity-0 bg-dark bg-opacity-40 font group-hover:opacity-100">

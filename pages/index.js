@@ -58,7 +58,7 @@ export default function Home({
             transition={{ type: "spring" }}
             key="main"
           >
-            <section className="relative h-full min-h-screen">
+            <section className="relative h-50v md:h-100v">
               <Image
                 src={headerImage}
                 placeholder="blur"
