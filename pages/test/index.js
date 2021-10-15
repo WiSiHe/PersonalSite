@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import Link from "next/link";
 import React from "react";
 import { IoArrowBackSharp } from "react-icons/io5";
