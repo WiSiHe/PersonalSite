@@ -57,7 +57,7 @@ export default function Home({
                 alt="headerImage"
               />
               <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
-                <button onClick={executeScroll}>
+                <button onClick={executeScroll} aria-label="Scroll">
                   <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
                 </button>
               </div>

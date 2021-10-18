@@ -15,10 +15,10 @@ module.exports = {
       },
       colors: {
         dark: "#12232E",
-        primary: "#007CC7",
+        primary: "#005c94",
         secondary: "#4DA8DA",
         shadow: "#203647",
-        highlight: "#EFCA08",
+        highlight: "#f5d531",
         bright: "#EEFBFB",
       },
       height: {

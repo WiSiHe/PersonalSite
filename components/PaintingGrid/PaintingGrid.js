@@ -34,7 +34,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
               tags = [],
               slug: { current = "" } = {},
             } = p;
-
+            console.log(p);
             const isShow =
               tags?.find((t) => t.value === filterTag) || !filterTag;
             const linkString = `/painting/${current}`;
@@ -65,7 +65,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                       .url()}
                     layout="fill"
                     objectFit="cover"
-                    alt={title}
+                    alt={`painting: ${_id}`}
                     className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
                   />
                   {title && (

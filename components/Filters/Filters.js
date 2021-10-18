@@ -65,9 +65,10 @@ const Filters = ({
           <button
             onClick={() => selectFilter("")}
             className={clsx(
-              "p-2 text-xs text-white bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ",
-              activeFilter === "" &&
-                "bg-yellow-600 hover:opacity-60 hover:text-black"
+              "p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ",
+              activeFilter === ""
+                ? "bg-yellow-400 hover:opacity-60 text-black"
+                : "text-white"
             )}
           >
             All ({paintingsAmount})
@@ -80,9 +81,10 @@ const Filters = ({
               return (
                 <button
                   className={clsx(
-                    "transition p-2 text-xs text-white bg-primary whitespace-nowrap hover:opacity-90",
-                    activeFilter === label &&
-                      "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
+                    "transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90",
+                    activeFilter === label
+                      ? "bg-yellow-400 hover:bg-yellow-200 text-black"
+                      : "text-white "
                   )}
                   key={i}
                   onClick={() => selectFilter(label)}
@@ -98,9 +100,10 @@ const Filters = ({
           <button
             onClick={() => selectFilter("")}
             className={clsx(
-              "p-2 text-xs text-white bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ",
-              activeFilter === "" &&
-                "bg-yellow-600 hover:opacity-60 hover:text-black"
+              "p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ",
+              activeFilter === ""
+                ? "bg-yellow-400 hover:opacity-60 text-black"
+                : " text-white"
             )}
           >
             All ({paintingsAmount})
@@ -115,7 +118,7 @@ const Filters = ({
                   className={clsx(
                     "transition p-2 text-xs text-white bg-primary whitespace-nowrap hover:opacity-90",
                     activeFilter === label &&
-                      "bg-yellow-600 hover:bg-yellow-200 hover:text-black"
+                      "bg-yellow-400 hover:bg-yellow-200 text-black"
                   )}
                   key={i}
                   onClick={() => selectFilter(label)}
@@ -124,8 +127,11 @@ const Filters = ({
                 </button>
               );
             })}
-          <button className="mt-2" onClick={handleClose}>
-            close
+          <button
+            className="w-2/4 mx-auto mt-4 border border-black ring"
+            onClick={handleClose}
+          >
+            Close
           </button>
         </div>
       </Modal>
