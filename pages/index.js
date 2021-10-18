@@ -3,48 +3,37 @@ import PropTypes from "prop-types";
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { BsChevronDown } from "react-icons/bs";
 
 import { getAllTagsAndPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
 
-// import NavigationDrawer from "../components/NavigationDrawer";
+const Footer = dynamic(() => import("components/Footer"));
+const PaintingGrid = dynamic(() => import("components/PaintingGrid"));
+const Filters = dynamic(() => import("components/Filters"));
 
-import PaintingGrid from "../components/PaintingGrid/PaintingGrid";
-
-import { BsChevronDown } from "react-icons/bs";
-import Filters from "components/Filters";
 import Meta from "components/Meta";
 import Main from "components/Main";
-import Footer from "components/Footer";
 
 export default function Home({
   paintings = [],
   tags = [],
-
   headerImage,
   thumbnailImage,
 }) {
   const [filterTag, setFilterTag] = useState("");
-  const flattenedTags = tags.filter((tag) => tag !== null).flat();
-  const tagValues = flattenedTags.map((tag) => tag.label);
+
   const paintingsAmount = paintings.length;
 
   const myRef = useRef(null);
+
   const executeScroll = () =>
     myRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
       inline: "nearest",
     });
-
-  let result = {};
-
-  for (var i = 0; i < tagValues.length; ++i) {
-    if (!result[tagValues[i]]) result[tagValues[i]] = 0;
-    ++result[tagValues[i]];
-  }
-
-  const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
 
   return (
     <>
@@ -65,6 +54,7 @@ export default function Home({
                 blurDataURL={thumbnailImage}
                 layout="fill"
                 className="object-cover"
+                alt="headerImage"
               />
               <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
                 <button onClick={executeScroll}>
@@ -86,7 +76,7 @@ export default function Home({
               activeFilter={filterTag}
               setFilterTag={setFilterTag}
               paintingsAmount={paintingsAmount}
-              filteredTags={filteredTags}
+              filteredTags={tags}
             />
             <PaintingGrid paintings={paintings} filterTag={filterTag} />
           </motion.div>
@@ -136,11 +126,23 @@ export async function getStaticProps({ preview = false }) {
     .quality(75)
     .url();
 
+  const flattenedTags = data.tags.filter((tag) => tag !== null).flat();
+  const tagValues = flattenedTags.map((tag) => tag.label);
+
+  let result = {};
+
+  for (var i = 0; i < tagValues.length; ++i) {
+    if (!result[tagValues[i]]) result[tagValues[i]] = 0;
+    ++result[tagValues[i]];
+  }
+
+  const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
+
   return {
     props: {
       paintings: data.paintings,
       wallpaperPaintings: wallpaperPaintings,
-      tags: data.tags,
+      tags: filteredTags,
       headerImage: headerImage,
       thumbnailImage: thumbnailImage,
     },

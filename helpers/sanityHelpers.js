@@ -5,6 +5,7 @@ const builders = {
   default: ImageUrlBuilder({
     projectId: "cbjsv7wi",
     dataset: "production",
+    apiVersion: "2021-08-31",
     useCdn: true,
   }),
 };

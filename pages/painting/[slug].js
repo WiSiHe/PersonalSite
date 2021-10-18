@@ -1,21 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { AnimatePresence, motion } from "framer-motion";
+import clsx from "clsx";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import { IoArrowBackSharp } from "react-icons/io5";
 import { SiRedbubble } from "react-icons/si";
 
-import { getAllPaintings, getPainting } from "../../lib/api";
-import { imageBuilder } from "../../lib/sanity";
+// Helpers
+import generatePaintingJsonLd from "helpers/jsonLdHelpers";
 
-import Main from "../../components/Main";
+// Components
+import Main from "components/Main";
+import Meta from "components/Meta";
+const SocialLinks = dynamic(() => import("components/SocialLinks"));
 
-import Meta from "../../components/Meta/Meta";
-import generatePaintingJsonLd from "../../helpers/jsonLdHelpers";
-
-import SocialLinks from "../../components/SocialLinks/SocialLinks";
-import { AnimatePresence, motion } from "framer-motion";
-import clsx from "clsx";
-import Link from "next/link";
+// Libs
+import { imageBuilder } from "lib/sanity";
+import { getAllPaintings, getPainting } from "lib/api";
+import Image from "next/image";
 
 export default function Gallery({
   painting = {},
@@ -24,18 +28,17 @@ export default function Gallery({
   tags = [],
   description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat.",
   slug = {},
+  smallImage,
+  largeImage,
+  xlImage,
   redbubbleUrl = "",
 }) {
   const { current = "" } = slug;
 
-  const smallImage = imageBuilder(image).width(120).height(80).url();
-  const largeImage = imageBuilder(image).width(1200).url();
-  const xlImage = imageBuilder(image).width(2160).url();
-
   const uniqueTags = [...new Set(tags)];
 
   const hasRedBubleLink = redbubbleUrl !== "";
-
+  console.log(image);
   return (
     <>
       <Meta
@@ -60,20 +63,17 @@ export default function Gallery({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -100 }}
             transition={{ type: "spring" }}
-            className="relative grid w-full lg:min-h-screen lg:grid-cols-12 "
+            className="relative grid w-full min-h-screen lg:grid-cols-12 "
           >
             <div className="relative col-span-12 bg-yellow-800 lg:col-span-9 ">
-              <div className="w-full ">
-                <picture>
-                  <source media="(min-width:1440px)" srcSet={xlImage} />
-                  <source media="(min-width:650px)" srcSet={largeImage} />
-                  <source media="(min-width:465px)" srcSet={largeImage} />
-                  <img
-                    className="object-cover w-full bg-gray-100 bg-cover lg:min-h-screen"
-                    src={xlImage}
-                    alt={title}
-                  />
-                </picture>
+              <div className="w-full">
+                <Image
+                  src={xlImage}
+                  layout="fill"
+                  alt={title}
+                  loading="eager"
+                  className="object-cover"
+                />
               </div>
             </div>
 
@@ -161,6 +161,10 @@ export async function getStaticProps({ params, preview = false }) {
     redbubbleUrl = "",
   } = painting;
 
+  const smallImage = imageBuilder(image).width(120).height(80).url();
+  const largeImage = imageBuilder(image).width(1200).url();
+  const xlImage = imageBuilder(image).width(2160).url();
+
   return {
     props: {
       painting: painting,
@@ -168,6 +172,9 @@ export async function getStaticProps({ params, preview = false }) {
       description: description,
       tags: tags,
       image: image,
+      smallImage,
+      largeImage,
+      xlImage,
       redbubbleUrl: redbubbleUrl,
     },
     revalidate: 600, // 10 min

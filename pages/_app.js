@@ -4,15 +4,9 @@ import "tailwindcss/tailwind.css";
 
 import { RecoilRoot } from "recoil";
 
-// import { hotjar } from "react-hotjar";
-
 import ThemeSwitcher from "../components/themeSwitcher";
 
 function MyApp({ Component, pageProps }) {
-  // useEffect(() => {
-  //   hotjar.initialize(2372362, 6);
-  // }, []);
-
   return (
     <RecoilRoot>
       <ThemeSwitcher>

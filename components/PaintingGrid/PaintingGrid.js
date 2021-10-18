@@ -2,12 +2,11 @@ import clsx from "clsx";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import React from "react";
+import { useRecoilValue } from "recoil";
 
 import ActiveLink from "../ActiveLink/ActiveLink";
 import { imageBuilder } from "../../lib/sanity";
 import { AnimatePresence, motion } from "framer-motion";
-
-import { useRecoilValue } from "recoil";
 
 import { gridSize as atomGridSize } from "../../atoms/gridSize";
 
@@ -18,7 +17,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
     <AnimatePresence>
       <ul
         className={clsx(
-          "grid lg:grid-cols-8 auto-rows-min",
+          "grid lg:grid-cols-8 auto-rows-min items-start",
           gridSize === 3 ? "grid-cols-3" : "grid-cols-1 gap-4"
         )}
       >
@@ -27,7 +26,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
           .filter((p) =>
             p.tags?.find((t) => t.value === filterTag || filterTag === "")
           )
-          .map((p) => {
+          .map((p, i) => {
             const {
               _id,
               image = {},
@@ -39,21 +38,20 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
             const isShow =
               tags?.find((t) => t.value === filterTag) || !filterTag;
             const linkString = `/painting/${current}`;
-            // const test = i % 24 === 0;
+            const test = i % 24 === 0;
             return (
               <motion.li
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                // transition={{ type: "spring" }}
                 layout
                 className={clsx(
                   "relative w-full xl:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10",
                   gridSize === 3 ? "h-48" : "h-64",
-                  !isShow && "opacity-10"
-                  // test
-                  //   ? "lg:row-span-2 lg:col-span-2 !h-full"
-                  //   : "col-span-1 lg:col-span-1"
+                  !isShow && "opacity-10",
+                  test
+                    ? "lg:row-span-2 lg:col-span-2 !h-full"
+                    : "col-span-1 lg:col-span-1"
                 )}
                 key={_id}
               >
