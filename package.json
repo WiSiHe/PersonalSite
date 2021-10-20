@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
-    "@react-three/fiber": "^7.0.16",
+    "@react-spring/three": "^9.3.0",
+    "@react-three/drei": "^7.17.1",
+    "@react-three/fiber": "^7.0.17",
     "@sanity/client": "^2.21.3",
     "@sanity/image-url": "^1.0.1",
     "clsx": "^1.1.1",
