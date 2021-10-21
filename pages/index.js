@@ -19,8 +19,8 @@ import Main from "components/Main";
 export default function Home({
   paintings = [],
   tags = [],
-  headerImage,
-  thumbnailImage,
+  wallpaperPaintings,
+  header,
 }) {
   const [filterTag, setFilterTag] = useState("");
 
@@ -47,13 +47,24 @@ export default function Home({
             transition={{ type: "spring" }}
             key="main"
           >
-            <section className="relative h-50v md:h-100v">
+            <section className="relative block h-50v md:h-100v">
               <Image
-                src={headerImage}
+                src={imageBuilder(wallpaperPaintings[header].image)
+                  .width(1920)
+                  .height(1080)
+                  .fit("fill")
+                  .quality(75)
+                  .url()}
                 placeholder="blur"
-                blurDataURL={thumbnailImage}
+                blurDataURL={imageBuilder(wallpaperPaintings[header].image)
+                  .width(50)
+                  .height(50)
+                  .fit("fill")
+                  .quality(5)
+                  .url()}
                 layout="fill"
-                className="object-cover"
+                objectFit="cover"
+                className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
                 alt="headerImage"
               />
               <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
@@ -113,19 +124,6 @@ export async function getStaticProps({ preview = false }) {
 
   const header = parseInt(getRandomArbitrary(0, wallpaperPaintings.length));
 
-  const headerImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(1920)
-    .height(1080)
-    .fit("fill")
-    .quality(75)
-    .url();
-  const thumbnailImage = imageBuilder(wallpaperPaintings[header].image)
-    .width(640)
-    .height(360)
-    .fit("fill")
-    .quality(75)
-    .url();
-
   const flattenedTags = data.tags.filter((tag) => tag !== null).flat();
   const tagValues = flattenedTags.map((tag) => tag.label);
 
@@ -143,8 +141,7 @@ export async function getStaticProps({ preview = false }) {
       paintings: data.paintings,
       wallpaperPaintings: wallpaperPaintings,
       tags: filteredTags,
-      headerImage: headerImage,
-      thumbnailImage: thumbnailImage,
+      header: header,
     },
     revalidate: 600, // 10 min
   };

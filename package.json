@@ -10,9 +10,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
-    "@react-spring/three": "^9.3.0",
-    "@react-three/drei": "^7.17.1",
-    "@react-three/fiber": "^7.0.17",
     "@sanity/client": "^2.21.3",
     "@sanity/image-url": "^1.0.1",
     "clsx": "^1.1.1",
@@ -37,7 +34,6 @@
     "eslint-config-next": "^11.1.2",
     "eslint-plugin-react": "^7.26.1",
     "postcss": "^8.3.9",
-    "react-spring": "^9.3.0",
     "tailwindcss": "^2.2.17"
   }
 }

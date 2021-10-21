@@ -34,7 +34,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
               tags = [],
               slug: { current = "" } = {},
             } = p;
-            console.log(p);
+
             const isShow =
               tags?.find((t) => t.value === filterTag) || !filterTag;
             const linkString = `/painting/${current}`;
@@ -58,10 +58,10 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                 <ActiveLink href={linkString}>
                   <Image
                     src={imageBuilder(image)
-                      .width(300)
-                      .height(300)
+                      .width(600)
+                      .height(600)
                       .fit("fill")
-                      .quality(75)
+                      .quality(35)
                       .url()}
                     layout="fill"
                     objectFit="cover"

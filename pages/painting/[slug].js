@@ -38,7 +38,7 @@ export default function Gallery({
   const uniqueTags = [...new Set(tags)];
 
   const hasRedBubleLink = redbubbleUrl !== "";
-  console.log(image);
+
   return (
     <>
       <Meta
