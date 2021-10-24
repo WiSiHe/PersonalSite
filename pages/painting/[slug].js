@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 import { IoArrowBackSharp } from "react-icons/io5";
-import { SiRedbubble } from "react-icons/si";
 
 // Helpers
 import generatePaintingJsonLd from "helpers/jsonLdHelpers";
@@ -14,12 +14,12 @@ import generatePaintingJsonLd from "helpers/jsonLdHelpers";
 // Components
 import Main from "components/Main";
 import Meta from "components/Meta";
+import RedbubbleLink from "components/RedbubbleLink";
 const SocialLinks = dynamic(() => import("components/SocialLinks"));
 
 // Libs
 import { imageBuilder } from "lib/sanity";
 import { getAllPaintings, getPainting } from "lib/api";
-import Image from "next/image";
 
 export default function Gallery({
   painting = {},
@@ -63,22 +63,22 @@ export default function Gallery({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -100 }}
             transition={{ type: "spring" }}
-            className="relative grid w-full min-h-screen lg:grid-cols-12 "
+            className="grid min-h-screen lg:grid-cols-12 "
           >
-            <div className="relative col-span-12 bg-yellow-800 lg:col-span-9 ">
-              <div className="w-full">
-                <Image
-                  src={xlImage}
-                  layout="fill"
-                  alt={title}
-                  loading="eager"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+            <section className="relative min-h-[60vh] bg-yellow-800 col-span-full lg:col-span-9 ">
+              <Image
+                src={xlImage}
+                blurDataURL={smallImage}
+                placeholder="blur"
+                alt={title}
+                layout="fill"
+                objectFit="cover"
+                className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover bg-gray-50 "
+              />
+            </section>
 
-            <div className="top-0 block col-span-12 bg-gray-800 lg:h-screen lg:sticky lg:col-span-3 ">
-              <div className="w-full p-4 lg:h-full">
+            <section className="relative bg-gray-800 col-span-full lg:col-span-3 ">
+              <div className="w-full p-4 ">
                 <h1 className="pb-2 text-4xl">{title}</h1>
                 <div className="flex pb-2">
                   {uniqueTags.map((tag, i) => {
@@ -93,36 +93,18 @@ export default function Gallery({
                     );
                   })}
                 </div>
-                {description && (
-                  <div className="p-4 bg-gray-900 rounded-sm">
-                    <p> {description}</p>
-                  </div>
-                )}
 
-                <a
-                  href={hasRedBubleLink ? redbubbleUrl : "#"}
-                  rel="noreferrer"
-                  target={redbubbleUrl && "_blank"}
-                  aria-label="redbubble"
-                >
-                  <button
-                    className={clsx(
-                      "flex items-center justify-center w-full p-2 mt-4 border border-none  bg-[#e31421]",
-                      hasRedBubleLink
-                        ? "hover:opacity-90"
-                        : "opacity-40 cursor-not-allowed"
-                    )}
-                    disabled
-                  >
-                    <SiRedbubble className="mr-2" />
-                    <strong>Redbubble store</strong>
-                  </button>
-                </a>
+                <p className="p-4 bg-gray-900 rounded-sm">{description}</p>
+
+                <RedbubbleLink
+                  hasRedBubleLink={hasRedBubleLink}
+                  redbubbleUrl={redbubbleUrl}
+                />
               </div>
               <div className="w-full mt-4 lg:absolute bottom-10 ">
                 <SocialLinks />
               </div>
-            </div>
+            </section>
           </motion.div>
         </Main>
       </AnimatePresence>

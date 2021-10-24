@@ -61,7 +61,7 @@ const Filters = ({
           </button>
         </div>
 
-        <div className="flex-wrap hidden lg:flex">
+        <div className="flex-wrap hidden space-x-1 lg:flex">
           <button
             onClick={() => selectFilter("")}
             className={clsx(

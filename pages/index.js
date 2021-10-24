@@ -64,7 +64,7 @@ export default function Home({
                   .url()}
                 layout="fill"
                 objectFit="cover"
-                className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
+                className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover bg-gray-50 "
                 alt="headerImage"
               />
               <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
