@@ -120,22 +120,27 @@ export default function Home({
                   />
                 </button>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex ">
+              <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex">
                 <button onClick={executeScroll} aria-label="Scroll">
                   <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
                 </button>
               </div>
             </section>
 
-            <div
-              className="flex flex-col justify-center p-4 text-center bg-dark "
+            <motion.div
+              className="flex flex-col justify-center p-4 text-center bg-dark"
               ref={myRef}
+              key="info"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ type: "spring" }}
             >
               <h1 className="text-4xl font-playfair">
                 Henrik Wilhelm Sissener
               </h1>
               <h2 className="text-xl font-roboto">WiSiHe</h2>
-            </div>
+            </motion.div>
 
             <Filters
               activeFilter={filterTag}

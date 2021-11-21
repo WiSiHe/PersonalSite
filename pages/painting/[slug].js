@@ -89,7 +89,7 @@ export default function Gallery({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 600 }}
             key="text-section"
-            transition={{ type: "spring", duration: 0.2 }}
+            transition={{ type: "spring", delay: 0.7 }}
             className="relative p-4 transition-all bg-dark xl:right-5 xl:top-5 xl:backdrop-blur-2xl xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
           >
             <h1 className="pb-2 text-4xl">
