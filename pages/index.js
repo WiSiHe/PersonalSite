@@ -94,8 +94,8 @@ export default function Home({
                   .quality(5)
                   .url()}
                 layout="fill"
-                width={16}
-                height={9}
+                // width={16}
+                // height={9}
                 objectFit="cover"
                 className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
                 alt="headerImage"
