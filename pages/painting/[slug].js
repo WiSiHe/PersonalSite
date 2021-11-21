@@ -51,7 +51,7 @@ export default function Gallery({
         url={`https://wisihe.no/painting/${current}`}
       />
 
-      <Main noTopPadding className="">
+      <Main noTopPadding className="overflow-hidden">
         <AnimatePresence>
           <motion.div
             className="fixed z-10 top-4 left-4"
