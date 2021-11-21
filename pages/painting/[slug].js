@@ -20,6 +20,7 @@ const SocialLinks = dynamic(() => import("components/SocialLinks"));
 // Libs
 import { imageBuilder } from "lib/sanity";
 import { getAllPaintings, getPainting } from "lib/api";
+import Footer from "components/Footer";
 
 export default function Gallery({
   painting = {},
@@ -32,6 +33,7 @@ export default function Gallery({
   largeImage,
   xlImage,
   redbubbleUrl = "",
+  id = "",
 }) {
   const { current = "" } = slug;
 
@@ -41,72 +43,82 @@ export default function Gallery({
 
   return (
     <>
-      <Meta
-        title={title}
-        description={description}
-        image={smallImage}
-        jsonLd={generatePaintingJsonLd(painting)}
-        url={`https://wisihe.no/painting/${current}`}
-      />
-      <div className="fixed z-10 transition-all ease-in-out top-4 left-4">
-        <Link href="/">
-          <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
-            <IoArrowBackSharp />
-          </a>
-        </Link>
-      </div>
       <AnimatePresence>
+        <Meta
+          title={title}
+          description={description}
+          image={smallImage}
+          jsonLd={generatePaintingJsonLd(painting)}
+          url={`https://wisihe.no/painting/${current}`}
+        />
+        <motion.div
+          className="fixed z-10 top-4 left-4"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ type: "spring", stiffness: 100 }}
+        >
+          <Link href="/">
+            <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
+              <IoArrowBackSharp />
+            </a>
+          </Link>
+        </motion.div>
+
         <Main noTopPadding>
           <motion.div
-            key="painting"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ type: "spring" }}
-            className="grid min-h-screen lg:grid-cols-12 "
+            // layout
+            // transition={{ type: "spring" }}
+            className="relative"
           >
-            <section className="relative min-h-[60vh] bg-yellow-800 col-span-full lg:col-span-9 ">
-              <Image
-                src={xlImage}
-                blurDataURL={smallImage}
-                placeholder="blur"
-                alt={title}
-                layout="fill"
-                objectFit="cover"
-                className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover bg-gray-50 "
-              />
-            </section>
+            <motion.img
+              // initial={{ opacity: 0, y: 100 }}
+              // animate={{ opacity: 1, y: 0 }}
+              // exit={{ opacity: 0, y: -100 }}
+              src={xlImage}
+              // blurDataURL={smallImage}
+              // placeholder="blur"
+              alt={title}
+              layout="fill"
+              objectFit="cover"
+              className="relative"
+            />
 
-            <section className="relative bg-gray-800 col-span-full lg:col-span-3 ">
-              <div className="w-full p-4 ">
-                <h1 className="pb-2 text-4xl">{title}</h1>
-                <div className="flex pb-2">
-                  {uniqueTags.map((tag, i) => {
-                    const { value } = tag;
-                    return (
-                      <p
-                        className="p-2 mr-2 text-xs text-white rounded-lg bg-primary"
-                        key={i}
-                      >
-                        {value}
-                      </p>
-                    );
-                  })}
-                </div>
+            <motion.section
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 100 }}
+              transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+              className="relative p-4 transition-all xl:right-5 xl:top-5 xl:backdrop-opacity-80 xl:backdrop-blur-2xl xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3"
+            >
+              <h1 className="pb-2 text-4xl">
+                <strong>{title}</strong>
+              </h1>
+              <div className="flex pb-2">
+                {uniqueTags.map((tag) => {
+                  const { value } = tag;
+                  return (
+                    <p
+                      className="p-2 mr-2 text-xs text-white bg-primary"
+                      key={value}
+                    >
+                      {value}
+                    </p>
+                  );
+                })}
+              </div>
+              {description && <p className="py-2 rounded-sm">{description}</p>}
 
-                <p className="p-4 bg-gray-900 rounded-sm">{description}</p>
-
+              {hasRedBubleLink && (
                 <RedbubbleLink
                   hasRedBubleLink={hasRedBubleLink}
                   redbubbleUrl={redbubbleUrl}
                 />
-              </div>
-              <div className="w-full mt-4 lg:absolute bottom-10 ">
-                <SocialLinks />
-              </div>
-            </section>
+              )}
+            </motion.section>
           </motion.div>
         </Main>
+        <Footer />
       </AnimatePresence>
     </>
   );
@@ -141,6 +153,7 @@ export async function getStaticProps({ params, preview = false }) {
     tags = [],
     description = "",
     redbubbleUrl = "",
+    _id = "",
   } = painting;
 
   const smallImage = imageBuilder(image).width(120).height(80).url();
@@ -158,6 +171,7 @@ export async function getStaticProps({ params, preview = false }) {
       largeImage,
       xlImage,
       redbubbleUrl: redbubbleUrl,
+      id: _id,
     },
     revalidate: 600, // 10 min
   };

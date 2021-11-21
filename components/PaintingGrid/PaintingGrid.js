@@ -13,9 +13,33 @@ import { gridSize as atomGridSize } from "../../atoms/gridSize";
 const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
   const gridSize = useRecoilValue(atomGridSize);
 
+  const list = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+  };
+
+  const item = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 50 },
+  };
+
   return (
     <AnimatePresence>
-      <ul
+      <motion.ul
+        initial="hidden"
+        animate="visible"
+        variants={list}
         className={clsx(
           "grid lg:grid-cols-8 auto-rows-min items-start",
           gridSize === 3 ? "grid-cols-3" : "grid-cols-1 gap-4"
@@ -41,10 +65,8 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
             const test = i % 24 === 0;
             return (
               <motion.li
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                layout
+                // layoutId={_id}
+                variants={item}
                 className={clsx(
                   "relative w-full xl:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10",
                   gridSize === 3 ? "h-48" : "h-64",
@@ -58,8 +80,8 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                 <ActiveLink href={linkString}>
                   <Image
                     src={imageBuilder(image)
-                      .width(600)
-                      .height(600)
+                      .width(400)
+                      .height(400)
                       .fit("fill")
                       .quality(35)
                       .url()}
@@ -69,7 +91,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
                     className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
                   />
                   {title && (
-                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white transition-all duration-500 ease-in-out opacity-0 bg-dark bg-opacity-40 font group-hover:opacity-100">
+                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white transition-all duration-500 ease-in-out opacity-0 bg-dark bg-opacity-80 font group-hover:opacity-100">
                       <p>{title}</p>
                     </div>
                   )}
@@ -77,7 +99,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
               </motion.li>
             );
           })}
-      </ul>
+      </motion.ul>
     </AnimatePresence>
   );
 };
