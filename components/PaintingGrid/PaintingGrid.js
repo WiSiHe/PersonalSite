@@ -44,6 +44,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
           "grid lg:grid-cols-8 auto-rows-min items-start",
           gridSize === 3 ? "grid-cols-3" : "grid-cols-1 gap-4"
         )}
+        key="list"
       >
         {paintings
           // .sort((a, b) => a.title.localeCompare(b.title))

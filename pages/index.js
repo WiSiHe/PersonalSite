@@ -31,6 +31,7 @@ export default function Home({
 }) {
   const [filterTag, setFilterTag] = useState("");
   const [desktopIndex, setDesktopIndex] = useState(0);
+  console.log("desktopIndex", desktopIndex);
   const [mobileIndex, setMobileIndex] = useState(0);
 
   const { width, height } = useWindowDimensions();
@@ -46,30 +47,30 @@ export default function Home({
       inline: "nearest",
     });
 
-  const handleGoLeftMobile = () => {
-    if (mobileIndex === 0) {
-      return setMobileIndex(mobileWallpaper.length - 1);
+  const handleGoLeft = () => {
+    if (desktopIndex === 0) {
+      return setDesktopIndex(desktopWallpaper.length - 1);
     }
-    return setMobileIndex(mobileIndex - 1);
+    return setDesktopIndex(desktopIndex - 1);
   };
 
-  const handleGoRightMobile = () => {
-    if (mobileIndex === mobileWallpaper.length - 1) {
-      return setMobileIndex(0);
+  const handleGoRight = () => {
+    if (desktopIndex === desktopWallpaper.length - 1) {
+      return setDesktopIndex(0);
     }
-    return setMobileIndex(mobileIndex + 1);
+    return setDesktopIndex(desktopIndex + 1);
   };
 
   useEffect(() => {
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)));
-    setMobileIndex(parseInt(getRandomArbitrary(0, mobileWallpaper.length)));
   }, []);
 
   return (
     <>
       <Meta url="https://wisihe.no" />
-      <AnimatePresence>
-        <Main noTopPadding>
+
+      <Main noTopPadding>
+        <AnimatePresence>
           <motion.div
             initial={{ opacity: 0, y: -100 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,44 +78,7 @@ export default function Home({
             transition={{ type: "spring" }}
             key="main"
           >
-            <section className="relative block h-80v md:h-100v md:hidden">
-              <Image
-                src={imageBuilder(mobileWallpaper[mobileIndex].image)
-                  .width(1280)
-                  .height(720)
-                  .fit("fill")
-                  .quality(75)
-                  .url()}
-                placeholder="blur"
-                blurDataURL={imageBuilder(mobileWallpaper[mobileIndex].image)
-                  .width(50)
-                  .height(50)
-                  .fit("fill")
-                  .quality(5)
-                  .url()}
-                layout="fill"
-                objectFit="cover"
-                className="w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover object-fit md:hidden bg-gray-50 "
-                alt="headerImage"
-              />
-              <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-between text-xl">
-                <button onClick={handleGoLeftMobile}>
-                  <BsChevronLeft aria-label="Left" />
-                </button>
-                <button>
-                  <BsChevronRight
-                    onClick={handleGoRightMobile}
-                    aria-label="Right"
-                  />
-                </button>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
-                <button onClick={executeScroll} aria-label="Scroll">
-                  <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
-                </button>
-              </div>
-            </section>
-            <section className="relative hidden md:block">
+            <section className="relative h-40v xl:h-100v">
               <Image
                 src={imageBuilder(desktopWallpaper[desktopIndex].image)
                   .width(1920)
@@ -129,14 +93,34 @@ export default function Home({
                   .fit("fill")
                   .quality(5)
                   .url()}
-                layout="responsive"
+                layout="fill"
                 width={16}
                 height={9}
                 objectFit="cover"
                 className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
                 alt="headerImage"
               />
-              <div className="absolute bottom-0 left-0 right-0 flex justify-center ">
+              <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
+                <button
+                  onClick={handleGoLeft}
+                  className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+                >
+                  <BsChevronLeft
+                    aria-label="Left"
+                    className="p-2 text-4xl text-center text-black transition-all bg-white rounded-full "
+                  />
+                </button>
+                <button
+                  onClick={handleGoRight}
+                  className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+                >
+                  <BsChevronRight
+                    aria-label="Right"
+                    className="p-2 text-4xl text-center text-black transition bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  />
+                </button>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex ">
                 <button onClick={executeScroll} aria-label="Scroll">
                   <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
                 </button>
@@ -161,8 +145,8 @@ export default function Home({
             />
             <PaintingGrid paintings={paintings} filterTag={filterTag} />
           </motion.div>
-        </Main>
-      </AnimatePresence>
+        </AnimatePresence>
+      </Main>
       <Footer />
     </>
   );

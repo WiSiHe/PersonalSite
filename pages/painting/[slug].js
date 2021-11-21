@@ -43,83 +43,83 @@ export default function Gallery({
 
   return (
     <>
-      <AnimatePresence>
-        <Meta
-          title={title}
-          description={description}
-          image={smallImage}
-          jsonLd={generatePaintingJsonLd(painting)}
-          url={`https://wisihe.no/painting/${current}`}
-        />
-        <motion.div
-          className="fixed z-10 top-4 left-4"
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ type: "spring", stiffness: 100 }}
-        >
-          <Link href="/">
-            <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
-              <IoArrowBackSharp />
-            </a>
-          </Link>
-        </motion.div>
+      <Meta
+        title={title}
+        description={description}
+        image={smallImage}
+        jsonLd={generatePaintingJsonLd(painting)}
+        url={`https://wisihe.no/painting/${current}`}
+      />
 
-        <Main noTopPadding>
+      <Main noTopPadding className="">
+        <AnimatePresence>
           <motion.div
-            // layout
-            // transition={{ type: "spring" }}
-            className="relative"
+            className="fixed z-10 top-4 left-4"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", stiffness: 100 }}
+            key="backbutton"
           >
+            <Link href="/">
+              <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
+                <IoArrowBackSharp />
+              </a>
+            </Link>
+          </motion.div>
+          <section className="w-full">
             <motion.img
-              // initial={{ opacity: 0, y: 100 }}
-              // animate={{ opacity: 1, y: 0 }}
-              // exit={{ opacity: 0, y: -100 }}
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 1000 }}
+              key="image"
+              transition={{ type: "spring", stiffness: 100, delay: 0.5 }}
               src={xlImage}
               // blurDataURL={smallImage}
               // placeholder="blur"
               alt={title}
               layout="fill"
               objectFit="cover"
-              className="relative"
+              className="relative w-full"
             />
+          </section>
 
-            <motion.section
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 100 }}
-              transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
-              className="relative p-4 transition-all xl:right-5 xl:top-5 xl:backdrop-opacity-80 xl:backdrop-blur-2xl xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3"
-            >
-              <h1 className="pb-2 text-4xl">
-                <strong>{title}</strong>
-              </h1>
-              <div className="flex pb-2">
-                {uniqueTags.map((tag) => {
-                  const { value } = tag;
-                  return (
-                    <p
-                      className="p-2 mr-2 text-xs text-white bg-primary"
-                      key={value}
-                    >
-                      {value}
-                    </p>
-                  );
-                })}
-              </div>
-              {description && <p className="py-2 rounded-sm">{description}</p>}
+          <motion.section
+            initial={{ opacity: 0, x: 600 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 600 }}
+            key="text-section"
+            transition={{ type: "spring", duration: 0.2 }}
+            className="relative p-4 transition-all bg-dark xl:right-5 xl:top-5 xl:backdrop-blur-2xl xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
+          >
+            <h1 className="pb-2 text-4xl">
+              <strong>{title}</strong>
+            </h1>
+            <div className="flex flex-wrap">
+              {uniqueTags.map((tag) => {
+                const { value } = tag;
+                return (
+                  <p
+                    className="p-1 mb-2 mr-2 text-xs text-white bg-primary"
+                    key={value}
+                  >
+                    {value}
+                  </p>
+                );
+              })}
+            </div>
+            {description && <p className="py-2 rounded-sm">{description}</p>}
 
-              {hasRedBubleLink && (
-                <RedbubbleLink
-                  hasRedBubleLink={hasRedBubleLink}
-                  redbubbleUrl={redbubbleUrl}
-                />
-              )}
-            </motion.section>
-          </motion.div>
-        </Main>
-        <Footer />
-      </AnimatePresence>
+            {hasRedBubleLink && (
+              <RedbubbleLink
+                hasRedBubleLink={hasRedBubleLink}
+                redbubbleUrl={redbubbleUrl}
+              />
+            )}
+          </motion.section>
+        </AnimatePresence>
+      </Main>
+      <Footer />
     </>
   );
 }
