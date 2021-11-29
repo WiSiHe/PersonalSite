@@ -66,7 +66,7 @@ const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
             const test = i % 24 === 0;
             return (
               <motion.li
-                // layoutId={_id}
+                layoutId="image"
                 variants={item}
                 className={clsx(
                   "relative w-full xl:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10",

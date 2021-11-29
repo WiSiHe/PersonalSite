@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { useNextSanityImage } from "next-sanity-image";
 
 import { getAllTagsAndPaintings } from "../lib/api";
 import { imageBuilder } from "../lib/sanity";
@@ -17,6 +18,7 @@ const Filters = dynamic(() => import("components/Filters"));
 
 import Meta from "components/Meta";
 import Main from "components/Main";
+import { configuredSanityClient } from "helpers/sanityHelpers";
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -65,6 +67,16 @@ export default function Home({
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)));
   }, []);
 
+  const imageProps = useNextSanityImage(
+    configuredSanityClient,
+    desktopWallpaper[desktopIndex].image,
+    {
+      blurUpImageWidth: 124,
+      blurUpImageQuality: 40,
+      blurUpAmount: 24,
+    }
+  );
+
   return (
     <>
       <Meta url="https://wisihe.no" />
@@ -80,22 +92,8 @@ export default function Home({
           >
             <section className="relative h-40v xl:h-100v">
               <Image
-                src={imageBuilder(desktopWallpaper[desktopIndex].image)
-                  .width(1920)
-                  .height(1080)
-                  .fit("fill")
-                  .quality(75)
-                  .url()}
-                placeholder="blur"
-                blurDataURL={imageBuilder(desktopWallpaper[desktopIndex].image)
-                  .width(50)
-                  .height(50)
-                  .fit("fill")
-                  .quality(5)
-                  .url()}
+                {...imageProps}
                 layout="fill"
-                // width={16}
-                // height={9}
                 objectFit="cover"
                 className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
                 alt="headerImage"

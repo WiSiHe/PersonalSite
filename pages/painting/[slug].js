@@ -67,30 +67,45 @@ export default function Gallery({
               </a>
             </Link>
           </motion.div>
-          <section className="w-full">
+
+          <picture className="w-full">
+            <source media="(min-width:1280px)" srcset={xlImage} />
+            <source media="(min-width:650px)" srcset={largeImage} />
+            <source
+              media="(min-width:465px)"
+              srcset={smallImage}
+              className="w-full"
+            />
             <motion.img
-              initial={{ opacity: 0, y: 100 }}
+              layoutId="image"
+              initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 1000 }}
+              exit={{ opacity: 0, y: -100 }}
               key="image"
-              transition={{ type: "spring", stiffness: 100, delay: 0.5 }}
-              src={xlImage}
-              // blurDataURL={smallImage}
-              // placeholder="blur"
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                delay: 0.5,
+                bounce: 0.25,
+              }}
+              src={smallImage}
               alt={title}
               layout="fill"
               objectFit="cover"
               className="relative w-full"
             />
-          </section>
+          </picture>
 
-          <motion.section
-            initial={{ opacity: 0, x: 600 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 600 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             key="text-section"
-            transition={{ type: "spring", delay: 0.7 }}
-            className="relative p-4 transition-all bg-dark xl:right-5 xl:top-5 xl:backdrop-blur-2xl xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
+            transition={{
+              ease: "easeInOut",
+              delay: 1,
+            }}
+            className="relative p-6 mb-20 transition-all xl:mb-0 bg-dark xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
           >
             <h1 className="pb-2 text-4xl">
               <strong>{title}</strong>
@@ -116,10 +131,10 @@ export default function Gallery({
                 redbubbleUrl={redbubbleUrl}
               />
             )}
-          </motion.section>
+          </motion.div>
         </AnimatePresence>
       </Main>
-      <Footer />
+      <Footer fixed />
     </>
   );
 }
@@ -156,9 +171,21 @@ export async function getStaticProps({ params, preview = false }) {
     _id = "",
   } = painting;
 
-  const smallImage = imageBuilder(image).width(120).height(80).url();
-  const largeImage = imageBuilder(image).width(1200).url();
-  const xlImage = imageBuilder(image).width(2160).url();
+  const smallImage = imageBuilder(image)
+    .width(120)
+    .height(80)
+    .quality(35)
+    .url();
+  const largeImage = imageBuilder(image)
+    .width(1200)
+    .height(1200)
+    .quality(35)
+    .url();
+  const xlImage = imageBuilder(image)
+    .width(1660)
+    .height(1660)
+    .quality(35)
+    .url();
 
   return {
     props: {

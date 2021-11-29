@@ -1,5 +1,6 @@
 /* eslint-disable no-unsafe-finally */
 import ImageUrlBuilder from "@sanity/image-url";
+import sanityClient from "@sanity/client";
 
 const builders = {
   default: ImageUrlBuilder({
@@ -16,4 +17,10 @@ function urlFor(source) {
   return builders.default.image(source);
 }
 
-export { urlFor, builders };
+const configuredSanityClient = sanityClient({
+  projectId: "cbjsv7wi",
+  dataset: "production",
+  useCdn: true,
+});
+
+export { urlFor, builders, configuredSanityClient };
