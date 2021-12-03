@@ -168,19 +168,19 @@ export async function getStaticProps({ params, preview = false }) {
   } = painting;
 
   const smallImage = imageBuilder(image)
-    .width(120)
-    .height(80)
-    .quality(35)
+    .width(400)
+    .height(400)
+    .quality(75)
     .url();
   const largeImage = imageBuilder(image)
     .width(1200)
     .height(1200)
-    .quality(35)
+    .quality(75)
     .url();
   const xlImage = imageBuilder(image)
     .width(1660)
     .height(1660)
-    .quality(35)
+    .quality(75)
     .url();
 
   return {
