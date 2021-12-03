@@ -82,73 +82,56 @@ export default function Home({
       <Meta url="https://wisihe.no" />
 
       <Main noTopPadding>
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            transition={{ type: "spring" }}
-            key="main"
-          >
-            <section className="relative h-40v xl:h-100v">
-              <Image
-                {...imageProps}
-                layout="fill"
-                objectFit="cover"
-                className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
-                alt="headerImage"
-              />
-              <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
-                <button
-                  onClick={handleGoLeft}
-                  className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
-                >
-                  <BsChevronLeft
-                    aria-label="Left"
-                    className="p-2 text-4xl text-center text-black transition-all bg-white rounded-full "
-                  />
-                </button>
-                <button
-                  onClick={handleGoRight}
-                  className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
-                >
-                  <BsChevronRight
-                    aria-label="Right"
-                    className="p-2 text-4xl text-center text-black transition bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </button>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex">
-                <button onClick={executeScroll} aria-label="Scroll">
-                  <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
-                </button>
-              </div>
-            </section>
-
-            <motion.div
-              className="flex flex-col justify-center p-4 text-center bg-dark"
-              ref={myRef}
-              key="info"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ type: "spring" }}
+        <section className="relative h-40v xl:h-100v">
+          <Image
+            {...imageProps}
+            layout="fill"
+            objectFit="cover"
+            className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
+            alt="headerImage"
+          />
+          <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
+            <button
+              onClick={handleGoLeft}
+              className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
             >
-              <h1 className="text-4xl font-playfair">
-                Henrik Wilhelm Sissener
-              </h1>
-              <h2 className="text-xl font-roboto">WiSiHe</h2>
-            </motion.div>
+              <BsChevronLeft
+                aria-label="Left"
+                className="p-2 text-4xl text-center text-black transition-all bg-white rounded-full "
+              />
+            </button>
+            <button
+              onClick={handleGoRight}
+              className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+            >
+              <BsChevronRight
+                aria-label="Right"
+                className="p-2 text-4xl text-center text-black transition bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              />
+            </button>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex">
+            <button onClick={executeScroll} aria-label="Scroll">
+              <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
+            </button>
+          </div>
+        </section>
 
-            <Filters
-              activeFilter={filterTag}
-              setFilterTag={setFilterTag}
-              paintingsAmount={paintingsAmount}
-              filteredTags={tags}
-            />
-            <PaintingGrid paintings={paintings} filterTag={filterTag} />
-          </motion.div>
-        </AnimatePresence>
+        <div
+          className="flex flex-col justify-center p-4 text-center bg-dark"
+          ref={myRef}
+        >
+          <h1 className="text-4xl font-playfair">Henrik Wilhelm Sissener</h1>
+          <h2 className="text-xl font-roboto">WiSiHe</h2>
+        </div>
+
+        <Filters
+          activeFilter={filterTag}
+          setFilterTag={setFilterTag}
+          paintingsAmount={paintingsAmount}
+          filteredTags={tags}
+        />
+        <PaintingGrid paintings={paintings} filterTag={filterTag} />
       </Main>
       <Footer />
     </>

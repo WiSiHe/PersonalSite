@@ -4,12 +4,15 @@ import "tailwindcss/tailwind.css";
 import { RecoilRoot } from "recoil";
 
 import ThemeSwitcher from "../components/themeSwitcher";
+import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
       <ThemeSwitcher>
-        <Component {...pageProps} />
+        <AnimateSharedLayout>
+          <Component {...pageProps} />
+        </AnimateSharedLayout>
       </ThemeSwitcher>
     </RecoilRoot>
   );

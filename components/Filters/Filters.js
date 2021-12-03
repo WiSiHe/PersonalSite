@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { useRecoilState } from "recoil";
@@ -13,11 +13,13 @@ import { gridSize as atomGridSize } from "../../atoms/gridSize";
 const Filters = ({
   filteredTags = [],
   paintingsAmount = 0,
-  setFilterTag,
+  setFilterTag = () => {},
   activeFilter = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [gridSize, setGridSize] = useRecoilState(atomGridSize);
+  const [showControls, setShowControls] = useState(false);
+  const [stepLeftDisabled, setStepLeftDisabled] = useState(true);
+  const [stepRightDisabled, setStepRightDisabled] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -32,36 +34,43 @@ const Filters = ({
     setIsOpen(false);
   }
 
-  function handleGridAdjustment() {
-    if (gridSize === 1) {
-      setGridSize(3);
-    } else {
-      setGridSize(1);
-    }
-  }
+  const wrapper = useRef();
+
+  const handleResize = () => {
+    if (!wrapper.current) return;
+    setShowControls(wrapper.current.scrollWidth > wrapper.current.clientWidth);
+  };
+
+  const handleScroll = (e) => {
+    setStepLeftDisabled(e.target.scrollLeft === 0);
+    setStepRightDisabled(
+      e.target.scrollLeft + e.target.offsetWidth >= e.target.scrollWidth
+    );
+  };
+
+  useEffect(() => {
+    if (!wrapper.current) return;
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    wrapper.current.addEventListener("wheel", (evt) => {
+      evt.preventDefault();
+      wrapper.current.scrollLeft += evt.deltaX;
+      wrapper.current.scrollLeft += evt.deltaY;
+    });
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [wrapper.current]);
 
   return (
     <>
-      <div className="sticky z-20 px-4 py-4 overflow-hidden -top-1 bg-dark bg-opacity-90 backdrop-blur-lg">
-        <div className="flex items-center justify-between lg:hidden">
-          <button
-            className="flex items-center justify-center p-2 transition-all bg-primary hover:opacity-90"
-            onClick={openModal}
-            type="button"
-          >
-            <BsFilterRight />
-            <span className="ml-1">Filter</span>
-          </button>
-          <strong>{activeFilter}</strong>
-          <button
-            className="block p-2 transition-all rounded-full hover:bg-white hover:text-black md:hidden"
-            onClick={handleGridAdjustment}
-          >
-            <BsGrid3X3Gap />
-          </button>
-        </div>
-
-        <div className="flex-wrap hidden space-x-1 lg:flex">
+      <div className="sticky z-20 px-4 py-2 overflow-hidden -top-1 bg-dark bg-opacity-90 backdrop-blur-lg">
+        <div
+          ref={wrapper}
+          onScroll={handleScroll}
+          className="relative flex space-x-2 overflow-x-scroll scrollbar-hidden"
+        >
           <button
             onClick={() => selectFilter("")}
             className={clsx(
@@ -95,7 +104,7 @@ const Filters = ({
             })}
         </div>
       </div>
-      <Modal isOpen={isOpen} closeModal={() => handleClose()}>
+      {/* <Modal isOpen={isOpen} closeModal={() => handleClose()}>
         <div className="flex flex-col flex-wrap ">
           <button
             onClick={() => selectFilter("")}
@@ -134,7 +143,7 @@ const Filters = ({
             Close
           </button>
         </div>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
