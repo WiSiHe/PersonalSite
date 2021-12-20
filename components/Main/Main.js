@@ -1,15 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
+import React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
-const Main = ({ noTopPadding = false, className = "", children }) => {
-  const mainCss = "flex-grow bg-dark w-full dark:text-white min-h-screen";
+const Main = ({ noTopPadding = false, className = '', children }) => {
+  const mainCss = 'flex-grow bg-dark w-full dark:text-white min-h-screen';
 
-  return (
-    <main className={clsx(mainCss, className, !noTopPadding && "mt-16")}>
-      {children}
-    </main>
-  );
+  return <main className={clsx(mainCss, className, !noTopPadding && 'mt-16')}>{children}</main>;
 };
 
 Main.propTypes = {

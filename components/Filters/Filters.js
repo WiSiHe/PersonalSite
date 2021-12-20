@@ -1,83 +1,80 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { useRecoilState } from "recoil";
+import React, { Fragment, useRef } from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+// import { useRecoilState } from 'recoil';
 
-import { BsFilterRight } from "react-icons/bs";
-import { BsGrid3X3Gap } from "react-icons/bs";
+// import { BsFilterRight } from 'react-icons/bs';
+// import { BsGrid3X3Gap } from 'react-icons/bs';
 
-import Modal from "components/Modal";
+// import Modal from 'components/Modal';
 
-import { gridSize as atomGridSize } from "../../atoms/gridSize";
+// import { gridSize as atomGridSize } from '../../atoms/gridSize';
 
 const Filters = ({
   filteredTags = [],
   paintingsAmount = 0,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setFilterTag = () => {},
-  activeFilter = "",
+  activeFilter = '',
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showControls, setShowControls] = useState(false);
-  const [stepLeftDisabled, setStepLeftDisabled] = useState(true);
-  const [stepRightDisabled, setStepRightDisabled] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [showControls, setShowControls] = useState(false);
+  // const [stepLeftDisabled, setStepLeftDisabled] = useState(true);
+  // const [stepRightDisabled, setStepRightDisabled] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
   function selectFilter(filter) {
-    setIsOpen(false);
+    // setIsOpen(false);
     setFilterTag(filter);
   }
 
-  function handleClose() {
-    setIsOpen(false);
-  }
+  // function handleClose() {
+  //   setIsOpen(false);
+  // }
 
   const wrapper = useRef();
 
-  const handleResize = () => {
-    if (!wrapper.current) return;
-    setShowControls(wrapper.current.scrollWidth > wrapper.current.clientWidth);
-  };
+  // const handleResize = () => {
+  //   if (!wrapper.current) return;
+  //   setShowControls(wrapper.current.scrollWidth > wrapper.current.clientWidth);
+  // };
 
-  const handleScroll = (e) => {
-    setStepLeftDisabled(e.target.scrollLeft === 0);
-    setStepRightDisabled(
-      e.target.scrollLeft + e.target.offsetWidth >= e.target.scrollWidth
-    );
-  };
+  // const handleScroll = e => {
+  //   setStepLeftDisabled(e.target.scrollLeft === 0);
+  //   setStepRightDisabled(e.target.scrollLeft + e.target.offsetWidth >= e.target.scrollWidth);
+  // };
 
-  useEffect(() => {
-    if (!wrapper.current) return;
+  // useEffect(() => {
+  //   if (!wrapper.current) return;
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+  //   // handleResize();
+  //   window.addEventListener('resize', handleResize);
 
-    wrapper.current.addEventListener("wheel", (evt) => {
-      evt.preventDefault();
-      wrapper.current.scrollLeft += evt.deltaX;
-      wrapper.current.scrollLeft += evt.deltaY;
-    });
+  //   wrapper.current.addEventListener('wheel', evt => {
+  //     evt.preventDefault();
+  //     wrapper.current.scrollLeft += evt.deltaX;
+  //     wrapper.current.scrollLeft += evt.deltaY;
+  //   });
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, [wrapper.current]);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   return (
     <>
       <div className="sticky z-20 px-4 py-2 overflow-hidden -top-1 bg-dark bg-opacity-90 backdrop-blur-lg">
         <div
           ref={wrapper}
-          onScroll={handleScroll}
+          // onScroll={handleScroll}
           className="relative flex space-x-2 overflow-x-scroll scrollbar-hidden"
         >
           <button
-            onClick={() => selectFilter("")}
+            onClick={() => selectFilter('')}
             className={clsx(
-              "p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ",
-              activeFilter === ""
-                ? "bg-yellow-400 hover:opacity-60 text-black"
-                : "text-white"
+              'p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ',
+              activeFilter === '' ? 'bg-yellow-400 hover:opacity-60 text-black' : 'text-white',
             )}
           >
             All ({paintingsAmount})
@@ -90,10 +87,10 @@ const Filters = ({
               return (
                 <button
                   className={clsx(
-                    "transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90",
+                    'transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90',
                     activeFilter === label
-                      ? "bg-yellow-400 hover:bg-yellow-200 text-black"
-                      : "text-white "
+                      ? 'bg-yellow-400 hover:bg-yellow-200 text-black'
+                      : 'text-white ',
                   )}
                   key={i}
                   onClick={() => selectFilter(label)}

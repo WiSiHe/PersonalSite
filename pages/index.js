@@ -1,53 +1,60 @@
-import React, { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { useNextSanityImage } from "next-sanity-image";
+// import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { useNextSanityImage } from 'next-sanity-image';
 
-import { getAllTagsAndPaintings } from "../lib/api";
-import { imageBuilder } from "../lib/sanity";
+// import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from 'react-icons/si';
 
-import useWindowDimensions from "hooks/useWindowDimension";
+// import useWindowDimensions from 'hooks/useWindowDimension';
 
-const Footer = dynamic(() => import("components/Footer"));
-const PaintingGrid = dynamic(() => import("components/PaintingGrid"));
-const Filters = dynamic(() => import("components/Filters"));
+import Meta from 'components/Meta';
+import Main from 'components/Main';
+import { configuredSanityClient } from 'helpers/sanityHelpers';
+import Navigation from 'components/Navigation';
+// import Link from 'next/link';
+// import Logo from 'icons/logo';
+// import SocialLinks from 'components/SocialLinks';
+import SideMenu from 'components/SideMenu';
+import NavigationDrawer from 'components/NavigationDrawer';
+// import { imageBuilder } from '../lib/sanity';
+import { getAllTagsAndPaintings } from '../lib/api';
 
-import Meta from "components/Meta";
-import Main from "components/Main";
-import { configuredSanityClient } from "helpers/sanityHelpers";
+const Footer = dynamic(() => import('components/Footer'));
+// const PaintingGrid = dynamic(() => import('components/PaintingGrid'));
+// const Filters = dynamic(() => import('components/Filters'));
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
 export default function Home({
-  paintings = [],
-  tags = [],
-  wallpaperPaintings,
-  mobileWallpaper,
+  // paintings = [],
+  // tags = [],
+  // wallpaperPaintings,
+  // mobileWallpaper,
   desktopWallpaper,
 }) {
-  const [filterTag, setFilterTag] = useState("");
+  // const [filterTag, setFilterTag] = useState('');
   const [desktopIndex, setDesktopIndex] = useState(0);
-  console.log("desktopIndex", desktopIndex);
-  const [mobileIndex, setMobileIndex] = useState(0);
 
-  const { width, height } = useWindowDimensions();
+  // const [mobileIndex, setMobileIndex] = useState(0);
 
-  const paintingsAmount = paintings.length;
+  // const { width, height } = useWindowDimensions();
 
-  const myRef = useRef(null);
+  // const paintingsAmount = paintings.length;
 
-  const executeScroll = () =>
-    myRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
+  // const myRef = useRef(null);
+
+  // const executeScroll = () =>
+  //   myRef.current.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'start',
+  //     inline: 'nearest',
+  //   });
 
   const handleGoLeft = () => {
     if (desktopIndex === 0) {
@@ -65,7 +72,7 @@ export default function Home({
 
   useEffect(() => {
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)));
-  }, []);
+  }, [desktopWallpaper.length]);
 
   const imageProps = useNextSanityImage(
     configuredSanityClient,
@@ -74,66 +81,56 @@ export default function Home({
       blurUpImageWidth: 124,
       blurUpImageQuality: 40,
       blurUpAmount: 24,
-    }
+    },
   );
 
   return (
     <>
       <Meta url="https://wisihe.no" />
-
+      <Navigation hideOnDesktop />
+      <NavigationDrawer />
       <Main noTopPadding>
-        <section className="relative h-40v xl:h-100v">
-          <Image
-            {...imageProps}
-            layout="fill"
-            objectFit="cover"
-            className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
-            alt="headerImage"
-          />
-          <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
-            <button
-              onClick={handleGoLeft}
-              className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
-            >
-              <BsChevronLeft
-                aria-label="Left"
-                className="p-2 text-4xl text-center text-black transition-all bg-white rounded-full "
-              />
-            </button>
-            <button
-              onClick={handleGoRight}
-              className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
-            >
-              <BsChevronRight
-                aria-label="Right"
-                className="p-2 text-4xl text-center text-black transition bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              />
-            </button>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex">
-            <button onClick={executeScroll} aria-label="Scroll">
-              <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
-            </button>
+        <section className="relative grid h-screen grid-cols-12">
+          <section className="sticky hidden col-span-2 bg-dark xl:block">
+            <SideMenu />
+          </section>
+          <div className="relative col-span-12 xl:col-span-10">
+            <Image
+              {...imageProps}
+              layout="fill"
+              objectFit="cover"
+              className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
+              alt="headerImage"
+            />
+            <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
+              <button
+                onClick={handleGoLeft}
+                className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+              >
+                <BsChevronLeft
+                  aria-label="Left"
+                  className="p-2 text-4xl text-center text-black transition-all bg-white rounded-full "
+                />
+              </button>
+              <button
+                onClick={handleGoRight}
+                className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+              >
+                <BsChevronRight
+                  aria-label="Right"
+                  className="p-2 text-4xl text-center text-black transition bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                />
+              </button>
+            </div>
+            {/* <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex">
+              <button onClick={executeScroll} aria-label="Scroll">
+                <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
+              </button>
+            </div> */}
           </div>
         </section>
-
-        <div
-          className="flex flex-col justify-center p-4 text-center bg-dark"
-          ref={myRef}
-        >
-          <h1 className="text-4xl font-playfair">Henrik Wilhelm Sissener</h1>
-          <h2 className="text-xl font-roboto">WiSiHe</h2>
-        </div>
-
-        <Filters
-          activeFilter={filterTag}
-          setFilterTag={setFilterTag}
-          paintingsAmount={paintingsAmount}
-          filteredTags={tags}
-        />
-        <PaintingGrid paintings={paintings} filterTag={filterTag} />
+        <Footer fixed />
       </Main>
-      <Footer />
     </>
   );
 }
@@ -154,33 +151,30 @@ export async function getStaticProps({ preview = false }) {
   }
 
   const wallpaperPaintings =
-    data.paintings.filter(
-      (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper")
-    ) || [];
+    data.paintings.filter(p => p.tags?.length > 1 && p.tags.find(t => t.value === 'wallpaper')) ||
+    [];
 
-  const mobileWallpaper =
-    wallpaperPaintings.filter((w) => w.aspectRatio === "9:16") || [];
-  const desktopWallpaper =
-    wallpaperPaintings.filter((w) => w.aspectRatio === "16:9") || [];
+  const mobileWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '9:16') || [];
+  const desktopWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '16:9') || [];
 
-  const flattenedTags = data.tags.filter((tag) => tag !== null).flat();
-  const tagValues = flattenedTags.map((tag) => tag.label);
+  const flattenedTags = data.tags.filter(tag => tag !== null).flat();
+  const tagValues = flattenedTags.map(tag => tag.label);
 
-  let result = {};
+  const result = {};
 
-  for (var i = 0; i < tagValues.length; ++i) {
+  for (let i = 0; i < tagValues.length; ++i) {
     if (!result[tagValues[i]]) result[tagValues[i]] = 0;
     ++result[tagValues[i]];
   }
 
-  const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
+  const filteredTags = Object.entries(result).filter(w => w[1] > 10);
 
   return {
     props: {
       paintings: data.paintings,
-      wallpaperPaintings: wallpaperPaintings,
-      mobileWallpaper: mobileWallpaper,
-      desktopWallpaper: desktopWallpaper,
+      wallpaperPaintings,
+      mobileWallpaper,
+      desktopWallpaper,
       tags: filteredTags,
     },
     revalidate: 600, // 10 min

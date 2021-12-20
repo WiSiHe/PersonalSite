@@ -1,3 +1,3 @@
-import RedbubbleLink from "./RedbubbleLink";
+import RedbubbleLink from './RedbubbleLink';
 
 export default RedbubbleLink;

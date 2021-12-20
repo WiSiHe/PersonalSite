@@ -1,19 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import {
-  SiRedbubble,
-  SiArtstation,
-  SiInstagram,
-  SiLinkedin,
-} from "react-icons/si";
-import clsx from "clsx";
+import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from 'react-icons/si';
+import clsx from 'clsx';
 
 const SocialLinks = ({ alignLeft = false }) => {
   return (
-    <div
-      className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}
-    >
+    <div className={clsx('flex', alignLeft ? 'justify-start' : 'justify-center')}>
       <ul className="inline-flex space-x-4 ">
         <li className="hover:text-yellow-500">
           <a

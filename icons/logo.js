@@ -1,14 +1,14 @@
 import * as React from "react";
 
-function Logo(props) {
+function Logo({ width = 52, height = 52 }) {
   return (
     <svg
-      width={52}
-      height={52}
+      width={width}
+      height={height}
       viewBox="0 0 62 62"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      // {...props}
     >
       <path
         d="M4.653 15.789L31 .577 57.347 15.79V46.21L31 61.423 4.653 46.21V15.79z"

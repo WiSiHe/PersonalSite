@@ -1,13 +1,7 @@
-import { imageBuilder } from "../lib/sanity";
+import { imageBuilder } from '../lib/sanity';
 
 function generatePaintingJsonLd(paintingData) {
-  const {
-    slug = {},
-    desciption = "",
-    image = {},
-    _createdAt = "",
-    title = "",
-  } = paintingData;
+  const { slug = {}, desciption = '', image = {}, _createdAt = '', title = '' } = paintingData;
 
   const smallImage = imageBuilder(image).width(50).url();
 

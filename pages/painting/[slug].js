@@ -1,45 +1,45 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { AnimatePresence, motion } from "framer-motion";
-import clsx from "clsx";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import Image from "next/image";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 
-import { IoArrowBackSharp } from "react-icons/io5";
+import Link from 'next/link';
+// import dynamic from 'next/dynamic';
+
+import { IoArrowBackSharp } from 'react-icons/io5';
 
 // Helpers
-import generatePaintingJsonLd from "helpers/jsonLdHelpers";
+import generatePaintingJsonLd from 'helpers/jsonLdHelpers';
 
 // Components
-import Main from "components/Main";
-import Meta from "components/Meta";
-import RedbubbleLink from "components/RedbubbleLink";
-const SocialLinks = dynamic(() => import("components/SocialLinks"));
+import Main from 'components/Main';
+import Meta from 'components/Meta';
+import RedbubbleLink from 'components/RedbubbleLink';
 
 // Libs
-import { imageBuilder } from "lib/sanity";
-import { getAllPaintings, getPainting } from "lib/api";
-import Footer from "components/Footer";
+import { imageBuilder } from 'lib/sanity';
+import { getAllPaintings, getPainting } from 'lib/api';
+import Footer from 'components/Footer';
+
+// const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
 export default function Gallery({
   painting = {},
-  image = {},
-  title = "",
+  // image = {},
+  title = '',
   tags = [],
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat.",
+  description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat.',
   slug = {},
   smallImage,
   largeImage,
   xlImage,
-  redbubbleUrl = "",
-  id = "",
+  redbubbleUrl = '',
+  // id = '',
 }) {
-  const { current = "" } = slug;
+  const { current = '' } = slug;
 
   const uniqueTags = [...new Set(tags)];
 
-  const hasRedBubleLink = redbubbleUrl !== "";
+  const hasRedBubleLink = redbubbleUrl !== '';
 
   return (
     <>
@@ -57,10 +57,10 @@ export default function Gallery({
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
-          transition={{ type: "spring", stiffness: 100 }}
+          transition={{ type: 'spring', stiffness: 100 }}
           key="backbutton"
         >
-          <Link href="/">
+          <Link href="/gallery">
             <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
               <IoArrowBackSharp />
             </a>
@@ -68,13 +68,9 @@ export default function Gallery({
         </motion.div>
 
         <picture className="w-full">
-          <source media="(min-width:1280px)" srcset={xlImage} />
-          <source media="(min-width:650px)" srcset={largeImage} />
-          <source
-            media="(min-width:465px)"
-            srcset={smallImage}
-            className="w-full"
-          />
+          <source media="(min-width:1280px)" srcSet={xlImage} />
+          <source media="(min-width:650px)" srcSet={largeImage} />
+          <source media="(min-width:465px)" srcSet={smallImage} className="w-full" />
           <motion.img
             layoutId="image"
             initial={{ opacity: 0, y: -100 }}
@@ -83,15 +79,14 @@ export default function Gallery({
             key="image"
             layout
             transition={{
-              type: "spring",
+              type: 'spring',
               stiffness: 100,
               delay: 0.5,
               bounce: 0.25,
             }}
             src={smallImage}
             alt={title}
-            layout="fill"
-            objectFit="cover"
+            // objectFit="cover"
             className="relative w-full"
           />
         </picture>
@@ -108,13 +103,10 @@ export default function Gallery({
             <strong>{title}</strong>
           </h1>
           <div className="flex flex-wrap">
-            {uniqueTags.map((tag) => {
+            {uniqueTags.map(tag => {
               const { value } = tag;
               return (
-                <p
-                  className="p-1 mb-2 mr-2 text-xs text-white bg-primary"
-                  key={value}
-                >
+                <p className="p-1 mb-2 mr-2 text-xs text-white bg-primary" key={value}>
                   {value}
                 </p>
               );
@@ -123,10 +115,7 @@ export default function Gallery({
           {description && <p className="py-2 rounded-sm">{description}</p>}
 
           {hasRedBubleLink && (
-            <RedbubbleLink
-              hasRedBubleLink={hasRedBubleLink}
-              redbubbleUrl={redbubbleUrl}
-            />
+            <RedbubbleLink hasRedBubleLink={hasRedBubleLink} redbubbleUrl={redbubbleUrl} />
           )}
         </motion.div>
       </Main>
@@ -149,7 +138,7 @@ Gallery.propTypes = {
 };
 
 export async function getStaticProps({ params, preview = false }) {
-  const { slug = "" } = params;
+  const { slug = '' } = params;
   const data = await getPainting(slug, preview);
 
   if (data.length < 1) {
@@ -160,40 +149,28 @@ export async function getStaticProps({ params, preview = false }) {
 
   const {
     image = {},
-    title = "",
+    title = '',
     tags = [],
-    description = "",
-    redbubbleUrl = "",
-    _id = "",
+    description = '',
+    redbubbleUrl = '',
+    _id = '',
   } = painting;
 
-  const smallImage = imageBuilder(image)
-    .width(400)
-    .height(400)
-    .quality(75)
-    .url();
-  const largeImage = imageBuilder(image)
-    .width(1200)
-    .height(1200)
-    .quality(75)
-    .url();
-  const xlImage = imageBuilder(image)
-    .width(1660)
-    .height(1660)
-    .quality(75)
-    .url();
+  const smallImage = imageBuilder(image).width(400).height(400).quality(75).url();
+  const largeImage = imageBuilder(image).width(1200).height(1200).quality(75).url();
+  const xlImage = imageBuilder(image).width(1660).height(1660).quality(75).url();
 
   return {
     props: {
-      painting: painting,
-      title: title,
-      description: description,
-      tags: tags,
-      image: image,
+      painting,
+      title,
+      description,
+      tags,
+      image,
       smallImage,
       largeImage,
       xlImage,
-      redbubbleUrl: redbubbleUrl,
+      redbubbleUrl,
       id: _id,
     },
     revalidate: 600, // 10 min
@@ -205,7 +182,7 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      allPaintings?.map((painting) => ({
+      allPaintings?.map(painting => ({
         params: {
           painting,
           slug: painting.slug.current,
