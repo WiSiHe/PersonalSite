@@ -73,7 +73,7 @@ const Filters = ({
           <button
             onClick={() => selectFilter('')}
             className={clsx(
-              'p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 ',
+              'p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg',
               activeFilter === '' ? 'bg-yellow-400 hover:opacity-60 text-black' : 'text-white',
             )}
           >
@@ -87,7 +87,7 @@ const Filters = ({
               return (
                 <button
                   className={clsx(
-                    'transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90',
+                    'transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg',
                     activeFilter === label
                       ? 'bg-yellow-400 hover:bg-yellow-200 text-black'
                       : 'text-white ',

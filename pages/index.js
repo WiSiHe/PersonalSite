@@ -22,6 +22,7 @@ import SideMenu from 'components/SideMenu';
 import NavigationDrawer from 'components/NavigationDrawer';
 // import { imageBuilder } from '../lib/sanity';
 import { getAllTagsAndPaintings } from '../lib/api';
+import Link from 'next/link';
 
 // const Footer = dynamic(() => import('components/Footer'));
 // const PaintingGrid = dynamic(() => import('components/PaintingGrid'));
@@ -89,7 +90,7 @@ export default function Home({
   return (
     <>
       <Meta url="https://wisihe.no" />
-      <Navigation hideOnDesktop />
+      <Navigation hideOnDesktop isAbsolute />
       <NavigationDrawer />
       <Main noTopPadding>
         <section className="relative grid h-screen grid-cols-12">
@@ -107,7 +108,7 @@ export default function Home({
             <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
               <button
                 onClick={handleGoLeft}
-                className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+                className="rounded-lg focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
               >
                 <BsChevronLeft
                   aria-label="Left"
@@ -116,7 +117,7 @@ export default function Home({
               </button>
               <button
                 onClick={handleGoRight}
-                className="rounded-full focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+                className="rounded-lg focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
               >
                 <BsChevronRight
                   aria-label="Right"
@@ -124,8 +125,15 @@ export default function Home({
                 />
               </button>
             </div>
-            <div className="absolute left-0 right-0 justify-center hidden bottom-10 xl:flex">
-              <div className="p-4 capitalize rounded-lg bg-stone-100 bg-opacity-60">
+            <div className="absolute left-0 right-0 flex justify-center bottom-10">
+              <Link href="/gallery" passHref>
+                <a className="px-4 py-2 text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-highlight focus:border-transparent">
+                  Go to gallery!
+                </a>
+              </Link>
+            </div>
+            <div className="absolute justify-center hidden right-5 top-10 xl:flex">
+              <div className="p-4 capitalize bg-opacity-50 rounded-lg bg-stone-100">
                 {currentWallpaper.title}
               </div>
             </div>

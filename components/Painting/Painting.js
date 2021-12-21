@@ -34,7 +34,7 @@ const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
       <ActiveLink href={linkString}>
         <Image
           // {...imageProps}
-          src={imageBuilder(image).width(300).height(300).fit('fill').quality(75).url()}
+          src={imageBuilder(image).width(500).height(500).fit('fill').quality(55).url()}
           layout="fill"
           // objectFit="cover"
           alt={`painting: ${_id}`}

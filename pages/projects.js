@@ -26,24 +26,33 @@ export default function ProjectsPage() {
             <SideMenu />
           </section>
           <section className="relative col-span-12 p-4 xl:col-span-10">
-            <div className="mt-20 text-4xl">
-              <h1>My Projects</h1>
+            <div className="">
+              <h1 className="text-4xl">My Projects</h1>
             </div>
-            <section className="relative mt-4 bg-white shadow-lg dark:bg-gray-900 md:flex">
-              <div className="p-4 ">
-                <h2 className="text-xl ">Project Vör</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper lectus
-                  et nunc interdum pulvinar. Integer posuere magna nec risus elementum tristique.
-                </p>
-              </div>
-              <img
-                width={16}
-                height={9}
-                src="https://cdna.artstation.com/p/assets/images/images/013/991/308/large/henrik-sissener-highresscreenshot00034.jpg?1541992611"
-                alt="test"
-                className="w-8/12"
-              />
+            <p>
+              These are some of my various projects that I have been working on, some of them are
+              finished, some are not, but most of them has some sort of learning experience to it.
+            </p>
+            <section className="grid gap-4">
+              <article className="relative flex mt-4 overflow-hidden bg-white rounded-lg shadow-lg">
+                <div className="p-4">
+                  <h2 className="text-xl">
+                    <strong>Project Vör / Babel</strong>
+                  </h2>
+                  <p>
+                    Project Babel as it was called during most of it &rsquo;s development, was
+                    supposed to be a third person adventure game set in a post-apocalyptic world.
+                  </p>
+                  {/* <button>Read more</button> */}
+                </div>
+                <img
+                  width={16}
+                  height={9}
+                  src="https://cdna.artstation.com/p/assets/images/images/013/991/308/large/henrik-sissener-highresscreenshot00034.jpg?1541992611"
+                  alt="test"
+                  className="w-7/12"
+                />
+              </article>
             </section>
           </section>
         </section>

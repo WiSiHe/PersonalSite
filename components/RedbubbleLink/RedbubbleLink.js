@@ -20,8 +20,8 @@ const RedbubbleLink = ({ hasRedBubleLink, redbubbleUrl }) => {
           )}
           disabled
         >
-          <SiRedbubble className="mr-2" />
-          <strong>Redbubble store</strong>
+          <SiRedbubble className="mr-2 text-bright" />
+          <strong className="text-bright">Redbubble store</strong>
         </button>
       </a>
     </>
