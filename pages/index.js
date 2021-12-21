@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useNextSanityImage } from 'next-sanity-image';
 
@@ -23,7 +23,7 @@ import NavigationDrawer from 'components/NavigationDrawer';
 // import { imageBuilder } from '../lib/sanity';
 import { getAllTagsAndPaintings } from '../lib/api';
 
-const Footer = dynamic(() => import('components/Footer'));
+// const Footer = dynamic(() => import('components/Footer'));
 // const PaintingGrid = dynamic(() => import('components/PaintingGrid'));
 // const Filters = dynamic(() => import('components/Filters'));
 
@@ -74,6 +74,8 @@ export default function Home({
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)));
   }, [desktopWallpaper.length]);
 
+  const currentWallpaper = desktopWallpaper[desktopIndex];
+
   const imageProps = useNextSanityImage(
     configuredSanityClient,
     desktopWallpaper[desktopIndex].image,
@@ -91,7 +93,7 @@ export default function Home({
       <NavigationDrawer />
       <Main noTopPadding>
         <section className="relative grid h-screen grid-cols-12">
-          <section className="sticky hidden col-span-2 bg-dark xl:block">
+          <section className="sticky hidden col-span-2 bg-stone-100 xl:block">
             <SideMenu />
           </section>
           <div className="relative col-span-12 xl:col-span-10">
@@ -109,7 +111,7 @@ export default function Home({
               >
                 <BsChevronLeft
                   aria-label="Left"
-                  className="p-2 text-4xl text-center text-black transition-all bg-white rounded-full "
+                  className="p-2 text-4xl text-center text-black transition-all bg-white rounded-lg hover:shadow-lg "
                 />
               </button>
               <button
@@ -118,18 +120,17 @@ export default function Home({
               >
                 <BsChevronRight
                   aria-label="Right"
-                  className="p-2 text-4xl text-center text-black transition bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                 />
               </button>
             </div>
-            {/* <div className="absolute bottom-0 left-0 right-0 justify-center hidden xl:flex">
-              <button onClick={executeScroll} aria-label="Scroll">
-                <BsChevronDown className="p-1 text-3xl text-center text-black transition bg-white rounded-full animate-bounce focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" />
-              </button>
-            </div> */}
+            <div className="absolute left-0 right-0 justify-center hidden bottom-10 xl:flex">
+              <div className="p-4 capitalize rounded-lg bg-stone-100 bg-opacity-60">
+                {currentWallpaper.title}
+              </div>
+            </div>
           </div>
         </section>
-        <Footer fixed />
       </Main>
     </>
   );

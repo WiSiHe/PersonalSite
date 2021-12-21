@@ -36,7 +36,9 @@ const PaintingGrid = ({ paintings = [], filterTag = '' }) => {
   // };
 
   return (
-    <div className={clsx('grid grid-cols-2 gap-4 lg:grid-cols-5 auto-rows-min items-start')}>
+    <div
+      className={clsx('grid grid-cols-2 gap-4 xl:gap-0 lg:grid-cols-5 auto-rows-min items-start')}
+    >
       {paintings
         // .sort((a, b) => a.title.localeCompare(b.title))
         .filter(p => p.tags?.find(t => t.value === filterTag || filterTag === ''))

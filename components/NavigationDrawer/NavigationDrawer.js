@@ -6,12 +6,18 @@ import { useRecoilState } from 'recoil';
 import Overlay from '../Overlay';
 
 import { navdrawer as atomNavdrawer } from '../../atoms/navdrawer';
-import ActiveLink from '../ActiveLink/ActiveLink';
 
 import SocialLinks from '../SocialLinks/SocialLinks';
+import { NavItems } from 'constants/navigation';
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { BsChevronRight } from 'react-icons/bs';
 
 const NavigationDrawer = () => {
   const [navdrawer, hideNavDrawer] = useRecoilState(atomNavdrawer);
+
+  const router = useRouter();
 
   // rewrite this
   const defaultStyle =
@@ -42,13 +48,23 @@ const NavigationDrawer = () => {
               </button>
             </div>
             <hr />
-            <ul className="pt-4 space-y-4">
-              <li>
-                <ActiveLink href="/">Home</ActiveLink>
-              </li>
-              <li>
-                <ActiveLink href={'/gallery'}>Paintings</ActiveLink>
-              </li>
+            <ul className="grid gap-4 p-6">
+              {NavItems.map((item, i) => {
+                const isActive = router.asPath === item.url;
+                console.log('isActive', isActive);
+                return (
+                  <li key={i} className={clsx(isActive && 'text-primary')}>
+                    <Link href={item.url} passHref>
+                      <a>
+                        <div className={clsx('flex items-center justify-between')}>
+                          <strong>{item.text}</strong>
+                          <BsChevronRight />
+                        </div>
+                      </a>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="absolute left-0 right-0 bottom-4">

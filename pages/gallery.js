@@ -64,11 +64,11 @@ export default function Home({ paintings = [], tags = [] }) {
       <NavigationDrawer />
       <Main noTopPadding>
         <section className="relative grid grid-cols-12">
-          <section className="relative hidden col-span-2 bg-dark xl:block">
+          <section className="relative hidden col-span-2 bg-stone-200 xl:block">
             <SideMenu />
           </section>
           <div className="relative col-span-12 xl:col-span-10">
-            <div className="flex flex-col justify-center p-4 text-center xl:items-start bg-dark">
+            <div className="flex flex-col justify-center p-4 pt-[116px] text-center xl:items-start bg-stone-100">
               <h1 className="text-4xl">My Gallery</h1>
             </div>
 

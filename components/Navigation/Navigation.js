@@ -1,18 +1,15 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import Link from 'next/link';
-
+import clsx from 'clsx';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
 // import { theme as atomTheme } from '../../atoms/theme';
 import { navdrawer as atomNavdrawer } from '../../atoms/navdrawer';
 
-import clsx from 'clsx';
-
 export default function Navigation({ hideOnDesktop = false }) {
   // const [theme, setTheme] = useRecoilState(atomTheme);
-  const [navdrawer, showNavDrawer] = useRecoilState(atomNavdrawer);
-  console.log('navdrawer', navdrawer);
+  const showNavDrawer = useSetRecoilState(atomNavdrawer);
 
   // const isDarkMode = theme === 'dark';
 
@@ -37,14 +34,14 @@ export default function Navigation({ hideOnDesktop = false }) {
     <nav
       className={clsx(
         hideOnDesktop && 'block xl:hidden',
-        'relative font-serif text-lg bg-white dark:bg-dark dark:text-white ',
+        'relative font-serif text-lg bg-stone-200 ',
       )}
     >
       <div className="flex items-center justify-between px-8 py-4 mx-auto">
         <Link href="/">
           <a className="relative">
-            <div className="flex items-center justify-center w-12 h-12 text-xs rounded-full bg-primary">
-              WiSiHe
+            <div className="flex items-center justify-center text-xs rounded-full w-14 h-14 text-highlight bg-primary">
+              <strong>WiSiHe</strong>
             </div>
           </a>
         </Link>

@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import ActiveLink from 'components/ActiveLink/ActiveLink';
-import { configuredSanityClient } from 'helpers/sanityHelpers';
+// import { configuredSanityClient } from 'helpers/sanityHelpers';
+import { imageBuilder } from 'lib/sanity';
 
-import { useNextSanityImage } from 'next-sanity-image';
+// import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -14,7 +15,12 @@ const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
   const linkString = `/painting/${current}`;
   const test = index % 24 === 0;
 
-  const imageProps = useNextSanityImage(configuredSanityClient, image);
+  // const imageProps = useNextSanityImage(configuredSanityClient, image, {
+  //   enableBlurUp: false,
+  //   blurUpImageWidth: 124,
+  //   blurUpImageQuality: 40,
+  //   blurUpAmount: 24,
+  // });
 
   return (
     <article
@@ -27,17 +33,17 @@ const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
     >
       <ActiveLink href={linkString}>
         <Image
-          {...imageProps}
+          // {...imageProps}
+          src={imageBuilder(image).width(300).height(300).fit('fill').quality(75).url()}
           layout="fill"
-          objectFit="cover"
+          // objectFit="cover"
           alt={`painting: ${_id}`}
           className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
         />
-        {title && (
-          <div className="absolute bottom-0 left-0 right-0 p-2 text-white transition-all duration-500 ease-in-out opacity-0 bg-dark bg-opacity-80 font group-hover:opacity-100">
-            <p>{title}</p>
-          </div>
-        )}
+
+        <div className="absolute bottom-0 left-0 right-0 flex items-end h-20 p-4 text-white transition-all duration-500 ease-in-out opacity-0 bg-gradient-to-t from-primary font group-hover:opacity-100">
+          <p>{title}</p>
+        </div>
       </ActiveLink>
     </article>
   );

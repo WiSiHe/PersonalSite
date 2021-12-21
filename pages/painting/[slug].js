@@ -97,7 +97,7 @@ export default function Gallery({
           exit={{ opacity: 0, x: 100 }}
           key="text-section"
           layout
-          className="relative p-6 mb-20 transition-all xl:mb-0 bg-dark xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
+          className="relative p-6 mb-20 transition-all xl:mb-0 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
         >
           <h1 className="pb-2 text-4xl">
             <strong>{title}</strong>

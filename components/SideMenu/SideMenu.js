@@ -4,47 +4,54 @@ import { BsChevronRight } from 'react-icons/bs';
 import SocialLinks from 'components/SocialLinks';
 
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { NavItems } from 'constants/navigation';
+import clsx from 'clsx';
 
 const SideMenu = () => {
+  const router = useRouter();
+
   return (
     <section className="relative w-full h-full">
-      <div className="flex flex-col items-center justify-center w-full p-4 ">
+      <div className="flex flex-col items-center justify-center w-full p-8 bg-stone-300 ">
         <div className="mb-4 !text-left">
           <Link href="/" passHref>
-            <a className="relative transform -translate-y-5 font-xs filter hover:contrast-200 hover:brightness-200 ">
+            <a>
               <div className="flex items-center justify-center w-24 h-24 rounded-full text-highlight bg-primary">
-                WiSiHe
+                <strong>WiSiHe</strong>
               </div>
             </a>
           </Link>
         </div>
+        <h1 className="text-xl font-playfair">
+          <strong>
+            <span className="text-primary">He</span>nrik <span className="text-primary">Wi</span>
+            lhelm <span className="text-primary">Si</span>ssener
+          </strong>
+        </h1>
+        <div className="mt-4">
+          <SocialLinks />
+        </div>
       </div>
-      <h1 className="p-4 text-2xl font-playfair">Henrik Wilhelm Sissener</h1>
-      <ul className="grid gap-4 p-4">
-        <li>
-          <Link href="/gallery">
-            <a>
-              <div className="flex items-center justify-between">
-                Gallery
-                <BsChevronRight />
-              </div>
-            </a>
-          </Link>
-        </li>
-        {/* <li>
-          <Link href="/404">
-            <a>
-              <div className="flex items-center justify-between">
-                About me
-                <BsChevronRight />
-              </div>
-            </a>
-          </Link>
-        </li> */}
+
+      <hr className=" bg-stone-800 border-stone-400" />
+      <ul className="grid gap-4 p-6">
+        {NavItems.map((item, i) => {
+          const isActive = router.asPath === item.url;
+          return (
+            <li key={i} className={clsx(isActive && 'text-primary')}>
+              <Link href={item.url} passHref>
+                <a>
+                  <div className={clsx('flex items-center justify-between')}>
+                    <strong>{item.text}</strong>
+                    <BsChevronRight />
+                  </div>
+                </a>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
-      <div className="fixed left-0 right-0 bottom-10">
-        <SocialLinks />
-      </div>
     </section>
   );
 };
