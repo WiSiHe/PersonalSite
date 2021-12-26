@@ -64,16 +64,16 @@ const Filters = ({
 
   return (
     <>
-      <div className="sticky z-20 px-4 py-4 overflow-hidden -top-1 bg-stone-100 bg-opacity-20 backdrop-blur-lg">
+      <div className="sticky z-20 overflow-hidden -top-1 bg-stone-100 bg-opacity-20 backdrop-blur-lg">
         <div
           ref={wrapper}
           // onScroll={handleScroll}
-          className="relative flex space-x-2 overflow-x-scroll scrollbar-hidden"
+          className="relative flex px-4 py-4 space-x-2 overflow-x-scroll scrollbar-hidden"
         >
           <button
             onClick={() => selectFilter('')}
             className={clsx(
-              'p-2 text-xs  bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg',
+              'p-2 text-xs bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
               activeFilter === '' ? 'bg-yellow-400 hover:opacity-60 text-black' : 'text-white',
             )}
           >
@@ -87,7 +87,7 @@ const Filters = ({
               return (
                 <button
                   className={clsx(
-                    'transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg',
+                    'transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
                     activeFilter === label
                       ? 'bg-yellow-400 hover:bg-yellow-200 text-black'
                       : 'text-white ',

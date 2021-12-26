@@ -47,7 +47,7 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
           </a>
         </Link>
         <button
-          className="inline-flex p-2 rounded-full hover:bg-opacity-10 hover:bg-primary"
+          className="inline-flex p-2 text-white rounded-full hover:bg-opacity-10 hover:bg-primary"
           onClick={() => showNavDrawer(true)}
         >
           <GiHamburgerMenu />

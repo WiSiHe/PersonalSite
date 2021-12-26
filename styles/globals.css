@@ -2,14 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Declarations outside layers are never purged */
+*:not(.a11y-focus-within\:focus-ring *, .a11y-focus\:focus-ring) {
+  @apply focus-within:focus-ring;
+}
+
 @layer base {
   h1,
   h2,
   h3 {
-    font-family: "Playfair Display", serif;
+    font-family: 'Playfair Display', serif;
   }
   body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 }
 @layer utilities {
@@ -20,5 +25,9 @@
   .scrollbar-hidden {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .focus-ring {
+    @apply ring ring-highlight;
   }
 }

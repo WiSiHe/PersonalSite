@@ -15,19 +15,16 @@ const NavigationLinks = () => {
         {NavItems.map((item, i) => {
           const isActive = router.asPath === item.url;
           return (
-            <li
-              key={i}
-              className={clsx(
-                'px-1 transition-all',
-                isActive && 'text-white bg-primary rounded-lg  py-2',
-              )}
-            >
+            <li key={i}>
               <Link href={item.url} passHref>
-                <a>
-                  <div className={clsx('flex items-center justify-between px-4')}>
-                    <strong>{item.text}</strong>
-                    <BsChevronRight />
-                  </div>
+                <a
+                  className={clsx(
+                    'transition-all flex items-center justify-between p-2 rounded-lg hover:bg-primary hover:text-white active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
+                    isActive && 'text-white bg-primary',
+                  )}
+                >
+                  <strong>{item.text}</strong>
+                  <BsChevronRight />
                 </a>
               </Link>
             </li>

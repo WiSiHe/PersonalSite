@@ -2,6 +2,6 @@
 module.exports = {
   /* config options here */
   images: {
-    domains: ["cdn.sanity.io"],
+    domains: ['cdn.sanity.io', 'cdna.artstation.com'],
   },
 };

@@ -61,7 +61,7 @@ export default function Gallery({
           key="backbutton"
         >
           <Link href="/gallery">
-            <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg dark:bg-primary dark:text-white ">
+            <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
               <IoArrowBackSharp />
             </a>
           </Link>
@@ -97,7 +97,7 @@ export default function Gallery({
           exit={{ opacity: 0, x: 100 }}
           key="text-section"
           layout
-          className="relative p-6 mb-20 transition-all xl:mb-0 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-60 "
+          className="relative p-6 mb-20 transition-all xl:mb-0 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-30 "
         >
           <h1 className="pb-2 text-4xl">
             <strong>{title}</strong>
@@ -106,7 +106,10 @@ export default function Gallery({
             {uniqueTags.map(tag => {
               const { value } = tag;
               return (
-                <p className="p-1 mb-2 mr-2 text-xs text-white bg-primary" key={value}>
+                <p
+                  className="p-1 mb-2 mr-1 text-xs text-white capitalize rounded-lg bg-primary"
+                  key={value}
+                >
                   {value}
                 </p>
               );

@@ -16,7 +16,7 @@ export default function Footer({ fixed = false, onlyMobile = false }) {
         bounce: 0.25,
       }}
       className={clsx(
-        'w-full p-4 text-white bg-primary ',
+        'w-full p-4 text-white bg-stone-400 bg-opacity-30 backdrop-blur-lg',
         fixed && 'fixed bottom-0',
         onlyMobile && ' block lg:hidden',
       )}

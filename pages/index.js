@@ -93,7 +93,7 @@ export default function Home({
       <Navigation hideOnDesktop isAbsolute />
       <NavigationDrawer />
       <Main noTopPadding>
-        <section className="relative grid h-screen grid-cols-12">
+        <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="sticky hidden col-span-2 bg-stone-100 xl:block">
             <SideMenu />
           </section>
@@ -108,7 +108,7 @@ export default function Home({
             <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
               <button
                 onClick={handleGoLeft}
-                className="rounded-lg focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+                className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent"
               >
                 <BsChevronLeft
                   aria-label="Left"
@@ -117,7 +117,7 @@ export default function Home({
               </button>
               <button
                 onClick={handleGoRight}
-                className="rounded-lg focus:outline-none focus:ring-2 ring-highlight focus:border-transparent"
+                className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent"
               >
                 <BsChevronRight
                   aria-label="Right"
@@ -125,9 +125,9 @@ export default function Home({
                 />
               </button>
             </div>
-            <div className="absolute left-0 right-0 flex justify-center bottom-10">
+            <div className="absolute left-0 right-0 flex justify-center bottom-20">
               <Link href="/gallery" passHref>
-                <a className="px-4 py-2 text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-highlight focus:border-transparent">
+                <a className="px-4 py-2 text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
                   Go to gallery!
                 </a>
               </Link>

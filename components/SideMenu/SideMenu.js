@@ -9,11 +9,11 @@ import NavigationLinks from 'components/NavigationLinks';
 const SideMenu = () => {
   return (
     <section className="relative w-full h-full">
-      <div className="flex flex-col items-center justify-center w-full p-8 bg-stone-300 ">
+      <div className="flex flex-col items-center justify-center w-full p-8 bg-stone-300">
         <div className="mb-4 !text-left">
           <Link href="/" passHref>
-            <a>
-              <div className="flex items-center justify-center w-24 h-24 rounded-full text-highlight bg-primary">
+            <a className="group focus:outline-none">
+              <div className="flex items-center justify-center w-24 h-24 rounded-full bg-primary text-highlight group-focus:outline-none group-hover:bg-primary group-hover:text-white group-active:bg-highlight group-focus:ring group-focus:ring-highlight">
                 <strong>WiSiHe</strong>
               </div>
             </a>
@@ -30,7 +30,7 @@ const SideMenu = () => {
         </div>
       </div>
 
-      <hr className=" bg-stone-800 border-stone-400" />
+      <hr className="mb-6 bg-stone-800 border-stone-400" />
       <NavigationLinks />
     </section>
   );

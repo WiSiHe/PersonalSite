@@ -59,7 +59,11 @@ export default function Home({ paintings = [], tags = [] }) {
 
   return (
     <>
-      <Meta url="https://wisihe.no" />
+      <Meta
+        title="Gallery"
+        url="https://wisihe.no/gallery"
+        description="A gallery of some of my paintings"
+      />
       <Navigation hideOnDesktop />
       <NavigationDrawer />
       <Main noTopPadding>
@@ -72,7 +76,11 @@ export default function Home({ paintings = [], tags = [] }) {
           <div className="relative col-span-12 xl:col-span-10">
             <div className="p-4 pt-10 xl:items-start bg-stone-100">
               <h1 className="text-4xl">My Gallery</h1>
-              <p>My little gallery of digital paintings</p>
+              <p>
+                My little gallery of digital paintings that I have made over the years. Some of
+                these are for sale, if you find one you like, and it&apos;s not for sale, feel free
+                to contact me, and I&apos;m sure that I can fix something :)
+              </p>
             </div>
 
             <Filters
@@ -104,13 +112,6 @@ export async function getStaticProps({ preview = false }) {
     return { props: {} };
   }
 
-  const wallpaperPaintings =
-    data.paintings.filter(p => p.tags?.length > 1 && p.tags.find(t => t.value === 'wallpaper')) ||
-    [];
-
-  const mobileWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '9:16') || [];
-  const desktopWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '16:9') || [];
-
   const flattenedTags = data.tags.filter(tag => tag !== null).flat();
   const tagValues = flattenedTags.map(tag => tag.label);
 
@@ -121,14 +122,11 @@ export async function getStaticProps({ preview = false }) {
     ++result[tagValues[i]];
   }
 
-  const filteredTags = Object.entries(result).filter(w => w[1] > 10);
+  const filteredTags = Object.entries(result).filter(w => w[1] > 20);
 
   return {
     props: {
       paintings: data.paintings,
-      wallpaperPaintings,
-      mobileWallpaper,
-      desktopWallpaper,
       tags: filteredTags,
     },
     revalidate: 600, // 10 min
