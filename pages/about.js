@@ -17,10 +17,10 @@ export default function ProjectsPage() {
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
 
-      <Navigation hideOnDesktop />
+      <Navigation hideOnDesktop darkMode />
       <NavigationDrawer />
       <Main noTopPadding>
-        <section className="relative grid h-screen grid-cols-12">
+        <section className="relative grid grid-cols-12">
           <section className="sticky hidden col-span-2 bg-stone-100 xl:block">
             <SideMenu />
           </section>

@@ -64,19 +64,19 @@ export default function Home({ paintings = [], tags = [] }) {
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Navigation hideOnDesktop />
+      <Navigation hideOnDesktop darkMode />
       <NavigationDrawer />
       <Main noTopPadding>
-        <section className="relative grid grid-cols-12">
+        <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="relative hidden col-span-2 bg-stone-200 xl:block">
             <div className="sticky top-0 w-full h-[fit-content] ">
               <SideMenu />
             </div>
           </section>
-          <div className="relative col-span-12 xl:col-span-10">
+          <section className="relative col-span-12 xl:col-span-10">
             <div className="p-4 pt-10 xl:items-start bg-stone-100">
               <h1 className="text-4xl">My Gallery</h1>
-              <p>
+              <p className="max-w-2xl pt-4">
                 My little gallery of digital paintings that I have made over the years. Some of
                 these are for sale, if you find one you like, and it&apos;s not for sale, feel free
                 to contact me, and I&apos;m sure that I can fix something :)
@@ -90,7 +90,7 @@ export default function Home({ paintings = [], tags = [] }) {
               filteredTags={tags}
             />
             <PaintingGrid paintings={paintings} filterTag={filterTag} />
-          </div>
+          </section>
         </section>
       </Main>
     </>

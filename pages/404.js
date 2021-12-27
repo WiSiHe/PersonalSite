@@ -15,7 +15,7 @@ export default function Custom404() {
       <Navigation hideOnDesktop />
       <NavigationDrawer />
       <Main noTopPadding>
-        <section className="relative grid h-screen grid-cols-12">
+        <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="sticky hidden col-span-2 bg-stone-100 xl:block">
             <SideMenu />
           </section>

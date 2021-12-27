@@ -7,7 +7,11 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 // import { theme as atomTheme } from '../../atoms/theme';
 import { navdrawer as atomNavdrawer } from '../../atoms/navdrawer';
 
-export default function Navigation({ hideOnDesktop = false, isAbsolute = false }) {
+export default function Navigation({
+  hideOnDesktop = false,
+  darkMode = false,
+  isAbsolute = false,
+}) {
   // const [theme, setTheme] = useRecoilState(atomTheme);
   const showNavDrawer = useSetRecoilState(atomNavdrawer);
 
@@ -40,14 +44,17 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
     >
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
         <Link href="/">
-          <a className="relative">
-            <div className="flex items-center justify-center p-4 text-xs rounded-lg text-highlight bg-primary">
+          <a className="relative group focus:outline-none ">
+            <div className="flex items-center justify-center p-4 text-xs rounded-lg text-highlight bg-primary group-active:bg-highlight group-focus:ring group-focus:ring-highlight">
               <strong>WiSiHe</strong>
             </div>
           </a>
         </Link>
         <button
-          className="inline-flex p-2 text-white rounded-full hover:bg-opacity-10 hover:bg-primary"
+          className={clsx(
+            'inline-flex p-2 rounded-full hover:bg-opacity-10 hover:bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
+            darkMode ? 'text-dark' : 'text-bright',
+          )}
           onClick={() => showNavDrawer(true)}
         >
           <GiHamburgerMenu />

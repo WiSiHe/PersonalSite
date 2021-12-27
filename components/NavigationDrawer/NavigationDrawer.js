@@ -40,9 +40,6 @@ const NavigationDrawer = () => {
                 <div className="flex items-center justify-center p-4 text-xs rounded-lg bg-primary text-highlight">
                   WiSiHe
                 </div>
-                <p className="p-2">
-                  <strong>Henrik Wilhelm Sissener</strong>
-                </p>
               </div>
               <button
                 onClick={() => hideNavDrawer(false)}
