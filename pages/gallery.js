@@ -69,7 +69,7 @@ export default function Home({ paintings = [], tags = [] }) {
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="relative hidden col-span-2 bg-stone-200 xl:block">
-            <div className="sticky top-0 w-full h-[fit-content] ">
+            <div className="sticky top-0 w-full h-[fit-content]">
               <SideMenu />
             </div>
           </section>
@@ -122,7 +122,7 @@ export async function getStaticProps({ preview = false }) {
     ++result[tagValues[i]];
   }
 
-  const filteredTags = Object.entries(result).filter(w => w[1] > 20);
+  const filteredTags = Object.entries(result).filter(w => w[1] > 10);
 
   return {
     props: {

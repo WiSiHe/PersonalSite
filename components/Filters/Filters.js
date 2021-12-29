@@ -64,7 +64,7 @@ const Filters = ({
 
   return (
     <>
-      <div className="sticky z-20 overflow-hidden -top-1 bg-stone-100 bg-opacity-20 backdrop-blur-lg">
+      <div className="overflow-hidden bg-stone-100 scrollbar-hidden">
         <div
           ref={wrapper}
           // onScroll={handleScroll}

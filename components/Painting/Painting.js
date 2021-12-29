@@ -8,12 +8,12 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
+const Painting = function ({ paintingData = {}, filterTag }) {
   const { _id, image = {}, title = '', tags = [], slug: { current = '' } = {} } = paintingData;
 
   const isShow = tags?.find(t => t.value === filterTag) || !filterTag;
   const linkString = `/painting/${current}`;
-  const test = index % 24 === 0;
+  const test = false;
 
   // const imageProps = useNextSanityImage(configuredSanityClient, image, {
   //   enableBlurUp: false,
@@ -25,16 +25,16 @@ const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
   return (
     <article
       className={clsx(
-        'relative w-full h-[460px] lg:h-64 focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10',
+        'relative w-full h-[600px]  focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10',
         !isShow && 'opacity-10',
-        test ? 'lg:row-span-2 lg:col-span-2 !h-full' : 'col-span-2 md:col-span-1 lg:col-span-1',
+        test ? 'lg:row-span-2 lg:col-span-2 !h-full' : 'col-span-2 md:col-span-1 lg:col-span-2',
       )}
       key={_id}
     >
       <ActiveLink href={linkString}>
         <Image
           // {...imageProps}
-          src={imageBuilder(image).width(500).height(500).fit('fill').quality(55).url()}
+          src={imageBuilder(image).width(500).height(800).quality(55).url()}
           layout="fill"
           // objectFit="cover"
           alt={`painting: ${_id}`}
