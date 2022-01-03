@@ -74,12 +74,12 @@ export default function ProjectsPage() {
                   </div>
                 </div>
                 {/* Use template with mac image here later */}
-                <div className="relative order-1 w-full border h-96 xl:h-full xl:order-2 bg-primary">
+                <div className="relative order-1 w-full h-96 xl:h-full xl:order-2 bg-primary">
                   <Image src={websiteImage} alt="test" className="object-cover" layout="fill" />
                 </div>
               </article>
               <article className="relative flex flex-col overflow-hidden bg-white rounded-lg shadow-xl xl:col-start-3 xl:col-span-6 xl:flex-row col-span-full xl:h-96">
-                <div className="flex flex-col justify-between order-2 p-4 xl:order-1">
+                <div className="flex flex-col justify-between order-2 p-4">
                   <div>
                     <h2 className="text-xl">
                       <strong>Project Vör / Babel</strong>
@@ -116,7 +116,7 @@ export default function ProjectsPage() {
                   {/* link to filter in gallery */}
                   {/* <div><button>Check out some of the images for this projects</button></div> */}
                 </div>
-                <div className="relative order-1 w-full h-96 xl:h-full xl:order-2 bg-primary">
+                <div className="relative order-1 w-full h-96 xl:h-full bg-primary">
                   <Image
                     layout="fill"
                     src="https://cdna.artstation.com/p/assets/images/images/013/991/308/large/henrik-sissener-highresscreenshot00034.jpg?1541992611"
@@ -160,7 +160,7 @@ export default function ProjectsPage() {
                   </div>
                 </div>
                 {/* Use template with mac image here later */}
-                <div className="relative order-1 w-full border h-96 xl:h-full xl:order-2 bg-primary">
+                <div className="relative order-1 w-full h-96 xl:h-full xl:order-2 bg-primary">
                   <Image src={night} alt="test" className="object-cover" layout="fill" />
                 </div>
               </article>

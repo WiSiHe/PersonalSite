@@ -1,19 +1,21 @@
 import clsx from 'clsx';
-import ActiveLink from 'components/ActiveLink/ActiveLink';
 // import { configuredSanityClient } from 'helpers/sanityHelpers';
 import { imageBuilder } from 'lib/sanity';
 
 // import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Painting = function ({ paintingData = {}, filterTag }) {
+const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
   const { _id, image = {}, title = '', tags = [], slug: { current = '' } = {} } = paintingData;
 
   const isShow = tags?.find(t => t.value === filterTag) || !filterTag;
   const linkString = `/painting/${current}`;
-  const test = false;
+
+  const isOddPanting = index % 2 === 0;
+  console.log('isOddPanting', index, isOddPanting);
 
   // const imageProps = useNextSanityImage(configuredSanityClient, image, {
   //   enableBlurUp: false,
@@ -25,26 +27,32 @@ const Painting = function ({ paintingData = {}, filterTag }) {
   return (
     <article
       className={clsx(
-        'relative w-full h-[600px]  focus:outline-none group focus-within:ring focus-within:ring-highlight focus-within:z-10',
+        'relative w-full h-[600px] xl:h-[720px] focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10',
+        'col-span-2 md:col-span-1 lg:col-span-2',
         !isShow && 'opacity-10',
-        test ? 'lg:row-span-2 lg:col-span-2 !h-full' : 'col-span-2 md:col-span-1 lg:col-span-2',
+        // isOddPanting ? 'h-[600px]' : 'h-[650px]',
+        // isOddPanting
+        //   ? 'col-span-full lg:row-span-4 lg:col-span-4'
+        //   : 'col-span-full lg:row-span-1 lg:col-span-2',
       )}
       key={_id}
     >
-      <ActiveLink href={linkString}>
-        <Image
-          // {...imageProps}
-          src={imageBuilder(image).width(500).height(800).quality(55).url()}
-          layout="fill"
-          // objectFit="cover"
-          alt={`painting: ${_id}`}
-          className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
-        />
+      <Link href={linkString} passHref>
+        <a>
+          <Image
+            // {...imageProps}
+            src={imageBuilder(image).width(500).height(800).quality(55).url()}
+            layout="fill"
+            // objectFit="cover"
+            alt={`painting: ${_id}`}
+            className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover hover:scale-110 bg-gray-50 "
+          />
 
-        <div className="absolute bottom-0 left-0 right-0 flex items-end h-20 p-4 text-white transition-all duration-500 ease-in-out opacity-0 bg-gradient-to-t from-primary font group-hover:opacity-100">
-          <p>{title}</p>
-        </div>
-      </ActiveLink>
+          <div className="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 ease-in-out opacity-0 cursor-pointer bg-gradient-to-t from-dark font group-hover:opacity-100">
+            <p>{title}</p>
+          </div>
+        </a>
+      </Link>
     </article>
   );
 };

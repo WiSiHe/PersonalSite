@@ -9,7 +9,7 @@ import NavigationLinks from 'components/NavigationLinks';
 const SideMenu = () => {
   return (
     <section className="relative w-full h-full">
-      <div className="flex flex-col items-center justify-center w-full p-8 bg-stone-300">
+      <div className="flex flex-col items-center justify-center w-full p-8 bg-stone-100">
         <div className="mb-4 !text-left">
           <Link href="/" passHref>
             <a className="group focus:outline-none">
@@ -29,9 +29,10 @@ const SideMenu = () => {
           <SocialLinks />
         </div>
       </div>
-
-      <hr className="mb-6 bg-stone-800 border-stone-400" />
-      <NavigationLinks />
+      <div className="">
+        <hr className="mb-6 bg-stone-800 border-stone-50" />
+        <NavigationLinks />
+      </div>
     </section>
   );
 };

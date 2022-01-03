@@ -68,13 +68,13 @@ export default function Home({ paintings = [], tags = [] }) {
       <NavigationDrawer />
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
-          <section className="relative hidden col-span-2 bg-stone-200 xl:block">
-            <div className="sticky top-0 w-full h-[fit-content]">
+          <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
+            <div className="sticky  top-0 w-full h-[fit-content]">
               <SideMenu />
             </div>
           </section>
           <section className="relative col-span-12 xl:col-span-10">
-            <div className="p-4 pt-10 xl:items-start bg-stone-100">
+            <div className="p-4 pt-10 xl:items-start ">
               <h1 className="text-4xl">My Gallery</h1>
               <p className="max-w-2xl pt-4">
                 My little gallery of digital paintings that I have made over the years. Some of
