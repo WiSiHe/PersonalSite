@@ -1,49 +1,14 @@
 import clsx from 'clsx';
-// import Image from 'next/image';
 import PropTypes from 'prop-types';
 import React from 'react';
-// import { useRecoilValue } from 'recoil';
 
-// import ActiveLink from '../ActiveLink/ActiveLink';
-// import { imageBuilder } from '../../lib/sanity';
-// import { AnimatePresence, motion } from 'framer-motion';
-
-// import { gridSize as atomGridSize } from "../../atoms/gridSize";
 import Painting from 'components/Painting';
 
 const PaintingGrid = ({ paintings = [], filterTag = '' }) => {
-  // const gridSize = useRecoilValue(atomGridSize);
-
-  // const list = {
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       when: "beforeChildren",
-  //       staggerChildren: 0.1,
-  //     },
-  //   },
-  //   hidden: {
-  //     opacity: 0,
-  //     transition: {
-  //       when: "afterChildren",
-  //     },
-  //   },
-  // };
-
-  // const item = {
-  //   visible: { opacity: 1, y: 0 },
-  //   hidden: { opacity: 0, y: 50 },
-  // };
-
   return (
-    <div
-      className={clsx(
-        // 'relative grid grid-cols-2 px-4 gap-4 auto-rows-min xl:grid-cols-6 items-start snap-y snap-mandatory',
-        'xl:columns-3 relative gap-4 px-4 snap-y',
-      )}
-    >
+    <div className={clsx('xl:columns-3 relative gap-4 px-4 snap-y')}>
       {paintings
-        // .sort((a, b) => a.title.localeCompare(b.title))
+        .sort((a, b) => a.title.localeCompare(b.title))
         .filter(p => p.tags?.find(t => t.value === filterTag || filterTag === ''))
         .map((p, i) => (
           <Painting paintingData={p} filterTag={filterTag} index={i} key={i} />
