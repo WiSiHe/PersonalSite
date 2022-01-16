@@ -43,7 +43,7 @@ const Painting = function ({ paintingData = {} }) {
     <motion.article
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.8 }}
       variants={cardVariants}
       className={clsx(
         'relative w-full rounded-md overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10',
@@ -57,7 +57,7 @@ const Painting = function ({ paintingData = {} }) {
           <div className={clsx('relative w-full h-[520px] xl:h-[720px]')}>
             <Image
               // {...imageProps}
-              src={imageBuilder(image).width(600).height(800).quality(55).url()}
+              src={imageBuilder(image).width(400).height(600).quality(45).url()}
               layout="fill"
               objectFit="cover"
               alt={`painting: ${_id}`}

@@ -176,7 +176,7 @@ export async function getStaticProps({ params, preview = false }) {
       redbubbleUrl,
       id: _id,
     },
-    revalidate: 600, // 10 min
+    revalidate: 3600,
   };
 }
 
