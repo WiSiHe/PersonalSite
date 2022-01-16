@@ -38,7 +38,8 @@ const PaintingGrid = ({ paintings = [], filterTag = '' }) => {
   return (
     <div
       className={clsx(
-        'relative grid grid-cols-2 px-4 gap-2 auto-rows-min xl:grid-cols-6 items-start',
+        // 'relative grid grid-cols-2 px-4 gap-4 auto-rows-min xl:grid-cols-6 items-start snap-y snap-mandatory',
+        'xl:columns-3 relative gap-4 px-4 snap-y',
       )}
     >
       {paintings

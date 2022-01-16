@@ -68,12 +68,12 @@ const Filters = ({
         <div
           ref={wrapper}
           // onScroll={handleScroll}
-          className="relative flex px-4 py-4 space-x-2 overflow-x-scroll scrollbar-hidden"
+          className="relative flex px-4 py-4 space-x-2 overflow-x-scroll scrollbar-hidden snap-x"
         >
           <button
             onClick={() => selectFilter('')}
             className={clsx(
-              'p-2 text-xs bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
+              'snap-start p-2 text-xs bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
               activeFilter === '' ? 'bg-yellow-400 hover:opacity-60 text-black' : 'text-white',
             )}
           >
@@ -87,7 +87,7 @@ const Filters = ({
               return (
                 <button
                   className={clsx(
-                    'transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
+                    'snap-start transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
                     activeFilter === label
                       ? 'bg-yellow-400 hover:bg-yellow-200 text-black'
                       : 'text-white ',

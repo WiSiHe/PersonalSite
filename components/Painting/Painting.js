@@ -8,13 +8,13 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Painting = function ({ paintingData = {}, filterTag }) {
+const Painting = function ({ paintingData = {}, filterTag, index = 0 }) {
   const { _id, image = {}, title = '', tags = [], slug: { current = '' } = {} } = paintingData;
 
   const isShow = tags?.find(t => t.value === filterTag) || !filterTag;
   const linkString = `/painting/${current}`;
 
-  // const isOddPanting = index % 2 === 0;
+  const isOddPainting = index % 2 === 0;
 
   // const imageProps = useNextSanityImage(configuredSanityClient, image, {
   //   enableBlurUp: false,
@@ -26,19 +26,15 @@ const Painting = function ({ paintingData = {}, filterTag }) {
   return (
     <article
       className={clsx(
-        'relative w-full  focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10',
-        'col-span-2 md:col-span-1 lg:col-span-2',
+        'relative w-full mb-4 focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10 snap-normal snap-center',
         !isShow && 'opacity-10',
-        // isOddPanting ? 'h-[600px]' : 'h-[650px]',
-        // isOddPanting
-        //   ? 'col-span-full lg:row-span-4 lg:col-span-4'
-        //   : 'col-span-full lg:row-span-1 lg:col-span-2',
+        isOddPainting ? 'aspect-[4/6]' : 'aspect-[4/6] xl:aspect-[4/4]',
       )}
       key={_id}
     >
       <Link href={linkString} passHref>
         <a>
-          <div className="relative w-full h-[600px] xl:h-[720px]">
+          <div className="relative w-full h-full">
             <Image
               // {...imageProps}
               src={imageBuilder(image).width(600).height(800).quality(55).url()}
@@ -49,7 +45,7 @@ const Painting = function ({ paintingData = {}, filterTag }) {
             />
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 ease-in-out opacity-0 cursor-pointer bg-gradient-to-t from-dark font group-hover:opacity-100">
+          <div className="absolute inset-0 flex items-center justify-center text-white transition-all duration-500 ease-in-out opacity-0 cursor-pointer bg-gradient-to-t from-dark font group-hover:opacity-100">
             <p>{title}</p>
           </div>
         </a>
