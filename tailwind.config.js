@@ -17,7 +17,7 @@ module.exports = {
         primary: '#005c94',
         secondary: '#4DA8DA',
         shadow: '#203647',
-        highlight: '#f5d531',
+        highlight: '#FDA50F',
         bright: '#EEFBFB',
       },
       height: {

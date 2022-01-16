@@ -1,61 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-// import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-// import dynamic from 'next/dynamic';
+
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useNextSanityImage } from 'next-sanity-image';
-
-// import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from 'react-icons/si';
-
-// import useWindowDimensions from 'hooks/useWindowDimension';
 
 import Meta from 'components/Meta';
 import Main from 'components/Main';
 import { configuredSanityClient } from 'helpers/sanityHelpers';
 import Navigation from 'components/Navigation';
-// import Link from 'next/link';
-// import Logo from 'icons/logo';
-// import SocialLinks from 'components/SocialLinks';
+
 import SideMenu from 'components/SideMenu';
 import NavigationDrawer from 'components/NavigationDrawer';
-// import { imageBuilder } from '../lib/sanity';
 import { getAllTagsAndPaintings } from '../lib/api';
 import Link from 'next/link';
-
-// const Footer = dynamic(() => import('components/Footer'));
-// const PaintingGrid = dynamic(() => import('components/PaintingGrid'));
-// const Filters = dynamic(() => import('components/Filters'));
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-export default function Home({
-  // paintings = [],
-  // tags = [],
-  // wallpaperPaintings,
-  // mobileWallpaper,
-  desktopWallpaper,
-}) {
-  // const [filterTag, setFilterTag] = useState('');
+export default function Home({ desktopWallpaper }) {
   const [desktopIndex, setDesktopIndex] = useState(0);
-
-  // const [mobileIndex, setMobileIndex] = useState(0);
-
-  // const { width, height } = useWindowDimensions();
-
-  // const paintingsAmount = paintings.length;
-
-  // const myRef = useRef(null);
-
-  // const executeScroll = () =>
-  //   myRef.current.scrollIntoView({
-  //     behavior: 'smooth',
-  //     block: 'start',
-  //     inline: 'nearest',
-  //   });
 
   const handleGoLeft = () => {
     if (desktopIndex === 0) {
@@ -163,7 +129,6 @@ export async function getStaticProps({ preview = false }) {
     data.paintings.filter(p => p.tags?.length > 1 && p.tags.find(t => t.value === 'wallpaper')) ||
     [];
 
-  const mobileWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '9:16') || [];
   const desktopWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '16:9') || [];
 
   const flattenedTags = data.tags.filter(tag => tag !== null).flat();
@@ -176,15 +141,9 @@ export async function getStaticProps({ preview = false }) {
     ++result[tagValues[i]];
   }
 
-  const filteredTags = Object.entries(result).filter(w => w[1] > 10);
-
   return {
     props: {
-      paintings: data.paintings,
-      wallpaperPaintings,
-      mobileWallpaper,
       desktopWallpaper,
-      tags: filteredTags,
     },
     revalidate: 600, // 10 min
   };

@@ -103,8 +103,9 @@ export default function Home({ paintings = [], tags = [] }) {
               paintingsAmount={paintingsAmount}
               filteredTags={tags}
             />
-            <PaintingGrid paintings={paintings} filterTag={filterTag} />
             <AnimatePresence>
+              <PaintingGrid paintings={paintings} filterTag={filterTag} />
+
               {scrollPosition > 400 && (
                 <motion.div
                   className="fixed z-10 bottom-8 right-8"
@@ -157,11 +158,14 @@ export async function getStaticProps({ preview = false }) {
 
   const filteredTags = Object.entries(result).filter(w => w[1] > 10);
 
+  // eslint-disable-next-line no-unused-vars
+  const sortedPaintings = data.paintings.sort((a, b) => 0.5 - Math.random());
+
   return {
     props: {
-      paintings: data.paintings,
+      paintings: sortedPaintings,
       tags: filteredTags,
     },
-    revalidate: 600, // 10 min
+    revalidate: 3600, // 10 min
   };
 }
