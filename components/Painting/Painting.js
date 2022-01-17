@@ -17,7 +17,7 @@ const cardVariants = {
     opacity: 1,
     transition: {
       type: 'spring',
-      bounce: 0.3,
+      bounce: 0.4,
       duration: 1,
     },
   },
@@ -43,7 +43,7 @@ const Painting = function ({ paintingData = {} }) {
     <motion.article
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.8 }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
         'relative w-full rounded-md overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10',
