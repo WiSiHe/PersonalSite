@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import dynamic from 'next/dynamic';
@@ -16,52 +16,21 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { IoArrowUpSharp } from 'react-icons/io5';
 import useScrollPosition from 'hooks/useScrollPosition';
+import { useRouter } from 'next/router';
 
 const PaintingGrid = dynamic(() => import('components/PaintingGrid'));
 const Filters = dynamic(() => import('components/Filters'));
 
 export default function Home({ paintings = [], tags = [] }) {
-  const [filterTag, setFilterTag] = useState('');
+  const router = useRouter();
+  const { query = {} } = router;
+  const { filter = '' } = query;
 
-  // const [mobileIndex, setMobileIndex] = useState(0);
-
-  // const { width, height } = useWindowDimensions();
+  const [filterTag, setFilterTag] = useState(filter);
 
   const paintingsAmount = paintings.length;
 
   const scrollPosition = useScrollPosition();
-
-  // const myRef = useRef(null);
-
-  // const executeScroll = () => myRef.current.scrollIntoView({
-  //   behavior: 'smooth',
-  //   block: 'start',
-  //   inline: 'nearest',
-  // });
-
-  // const handleGoLeft = () => {
-  //   if (desktopIndex === 0) {
-  //     return setDesktopIndex(desktopWallpaper.length - 1);
-  //   }
-  //   return setDesktopIndex(desktopIndex - 1);
-  // };
-
-  // const handleGoRight = () => {
-  //   if (desktopIndex === desktopWallpaper.length - 1) {
-  //     return setDesktopIndex(0);
-  //   }
-  //   return setDesktopIndex(desktopIndex + 1);
-  // };
-
-  // const imageProps = useNextSanityImage(
-  //   configuredSanityClient,
-  //   desktopWallpaper[desktopIndex].image,
-  //   {
-  //     blurUpImageWidth: 124,
-  //     blurUpImageQuality: 40,
-  //     blurUpAmount: 24,
-  //   },
-  // );
 
   const handleClick = () => {
     window.scrollTo({
@@ -70,6 +39,11 @@ export default function Home({ paintings = [], tags = [] }) {
       behavior: 'smooth',
     });
   };
+
+  useEffect(() => {
+    if (!filter) return;
+    setFilterTag(filter.toLowerCase());
+  }, [filter]);
 
   return (
     <>

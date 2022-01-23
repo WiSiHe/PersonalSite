@@ -12,7 +12,7 @@ const PaintingGrid = ({ paintings = [], filterTag = '' }) => {
       )}
     >
       {paintings
-        .filter(p => p.tags?.find(t => t.value === filterTag || filterTag === ''))
+        .filter(p => p.tags?.find(t => t.value.toLowerCase() === filterTag || filterTag === ''))
         .map((p, i) => (
           <Painting paintingData={p} filterTag={filterTag} index={i} key={i} />
         ))}

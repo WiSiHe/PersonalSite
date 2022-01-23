@@ -45,7 +45,7 @@ export default function Navigation({
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
         <Link href="/">
           <a className="relative group focus:outline-none ">
-            <div className="flex items-center justify-center p-4 text-xs rounded-lg text-highlight bg-primary group-active:bg-highlight group-focus:ring group-focus:ring-highlight">
+            <div className="flex items-center justify-center p-4 text-xs group-active:bg-highlight group-focus:ring group-focus:ring-highlight">
               <strong>WiSiHe</strong>
             </div>
           </a>

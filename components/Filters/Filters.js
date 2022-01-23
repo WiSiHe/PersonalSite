@@ -56,7 +56,7 @@ const Filters = ({
                       : 'text-white ',
                   )}
                   key={i}
-                  onClick={() => selectFilter(label)}
+                  onClick={() => selectFilter(label.toLowerCase())}
                 >
                   <strong>
                     <span className="capitalize">{label}</span> ({amount})

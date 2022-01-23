@@ -32,6 +32,16 @@ const Painting = function ({ paintingData = {} }) {
 
   const linkString = `/painting/${current}`;
 
+  // const imageProps = useNextSanityImage(
+  //   configuredSanityClient,
+  //   desktopWallpaper[desktopIndex].image,
+  //   {
+  //     blurUpImageWidth: 124,
+  //     blurUpImageQuality: 40,
+  //     blurUpAmount: 24,
+  //   },
+  // );
+
   // const imageProps = useNextSanityImage(configuredSanityClient, image, {
   //   enableBlurUp: false,
   //   blurUpImageWidth: 124,

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-
+import { AnimatePresence } from 'framer-motion';
+// import Link from 'next/link';
 import Image from 'next/image';
 
 import Navigation from '../components/Navigation';
@@ -8,15 +9,13 @@ import Navigation from '../components/Navigation';
 import Main from '../components/Main';
 import Meta from '../components/Meta/Meta';
 import NavigationDrawer from '../components/NavigationDrawer';
-
 import Project from 'components/Project';
 import SideMenu from 'components/SideMenu';
 
 import websiteImage from 'public/images/wisihesiteTemplate.jpeg';
 import websiteQR from 'public/images/wisihe.png';
 import night from 'public/images/night-forest.jpeg';
-import hove from 'public/images/hove.jpg';
-import { AnimatePresence } from 'framer-motion';
+import hove from 'public/images/hove.png';
 
 export default function ProjectsPage() {
   const websiteTags = ['NextJS 12', 'Sanity', 'Tailwind 3', 'FramerMotion 5'];
@@ -87,10 +86,10 @@ export default function ProjectsPage() {
                   // className="xl:col-span-6 xl:flex-row col-span-full"
                 >
                   <p className="pb-2 text-sm">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse odio
-                    tellus, faucibus at arcu porta, ultricies egestas turpis. In laoreet est ut
-                    velit rhoncus hendrerit. Vivamus nec faucibus felis, vel ultrices nulla.
-                    Pellentesque felis velit, tristique ut venenatis non, efficitur et mi.
+                    A small survivor horror game with a Scandinavian setting. it will use a
+                    procedurally forest, and the player will have to escape the monster within the
+                    forest. Nøkken will change shapes, and move quietly behind trees, tracking the
+                    player down, waiting for the right moment to paunch.
                   </p>
                 </Project>
                 <Project
@@ -109,9 +108,10 @@ export default function ProjectsPage() {
                     able to create 3D spaces, with small gameplay elements here and there, following
                     a somewhat stylized approach to the 3D models.
                   </p>
+                  {/* <Link>See more</Link> */}
                 </Project>
                 <Project
-                  title="Hove Music Festival 2029"
+                  title="Hove Music Festival 2019"
                   status="Cancelled"
                   tags={hoveTags}
                   image={hove}
