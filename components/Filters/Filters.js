@@ -25,11 +25,8 @@ const Filters = ({
 
   return (
     <>
-      <div className="overflow-hidden scrollbar-hidden">
-        <div
-          ref={wrapper}
-          className="relative flex px-4 py-2 space-x-2 overflow-x-scroll scrollbar-hidden "
-        >
+      <div className="scrollbar-hidden">
+        <div ref={wrapper} className="relative flex px-4 py-2 space-x-2 scrollbar-hidden">
           <button
             onClick={() => selectFilter('')}
             className={clsx(
@@ -62,7 +59,8 @@ const Filters = ({
                     <span className="capitalize">{label}</span> ({amount})
                   </strong>
                   {isBuyable && (
-                    <div className="absolute w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">
+                    <div className="absolute w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight ">
+                      <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 animate-ping bg-highlight"></span>
                       <strong>!</strong>
                     </div>
                   )}

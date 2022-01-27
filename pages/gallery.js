@@ -40,6 +40,16 @@ export default function Home({ paintings = [], tags = [] }) {
     });
   };
 
+  // handle filter change and update url
+  const handleChangeFilter = value => {
+    setFilterTag(value);
+    if (value === '') {
+      router.push('/gallery');
+    } else {
+      router.push(`/gallery?filter=${value}`);
+    }
+  };
+
   useEffect(() => {
     if (!filter) return;
     setFilterTag(filter.toLowerCase());
@@ -73,7 +83,7 @@ export default function Home({ paintings = [], tags = [] }) {
 
             <Filters
               activeFilter={filterTag}
-              setFilterTag={setFilterTag}
+              setFilterTag={handleChangeFilter}
               paintingsAmount={paintingsAmount}
               filteredTags={tags}
             />
