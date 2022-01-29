@@ -1,32 +1,23 @@
 import React, { Fragment, useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-// import { useRecoilState } from 'recoil';
-
-// import { BsFilterRight } from 'react-icons/bs';
-// import { BsGrid3X3Gap } from 'react-icons/bs';
-
-// import Modal from 'components/Modal';
-
-// import { gridSize as atomGridSize } from '../../atoms/gridSize';
 
 const Filters = ({
   filteredTags = [],
   paintingsAmount = 0,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setFilterTag = () => {},
+  setFilterTag = () => null,
   activeFilter = '',
 }) => {
+  const wrapper = useRef();
+
   function selectFilter(filter) {
     setFilterTag(filter);
   }
 
-  const wrapper = useRef();
-
   return (
     <>
-      <div className="scrollbar-hidden">
-        <div ref={wrapper} className="relative flex px-4 py-2 space-x-2 scrollbar-hidden">
+      <div className="overflow-x-scroll scrollbar-hidden">
+        <div ref={wrapper} className="relative flex px-4 py-2 space-x-2 ">
           <button
             onClick={() => selectFilter('')}
             className={clsx(

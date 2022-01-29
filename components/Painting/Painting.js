@@ -1,11 +1,11 @@
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { imageBuilder } from 'lib/sanity';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
+import clsx from 'clsx';
+import { motion } from 'framer-motion';
+
+import { imageBuilder } from 'lib/sanity';
 
 const cardVariants = {
   offscreen: {

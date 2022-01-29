@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
+import { IoArrowUpSharp } from 'react-icons/io5';
+import useScrollPosition from 'hooks/useScrollPosition';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 
 import Meta from 'components/Meta';
@@ -13,10 +15,6 @@ import NavigationDrawer from 'components/NavigationDrawer';
 
 import { getAllTagsAndPaintings } from '../lib/api';
 import { AnimatePresence, motion } from 'framer-motion';
-
-import { IoArrowUpSharp } from 'react-icons/io5';
-import useScrollPosition from 'hooks/useScrollPosition';
-import { useRouter } from 'next/router';
 
 const PaintingGrid = dynamic(() => import('components/PaintingGrid'));
 const Filters = dynamic(() => import('components/Filters'));
@@ -89,7 +87,6 @@ export default function Home({ paintings = [], tags = [] }) {
             />
             <AnimatePresence>
               <PaintingGrid paintings={paintings} filterTag={filterTag} />
-
               {scrollPosition > 400 && (
                 <motion.div
                   className="fixed z-10 bottom-8 right-8"
@@ -131,6 +128,7 @@ export async function getStaticProps({ preview = false }) {
   }
 
   const flattenedTags = data.tags.filter(tag => tag !== null).flat();
+
   const tagValues = flattenedTags.map(tag => tag.label);
 
   const result = {};
@@ -142,14 +140,16 @@ export async function getStaticProps({ preview = false }) {
 
   const filteredTags = Object.entries(result).filter(w => w[1] > 10);
 
-  // eslint-disable-next-line no-unused-vars
-  const sortedPaintings = data.paintings.sort((a, b) => 0.5 - Math.random());
+  const paintings = data.paintings;
+
+  //sort paintings randomly
+  const randomPaintings = paintings.sort(() => Math.random() - 0.5);
 
   return {
     props: {
-      paintings: sortedPaintings,
+      paintings: randomPaintings,
       tags: filteredTags,
     },
-    revalidate: 3600, // 10 min
+    revalidate: 7200, // 120  min
   };
 }
