@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import PropTypes from 'prop-types';
-import React from 'react';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import Link from "next/link";
+import PropTypes from "prop-types";
+import React from "react";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 
-import { imageBuilder } from 'lib/sanity';
+import { imageBuilder } from "lib/sanity";
 
 const cardVariants = {
   offscreen: {
@@ -16,7 +16,7 @@ const cardVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      type: 'spring',
+      type: "spring",
       bounce: 0.4,
       duration: 1,
     },
@@ -24,11 +24,11 @@ const cardVariants = {
 };
 
 const Painting = function ({ paintingData = {} }) {
-  const { _id, image = {}, title = '', tags = [], slug: { current = '' } = {} } = paintingData;
+  const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData;
 
-  const salesTagObj = tags?.find(t => t.value === 'Buyable') || {};
-  const { value = '' } = salesTagObj;
-  const isForSales = value === 'Buyable';
+  const salesTagObj = tags?.find((t) => t.value === "Buyable") || {};
+  const { value = "" } = salesTagObj;
+  const isForSales = value === "Buyable";
 
   const linkString = `/painting/${current}`;
 
@@ -56,15 +56,15 @@ const Painting = function ({ paintingData = {} }) {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        'relative w-full rounded-md overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10',
-        'col-span-2 md:col-span-1 lg:col-span-2',
+        "relative w-full rounded-md overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
+        "col-span-2 md:col-span-1 lg:col-span-2",
         // !isShow && 'opacity-10',
       )}
       key={_id}
     >
       <Link href={linkString} passHref>
         <a>
-          <div className={clsx('relative w-full h-[520px] xl:h-[720px]')}>
+          <div className={clsx("relative w-full h-[520px] xl:h-[720px]")}>
             <Image
               // {...imageProps}
               src={imageBuilder(image).width(400).height(600).quality(45).url()}

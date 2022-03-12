@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { IoArrowUpSharp } from "react-icons/io5";
-import useScrollPosition from "hooks/useScrollPosition";
-import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
+import clsx from "clsx";
 
 import Meta from "components/Meta";
 import Main from "components/Main";
@@ -14,45 +11,27 @@ import SideMenu from "components/SideMenu";
 import NavigationDrawer from "components/NavigationDrawer";
 
 import { getAllTagsAndPaintings } from "../lib/api";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
-const PaintingGrid = dynamic(() => import("components/PaintingGrid"));
-const Filters = dynamic(() => import("components/Filters"));
+import Carousel from "components/Carousel";
+
+const cardVariants = {
+  offscreen: {
+    y: 100,
+    opacity: 0,
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 1,
+    },
+  },
+};
 
 export default function Home({ paintings = [], tags = [] }) {
-  const router = useRouter();
-  const { query = {} } = router;
-  const { filter = "" } = query;
-
-  const [filterTag, setFilterTag] = useState(filter);
-
-  const paintingsAmount = paintings.length;
-
-  const scrollPosition = useScrollPosition();
-
-  const handleClick = () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-
-  // handle filter change and update url
-  const handleChangeFilter = (value) => {
-    setFilterTag(value);
-    if (value === "") {
-      router.push("/gallery");
-    } else {
-      router.push(`/gallery?filter=${value}`);
-    }
-  };
-
-  useEffect(() => {
-    if (!filter) return;
-    setFilterTag(filter.toLowerCase());
-  }, [filter]);
-
   return (
     <>
       <Meta
@@ -79,32 +58,38 @@ export default function Home({ paintings = [], tags = [] }) {
               </p>
             </div>
 
-            <Filters
-              activeFilter={filterTag}
-              setFilterTag={handleChangeFilter}
-              paintingsAmount={paintingsAmount}
-              filteredTags={tags}
-            />
-            <AnimatePresence>
-              <PaintingGrid paintings={paintings} filterTag={filterTag} />
-              {scrollPosition > 400 && (
-                <motion.div
-                  className="fixed z-10 bottom-8 right-8"
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 100 }}
-                  // transition={{ type: 'spring', stiffness: 100 }}
-                  key="backbutton"
-                >
-                  <button
-                    onClick={handleClick}
-                    className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+            <div className="">
+              {tags.map((tag) => {
+                const tagFilter = tag[0].toLowerCase();
+                const tagCount = tag[1];
+
+                // const isEveryOther = i % 2 === 0;
+
+                return (
+                  <div
+                    // className={clsx("p-4", isEveryOther ? "bg-stone-200" : "bg-stone-100")}
+                    className={clsx("p-4")}
+                    key={tagFilter}
                   >
-                    <IoArrowUpSharp />
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <motion.div
+                      className="relative"
+                      initial="offscreen"
+                      whileInView="onscreen"
+                      viewport={{ once: true, amount: 0.1 }}
+                      variants={cardVariants}
+                    >
+                      <div className="flex items-center">
+                        <h2 className="text-2xl capitalize">
+                          <strong>{tagFilter}</strong>
+                        </h2>
+                        <span className="text-xs">({tagCount})</span>
+                      </div>
+                      <Carousel paintings={paintings} filterTag={tagFilter} />
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
           </section>
         </section>
       </Main>
@@ -140,15 +125,19 @@ export async function getStaticProps({ preview = false }) {
 
   const filteredTags = Object.entries(result).filter((w) => w[1] > 10);
 
+  const salesTagObject = filteredTags.find((t) => t[0] === "Buyable") || {};
+  const tags = filteredTags.filter((t) => t[0] !== "Buyable");
+
+  const sortedtags = [salesTagObject, ...tags];
+
   const paintings = data.paintings;
 
-  //sort paintings randomly
   const randomPaintings = paintings.sort(() => Math.random() - 0.5);
 
   return {
     props: {
       paintings: randomPaintings,
-      tags: filteredTags,
+      tags: sortedtags,
     },
     revalidate: 7200, // 120  min
   };

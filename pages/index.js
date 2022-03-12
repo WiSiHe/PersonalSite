@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-import { useNextSanityImage } from 'next-sanity-image';
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { useNextSanityImage } from "next-sanity-image";
 
-import Meta from 'components/Meta';
-import Main from 'components/Main';
-import { configuredSanityClient } from 'helpers/sanityHelpers';
-import Navigation from 'components/Navigation';
+import Meta from "components/Meta";
+import Main from "components/Main";
+import { configuredSanityClient } from "helpers/sanityHelpers";
+import Navigation from "components/Navigation";
 
-import SideMenu from 'components/SideMenu';
-import NavigationDrawer from 'components/NavigationDrawer';
-import { getAllTagsAndPaintings } from '../lib/api';
-import Link from 'next/link';
+import SideMenu from "components/SideMenu";
+import NavigationDrawer from "components/NavigationDrawer";
+import { getAllTagsAndPaintings } from "../lib/api";
+import Link from "next/link";
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -126,13 +126,14 @@ export async function getStaticProps({ preview = false }) {
   }
 
   const wallpaperPaintings =
-    data.paintings.filter(p => p.tags?.length > 1 && p.tags.find(t => t.value === 'wallpaper')) ||
-    [];
+    data.paintings.filter(
+      (p) => p.tags?.length > 1 && p.tags.find((t) => t.value === "wallpaper"),
+    ) || [];
 
-  const desktopWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === '16:9') || [];
+  const desktopWallpaper = wallpaperPaintings.filter((w) => w.aspectRatio === "16:9") || [];
 
-  const flattenedTags = data.tags.filter(tag => tag !== null).flat();
-  const tagValues = flattenedTags.map(tag => tag.label);
+  const flattenedTags = data.tags.filter((tag) => tag !== null).flat();
+  const tagValues = flattenedTags.map((tag) => tag.label);
 
   const result = {};
 
