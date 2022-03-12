@@ -1,45 +1,45 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import React from "react";
+import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
-import Link from 'next/link';
+import Link from "next/link";
 // import dynamic from 'next/dynamic';
 
-import { IoArrowBackSharp } from 'react-icons/io5';
+import { IoArrowBackSharp } from "react-icons/io5";
 
 // Helpers
-import generatePaintingJsonLd from 'helpers/jsonLdHelpers';
+import generatePaintingJsonLd from "helpers/jsonLdHelpers";
 
 // Components
-import Main from 'components/Main';
-import Meta from 'components/Meta';
-import RedbubbleLink from 'components/RedbubbleLink';
+import Main from "components/Main";
+import Meta from "components/Meta";
+import RedbubbleLink from "components/RedbubbleLink";
 
 // Libs
-import { imageBuilder } from 'lib/sanity';
-import { getAllPaintings, getPainting } from 'lib/api';
-import Footer from 'components/Footer';
+import { imageBuilder } from "lib/sanity";
+import { getAllPaintings, getPainting } from "lib/api";
+import Footer from "components/Footer";
 
 // const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
 export default function Gallery({
   painting = {},
   // image = {},
-  title = '',
+  title = "",
   tags = [],
-  description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat.',
+  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat.",
   slug = {},
   smallImage,
   largeImage,
   xlImage,
-  redbubbleUrl = '',
+  redbubbleUrl = "",
   // id = '',
 }) {
-  const { current = '' } = slug;
+  const { current = "" } = slug;
 
   const uniqueTags = [...new Set(tags)];
 
-  const hasRedBubleLink = redbubbleUrl !== '';
+  const hasRedBubleLink = redbubbleUrl !== "";
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function Gallery({
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
-          transition={{ type: 'spring', stiffness: 100 }}
+          transition={{ type: "spring", stiffness: 100 }}
           key="backbutton"
         >
           <Link href="/gallery">
@@ -79,7 +79,7 @@ export default function Gallery({
             key="image"
             layout
             transition={{
-              type: 'spring',
+              type: "spring",
               stiffness: 100,
               delay: 0.5,
               bounce: 0.25,
@@ -103,7 +103,7 @@ export default function Gallery({
             <strong>{title}</strong>
           </h1>
           <div className="flex flex-wrap">
-            {uniqueTags.map(tag => {
+            {uniqueTags.map((tag) => {
               const { value } = tag;
               return (
                 <p
@@ -141,7 +141,7 @@ Gallery.propTypes = {
 };
 
 export async function getStaticProps({ params, preview = false }) {
-  const { slug = '' } = params;
+  const { slug = "" } = params;
   const data = await getPainting(slug, preview);
 
   if (data.length < 1) {
@@ -152,11 +152,11 @@ export async function getStaticProps({ params, preview = false }) {
 
   const {
     image = {},
-    title = '',
+    title = "",
     tags = [],
-    description = '',
-    redbubbleUrl = '',
-    _id = '',
+    description = "",
+    redbubbleUrl = "",
+    _id = "",
   } = painting;
 
   const smallImage = imageBuilder(image).width(400).height(400).quality(75).url();
@@ -185,7 +185,7 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      allPaintings?.map(painting => ({
+      allPaintings?.map((painting) => ({
         params: {
           painting,
           slug: painting.slug.current,

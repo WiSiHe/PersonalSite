@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
+import React from "react";
+import PropTypes from "prop-types";
+import Head from "next/head";
 
 const DEFAULT_TAGS = {
-  title: 'WiSiHe - Design',
+  title: "WiSiHe - Design",
   description:
-    'Art, designs, game development, web development, and other various projects of Henrik Wilhelm Sissener - WiSiHe',
-  image: 'https://wisihe.no/images/woods.png',
-  url: 'https://wisihe.no',
+    "Art, designs, game development, web development, and other various projects of Henrik Wilhelm Sissener - WiSiHe",
+  image: "https://wisihe.no/images/woods.png",
+  url: "https://wisihe.no",
 };
 
 const Meta = ({ title, description, image, ogTitle, ogDescription, ogImage, jsonLd, url }) => {
@@ -37,14 +37,14 @@ const Meta = ({ title, description, image, ogTitle, ogDescription, ogImage, json
 };
 
 Meta.defaultProps = {
-  title: '',
-  description: '',
-  image: '',
-  ogTitle: '',
-  ogDescription: '',
-  ogImage: '',
-  jsonLd: '',
-  url: '',
+  title: "",
+  description: "",
+  image: "",
+  ogTitle: "",
+  ogDescription: "",
+  ogImage: "",
+  jsonLd: "",
+  url: "",
 };
 
 Meta.propTypes = {

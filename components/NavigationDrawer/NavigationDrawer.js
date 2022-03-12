@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import FocusTrap from 'focus-trap-react';
+import React, { useEffect } from "react";
+import FocusTrap from "focus-trap-react";
 
-import { RiCloseFill } from 'react-icons/ri';
-import { useRecoilState } from 'recoil';
-import clsx from 'clsx';
+import { RiCloseFill } from "react-icons/ri";
+import { useRecoilState } from "recoil";
+import clsx from "clsx";
 
-import Overlay from '../Overlay';
+import Overlay from "../Overlay";
 
-import { navdrawer as atomNavdrawer } from '../../atoms/navdrawer';
+import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
 
-import SocialLinks from '../SocialLinks/SocialLinks';
-import NavigationLinks from 'components/NavigationLinks';
+import SocialLinks from "../SocialLinks/SocialLinks";
+import NavigationLinks from "components/NavigationLinks";
 
 const NavigationDrawer = () => {
   const [navdrawer, hideNavDrawer] = useRecoilState(atomNavdrawer);
 
   // rewrite this
-  const defaultStyle = '-translate-x-full';
-  const activeStyle = 'dark:text-white';
+  const defaultStyle = "-translate-x-full";
+  const activeStyle = "dark:text-white";
 
   useEffect(() => {
     return () => {
@@ -31,7 +31,7 @@ const NavigationDrawer = () => {
         <div>
           <nav
             className={clsx(
-              'h-full fixed bg-stone-300 w-full sm:w-96 z-30 top-0 shadow-lgtransform transition-all duration-500 ease-in-out',
+              "h-full fixed bg-stone-300 w-full sm:w-96 z-30 top-0 shadow-lgtransform transition-all duration-500 ease-in-out",
               navdrawer ? activeStyle : defaultStyle,
             )}
           >

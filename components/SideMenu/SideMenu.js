@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import SocialLinks from 'components/SocialLinks';
+import SocialLinks from "components/SocialLinks";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import NavigationLinks from 'components/NavigationLinks';
+import NavigationLinks from "components/NavigationLinks";
 
 const SideMenu = () => {
   return (

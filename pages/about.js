@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import Navigation from '../components/Navigation';
+import Navigation from "../components/Navigation";
 
-import Main from '../components/Main';
-import Meta from '../components/Meta/Meta';
-import NavigationDrawer from '../components/NavigationDrawer';
+import Main from "../components/Main";
+import Meta from "../components/Meta/Meta";
+import NavigationDrawer from "../components/NavigationDrawer";
 
-import SideMenu from 'components/SideMenu';
-import Image from 'next/image';
+import SideMenu from "components/SideMenu";
+import Image from "next/image";
 
-import portrait from 'public/images/selfPortrait.png';
+import portrait from "public/images/selfPortrait.png";
 
 export default function ProjectsPage() {
   return (

@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import PropTypes from "prop-types";
+import React, { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
 const Modal = ({ isOpen = false, closeModal, children }) => {
   return (

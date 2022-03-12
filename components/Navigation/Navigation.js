@@ -1,11 +1,11 @@
-import React from 'react';
-import { useSetRecoilState } from 'recoil';
-import Link from 'next/link';
-import clsx from 'clsx';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import React from "react";
+import { useSetRecoilState } from "recoil";
+import Link from "next/link";
+import clsx from "clsx";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 // import { theme as atomTheme } from '../../atoms/theme';
-import { navdrawer as atomNavdrawer } from '../../atoms/navdrawer';
+import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
 
 export default function Navigation({
   hideOnDesktop = false,
@@ -37,9 +37,9 @@ export default function Navigation({
   return (
     <nav
       className={clsx(
-        hideOnDesktop && 'block xl:hidden',
-        isAbsolute ? 'fixed z-10 top-0 left-0 right-0 ' : 'relative',
-        'font-serif  bg-stone-200 bg-opacity-20 backdrop-blur-lg',
+        hideOnDesktop && "block xl:hidden",
+        isAbsolute ? "fixed z-10 top-0 left-0 right-0 " : "relative",
+        "font-serif  bg-stone-200 bg-opacity-20 backdrop-blur-lg",
       )}
     >
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
@@ -52,8 +52,8 @@ export default function Navigation({
         </Link>
         <button
           className={clsx(
-            'inline-flex p-2 rounded-full hover:bg-opacity-10 hover:bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
-            darkMode ? 'text-dark' : 'text-bright',
+            "inline-flex p-2 rounded-full hover:bg-opacity-10 hover:bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+            darkMode ? "text-dark" : "text-bright",
           )}
           onClick={() => showNavDrawer(true)}
         >

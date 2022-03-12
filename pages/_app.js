@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import 'tailwindcss/tailwind.css';
-import { RecoilRoot } from 'recoil';
+import PropTypes from "prop-types";
+import React from "react";
+import "tailwindcss/tailwind.css";
+import { RecoilRoot } from "recoil";
 
-import { AnimateSharedLayout } from 'framer-motion';
-import ThemeSwitcher from '../components/themeSwitcher';
-import Script from 'next/script';
+import { AnimateSharedLayout } from "framer-motion";
+import ThemeSwitcher from "../components/themeSwitcher";
+import Script from "next/script";
 
 const MyApp = function ({ Component, pageProps }) {
   return (

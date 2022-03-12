@@ -1,12 +1,12 @@
-import React, { Fragment, useRef } from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import React, { Fragment, useRef } from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
 
 const Filters = ({
   filteredTags = [],
   paintingsAmount = 0,
   setFilterTag = () => null,
-  activeFilter = '',
+  activeFilter = "",
 }) => {
   const wrapper = useRef();
 
@@ -19,10 +19,10 @@ const Filters = ({
       <div className="overflow-x-scroll scrollbar-hidden">
         <div ref={wrapper} className="relative flex px-4 py-2 space-x-2 ">
           <button
-            onClick={() => selectFilter('')}
+            onClick={() => selectFilter("")}
             className={clsx(
-              'snap-start p-2 text-xs bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
-              activeFilter === '' ? 'bg-highlight hover:opacity-60 text-black' : 'text-white',
+              "snap-start p-2 text-xs bg-primary cursor-pointer whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+              activeFilter === "" ? "bg-highlight hover:opacity-60 text-black" : "text-white",
             )}
           >
             <strong>All ({paintingsAmount})</strong>
@@ -32,16 +32,16 @@ const Filters = ({
             .map((tag, i) => {
               const label = tag[0];
               const amount = tag[1];
-              const isBuyable = label === 'Buyable';
+              const isBuyable = label === "Buyable";
 
               return (
                 <button
                   className={clsx(
-                    'relative snap-start transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight',
-                    isBuyable && 'ring ring-highlight',
+                    "relative snap-start transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+                    isBuyable && "ring ring-highlight",
                     activeFilter === label
-                      ? 'bg-highlight hover:bg-highlight text-black'
-                      : 'text-white ',
+                      ? "bg-highlight hover:bg-highlight text-black"
+                      : "text-white ",
                   )}
                   key={i}
                   onClick={() => selectFilter(label.toLowerCase())}

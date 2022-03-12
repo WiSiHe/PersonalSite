@@ -1,23 +1,23 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import PropTypes from 'prop-types';
-import React from 'react';
-import { SiRedbubble } from 'react-icons/si';
+import PropTypes from "prop-types";
+import React from "react";
+import { SiRedbubble } from "react-icons/si";
 
 const RedbubbleLink = ({ hasRedBubleLink, redbubbleUrl }) => {
   return (
     <>
       <a
-        href={hasRedBubleLink ? redbubbleUrl : '#'}
+        href={hasRedBubleLink ? redbubbleUrl : "#"}
         rel="noreferrer"
-        target={redbubbleUrl && '_blank'}
+        target={redbubbleUrl && "_blank"}
         aria-label="redbubble"
         className="cursor-pointer group focus:outline-none"
       >
         <button
           className={clsx(
-            'flex items-center justify-center w-full p-2 mt-4 border border-none  bg-[#e31421] rounded-lg group-focus:outline-none  group-active:bg-highlight group-focus:ring group-focus:ring-highlight',
-            hasRedBubleLink ? 'hover:opacity-90' : 'opacity-30 cursor-not-allowed',
+            "flex items-center justify-center w-full p-2 mt-4 border border-none  bg-[#e31421] rounded-lg group-focus:outline-none  group-active:bg-highlight group-focus:ring group-focus:ring-highlight",
+            hasRedBubleLink ? "hover:opacity-90" : "opacity-30 cursor-not-allowed",
           )}
           disabled
         >

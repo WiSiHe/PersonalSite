@@ -1,25 +1,25 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import { theme as atomTheme } from '../../atoms/theme';
+import PropTypes from "prop-types";
+import React from "react";
+import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { theme as atomTheme } from "../../atoms/theme";
 
 function ActiveLink({ children, href, scrollToTop = true, shallow = false }) {
   const theme = useRecoilValue(atomTheme);
 
-  const isDarkMode = theme === 'dark';
+  const isDarkMode = theme === "dark";
 
   const router = useRouter();
   const isActive = router.asPath === href;
 
-  const darkStyle = `${isActive && 'text-yellow-500'}`;
+  const darkStyle = `${isActive && "text-yellow-500"}`;
   const lightStyle = `text-black hover:border-b-2 border-purple-800  ${
-    isActive && 'text-purple-800'
+    isActive && "text-purple-800"
   }`;
 
   const style = isDarkMode ? darkStyle : lightStyle;
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     e.preventDefault();
     router.push(href, undefined, { scroll: scrollToTop, shallow: shallow });
   };

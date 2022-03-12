@@ -1,38 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
-import { AnimatePresence } from 'framer-motion';
+import React from "react";
+import { AnimatePresence } from "framer-motion";
 // import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/image";
 
-import Navigation from '../components/Navigation';
+import Navigation from "../components/Navigation";
 
-import Main from '../components/Main';
-import Meta from '../components/Meta/Meta';
-import NavigationDrawer from '../components/NavigationDrawer';
-import Project from 'components/Project';
-import SideMenu from 'components/SideMenu';
+import Main from "../components/Main";
+import Meta from "../components/Meta/Meta";
+import NavigationDrawer from "../components/NavigationDrawer";
+import Project from "components/Project";
+import SideMenu from "components/SideMenu";
 
-import websiteImage from 'public/images/wisihesiteTemplate.jpeg';
-import websiteQR from 'public/images/wisihe.png';
-import night from 'public/images/night-forest.jpeg';
-import hove from 'public/images/hove.png';
+import websiteImage from "public/images/wisihesiteTemplate.jpeg";
+import websiteQR from "public/images/wisihe.png";
+import night from "public/images/night-forest.jpeg";
+import hove from "public/images/hove.png";
 
 export default function ProjectsPage() {
-  const websiteTags = ['NextJS 12', 'Sanity', 'Tailwind 3', 'FramerMotion 5'];
-  const hoveTags = ['Wordpress', 'Html', 'Css', 'Php', 'javascript'];
+  const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"];
+  const hoveTags = ["Wordpress", "Html", "Css", "Php", "javascript"];
   const babelTags = [
-    'Unreal Engine 4',
-    'Blender 2.8',
-    'SpeedTree 7',
-    'zBrush 2019',
-    'Substance Painter',
+    "Unreal Engine 4",
+    "Blender 2.8",
+    "SpeedTree 7",
+    "zBrush 2019",
+    "Substance Painter",
   ];
   const nokkenTags = [
-    'Unreal Engine 5',
-    'Blender 3',
-    'SpeedTree 8',
-    'zBrush 2021',
-    'Substance Painter',
+    "Unreal Engine 5",
+    "Blender 3",
+    "SpeedTree 8",
+    "zBrush 2021",
+    "Substance Painter",
   ];
 
   return (
