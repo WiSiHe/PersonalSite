@@ -11,15 +11,16 @@
   h1,
   h2,
   h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
   }
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 }
 @layer utilities {
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+    scrollbar-width: none;
   }
 
   .scrollbar-hidden {

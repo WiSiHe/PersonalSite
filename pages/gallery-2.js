@@ -36,7 +36,7 @@ export default function Home({ paintings = [], tags = [] }) {
     <>
       <Meta
         title="Gallery"
-        url="https://wisihe.no/gallery"
+        url="https://wisihe.no/gallery-2"
         description="A gallery of some of my paintings"
       />
       <Navigation hideOnDesktop darkMode />

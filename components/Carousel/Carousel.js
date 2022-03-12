@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { imageBuilder } from "lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { BiRightArrowAlt } from "react-icons/bi";
+// import { BiRightArrowAlt } from "react-icons/bi";
 
 import { motion } from "framer-motion";
 
@@ -10,7 +10,7 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
   return (
     <div
       className={clsx(
-        "snap-x relative snap-mandatory flex space-x-4 w-full py-6 overflow-x-scroll scroll-pl-6 scroll-ml-6",
+        "snap-x relative snap-mandatory flex space-x-4 w-full py-6 overflow-x-scroll scroll-pl-6 scroll-ml-6 scrollbar-hidden",
       )}
     >
       {paintings
@@ -57,11 +57,11 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
             </div>
           );
         })}
-      <div className="absolute top-0 bottom-0 z-20 flex items-center right-4">
+      {/* <div className="absolute top-0 bottom-0 z-20 flex items-center right-4">
         <button className="p-2 rounded-full bg-primary">
           <BiRightArrowAlt className="text-3xl text-white" />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
