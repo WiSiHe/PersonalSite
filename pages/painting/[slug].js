@@ -51,7 +51,7 @@ export default function Gallery({
         url={`https://wisihe.no/painting/${current}`}
       />
 
-      <Main noTopPadding className="overflow-hidden">
+      <Main noTopPadding className="flex flex-col flex-1 overflow-hidden">
         <motion.div
           className="fixed z-10 top-4 left-4"
           initial={{ opacity: 0, x: -100 }}
@@ -97,7 +97,7 @@ export default function Gallery({
           exit={{ opacity: 0, x: 100 }}
           key="text-section"
           layout
-          className="relative p-6 mb-20 transition-all xl:mb-0 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 bg-opacity-30 "
+          className="relative flex flex-col flex-1 p-4 transition-all xl:p-6 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 xl:bg-opacity-30 "
         >
           <h1 className="pb-2 text-4xl">
             <strong>{title}</strong>
