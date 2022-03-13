@@ -14,6 +14,7 @@ import { getAllTagsAndPaintings } from "../lib/api";
 import { motion } from "framer-motion";
 
 import Carousel from "components/Carousel";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 const cardVariants = {
   offscreen: {
@@ -58,32 +59,29 @@ export default function Home({ paintings = [], tags = [] }) {
               </p>
             </div>
 
-            <div className="">
+            <div className="space-y-4">
               {tags.map((tag) => {
                 const tagFilter = tag[0].toLowerCase();
                 const tagCount = tag[1];
 
-                // const isEveryOther = i % 2 === 0;
-
                 return (
-                  <div
-                    // className={clsx("p-4", isEveryOther ? "bg-stone-200" : "bg-stone-100")}
-                    className={clsx("p-4")}
-                    key={tagFilter}
-                  >
+                  <div className={clsx("relative ")} key={tagFilter}>
                     <motion.div
-                      className="relative"
+                      className="relative "
                       initial="offscreen"
                       whileInView="onscreen"
                       viewport={{ once: true, amount: 0.1 }}
                       variants={cardVariants}
                     >
-                      <div className="flex items-center">
-                        <h2 className="text-2xl capitalize">
-                          <strong>{tagFilter}</strong>
-                        </h2>
-                        <span className="text-xs">({tagCount})</span>
+                      <div className="relative flex items-center justify-between px-4 mb-2">
+                        <div className="flex items-center">
+                          <h2 className="text-2xl capitalize">
+                            <strong>{tagFilter}</strong>
+                          </h2>
+                          <span className="text-xs">({tagCount})</span>
+                        </div>
                       </div>
+
                       <Carousel paintings={paintings} filterTag={tagFilter} />
                     </motion.div>
                   </div>
