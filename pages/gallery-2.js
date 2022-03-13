@@ -14,7 +14,6 @@ import { getAllTagsAndPaintings } from "../lib/api";
 import { motion } from "framer-motion";
 
 import Carousel from "components/Carousel";
-import { BiRightArrowAlt } from "react-icons/bi";
 
 const cardVariants = {
   offscreen: {

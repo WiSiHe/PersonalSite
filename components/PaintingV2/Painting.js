@@ -3,8 +3,6 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 
-import { motion } from "framer-motion";
-
 import { imageBuilder } from "lib/sanity";
 
 // const cardVariants = {
