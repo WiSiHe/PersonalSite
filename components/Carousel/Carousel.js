@@ -35,10 +35,13 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
       <div
         className={clsx(
           stepLeftDisabled && "hidden",
-          "absolute top-0 bottom-0 left-0 z-20 flex items-center justify-center w-20 ",
+          "absolute top-0 bottom-0 left-4 z-20 flex items-center justify-center w-20 ",
         )}
       >
-        <button className="z-20 p-2 rounded-sm shadow-2xl bg-primary " onClick={handleStepLeft}>
+        <button
+          className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
+          onClick={handleStepLeft}
+        >
           <BiLeftArrowAlt className="text-xl text-white" />
         </button>
       </div>
@@ -65,7 +68,10 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
           "absolute top-0 bottom-0 right-0 flex items-center justify-center w-20",
         )}
       >
-        <button className="p-2 rounded-sm bg-primary" onClick={handleStepRight}>
+        <button
+          className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
+          onClick={handleStepRight}
+        >
           <BiRightArrowAlt className="text-xl text-white" />
         </button>
       </div>
