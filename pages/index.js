@@ -59,11 +59,11 @@ export default function Home({ desktopWallpaper }) {
       <Navigation hideOnDesktop isAbsolute />
       <NavigationDrawer />
       <Main noTopPadding>
-        <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
-          <section className="sticky hidden col-span-2 bg-stone-100 xl:block">
+        <section className="relative grid flex-1 min-h-full grid-cols-12">
+          <section className="sticky hidden h-full col-span-2 bg-stone-100 xl:block">
             <SideMenu />
           </section>
-          <div className="relative col-span-12 xl:col-span-10">
+          <div className="relative h-full col-span-12 xl:col-span-10">
             <Image
               {...imageProps}
               layout="fill"

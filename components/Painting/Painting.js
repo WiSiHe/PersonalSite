@@ -56,15 +56,15 @@ const Painting = function ({ paintingData = {} }) {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full rounded-md overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
-        "col-span-2 md:col-span-1 lg:col-span-2",
+        "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
+        "col-span-full md:col-span-3 lg:col-span-2 xl:col-span-2",
         // !isShow && 'opacity-10',
       )}
       key={_id}
     >
       <Link href={linkString} passHref>
         <a>
-          <div className={clsx("relative w-full h-[520px] xl:h-[720px]")}>
+          <div className={clsx("relative w-full h-[520px] md:h-[200px] lg:h-[240px] xl:h-[300px]")}>
             <Image
               // {...imageProps}
               src={imageBuilder(image).width(400).height(600).quality(45).url()}
@@ -74,14 +74,23 @@ const Painting = function ({ paintingData = {} }) {
               className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
             />
           </div>
+          <div className="absolute inset-0 w-full h-full">
+            <div className="flex items-center justify-center w-full h-full">
+              <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
+            </div>
+          </div>
+
+          <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
+            <strong>{title}</strong>
+          </div>
           {isForSales && (
-            <div className="absolute p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
-              <strong>For Sale</strong>
+            <div className="absolute flex items-center p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
+              <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
+                <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
+              </div>
+              <strong>For sale</strong>
             </div>
           )}
-          <div className="absolute inset-0 flex items-center justify-center text-white transition-all duration-500 ease-in-out opacity-0 cursor-pointer bg-gradient-to-t from-dark font group-hover:opacity-100">
-            <p>{title}</p>
-          </div>
         </a>
       </Link>
     </motion.article>

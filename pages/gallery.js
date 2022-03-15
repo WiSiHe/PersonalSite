@@ -93,7 +93,7 @@ export default function Home({ paintings = [], tags = [] }) {
                   initial={{ opacity: 0, y: 100 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 100 }}
-                  // transition={{ type: 'spring', stiffness: 100 }}
+                  transition={{ type: "spring" }}
                   key="backbutton"
                 >
                   <button
@@ -143,11 +143,11 @@ export async function getStaticProps({ preview = false }) {
   const paintings = data.paintings;
 
   //sort paintings randomly
-  const randomPaintings = paintings.sort(() => Math.random() - 0.5);
+  // const randomPaintings = paintings.sort(() => Math.random() - 0.5);
 
   return {
     props: {
-      paintings: randomPaintings,
+      paintings: paintings,
       tags: filteredTags,
     },
     revalidate: 7200, // 120  min
