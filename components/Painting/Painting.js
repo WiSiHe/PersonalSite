@@ -32,7 +32,6 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
 
   const linkString = `/painting/${current}`;
 
-  // every 4th painting is a break
   const isHighlighted = index % 12 === 4;
 
   // const imageProps = useNextSanityImage(
@@ -52,6 +51,8 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
   //   blurUpAmount: 24,
   // });
 
+  const imageWidth = isHighlighted ? 800 : 400;
+  const imageHeight = isHighlighted ? 800 : 400;
   return (
     <motion.article
       initial="offscreen"
@@ -80,7 +81,7 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
           >
             <Image
               // {...imageProps}
-              src={imageBuilder(image).width(400).height(600).quality(45).url()}
+              src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
               layout="fill"
               objectFit="cover"
               alt={`painting: ${_id}`}
@@ -89,7 +90,7 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
           </div>
           <div className="absolute inset-0 w-full h-full">
             <div className="flex items-center justify-center w-full h-full">
-              <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
+              <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black rounded-full opacity-0 group-hover:rounded-none group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
             </div>
           </div>
 
