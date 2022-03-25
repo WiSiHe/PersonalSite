@@ -23,7 +23,7 @@ const cardVariants = {
   },
 };
 
-const Painting = function ({ paintingData = {} }) {
+const Painting = function ({ paintingData = {}, index = 0 }) {
   const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData;
 
   const salesTagObj = tags?.find((t) => t.value === "Buyable") || {};
@@ -31,6 +31,9 @@ const Painting = function ({ paintingData = {} }) {
   const isForSales = value === "Buyable";
 
   const linkString = `/painting/${current}`;
+
+  // every 4th painting is a break
+  const isHighlighted = index % 12 === 4;
 
   // const imageProps = useNextSanityImage(
   //   configuredSanityClient,
@@ -57,14 +60,24 @@ const Painting = function ({ paintingData = {} }) {
       variants={cardVariants}
       className={clsx(
         "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
-        "col-span-full md:col-span-3 lg:col-span-2 xl:col-span-2",
-        // !isShow && 'opacity-10',
+        "col-span-full",
+        isHighlighted
+          ? "md:col-span-3 lg:col-span-1 xl:col-span-4 lg:row-span-2 xl:row-span-2"
+          : "md:col-span-3 lg:col-span-2 xl:col-span-2",
       )}
       key={_id}
     >
       <Link href={linkString} passHref>
         <a>
-          <div className={clsx("relative w-full h-[520px] md:h-[200px] lg:h-[240px] xl:h-[300px]")}>
+          <div
+            className={clsx(
+              "relative w-full",
+              "",
+              isHighlighted
+                ? "h-[520px] md:h-[200px] lg:h-[480px] xl:h-[610px]"
+                : "h-[520px] md:h-[200px] lg:h-[240px] xl:h-[300px]",
+            )}
+          >
             <Image
               // {...imageProps}
               src={imageBuilder(image).width(400).height(600).quality(45).url()}
