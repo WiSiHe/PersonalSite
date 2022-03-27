@@ -39,7 +39,7 @@ const Filters = ({
                   className={clsx(
                     "relative snap-start transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                     isBuyable && "ring ring-highlight",
-                    activeFilter === label
+                    activeFilter.toLowerCase() === label.toLowerCase()
                       ? "bg-highlight hover:bg-highlight text-black"
                       : "text-white ",
                   )}
