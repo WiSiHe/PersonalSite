@@ -1,22 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import Link from "next/link";
-
-import Image from "next/image";
-
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { useNextSanityImage } from "next-sanity-image";
 
 import Meta from "components/Meta";
 import Main from "components/Main";
-import { configuredSanityClient } from "helpers/sanityHelpers";
+
 import Navigation from "components/Navigation";
 
-import SideMenu from "components/SideMenu";
 import NavigationDrawer from "components/NavigationDrawer";
-import { getAllTagsAndPaintings } from "../lib/api";
-
-// const pdfDocument = fs.readFileSync("./pages/api/dummy.pdf");
 
 export default function Home({ desktopWallpaper }) {
   const [email, setEmail] = useState("");
@@ -48,6 +38,8 @@ export default function Home({ desktopWallpaper }) {
       body: JSON.stringify(formData),
     });
   }
+
+  //   https://api.sg-form.com/signup
 
   return (
     <>
