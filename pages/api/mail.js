@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 const sgMail = require("@sendgrid/mail");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -79,6 +80,7 @@ const message = {
 };
 
 export default (req, res) => {
+  console.log(req);
   //   const body = JSON.parse(req.body);
 
   //   const msg = `
