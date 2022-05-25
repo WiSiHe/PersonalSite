@@ -1,17 +1,14 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
-import Meta from "components/Meta";
-import Main from "components/Main";
+import Meta from "components/Meta"
+import Main from "components/Main"
 
-import Navigation from "components/Navigation";
+import Navigation from "components/Navigation"
 
-import NavigationDrawer from "components/NavigationDrawer";
+import NavigationDrawer from "components/NavigationDrawer"
 
-export default function Home({ desktopWallpaper }) {
-  const [email, setEmail] = useState("");
-  const form = useRef();
-
+export default function Home() {
   //   async function handleOnSubmit(e) {
   //     e.preventDefault();
   //     const formData = new FormData(form.current);
@@ -25,19 +22,19 @@ export default function Home({ desktopWallpaper }) {
   //     }
   //   }
 
-  async function handleOnSubmit(e) {
-    e.preventDefault();
-    const formData = {};
-    Array.from(e.currentTarget.elements).forEach((field) => {
-      if (!field.name) return;
-      formData[field.name] = field.value;
-    });
-    // console.log(formData);
-    fetch("/api/mail", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
-  }
+  // async function handleOnSubmit(e) {
+  //   e.preventDefault()
+  //   const formData = {}
+  //   Array.from(e.currentTarget.elements).forEach(field => {
+  //     if (!field.name) return
+  //     formData[field.name] = field.value
+  //   })
+  //   // console.log(formData);
+  //   fetch("/api/mail", {
+  //     method: "POST",
+  //     body: JSON.stringify(formData)
+  //   })
+  // }
 
   //   https://api.sg-form.com/signup
 
@@ -69,7 +66,7 @@ export default function Home({ desktopWallpaper }) {
         <iframe src="https://cdn.forms-content.sg-form.com/cee8bca1-da94-11ec-ba32-baa4bce2581f" />
       </Main>
     </>
-  );
+  )
 }
 
 Home.propTypes = {
@@ -77,5 +74,5 @@ Home.propTypes = {
   paintings: PropTypes.array,
   tags: PropTypes.array,
   thumbnailImage: PropTypes.any,
-  wallpaperPaintings: PropTypes.any,
-};
+  wallpaperPaintings: PropTypes.any
+}

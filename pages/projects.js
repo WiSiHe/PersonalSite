@@ -1,39 +1,38 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react";
-import { AnimatePresence } from "framer-motion";
-// import Link from 'next/link';
-import Image from "next/image";
+import React from "react"
+import { AnimatePresence } from "framer-motion"
 
-import Navigation from "../components/Navigation";
+import Image from "next/image"
 
-import Main from "../components/Main";
-import Meta from "../components/Meta/Meta";
-import NavigationDrawer from "../components/NavigationDrawer";
-import Project from "components/Project";
-import SideMenu from "components/SideMenu";
+import Navigation from "../components/Navigation"
 
-import websiteImage from "public/images/wisihesiteTemplate.jpeg";
-import websiteQR from "public/images/wisihe.png";
-import night from "public/images/night-forest.jpeg";
-import hove from "public/images/hove.png";
+import Main from "../components/Main"
+import Meta from "../components/Meta/Meta"
+import NavigationDrawer from "../components/NavigationDrawer"
+import Project from "components/Project"
+import SideMenu from "components/SideMenu"
+
+import websiteImage from "public/images/wisihesiteTemplate.jpeg"
+import websiteQR from "public/images/wisihe.png"
+import night from "public/images/night-forest.jpeg"
+import hove from "public/images/hove.png"
 
 export default function ProjectsPage() {
-  const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"];
-  const hoveTags = ["Wordpress", "Html", "Css", "Php", "javascript"];
+  const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"]
+  const hoveTags = ["Wordpress", "Html", "Css", "Php", "javascript"]
   const babelTags = [
     "Unreal Engine 4",
     "Blender 2.8",
     "SpeedTree 7",
     "zBrush 2019",
-    "Substance Painter",
-  ];
+    "Substance Painter"
+  ]
   const nokkenTags = [
     "Unreal Engine 5",
     "Blender 3",
     "SpeedTree 8",
     "zBrush 2021",
-    "Substance Painter",
-  ];
+    "Substance Painter"
+  ]
 
   return (
     <>
@@ -65,8 +64,7 @@ export default function ProjectsPage() {
                   tags={websiteTags}
                   status="Ongoing"
                   // imageLeft
-                  className="xl:col-span-6 xl:flex-row col-span-full"
-                >
+                  className="xl:col-span-6 xl:flex-row col-span-full">
                   <p className="pb-2 text-sm">
                     This is/was a very fun project for me, first of all this is heavely connected to
                     two of my passions, web development and drawing, so in 2021 I got a tattoo that
@@ -98,8 +96,7 @@ export default function ProjectsPage() {
                   tags={babelTags}
                   // imageLeft
                   image="https://cdna.artstation.com/p/assets/images/images/008/386/537/large/henrik-sissener-cloud-valley-2.jpg?1512433162"
-                  className="xl:col-span-6 xl:flex-row col-span-full"
-                >
+                  className="xl:col-span-6 xl:flex-row col-span-full">
                   <p className="max-w-6xl text-sm">
                     Project Babel as it was called during most of it &rsquo;s development, was
                     supposed to be a third person adventure game set in a post-apocalyptic world.
@@ -130,5 +127,5 @@ export default function ProjectsPage() {
         </section>
       </Main>
     </>
-  );
+  )
 }

@@ -1,4 +1,5 @@
-import * as React from "react";
+import PropTypes from "prop-types"
+import * as React from "react"
 
 function Logo({ width = 52, height = 52 }) {
   return (
@@ -20,7 +21,12 @@ function Logo({ width = 52, height = 52 }) {
         fill="#fff"
       />
     </svg>
-  );
+  )
 }
 
-export default Logo;
+Logo.propTypes = {
+  height: PropTypes.number,
+  width: PropTypes.number
+}
+
+export default Logo
