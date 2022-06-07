@@ -1,24 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { motion } from "framer-motion";
+import React from "react"
+import PropTypes from "prop-types"
+import { motion } from "framer-motion"
 
-import Link from "next/link";
+import Link from "next/link"
 // import dynamic from 'next/dynamic';
 
-import { IoArrowBackSharp } from "react-icons/io5";
+import { IoArrowBackSharp } from "react-icons/io5"
 
 // Helpers
-import generatePaintingJsonLd from "helpers/jsonLdHelpers";
+import generatePaintingJsonLd from "helpers/jsonLdHelpers"
 
 // Components
-import Main from "components/Main";
-import Meta from "components/Meta";
-import RedbubbleLink from "components/RedbubbleLink";
+import Main from "components/Main"
+import Meta from "components/Meta"
+import RedbubbleLink from "components/RedbubbleLink"
 
 // Libs
-import { imageBuilder } from "lib/sanity";
-import { getAllPaintings, getPainting } from "lib/api";
-import Footer from "components/Footer";
+import { imageBuilder } from "lib/sanity"
+import { getAllPaintings, getPainting } from "lib/api"
+import Footer from "components/Footer"
 
 // const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
@@ -32,14 +32,14 @@ export default function Gallery({
   smallImage,
   largeImage,
   xlImage,
-  redbubbleUrl = "",
+  redbubbleUrl = ""
   // id = '',
 }) {
-  const { current = "" } = slug;
+  const { current = "" } = slug
 
-  const uniqueTags = [...new Set(tags)];
+  const uniqueTags = [...new Set(tags)]
 
-  const hasRedBubleLink = redbubbleUrl !== "";
+  const hasRedBubleLink = redbubbleUrl !== ""
 
   return (
     <>
@@ -58,8 +58,7 @@ export default function Gallery({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
           transition={{ type: "spring", stiffness: 100 }}
-          key="backbutton"
-        >
+          key="backbutton">
           <Link href="/gallery">
             <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
               <IoArrowBackSharp />
@@ -82,7 +81,7 @@ export default function Gallery({
               type: "spring",
               stiffness: 100,
               delay: 0.5,
-              bounce: 0.25,
+              bounce: 0.25
             }}
             src={smallImage}
             alt={title}
@@ -97,22 +96,20 @@ export default function Gallery({
           exit={{ opacity: 0, x: 100 }}
           key="text-section"
           layout
-          className="relative flex flex-col flex-1 p-4 transition-all xl:p-6 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 xl:bg-opacity-30 "
-        >
+          className="relative flex flex-col flex-1 p-4 transition-all xl:p-6 bg-stone-100 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 xl:bg-opacity-30 ">
           <h1 className="pb-2 text-4xl">
             <strong>{title}</strong>
           </h1>
           <div className="flex flex-wrap">
-            {uniqueTags.map((tag) => {
-              const { value } = tag;
+            {uniqueTags.map(tag => {
+              const { value } = tag
               return (
                 <p
                   className="p-1 mb-2 mr-1 text-xs text-white capitalize rounded-lg bg-primary"
-                  key={value}
-                >
+                  key={value}>
                   {value}
                 </p>
-              );
+              )
             })}
           </div>
           {description && <p className="py-2 rounded-sm">{description}</p>}
@@ -124,31 +121,33 @@ export default function Gallery({
       </Main>
       <Footer fixed />
     </>
-  );
+  )
 }
 
 Gallery.propTypes = {
   description: PropTypes.string,
   image: PropTypes.object,
+  largeImage: PropTypes.any,
   lgImage: PropTypes.string,
   painting: PropTypes.object,
+  redbubbleUrl: PropTypes.string,
   slug: PropTypes.object,
   smImage: PropTypes.string,
+  smallImage: PropTypes.any,
   tags: PropTypes.array,
   title: PropTypes.string,
-  xlImage: PropTypes.string,
-  redbubbleUrl: PropTypes.string,
-};
+  xlImage: PropTypes.string
+}
 
 export async function getStaticProps({ params, preview = false }) {
-  const { slug = "" } = params;
-  const data = await getPainting(slug, preview);
+  const { slug = "" } = params
+  const data = await getPainting(slug, preview)
 
   if (data.length < 1) {
-    return { props: {} };
+    return { props: {} }
   }
 
-  const painting = data[0] || {};
+  const painting = data[0] || {}
 
   const {
     image = {},
@@ -156,12 +155,12 @@ export async function getStaticProps({ params, preview = false }) {
     tags = [],
     description = "",
     redbubbleUrl = "",
-    _id = "",
-  } = painting;
+    _id = ""
+  } = painting
 
-  const smallImage = imageBuilder(image).width(400).height(400).quality(75).url();
-  const largeImage = imageBuilder(image).width(1200).height(1200).quality(75).url();
-  const xlImage = imageBuilder(image).width(1660).height(1660).quality(75).url();
+  const smallImage = imageBuilder(image).width(400).height(400).quality(75).url()
+  const largeImage = imageBuilder(image).width(1200).height(1200).quality(75).url()
+  const xlImage = imageBuilder(image).width(1660).height(1660).quality(75).url()
 
   return {
     props: {
@@ -174,23 +173,23 @@ export async function getStaticProps({ params, preview = false }) {
       largeImage,
       xlImage,
       redbubbleUrl,
-      id: _id,
+      id: _id
     },
-    revalidate: 3600,
-  };
+    revalidate: 3600
+  }
 }
 
 export async function getStaticPaths() {
-  const allPaintings = await getAllPaintings();
+  const allPaintings = await getAllPaintings()
 
   return {
     paths:
-      allPaintings?.map((painting) => ({
+      allPaintings?.map(painting => ({
         params: {
           painting,
-          slug: painting.slug.current,
-        },
+          slug: painting.slug.current
+        }
       })) || [],
-    fallback: false,
-  };
+    fallback: false
+  }
 }
