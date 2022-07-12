@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
+import Link from "next/link"
 import Image from "next/image"
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
@@ -14,10 +15,25 @@ import Navigation from "components/Navigation"
 import SideMenu from "components/SideMenu"
 import NavigationDrawer from "components/NavigationDrawer"
 import { getAllTagsAndPaintings } from "../lib/api"
-import Link from "next/link"
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min
+}
+
+export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
+export declare type ImageLoaderProps = {
+  src: string
+  width: number
+  quality?: number
+}
+
+export interface painting {
+  blurDataURL: string
+  placeholder: "blur" | "empty"
+  height: number
+  width: number
+  src: string
+  loader: ImageLoader
 }
 
 export default function Home({ desktopWallpaper }) {
@@ -43,7 +59,7 @@ export default function Home({ desktopWallpaper }) {
 
   const currentWallpaper = desktopWallpaper[desktopIndex]
 
-  const imageProps = useNextSanityImage(
+  const imageProps: painting = useNextSanityImage(
     configuredSanityClient,
     desktopWallpaper[desktopIndex].image,
     {
@@ -52,6 +68,10 @@ export default function Home({ desktopWallpaper }) {
       blurUpAmount: 24
     }
   )
+
+  console.log({ imageProps })
+
+  const { src = "", loader, placeholder = "blur" } = imageProps
 
   return (
     <>
@@ -65,11 +85,14 @@ export default function Home({ desktopWallpaper }) {
           </section>
           <div className="relative h-full col-span-12 xl:col-span-10">
             <Image
-              {...imageProps}
               layout="fill"
               objectFit="cover"
               className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
               alt="headerImage"
+              src={src}
+              loader={loader}
+              placeholder={placeholder}
+              blurDataURL={imageProps.blurDataURL}
             />
             <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
               <button

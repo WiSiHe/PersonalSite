@@ -37,7 +37,7 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
       <div
         className={clsx(
           stepLeftDisabled && "hidden",
-          "absolute top-0 bottom-0 left-4 z-20 flex items-center justify-center w-20 "
+          "absolute top-0 bottom-0 left-4 z-20 flex items-center justify-center w-20 pointer-events-none"
         )}>
         <button
           className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
@@ -47,13 +47,13 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
       </div>
 
       <div
-        className={clsx(
-          "snap-x relative snap-mandatory flex space-x-4 w-full h-full overflow-x-scroll scroll-pl-6 scroll-ml-6 scrollbar-hidden"
-        )}
+        className="relative flex w-full h-full space-x-4 overflow-x-scroll snap-x snap-mandatory scroll-pl-6 scroll-ml-6 scrollbar-hidden"
         ref={wrapper}
         onScroll={handleScroll}>
         {paintings
-          .filter(p => p.tags?.find(t => t.value.toLowerCase() === filterTag || filterTag === ""))
+          .filter(p =>
+            p.tags?.find(t => t.value.toLowerCase() === filterTag || filterTag === "all")
+          )
           .map((p, i) => (
             <Painting paintingData={p} filterTag={filterTag} index={i} key={i} />
           ))}

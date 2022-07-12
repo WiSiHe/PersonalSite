@@ -1,16 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
-import PropTypes from "prop-types";
-import React from "react";
-import clsx from "clsx";
-import { motion } from "framer-motion";
+import Image from "next/image"
+import Link from "next/link"
+import PropTypes from "prop-types"
+import React from "react"
+import clsx from "clsx"
+import { motion } from "framer-motion"
 
-import { imageBuilder } from "lib/sanity";
+import { imageBuilder } from "lib/sanity"
 
 const cardVariants = {
   offscreen: {
     y: 100,
-    opacity: 0,
+    opacity: 0
   },
   onscreen: {
     y: 0,
@@ -18,21 +18,21 @@ const cardVariants = {
     transition: {
       type: "spring",
       bounce: 0.4,
-      duration: 1,
-    },
-  },
-};
+      duration: 1
+    }
+  }
+}
 
 const Painting = function ({ paintingData = {}, index = 0 }) {
-  const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData;
+  const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData
 
-  const salesTagObj = tags?.find((t) => t.value === "Buyable") || {};
-  const { value = "" } = salesTagObj;
-  const isForSales = value === "Buyable";
+  const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
+  const { value = "" } = salesTagObj
+  const isForSales = value === "Buyable"
 
-  const linkString = `/painting/${current}`;
+  const linkString = `/painting/${current}`
 
-  const isHighlighted = index % 12 === 4;
+  const isHighlighted = index % 12 === 4
 
   // const imageProps = useNextSanityImage(
   //   configuredSanityClient,
@@ -51,8 +51,8 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
   //   blurUpAmount: 24,
   // });
 
-  const imageWidth = isHighlighted ? 800 : 400;
-  const imageHeight = isHighlighted ? 800 : 400;
+  const imageWidth = isHighlighted ? 800 : 400
+  const imageHeight = isHighlighted ? 800 : 400
   return (
     <motion.article
       initial="offscreen"
@@ -61,26 +61,21 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
       variants={cardVariants}
       className={clsx(
         "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
-        "col-span-full",
+        "col-span-6",
         isHighlighted
           ? "md:col-span-3 lg:col-span-1 xl:col-span-4 lg:row-span-2 xl:row-span-2"
-          : "md:col-span-3 lg:col-span-2 xl:col-span-2",
+          : "md:col-span-3 lg:col-span-2 xl:col-span-2"
       )}
-      key={_id}
-    >
+      key={_id}>
       <Link href={linkString} passHref>
         <a>
           <div
             className={clsx(
               "relative w-full",
-              "",
-              isHighlighted
-                ? "h-[520px] md:h-[200px] lg:h-[480px] xl:h-[610px]"
-                : "h-[520px] md:h-[200px] lg:h-[240px] xl:h-[300px]",
-            )}
-          >
+              "h-[320px] md:h-[200px]",
+              isHighlighted ? " lg:h-[480px] xl:h-[610px]" : "lg:h-[240px] xl:h-[300px]"
+            )}>
             <Image
-              // {...imageProps}
               src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
               layout="fill"
               objectFit="cover"
@@ -108,8 +103,8 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
         </a>
       </Link>
     </motion.article>
-  );
-};
+  )
+}
 
 Painting.propTypes = {
   index: PropTypes.number,
@@ -117,8 +112,8 @@ Painting.propTypes = {
     _id: PropTypes.any,
     image: PropTypes.object,
     tags: PropTypes.array,
-    title: PropTypes.string,
-  }),
-};
+    title: PropTypes.string
+  })
+}
 
-export default Painting;
+export default Painting

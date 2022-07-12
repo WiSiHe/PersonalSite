@@ -1,39 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
-import PropTypes from "prop-types";
-import React from "react";
+import Image from "next/image"
+import Link from "next/link"
+import PropTypes from "prop-types"
+import React from "react"
 
-import { imageBuilder } from "lib/sanity";
-
-// const cardVariants = {
-//   offscreen: {
-//     y: 100,
-//     opacity: 0,
-//   },
-//   onscreen: {
-//     y: 0,
-//     opacity: 1,
-//     transition: {
-//       type: "spring",
-//       bounce: 0.4,
-//       duration: 1,
-//     },
-//   },
-// };
+import { imageBuilder } from "lib/sanity"
 
 const Painting = function ({ paintingData = {} }) {
-  const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData;
+  const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData
 
-  const salesTagObj = tags?.find((t) => t.value === "Buyable") || {};
-  const { value = "" } = salesTagObj;
-  const isForSales = value === "Buyable";
+  const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
+  const { value = "" } = salesTagObj
+  const isForSales = value === "Buyable"
 
-  const linkString = `/painting/${current}`;
+  const linkString = `/painting/${current}`
 
-  const paintingImage = imageBuilder(image).width(400).height(400).quality(45).url();
+  const paintingImage = imageBuilder(image).width(400).height(400).quality(45).url()
 
   return (
-    <article className="relative flex items-center justify-center flex-shrink-0 h-full overflow-hidden transition-all duration-1000 ease-in-out rounded w-80 group scroll-ml-6 snap-start bg-stone-600 lg:w-96 ">
+    <article className="relative flex items-center justify-center flex-shrink-0 h-full overflow-hidden transition-all duration-1000 ease-in-out rounded bg-slate-300 w-80 group scroll-ml-6 snap-start bg-stone-600 lg:w-96 ">
       <Link href={linkString} passHref>
         <a>
           <Image
@@ -41,7 +25,7 @@ const Painting = function ({ paintingData = {} }) {
             layout="fill"
             objectFit="cover"
             alt={`painting: ${_id}`}
-            className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
+            className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-gray-500 bg-center bg-cover group-hover:scale-110 "
           />
           <div className="absolute inset-0 w-full h-full">
             <div className="flex items-center justify-center w-full h-full">
@@ -64,8 +48,8 @@ const Painting = function ({ paintingData = {} }) {
         </a>
       </Link>
     </article>
-  );
-};
+  )
+}
 
 Painting.propTypes = {
   index: PropTypes.number,
@@ -73,8 +57,8 @@ Painting.propTypes = {
     _id: PropTypes.any,
     image: PropTypes.object,
     tags: PropTypes.array,
-    title: PropTypes.string,
-  }),
-};
+    title: PropTypes.string
+  })
+}
 
-export default Painting;
+export default Painting
