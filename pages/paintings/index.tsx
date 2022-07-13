@@ -4,7 +4,7 @@ import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 import NavigationDrawer from "components/NavigationDrawer"
 import PaintingGrid from "components/PaintingGrid"
-import SideMenu from "components/SideMenu"
+// import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 import { PaintingsPageProps } from "./[slug]"
@@ -29,17 +29,17 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Navigation hideOnDesktop darkMode />
+      <Navigation />
       <NavigationDrawer />
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
-          <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
+          {/* <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
             <div className="sticky  top-0 w-full h-[fit-content]">
               <SideMenu />
             </div>
-          </section>
-          <section className="col-span-full lg:col-span-10">
-            <div className="sticky top-0 z-10 bg-stone-200">
+          </section> */}
+          <section className="col-span-full">
+            <div className="sticky top-0 z-10 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
               <Filters filteredTags={tags} activeFilter={slug} />
             </div>
             <PaintingGrid paintings={paintings} filterTag={slug} />

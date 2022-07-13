@@ -59,7 +59,7 @@ export default function Gallery({
           exit={{ opacity: 0, x: -100 }}
           transition={{ type: "spring", stiffness: 100 }}
           key="backbutton">
-          <Link href="/gallery">
+          <Link href="/paintings">
             <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
               <IoArrowBackSharp />
             </a>

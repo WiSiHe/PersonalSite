@@ -76,14 +76,14 @@ export default function Home({ desktopWallpaper }) {
   return (
     <>
       <Meta url="https://wisihe.no" />
-      <Navigation hideOnDesktop isAbsolute />
+      <Navigation isAbsolute />
       <NavigationDrawer />
       <Main noTopPadding>
         <section className="relative grid flex-1 min-h-full grid-cols-12">
-          <section className="sticky hidden h-full col-span-2 bg-stone-100 xl:block">
+          {/* <section className="sticky hidden h-full col-span-2 bg-stone-100 xl:block">
             <SideMenu />
-          </section>
-          <div className="relative h-full col-span-12 xl:col-span-10">
+          </section> */}
+          <div className="relative h-full col-span-full">
             <Image
               layout="fill"
               objectFit="cover"
@@ -95,6 +95,11 @@ export default function Home({ desktopWallpaper }) {
               blurDataURL={imageProps.blurDataURL}
             />
             <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
+              {/* <div className="absolute justify-center hidden right-5 top-20 xl:flex">
+                <div className="p-4 capitalize rounded bg-opacity-30 bg-stone-100">
+                  {currentWallpaper.title}
+                </div>
+              </div> */}
               <button
                 onClick={handleGoLeft}
                 className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent">
@@ -114,15 +119,12 @@ export default function Home({ desktopWallpaper }) {
             </div>
             <div className="absolute left-0 right-0 flex justify-center bottom-20">
               <Link href="/paintings" passHref>
-                <a className="px-4 py-2 text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  Go to gallery!
+                <a className="relative px-4 py-2 text-center text-black transition rounded bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                  {/* <span className="absolute inset-0 w-full bg-blue-200 rounded h-9 animate-ping" /> */}
+                  {/* <span className="absolute inset-0 rounded animate-pulse" /> */}
+                  <strong>Go to gallery</strong>
                 </a>
               </Link>
-            </div>
-            <div className="absolute justify-center hidden right-5 top-10 xl:flex">
-              <div className="p-4 capitalize bg-opacity-50 rounded-lg bg-stone-100">
-                {currentWallpaper.title}
-              </div>
             </div>
           </div>
         </section>
