@@ -2,17 +2,52 @@ import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 import NavigationDrawer from "components/NavigationDrawer"
-import { getAllPaintings, getAllTagsAndPaintings } from "lib/api"
+import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 
 import PaintingGrid from "components/PaintingGrid"
+
+import SideMenu from "components/SideMenu"
+import Filters from "components/Filters"
 
 export interface iTag {
   label: string
   count: number
 }
+export interface iPaintingTag {
+  label: string
+  value: string
+}
 
-const Paintings = ({ slug, paintings }) => {
+export interface iPainting {
+  _id: string
+  _type: string
+  _rev: string
+  _createdAt: string
+  _updatedAt: string
+  aspectRatio?: string
+  redbubbleUrl?: string
+  slug: {
+    current: string
+    _type: string
+  }
+  image: {
+    _type: string
+    asset: {
+      _ref: string
+      _type: string
+    }
+  }
+  tags: iPaintingTag[]
+}
+
+export interface PaintingsPageProps {
+  slug: string
+  paintings: iPainting[]
+  tags: iTag[]
+}
+
+const PaintingsPage = ({ slug, paintings, tags }: PaintingsPageProps) => {
   return (
     <>
       <Meta
@@ -22,37 +57,72 @@ const Paintings = ({ slug, paintings }) => {
       />
       <Navigation hideOnDesktop darkMode />
       <NavigationDrawer />
-      <Main noTopPadding className="flex flex-col flex-1 overflow-hidden">
-        <h1>Slug: {slug}</h1>
-        <PaintingGrid paintings={paintings} filterTag={slug} />
+      <Main noTopPadding>
+        <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
+          <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
+            <div className="sticky  top-0 w-full h-[fit-content]">
+              <SideMenu />
+            </div>
+          </section>
+          <section className="col-span-full lg:col-span-10">
+            <div className="sticky top-0 z-10 bg-stone-200">
+              <Filters filteredTags={tags} activeFilter={slug} />
+            </div>
+            <PaintingGrid paintings={paintings} filterTag={slug} />
+          </section>
+        </section>
       </Main>
     </>
   )
 }
 
-export default Paintings
+export default PaintingsPage
 
 export async function getStaticProps({ params, preview = false }) {
   const { slug = "" } = params
-  const data = await getAllPaintings(preview)
+
+  const data = await getAllTagsAndPaintings(preview)
 
   if (data.length < 1) {
     return { props: {} }
   }
 
-  const paintings = data
-  console.log("paintings", data)
-
+  const paintings = data.paintings
   const filteredPaintings = paintings.filter(p => p.tags?.find(t => t.value.toLowerCase() === slug))
-  console.log("filteredPaintings", filteredPaintings)
+
+  const flattenedTags = data.tags.filter(tag => tag !== null).flat()
+  const tagValues = flattenedTags.map(tag => tag.label)
+
+  const result = {}
+
+  for (let i = 0; i < tagValues.length; ++i) {
+    if (!result[tagValues[i]]) result[tagValues[i]] = 0
+    ++result[tagValues[i]]
+  }
+
+  // convert result to object with name and count
+
+  const convertedResult = Object.entries(result).map(w => {
+    return {
+      label: w[0],
+      count: w[1]
+    }
+  })
+
+  const allTag = { label: "all", count: paintings.length }
+
+  const alltags = [allTag, ...convertedResult]
+    .filter(t => t.count > 5)
+    .sort((a, b) => b.count - a.count)
 
   // sort paintings randomly
-  // const randomPaintings = paintings.sort(() => Math.random() - 0.5)
+  const randomPaintings = filteredPaintings.sort(() => Math.random() - 0.5)
 
   return {
     props: {
-      paintings: filteredPaintings,
-      slug: slug
+      paintings: randomPaintings,
+      slug: slug,
+      tags: alltags
     },
     revalidate: 7200 // 120  min
   }
@@ -76,8 +146,6 @@ export async function getStaticPaths() {
     ++result[tagValues[i]]
   }
 
-  // convert result to object with name and count
-
   const convertedResult = Object.entries(result).map(w => {
     return {
       label: w[0],
@@ -93,7 +161,8 @@ export async function getStaticPaths() {
   const paths = alltags.map(tag => {
     return {
       params: {
-        slug: tag.label
+        slug: tag.label.toLocaleLowerCase(),
+        tags: alltags
       }
     }
   })

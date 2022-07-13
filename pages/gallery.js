@@ -93,24 +93,24 @@ export default function Home({ paintings = [], tags = [] }) {
             </div>
           </section>
           <section className="relative col-span-12 xl:col-span-10">
-            <div className="p-4 pt-10 xl:items-start ">
+            {/* <div className="p-4 pt-10 xl:items-start ">
               <h1 className="text-4xl">My Gallery</h1>
               <p className="max-w-2xl pt-4">
                 My little gallery of digital paintings that I have made over the years. Some of
                 these are for sale, if you find one you like, and it&apos;s not for sale, feel free
                 to contact me, and I&apos;m sure that I can fix something :)
               </p>
-            </div>
+            </div> */}
 
-            <section className="hidden lg:block">
+            {/* <section className="hidden lg:block">
               <Filters
                 activeFilter={filterTag}
                 setFilterTag={handleChangeFilter}
                 paintingsAmount={paintingsAmount}
                 filteredTags={allTags}
               />
-            </section>
-            <section className="space-y-4">
+            </section> */}
+            {/* <section className="space-y-4">
               {allTags.map(tag => {
                 const tagFilter = tag[0].toLowerCase()
                 const tagCount = tag[1]
@@ -145,7 +145,7 @@ export default function Home({ paintings = [], tags = [] }) {
                   </div>
                 )
               })}
-            </section>
+            </section> */}
 
             {/* <section className="hidden lg:block">
               <PaintingGrid paintings={paintings} filterTag={filterTag} />

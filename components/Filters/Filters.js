@@ -1,38 +1,30 @@
-import React, { Fragment, useRef } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
+import Link from "next/link"
 
-const Filters = ({ filteredTags = [], setFilterTag = () => null, activeFilter = "" }) => {
-  const wrapper = useRef()
-
-  function selectFilter(filter) {
-    setFilterTag(filter)
-  }
-
+const Filters = ({ filteredTags = [], activeFilter = "" }) => {
   return (
     <>
       <div className="pt-2 overflow-x-scroll scrollbar-hidden">
-        <div ref={wrapper} className="relative flex px-4 py-2 space-x-2 ">
-          {filteredTags
-            .sort((a, b) => b[1] - a[1])
-            .map((tag, i) => {
-              const label = tag[0]
-              const amount = tag[1]
-              const isBuyable = label === "Buyable"
-
-              return (
-                <button
+        <div className="relative flex px-4 py-2 space-x-2 ">
+          {filteredTags.map((tag, i) => {
+            const { label, count } = tag
+            const isBuyable = label === "buyable"
+            const url =
+              tag.label === "all" ? "/paintings" : `/paintings/${tag.label.toLocaleLowerCase()}`
+            return (
+              <Link href={url} passHref key={i}>
+                <a
                   className={clsx(
                     "relative snap-start transition p-2 text-xs bg-primary whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                     isBuyable && "ring ring-highlight",
-                    activeFilter.toLowerCase() === label.toLowerCase()
+                    activeFilter.toLowerCase() === label.toLocaleLowerCase()
                       ? "bg-highlight hover:bg-highlight text-black"
                       : "text-white "
-                  )}
-                  key={i}
-                  onClick={() => selectFilter(label.toLowerCase())}>
+                  )}>
                   <strong>
-                    <span className="capitalize">{label}</span> ({amount})
+                    <span className="capitalize">{label}</span> ({count})
                   </strong>
                   {isBuyable && (
                     <div className="absolute w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight ">
@@ -40,9 +32,10 @@ const Filters = ({ filteredTags = [], setFilterTag = () => null, activeFilter = 
                       <strong>!</strong>
                     </div>
                   )}
-                </button>
-              )
-            })}
+                </a>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </>

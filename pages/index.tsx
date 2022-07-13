@@ -113,7 +113,7 @@ export default function Home({ desktopWallpaper }) {
               </button>
             </div>
             <div className="absolute left-0 right-0 flex justify-center bottom-20">
-              <Link href="/gallery" passHref>
+              <Link href="/paintings" passHref>
                 <a className="px-4 py-2 text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
                   Go to gallery!
                 </a>

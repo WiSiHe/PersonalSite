@@ -17,7 +17,7 @@ const Painting = function ({ paintingData = {} }) {
   const paintingImage = imageBuilder(image).width(400).height(400).quality(45).url()
 
   return (
-    <article className="relative flex items-center justify-center flex-shrink-0 h-full overflow-hidden transition-all duration-1000 ease-in-out rounded bg-slate-300 w-80 group scroll-ml-6 snap-start bg-stone-600 lg:w-96 ">
+    <article className="relative flex items-center justify-center flex-shrink-0 h-full overflow-hidden transition-all duration-1000 ease-in-out rounded w-80 group scroll-ml-6 snap-start bg-stone-600 lg:w-96 ">
       <Link href={linkString} passHref>
         <a>
           <Image
