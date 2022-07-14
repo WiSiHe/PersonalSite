@@ -1,12 +1,13 @@
-import React from "react";
-import Image from "next/image";
+import React from "react"
+import Image from "next/image"
 
-import Main from "../components/Main";
-import Meta from "../components/Meta/Meta";
-import Navigation from "../components/Navigation";
+import Main from "../components/Main"
+import Meta from "../components/Meta/Meta"
+import Navigation from "../components/Navigation"
 
-import NavigationDrawer from "../components/NavigationDrawer";
-import SideMenu from "components/SideMenu";
+import NavigationDrawer from "../components/NavigationDrawer"
+import SideMenu from "components/SideMenu"
+import Footer from "components/Footer"
 
 export default function Custom404() {
   return (
@@ -34,6 +35,7 @@ export default function Custom404() {
           </section>
         </section>
       </Main>
+      <Footer />
     </>
-  );
+  )
 }

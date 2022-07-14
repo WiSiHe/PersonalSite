@@ -11,7 +11,7 @@ import { PaintingsPageProps } from "./[slug]"
 import useScrollPosition from "hooks/useScrollPosition"
 import { motion } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
-
+import Footer from "components/Footer"
 const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) => {
   const scrollPosition = useScrollPosition()
 
@@ -61,6 +61,7 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
           </motion.div>
         )}
       </Main>
+      <Footer />
     </>
   )
 }

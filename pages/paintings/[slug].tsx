@@ -8,6 +8,7 @@ import React from "react"
 import PaintingGrid from "components/PaintingGrid"
 
 import Filters from "components/Filters"
+import Footer from "components/Footer"
 
 export interface iTag {
   label: string
@@ -71,6 +72,7 @@ const PaintingsPage = ({ slug, paintings, tags }: PaintingsPageProps) => {
           </section>
         </section>
       </Main>
+      <Footer />
     </>
   )
 }

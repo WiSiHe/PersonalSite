@@ -1,20 +1,20 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { useSetRecoilState } from "recoil"
+// import { useSetRecoilState } from "recoil"
 import Link from "next/link"
 import clsx from "clsx"
-import { GiHamburgerMenu } from "react-icons/gi"
+// import { GiHamburgerMenu } from "react-icons/gi"
 
 // import { theme as atomTheme } from '../../atoms/theme';
-import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer"
-import { BsChevronRight } from "react-icons/bs"
+// import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer"
+// import { BsChevronRight } from "react-icons/bs"
 import { NavItems } from "constants/navigation"
 import { useRouter } from "next/router"
 
 export default function Navigation({ hideOnDesktop = false, isAbsolute = false }) {
   const router = useRouter()
   // const [theme, setTheme] = useRecoilState(atomTheme);
-  const showNavDrawer = useSetRecoilState(atomNavdrawer)
+  // const showNavDrawer = useSetRecoilState(atomNavdrawer)
 
   // const isDarkMode = theme === 'dark';
 
@@ -45,21 +45,28 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
         <div className="flex items-center">
           <Link href="/">
-            <a className="flex items-center justify-center p-2 text-xs group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
-              <strong className="">WiSiHe</strong>
+            <a className="flex items-center justify-center p-2 text-sm group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
+              <strong className="font-bold hover:text-primary">WiSiHe</strong>
             </a>
           </Link>
           <span>|</span>
-          <ul className="items-center hidden gap-4 px-4 lg:flex">
+          <ul className="flex items-center gap-4 px-4">
             {NavItems.map((item, i) => {
-              const isActive = router.asPath === item.url
+              const { asPath = "" } = router
+
+              const asPathWithSpacing = asPath.replace(/\//g, "/")
+              console.log("asPathWithSpacing", asPathWithSpacing)
+
+              const isActive = asPathWithSpacing.includes(item.url)
+
               return (
                 <li key={i}>
                   <Link href={item.url} passHref>
                     <a
                       className={clsx(
                         "transition-all hover:text-primary  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
-                        isActive && "underline underline-offset-1 decoration-primary text-primary"
+                        isActive &&
+                          "underline underline-offset-1 decoration-primary text-primary decoration-2 font-semibold"
                       )}>
                       {item.text}
                     </a>
@@ -70,11 +77,11 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
           </ul>
         </div>
 
-        <button
+        {/* <button
           className="inline-flex p-2 rounded-full hover:bg-opacity-10 hover:bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
           onClick={() => showNavDrawer(true)}>
           <GiHamburgerMenu />
-        </button>
+        </button> */}
       </div>
     </nav>
   )

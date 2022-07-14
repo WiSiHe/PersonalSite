@@ -9,7 +9,7 @@ import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
 import NavigationDrawer from "../components/NavigationDrawer"
 import Project from "components/Project"
-import SideMenu from "components/SideMenu"
+import Footer from "components/Footer"
 
 import websiteImage from "public/images/wisihesiteTemplate.jpeg"
 import websiteQR from "public/images/wisihe.png"
@@ -125,6 +125,7 @@ export default function ProjectsPage() {
           </section>
         </section>
       </Main>
+      <Footer />
     </>
   )
 }

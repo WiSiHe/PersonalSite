@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import React from "react";
-import SocialLinks from "../SocialLinks/SocialLinks";
-import { motion } from "framer-motion";
+import PropTypes from "prop-types"
+import clsx from "clsx"
+import React from "react"
+import SocialLinks from "../SocialLinks/SocialLinks"
+import { motion } from "framer-motion"
 
 export default function Footer({ fixed = false, onlyMobile = false }) {
   return (
@@ -13,20 +13,19 @@ export default function Footer({ fixed = false, onlyMobile = false }) {
       transition={{
         stiffness: 200,
         delay: 0.5,
-        bounce: 0.25,
+        bounce: 0.25
       }}
       className={clsx(
-        "w-full p-4 text-white bg-stone-400 bg-opacity-30 backdrop-blur-lg",
+        "w-full p-4 text-white bg-primary backdrop-blur-lg",
         fixed && "fixed bottom-0",
-        onlyMobile && " block lg:hidden",
-      )}
-    >
+        onlyMobile && " block lg:hidden"
+      )}>
       <SocialLinks />
     </motion.footer>
-  );
+  )
 }
 
 Footer.propTypes = {
   fixed: PropTypes.bool,
-  onlyMobile: PropTypes.bool,
-};
+  onlyMobile: PropTypes.bool
+}
