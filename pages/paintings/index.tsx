@@ -9,7 +9,7 @@ import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 import { PaintingsPageProps } from "./[slug]"
 import useScrollPosition from "hooks/useScrollPosition"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
 const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) => {
@@ -31,7 +31,7 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
       />
       <Navigation />
       <NavigationDrawer />
-      <Main noTopPadding>
+      <Main noTopPadding className="overflow-clip">
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           {/* <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
             <div className="sticky  top-0 w-full h-[fit-content]">
@@ -39,8 +39,10 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
             </div>
           </section> */}
           <section className="col-span-full">
-            <div className="sticky top-0 z-10 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
-              <Filters filteredTags={tags} activeFilter={slug} />
+            <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
+              <AnimatePresence>
+                <Filters filteredTags={tags} activeFilter={slug} />
+              </AnimatePresence>
             </div>
             <PaintingGrid paintings={paintings} filterTag={slug} />
           </section>

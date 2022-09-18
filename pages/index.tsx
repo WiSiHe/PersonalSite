@@ -69,8 +69,6 @@ export default function Home({ desktopWallpaper }) {
     }
   )
 
-  console.log({ imageProps })
-
   const { src = "", loader, placeholder = "blur" } = imageProps
 
   return (
@@ -94,42 +92,44 @@ export default function Home({ desktopWallpaper }) {
               placeholder={placeholder}
               blurDataURL={imageProps.blurDataURL}
             />
-            <div className="absolute top-0 bottom-0 flex items-center justify-between text-2xl left-5 right-5">
-              {/* <div className="absolute justify-center hidden right-5 top-20 xl:flex">
-                <div className="p-4 capitalize rounded bg-opacity-30 bg-stone-100">
-                  {currentWallpaper.title}
-                </div>
-              </div> */}
-              <button
-                onClick={handleGoLeft}
-                className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent">
-                <BsChevronLeft
-                  aria-label="Left"
-                  className="p-2 text-4xl text-center text-black transition-all bg-white rounded-lg hover:shadow-lg "
-                />
-              </button>
-              <button
-                onClick={handleGoRight}
-                className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent">
-                <BsChevronRight
-                  aria-label="Right"
-                  className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                />
-              </button>
-            </div>
-            <div className="absolute left-0 right-0 flex justify-center bottom-20">
+
+            <div className="absolute left-0 right-0 flex flex-col items-center justify-center gap-4 bottom-20">
               <Link href="/paintings" passHref>
-                <a className="relative px-4 py-2 text-center text-black transition rounded bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                <a className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
                   {/* <span className="absolute inset-0 w-full bg-blue-200 rounded h-9 animate-ping" /> */}
                   {/* <span className="absolute inset-0 rounded animate-pulse" /> */}
                   <strong>Go to gallery</strong>
                 </a>
               </Link>
+
+              <div className="absolute justify-center hidden right-5 top-20 xl:flex">
+                <div className="p-4 capitalize rounded bg-opacity-30 bg-stone-100">
+                  {currentWallpaper.title}
+                </div>
+              </div>
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={handleGoLeft}
+                  className="flex-shrink-0 rounded-lg fl w-fit focus:outline-none focus:ring ring-highlight focus:border-transparent">
+                  <BsChevronLeft
+                    aria-label="Left"
+                    className="p-2 text-4xl text-center text-black transition-all bg-white rounded-lg w-fit hover:shadow-lg "
+                  />
+                </button>
+                <button
+                  onClick={handleGoRight}
+                  className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent">
+                  <BsChevronRight
+                    aria-label="Right"
+                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </section>
       </Main>
-      <Footer />
+      <Footer fixed />
     </>
   )
 }

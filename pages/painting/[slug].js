@@ -57,7 +57,7 @@ export default function Gallery({
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
-          transition={{ type: "spring", stiffness: 100 }}
+          transition={{ type: "spring" }}
           key="backbutton">
           <Link href="/paintings">
             <a className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
