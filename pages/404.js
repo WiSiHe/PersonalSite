@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "next/legacy/image";
+import Image from "next/legacy/image"
 
 import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
@@ -23,7 +23,7 @@ export default function Custom404() {
           <section className="relative flex items-center justify-center w-full col-span-12 p-4 xl:col-span-10 h-72 md:h-screen ">
             <Image
               src="/images/explorer.png"
-              layout="fill"
+              // layout="fill"
               className="object-scale-down bg-left md:object-cover"
               alt="missing"
             />

@@ -18,34 +18,32 @@ const Painting = function ({ paintingData = {} }) {
 
   return (
     <article className="relative flex items-center justify-center flex-shrink-0 h-full overflow-hidden transition-all duration-1000 ease-in-out rounded w-80 group scroll-ml-6 snap-start bg-stone-600 lg:w-96 ">
-      <Link href={linkString} passHref>
-        <a>
-          <Image
-            src={paintingImage}
-            layout="fill"
-            objectFit="cover"
-            alt={`painting: ${_id}`}
-            className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-gray-500 bg-center bg-cover group-hover:scale-110 "
-          />
-          <div className="absolute inset-0 w-full h-full">
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
-            </div>
+      <Link href={linkString}>
+        <Image
+          src={paintingImage}
+          // layout="fill"
+          // objectFit="cover"
+          alt={`painting: ${_id}`}
+          className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-gray-500 bg-center bg-cover group-hover:scale-110 "
+        />
+        <div className="absolute inset-0 w-full h-full">
+          <div className="flex items-center justify-center w-full h-full">
+            <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
           </div>
+        </div>
 
-          <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
-            <strong>{title}</strong>
-          </div>
+        <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
+          <strong>{title}</strong>
+        </div>
 
-          {isForSales && (
-            <div className="absolute flex items-center p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
-              <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
-                <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
-              </div>
-              <strong>For sale</strong>
+        {isForSales && (
+          <div className="absolute flex items-center p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
+            <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
+              <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
             </div>
-          )}
-        </a>
+            <strong>For sale</strong>
+          </div>
+        )}
       </Link>
     </article>
   )

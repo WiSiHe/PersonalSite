@@ -67,40 +67,41 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
           : "md:col-span-3 lg:col-span-2 xl:col-span-2"
       )}
       key={_id}>
-      <Link href={linkString} passHref>
-        <a>
-          <div
-            className={clsx(
-              "relative w-full",
-              "h-[320px] md:h-[200px]",
-              isHighlighted ? " lg:h-[480px] xl:h-[610px]" : "lg:h-[240px] xl:h-[300px]"
-            )}>
-            <Image
-              src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
-              layout="fill"
-              objectFit="cover"
-              alt={`painting: ${_id}`}
-              className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
-            />
+      <Link href={linkString}>
+        <div
+          className={clsx(
+            "relative w-full",
+            "h-[320px] md:h-[200px]",
+            isHighlighted ? " lg:h-[480px] xl:h-[610px]" : "lg:h-[240px] xl:h-[300px]"
+          )}>
+          <Image
+            src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
+            layout="fill"
+            objectFit="cover"
+            height={400}
+            width={400}
+            // loader={({ src }) => src}
+            alt={`painting: ${_id}`}
+            className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
+          />
+        </div>
+        <div className="absolute inset-0 w-full h-full">
+          <div className="flex items-center justify-center w-full h-full">
+            <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black rounded-full opacity-0 group-hover:rounded-none group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
           </div>
-          <div className="absolute inset-0 w-full h-full">
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black rounded-full opacity-0 group-hover:rounded-none group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
-            </div>
-          </div>
+        </div>
 
-          <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
-            <strong>{title}</strong>
-          </div>
-          {isForSales && (
-            <div className="absolute flex items-center p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
-              <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
-                <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
-              </div>
-              <strong>For sale</strong>
+        <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
+          <strong>{title}</strong>
+        </div>
+        {isForSales && (
+          <div className="absolute flex items-center p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
+            <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
+              <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
             </div>
-          )}
-        </a>
+            <strong>For sale</strong>
+          </div>
+        )}
       </Link>
     </motion.article>
   )

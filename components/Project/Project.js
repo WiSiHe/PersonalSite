@@ -69,7 +69,12 @@ const Project = ({
           "relative  w-full h-full bg-primary aspect-square",
           imageLeft ? "order-1 xl:order-1" : "order-1 xl:order-2"
         )}>
-        <Image src={image} alt="test" className="object-cover" layout="fill" />
+        <Image
+          src={image}
+          alt="test"
+          className="object-cover"
+          // layout="fill"
+        />
       </div>
     </motion.article>
   )

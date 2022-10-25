@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
 import Link from "next/link"
-import Image from "next/legacy/image";
+import Image from "next/legacy/image"
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import { useNextSanityImage } from "next-sanity-image"
@@ -79,8 +79,8 @@ export default function Home({ desktopWallpaper }) {
       <Main noTopPadding>
         <section className="relative grid flex-1 min-h-full grid-cols-12">
           {/* <section className="sticky hidden h-full col-span-2 bg-stone-100 xl:block">
-            <SideMenu />
-          </section> */}
+          <SideMenu />
+        </section> */}
           <div className="relative h-full col-span-full">
             <Image
               layout="fill"
@@ -94,12 +94,12 @@ export default function Home({ desktopWallpaper }) {
             />
 
             <div className="absolute left-0 right-0 flex flex-col items-center justify-center gap-4 bottom-20">
-              <Link href="/paintings" passHref>
-                <a className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  {/* <span className="absolute inset-0 w-full bg-blue-200 rounded h-9 animate-ping" /> */}
-                  {/* <span className="absolute inset-0 rounded animate-pulse" /> */}
-                  <strong>Go to gallery</strong>
-                </a>
+              <Link
+                href="/paintings"
+                className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                {/* <span className="absolute inset-0 w-full bg-blue-200 rounded h-9 animate-ping" /> */}
+                {/* <span className="absolute inset-0 rounded animate-pulse" /> */}
+                <strong>Go to gallery</strong>
               </Link>
 
               <div className="absolute justify-center hidden right-5 top-20 xl:flex">

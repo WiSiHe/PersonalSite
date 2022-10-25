@@ -44,10 +44,10 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
       )}>
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
         <div className="flex items-center">
-          <Link href="/">
-            <a className="flex items-center justify-center p-2 text-sm group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
-              <strong className="font-bold hover:text-primary">WiSiHe</strong>
-            </a>
+          <Link
+            href="/"
+            className="flex items-center justify-center p-2 text-sm group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
+            <strong className="font-bold hover:text-primary">WiSiHe</strong>
           </Link>
           <span>|</span>
           <ul className="flex items-center gap-4 px-4">
@@ -55,21 +55,19 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
               const { asPath = "" } = router
 
               const asPathWithSpacing = asPath.replace(/\//g, "/")
-              console.log("asPathWithSpacing", asPathWithSpacing)
 
               const isActive = asPathWithSpacing.includes(item.url)
 
               return (
                 <li key={i}>
-                  <Link href={item.url} passHref>
-                    <a
-                      className={clsx(
-                        "transition-all hover:text-primary  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
-                        isActive &&
-                          "underline underline-offset-1 decoration-primary text-primary decoration-2 font-semibold"
-                      )}>
-                      {item.text}
-                    </a>
+                  <Link
+                    href={item.url}
+                    className={clsx(
+                      "transition-all hover:text-primary  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+                      isActive &&
+                        "underline underline-offset-1 decoration-primary text-primary decoration-2 font-semibold"
+                    )}>
+                    {item.text}
                   </Link>
                 </li>
               )

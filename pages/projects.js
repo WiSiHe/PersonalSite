@@ -1,7 +1,7 @@
 import React from "react"
 import { AnimatePresence } from "framer-motion"
 
-import Image from "next/legacy/image";
+import Image from "next/legacy/image"
 
 import Navigation from "../components/Navigation"
 
@@ -105,7 +105,6 @@ export default function ProjectsPage() {
                   create 3D spaces, with small gameplay elements here and there, following a
                   somewhat stylized approach to the 3D models.
                 </p>
-                {/* <Link>See more</Link> */}
               </Project>
               <Project
                 title="Hove Music Festival 2019"

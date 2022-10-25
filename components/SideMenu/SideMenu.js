@@ -1,22 +1,20 @@
-import React from "react";
+import React from "react"
 
-import SocialLinks from "components/SocialLinks";
+import SocialLinks from "components/SocialLinks"
 
-import Link from "next/link";
+import Link from "next/link"
 
-import NavigationLinks from "components/NavigationLinks";
+import NavigationLinks from "components/NavigationLinks"
 
 const SideMenu = () => {
   return (
     <section className="relative w-full h-full">
       <div className="flex flex-col items-center justify-center w-full p-8 bg-stone-100">
         <div className="mb-4 !text-left">
-          <Link href="/" passHref>
-            <a className="group focus:outline-none">
-              <div className="flex items-center justify-center w-24 h-24 rounded-full bg-primary text-highlight group-focus:outline-none group-hover:bg-primary group-hover:text-white group-active:bg-highlight group-focus:ring group-focus:ring-highlight">
-                <strong>WiSiHe</strong>
-              </div>
-            </a>
+          <Link href="/" className="group focus:outline-none">
+            <div className="flex items-center justify-center w-24 h-24 rounded-full bg-primary text-highlight group-focus:outline-none group-hover:bg-primary group-hover:text-white group-active:bg-highlight group-focus:ring group-focus:ring-highlight">
+              <strong>WiSiHe</strong>
+            </div>
           </Link>
         </div>
         <h1 className="text-xl font-playfair">
@@ -34,7 +32,7 @@ const SideMenu = () => {
         <NavigationLinks />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default SideMenu;
+export default SideMenu
