@@ -8,7 +8,7 @@ import Meta from "../components/Meta/Meta"
 import NavigationDrawer from "../components/NavigationDrawer"
 
 import SideMenu from "components/SideMenu"
-import Image from "next/image"
+import Image from "next/legacy/image";
 
 import portrait from "public/images/selfPortrait.png"
 

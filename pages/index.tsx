@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
 import Link from "next/link"
-import Image from "next/image"
+import Image from "next/legacy/image";
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import { useNextSanityImage } from "next-sanity-image"

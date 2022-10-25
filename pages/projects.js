@@ -1,7 +1,7 @@
 import React from "react"
 import { AnimatePresence } from "framer-motion"
 
-import Image from "next/image"
+import Image from "next/legacy/image";
 
 import Navigation from "../components/Navigation"
 

@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "next/image"
+import Image from "next/legacy/image";
 
 import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
