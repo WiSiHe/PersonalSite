@@ -75,12 +75,9 @@ export default function Home({ desktopWallpaper }) {
     <>
       <Meta url="https://wisihe.no" />
       <Navigation isAbsolute />
-      <NavigationDrawer />
+
       <Main noTopPadding>
         <section className="relative grid flex-1 min-h-full grid-cols-12">
-          {/* <section className="sticky hidden h-full col-span-2 bg-stone-100 xl:block">
-          <SideMenu />
-        </section> */}
           <div className="relative h-full col-span-full">
             <Image
               layout="fill"
@@ -92,25 +89,20 @@ export default function Home({ desktopWallpaper }) {
               placeholder={placeholder}
               blurDataURL={imageProps.blurDataURL}
             />
+            <h1 className="sr-only">WiSiHE</h1>
 
             <div className="absolute left-0 right-0 flex flex-col items-center justify-center gap-4 bottom-20">
               <Link
                 href="/paintings"
                 className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                {/* <span className="absolute inset-0 w-full bg-blue-200 rounded h-9 animate-ping" /> */}
-                {/* <span className="absolute inset-0 rounded animate-pulse" /> */}
                 <strong>Go to gallery</strong>
               </Link>
 
-              <div className="absolute justify-center hidden right-5 top-20 xl:flex">
-                <div className="p-4 capitalize rounded bg-opacity-30 bg-stone-100">
-                  {currentWallpaper.title}
-                </div>
-              </div>
               <div className="flex items-center justify-center gap-4">
                 <button
                   onClick={handleGoLeft}
-                  className="flex-shrink-0 rounded-lg fl w-fit focus:outline-none focus:ring ring-highlight focus:border-transparent">
+                  className="flex-shrink-0 rounded-lg fl w-fit focus:outline-none focus:ring ring-highlight focus:border-transparent"
+                  aria-label="Go to previous painting">
                   <BsChevronLeft
                     aria-label="Left"
                     className="p-2 text-4xl text-center text-black transition-all bg-white rounded-lg w-fit hover:shadow-lg "
@@ -118,7 +110,8 @@ export default function Home({ desktopWallpaper }) {
                 </button>
                 <button
                   onClick={handleGoRight}
-                  className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent">
+                  className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent"
+                  aria-label="Go to next painting">
                   <BsChevronRight
                     aria-label="Right"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
