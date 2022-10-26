@@ -17,19 +17,37 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
     <>
       <div className="flex gap-2">
         <button
+          onClick={() => setActive(prev => !prev)}
           className={clsx(
-            "flex gap-1 items-center px-2 py-1  text-sm font-medium text-white bg-primary rounded-full"
+            "flex gap-1 items-center overflow-clip px-4 py-1 hover:ring text-sm font-medium text-white bg-primary rounded-full"
+          )}>
+          {active && (
+            <motion.div
+              initial={{ x: -100 }}
+              animate={{ x: 0 }}
+              exit={{ x: -100 }}
+              transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
+              className="flex items-center gap-1">
+              <strong>Close</strong> <IoClose />
+            </motion.div>
           )}
-          onClick={() => setActive(prev => !prev)}>
-          {active ? <IoClose /> : <BsFilter />}
-          {active ? "Close" : "Filter"}
+          {!active && (
+            <motion.div
+              initial={{ x: 100 }}
+              animate={{ x: 0 }}
+              exit={{ x: 100 }}
+              transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
+              className="flex items-center gap-1">
+              <strong>Filter</strong> <BsFilter />
+            </motion.div>
+          )}
         </button>
         <div
           className={clsx(
             "relative snap-start capitalize  transition p-2 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
             "bg-highlight hover:bg-highlight text-black"
           )}>
-          {activeFilter}
+          <strong>{activeFilter}</strong>
         </div>
       </div>
       <AnimatePresence>

@@ -63,8 +63,8 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
         "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
         "col-span-6",
         isHighlighted
-          ? "md:col-span-3 lg:col-span-1 xl:col-span-4 lg:row-span-2 xl:row-span-2"
-          : "md:col-span-3 lg:col-span-2 xl:col-span-2"
+          ? "md:col-span-3 lg:col-span-3 xl:col-span-4 lg:row-span-2 xl:row-span-2"
+          : "md:col-span-3 lg:col-span-3 xl:col-span-2"
       )}
       key={_id}>
       <Link href={linkString}>

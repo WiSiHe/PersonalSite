@@ -13,7 +13,6 @@ import { configuredSanityClient } from "helpers/sanityHelpers"
 import Navigation from "components/Navigation"
 
 import Footer from "components/Footer"
-import NavigationDrawer from "components/NavigationDrawer"
 import { getAllTagsAndPaintings } from "../lib/api"
 
 function getRandomArbitrary(min, max) {

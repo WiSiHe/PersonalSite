@@ -7,13 +7,14 @@ import { motion } from "framer-motion"
 export default function Footer({ fixed = false, onlyMobile = false }) {
   return (
     <motion.footer
-      initial={{ y: 100 }}
+      initial={{ y: 50 }}
       animate={{ y: 0 }}
-      exit={{ y: 100 }}
+      exit={{ y: 10 }}
       transition={{
-        stiffness: 200,
-        delay: 0.5,
-        bounce: 0.25
+        type: "spring",
+
+        delay: 0.5
+        // bounce: 0.25
       }}
       className={clsx(
         "w-full p-4 text-white bg-primary backdrop-blur-lg",

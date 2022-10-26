@@ -30,14 +30,8 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
         description="A gallery of some of my paintings"
       />
       <Navigation />
-      <NavigationDrawer />
       <Main noTopPadding className="overflow-clip">
-        <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
-          {/* <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
-            <div className="sticky  top-0 w-full h-[fit-content]">
-              <SideMenu />
-            </div>
-          </section> */}
+        <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">
             <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
               <AnimatePresence>
@@ -47,21 +41,23 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
             <PaintingGrid paintings={paintings} filterTag={slug} />
           </section>
         </section>
-        {scrollPosition > 400 && (
-          <motion.div
-            className="fixed z-10 bottom-8 right-8"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            transition={{ type: "spring" }}
-            key="backbutton">
-            <button
-              onClick={handleClick}
-              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight">
-              <IoArrowUpSharp />
-            </button>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {scrollPosition > 400 && (
+            <motion.div
+              className="fixed z-10 bottom-8 right-8"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 100 }}
+              transition={{ type: "spring" }}
+              key="backbutton">
+              <button
+                onClick={handleClick}
+                className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight">
+                <IoArrowUpSharp />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Main>
       <Footer />
     </>

@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from "react-icons/si";
+import React from "react"
+import PropTypes from "prop-types"
+import clsx from "clsx"
+import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from "react-icons/si"
 
 const SocialLinks = ({ alignLeft = false }) => {
   return (
@@ -13,8 +13,8 @@ const SocialLinks = ({ alignLeft = false }) => {
             rel="noreferrer"
             target="_blank"
             aria-label="redbubble"
-            className="group focus:outline-none"
-          >
+            className="group focus:outline-none">
+            {/* <label className="sr-only">open redbubble in new window</label> */}
             <SiRedbubble
               alt="redbubble"
               aria-hidden="true"
@@ -28,8 +28,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             target="_blank"
             rel="noreferrer"
             aria-label="artstation"
-            className="group focus:outline-none"
-          >
+            className="group focus:outline-none">
             <SiArtstation
               alt="artstation"
               aria-hidden="true"
@@ -43,8 +42,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             target="_blank"
             rel="noreferrer"
             aria-label="instagram"
-            className="group focus:outline-none"
-          >
+            className="group focus:outline-none">
             <SiInstagram
               alt="instagram"
               aria-hidden="true"
@@ -58,8 +56,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             rel="noreferrer"
             target="_blank"
             aria-label="linkedin"
-            className="group focus:outline-none"
-          >
+            className="group focus:outline-none">
             <SiLinkedin
               alt="linkedin"
               aria-hidden="true"
@@ -69,11 +66,11 @@ const SocialLinks = ({ alignLeft = false }) => {
         </li>
       </ul>
     </div>
-  );
-};
+  )
+}
 
 SocialLinks.propTypes = {
-  alignLeft: PropTypes.bool,
-};
+  alignLeft: PropTypes.bool
+}
 
-export default SocialLinks;
+export default SocialLinks

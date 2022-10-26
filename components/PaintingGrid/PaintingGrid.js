@@ -6,7 +6,7 @@ import Painting from "components/Painting"
 
 const PaintingGrid = ({ paintings = [], filterTag = "" }) => {
   return (
-    <div className={clsx("relative grid grid-cols-12 p-4 gap-2 auto-rows-min items-start")}>
+    <div className={clsx("relative w-full grid grid-cols-12 p-4 gap-2 auto-rows-min items-start")}>
       {paintings
         .filter(p => p.tags?.find(t => t.value.toLowerCase() === filterTag || filterTag === "all"))
         .map((p, i) => (
