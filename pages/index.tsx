@@ -93,14 +93,14 @@ export default function Home({ desktopWallpaper }) {
             <div className="absolute left-0 right-0 flex flex-col items-center justify-center gap-4 bottom-20">
               <Link
                 href="/paintings"
-                className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded hover:ring w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
                 <strong>Go to gallery</strong>
               </Link>
 
               <div className="flex items-center justify-center gap-4">
                 <button
                   onClick={handleGoLeft}
-                  className="flex-shrink-0 rounded-lg fl w-fit focus:outline-none focus:ring ring-highlight focus:border-transparent"
+                  className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to previous painting">
                   <BsChevronLeft
                     aria-label="Left"
@@ -109,7 +109,7 @@ export default function Home({ desktopWallpaper }) {
                 </button>
                 <button
                   onClick={handleGoRight}
-                  className="rounded-lg focus:outline-none focus:ring ring-highlight focus:border-transparent"
+                  className="rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to next painting">
                   <BsChevronRight
                     aria-label="Right"

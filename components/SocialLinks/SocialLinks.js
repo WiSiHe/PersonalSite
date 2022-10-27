@@ -18,7 +18,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             <SiRedbubble
               alt="redbubble"
               aria-hidden="true"
-              className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
+              className="group-focus:rounded-full group-focus:outline-none group-hover:text-highlight group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
             />
           </a>
         </li>
@@ -32,7 +32,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             <SiArtstation
               alt="artstation"
               aria-hidden="true"
-              className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
+              className="group-focus:rounded-full group-focus:outline-none group-hover:text-highlight group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
             />
           </a>
         </li>
@@ -46,7 +46,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             <SiInstagram
               alt="instagram"
               aria-hidden="true"
-              className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
+              className="group-focus:rounded-full group-focus:outline-none group-hover:text-highlight group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
             />
           </a>
         </li>
@@ -60,7 +60,7 @@ const SocialLinks = ({ alignLeft = false }) => {
             <SiLinkedin
               alt="linkedin"
               aria-hidden="true"
-              className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
+              className="group-focus:rounded-full group-focus:outline-none group-hover:text-highlight group-active:bg-highlight group-focus:ring group-focus:text-primary group-focus:ring-highlight"
             />
           </a>
         </li>
