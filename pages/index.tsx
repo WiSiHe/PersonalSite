@@ -72,42 +72,52 @@ export interface RootObject {
   title: string
 }
 
-export default function Home({ desktopWallpaper = [] }: { desktopWallpaper: RootObject[] }) {
+export default function Home({
+  desktopWallpaper = [],
+  mobileWallpaper = []
+}: {
+  desktopWallpaper: RootObject[]
+  mobileWallpaper: RootObject[]
+}) {
   const [desktopIndex, setDesktopIndex] = useState(0)
+  const [mobileIndex, setMobileIndex] = useState(0)
 
   const currentWallpaper = desktopWallpaper[desktopIndex]
+  const currentMobileWallpaper = mobileWallpaper[mobileIndex]
 
-  const handleGoLeft = () => {
-    if (desktopIndex === 0) {
-      return setDesktopIndex(desktopWallpaper.length - 1)
+  const handleGoLeft = ({ isMobile = false }) => {
+    if (isMobile) {
+      if (mobileIndex === 0) {
+        setMobileIndex(mobileWallpaper.length - 1)
+      } else {
+        setMobileIndex(mobileIndex - 1)
+      }
+    } else {
+      if (desktopIndex === 0) {
+        return setDesktopIndex(desktopWallpaper.length - 1)
+      }
+      return setDesktopIndex(desktopIndex - 1)
     }
-    return setDesktopIndex(desktopIndex - 1)
   }
 
-  const handleGoRight = () => {
-    if (desktopIndex === desktopWallpaper.length - 1) {
-      return setDesktopIndex(0)
+  const handleGoRight = ({ isMobile = false }) => {
+    if (isMobile) {
+      if (mobileIndex === mobileWallpaper.length - 1) {
+        return setMobileIndex(0)
+      }
+      return setMobileIndex(mobileIndex + 1)
+    } else {
+      if (desktopIndex === desktopWallpaper.length - 1) {
+        return setDesktopIndex(0)
+      }
+      return setDesktopIndex(desktopIndex + 1)
     }
-    return setDesktopIndex(desktopIndex + 1)
   }
 
   useEffect(() => {
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)))
-  }, [desktopWallpaper.length])
-
-  // const currentWallpaper = desktopWallpaper[desktopIndex]
-
-  // const imageProps: painting = useNextSanityImage(
-  //   configuredSanityClient,
-  //   desktopWallpaper[desktopIndex].image,
-  //   {
-  //     blurUpImageWidth: 124,
-  //     blurUpImageQuality: 40,
-  //     blurUpAmount: 24
-  //   }
-  // )
-
-  // const { src = "", loader, placeholder = "blur" } = imageProps
+    setMobileIndex(parseInt(getRandomArbitrary(0, mobileWallpaper.length)))
+  }, [desktopWallpaper, mobileWallpaper])
 
   return (
     <>
@@ -115,19 +125,8 @@ export default function Home({ desktopWallpaper = [] }: { desktopWallpaper: Root
       <Navigation isAbsolute />
 
       <Main noTopPadding>
-        <section className="relative grid flex-1 min-h-full grid-cols-12">
-          <div className="relative h-full col-span-full">
-            {/* <Image
-              layout="fill"
-              objectFit="cover"
-              className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
-              alt="headerImage"
-              src={src}
-              loader={loader}
-              placeholder={placeholder}
-              blurDataURL={imageProps.blurDataURL}
-            />
-             */}
+        <section className="w-full min-h-screen overflow-x-clip">
+          <div className="relative hidden h-full lg:block" key="desktop">
             <Image
               loader={({ src }) => src}
               src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
@@ -140,29 +139,29 @@ export default function Home({ desktopWallpaper = [] }: { desktopWallpaper: Root
               placeholder="blur"
               priority
               objectFit="cover"
-              className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
+              className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
               alt="headerImage"
             />
-
-            <div className="absolute left-0 right-0 flex flex-col items-center justify-center gap-4 bottom-20">
-              <Link
-                href="/paintings"
-                className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded hover:ring w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                <strong>Go to gallery</strong>
-              </Link>
-
-              <div className="flex items-center justify-center gap-4">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+              <div className="flex items-center justify-between w-full gap-6 p-10">
                 <button
-                  onClick={handleGoLeft}
+                  onClick={() => handleGoLeft({ isMobile: false })}
                   className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to previous painting">
                   <BsChevronLeft
                     aria-label="Left"
-                    className="p-2 text-4xl text-center text-black transition-all bg-white rounded-lg w-fit hover:shadow-lg "
+                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
                 </button>
+                <Link
+                  href="/paintings"
+                  className="relative px-4 py-2 text-center text-black transition rounded hover:ring w-fit animate-pulse bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                  <div className="bg-highlight">
+                    <b>Go to gallery</b>
+                  </div>
+                </Link>
                 <button
-                  onClick={handleGoRight}
+                  onClick={() => handleGoRight({ isMobile: false })}
                   className="rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to next painting">
                   <BsChevronRight
@@ -173,11 +172,68 @@ export default function Home({ desktopWallpaper = [] }: { desktopWallpaper: Root
               </div>
             </div>
           </div>
+
+          <section className="relative w-full h-full lg:hidden" key="mobile">
+            <Image
+              loader={({ src }) => src}
+              src={imageBuilder(currentMobileWallpaper.image)
+                .width(764)
+                .height(800)
+                .quality(75)
+                .url()}
+              blurDataURL={imageBuilder(currentMobileWallpaper.image)
+                .width(20)
+                .height(20)
+                .quality(10)
+                .url()}
+              layout="fill"
+              placeholder="blur"
+              priority
+              objectFit="cover"
+              className="w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover object-fit md:block bg-gray-50 "
+              alt="headerImage"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+              <div className="flex items-center justify-between w-full gap-6 p-10">
+                <button
+                  onClick={() => handleGoLeft({ isMobile: true })}
+                  className="flex-shrink-0 rounded-lg w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
+                  aria-label="Go to previous painting">
+                  <BsChevronLeft
+                    aria-label="Left"
+                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  />
+                </button>
+                <Link
+                  href="/paintings"
+                  className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded hover:ring w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                  <strong>Go to gallery</strong>
+                </Link>
+                <button
+                  onClick={() => handleGoRight({ isMobile: true })}
+                  className="rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+                  aria-label="Go to next painting">
+                  <BsChevronRight
+                    aria-label="Right"
+                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  />
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section className="block w-full p-4 h-96">
+            <h1>
+              <b>Henrik Wilhelm Sissener</b>
+            </h1>
+            <p>
+              Short story: Im a digital artist / web developer / hobby designer who has been drawing
+              my whole life. I mostly do character designs, but I try to step into the big world of
+              landscape every now and then, I spend my free time making digital paintings paintings
+              and do some tinkering with new Frontend technologies.
+            </p>
+          </section>
         </section>
-        {/* <section>
-          <h1>WiSiHE</h1>
-          <p>My name is Henrik Wilhelm Sissener</p>
-        </section> */}
       </Main>
       <Footer fixed />
     </>
@@ -204,7 +260,8 @@ export async function getStaticProps({ preview = false }) {
     data.paintings.filter(p => p.tags?.length > 1 && p.tags.find(t => t.value === "wallpaper")) ||
     []
 
-  const desktopWallpaper = wallpaperPaintings.filter(w => w.aspectRatio === "16:9") || []
+  const mobileWallpaper = wallpaperPaintings.filter(p => p.format === "landscape") || []
+  const desktopWallpaper = wallpaperPaintings.filter(w => w.format === "landscape") || []
 
   const flattenedTags = data.tags.filter(tag => tag !== null).flat()
   const tagValues = flattenedTags.map(tag => tag.label)
@@ -218,7 +275,8 @@ export async function getStaticProps({ preview = false }) {
 
   return {
     props: {
-      desktopWallpaper
+      desktopWallpaper,
+      mobileWallpaper
     },
     revalidate: 600 // 10 min
   }

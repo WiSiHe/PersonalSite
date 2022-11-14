@@ -23,7 +23,7 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
         // bounce: 0.25
       }}
       className={clsx(
-        "bg-stone-900/90 backdrop-blur-lg text-white",
+        "bg-stone-900/40 backdrop-blur-lg text-white",
         hideOnDesktop && "xl:hidden",
         isAbsolute ? "fixed z-10 top-0 left-0 right-0" : "relative"
       )}>

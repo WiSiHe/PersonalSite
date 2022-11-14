@@ -6,7 +6,7 @@ import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from "react-icons/
 const SocialLinks = ({ alignLeft = false }) => {
   return (
     <div className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}>
-      <ul className="inline-flex space-x-4 ">
+      <ul className="inline-flex space-x-8 ">
         <li className="">
           <a
             href="https://www.redbubble.com/people/hws902/shop?asc=u&ref=account-nav-dropdown"
