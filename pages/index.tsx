@@ -5,15 +5,14 @@ import Link from "next/link"
 import Image from "next/legacy/image"
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
-import { useNextSanityImage } from "next-sanity-image"
 
 import Meta from "components/Meta"
 import Main from "components/Main"
-import { configuredSanityClient } from "helpers/sanityHelpers"
 import Navigation from "components/Navigation"
 
 import Footer from "components/Footer"
 import { getAllTagsAndPaintings } from "../lib/api"
+import { imageBuilder } from "lib/sanity"
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min
@@ -35,8 +34,48 @@ export interface painting {
   loader: ImageLoader
 }
 
-export default function Home({ desktopWallpaper }) {
+export interface ISanityImage {
+  painting: painting | null
+}
+
+export interface Asset {
+  _ref: string
+  _type: string
+}
+
+export interface Image {
+  _type: string
+  asset: Asset
+}
+
+export interface Slug {
+  _type: string
+  current: string
+}
+
+export interface Tag {
+  label: string
+  value: string
+}
+
+export interface RootObject {
+  _createdAt: Date
+  _id: string
+  _rev: string
+  _type: string
+  _updatedAt: Date
+  aspectRatio: string
+  description: string
+  image: Image
+  slug: Slug
+  tags: Tag[]
+  title: string
+}
+
+export default function Home({ desktopWallpaper = [] }: { desktopWallpaper: RootObject[] }) {
   const [desktopIndex, setDesktopIndex] = useState(0)
+
+  const currentWallpaper = desktopWallpaper[desktopIndex]
 
   const handleGoLeft = () => {
     if (desktopIndex === 0) {
@@ -56,19 +95,19 @@ export default function Home({ desktopWallpaper }) {
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)))
   }, [desktopWallpaper.length])
 
-  const currentWallpaper = desktopWallpaper[desktopIndex]
+  // const currentWallpaper = desktopWallpaper[desktopIndex]
 
-  const imageProps: painting = useNextSanityImage(
-    configuredSanityClient,
-    desktopWallpaper[desktopIndex].image,
-    {
-      blurUpImageWidth: 124,
-      blurUpImageQuality: 40,
-      blurUpAmount: 24
-    }
-  )
+  // const imageProps: painting = useNextSanityImage(
+  //   configuredSanityClient,
+  //   desktopWallpaper[desktopIndex].image,
+  //   {
+  //     blurUpImageWidth: 124,
+  //     blurUpImageQuality: 40,
+  //     blurUpAmount: 24
+  //   }
+  // )
 
-  const { src = "", loader, placeholder = "blur" } = imageProps
+  // const { src = "", loader, placeholder = "blur" } = imageProps
 
   return (
     <>
@@ -78,7 +117,7 @@ export default function Home({ desktopWallpaper }) {
       <Main noTopPadding>
         <section className="relative grid flex-1 min-h-full grid-cols-12">
           <div className="relative h-full col-span-full">
-            <Image
+            {/* <Image
               layout="fill"
               objectFit="cover"
               className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
@@ -88,7 +127,22 @@ export default function Home({ desktopWallpaper }) {
               placeholder={placeholder}
               blurDataURL={imageProps.blurDataURL}
             />
-            <h1 className="sr-only">WiSiHE</h1>
+             */}
+            <Image
+              loader={({ src }) => src}
+              src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
+              blurDataURL={imageBuilder(currentWallpaper.image)
+                .width(20)
+                .height(20)
+                .quality(10)
+                .url()}
+              layout="fill"
+              placeholder="blur"
+              priority
+              objectFit="cover"
+              className="hidden object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
+              alt="headerImage"
+            />
 
             <div className="absolute left-0 right-0 flex flex-col items-center justify-center gap-4 bottom-20">
               <Link
@@ -120,6 +174,10 @@ export default function Home({ desktopWallpaper }) {
             </div>
           </div>
         </section>
+        {/* <section>
+          <h1>WiSiHE</h1>
+          <p>My name is Henrik Wilhelm Sissener</p>
+        </section> */}
       </Main>
       <Footer fixed />
     </>

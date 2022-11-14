@@ -1,16 +1,12 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { useRecoilValue } from "recoil";
-
-import { theme as atomTheme } from "../../atoms/theme";
+import PropTypes from "prop-types"
+import React from "react"
 
 const ThemeSwitcher = ({ children }) => {
-  const theme = useRecoilValue(atomTheme);
-  return <div className={theme}>{children}</div>;
-};
+  return <div>{children}</div>
+}
 
 ThemeSwitcher.propTypes = {
-  children: PropTypes.object,
-};
+  children: PropTypes.object
+}
 
-export default ThemeSwitcher;
+export default ThemeSwitcher

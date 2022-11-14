@@ -1,7 +1,6 @@
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
-import NavigationDrawer from "components/NavigationDrawer"
 import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 
@@ -9,7 +8,6 @@ import PaintingGrid from "components/PaintingGrid"
 
 import Filters from "components/Filters"
 import Footer from "components/Footer"
-import { AnimatePresence } from "framer-motion"
 
 export interface iTag {
   label: string
@@ -57,7 +55,7 @@ const PaintingsPage = ({ slug, paintings, tags }: PaintingsPageProps) => {
         description="A gallery of some of my paintings"
       />
       <Navigation />
-      <NavigationDrawer />
+
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
           {/* <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
@@ -67,9 +65,7 @@ const PaintingsPage = ({ slug, paintings, tags }: PaintingsPageProps) => {
           </section> */}
           <section className="col-span-full">
             <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-10 backdrop-blur-lg">
-              <AnimatePresence>
-                <Filters filteredTags={tags} activeFilter={slug} />
-              </AnimatePresence>
+              <Filters filteredTags={tags} activeFilter={slug} />
             </div>
             <PaintingGrid paintings={paintings} filterTag={slug} />
           </section>

@@ -1,29 +1,27 @@
-import React, { useEffect } from "react";
-import FocusTrap from "focus-trap-react";
+import React, { useEffect } from "react"
+import FocusTrap from "focus-trap-react"
 
-import { RiCloseFill } from "react-icons/ri";
-import { useRecoilState } from "recoil";
-import clsx from "clsx";
+import { RiCloseFill } from "react-icons/ri"
 
-import Overlay from "../Overlay";
+import clsx from "clsx"
 
-import { navdrawer as atomNavdrawer } from "../../atoms/navdrawer";
+import Overlay from "../Overlay"
 
-import SocialLinks from "../SocialLinks/SocialLinks";
-import NavigationLinks from "components/NavigationLinks";
+import SocialLinks from "../SocialLinks/SocialLinks"
+import NavigationLinks from "components/NavigationLinks"
 
 const NavigationDrawer = () => {
-  const [navdrawer, hideNavDrawer] = useRecoilState(atomNavdrawer);
+  const [navDrawerActive, setNavDrawerActive] = React.useState(false)
 
   // rewrite this
-  const defaultStyle = "-translate-x-full";
-  const activeStyle = "dark:text-white";
+  const defaultStyle = "-translate-x-full"
+  const activeStyle = "dark:text-white"
 
-  useEffect(() => {
-    return () => {
-      hideNavDrawer(false);
-    };
-  }, [hideNavDrawer]);
+  // useEffect(() => {
+  //   return () => {
+  //     hideNavDrawer(false)
+  //   }
+  // }, [hideNavDrawer])
 
   return (
     <>
@@ -32,9 +30,8 @@ const NavigationDrawer = () => {
           <nav
             className={clsx(
               "h-full fixed bg-stone-300 w-full sm:w-96 z-30 top-0 shadow-lgtransform transition-all duration-500 ease-in-out",
-              navdrawer ? activeStyle : defaultStyle,
-            )}
-          >
+              navdrawer ? activeStyle : defaultStyle
+            )}>
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center justify-between ">
                 <div className="flex items-center justify-center p-4 text-xs rounded-lg bg-primary text-highlight">
@@ -43,8 +40,7 @@ const NavigationDrawer = () => {
               </div>
               <button
                 onClick={() => hideNavDrawer(false)}
-                className="p-2 rounded-full hover:bg-opacity-10 hover:bg-primary"
-              >
+                className="p-2 rounded-full hover:bg-opacity-10 hover:bg-primary">
                 <RiCloseFill className="text-2xl " />
               </button>
             </div>
@@ -59,7 +55,7 @@ const NavigationDrawer = () => {
         </div>
       </FocusTrap>
     </>
-  );
-};
+  )
+}
 
-export default NavigationDrawer;
+export default NavigationDrawer

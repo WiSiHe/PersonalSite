@@ -5,10 +5,9 @@ import Navigation from "../components/Navigation"
 
 import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
-import NavigationDrawer from "../components/NavigationDrawer"
 
 import SideMenu from "components/SideMenu"
-import Image from "next/legacy/image";
+import Image from "next/legacy/image"
 
 import portrait from "public/images/selfPortrait.png"
 
@@ -21,7 +20,7 @@ export default function ProjectsPage() {
       />
 
       <Navigation hideOnDesktop darkMode />
-      <NavigationDrawer />
+
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">

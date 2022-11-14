@@ -1,5 +1,4 @@
 import React from "react"
-import { AnimatePresence } from "framer-motion"
 
 import Image from "next/legacy/image"
 
@@ -7,7 +6,6 @@ import Navigation from "../components/Navigation"
 
 import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
-import NavigationDrawer from "../components/NavigationDrawer"
 import Project from "components/Project"
 import Footer from "components/Footer"
 
@@ -42,7 +40,7 @@ export default function ProjectsPage() {
       />
 
       <Navigation />
-      <NavigationDrawer />
+
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           {/* <section className="sticky hidden col-span-2 bg-stone-100 xl:block">

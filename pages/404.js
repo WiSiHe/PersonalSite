@@ -5,7 +5,6 @@ import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
 import Navigation from "../components/Navigation"
 
-import NavigationDrawer from "../components/NavigationDrawer"
 import SideMenu from "components/SideMenu"
 import Footer from "components/Footer"
 
@@ -14,7 +13,7 @@ export default function Custom404() {
     <>
       <Meta />
       <Navigation hideOnDesktop />
-      <NavigationDrawer />
+
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="sticky hidden col-span-2 bg-stone-100 xl:block">

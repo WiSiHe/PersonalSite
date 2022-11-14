@@ -32,6 +32,7 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
     format = "square",
     slug: { current = "" } = {}
   } = paintingData
+  console.log("paintingData", format)
 
   const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
   const { value = "" } = salesTagObj
@@ -39,28 +40,28 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
 
   const linkString = `/painting/${current}`
 
-  const isHighlighted = index % 12 === 4
+  // const isHighlighted = index % 12 === 4
 
-  // const imageProps = useNextSanityImage(
-  //   configuredSanityClient,
-  //   desktopWallpaper[desktopIndex].image,
-  //   {
-  //     blurUpImageWidth: 124,
-  //     blurUpImageQuality: 40,
-  //     blurUpAmount: 24,
-  //   },
-  // );
+  // const imageWidth = isHighlighted ? 800 : 400
+  // const imageHeight = isHighlighted ? 800 : 400
 
-  // const imageProps = useNextSanityImage(configuredSanityClient, image, {
-  //   enableBlurUp: false,
-  //   blurUpImageWidth: 124,
-  //   blurUpImageQuality: 40,
-  //   blurUpAmount: 24,
-  // });
+  const imageWidth = {
+    square: 400,
+    landscape: 800,
+    portrait: 400
+  }
 
-  const imageWidth = isHighlighted ? 800 : 400
-  const imageHeight = isHighlighted ? 800 : 400
+  const imageHeight = {
+    square: 400,
+    landscape: 400,
+    portrait: 800
+  }
 
+  const imageHeightStyle = {
+    square: "aspect-square",
+    landscape: "aspect-video",
+    portrait: "aspect-[9/16]"
+  }
   return (
     <motion.article
       initial="offscreen"
@@ -68,27 +69,19 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10",
-        "col-span-6",
-        isHighlighted
-          ? "md:col-span-3 lg:col-span-3 xl:col-span-4 lg:row-span-2 xl:row-span-2"
-          : "md:col-span-3 lg:col-span-3 xl:col-span-2"
+        "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
       )}
       key={_id}>
       <Link href={linkString}>
-        <div
-          className={clsx(
-            "relative w-full",
-            "h-[320px] md:h-[200px]",
-            isHighlighted ? " lg:h-[480px] xl:h-[610px]" : "lg:h-[240px] xl:h-[300px]"
-          )}>
+        <div className={clsx("relative w-full", imageHeightStyle[format])}>
           <Image
-            src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
-            // layout="fill"
-            // objectFit="cover"
-            height={400}
-            width={400}
-            // loader={({ src }) => src}
+            src={imageBuilder(image)
+              .width(imageWidth[format])
+              .height(imageHeight[format])
+              .quality(45)
+              .url()}
+            height={imageHeight[format]}
+            width={imageWidth[format]}
             alt={`painting: ${_id}`}
             className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
           />
