@@ -3,7 +3,7 @@ import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 
-import PaintingGrid from "components/PaintingGrid"
+// import PaintingGrid from "components/PaintingGrid"
 // import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
@@ -12,7 +12,8 @@ import useScrollPosition from "hooks/useScrollPosition"
 import { motion } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
-const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) => {
+import Painting from "components/PaintingV3"
+const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
   const scrollPosition = useScrollPosition()
 
   const handleClick = () => {
@@ -36,7 +37,16 @@ const PaintingsPage = ({ paintings, tags, slug = "all" }: PaintingsPageProps) =>
             <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
               <Filters filteredTags={tags} activeFilter={slug} />
             </div>
-            <PaintingGrid paintings={paintings} filterTag={slug} />
+            {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
+            <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
+              {paintings
+                .filter(p => p.tags?.find(t => t.value.toLowerCase() === slug || slug === "all"))
+                .map((p, i) => (
+                  <div key={i} className="mb-4">
+                    <Painting paintingData={p} index={i} />
+                  </div>
+                ))}
+            </div>
           </section>
         </section>
 

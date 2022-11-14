@@ -32,7 +32,6 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
     format = "square",
     slug: { current = "" } = {}
   } = paintingData
-  console.log("paintingData", format)
 
   const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
   const { value = "" } = salesTagObj

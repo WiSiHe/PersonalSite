@@ -37,7 +37,6 @@ export default function Gallery({
   // id = '',
 }) {
   const { current = "" } = slug
-  console.log({ description })
   const uniqueTags = [...new Set(tags)]
 
   const hasRedBubleLink = redbubbleUrl !== ""
@@ -203,7 +202,6 @@ export async function getStaticProps({ params, preview = false }) {
     _id = "",
     images = []
   } = painting
-  console.log("painting", painting)
 
   const smallImage = imageBuilder(image).width(400).height(400).quality(75).url()
   const largeImage = imageBuilder(image).width(1200).height(1200).quality(75).url()

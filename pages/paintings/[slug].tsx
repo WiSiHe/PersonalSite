@@ -4,10 +4,11 @@ import Navigation from "components/Navigation"
 import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 
-import PaintingGrid from "components/PaintingGrid"
+// import PaintingGrid from "components/PaintingGrid"
 
 import Filters from "components/Filters"
 import Footer from "components/Footer"
+import Painting from "components/PaintingV3"
 
 export interface iTag {
   label: string
@@ -46,7 +47,7 @@ export interface PaintingsPageProps {
   tags: iTag[]
 }
 
-const PaintingsPage = ({ slug, paintings, tags }: PaintingsPageProps) => {
+const PaintingsPage = ({ slug = "", paintings = [], tags = [] }: PaintingsPageProps) => {
   return (
     <>
       <Meta
@@ -58,16 +59,20 @@ const PaintingsPage = ({ slug, paintings, tags }: PaintingsPageProps) => {
 
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
-          {/* <section className="relative hidden h-full col-span-2 bg-stone-100 xl:block">
-            <div className="sticky  top-0 w-full h-[fit-content]">
-              <SideMenu />
-            </div>
-          </section> */}
           <section className="col-span-full">
             <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-10 backdrop-blur-lg">
               <Filters filteredTags={tags} activeFilter={slug} />
             </div>
-            <PaintingGrid paintings={paintings} filterTag={slug} />
+            {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
+            <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
+              {paintings
+                .filter(p => p.tags?.find(t => t.value.toLowerCase() === slug || slug === "all"))
+                .map((p, i) => (
+                  <div key={i} className="mb-4">
+                    <Painting paintingData={p} index={i} />
+                  </div>
+                ))}
+            </div>
           </section>
         </section>
       </Main>
