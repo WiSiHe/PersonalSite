@@ -23,19 +23,22 @@ const cardVariants = {
   }
 }
 
-const Painting = function ({ paintingData = {}, index = 0 }) {
+const Painting = function ({ paintingData = {} }) {
   const {
     _id,
     image = {},
     title = "",
     tags = [],
     format = "square",
-    slug: { current = "" } = {}
+    slug: { current = "" } = {},
+    images = []
   } = paintingData
 
   const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
   const { value = "" } = salesTagObj
   const isForSales = value === "Buyable"
+
+  const amounOfExtraImages = images.length
 
   const linkString = `/painting/${current}`
 
@@ -99,7 +102,12 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
             <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
               <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
             </div>
-            <strong>For sale</strong>
+            <b className="hidden lg:block">For sale</b>
+          </div>
+        )}
+        {amounOfExtraImages > 0 && (
+          <div className="absolute flex items-center p-2 text-xs rounded-sm bottom-4 right-4 bg-highlight">
+            <b className="hidden lg:block">{amounOfExtraImages} more</b>
           </div>
         )}
       </Link>

@@ -53,7 +53,7 @@ export default function Gallery({
         url={`https://wisihe.no/painting/${current}`}
       />
 
-      <Main noTopPadding className="flex flex-col flex-1 overflow-hidden">
+      <Main noTopPadding className="grid flex-col flex-1 p-4 overflow-hidden xl:p-20 ">
         <AnimatePresence>
           <motion.div
             className="fixed z-10 top-4 left-4"
@@ -99,7 +99,7 @@ export default function Gallery({
             exit={{ opacity: 0 }}
             transition={{ type: "spring" }}
             key="text-section"
-            className="relative z-10 flex flex-col p-4 transition-all xl:p-6 bg-stone-300 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 xl:bg-opacity-30 ">
+            className="relative z-10 flex flex-col p-4 transition-all xl:p-6 bg-stone-300 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 xl:bg-opacity-80 ">
             <h1 className="pb-2 text-2xl lg:text-4xl">
               <strong>{title}</strong>
             </h1>
@@ -137,28 +137,32 @@ export default function Gallery({
               <div className="py-4 text-center">
                 <h2 className="text-2xl font-bold">More paintings</h2>
               </div>
-              {extraImageUrls.map((url, index) => {
-                return (
-                  <motion.picture className="w-full pb-10" key={`picture-${index}`}>
-                    <motion.img
-                      layoutId="image"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      key={`image-${index}`}
-                      transition={{
-                        type: "spring",
-                        stiffness: 100,
-                        delay: 0.5,
-                        bounce: 0.25
-                      }}
-                      src={url}
-                      alt={title}
-                      className="relative w-full"
-                    />
-                  </motion.picture>
-                )
-              })}
+              <ul className="flex flex-col gap-8">
+                {extraImageUrls.map((url, index) => {
+                  return (
+                    <li key={`picture-${index}`}>
+                      <motion.picture className="w-full pb-10">
+                        <motion.img
+                          layoutId="image"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          key={`image-${index}`}
+                          transition={{
+                            type: "spring",
+                            stiffness: 100,
+                            delay: 0.5,
+                            bounce: 0.25
+                          }}
+                          src={url}
+                          alt={title}
+                          className="relative w-full"
+                        />
+                      </motion.picture>
+                    </li>
+                  )
+                })}
+              </ul>
             </section>
           )}
         </AnimatePresence>
