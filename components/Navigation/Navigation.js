@@ -37,8 +37,8 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
             className="flex items-center gap-2">
             <Link
               href="/"
-              className="flex items-center justify-center p-2 text-sm hover:underline group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
-              <strong className="font-bold hover:text-highlight">WiSiHe</strong>
+              className="flex items-center justify-center p-2 text-sm hover:underline decoration-4 group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
+              <b className="font-bold hover:text-highlight">WiSiHe</b>
             </Link>
             <span>|</span>
           </motion.div>
