@@ -64,6 +64,8 @@ export default function Gallery({
             key="backbutton">
             <Link
               href="/paintings"
+              shallow={true}
+              scroll={false}
               className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
               <IoArrowBackSharp />
             </Link>
