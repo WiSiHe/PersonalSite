@@ -27,6 +27,7 @@ export interface iPainting {
   _updatedAt: string
   aspectRatio?: string
   redbubbleUrl?: string
+  title: string
   slug: {
     current: string
     _type: string
@@ -39,6 +40,9 @@ export interface iPainting {
     }
   }
   tags: iPaintingTag[]
+  tagsV2: {
+    name: string
+  }
 }
 
 export interface PaintingsPageProps {

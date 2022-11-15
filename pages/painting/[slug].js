@@ -17,31 +17,45 @@ import RedbubbleLink from "components/RedbubbleLink"
 
 // Libs
 import { imageBuilder } from "lib/sanity"
-import { getAllPaintings, getPainting } from "lib/api"
+import { getAllPaintings, getPaintingDetails } from "lib/api"
 import Footer from "components/Footer"
 import { AnimatePresence } from "framer-motion"
+import clsx from "clsx"
+import Image from "next/image"
 
 // const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
 export default function Gallery({
   painting = {},
-  title = "",
-  tags = [],
-  description = "",
+
   slug = {},
   smallImage,
   largeImage,
   xlImage,
-  redbubbleUrl = "",
   extraImageUrls = []
-  // id = '',
 }) {
+  const {
+    _id,
+    images = [],
+    imagesCount = 0,
+    title = "",
+    description = "",
+    format = "square",
+    tagCount = 0,
+    redbubbleUrl = "",
+    tagsV2 = []
+  } = painting
   const { current = "" } = slug
-  const uniqueTags = [...new Set(tags)]
-
+  // const uniqueTags = [...new Set(tags)]
   const hasRedBubleLink = redbubbleUrl !== ""
 
   const hasStoreLinks = hasRedBubleLink
+
+  const imageHeightStyle = {
+    square: "aspect-square",
+    landscape: "aspect-video",
+    portrait: "aspect-[9/16]"
+  }
 
   return (
     <>
@@ -53,10 +67,10 @@ export default function Gallery({
         url={`https://wisihe.no/painting/${current}`}
       />
 
-      <Main noTopPadding className="grid flex-col flex-1 p-4 overflow-hidden xl:p-20 ">
+      <Main noTopPadding className="grid flex-col flex-1 grid-cols-12 p-4 overflow-hidden xl:p-20 ">
         <AnimatePresence>
           <motion.div
-            className="fixed z-10 top-4 left-4"
+            className="fixed z-10 top-6 left-6"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
@@ -66,32 +80,32 @@ export default function Gallery({
               href="/paintings"
               shallow={true}
               scroll={false}
-              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
-              <IoArrowBackSharp />
+              className="flex items-center justify-center p-2 text-xl gap-2 transition-all duration-200 ease-in-out bg-white rounded-lg hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
+              <IoArrowBackSharp /> Back
             </Link>
           </motion.div>
 
-          <motion.picture className="w-full" key="picture">
-            <source media="(min-width:1280px)" srcSet={xlImage} />
-            <source media="(min-width:650px)" srcSet={largeImage} />
-            <source media="(min-width:465px)" srcSet={smallImage} className="w-full" />
-            <motion.img
-              layoutId="image"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              key="image"
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                delay: 0.5,
-                bounce: 0.25
-              }}
-              src={smallImage}
-              alt={title}
-              className="relative w-full"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: "spring" }}
+            className={clsx(
+              "flex relative flex-col col-span-full xl:col-span-8",
+              imageHeightStyle[format]
+            )}>
+            <Image
+              src={largeImage}
+              alt="Picture of the author"
+              sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
+              fill
+              className="object-cover"
+              blurDataURL={smallImage}
+              placeholder="blur"
             />
-          </motion.picture>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -99,18 +113,18 @@ export default function Gallery({
             exit={{ opacity: 0 }}
             transition={{ type: "spring" }}
             key="text-section"
-            className="relative z-10 flex flex-col p-4 transition-all xl:p-6 bg-stone-300 xl:right-5 xl:top-5 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-md xl:col-span-3 xl:bg-opacity-80 ">
+            className="relative xl:z-10 flex flex-col col-span-full p-4 transition-all xl:p-8 bg-stone-300 xl:bg-white/40 xl:right-20 xl:top-20 xl:backdrop-blur-lg xl:rounded-lg xl:fixed xl:shadow-xl xl:max-w-lg w-full">
             <h1 className="pb-2 text-2xl lg:text-4xl">
               <strong>{title}</strong>
             </h1>
-            <div className="flex flex-wrap">
-              {uniqueTags.map(tag => {
-                const { value } = tag
+            <div className="flex flex-wrap gap-2">
+              {tagsV2?.map(tag => {
+                const { name = "" } = tag
                 return (
                   <p
-                    className="p-1 mb-2 mr-1 text-xs text-white capitalize rounded-lg bg-primary"
-                    key={value}>
-                    {value}
+                    className="px-2 py-1 text-xs text-white capitalize rounded-lg bg-primary"
+                    key={name}>
+                    {name}
                   </p>
                 )
               })}
@@ -132,37 +146,36 @@ export default function Gallery({
             )}
           </motion.div>
 
-          {extraImageUrls.length > 0 && (
-            <section className="text-center ">
-              <div className="py-4 text-center">
+          {imagesCount > 0 && (
+            <section className="col-span-full gap-4 xl:gap-20 grid grid-cols-12 mb-20">
+              <div className="py-4 col-span-full">
                 <h2 className="text-2xl font-bold">More paintings</h2>
               </div>
-              <ul className="flex flex-col gap-8">
-                {extraImageUrls.map((url, index) => {
-                  return (
-                    <li key={`picture-${index}`}>
-                      <motion.picture className="w-full pb-10">
-                        <motion.img
-                          layoutId="image"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          key={`image-${index}`}
-                          transition={{
-                            type: "spring",
-                            stiffness: 100,
-                            delay: 0.5,
-                            bounce: 0.25
-                          }}
-                          src={url}
-                          alt={title}
-                          className="relative w-full"
-                        />
-                      </motion.picture>
-                    </li>
-                  )
-                })}
-              </ul>
+
+              {extraImageUrls.map((url, index) => {
+                const isEven = index % 2 === 0
+                return (
+                  <div
+                    key={`picture-${index}`}
+                    className={clsx(
+                      imageHeightStyle[format],
+                      "bg-white relative w-full h-full col-span-full",
+                      isEven ? "xl:col-span-6 xl:col-start-6" : "xl:col-span-6 xl:col-start-0"
+                    )}>
+                    <Image
+                      src={largeImage}
+                      alt="Picture of the author"
+                      sizes="(max-width: 768px) 100vw,
+                          (max-width: 1200px) 50vw,
+                            33vw"
+                      fill
+                      className="object-cover"
+                      blurDataURL={url}
+                      placeholder="blur"
+                    />
+                  </div>
+                )
+              })}
             </section>
           )}
         </AnimatePresence>
@@ -186,12 +199,13 @@ Gallery.propTypes = {
   tags: PropTypes.array,
   title: PropTypes.string,
   xlImage: PropTypes.string,
-  extraImageUrls: PropTypes.array
+  extraImageUrls: PropTypes.array,
+  tagsV2: PropTypes.array
 }
 
 export async function getStaticProps({ params, preview = false }) {
   const { slug = "" } = params
-  const data = await getPainting(slug, preview)
+  const data = await getPaintingDetails(slug, preview)
 
   if (data.length < 1) {
     return { props: {} }
@@ -206,7 +220,8 @@ export async function getStaticProps({ params, preview = false }) {
     description = "",
     redbubbleUrl = "",
     _id = "",
-    images = []
+    images = [],
+    tagsV2 = []
   } = painting
 
   const smallImage = imageBuilder(image).width(400).height(400).quality(75).url()
@@ -215,7 +230,7 @@ export async function getStaticProps({ params, preview = false }) {
 
   // iterate through images and get the url
   const extraImageUrls =
-    images.map(image => {
+    images?.map(image => {
       const url = imageBuilder(image).width(1200).height(1200).quality(75).url()
       return url
     }) || []
@@ -223,15 +238,9 @@ export async function getStaticProps({ params, preview = false }) {
   return {
     props: {
       painting,
-      title,
-      description,
-      tags,
-      image,
       smallImage,
       largeImage,
       xlImage,
-      redbubbleUrl,
-      id: _id,
       extraImageUrls
     },
     //  revalidate evry 3 hour

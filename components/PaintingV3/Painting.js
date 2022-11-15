@@ -7,6 +7,8 @@ import { motion } from "framer-motion"
 
 import { imageBuilder } from "lib/sanity"
 
+import { GrMultiple } from "react-icons/gr"
+
 const cardVariants = {
   offscreen: {
     y: 100,
@@ -106,8 +108,8 @@ const Painting = function ({ paintingData = {} }) {
           </div>
         )}
         {amounOfExtraImages > 0 && (
-          <div className="absolute flex items-center p-2 text-xs rounded-sm bottom-4 right-4 bg-highlight">
-            <b className="hidden lg:block">{amounOfExtraImages} more</b>
+          <div className="absolute flex items-center p-2 text-xs bg-white rounded-sm bottom-4 right-4">
+            <GrMultiple />
           </div>
         )}
       </Link>

@@ -155,10 +155,11 @@ export default function Home({
                 </button>
                 <Link
                   href="/paintings"
-                  className="relative px-4 py-2 text-center text-black transition rounded hover:ring w-fit animate-pulse bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  <div className="bg-highlight">
+                  className="relative px-4 py-2 text-center text-black  ring transition rounded hover:ring hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                  <div className=" px-4 py-2 z-10 bg-red-200 text-white">
                     <b>Go to gallery</b>
                   </div>
+                  <div className="animate inset-0 w-fit h-full bg-red-500 animate-ping absolute" />
                 </Link>
                 <button
                   onClick={() => handleGoRight({ isMobile: false })}

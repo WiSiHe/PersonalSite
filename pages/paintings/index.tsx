@@ -39,13 +39,14 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
-              {paintings
-                .filter(p => p.tags?.find(t => t.value.toLowerCase() === slug || slug === "all"))
-                .map((p, i) => (
-                  <div key={i} className="mb-4">
-                    <Painting paintingData={p} index={i} />
+              {paintings.map(p => {
+                const { _id } = p
+                return (
+                  <div key={_id} className="mb-4">
+                    <Painting paintingData={p} />
                   </div>
-                ))}
+                )
+              })}
             </div>
           </section>
         </section>
