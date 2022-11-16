@@ -1,7 +1,7 @@
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
-import { getAllTagsAndPaintings } from "lib/api"
+import { getAllPaintingSlugs, getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 
 // import PaintingGrid from "components/PaintingGrid"
@@ -70,7 +70,7 @@ const PaintingsPage = ({ slug = "", paintings = [], tags = [] }: PaintingsPagePr
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
               {paintings
-                .filter(p => p.tags?.find(t => t.value.toLowerCase() === slug || slug === "all"))
+                // .filter(p => p.tags?.find(t => t.name.toLowerCase() === slug || slug === "all"))
                 .map((p, i) => (
                   <div key={i} className="mb-4">
                     <Painting paintingData={p} index={i} />
@@ -96,33 +96,8 @@ export async function getStaticProps({ params, preview = false }) {
     return { props: {} }
   }
 
-  const paintings = data.paintings
+  const { paintings = [], tags = [] } = data
   const filteredPaintings = paintings.filter(p => p.tags?.find(t => t.value.toLowerCase() === slug))
-
-  const flattenedTags = data.tags.filter(tag => tag !== null).flat()
-  const tagValues = flattenedTags.map(tag => tag.label)
-
-  const result = {}
-
-  for (let i = 0; i < tagValues.length; ++i) {
-    if (!result[tagValues[i]]) result[tagValues[i]] = 0
-    ++result[tagValues[i]]
-  }
-
-  // convert result to object with name and count
-
-  const convertedResult = Object.entries(result).map(w => {
-    return {
-      label: w[0],
-      count: w[1]
-    }
-  })
-
-  const allTag = { label: "all", count: paintings.length }
-
-  const alltags = [allTag, ...convertedResult]
-    .filter(t => t.count > 5)
-    .sort((a, b) => b.count - a.count)
 
   // sort paintings randomly
   const randomPaintings = filteredPaintings.sort(() => Math.random() - 0.5)
@@ -131,53 +106,22 @@ export async function getStaticProps({ params, preview = false }) {
     props: {
       paintings: randomPaintings,
       slug: slug,
-      tags: alltags
+      tags
     },
     revalidate: 7200 // 120  min
   }
 }
 
 export async function getStaticPaths() {
-  const data = await getAllTagsAndPaintings()
-
-  if (data.length < 1) {
-    return { props: {} }
-  }
-
-  const flattenedTags = data.tags.filter(tag => tag !== null).flat()
-
-  const tagValues = flattenedTags.map(tag => tag.label)
-
-  const result = {}
-
-  for (let i = 0; i < tagValues.length; ++i) {
-    if (!result[tagValues[i]]) result[tagValues[i]] = 0
-    ++result[tagValues[i]]
-  }
-
-  const convertedResult = Object.entries(result).map(w => {
-    return {
-      label: w[0],
-      count: w[1]
-    }
-  })
-
-  const paintings = data.paintings
-  const allTag = { label: "all", count: paintings.length }
-
-  const alltags = [allTag, ...convertedResult]
-
-  const paths = alltags.map(tag => {
-    return {
-      params: {
-        slug: tag.label.toLocaleLowerCase(),
-        tags: alltags
-      }
-    }
-  })
+  const allPaintings = await getAllPaintingSlugs()
 
   return {
-    paths: paths,
+    paths:
+      allPaintings?.map(painting => ({
+        params: {
+          slug: painting.slug
+        }
+      })) || [],
     fallback: true
   }
 }

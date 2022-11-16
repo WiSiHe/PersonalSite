@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
 
 import { GrMultiple } from "react-icons/gr"
+import { BiFilm } from "react-icons/bi"
 
 const cardVariants = {
   offscreen: {
@@ -33,7 +34,8 @@ const Painting = function ({ paintingData = {} }) {
     tags = [],
     format = "square",
     slug: { current = "" } = {},
-    images = []
+    images = [],
+    video = ""
   } = paintingData
 
   const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
@@ -107,11 +109,19 @@ const Painting = function ({ paintingData = {} }) {
             <b className="hidden lg:block">For sale</b>
           </div>
         )}
-        {amounOfExtraImages > 0 && (
-          <div className="absolute flex items-center p-2 text-xs bg-white rounded-sm bottom-4 right-4">
-            <GrMultiple />
-          </div>
-        )}
+
+        <div className="absolute flex gap-2 items-center p-2 text-xs rounded-sm bottom-4 right-4">
+          {video && (
+            <div className="bg-white rounded-sm p-2">
+              <BiFilm />
+            </div>
+          )}
+          {amounOfExtraImages > 0 && (
+            <div className="bg-white rounded-sm p-2">
+              <GrMultiple />
+            </div>
+          )}
+        </div>
       </Link>
     </motion.article>
   )

@@ -17,11 +17,12 @@ import RedbubbleLink from "components/RedbubbleLink"
 
 // Libs
 import { imageBuilder } from "lib/sanity"
-import { getAllPaintings, getPaintingDetails } from "lib/api"
+import { getPaintingDetails, getAllPaintingSlugs } from "lib/api"
 import Footer from "components/Footer"
 import { AnimatePresence } from "framer-motion"
 import clsx from "clsx"
 import Image from "next/image"
+import ReactPlayer from "react-player"
 
 // const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
@@ -31,21 +32,22 @@ export default function Gallery({
   slug = {},
   smallImage,
   largeImage,
-  xlImage,
   extraImageUrls = []
 }) {
   const {
-    _id,
-    images = [],
+    // _id,
+    // images = [],
     imagesCount = 0,
     title = "",
     description = "",
     format = "square",
-    tagCount = 0,
+    // tagCount = 0,
     redbubbleUrl = "",
-    tagsV2 = []
+    tagsV2 = [],
+    video = ""
   } = painting
   const { current = "" } = slug
+
   // const uniqueTags = [...new Set(tags)]
   const hasRedBubleLink = redbubbleUrl !== ""
 
@@ -163,7 +165,7 @@ export default function Gallery({
                       isEven ? "xl:col-span-6 xl:col-start-6" : "xl:col-span-6 xl:col-start-0"
                     )}>
                     <Image
-                      src={largeImage}
+                      src={url}
                       alt="Picture of the author"
                       sizes="(max-width: 768px) 100vw,
                           (max-width: 1200px) 50vw,
@@ -177,6 +179,14 @@ export default function Gallery({
                 )
               })}
             </section>
+          )}
+          {video && (
+            <div className="col-span-full">
+              <h2 className="text-2xl font-bold">Video</h2>
+              <div className="aspect-video">
+                <ReactPlayer url={video} loop muted playing />
+              </div>
+            </div>
           )}
         </AnimatePresence>
       </Main>
@@ -198,7 +208,6 @@ Gallery.propTypes = {
   smallImage: PropTypes.any,
   tags: PropTypes.array,
   title: PropTypes.string,
-  xlImage: PropTypes.string,
   extraImageUrls: PropTypes.array,
   tagsV2: PropTypes.array
 }
@@ -213,20 +222,10 @@ export async function getStaticProps({ params, preview = false }) {
 
   const painting = data[0] || {}
 
-  const {
-    image = {},
-    title = "",
-    tags = [],
-    description = "",
-    redbubbleUrl = "",
-    _id = "",
-    images = [],
-    tagsV2 = []
-  } = painting
+  const { image = {}, images = [] } = painting
 
   const smallImage = imageBuilder(image).width(400).height(400).quality(75).url()
   const largeImage = imageBuilder(image).width(1200).height(1200).quality(75).url()
-  const xlImage = imageBuilder(image).width(1660).height(1660).quality(75).url()
 
   // iterate through images and get the url
   const extraImageUrls =
@@ -240,7 +239,6 @@ export async function getStaticProps({ params, preview = false }) {
       painting,
       smallImage,
       largeImage,
-      xlImage,
       extraImageUrls
     },
     //  revalidate evry 3 hour
@@ -249,14 +247,13 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const allPaintings = await getAllPaintings()
+  const allPaintings = await getAllPaintingSlugs()
 
   return {
     paths:
       allPaintings?.map(painting => ({
         params: {
-          painting,
-          slug: painting.slug.current
+          slug: painting.slug
         }
       })) || [],
     fallback: false

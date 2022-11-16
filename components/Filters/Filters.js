@@ -59,11 +59,11 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
             transition={{ type: "spring" }}
             className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-stone-200 backdrop-blur-lg ">
             {filteredTags.map((tag, i) => {
-              const { label = "", count = 0 } = tag
-              const convertedLabel = label.toLowerCase()
+              const { name = "" } = tag
+              const convertedLabel = name.toLowerCase()
               const isBuyable = convertedLabel === "buyable"
               const isActive = convertedLabel === activeFilter.toLocaleLowerCase()
-              const url = label === "all" ? "/paintings" : `/paintings/${convertedLabel}`
+              const url = name === "all" ? "/paintings" : `/paintings/${convertedLabel}`
               return (
                 <li key={i}>
                   <Link
@@ -75,9 +75,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
                         ? "bg-highlight hover:bg-highlight text-black"
                         : "text-white bg-primary"
                     )}>
-                    <strong className="capitalize">
-                      {label}({count})
-                    </strong>
+                    <strong className="capitalize">{name}</strong>
                     {isBuyable && (
                       <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">
                         <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 animate-ping bg-highlight" />

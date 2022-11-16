@@ -1,4 +1,4 @@
-import Filters from "components/Filters"
+import PropTypes from "prop-types"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
@@ -7,14 +7,15 @@ import Navigation from "components/Navigation"
 // import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
-import { PaintingsPageProps } from "./[slug]"
+
 import useScrollPosition from "hooks/useScrollPosition"
 import { motion } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
-import Painting from "components/PaintingV3"
-const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
+
+const PaintingsPage = ({ videos = [] }) => {
   const scrollPosition = useScrollPosition()
+  console.log({ videos })
 
   const handleClick = () => {
     window.scrollTo({
@@ -33,22 +34,7 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
       <Navigation />
       <Main noTopPadding className="overflow-clip">
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
-          <section className="col-span-full">
-            <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
-              <Filters filteredTags={tags} activeFilter={slug} />
-            </div>
-            {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
-            <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
-              {paintings.map(p => {
-                const { _id } = p
-                return (
-                  <div key={_id} className="mb-4">
-                    <Painting paintingData={p} />
-                  </div>
-                )
-              })}
-            </div>
-          </section>
+          <section className="col-span-full">videos go here</section>
         </section>
 
         {scrollPosition > 400 && (
@@ -72,6 +58,10 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
   )
 }
 
+PaintingsPage.propTypes = {
+  videos: PropTypes.array
+}
+
 export default PaintingsPage
 
 export async function getStaticProps({ preview = false }) {
@@ -81,14 +71,11 @@ export async function getStaticProps({ preview = false }) {
     return { props: {} }
   }
 
-  const { paintings = [], tags = [] } = data
-
-  const randomPaintings = paintings.sort(() => Math.random() - 0.5)
+  //   const { paintings = [], tags = [] } = data
 
   return {
     props: {
-      paintings: randomPaintings,
-      tags
+      videos: []
     },
     revalidate: 7200 // 120  min
   }
