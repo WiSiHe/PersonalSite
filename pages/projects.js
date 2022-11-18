@@ -1,7 +1,5 @@
 import React from "react"
 
-import Image from "next/legacy/image"
-
 import Navigation from "../components/Navigation"
 
 import Main from "../components/Main"
@@ -13,6 +11,7 @@ import websiteImage from "public/images/wisihesiteTemplate.jpeg"
 import websiteQR from "public/images/wisihe.png"
 import night from "public/images/night-forest.jpeg"
 import hove from "public/images/hove.png"
+import Image from "next/image"
 
 export default function ProjectsPage() {
   const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"]

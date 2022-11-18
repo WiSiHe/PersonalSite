@@ -14,8 +14,74 @@ import Footer from "components/Footer"
 import { getAllTagsAndPaintings } from "../lib/api"
 import { imageBuilder } from "lib/sanity"
 
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import clsx from "clsx"
+
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min
+}
+
+const gradientPositionStyle = {
+  0: "bg-gradient-to-tr from-cyan-300 via-purple-300/40 to-red-500",
+  1: "bg-gradient-to-b from-blue-300 via-purple-300 to-orange-500",
+  2: "bg-gradient-to-bl from-orange-300 via-purple-300 to-yellow-500",
+  3: "bg-gradient-to-tr from-purple-300 via-purple-300 to-blue-500",
+  4: "bg-gradient-to-bl from-red-300 via-purple-300 to-red-500",
+  5: "bg-gradient-to-tl from-teal-300 via-purple-300 to-purple-500"
+}
+
+const sphereColor = {
+  0: "cyan-300",
+  1: "blue-300",
+  2: "orange-300",
+  3: "purple-300",
+  4: "red-300",
+  5: "teal-300"
+}
+
+const xPositions = {
+  1: "translate-x-1",
+  2: "translate-x-2",
+  3: "translate-x-3",
+  4: "translate-x-4",
+  5: "translate-x-5",
+  6: "translate-x-6",
+  7: "translate-x-7",
+  8: "translate-x-8",
+  9: "translate-x-9",
+  10: "translate-x-10",
+  11: "translate-x-11",
+  12: "translate-x-12",
+  13: "translate-x-13",
+  14: "translate-x-14",
+  15: "translate-x-15",
+  16: "translate-x-16",
+  17: "translate-x-17",
+  18: "translate-x-18",
+  19: "translate-x-19",
+  20: "translate-x-20",
+  21: "translate-x-21",
+  22: "translate-x-22",
+  23: "translate-x-23",
+  24: "translate-x-24",
+  25: "translate-x-25",
+  26: "translate-x-26",
+  27: "translate-x-27",
+  28: "translate-x-28",
+  29: "translate-x-29",
+  30: "translate-x-30",
+  31: "translate-x-31",
+  32: "translate-x-32",
+  33: "translate-x-33",
+  34: "translate-x-34",
+  35: "translate-x-35",
+  36: "translate-x-36",
+  37: "translate-x-37",
+  38: "translate-x-38",
+  39: "translate-x-39",
+  40: "translate-x-40",
+  41: "translate-x-41",
+  42: "translate-x-42"
 }
 
 export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
@@ -82,8 +148,15 @@ export default function Home({
   const [desktopIndex, setDesktopIndex] = useState(0)
   const [mobileIndex, setMobileIndex] = useState(0)
 
+  const [color, setColor] = useState(sphereColor[0])
+
   const currentWallpaper = desktopWallpaper[desktopIndex]
   const currentMobileWallpaper = mobileWallpaper[mobileIndex]
+
+  const [positionX, setPositionX] = useState(0)
+  const [positionY, setPositionY] = useState(0)
+  const [positionXString, setPositionXString] = useState("translate-x-16")
+  const [sphereSize, setSphereSize] = useState("128px")
 
   const handleGoLeft = ({ isMobile = false }) => {
     if (isMobile) {
@@ -114,6 +187,33 @@ export default function Home({
     }
   }
 
+  const [backgroundGradient, setBackgroundGradient] = useState(gradientPositionStyle[0])
+  // const timer that starts on mount and changes wallpaper every 10 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      // setBackgroundGradient(gradientPositionStyle[Math.floor(getRandomArbitrary(0, 5))])
+      // set random color for background
+      setColor(sphereColor[Math.floor(getRandomArbitrary(0, 5))])
+      setPositionX(getRandomArbitrary(-100, 100))
+      setPositionY(getRandomArbitrary(-100, 100))
+
+      const randomNumber = Math.floor(getRandomArbitrary(0, 100))
+
+      // setPositionXString(`translate-x-$[{randomNumber}]`)
+      setPositionXString(xPositions[Math.floor(getRandomArbitrary(1, 42))])
+      setSphereSize(`${getRandomArbitrary(256, 1024)}px`)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // every 10 seconds change the wallpaper
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleGoRight({ isMobile: false })
+  //   }, 10000)
+  //   return () => clearInterval(interval)
+  // }, [desktopIndex])
+
   useEffect(() => {
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)))
     setMobileIndex(parseInt(getRandomArbitrary(0, mobileWallpaper.length)))
@@ -124,11 +224,11 @@ export default function Home({
       <Meta url="https://wisihe.no" />
       <Navigation isAbsolute />
 
-      <Main noTopPadding>
-        <section className="w-full min-h-screen overflow-x-clip">
-          <div className="relative hidden h-full lg:block" key="desktop">
-            <Image
-              loader={({ src }) => src}
+      <Main noTopPadding className="flex-col">
+        <section className="w-full h-screen">
+          <div className="relative overflow-clip hidden h-full lg:block" key="desktop">
+            {/* <Image
+              // loader={({ src }) => src}
               src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
               blurDataURL={imageBuilder(currentWallpaper.image)
                 .width(20)
@@ -139,10 +239,39 @@ export default function Home({
               placeholder="blur"
               priority
               objectFit="cover"
-              className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
+              className="object-cover object-center w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
               alt="headerImage"
+            /> */}
+
+            <LazyLoadImage
+              src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
+              className="w-full h-full object-cover absolute inset-0"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+            <div className="absolute inset-0 w-full h-full flex items-center justify-center mix-blend-overlay">
+              <div
+                style={{
+                  width: sphereSize,
+                  height: sphereSize,
+                  transform: `translate(${positionX}%, ${positionY}%)`
+                }}
+                className={clsx(
+                  `transition-all ease-in-out rounded-full z-10 duration-[3000ms]`,
+                  color ? `bg-${color}` : "bg-purple-300"
+                )}
+              />
+              {/* <div className="w-96 h-96 rounded-full z-10 bg-purple-500/50 animate-blob animation-delay-3000  " />
+              <div className="w-96 h-96 rounded-full z-10 bg-yellow-500/50 animate-blob animation-delay-4000 " /> */}
+            </div>
+
+            {/* <div className="absolute inset-0 transition-all ease-in-out bg-gradient-to-tr from-cyan-300/40 via-purple-300/40 to-red-500/40 bg-opacity-40 " /> */}
+            {/* <div
+              className={clsx(
+                "absolute inset-0 transition-color duration-500 ease-in-out opacity-90",
+                backgroundGradient
+              )}
+            /> */}
+
+            <div className="relative h-full inset-0 flex flex-col items-center justify-center gap-4 z-10">
               <div className="flex items-center justify-between w-full gap-6 p-10">
                 <button
                   onClick={() => handleGoLeft({ isMobile: false })}
@@ -153,13 +282,13 @@ export default function Home({
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
                 </button>
+
                 <Link
                   href="/paintings"
-                  className="relative px-4 py-2 text-center text-black  ring transition rounded hover:ring hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  <div className=" px-4 py-2 z-10 bg-red-200 text-white">
+                  className="relative px-4 py-2 text-center text-black ring transition rounded hover:ring ring-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                  <div className=" px-4 py-2 z-10 bg-highlight ">
                     <b>Go to gallery</b>
                   </div>
-                  <div className="animate inset-0 w-fit h-full bg-red-500 animate-ping absolute" />
                 </Link>
                 <button
                   onClick={() => handleGoRight({ isMobile: false })}
@@ -176,7 +305,7 @@ export default function Home({
 
           <section className="relative w-full h-full lg:hidden" key="mobile">
             <Image
-              loader={({ src }) => src}
+              // loader={({ src }) => src}
               src={imageBuilder(currentMobileWallpaper.image)
                 .width(764)
                 .height(800)
@@ -222,21 +351,20 @@ export default function Home({
               </div>
             </div>
           </section>
-
-          <section className="block w-full p-4 h-96">
-            <h1>
-              <b>Henrik Wilhelm Sissener</b>
-            </h1>
-            <p>
-              Short story: Im a digital artist / web developer / hobby designer who has been drawing
-              my whole life. I mostly do character designs, but I try to step into the big world of
-              landscape every now and then, I spend my free time making digital paintings paintings
-              and do some tinkering with new Frontend technologies.
-            </p>
-          </section>
+        </section>
+        <section className="block w-full p-4 h-96">
+          <h1>
+            <b>Henrik Wilhelm Sissener</b>
+          </h1>
+          <p>
+            Short story: Im a digital artist / web developer / hobby designer who has been drawing
+            my whole life. I mostly do character designs, but I try to step into the big world of
+            landscape every now and then, I spend my free time making digital paintings paintings
+            and do some tinkering with new Frontend technologies.
+          </p>
         </section>
       </Main>
-      <Footer fixed />
+      <Footer />
     </>
   )
 }
@@ -257,12 +385,18 @@ export async function getStaticProps({ preview = false }) {
     return { props: {} }
   }
 
-  const wallpaperPaintings =
-    data.paintings.filter(p => p.tags?.length > 1 && p.tags.find(t => t.value === "wallpaper")) ||
-    []
+  const { paintings = [] } = data
 
-  const mobileWallpaper = wallpaperPaintings.filter(p => p.format === "landscape") || []
-  const desktopWallpaper = wallpaperPaintings.filter(w => w.format === "landscape") || []
+  const wallpaperPaintings = paintings.filter(
+    p => p.tagsV2?.length > 1 && p.tagsV2.find(t => t.name.toLowerCase() === "wallpaper")
+  )
+
+  const nsfwDesktopWallpaper = wallpaperPaintings.filter(
+    p => p.tagsV2?.length > 1 && p.tagsV2.find(t => t.name.toLowerCase() !== "nsfw")
+  )
+
+  const mobileWallpaper = nsfwDesktopWallpaper.filter(p => p.format === "landscape") || []
+  const desktopWallpaper = nsfwDesktopWallpaper.filter(w => w.format === "landscape") || []
 
   const flattenedTags = data.tags.filter(tag => tag !== null).flat()
   const tagValues = flattenedTags.map(tag => tag.label)

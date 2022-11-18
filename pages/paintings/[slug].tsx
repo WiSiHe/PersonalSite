@@ -97,14 +97,15 @@ export async function getStaticProps({ params, preview = false }) {
   }
 
   const { paintings = [], tags = [] } = data
-  const filteredPaintings = paintings.filter(p => p.tags?.find(t => t.value.toLowerCase() === slug))
+  const filteredPaintings =
+    paintings.filter(p => p.tagsV2?.find(t => t.name?.toLowerCase() === slug)) || []
 
   // sort paintings randomly
-  const randomPaintings = filteredPaintings.sort(() => Math.random() - 0.5)
+  // const randomPaintings = filteredPaintings.sort(() => Math.random() - 0.5)
 
   return {
     props: {
-      paintings: randomPaintings,
+      paintings: filteredPaintings,
       slug: slug,
       tags
     },

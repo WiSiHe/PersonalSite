@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
 
 import { GrMultiple } from "react-icons/gr"
-import { BiFilm } from "react-icons/bi"
+import { RiMovieFill } from "react-icons/ri"
 
 const cardVariants = {
   offscreen: {
@@ -28,21 +28,28 @@ const cardVariants = {
 
 const Painting = function ({ paintingData = {} }) {
   const {
-    _id,
+    _id = "",
     image = {},
     title = "",
     tags = [],
     format = "square",
     slug: { current = "" } = {},
     images = [],
-    video = ""
+    video = "",
+    tagsV2 = []
   } = paintingData
 
-  const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
-  const { value = "" } = salesTagObj
-  const isForSales = value === "Buyable"
+  const salesTagObj = tagsV2?.find(t => t.name === "Store") || {}
 
-  const amounOfExtraImages = images.length
+  // tagsV2 contains NSFW tag
+  const nsfwTagObj = tagsV2?.find(t => t.name === "NSFW") || {}
+
+  // check if salesTag is empty
+  const hasStoreLinks = Object.keys(salesTagObj).length > 0
+  // check if nsfwTag is empty
+  const isNsfw = Object.keys(nsfwTagObj).length > 0
+
+  const amounOfExtraImages = images?.length
 
   const linkString = `/painting/${current}`
 
@@ -91,6 +98,7 @@ const Painting = function ({ paintingData = {} }) {
             alt={`painting: ${_id}`}
             className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
           />
+          {isNsfw && <div className="bg-black/20 absolute inset-0 backdrop-blur-lg" />}
         </div>
         <div className="absolute inset-0 w-full h-full">
           <div className="flex items-center justify-center w-full h-full">
@@ -101,8 +109,8 @@ const Painting = function ({ paintingData = {} }) {
         <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
           <strong>{title}</strong>
         </div>
-        {isForSales && (
-          <div className="absolute flex items-center p-2 text-xs rounded-sm top-4 left-4 bg-highlight">
+        {hasStoreLinks && (
+          <div className="absolute flex items-center p-2 text-xs rounded-sm top-2 left-2 bg-highlight">
             <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
               <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
             </div>
@@ -110,10 +118,10 @@ const Painting = function ({ paintingData = {} }) {
           </div>
         )}
 
-        <div className="absolute flex gap-2 items-center p-2 text-xs rounded-sm bottom-4 right-4">
+        <div className="absolute flex gap-2 items-center text-xs rounded-sm bottom-2 right-2">
           {video && (
             <div className="bg-white rounded-sm p-2">
-              <BiFilm />
+              <RiMovieFill />
             </div>
           )}
           {amounOfExtraImages > 0 && (

@@ -23,9 +23,9 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
         // bounce: 0.25
       }}
       className={clsx(
-        "bg-stone-900/40 backdrop-blur-lg text-white",
+        "bg-stone-900/40 backdrop-blur-lg z-20 text-white",
         hideOnDesktop && "xl:hidden",
-        isAbsolute ? "fixed z-10 top-0 left-0 right-0" : "relative"
+        isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
       )}>
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
         <div className="flex items-center">
@@ -56,7 +56,7 @@ export default function Navigation({ hideOnDesktop = false, isAbsolute = false }
                   initial={{ opacity: 0, y: -100 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 100 }}
-                  transition={{ type: "spring", delay: 0.4 + i, bounce: 0.4 }}>
+                  transition={{ type: "spring", delay: 0.4 + (i - 0.8), bounce: 0.4 }}>
                   <Link
                     href={item.url}
                     className={clsx(

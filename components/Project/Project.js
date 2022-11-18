@@ -73,6 +73,7 @@ const Project = ({
           src={image}
           alt="test"
           className="object-cover"
+          fill
           // layout="fill"
         />
       </div>
