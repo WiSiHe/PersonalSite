@@ -21,68 +21,34 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min
 }
 
-const gradientPositionStyle = {
-  0: "bg-gradient-to-tr from-cyan-300 via-purple-300/40 to-red-500",
-  1: "bg-gradient-to-b from-blue-300 via-purple-300 to-orange-500",
-  2: "bg-gradient-to-bl from-orange-300 via-purple-300 to-yellow-500",
-  3: "bg-gradient-to-tr from-purple-300 via-purple-300 to-blue-500",
-  4: "bg-gradient-to-bl from-red-300 via-purple-300 to-red-500",
-  5: "bg-gradient-to-tl from-teal-300 via-purple-300 to-purple-500"
-}
+// const gradientPositionStyle = {
+//   0: "bg-gradient-to-tr from-cyan-300 via-purple-300/40 to-red-500",
+//   1: "bg-gradient-to-b from-blue-300 via-purple-300 to-orange-500",
+//   2: "bg-gradient-to-bl from-orange-300 via-purple-300 to-yellow-500",
+//   3: "bg-gradient-to-tr from-purple-300 via-purple-300 to-blue-500",
+//   4: "bg-gradient-to-bl from-red-300 via-purple-300 to-red-500",
+//   5: "bg-gradient-to-tl from-teal-300 via-purple-300 to-purple-500"
+// }
 
 const sphereColor = {
-  0: "cyan-300",
-  1: "blue-300",
-  2: "orange-300",
-  3: "purple-300",
-  4: "red-300",
-  5: "teal-300"
+  0: "bg-blue-300",
+  1: "bg-red-300",
+  2: "bg-yellow-300",
+  3: "bg-purple-300",
+  4: "bg-cyan-300"
 }
 
-const xPositions = {
-  1: "translate-x-1",
-  2: "translate-x-2",
-  3: "translate-x-3",
-  4: "translate-x-4",
-  5: "translate-x-5",
-  6: "translate-x-6",
-  7: "translate-x-7",
-  8: "translate-x-8",
-  9: "translate-x-9",
-  10: "translate-x-10",
-  11: "translate-x-11",
-  12: "translate-x-12",
-  13: "translate-x-13",
-  14: "translate-x-14",
-  15: "translate-x-15",
-  16: "translate-x-16",
-  17: "translate-x-17",
-  18: "translate-x-18",
-  19: "translate-x-19",
-  20: "translate-x-20",
-  21: "translate-x-21",
-  22: "translate-x-22",
-  23: "translate-x-23",
-  24: "translate-x-24",
-  25: "translate-x-25",
-  26: "translate-x-26",
-  27: "translate-x-27",
-  28: "translate-x-28",
-  29: "translate-x-29",
-  30: "translate-x-30",
-  31: "translate-x-31",
-  32: "translate-x-32",
-  33: "translate-x-33",
-  34: "translate-x-34",
-  35: "translate-x-35",
-  36: "translate-x-36",
-  37: "translate-x-37",
-  38: "translate-x-38",
-  39: "translate-x-39",
-  40: "translate-x-40",
-  41: "translate-x-41",
-  42: "translate-x-42"
+const desktopWallpaperPositionStyle = {
+  1: "object-top",
+  2: "object-bottom"
 }
+
+// const desktopWallpaperSizeStyle = {
+//   0: "100% 100%",
+//   1: "120% 120%",
+//   2: "150% 150%",
+//   3: "200% 200%"
+// }
 
 export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
 export declare type ImageLoaderProps = {
@@ -145,18 +111,24 @@ export default function Home({
   desktopWallpaper: RootObject[]
   mobileWallpaper: RootObject[]
 }) {
+  //  ref of div
+
   const [desktopIndex, setDesktopIndex] = useState(0)
   const [mobileIndex, setMobileIndex] = useState(0)
 
-  const [color, setColor] = useState(sphereColor[0])
-
   const currentWallpaper = desktopWallpaper[desktopIndex]
   const currentMobileWallpaper = mobileWallpaper[mobileIndex]
+  const [desktopWallpaperPosition, setDesktopWallpaperPosition] = useState(
+    desktopWallpaperPositionStyle[0]
+  )
+  // const [desktopWallpaperSize, setDesktopWallpaperSize] = useState(desktopWallpaperSizeStyle[0])
 
-  const [positionX, setPositionX] = useState(0)
-  const [positionY, setPositionY] = useState(0)
-  const [positionXString, setPositionXString] = useState("translate-x-16")
-  const [sphereSize, setSphereSize] = useState("128px")
+  console.log({ desktopWallpaperPosition })
+
+  // const [positionX, setPositionX] = useState(0)
+  // const [positionY, setPositionY] = useState(0)
+
+  const [sphereSize, setSphereSize] = useState(128)
 
   const handleGoLeft = ({ isMobile = false }) => {
     if (isMobile) {
@@ -187,22 +159,24 @@ export default function Home({
     }
   }
 
-  const [backgroundGradient, setBackgroundGradient] = useState(gradientPositionStyle[0])
   // const timer that starts on mount and changes wallpaper every 10 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       // setBackgroundGradient(gradientPositionStyle[Math.floor(getRandomArbitrary(0, 5))])
       // set random color for background
-      setColor(sphereColor[Math.floor(getRandomArbitrary(0, 5))])
-      setPositionX(getRandomArbitrary(-100, 100))
-      setPositionY(getRandomArbitrary(-100, 100))
-
-      const randomNumber = Math.floor(getRandomArbitrary(0, 100))
-
-      // setPositionXString(`translate-x-$[{randomNumber}]`)
-      setPositionXString(xPositions[Math.floor(getRandomArbitrary(1, 42))])
-      setSphereSize(`${getRandomArbitrary(256, 1024)}px`)
+      setSphereSize(getRandomArbitrary(256, 1024))
     }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (desktopWallpaperPosition === desktopWallpaperPositionStyle[1]) {
+        setDesktopWallpaperPosition(desktopWallpaperPositionStyle[0])
+      } else {
+        setDesktopWallpaperPosition(desktopWallpaperPositionStyle[1])
+      }
+    }, 12000)
     return () => clearInterval(timer)
   }, [])
 
@@ -226,7 +200,7 @@ export default function Home({
 
       <Main noTopPadding className="flex-col">
         <section className="w-full h-screen">
-          <div className="relative overflow-clip hidden h-full lg:block" key="desktop">
+          <div className="relative overflow-clip hidden bg-slate-200 h-full lg:block" key="desktop">
             {/* <Image
               // loader={({ src }) => src}
               src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
@@ -239,37 +213,59 @@ export default function Home({
               placeholder="blur"
               priority
               objectFit="cover"
-              className="object-cover object-center w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover md:block bg-gray-50 "
+              className={clsx(
+                "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50 ",
+                desktopWallpaperPosition
+              )}
               alt="headerImage"
             /> */}
 
             <LazyLoadImage
               src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
-              className="w-full h-full object-cover absolute inset-0"
-            />
-            <div className="absolute inset-0 w-full h-full flex items-center justify-center mix-blend-overlay">
-              <div
-                style={{
-                  width: sphereSize,
-                  height: sphereSize,
-                  transform: `translate(${positionX}%, ${positionY}%)`
-                }}
-                className={clsx(
-                  `transition-all ease-in-out rounded-full z-10 duration-[3000ms]`,
-                  color ? `bg-${color}` : "bg-purple-300"
-                )}
-              />
-              {/* <div className="w-96 h-96 rounded-full z-10 bg-purple-500/50 animate-blob animation-delay-3000  " />
-              <div className="w-96 h-96 rounded-full z-10 bg-yellow-500/50 animate-blob animation-delay-4000 " /> */}
-            </div>
-
-            {/* <div className="absolute inset-0 transition-all ease-in-out bg-gradient-to-tr from-cyan-300/40 via-purple-300/40 to-red-500/40 bg-opacity-40 " /> */}
-            {/* <div
               className={clsx(
-                "absolute inset-0 transition-color duration-500 ease-in-out opacity-90",
-                backgroundGradient
+                "w-full h-full object-cover absolute inset-0 transition-all duration-[12000ms] ease-in-out",
+                desktopWallpaperPosition
               )}
-            /> */}
+            />
+
+            <div
+              className={clsx(
+                `absolute w-full flex items-center justify-center mix-blend-overlay h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
+              )}
+            />
+
+            <div className="absolute inset-0 grid grid-cols-6 p-4 gap-4 w-full h-full blur-3xl opacity-40">
+              {[...Array(24)].map((_, i) => {
+                // round size
+                const roundedSize = Math.round(sphereSize / 256) * 256
+
+                // get screenwidth
+                // const screenWidth = window.innerWidth
+
+                const xPosition = getRandomArbitrary(-100, 100)
+                const yPosition = getRandomArbitrary(-100, 100)
+
+                const sphereColorz = sphereColor[Math.floor(getRandomArbitrary(0, 5))]
+
+                return (
+                  <div
+                    style={{
+                      width: `${roundedSize}px`,
+                      height: `${roundedSize}px`,
+                      transform: `translate(${xPosition}%, ${yPosition}%)`,
+                      transitionTimingFunction: "cubic-bezier(0.65, 0.0, 0.35, 1)"
+                    }}
+                    key={i}
+                    className={clsx(
+                      `transition-all col-span-1 shrink-0  z-10 duration-[5000ms]`,
+                      "rounded-full",
+
+                      sphereColorz ? sphereColorz : "bg-red-500"
+                    )}
+                  />
+                )
+              })}
+            </div>
 
             <div className="relative h-full inset-0 flex flex-col items-center justify-center gap-4 z-10">
               <div className="flex items-center justify-between w-full gap-6 p-10">
@@ -285,8 +281,8 @@ export default function Home({
 
                 <Link
                   href="/paintings"
-                  className="relative px-4 py-2 text-center text-black ring transition rounded hover:ring ring-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  <div className=" px-4 py-2 z-10 bg-highlight ">
+                  className="relative px-4 py-2 text-center text-black transition rounded hover:ring ring-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
+                  <div className=" px-4 py-2 z-10 bg-highlight rounded ">
                     <b>Go to gallery</b>
                   </div>
                 </Link>
@@ -356,12 +352,19 @@ export default function Home({
           <h1>
             <b>Henrik Wilhelm Sissener</b>
           </h1>
-          <p>
+          <p className="max-w-sm">
             Short story: Im a digital artist / web developer / hobby designer who has been drawing
             my whole life. I mostly do character designs, but I try to step into the big world of
             landscape every now and then, I spend my free time making digital paintings paintings
             and do some tinkering with new Frontend technologies.
           </p>
+        </section>
+        <section>
+          <div
+            className={clsx(
+              `absolute w-full flex items-center justify-center h-96 bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
+            )}
+          />
         </section>
       </Main>
       <Footer />
