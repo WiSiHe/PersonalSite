@@ -118,17 +118,17 @@ export default function Home({
 
   const currentWallpaper = desktopWallpaper[desktopIndex]
   const currentMobileWallpaper = mobileWallpaper[mobileIndex]
-  const [desktopWallpaperPosition, setDesktopWallpaperPosition] = useState(
-    desktopWallpaperPositionStyle[0]
-  )
-  // const [desktopWallpaperSize, setDesktopWallpaperSize] = useState(desktopWallpaperSizeStyle[0])
 
-  console.log({ desktopWallpaperPosition })
+  // const [sphereOffset, setSphereOffset] = useState(0)
+  // const [desktopWallpaperPosition, setDesktopWallpaperPosition] = useState(
+  //   desktopWallpaperPositionStyle[0]
+  // )
+  // const [desktopWallpaperSize, setDesktopWallpaperSize] = useState(desktopWallpaperSizeStyle[0])
 
   // const [positionX, setPositionX] = useState(0)
   // const [positionY, setPositionY] = useState(0)
 
-  const [sphereSize, setSphereSize] = useState(128)
+  // const [sphereSize, setSphereSize] = useState(256)
 
   const handleGoLeft = ({ isMobile = false }) => {
     if (isMobile) {
@@ -160,25 +160,26 @@ export default function Home({
   }
 
   // const timer that starts on mount and changes wallpaper every 10 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      // setBackgroundGradient(gradientPositionStyle[Math.floor(getRandomArbitrary(0, 5))])
-      // set random color for background
-      setSphereSize(getRandomArbitrary(256, 1024))
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     // setBackgroundGradient(gradientPositionStyle[Math.floor(getRandomArbitrary(0, 5))])
+  //     // set random color for background
+  //     setSphereSize(getRandomArbitrary(256, 1024))
+  //     setSphereOffset(getRandomArbitrary(0, 100))
+  //   }, 5000)
+  //   return () => clearInterval(timer)
+  // }, [])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (desktopWallpaperPosition === desktopWallpaperPositionStyle[1]) {
-        setDesktopWallpaperPosition(desktopWallpaperPositionStyle[0])
-      } else {
-        setDesktopWallpaperPosition(desktopWallpaperPositionStyle[1])
-      }
-    }, 12000)
-    return () => clearInterval(timer)
-  }, [])
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     if (desktopWallpaperPosition === desktopWallpaperPositionStyle[1]) {
+  //       setDesktopWallpaperPosition(desktopWallpaperPositionStyle[0])
+  //     } else {
+  //       setDesktopWallpaperPosition(desktopWallpaperPositionStyle[1])
+  //     }
+  //   }, 12000)
+  //   return () => clearInterval(timer)
+  // }, [])
 
   // every 10 seconds change the wallpaper
   // useEffect(() => {
@@ -223,27 +224,29 @@ export default function Home({
             <LazyLoadImage
               src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
               className={clsx(
-                "w-full h-full object-cover absolute inset-0 transition-all duration-[12000ms] ease-in-out",
-                desktopWallpaperPosition
+                "w-full h-full object-cover object-center absolute inset-0 transition-all duration-[12000ms] ease-in-out"
+                // desktopWallpaperPosition
               )}
             />
 
             <div
               className={clsx(
-                `absolute w-full flex items-center justify-center mix-blend-overlay h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
+                `absolute w-full flex items-center justify-center opacity-60 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
               )}
             />
 
-            <div className="absolute inset-0 grid grid-cols-6 p-4 gap-4 w-full h-full blur-3xl opacity-40">
+            {/* <div className="absolute inset-0 grid grid-cols-6 p-4 gap-4 w-full h-full">
               {[...Array(24)].map((_, i) => {
                 // round size
-                const roundedSize = Math.round(sphereSize / 256) * 256
+                const baseSize = sphereSize * Math.floor(getRandomArbitrary(0.8, 5))
+
+                const roundedSize = Math.round(baseSize / 256) * 256
 
                 // get screenwidth
                 // const screenWidth = window.innerWidth
 
-                const xPosition = getRandomArbitrary(-100, 100)
-                const yPosition = getRandomArbitrary(-100, 100)
+                const xPosition = getRandomArbitrary(-100, 100) * (sphereOffset / 100)
+                const yPosition = getRandomArbitrary(-100, 100) * (sphereOffset / 100)
 
                 const sphereColorz = sphereColor[Math.floor(getRandomArbitrary(0, 5))]
 
@@ -259,13 +262,12 @@ export default function Home({
                     className={clsx(
                       `transition-all col-span-1 shrink-0  z-10 duration-[5000ms]`,
                       "rounded-full",
-
                       sphereColorz ? sphereColorz : "bg-red-500"
                     )}
                   />
                 )
               })}
-            </div>
+            </div> */}
 
             <div className="relative h-full inset-0 flex flex-col items-center justify-center gap-4 z-10">
               <div className="flex items-center justify-between w-full gap-6 p-10">
