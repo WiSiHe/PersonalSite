@@ -14,7 +14,8 @@ const config = {
 export const urlFor = (source: SanityImageSource | MainImage | ImageItem) =>
   createImageUrlBuilder(config).image(source)
 
-export const imageBuilder = source => createImageUrlBuilder(config).image(source)
+export const imageBuilder = source =>
+  createImageUrlBuilder(config).image(source).auto("format").fit("max")
 
 export const usePreviewSubscription = createPreviewSubscriptionHook(config)
 

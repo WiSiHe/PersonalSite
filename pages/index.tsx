@@ -222,18 +222,33 @@ export default function Home({
             /> */}
 
             <LazyLoadImage
-              src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
+              src={imageBuilder(currentWallpaper.image)
+                .width(1400)
+                .height(900)
+                // .auto("format")
+                // .fit("scale")
+                .quality(75)
+                .url()}
+              alt="headerImage"
+              // effect="blur"
+              // placeholderSrc={imageBuilder(currentWallpaper.image)
+              //   // .width(1200)
+              //   // .height(1200)
+              //   // .auto("format")
+              //   .fit("scale")
+              //   .quality(5)
+              //   .url()}
               className={clsx(
                 "w-full h-full object-cover object-center absolute inset-0 transition-all duration-[12000ms] ease-in-out"
                 // desktopWallpaperPosition
               )}
             />
 
-            <div
+            {/* <div
               className={clsx(
                 `absolute w-full flex items-center justify-center opacity-60 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
               )}
-            />
+            /> */}
 
             {/* <div className="absolute inset-0 grid grid-cols-6 p-4 gap-4 w-full h-full">
               {[...Array(24)].map((_, i) => {
@@ -305,9 +320,10 @@ export default function Home({
             <Image
               // loader={({ src }) => src}
               src={imageBuilder(currentMobileWallpaper.image)
-                .width(764)
-                .height(800)
+                // .width(764)
+                // .height(800)
                 .quality(75)
+                .fit("scale")
                 .url()}
               blurDataURL={imageBuilder(currentMobileWallpaper.image)
                 .width(20)
