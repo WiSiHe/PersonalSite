@@ -44,7 +44,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
         </button>
         <div
           className={clsx(
-            "relative snap-start capitalize  transition p-2 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+            "relative snap-start capitalize  transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
             "bg-highlight hover:bg-highlight text-black"
           )}>
           <strong>{activeFilter}</strong>
@@ -61,7 +61,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
             {filteredTags.map((tag, i) => {
               const { name = "" } = tag
               const convertedLabel = name.toLowerCase()
-              const isBuyable = convertedLabel === "buyable"
+              const isBuyable = convertedLabel === "store"
               const isActive = convertedLabel === activeFilter.toLocaleLowerCase()
               const url = name === "all" ? "/paintings" : `/paintings/${convertedLabel}`
               return (
@@ -69,7 +69,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
                   <Link
                     href={url}
                     className={clsx(
-                      "relative snap-start transition p-2 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+                      "relative snap-start transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                       isBuyable && "ring ring-highlight",
                       isActive
                         ? "bg-highlight hover:bg-highlight text-black"

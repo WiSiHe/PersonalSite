@@ -9,15 +9,12 @@ export default function Footer({ fixed = false, onlyMobile = false }) {
     <motion.footer
       initial={{ y: 50 }}
       animate={{ y: 0 }}
-      exit={{ y: 10 }}
+      exit={{ y: 50 }}
       transition={{
-        type: "spring",
-
-        delay: 0.5
-        // bounce: 0.25
+        type: "spring"
       }}
       className={clsx(
-        "w-full p-4 text-white bg-primary backdrop-blur-lg",
+        "w-full p-4 text-white bg-primary",
         fixed && "fixed bottom-0",
         onlyMobile && " block lg:hidden"
       )}>

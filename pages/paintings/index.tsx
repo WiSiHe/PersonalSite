@@ -34,7 +34,7 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
       <Main noTopPadding className="overflow-clip">
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">
-            <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
+            <div className="sticky top-0 z-20 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
               <Filters filteredTags={tags} activeFilter={slug} />
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}

@@ -21,7 +21,7 @@ import { getPaintingDetails, getAllPaintingSlugs } from "lib/api"
 import SocialLinks from "components/SocialLinks"
 import { AnimatePresence } from "framer-motion"
 import clsx from "clsx"
-import Image from "next/image"
+
 import ReactPlayer from "react-player"
 import { useRouter } from "next/router"
 import Navigation from "../../components/Navigation"
@@ -84,7 +84,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         url={`https://wisihe.no/painting/${current}`}
       />
       <Navigation />
-      <Main noTopPadding className="grid flex-col w-full flex-1 grid-cols-12 p-4 gap-10 xl:p-20 ">
+      <Main noTopPadding className="grid flex-col flex-1 w-full grid-cols-12 gap-10 p-4 xl:p-20 ">
         <AnimatePresence>
           <motion.div
             className="fixed z-10 bottom-4 left-4 xl:top-20 xl:left-6"
@@ -95,7 +95,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
             key="backbutton">
             <button
               onClick={handleGoBack}
-              className="flex items-center justify-center py-2 px-4 text-xl gap-2 transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
+              className="flex items-center justify-center gap-2 px-4 py-2 text-xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
               <IoArrowBackSharp /> Back
             </button>
           </motion.div>
@@ -126,7 +126,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
             exit={{ opacity: 0 }}
             transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
             key="text-section"
-            className="relative flex xl:sticky xl:top-4 flex-col xl:z-10 col-span-full h-fit justify-between transition-all bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4 w-full">
+            className="relative flex flex-col justify-between w-full transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4">
             <div>
               <h1 className="pb-2 text-2xl lg:text-4xl">
                 <strong>{title}</strong>
@@ -179,7 +179,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                         .height(imageHeight[format])
                         .quality(75)
                         .url()}
-                      className="w-full h-full object-cover"
+                      className="object-cover w-full h-full"
                     />
                   </div>
                 )
@@ -187,8 +187,8 @@ export default function Gallery({ painting = {}, slug = {} }) {
             </>
           )}
           {video && (
-            <div className="col-span-full xl:col-span-5 xl:col-start-3 mb-20">
-              <div className="aspect-video w-full">
+            <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
+              <div className="w-full aspect-video">
                 <ReactPlayer url={video} loop muted playing width="100%" height="100%" />
               </div>
             </div>

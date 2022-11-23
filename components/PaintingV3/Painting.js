@@ -82,7 +82,7 @@ const Painting = function ({ paintingData = {} }) {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full rounded overflow-hidden focus:outline-none group cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
+        "relative w-full rounded overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-highlight cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
       )}
       key={_id}>
       <Link href={linkString}>
@@ -96,18 +96,18 @@ const Painting = function ({ paintingData = {} }) {
             height={imageHeight[format]}
             width={imageWidth[format]}
             alt={`painting: ${_id}`}
-            className="object-cover w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover group-hover:scale-110 bg-gray-50 "
+            className="object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover group-hover:scale-125 bg-gray-50 "
           />
-          {isNsfw && <div className="bg-black/20 absolute inset-0 backdrop-blur-lg" />}
+          {isNsfw && <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />}
         </div>
-        <div className="absolute inset-0 w-full h-full">
+        {/* <div className="absolute inset-0 w-full h-full">
           <div className="flex items-center justify-center w-full h-full">
             <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black rounded-full opacity-0 group-hover:rounded-none group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
           </div>
-        </div>
+        </div> */}
 
-        <div className="absolute inset-0 items-center justify-center hidden text-white group-hover:flex">
-          <strong>{title}</strong>
+        <div className="absolute inset-0 flex items-center justify-center text-white ">
+          <b className="text-xl drop-shadow-2xl group-hover:scale-105">{title}</b>
         </div>
         {hasStoreLinks && (
           <div className="absolute flex items-center p-2 text-xs rounded-sm top-2 left-2 bg-highlight">
@@ -118,14 +118,14 @@ const Painting = function ({ paintingData = {} }) {
           </div>
         )}
 
-        <div className="absolute flex gap-2 items-center text-xs rounded-sm bottom-2 right-2">
+        <div className="absolute flex items-center gap-2 text-xs rounded-sm bottom-2 right-2">
           {video && (
-            <div className="bg-white rounded-sm p-2">
+            <div className="p-2 bg-white rounded-sm">
               <RiMovieFill />
             </div>
           )}
           {amounOfExtraImages > 0 && (
-            <div className="bg-white rounded-sm p-2">
+            <div className="p-2 bg-white rounded-sm">
               <GrMultiple />
             </div>
           )}

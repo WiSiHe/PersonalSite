@@ -17,5 +17,5 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "**/*.d.ts", "stories", "**/*.stories.tsx"]
+  "exclude": ["node_modules"]
 }

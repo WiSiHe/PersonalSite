@@ -8,6 +8,8 @@ const config = {
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "undefined",
   apiVersion: "2021-08-31",
   // useCdn: process.env.NODE_ENV === "production"
+  // useCdn:
+  //   typeof document !== 'undefined' && process.env.NODE_ENV === 'production',
   useCdn: true
 }
 
