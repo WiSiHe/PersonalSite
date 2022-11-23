@@ -11,9 +11,9 @@ module.exports = {
       animation: {
         "spin-slow": "spin 3s linear infinite",
         blob: "blob 20s ease-in-out infinite",
-        "gradient-x": "gradient-x 15s ease infinite",
-        "gradient-y": "gradient-y 15s ease infinite",
-        "gradient-xy": "gradient-xy 15s ease infinite"
+        "gradient-x": "gradient-x 15s ease-in-out infinite",
+        "gradient-y": "gradient-y 15s ease-in-out infinite",
+        "gradient-xy": "gradient-xy 15s ease-in-out infinite"
       },
       keyframes: {
         "gradient-y": {

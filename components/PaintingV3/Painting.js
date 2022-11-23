@@ -114,7 +114,7 @@ const Painting = function ({ paintingData = {} }) {
             <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
               <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
             </div>
-            <b className="hidden lg:block">For sale</b>
+            <b>For sale</b>
           </div>
         )}
 

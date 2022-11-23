@@ -256,11 +256,11 @@ export default function Home({
               )}
             /> */}
 
-            {/* <div
+            <div
               className={clsx(
-                `absolute w-full flex items-center justify-center opacity-60 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
+                `absolute w-full flex items-center mix-blend-overlay justify-center opacity-80 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
               )}
-            /> */}
+            />
 
             {/* <div className="absolute inset-0 grid grid-cols-6 p-4 gap-4 w-full h-full">
               {[...Array(24)].map((_, i) => {
@@ -370,6 +370,11 @@ export default function Home({
               className="w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover object-fit md:block bg-gray-50 "
               alt="headerImage"
             />
+            <div
+              className={clsx(
+                `absolute w-full flex items-center mix-blend-overlay justify-center opacity-80 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
+              )}
+            />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
               <div className="flex items-center justify-between w-full gap-6 p-10">
                 <button
@@ -452,7 +457,7 @@ export async function getStaticProps({ preview = false }) {
 
   const mobileWallpapersWithFetchedImages = mobileWallpaper.map(wallpaper => ({
     ...wallpaper,
-    lowResImage: imageBuilder(wallpaper.image).width(20).height(20).quality(10).url(),
+    lowResImageUrl: imageBuilder(wallpaper.image).width(20).height(20).quality(10).url(),
     imageUrl: imageBuilder(wallpaper.image).width(764).height(800).quality(75).url()
   }))
 
