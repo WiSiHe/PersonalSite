@@ -163,8 +163,6 @@ export async function getStaticProps({ preview = false }) {
       .url()
   }))
 
-  console.log({ desktopWallpapersWithFetchedImages })
-
   return {
     props: {
       desktopWallpaper: desktopWallpapersWithFetchedImages

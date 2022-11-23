@@ -4,7 +4,13 @@ import PropTypes from "prop-types"
 import Link from "next/link"
 import Image from "next/legacy/image"
 
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
+import {
+  BsArrowDown,
+  BsChevronDown,
+  BsChevronLeft,
+  BsChevronRight,
+  BsFileArrowDown
+} from "react-icons/bs"
 
 import Meta from "components/Meta"
 import Main from "components/Main"
@@ -16,6 +22,7 @@ import { imageBuilder } from "lib/sanity"
 
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import clsx from "clsx"
+import { motion } from "framer-motion"
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min
@@ -98,6 +105,8 @@ export interface RootObject {
   _updatedAt: Date
   aspectRatio: string
   description: string
+  imageUrl: string
+  lowResImageUrl: string
   image: Image
   slug: Slug
   tags: Tag[]
@@ -117,6 +126,7 @@ export default function Home({
   const [mobileIndex, setMobileIndex] = useState(0)
 
   const currentWallpaper = desktopWallpaper[desktopIndex]
+
   const currentMobileWallpaper = mobileWallpaper[mobileIndex]
 
   // const [sphereOffset, setSphereOffset] = useState(0)
@@ -202,33 +212,35 @@ export default function Home({
       <Main noTopPadding className="flex-col">
         <section className="w-full h-screen">
           <div className="relative overflow-clip hidden bg-slate-200 h-full lg:block" key="desktop">
-            {/* <Image
+            <Image
               // loader={({ src }) => src}
-              src={imageBuilder(currentWallpaper.image).width(1200).height(1200).quality(75).url()}
-              blurDataURL={imageBuilder(currentWallpaper.image)
-                .width(20)
-                .height(20)
-                .quality(10)
-                .url()}
+              src={currentWallpaper.imageUrl}
+              // blurDataURL={imageBuilder(currentWallpaper.image)
+              //   .width(20)
+              //   .height(20)
+              //   .quality(10)
+              //   .url()}
+              blurDataURL={currentWallpaper.lowResImageUrl}
               layout="fill"
               placeholder="blur"
               priority
               objectFit="cover"
               className={clsx(
-                "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50 ",
-                desktopWallpaperPosition
+                "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
               )}
               alt="headerImage"
-            /> */}
+            />
 
-            <LazyLoadImage
-              src={imageBuilder(currentWallpaper.image)
-                .width(1400)
-                .height(900)
-                // .auto("format")
-                // .fit("scale")
-                .quality(75)
-                .url()}
+            {/* <LazyLoadImage
+              // src={imageBuilder(currentWallpaper.image)
+              //   .width(1400)
+              //   .height(900)
+              //   // .auto("format")
+              //   // .fit("scale")
+              //   .quality(75)
+              //   .url()}
+              src={currentWallpaper.imageUrl}
+              placeholderSrc={currentWallpaper.lowResImageUrl}
               alt="headerImage"
               // effect="blur"
               // placeholderSrc={imageBuilder(currentWallpaper.image)
@@ -242,7 +254,7 @@ export default function Home({
                 "w-full h-full object-cover object-center absolute inset-0 transition-all duration-[12000ms] ease-in-out"
                 // desktopWallpaperPosition
               )}
-            />
+            /> */}
 
             {/* <div
               className={clsx(
@@ -314,22 +326,43 @@ export default function Home({
                 </button>
               </div>
             </div>
+            <div className="absolute left-0 flex justify-center items-center p-4 right-0 bottom-0 z-10">
+              <motion.a
+                initial={{ y: 0 }}
+                animate={{ y: -10 }}
+                whileHover={{ scale: 1.2 }}
+                transition={{
+                  repeat: Infinity,
+                  // repeatDelay: 2,
+
+                  repeatType: "reverse",
+                  // duration: 0.5,
+                  type: "spring",
+                  bounce: 0.5
+                }}
+                className="bg-white p-4 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+                href="#main">
+                <BsChevronDown />
+              </motion.a>
+            </div>
           </div>
 
           <section className="relative w-full h-full lg:hidden" key="mobile">
             <Image
               // loader={({ src }) => src}
-              src={imageBuilder(currentMobileWallpaper.image)
-                // .width(764)
-                // .height(800)
-                .quality(75)
-                .fit("scale")
-                .url()}
-              blurDataURL={imageBuilder(currentMobileWallpaper.image)
-                .width(20)
-                .height(20)
-                .quality(10)
-                .url()}
+              src={currentMobileWallpaper.imageUrl}
+              blurDataURL={currentMobileWallpaper.lowResImageUrl}
+              // src={imageBuilder(currentMobileWallpaper.image)
+              //   .width(764)
+              //   .height(800)
+              //   .quality(75)
+              //   .fit("scale")
+              //   .url()}
+              // blurDataURL={imageBuilder(currentMobileWallpaper.image)
+              //   .width(20)
+              //   .height(20)
+              //   .quality(10)
+              //   .url()}
               layout="fill"
               placeholder="blur"
               priority
@@ -366,16 +399,19 @@ export default function Home({
             </div>
           </section>
         </section>
-        <section className="block w-full p-4 h-96">
-          <h1>
-            <b>Henrik Wilhelm Sissener</b>
-          </h1>
-          <p className="max-w-sm">
-            Short story: Im a digital artist / web developer / hobby designer who has been drawing
-            my whole life. I mostly do character designs, but I try to step into the big world of
-            landscape every now and then, I spend my free time making digital paintings paintings
-            and do some tinkering with new Frontend technologies.
-          </p>
+        <div id="main" />
+        <section className="w-full p-10 min-h-96 h-full grid grid-cols-12 ">
+          <section className="col-span-4">
+            <h1>
+              <b>Henrik Wilhelm Sissener</b>
+            </h1>
+            <p className="">
+              Short story: Im a digital artist / web developer / hobby designer who has been drawing
+              my whole life. I mostly do character designs, but I try to step into the big world of
+              landscape every now and then, I spend my free time making digital paintings paintings
+              and do some tinkering with new Frontend technologies.
+            </p>
+          </section>
         </section>
         <section>
           <div
@@ -412,27 +448,26 @@ export async function getStaticProps({ preview = false }) {
     p => p.tagsV2?.length > 1 && p.tagsV2.find(t => t.name.toLowerCase() === "wallpaper")
   )
 
-  const nsfwDesktopWallpaper = wallpaperPaintings.filter(
-    p => p.tagsV2?.length > 1 && p.tagsV2.find(t => t.name.toLowerCase() !== "nsfw")
-  )
+  const mobileWallpaper = wallpaperPaintings.filter(p => p.format === "portrait") || []
 
-  const mobileWallpaper = nsfwDesktopWallpaper.filter(p => p.format === "landscape") || []
-  const desktopWallpaper = nsfwDesktopWallpaper.filter(w => w.format === "landscape") || []
+  const mobileWallpapersWithFetchedImages = mobileWallpaper.map(wallpaper => ({
+    ...wallpaper,
+    lowResImage: imageBuilder(wallpaper.image).width(20).height(20).quality(10).url(),
+    imageUrl: imageBuilder(wallpaper.image).width(764).height(800).quality(75).url()
+  }))
 
-  const flattenedTags = data.tags.filter(tag => tag !== null).flat()
-  const tagValues = flattenedTags.map(tag => tag.label)
+  const desktopWallpaper = wallpaperPaintings.filter(w => w.format === "landscape") || []
 
-  const result = {}
-
-  for (let i = 0; i < tagValues.length; ++i) {
-    if (!result[tagValues[i]]) result[tagValues[i]] = 0
-    ++result[tagValues[i]]
-  }
+  const desktopWallpapersWithFetchedImages = desktopWallpaper.map(wallpaper => ({
+    ...wallpaper,
+    lowResImageUrl: imageBuilder(wallpaper.image).width(20).height(20).quality(10).url(),
+    imageUrl: imageBuilder(wallpaper.image).width(1400).height(900).quality(75).url()
+  }))
 
   return {
     props: {
-      desktopWallpaper,
-      mobileWallpaper
+      desktopWallpaper: desktopWallpapersWithFetchedImages,
+      mobileWallpaper: mobileWallpapersWithFetchedImages
     },
     revalidate: 600 // 10 min
   }

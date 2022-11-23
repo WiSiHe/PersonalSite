@@ -29,7 +29,6 @@ const cardVariants = {
 
 const PaintingsPage = ({ videos = [] }) => {
   const scrollPosition = useScrollPosition()
-  console.log({ videos })
 
   const handleClick = () => {
     window.scrollTo({
@@ -50,6 +49,7 @@ const PaintingsPage = ({ videos = [] }) => {
         <section className="grid w-full grid-cols-12 gap-10 mx-auto max-w-screen-2xl">
           {videos.map((v, i) => {
             const { _id = "", title = "", description = "", video = "" } = v
+
             // every other card is on the other side
             const isEven = i % 2 === 0
 
@@ -111,8 +111,6 @@ export async function getStaticProps({ preview = false }) {
   if (data.length < 1) {
     return { props: {} }
   }
-
-  //   const { paintings = [], tags = [] } = data
 
   return {
     props: {

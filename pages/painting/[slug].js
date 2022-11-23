@@ -45,7 +45,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
     tagsV2 = [],
     video = ""
   } = painting
-  console.log("painting", painting)
+
   const { current = "" } = slug
 
   // const uniqueTags = [...new Set(tags)]
