@@ -474,6 +474,7 @@ export async function getStaticProps({ preview = false }) {
       desktopWallpaper: desktopWallpapersWithFetchedImages,
       mobileWallpaper: mobileWallpapersWithFetchedImages
     },
-    revalidate: 600 // 10 min
+    // revalidate every hour
+    revalidate: 60 * 60
   }
 }

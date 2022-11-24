@@ -1,7 +1,7 @@
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
-import { getAllPaintingSlugs, getAllTagsAndPaintings } from "lib/api"
+import { getAllPaintingSlugs, getAllTags, getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 
 // import PaintingGrid from "components/PaintingGrid"
@@ -114,13 +114,14 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const allPaintings = await getAllPaintingSlugs()
+  const allTags = await getAllTags()
+  console.log("allTags", allTags)
 
   return {
     paths:
-      allPaintings?.map(painting => ({
+      allTags?.map(tag => ({
         params: {
-          slug: painting.slug
+          slug: tag.name
         }
       })) || [],
     fallback: true
