@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import FocusTrap from "focus-trap-react"
 
 import { RiCloseFill } from "react-icons/ri"
@@ -11,7 +11,7 @@ import SocialLinks from "../SocialLinks/SocialLinks"
 import NavigationLinks from "components/NavigationLinks"
 
 const NavigationDrawer = () => {
-  const [navDrawerActive, setNavDrawerActive] = React.useState(false)
+  // const [navDrawerActive, setNavDrawerActive] = React.useState(false)
 
   // rewrite this
   const defaultStyle = "-translate-x-full"

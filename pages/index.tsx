@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 
 import Link from "next/link"
-import Image from "next/legacy/image"
 
-import {
-  BsArrowDown,
-  BsChevronDown,
-  BsChevronLeft,
-  BsChevronRight,
-  BsFileArrowDown
-} from "react-icons/bs"
+import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
 
 import Meta from "components/Meta"
 import Main from "components/Main"
@@ -20,9 +13,11 @@ import Footer from "components/Footer"
 import { getAllTagsAndPaintings } from "../lib/api"
 import { imageBuilder } from "lib/sanity"
 
-import { LazyLoadImage } from "react-lazy-load-image-component"
+import useWindowDimensions from "hooks/useWindowDimension"
+
 import clsx from "clsx"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min
@@ -37,18 +32,16 @@ function getRandomArbitrary(min, max) {
 //   5: "bg-gradient-to-tl from-teal-300 via-purple-300 to-purple-500"
 // }
 
-const sphereColor = {
-  0: "bg-blue-300",
-  1: "bg-red-300",
-  2: "bg-yellow-300",
-  3: "bg-purple-300",
-  4: "bg-cyan-300"
-}
+// const sphereColor = {
+//   0: "bg-yellow-300",
+//   1: "bg-purple-300",
+//   2: "bg-cyan-300"
+// }
 
-const desktopWallpaperPositionStyle = {
-  1: "object-top",
-  2: "object-bottom"
-}
+// const desktopWallpaperPositionStyle = {
+//   1: "object-top",
+//   2: "object-bottom"
+// }
 
 // const desktopWallpaperSizeStyle = {
 //   0: "100% 100%",
@@ -120,39 +113,27 @@ export default function Home({
   desktopWallpaper: RootObject[]
   mobileWallpaper: RootObject[]
 }) {
-  //  ref of div
-
   const [desktopIndex, setDesktopIndex] = useState(0)
   const [mobileIndex, setMobileIndex] = useState(0)
+  const { width = 0 } = useWindowDimensions()
 
   const currentWallpaper = desktopWallpaper[desktopIndex]
-
   const currentMobileWallpaper = mobileWallpaper[mobileIndex]
 
-  // const [sphereOffset, setSphereOffset] = useState(0)
-  // const [desktopWallpaperPosition, setDesktopWallpaperPosition] = useState(
-  //   desktopWallpaperPositionStyle[0]
-  // )
-  // const [desktopWallpaperSize, setDesktopWallpaperSize] = useState(desktopWallpaperSizeStyle[0])
-
-  // const [positionX, setPositionX] = useState(0)
-  // const [positionY, setPositionY] = useState(0)
-
-  // const [sphereSize, setSphereSize] = useState(256)
-
   const handleGoLeft = ({ isMobile = false }) => {
+    // setIsRestartingAnimation(true)
     if (isMobile) {
       if (mobileIndex === 0) {
-        setMobileIndex(mobileWallpaper.length - 1)
+        return setMobileIndex(mobileWallpaper.length - 1)
       } else {
-        setMobileIndex(mobileIndex - 1)
+        return setMobileIndex(mobileIndex - 1)
       }
-    } else {
-      if (desktopIndex === 0) {
-        return setDesktopIndex(desktopWallpaper.length - 1)
-      }
-      return setDesktopIndex(desktopIndex - 1)
     }
+    if (desktopIndex === 0) {
+      return setDesktopIndex(desktopWallpaper.length - 1)
+    }
+
+    return setDesktopIndex(desktopIndex - 1)
   }
 
   const handleGoRight = ({ isMobile = false }) => {
@@ -161,43 +142,13 @@ export default function Home({
         return setMobileIndex(0)
       }
       return setMobileIndex(mobileIndex + 1)
-    } else {
-      if (desktopIndex === desktopWallpaper.length - 1) {
-        return setDesktopIndex(0)
-      }
-      return setDesktopIndex(desktopIndex + 1)
     }
+    if (desktopIndex === desktopWallpaper.length - 1) {
+      return setDesktopIndex(0)
+    }
+
+    return setDesktopIndex(desktopIndex + 1)
   }
-
-  // const timer that starts on mount and changes wallpaper every 10 seconds
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     // setBackgroundGradient(gradientPositionStyle[Math.floor(getRandomArbitrary(0, 5))])
-  //     // set random color for background
-  //     setSphereSize(getRandomArbitrary(256, 1024))
-  //     setSphereOffset(getRandomArbitrary(0, 100))
-  //   }, 5000)
-  //   return () => clearInterval(timer)
-  // }, [])
-
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     if (desktopWallpaperPosition === desktopWallpaperPositionStyle[1]) {
-  //       setDesktopWallpaperPosition(desktopWallpaperPositionStyle[0])
-  //     } else {
-  //       setDesktopWallpaperPosition(desktopWallpaperPositionStyle[1])
-  //     }
-  //   }, 12000)
-  //   return () => clearInterval(timer)
-  // }, [])
-
-  // every 10 seconds change the wallpaper
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     handleGoRight({ isMobile: false })
-  //   }, 10000)
-  //   return () => clearInterval(interval)
-  // }, [desktopIndex])
 
   useEffect(() => {
     setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)))
@@ -211,126 +162,85 @@ export default function Home({
 
       <Main noTopPadding className="flex-col">
         <section className="w-full h-screen">
-          <div className="relative overflow-clip hidden bg-slate-200 h-full lg:block" key="desktop">
-            <Image
-              // loader={({ src }) => src}
-              src={currentWallpaper.imageUrl}
-              // blurDataURL={imageBuilder(currentWallpaper.image)
-              //   .width(20)
-              //   .height(20)
-              //   .quality(10)
-              //   .url()}
-              blurDataURL={currentWallpaper.lowResImageUrl}
-              layout="fill"
-              placeholder="blur"
-              priority
-              objectFit="cover"
-              className={clsx(
-                "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
-              )}
-              alt="headerImage"
-            />
-
-            {/* <LazyLoadImage
-              // src={imageBuilder(currentWallpaper.image)
-              //   .width(1400)
-              //   .height(900)
-              //   // .auto("format")
-              //   // .fit("scale")
-              //   .quality(75)
-              //   .url()}
-              src={currentWallpaper.imageUrl}
-              placeholderSrc={currentWallpaper.lowResImageUrl}
-              alt="headerImage"
-              // effect="blur"
-              // placeholderSrc={imageBuilder(currentWallpaper.image)
-              //   // .width(1200)
-              //   // .height(1200)
-              //   // .auto("format")
-              //   .fit("scale")
-              //   .quality(5)
-              //   .url()}
-              className={clsx(
-                "w-full h-full object-cover object-center absolute inset-0 transition-all duration-[12000ms] ease-in-out"
-                // desktopWallpaperPosition
-              )}
-            /> */}
+          <div className="relative h-full overflow-clip bg-slate-800" key="desktop">
+            <div className="relative hidden w-full h-full xl:block">
+              <Image
+                src={currentWallpaper.imageUrl}
+                blurDataURL={currentWallpaper.lowResImageUrl}
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                priority
+                fill
+                placeholder="blur"
+                className={clsx(
+                  "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
+                )}
+                alt="headerImage"
+              />
+            </div>
+            <div className="relative block w-full h-full xl:hidden">
+              <Image
+                src={currentMobileWallpaper.imageUrl}
+                blurDataURL={currentMobileWallpaper.lowResImageUrl}
+                sizes="(max-width: 640px) 640px, 100vw"
+                priority
+                fill
+                placeholder="blur"
+                className="object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
+                alt="headerImage"
+              />
+            </div>
 
             <div
-              className={clsx(
-                `absolute w-full flex items-center mix-blend-overlay justify-center opacity-80 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
-              )}
+              className={`absolute inset-0 w-full flex items-center mix-blend-overlay justify-center h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`}
             />
 
-            {/* <div className="absolute inset-0 grid grid-cols-6 p-4 gap-4 w-full h-full">
-              {[...Array(24)].map((_, i) => {
-                // round size
-                const baseSize = sphereSize * Math.floor(getRandomArbitrary(0.8, 5))
-
-                const roundedSize = Math.round(baseSize / 256) * 256
-
-                // get screenwidth
-                // const screenWidth = window.innerWidth
-
-                const xPosition = getRandomArbitrary(-100, 100) * (sphereOffset / 100)
-                const yPosition = getRandomArbitrary(-100, 100) * (sphereOffset / 100)
-
-                const sphereColorz = sphereColor[Math.floor(getRandomArbitrary(0, 5))]
-
-                return (
-                  <div
-                    style={{
-                      width: `${roundedSize}px`,
-                      height: `${roundedSize}px`,
-                      transform: `translate(${xPosition}%, ${yPosition}%)`,
-                      transitionTimingFunction: "cubic-bezier(0.65, 0.0, 0.35, 1)"
-                    }}
-                    key={i}
-                    className={clsx(
-                      `transition-all col-span-1 shrink-0  z-10 duration-[5000ms]`,
-                      "rounded-full",
-                      sphereColorz ? sphereColorz : "bg-red-500"
-                    )}
-                  />
-                )
-              })}
-            </div> */}
-
-            <div className="relative h-full inset-0 flex flex-col items-center justify-center gap-4 z-10">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4 ring">
               <div className="flex items-center justify-between w-full gap-6 p-10">
-                <button
-                  onClick={() => handleGoLeft({ isMobile: false })}
+                <motion.button
+                  // onMouseOver={() => setIsPaused(true)}
+                  // onMouseOut={() => setIsPaused(false)}
+                  whileHover={{ scale: 1.2 }}
+                  onClick={() => handleGoLeft({ isMobile: width < 764 ? false : true })}
                   className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to previous painting">
                   <BsChevronLeft
                     aria-label="Left"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
-                </button>
+                </motion.button>
+                <div className="relative ">
+                  <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full rounded mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
 
-                <Link
-                  href="/paintings"
-                  className="relative px-4 py-2 text-center text-black transition rounded hover:ring ring-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  <div className=" px-4 py-2 z-10 bg-highlight rounded ">
-                    <b>Go to gallery</b>
-                  </div>
-                </Link>
-                <button
-                  onClick={() => handleGoRight({ isMobile: false })}
-                  className="rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+                  <Link href="/paintings">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      // whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", duration: 0.5 }}
+                      className="relative py-4 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
+                      <b>Go to gallery</b>
+                    </motion.div>
+                  </Link>
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  // onMouseOver={() => setIsPaused(true)}
+                  // onMouseOut={() => setIsPaused(false)}
+                  onClick={() => handleGoRight({ isMobile: width < 764 ? false : true })}
+                  className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to next painting">
                   <BsChevronRight
                     aria-label="Right"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
-                </button>
+                </motion.button>
               </div>
             </div>
-            <div className="absolute left-0 flex justify-center items-center p-4 right-0 bottom-0 z-10">
+            <div className="absolute left-0 right-0 z-10 flex items-center justify-center p-4 bottom-4">
               <motion.a
-                initial={{ y: 0 }}
-                animate={{ y: -10 }}
-                whileHover={{ scale: 1.2 }}
+                initial={{ y: 0, scale: 1.0 }}
+                animate={{ y: -10, scale: 1.0 }}
+                // whileHover={{ scale: 1.2 }}
                 transition={{
                   repeat: Infinity,
                   // repeatDelay: 2,
@@ -340,29 +250,17 @@ export default function Home({
                   type: "spring",
                   bounce: 0.5
                 }}
-                className="bg-white p-4 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+                className="p-4 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                 href="#main">
                 <BsChevronDown />
               </motion.a>
             </div>
           </div>
 
-          <section className="relative w-full h-full lg:hidden" key="mobile">
+          {/* <section className="relative w-full h-full lg:hidden" key="mobile">
             <Image
-              // loader={({ src }) => src}
               src={currentMobileWallpaper.imageUrl}
               blurDataURL={currentMobileWallpaper.lowResImageUrl}
-              // src={imageBuilder(currentMobileWallpaper.image)
-              //   .width(764)
-              //   .height(800)
-              //   .quality(75)
-              //   .fit("scale")
-              //   .url()}
-              // blurDataURL={imageBuilder(currentMobileWallpaper.image)
-              //   .width(20)
-              //   .height(20)
-              //   .quality(10)
-              //   .url()}
               layout="fill"
               placeholder="blur"
               priority
@@ -402,11 +300,11 @@ export default function Home({
                 </button>
               </div>
             </div>
-          </section>
+          </section> */}
         </section>
         <div id="main" />
-        <section className="w-full p-10 min-h-96 h-full grid grid-cols-12 ">
-          <section className="col-span-4">
+        <section className="grid w-full h-full grid-cols-12 p-10 min-h-96 ">
+          <section className="col-span-full xl:col-span-4">
             <h1>
               <b>Henrik Wilhelm Sissener</b>
             </h1>

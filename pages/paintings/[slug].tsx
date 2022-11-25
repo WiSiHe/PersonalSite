@@ -1,14 +1,14 @@
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
-import { getAllPaintingSlugs, getAllTags, getAllTagsAndPaintings } from "lib/api"
+import { getAllTags, getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 
 // import PaintingGrid from "components/PaintingGrid"
 
 import Filters from "components/Filters"
 import Footer from "components/Footer"
-import Painting from "components/PaintingV3"
+import { Painting } from "components"
 
 export interface iTag {
   label: string
@@ -64,7 +64,7 @@ const PaintingsPage = ({ slug = "", paintings = [], tags = [] }: PaintingsPagePr
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
           <section className="col-span-full">
-            <div className="sticky top-0 z-10 p-4 bg-stone-200 bg-opacity-10 backdrop-blur-lg">
+            <div className="sticky top-0 z-20 p-4 bg-stone-200 bg-opacity-10 backdrop-blur-lg">
               <Filters filteredTags={tags} activeFilter={slug} />
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
@@ -115,15 +115,23 @@ export async function getStaticProps({ params, preview = false }) {
 
 export async function getStaticPaths() {
   const allTags = await getAllTags()
-  console.log("allTags", allTags)
+
+  const paths = allTags.map(tag => {
+    const { name = "" } = tag
+    if (!name) return
+    return {
+      params: { slug: tag.name.toLowerCase() }
+    }
+  })
 
   return {
-    paths:
-      allTags?.map(tag => ({
-        params: {
-          slug: tag.name
-        }
-      })) || [],
+    // paths:
+    //   allTags?.map(tag => ({
+    //     params: {
+    //       slug: tag.name
+    //     }
+    //   })) || [],
+    paths,
     fallback: true
   }
 }

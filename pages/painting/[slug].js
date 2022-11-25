@@ -87,7 +87,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
       <Main noTopPadding className="grid flex-col flex-1 w-full grid-cols-12 gap-10 p-4 xl:p-20 ">
         <AnimatePresence>
           <motion.div
-            className="fixed z-10 bottom-4 left-4 xl:top-20 xl:left-6"
+            className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
@@ -169,7 +169,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                   <div
                     key={`picture-${index}`}
                     className={clsx(
-                      "bg-white relative ring col-span-full xl:col-span-5 xl:col-start-3",
+                      "bg-white relative col-span-full xl:col-span-5 xl:col-start-3",
                       imageAspectStyle[format]
                     )}>
                     <LazyLoadImage

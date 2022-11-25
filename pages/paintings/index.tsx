@@ -12,7 +12,7 @@ import useScrollPosition from "hooks/useScrollPosition"
 import { motion } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
-import Painting from "components/PaintingV3"
+import { Painting } from "components"
 const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
   const scrollPosition = useScrollPosition()
 

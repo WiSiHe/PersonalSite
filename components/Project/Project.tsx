@@ -22,7 +22,7 @@ const cardVariants = {
 }
 
 const Project = ({
-  image = {},
+  image = "",
   tags = [],
   title = "",
   status = "",

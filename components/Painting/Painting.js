@@ -29,7 +29,7 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
     image = {},
     title = "",
     tags = [],
-    format = "square",
+    // format = "square",
     slug: { current = "" } = {}
   } = paintingData
 

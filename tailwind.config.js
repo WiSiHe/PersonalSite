@@ -13,7 +13,9 @@ module.exports = {
         blob: "blob 20s ease-in-out infinite",
         "gradient-x": "gradient-x 15s ease-in-out infinite",
         "gradient-y": "gradient-y 15s ease-in-out infinite",
-        "gradient-xy": "gradient-xy 15s ease-in-out infinite"
+        "gradient-xy": "gradient-xy 15s ease-in-out infinite",
+        progress: "progress 15s linear infinite",
+        tilt: "tilt 10s linear infinite"
       },
       keyframes: {
         "gradient-y": {
@@ -56,6 +58,25 @@ module.exports = {
           },
           "66.6%": {
             transform: "translate(-20px, 30px) scale(1)"
+          }
+        },
+        progress: {
+          "0%": {
+            width: "0%"
+          },
+          "100%": {
+            width: "100%"
+          }
+        },
+        tilt: {
+          "0%, 100%": {
+            transform: "rotate(0deg)"
+          },
+          "25%": {
+            transform: "rotate(5deg)"
+          },
+          "75%": {
+            transform: "rotate(-5deg)"
           }
         }
       },

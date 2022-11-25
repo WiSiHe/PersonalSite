@@ -31,7 +31,6 @@ const Painting = function ({ paintingData = {} }) {
     _id = "",
     image = {},
     title = "",
-    tags = [],
     format = "square",
     slug: { current = "" } = {},
     images = [],

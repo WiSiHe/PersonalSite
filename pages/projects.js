@@ -2,16 +2,16 @@ import React from "react"
 
 import Navigation from "../components/Navigation"
 
-import Main from "../components/Main"
-import Meta from "../components/Meta/Meta"
-import Project from "components/Project"
+import Main from "components/Main"
+import Meta from "components/Meta/Meta"
 import Footer from "components/Footer"
+import { Project } from "components"
 
 import websiteImage from "public/images/wisihesiteTemplate.jpeg"
-import websiteQR from "public/images/wisihe.png"
+
 import night from "public/images/night-forest.jpeg"
 import hove from "public/images/hove.png"
-import Image from "next/image"
+import LogoQR from "icons/LogoQR"
 
 export default function ProjectsPage() {
   const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"]
@@ -42,12 +42,7 @@ export default function ProjectsPage() {
 
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
-          {/* <section className="sticky hidden col-span-2 bg-stone-100 xl:block">
-            <div className="sticky top-0 w-full h-[fit-content]">
-              <SideMenu />
-            </div>
-          </section> */}
-          <section className="relative p-4 pt-10 col-span-full">
+          <section className="relative p-4 pt-10 mx-auto col-span-full max-w-screen-2xl">
             <h1 className="text-4xl">My Projects</h1>
             <p className="max-w-2xl pt-4">
               These are some of my various projects that I have been working on, some of them are
@@ -69,7 +64,7 @@ export default function ProjectsPage() {
                   who knows what this website will be in a few years. But it what I like is that it
                   can be whatever I want it to be.
                 </p>
-                <Image src={websiteQR} alt="qr" width={75} height={75} />
+                <LogoQR height="4.0rem" width="4.0rem" />
               </Project>
 
               <Project
