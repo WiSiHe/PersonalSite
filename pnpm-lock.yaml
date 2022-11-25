@@ -14,6 +14,7 @@ specifiers:
   '@types/three': ^0.146.0
   '@typescript-eslint/eslint-plugin': ^5.42.1
   '@typescript-eslint/parser': ^5.42.1
+  '@vercel/analytics': ^0.1.5
   autoprefixer: ^10.4.13
   babel-loader: ^8.3.0
   clsx: ^1.2.1
@@ -56,6 +57,7 @@ dependencies:
   '@types/three': 0.146.0
   '@typescript-eslint/eslint-plugin': 5.42.1_slwy6o6qas3d7czf57dpvvgxcy
   '@typescript-eslint/parser': 5.42.1_jvauwxa5w5e7nrphbg55zjxshq
+  '@vercel/analytics': 0.1.5_react@18.2.0
   clsx: 1.2.1
   eslint-config-prettier: 8.5.0_eslint@8.27.0
   focus-trap-react: 8.11.3_v2m5e27vhdewzwhryxwfaorcca
@@ -1120,6 +1122,14 @@ packages:
       react: '>= 16.8.0'
     dependencies:
       '@use-gesture/core': 10.2.22
+      react: 18.2.0
+    dev: false
+
+  /@vercel/analytics/0.1.5_react@18.2.0:
+    resolution: {integrity: sha512-/k9N8Ea3Yc5A52GlkjzUEbi2vE/izClrOf++ryBkxEfrZM/OZwtHkdNw/QExZ1h/B67RCZLK7bCOnKKrhG7gTg==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
       react: 18.2.0
     dev: false
 

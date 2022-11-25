@@ -22,6 +22,7 @@
     "@types/three": "^0.146.0",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
+    "@vercel/analytics": "^0.1.5",
     "clsx": "^1.2.1",
     "eslint-config-prettier": "^8.5.0",
     "focus-trap-react": "^8.11.3",
