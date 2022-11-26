@@ -2,11 +2,17 @@ import PropTypes from "prop-types"
 import React from "react"
 import "tailwindcss/tailwind.css"
 import { Analytics } from "@vercel/analytics/react"
+import { Page } from "components"
+import { AnimatePresence } from "framer-motion"
 
 const MyApp = function ({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
+      <AnimatePresence initial={false}>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
+      </AnimatePresence>
       <Analytics />
     </>
   )

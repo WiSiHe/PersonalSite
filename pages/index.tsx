@@ -19,36 +19,8 @@ import clsx from "clsx"
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min
-}
-
-// const gradientPositionStyle = {
-//   0: "bg-gradient-to-tr from-cyan-300 via-purple-300/40 to-red-500",
-//   1: "bg-gradient-to-b from-blue-300 via-purple-300 to-orange-500",
-//   2: "bg-gradient-to-bl from-orange-300 via-purple-300 to-yellow-500",
-//   3: "bg-gradient-to-tr from-purple-300 via-purple-300 to-blue-500",
-//   4: "bg-gradient-to-bl from-red-300 via-purple-300 to-red-500",
-//   5: "bg-gradient-to-tl from-teal-300 via-purple-300 to-purple-500"
-// }
-
-// const sphereColor = {
-//   0: "bg-yellow-300",
-//   1: "bg-purple-300",
-//   2: "bg-cyan-300"
-// }
-
-// const desktopWallpaperPositionStyle = {
-//   1: "object-top",
-//   2: "object-bottom"
-// }
-
-// const desktopWallpaperSizeStyle = {
-//   0: "100% 100%",
-//   1: "120% 120%",
-//   2: "150% 150%",
-//   3: "200% 200%"
-// }
+import portrait from "public/images/selfPortrait.png"
+import { getRandomArbitrary } from "utils/numbers"
 
 export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
 export declare type ImageLoaderProps = {
@@ -121,19 +93,19 @@ export default function Home({
   const currentMobileWallpaper = mobileWallpaper[mobileIndex]
 
   const handleGoLeft = ({ isMobile = false }) => {
-    // setIsRestartingAnimation(true)
     if (isMobile) {
       if (mobileIndex === 0) {
         return setMobileIndex(mobileWallpaper.length - 1)
       } else {
         return setMobileIndex(mobileIndex - 1)
       }
-    }
-    if (desktopIndex === 0) {
-      return setDesktopIndex(desktopWallpaper.length - 1)
-    }
+    } else {
+      if (desktopIndex === 0) {
+        return setDesktopIndex(desktopWallpaper.length - 1)
+      }
 
-    return setDesktopIndex(desktopIndex - 1)
+      return setDesktopIndex(desktopIndex - 1)
+    }
   }
 
   const handleGoRight = ({ isMobile = false }) => {
@@ -142,12 +114,13 @@ export default function Home({
         return setMobileIndex(0)
       }
       return setMobileIndex(mobileIndex + 1)
-    }
-    if (desktopIndex === desktopWallpaper.length - 1) {
-      return setDesktopIndex(0)
-    }
+    } else {
+      if (desktopIndex === desktopWallpaper.length - 1) {
+        return setDesktopIndex(0)
+      }
 
-    return setDesktopIndex(desktopIndex + 1)
+      return setDesktopIndex(desktopIndex + 1)
+    }
   }
 
   useEffect(() => {
@@ -200,7 +173,7 @@ export default function Home({
                   // onMouseOver={() => setIsPaused(true)}
                   // onMouseOut={() => setIsPaused(false)}
                   whileHover={{ scale: 1.2 }}
-                  onClick={() => handleGoLeft({ isMobile: width < 764 ? false : true })}
+                  onClick={() => handleGoLeft({ isMobile: width > 764 ? false : true })}
                   className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to previous painting">
                   <BsChevronLeft
@@ -226,7 +199,7 @@ export default function Home({
                   whileHover={{ scale: 1.2 }}
                   // onMouseOver={() => setIsPaused(true)}
                   // onMouseOut={() => setIsPaused(false)}
-                  onClick={() => handleGoRight({ isMobile: width < 764 ? false : true })}
+                  onClick={() => handleGoRight({ isMobile: width > 764 ? false : true })}
                   className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to next painting">
                   <BsChevronRight
@@ -256,65 +229,28 @@ export default function Home({
               </motion.a>
             </div>
           </div>
-
-          {/* <section className="relative w-full h-full lg:hidden" key="mobile">
-            <Image
-              src={currentMobileWallpaper.imageUrl}
-              blurDataURL={currentMobileWallpaper.lowResImageUrl}
-              layout="fill"
-              placeholder="blur"
-              priority
-              objectFit="cover"
-              className="w-full h-full transition-all duration-1000 ease-in-out transform bg-center bg-cover object-fit md:block bg-gray-50 "
-              alt="headerImage"
-            />
-            <div
-              className={clsx(
-                `absolute w-full flex items-center mix-blend-overlay justify-center opacity-80 h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
-              )}
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <div className="flex items-center justify-between w-full gap-6 p-10">
-                <button
-                  onClick={() => handleGoLeft({ isMobile: true })}
-                  className="flex-shrink-0 rounded-lg w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to previous painting">
-                  <BsChevronLeft
-                    aria-label="Left"
-                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </button>
-                <Link
-                  href="/paintings"
-                  className="relative flex-shrink-0 px-4 py-2 text-center text-black transition rounded hover:ring w-fit bg-highlight hover:shadow-lg focus:outline-none focus:ring focus:ring-highlight focus:border-transparent">
-                  <strong>Go to gallery</strong>
-                </Link>
-                <button
-                  onClick={() => handleGoRight({ isMobile: true })}
-                  className="rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to next painting">
-                  <BsChevronRight
-                    aria-label="Right"
-                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </button>
-              </div>
-            </div>
-          </section> */}
         </section>
-        <div id="main" />
-        <section className="grid w-full h-full grid-cols-12 p-10 min-h-96 ">
+
+        <section className="grid w-full h-full grid-cols-12 p-10 min-h-96" id="main">
           <section className="col-span-full xl:col-span-4">
             <h1>
               <b>Henrik Wilhelm Sissener</b>
             </h1>
-            <p className="">
+            <p>
               Short story: Im a digital artist / web developer / hobby designer who has been drawing
               my whole life. I mostly do character designs, but I try to step into the big world of
               landscape every now and then, I spend my free time making digital paintings paintings
               and do some tinkering with new Frontend technologies.
             </p>
           </section>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            className="relative col-span-4 ring h-96">
+            <Image src={portrait} alt="test" className="object-cover w-full h-full" />
+          </motion.div>
         </section>
         <section>
           <div
