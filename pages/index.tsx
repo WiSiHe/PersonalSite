@@ -16,7 +16,8 @@ import { imageBuilder } from "lib/sanity"
 import useWindowDimensions from "hooks/useWindowDimension"
 
 import clsx from "clsx"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
+
 import Image from "next/image"
 
 import portrait from "public/images/selfPortrait.png"
@@ -169,7 +170,7 @@ export default function Home({
 
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4 ring">
               <div className="flex items-center justify-between w-full gap-6 p-10">
-                <motion.button
+                <m.button
                   // onMouseOver={() => setIsPaused(true)}
                   // onMouseOut={() => setIsPaused(false)}
                   whileHover={{ scale: 1.2 }}
@@ -180,22 +181,22 @@ export default function Home({
                     aria-label="Left"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
-                </motion.button>
+                </m.button>
                 <div className="relative ">
                   <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full rounded mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
 
                   <Link href="/paintings">
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       // whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", duration: 0.5 }}
                       className="relative py-4 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
                       <b>Go to gallery</b>
-                    </motion.div>
+                    </m.div>
                   </Link>
                 </div>
-                <motion.button
+                <m.button
                   whileHover={{ scale: 1.2 }}
                   // onMouseOver={() => setIsPaused(true)}
                   // onMouseOut={() => setIsPaused(false)}
@@ -206,11 +207,11 @@ export default function Home({
                     aria-label="Right"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
-                </motion.button>
+                </m.button>
               </div>
             </div>
             <div className="absolute left-0 right-0 z-10 flex items-center justify-center p-4 bottom-4">
-              <motion.a
+              <m.a
                 initial={{ y: 0, scale: 1.0 }}
                 animate={{ y: -10, scale: 1.0 }}
                 // whileHover={{ scale: 1.2 }}
@@ -226,7 +227,7 @@ export default function Home({
                 className="p-4 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                 href="#main">
                 <BsChevronDown />
-              </motion.a>
+              </m.a>
             </div>
           </div>
         </section>
@@ -243,14 +244,14 @@ export default function Home({
               and do some tinkering with new Frontend technologies.
             </p>
           </section>
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.5 }}
             className="relative col-span-4 ring h-96">
             <Image src={portrait} alt="test" className="object-cover w-full h-full" />
-          </motion.div>
+          </m.div>
         </section>
         <section>
           <div

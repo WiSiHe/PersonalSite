@@ -1,6 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { motion } from "framer-motion"
+
+import { useRouter } from "next/router"
+import dynamic from "next/dynamic"
+
+import { m } from "framer-motion"
 
 // import Link from "next/link"
 // import dynamic from 'next/dynamic';
@@ -19,13 +23,18 @@ import RedbubbleLink from "components/RedbubbleLink"
 import { imageBuilder } from "lib/sanity"
 import { getPaintingDetails, getAllPaintingSlugs } from "lib/api"
 import SocialLinks from "components/SocialLinks"
-import { AnimatePresence } from "framer-motion"
+
 import clsx from "clsx"
 
-import ReactPlayer from "react-player"
-import { useRouter } from "next/router"
+// import ReactPlayer from "react-player"
+// const ReactPlayer = React.lazy(() => import("react-player"))
+const ReactPlayer = dynamic(() => import("react-player"), {
+  suspense: true
+})
+
 import Navigation from "../../components/Navigation"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { Suspense } from "react"
 
 // const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
@@ -85,115 +94,115 @@ export default function Gallery({ painting = {}, slug = {} }) {
       />
       <Navigation />
       <Main noTopPadding className="grid flex-col flex-1 w-full grid-cols-12 gap-10 p-4 xl:p-20 ">
-        <AnimatePresence>
-          <motion.div
-            className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ type: "spring" }}
-            key="backbutton">
-            <button
-              onClick={handleGoBack}
-              className="flex items-center justify-center gap-2 px-4 py-2 text-xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
-              <IoArrowBackSharp /> Back
-            </button>
-          </motion.div>
+        <m.div
+          className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ type: "spring" }}
+          key="backbutton">
+          <button
+            onClick={handleGoBack}
+            className="flex items-center justify-center gap-2 px-4 py-2 text-xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight ">
+            <IoArrowBackSharp /> Back
+          </button>
+        </m.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
-            key="MainPainting"
-            className={clsx(
-              "flex relative flex-col col-span-full w-full xl:col-span-5 xl:col-start-3",
-              imageAspectStyle[format]
-            )}>
-            <LazyLoadImage
-              alt={title}
-              src={imageBuilder(image)
-                .width(imageWidth[format])
-                .height(imageHeight[format])
-                .quality(75)
-                .url()}
-            />
-          </motion.div>
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
+          key="MainPainting"
+          className={clsx(
+            "flex relative flex-col col-span-full w-full xl:col-span-5 xl:col-start-3",
+            imageAspectStyle[format]
+          )}>
+          <LazyLoadImage
+            alt={title}
+            src={imageBuilder(image)
+              .width(imageWidth[format])
+              .height(imageHeight[format])
+              .quality(75)
+              .url()}
+          />
+        </m.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
-            key="text-section"
-            className="relative flex flex-col justify-between w-full transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4">
-            <div>
-              <h1 className="pb-2 text-2xl lg:text-4xl">
-                <strong>{title}</strong>
-              </h1>
-              <div className="flex flex-wrap gap-2">
-                {tagsV2?.map(tag => {
-                  const { name = "" } = tag
-                  return (
-                    <p
-                      className="px-2 py-1 text-xs text-white capitalize rounded-lg bg-primary"
-                      key={name}>
-                      {name}
-                    </p>
-                  )
-                })}
-              </div>
-              <p className="py-2 rounded-sm">
-                {description
-                  ? description
-                  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat."}
-              </p>
-              {hasStoreLinks && (
-                <h3>
-                  <b>Store links:</b>
-                </h3>
-              )}
-              {hasRedBubleLink && (
-                <RedbubbleLink hasRedBubleLink={hasRedBubleLink} redbubbleUrl={redbubbleUrl} />
-              )}
-            </div>
-            <div className="pt-10">
-              <SocialLinks />
-            </div>
-          </motion.div>
-
-          {imagesCount > 0 && (
-            <>
-              {images.map((image, index) => {
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
+          key="text-section"
+          className="relative flex flex-col justify-between w-full transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4">
+          <div>
+            <h1 className="pb-2 text-2xl lg:text-4xl">
+              <strong>{title}</strong>
+            </h1>
+            <div className="flex flex-wrap gap-2">
+              {tagsV2?.map(tag => {
+                const { name = "" } = tag
                 return (
-                  <div
-                    key={`picture-${index}`}
-                    className={clsx(
-                      "bg-white relative col-span-full xl:col-span-5 xl:col-start-3",
-                      imageAspectStyle[format]
-                    )}>
-                    <LazyLoadImage
-                      alt={title}
-                      src={imageBuilder(image)
-                        .width(imageWidth[format])
-                        .height(imageHeight[format])
-                        .quality(75)
-                        .url()}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
+                  <p
+                    className="px-2 py-1 text-xs text-white capitalize rounded-lg bg-primary"
+                    key={name}>
+                    {name}
+                  </p>
                 )
               })}
-            </>
-          )}
-          {video && (
-            <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
-              <div className="w-full aspect-video">
-                <ReactPlayer url={video} loop muted playing width="100%" height="100%" />
-              </div>
             </div>
-          )}
-        </AnimatePresence>
+            <p className="py-2 rounded-sm">
+              {description
+                ? description
+                : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat."}
+            </p>
+            {hasStoreLinks && (
+              <h3>
+                <b>Store links:</b>
+              </h3>
+            )}
+            {hasRedBubleLink && (
+              <RedbubbleLink hasRedBubleLink={hasRedBubleLink} redbubbleUrl={redbubbleUrl} />
+            )}
+          </div>
+          <div className="pt-10">
+            <SocialLinks />
+          </div>
+        </m.div>
+
+        {imagesCount > 0 && (
+          <>
+            {images.map((image, index) => {
+              return (
+                <div
+                  key={`picture-${index}`}
+                  className={clsx(
+                    "bg-white relative col-span-full xl:col-span-5 xl:col-start-3",
+                    imageAspectStyle[format]
+                  )}>
+                  <LazyLoadImage
+                    alt={title}
+                    src={imageBuilder(image)
+                      .width(imageWidth[format])
+                      .height(imageHeight[format])
+                      .quality(75)
+                      .url()}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              )
+            })}
+          </>
+        )}
+        {video && (
+          <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
+            <div className="w-full aspect-video">
+              <Suspense fallback={<div>Loading...</div>}>
+                <ReactPlayer url={video} loop muted playing width="100%" height="100%" />
+              </Suspense>
+            </div>
+          </div>
+        )}
       </Main>
     </>
   )

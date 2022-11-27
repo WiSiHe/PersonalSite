@@ -4,8 +4,9 @@ import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 
 import { getAllVideos } from "lib/api"
-import React from "react"
-import ReactPlayer from "react-player"
+import React, { Suspense } from "react"
+// import ReactPlayer from "react-player"
+const ReactPlayer = React.lazy(() => import(/* webpackChunkName: 'ReactPlayer' */ "react-player"))
 
 import useScrollPosition from "hooks/useScrollPosition"
 import { motion } from "framer-motion"
@@ -71,7 +72,9 @@ const PaintingsPage = ({ videos = [] }) => {
                   <p>{description}</p>
                 </div>
                 <div className="aspect-video">
-                  <ReactPlayer url={video} loop width="100%" height="100%" />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <ReactPlayer url={video} loop width="100%" height="100%" />
+                  </Suspense>
                 </div>
               </motion.div>
             )
