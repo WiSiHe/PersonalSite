@@ -2,4 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # npm test
+pnpm lint
 # lint-staged && pretty-quick --staged && next lint --cache --fix
