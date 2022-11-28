@@ -13,7 +13,8 @@ const SocialLinks = ({ alignLeft = false }) => {
             rel="noreferrer"
             target="_blank"
             aria-label="redbubble"
-            className="group focus:outline-none">
+            className="group focus:outline-none"
+          >
             {/* <label className="sr-only">open redbubble in new window</label> */}
             <SiRedbubble
               alt="redbubble"
@@ -28,7 +29,8 @@ const SocialLinks = ({ alignLeft = false }) => {
             target="_blank"
             rel="noreferrer"
             aria-label="artstation"
-            className="group focus:outline-none">
+            className="group focus:outline-none"
+          >
             <SiArtstation
               alt="artstation"
               aria-hidden="true"
@@ -42,7 +44,8 @@ const SocialLinks = ({ alignLeft = false }) => {
             target="_blank"
             rel="noreferrer"
             aria-label="instagram"
-            className="group focus:outline-none">
+            className="group focus:outline-none"
+          >
             <SiInstagram
               alt="instagram"
               aria-hidden="true"
@@ -56,7 +59,8 @@ const SocialLinks = ({ alignLeft = false }) => {
             rel="noreferrer"
             target="_blank"
             aria-label="linkedin"
-            className="group focus:outline-none">
+            className="group focus:outline-none"
+          >
             <SiLinkedin
               alt="linkedin"
               aria-hidden="true"

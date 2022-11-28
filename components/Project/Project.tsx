@@ -39,12 +39,14 @@ const Project = ({
       className={clsx(
         "relative flex flex-col overflow-hidden bg-white rounded-lg shadow-xl xl:h-[512px]",
         className
-      )}>
+      )}
+    >
       <div
         className={clsx(
           "flex flex-col justify-between  p-4 ",
           imageLeft ? "order-2 xl:order-2" : "order-2 xl:order-1"
-        )}>
+        )}
+      >
         <div>
           <h2 className="text-4xl">
             <strong>{title}</strong>
@@ -68,7 +70,8 @@ const Project = ({
         className={clsx(
           "relative  w-full h-full bg-primary aspect-square",
           imageLeft ? "order-1 xl:order-1" : "order-1 xl:order-2"
-        )}>
+        )}
+      >
         <Image
           src={image}
           alt="test"

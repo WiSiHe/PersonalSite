@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Switch } from "@headlessui/react";
+import React, { useState } from "react"
+import { Switch } from "@headlessui/react"
 
 export default function SwitchComponent() {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(false)
 
   return (
     <Switch
@@ -19,5 +19,5 @@ export default function SwitchComponent() {
         } inline-block w-4 h-4 transform bg-white rounded-full`}
       />
     </Switch>
-  );
+  )
 }

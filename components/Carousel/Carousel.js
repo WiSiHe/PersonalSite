@@ -38,10 +38,12 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
         className={clsx(
           stepLeftDisabled && "hidden",
           "absolute top-0 bottom-0 left-4 z-20 flex items-center justify-center w-20 pointer-events-none"
-        )}>
+        )}
+      >
         <button
           className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
-          onClick={handleStepLeft}>
+          onClick={handleStepLeft}
+        >
           <BiLeftArrowAlt className="text-xl text-white" />
         </button>
       </div>
@@ -49,7 +51,8 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
       <div
         className="relative flex w-full h-full space-x-4 overflow-x-scroll snap-x snap-mandatory scroll-pl-6 scroll-ml-6 scrollbar-hidden"
         ref={wrapper}
-        onScroll={handleScroll}>
+        onScroll={handleScroll}
+      >
         {paintings
           .filter(p =>
             p.tags?.find(t => t.value.toLowerCase() === filterTag || filterTag === "all")
@@ -63,10 +66,12 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
         className={clsx(
           stepRightDisabled && "hidden",
           "absolute top-0 bottom-0 right-0 flex items-center justify-center w-20"
-        )}>
+        )}
+      >
         <button
           className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
-          onClick={handleStepRight}>
+          onClick={handleStepRight}
+        >
           <BiRightArrowAlt className="text-xl text-white" />
         </button>
       </div>

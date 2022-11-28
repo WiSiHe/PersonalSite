@@ -180,7 +180,8 @@ export default function Home({
                   whileHover={{ scale: 1.2 }}
                   onClick={() => handleGoLeft({ isMobile: width > 764 ? false : true })}
                   className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to previous painting">
+                  aria-label="Go to previous painting"
+                >
                   <BsChevronLeft
                     aria-label="Left"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -195,7 +196,8 @@ export default function Home({
                       animate={{ opacity: 1, scale: 1 }}
                       // whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", duration: 0.5 }}
-                      className="relative py-4 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
+                      className="relative py-4 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
+                    >
                       <b>Go to gallery</b>
                     </m.div>
                   </Link>
@@ -206,7 +208,8 @@ export default function Home({
                   // onMouseOut={() => setIsPaused(false)}
                   onClick={() => handleGoRight({ isMobile: width > 764 ? false : true })}
                   className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to next painting">
+                  aria-label="Go to next painting"
+                >
                   <BsChevronRight
                     aria-label="Right"
                     className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
@@ -229,7 +232,8 @@ export default function Home({
                   bounce: 0.5
                 }}
                 className="p-4 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                href="#main">
+                href="#main"
+              >
                 <BsChevronDown />
               </m.a>
             </div>
@@ -253,7 +257,8 @@ export default function Home({
             transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.5 }}
-            className="relative col-span-4 ring h-96">
+            className="relative col-span-4 ring h-96"
+          >
             <Image src={portrait} alt="test" className="object-cover w-full h-full" />
           </m.div>
         </section>

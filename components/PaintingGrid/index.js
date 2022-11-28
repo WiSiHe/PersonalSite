@@ -1,3 +1,3 @@
-import PaintingGrid from "./PaintingGrid";
+import PaintingGrid from "./PaintingGrid"
 
-export default PaintingGrid;
+export default PaintingGrid

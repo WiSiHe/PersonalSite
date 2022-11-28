@@ -74,14 +74,16 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
           ? "md:col-span-3 lg:col-span-3 xl:col-span-4 lg:row-span-2 xl:row-span-2"
           : "md:col-span-3 lg:col-span-3 xl:col-span-2"
       )}
-      key={_id}>
+      key={_id}
+    >
       <Link href={linkString}>
         <div
           className={clsx(
             "relative w-full",
             "h-[320px] md:h-[200px]",
             isHighlighted ? " lg:h-[480px] xl:h-[610px]" : "lg:h-[240px] xl:h-[300px]"
-          )}>
+          )}
+        >
           <Image
             src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
             // layout="fill"

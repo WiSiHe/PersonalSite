@@ -1,4 +1,11 @@
 import PropTypes from "prop-types"
+
+import dynamic from "next/dynamic"
+
+const ReactPlayer = dynamic(() => import("react-player"), {
+  suspense: true
+})
+
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
@@ -6,10 +13,10 @@ import Navigation from "components/Navigation"
 import { getAllVideos } from "lib/api"
 import React, { Suspense } from "react"
 // import ReactPlayer from "react-player"
-const ReactPlayer = React.lazy(() => import(/* webpackChunkName: 'ReactPlayer' */ "react-player"))
+// const ReactPlayer = React.lazy(() => import("react-player"))
 
 import useScrollPosition from "hooks/useScrollPosition"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
 import clsx from "clsx"
@@ -55,7 +62,7 @@ const PaintingsPage = ({ videos = [] }) => {
             const isEven = i % 2 === 0
 
             return (
-              <motion.div
+              <m.div
                 key={_id}
                 initial="offscreen"
                 whileInView="onscreen"
@@ -64,7 +71,8 @@ const PaintingsPage = ({ videos = [] }) => {
                 className={clsx(
                   "col-span-8 p-4 bg-white rounded shadow-xl h-fit",
                   !isEven && "col-start-5"
-                )}>
+                )}
+              >
                 <div className="pb-4">
                   <h2>
                     <b>{title}</b>
@@ -76,25 +84,27 @@ const PaintingsPage = ({ videos = [] }) => {
                     <ReactPlayer url={video} loop width="100%" height="100%" />
                   </Suspense>
                 </div>
-              </motion.div>
+              </m.div>
             )
           })}
         </section>
 
         {scrollPosition > 400 && (
-          <motion.div
+          <m.div
             className="fixed z-10 bottom-8 right-8"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ type: "spring" }}
-            key="backbutton">
+            key="backbutton"
+          >
             <button
               onClick={handleClick}
-              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight">
+              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+            >
               <IoArrowUpSharp />
             </button>
-          </motion.div>
+          </m.div>
         )}
       </Main>
       <Footer />

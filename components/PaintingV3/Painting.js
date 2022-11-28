@@ -83,7 +83,8 @@ const Painting = function ({ paintingData = {} }) {
       className={clsx(
         "relative w-full rounded overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-highlight cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
       )}
-      key={_id}>
+      key={_id}
+    >
       <Link href={linkString}>
         <div className={clsx("relative w-full", imageHeightStyle[format])}>
           <Image

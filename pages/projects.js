@@ -56,7 +56,8 @@ export default function ProjectsPage() {
                 tags={websiteTags}
                 status="Ongoing"
                 // imageLeft
-                className="xl:col-span-6 xl:flex-row col-span-full">
+                className="xl:col-span-6 xl:flex-row col-span-full"
+              >
                 <p className="pb-2 text-sm">
                   This is/was a very fun project for me, first of all this is heavely connected to
                   two of my passions, web development and drawing, so in 2021 I got a tattoo that is
@@ -88,7 +89,8 @@ export default function ProjectsPage() {
                 tags={babelTags}
                 // imageLeft
                 image="https://cdna.artstation.com/p/assets/images/images/008/386/537/large/henrik-sissener-cloud-valley-2.jpg?1512433162"
-                className="xl:col-span-6 xl:flex-row col-span-full">
+                className="xl:col-span-6 xl:flex-row col-span-full"
+              >
                 <p className="max-w-6xl text-sm">
                   Project Babel as it was called during most of it &rsquo;s development, was
                   supposed to be a third person adventure game set in a post-apocalyptic world. The

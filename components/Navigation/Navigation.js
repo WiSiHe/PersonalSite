@@ -43,7 +43,8 @@ export default function Navigation({ isAbsolute = false }) {
       className={clsx(
         "bg-stone-900/90 backdrop-blur-lg z-20 text-white",
         isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
-      )}>
+      )}
+    >
       <div className="flex items-center justify-between px-4 py-2 mx-auto">
         <div className="flex items-center">
           <motion.div
@@ -55,11 +56,13 @@ export default function Navigation({ isAbsolute = false }) {
               rotate: 90,
               transition: { type: "spring" }
             }}
-            className="flex items-center gap-2 hover:text-red-500">
+            className="flex items-center gap-2 hover:text-red-500"
+          >
             <Link
               href="/"
               aria-label="Navigate to the homepage"
-              className="flex items-center justify-center p-2 text-sm text-white hover:underline decoration-4 group-active:bg-highlight group-focus:ring group-focus:ring-highlight ">
+              className="flex items-center justify-center p-2 text-sm text-white hover:underline decoration-4 group-active:bg-highlight group-focus:ring group-focus:ring-highlight "
+            >
               <LogoQR
                 className="transition-all ease-in-out fill-white hover:fill-highlight"
                 width="2.5rem"
@@ -71,7 +74,8 @@ export default function Navigation({ isAbsolute = false }) {
             className="flex items-center gap-4 px-4"
             variants={container}
             initial="hidden"
-            animate="show">
+            animate="show"
+          >
             {NavItems.map((item, i) => {
               const isActive = asPathWithSpacing.includes(item.url)
 
@@ -83,7 +87,8 @@ export default function Navigation({ isAbsolute = false }) {
                       "transition-all hover:text-highlight hover:decoration-2  hover:decoration-highlight  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                       isActive &&
                         "underline underline-offset-1 decoration-highlight text-highlight decoration-2"
-                    )}>
+                    )}
+                  >
                     <b>{item.text}</b>
                   </Link>
                 </motion.li>

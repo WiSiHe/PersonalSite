@@ -20,14 +20,16 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
           onClick={() => setActive(prev => !prev)}
           className={clsx(
             "flex gap-1 items-center overflow-clip px-4 py-1 hover:ring text-sm font-medium text-white bg-primary rounded-full"
-          )}>
+          )}
+        >
           {active && (
             <motion.div
               initial={{ x: -100 }}
               animate={{ x: 0 }}
               exit={{ x: -100 }}
               transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
-              className="flex items-center gap-1">
+              className="flex items-center gap-1"
+            >
               <strong>Close</strong> <IoClose />
             </motion.div>
           )}
@@ -37,7 +39,8 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
               animate={{ x: 0 }}
               exit={{ x: 100 }}
               transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
-              className="flex items-center gap-1">
+              className="flex items-center gap-1"
+            >
               <strong>Filter</strong> <BsFilter />
             </motion.div>
           )}
@@ -46,7 +49,8 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
           className={clsx(
             "relative snap-start capitalize  transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
             "bg-highlight hover:bg-highlight text-black"
-          )}>
+          )}
+        >
           <strong>{activeFilter}</strong>
         </div>
       </div>
@@ -57,7 +61,8 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ type: "spring" }}
-            className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-stone-200 backdrop-blur-lg ">
+            className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-stone-200 backdrop-blur-lg "
+          >
             {filteredTags.map((tag, i) => {
               const { name = "" } = tag
               const convertedLabel = name.toLowerCase()
@@ -74,7 +79,8 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
                       isActive
                         ? "bg-highlight hover:bg-highlight text-black"
                         : "text-white bg-primary"
-                    )}>
+                    )}
+                  >
                     <strong className="capitalize">{name}</strong>
                     {isBuyable && (
                       <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">

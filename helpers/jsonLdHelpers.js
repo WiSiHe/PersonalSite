@@ -1,11 +1,11 @@
-import { imageBuilder } from "../lib/sanity";
+import { imageBuilder } from "../lib/sanity"
 
 function generatePaintingJsonLd(paintingData) {
-  const { slug = {}, desciption = "", image = {}, _createdAt = "", title = "" } = paintingData;
+  const { slug = {}, desciption = "", image = {}, _createdAt = "", title = "" } = paintingData
 
-  const smallImage = imageBuilder(image).width(50).url();
+  const smallImage = imageBuilder(image).width(50).url()
 
-  const url = `https://wisihe.no/painting/${slug.current}}`;
+  const url = `https://wisihe.no/painting/${slug.current}}`
 
   const jsonLd = `{
     "@context": "http://schema.org",
@@ -19,9 +19,9 @@ function generatePaintingJsonLd(paintingData) {
       "@type": "Person",
       "name": "Henrik Wilhelm Sissener"
     }
-  }`;
+  }`
 
-  return jsonLd;
+  return jsonLd
 }
 
-export default generatePaintingJsonLd;
+export default generatePaintingJsonLd

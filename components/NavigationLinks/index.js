@@ -1,3 +1,3 @@
-import NavigationLinks from "./NavigationLinks";
+import NavigationLinks from "./NavigationLinks"
 
-export default NavigationLinks;
+export default NavigationLinks

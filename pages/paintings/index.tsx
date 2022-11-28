@@ -58,10 +58,12 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ type: "spring" }}
-            key="backbutton">
+            key="backbutton"
+          >
             <button
               onClick={handleClick}
-              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight">
+              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+            >
               <IoArrowUpSharp />
             </button>
           </m.div>

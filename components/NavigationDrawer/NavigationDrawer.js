@@ -31,7 +31,8 @@ const NavigationDrawer = () => {
             className={clsx(
               "h-full fixed bg-stone-300 w-full sm:w-96 z-30 top-0 shadow-lgtransform transition-all duration-500 ease-in-out",
               navdrawer ? activeStyle : defaultStyle
-            )}>
+            )}
+          >
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center justify-between ">
                 <div className="flex items-center justify-center p-4 text-xs rounded-lg bg-primary text-highlight">
@@ -40,7 +41,8 @@ const NavigationDrawer = () => {
               </div>
               <button
                 onClick={() => hideNavDrawer(false)}
-                className="p-2 rounded-full hover:bg-opacity-10 hover:bg-primary">
+                className="p-2 rounded-full hover:bg-opacity-10 hover:bg-primary"
+              >
                 <RiCloseFill className="text-2xl " />
               </button>
             </div>

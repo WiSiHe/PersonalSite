@@ -1,5 +1,5 @@
 module.exports = {
   siteUrl: "https://wisihe.no",
-  generateRobotsTxt: true, // (optional)
+  generateRobotsTxt: true // (optional)
   // ...other options
-};
+}
