@@ -3,7 +3,7 @@ import Link from "next/link"
 import PropTypes from "prop-types"
 import React from "react"
 import clsx from "clsx"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 
 import { imageBuilder } from "lib/sanity"
 
@@ -75,7 +75,7 @@ const Painting = function ({ paintingData = {} }) {
     portrait: "aspect-[9/16]"
   }
   return (
-    <motion.article
+    <m.article
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.1 }}
@@ -130,7 +130,7 @@ const Painting = function ({ paintingData = {} }) {
           )}
         </div>
       </Link>
-    </motion.article>
+    </m.article>
   )
 }
 

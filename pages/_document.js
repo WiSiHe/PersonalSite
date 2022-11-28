@@ -1,30 +1,16 @@
-import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import React from "react"
+import Document, { Html, Head, Main, NextScript } from "next/document"
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
   }
 
   render() {
     return (
       <Html lang="en" className="scroll-smooth">
         <Head>
-          {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-TDN290C5H6" /> */}
-
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TDN290C5H6', {
-              page_path: window.location.pathname,
-            });
-          `,
-            }}
-          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
@@ -37,8 +23,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument

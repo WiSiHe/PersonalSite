@@ -141,7 +141,9 @@ export default function Home({
               <Image
                 src={currentWallpaper.imageUrl}
                 blurDataURL={currentWallpaper.lowResImageUrl}
-                sizes="(min-width: 1024px) 1024px, 100vw"
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
                 priority
                 fill
                 placeholder="blur"
@@ -155,7 +157,9 @@ export default function Home({
               <Image
                 src={currentMobileWallpaper.imageUrl}
                 blurDataURL={currentMobileWallpaper.lowResImageUrl}
-                sizes="(max-width: 640px) 640px, 100vw"
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
                 priority
                 fill
                 placeholder="blur"

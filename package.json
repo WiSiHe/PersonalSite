@@ -8,8 +8,8 @@
     "postbuild": "next-sitemap",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "start": "next start",
-    "analyze": "ANALYZE=true next build"
-    
+    "analyze": "ANALYZE=true next build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",

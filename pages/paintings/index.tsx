@@ -9,7 +9,7 @@ import { getAllTagsAndPaintings } from "lib/api"
 import React from "react"
 import { PaintingsPageProps } from "./[slug]"
 import useScrollPosition from "hooks/useScrollPosition"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
 import { Painting } from "components"
@@ -52,7 +52,7 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
         </section>
 
         {scrollPosition > 400 && (
-          <motion.div
+          <m.div
             className="fixed z-10 bottom-8 right-8"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
               className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight">
               <IoArrowUpSharp />
             </button>
-          </motion.div>
+          </m.div>
         )}
       </Main>
       <Footer />
