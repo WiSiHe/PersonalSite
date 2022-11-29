@@ -5,7 +5,7 @@ import Navigation from "components/Navigation"
 
 // import PaintingGrid from "components/PaintingGrid"
 // import SideMenu from "components/SideMenu"
-import { getAllTagsAndPaintings } from "lib/api"
+import { getAllTagsAndPaintingsLight } from "lib/api"
 import React from "react"
 import { PaintingsPageProps } from "./[slug]"
 import useScrollPosition from "hooks/useScrollPosition"
@@ -13,10 +13,12 @@ import { m } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
 import { Painting } from "components"
+import { imageBuilder } from "lib/sanity"
+
 const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
   // state for slice of paintings
   const [paintingsSlice, setPaintingsSlice] = React.useState(50)
-  console.log("paintingsSlice", paintingsSlice)
+
   const scrollPosition = useScrollPosition()
 
   const handleClick = () => {
@@ -93,8 +95,8 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
 
 export default PaintingsPage
 
-export async function getStaticProps({ preview = false }) {
-  const data = await getAllTagsAndPaintings(preview)
+export async function getStaticProps() {
+  const data = await getAllTagsAndPaintingsLight()
 
   if (data.length < 1) {
     return { props: {} }
@@ -102,11 +104,34 @@ export async function getStaticProps({ preview = false }) {
 
   const { paintings = [], tags = [] } = data
 
-  const randomPaintings = paintings.sort(() => Math.random() - 0.5)
+  // const randomPaintings = paintings.sort(() => Math.random() - 0.5)
+
+  const imageWidth = {
+    square: 400,
+    landscape: 800,
+    portrait: 400
+  }
+
+  const imageHeight = {
+    square: 400,
+    landscape: 400,
+    portrait: 800
+  }
+
+  const paintingsWithPriority = paintings.map(p => {
+    const { format = "square", image = {} } = p
+    const fetchedPainting = imageBuilder(image)
+      .width(imageWidth[format])
+      .height(imageHeight[format])
+      .quality(45)
+      .url()
+
+    return { ...p, fetchedPainting }
+  })
 
   return {
     props: {
-      paintings: randomPaintings,
+      paintings: paintingsWithPriority,
       tags
     },
     revalidate: 7200 // 120  min

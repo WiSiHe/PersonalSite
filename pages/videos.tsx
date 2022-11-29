@@ -118,8 +118,8 @@ PaintingsPage.propTypes = {
 
 export default PaintingsPage
 
-export async function getStaticProps({ preview = false }) {
-  const data = await getAllVideos(preview)
+export async function getStaticProps() {
+  const data = await getAllVideos()
 
   if (data.length < 1) {
     return { props: {} }

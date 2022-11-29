@@ -284,8 +284,8 @@ Home.propTypes = {
   desktopWallpaper: PropTypes.array
 }
 
-export async function getStaticProps({ preview = false }) {
-  const data = await getAllTagsAndPaintings(preview)
+export async function getStaticProps() {
+  const data = await getAllTagsAndPaintings()
 
   if (data.length < 1) {
     return { props: {} }

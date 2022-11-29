@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React from "react"
 import clsx from "clsx"
 
 import { m } from "framer-motion"
@@ -10,6 +10,8 @@ import { imageBuilder } from "lib/sanity"
 
 import { GrMultiple } from "react-icons/gr"
 import { RiMovieFill } from "react-icons/ri"
+import { FaExclamation } from "react-icons/fa"
+import { useRouter } from "next/router"
 
 const cardVariants = {
   offscreen: {
@@ -28,9 +30,15 @@ const cardVariants = {
 }
 
 const Painting = ({ paintingData = {}, isPriority = false }) => {
+  const router = useRouter()
+  const { slug = "" } = router.query
+
+  const isNsfwUrl = slug === "nsfw"
+
   const {
     _id = "",
     image = {},
+    fetchedPainting = "",
     title = "",
     format = "square",
     slug: { current = "" } = {},
@@ -90,18 +98,21 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       <Link href={linkString}>
         <div className={clsx("relative w-full", imageHeightStyle[format])}>
           <Image
-            src={imageBuilder(image)
-              .width(imageWidth[format])
-              .height(imageHeight[format])
-              .quality(45)
-              .url()}
+            // src={imageBuilder(image)
+            //   .width(imageWidth[format])
+            //   .height(imageHeight[format])
+            //   .quality(45)
+            //   .url()}
+            src={fetchedPainting}
             height={imageHeight[format]}
             width={imageWidth[format]}
-            alt={`painting: ${_id}`}
+            alt={`painting: ${title}`}
             priority={isPriority}
             className="object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover group-hover:scale-125 bg-gray-50 "
           />
-          {isNsfw && <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />}
+          {isNsfw && !isNsfwUrl && (
+            <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />
+          )}
         </div>
         {/* <div className="absolute inset-0 w-full h-full">
           <div className="flex items-center justify-center w-full h-full">
@@ -113,7 +124,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           <b className="text-xl group-hover:scale-105">{title}</b>
         </div>
         {hasStoreLinks && (
-          <div className="absolute flex items-center p-2 text-xs rounded-sm top-2 left-2 bg-highlight">
+          <div className="absolute flex items-center p-2 text-xs rounded-sm top-2 left-2 bg-highlight drop-shadow-md">
             <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
               <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
             </div>
@@ -121,7 +132,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           </div>
         )}
 
-        <div className="absolute flex items-center gap-2 text-xs rounded-sm bottom-2 right-2">
+        <div className="absolute flex items-center gap-2 text-xs rounded-sm bottom-2 right-2 drop-shadow-md">
           {video && (
             <div className="p-2 bg-white rounded-sm">
               <RiMovieFill />
@@ -132,23 +143,9 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
               <GrMultiple />
             </div>
           )}
-          {/* nsfw  warning icon */}
           {isNsfw && (
             <div className="p-2 bg-white rounded-sm">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3 w-3"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18zm0 0v.01"
-                />
-              </svg>
+              <FaExclamation />
             </div>
           )}
         </div>

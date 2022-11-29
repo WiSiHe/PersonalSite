@@ -219,9 +219,9 @@ Gallery.propTypes = {
   slug: PropTypes.object
 }
 
-export async function getStaticProps({ params, preview = false }) {
+export async function getStaticProps({ params }) {
   const { slug = "" } = params
-  const data = await getPaintingDetails(slug, preview)
+  const data = await getPaintingDetails(slug)
 
   if (data.length < 1) {
     return { props: {} }

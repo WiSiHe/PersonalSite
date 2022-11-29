@@ -14,7 +14,8 @@ const Meta = ({ title, description, image, ogTitle, ogDescription, ogImage, json
   return (
     <Head>
       <title>{title ? `${title} - WiSiHe` : DEFAULT_TAGS.title}</title>
-      <link rel="icon" href="/favicon.png" />
+      <link rel="icon" href="/icons/wisihe.svg" />
+      {/* <link rel="icon" href="/favicon.png" /> */}
       <link rel="manifest" href="/manifest.json" />
       {url && <link rel="canonical" href={url || DEFAULT_TAGS.url} />}
       <meta name="description" content={description || DEFAULT_TAGS.description} />
