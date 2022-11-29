@@ -14,6 +14,9 @@ import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
 import { Painting } from "components"
 const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
+  // state for slice of paintings
+  const [paintingsSlice, setPaintingsSlice] = React.useState(50)
+  console.log("paintingsSlice", paintingsSlice)
   const scrollPosition = useScrollPosition()
 
   const handleClick = () => {
@@ -23,6 +26,12 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
       behavior: "smooth"
     })
   }
+
+  // functions that load more paintings, and at the end of the list, load more paintings
+  const loadMorePaintings = () => {
+    setPaintingsSlice(paintingsSlice + 50)
+  }
+
   return (
     <>
       <Meta
@@ -39,16 +48,24 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
-              {paintings.map(p => {
+              {paintings.slice(0, paintingsSlice).map((p, i) => {
                 const { _id } = p
+
+                const isPriority = i < 3
+
                 return (
                   <div key={_id} className="mb-4">
-                    <Painting paintingData={p} />
+                    <Painting paintingData={p} isPriority={isPriority} />
                   </div>
                 )
               })}
             </div>
           </section>
+          <div className="col-span-full xl:col-span-6 xl:col-start-4 flex justify-center items-center py-10">
+            <button onClick={loadMorePaintings} className="p-4 text-center bg-highlight rounded">
+              Load more
+            </button>
+          </div>
         </section>
 
         {scrollPosition > 400 && (

@@ -1,8 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect } from "react"
 import clsx from "clsx"
+
 import { m } from "framer-motion"
 
 import { imageBuilder } from "lib/sanity"
@@ -26,7 +27,7 @@ const cardVariants = {
   }
 }
 
-const Painting = function ({ paintingData = {} }) {
+const Painting = ({ paintingData = {}, isPriority = false }) => {
   const {
     _id = "",
     image = {},
@@ -74,6 +75,7 @@ const Painting = function ({ paintingData = {} }) {
     landscape: "aspect-video",
     portrait: "aspect-[9/16]"
   }
+
   return (
     <m.article
       initial="offscreen"
@@ -96,6 +98,7 @@ const Painting = function ({ paintingData = {} }) {
             height={imageHeight[format]}
             width={imageWidth[format]}
             alt={`painting: ${_id}`}
+            priority={isPriority}
             className="object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover group-hover:scale-125 bg-gray-50 "
           />
           {isNsfw && <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />}
@@ -106,8 +109,8 @@ const Painting = function ({ paintingData = {} }) {
           </div>
         </div> */}
 
-        <div className="absolute inset-0 flex items-center justify-center text-white ">
-          <b className="text-xl drop-shadow-2xl group-hover:scale-105">{title}</b>
+        <div className="absolute inset-0 flex items-center drop-shadow-3xl justify-center text-white ">
+          <b className="text-xl group-hover:scale-105">{title}</b>
         </div>
         {hasStoreLinks && (
           <div className="absolute flex items-center p-2 text-xs rounded-sm top-2 left-2 bg-highlight">
@@ -129,6 +132,25 @@ const Painting = function ({ paintingData = {} }) {
               <GrMultiple />
             </div>
           )}
+          {/* nsfw  warning icon */}
+          {isNsfw && (
+            <div className="p-2 bg-white rounded-sm">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18zm0 0v.01"
+                />
+              </svg>
+            </div>
+          )}
         </div>
       </Link>
     </m.article>
@@ -137,6 +159,7 @@ const Painting = function ({ paintingData = {} }) {
 
 Painting.propTypes = {
   index: PropTypes.number,
+  isPriority: PropTypes.bool,
   paintingData: PropTypes.shape({
     _id: PropTypes.any,
     image: PropTypes.object,

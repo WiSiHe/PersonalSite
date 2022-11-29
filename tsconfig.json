@@ -92,7 +92,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "lib/sanity.js", "lib/sanity.js"  ],
   "exclude": [
     "node_modules"
   ]
