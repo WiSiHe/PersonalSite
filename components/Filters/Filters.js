@@ -4,7 +4,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import { IoClose } from "react-icons/io5"
 import { BsFilter } from "react-icons/bs"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, m } from "framer-motion"
 
 const Filters = ({ filteredTags = [], activeFilter = "" }) => {
   const [active, setActive] = useState(false)
@@ -23,31 +23,45 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
           )}
         >
           {active && (
-            <motion.div
+            <m.div
               initial={{ x: -100 }}
               animate={{ x: 0 }}
               exit={{ x: -100 }}
               transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
               className="flex items-center gap-1"
             >
-              <strong>Close</strong> <IoClose />
-            </motion.div>
+              <strong>Close</strong>{" "}
+              <m.div
+                initial={{ opacity: 0, rotate: 180 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
+              >
+                <IoClose />
+              </m.div>
+            </m.div>
           )}
           {!active && (
-            <motion.div
+            <m.div
               initial={{ x: 100 }}
               animate={{ x: 0 }}
               exit={{ x: 100 }}
               transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
               className="flex items-center gap-1"
             >
-              <strong>Filter</strong> <BsFilter />
-            </motion.div>
+              <strong>Filter</strong>{" "}
+              <m.div
+                initial={{ opacity: 0, rotate: 180 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
+              >
+                <BsFilter />
+              </m.div>
+            </m.div>
           )}
         </button>
         <div
           className={clsx(
-            "relative snap-start capitalize  transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+            "relative snap-start uppercase  transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
             "bg-highlight hover:bg-highlight text-black"
           )}
         >
@@ -56,7 +70,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
       </div>
       <AnimatePresence>
         {active && (
-          <motion.ul
+          <m.ul
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
@@ -92,7 +106,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
                 </li>
               )
             })}
-          </motion.ul>
+          </m.ul>
         )}
       </AnimatePresence>
     </>

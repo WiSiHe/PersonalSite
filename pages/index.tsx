@@ -253,13 +253,13 @@ export default function Home({
             </p>
           </section>
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20, x: 100 }}
             transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0, x: 0 }}
             viewport={{ once: false, amount: 0.5 }}
-            className="relative col-span-4 ring h-96"
+            className="relative col-span-4 ring aspect-square"
           >
-            <Image src={portrait} alt="test" className="object-cover w-full h-full" />
+            <Image src={portrait} alt="test" className="object-cover w-full h-full " />
           </m.div>
         </section>
         <section>
