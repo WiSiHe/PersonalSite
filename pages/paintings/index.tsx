@@ -46,7 +46,11 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">
             <div className="sticky top-0 z-20 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
-              <Filters filteredTags={tags} activeFilter={slug} />
+              <Filters
+                filteredTags={tags}
+                activeFilter={slug}
+                amountOfPaintings={paintings.length}
+              />
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
@@ -104,35 +108,39 @@ export async function getStaticProps() {
 
   const { paintings = [], tags = [] } = data
 
+  const sortedTags = tags
+    .filter(p => p.paintingsCount > 5)
+    .sort((a, b) => b.paintingsCount - a.paintingsCount)
+
   // const randomPaintings = paintings.sort(() => Math.random() - 0.5)
 
-  const imageWidth = {
-    square: 400,
-    landscape: 800,
-    portrait: 400
-  }
+  // const imageWidth = {
+  //   square: 400,
+  //   landscape: 800,
+  //   portrait: 400
+  // }
 
-  const imageHeight = {
-    square: 400,
-    landscape: 400,
-    portrait: 800
-  }
+  // const imageHeight = {
+  //   square: 400,
+  //   landscape: 400,
+  //   portrait: 800
+  // }
 
-  const paintingsWithPriority = paintings.map(p => {
-    const { format = "square", image = {} } = p
-    const fetchedPainting = imageBuilder(image)
-      .width(imageWidth[format])
-      .height(imageHeight[format])
-      .quality(45)
-      .url()
+  // const paintingsWithPriority = paintings.map(p => {
+  //   const { format = "square", image = {} } = p
+  //   const fetchedPainting = imageBuilder(image)
+  //     .width(imageWidth[format])
+  //     .height(imageHeight[format])
+  //     .quality(45)
+  //     .url()
 
-    return { ...p, fetchedPainting }
-  })
+  //   return { ...p, fetchedPainting }
+  // })
 
   return {
     props: {
-      paintings: paintingsWithPriority,
-      tags
+      paintings: paintings,
+      tags: sortedTags
     },
     revalidate: 7200 // 120  min
   }

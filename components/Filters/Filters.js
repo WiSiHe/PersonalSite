@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5"
 import { BsFilter } from "react-icons/bs"
 import { AnimatePresence, m } from "framer-motion"
 
-const Filters = ({ filteredTags = [], activeFilter = "" }) => {
+const Filters = ({ filteredTags = [], activeFilter = "", amountOfPaintings = 0 }) => {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
 
   return (
     <>
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-baseline">
         <button
           onClick={() => setActive(prev => !prev)}
           className={clsx(
@@ -67,6 +67,7 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
         >
           <strong>{activeFilter}</strong>
         </div>
+        <div>Results: {amountOfPaintings}</div>
       </div>
       <AnimatePresence>
         {active && (
@@ -78,11 +79,11 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
             className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-stone-200 backdrop-blur-lg "
           >
             {filteredTags.map((tag, i) => {
-              const { name = "" } = tag
+              const { name = "", paintingsCount = 0 } = tag
               const convertedLabel = name.toLowerCase()
               const isBuyable = convertedLabel === "store"
               const isActive = convertedLabel === activeFilter.toLocaleLowerCase()
-              const url = name === "all" ? "/paintings" : `/paintings/${convertedLabel}`
+              const url = name === "All" ? "/paintings" : `/paintings/${convertedLabel}`
               return (
                 <li key={i}>
                   <Link
@@ -95,7 +96,9 @@ const Filters = ({ filteredTags = [], activeFilter = "" }) => {
                         : "text-white bg-primary"
                     )}
                   >
-                    <strong className="capitalize">{name}</strong>
+                    <strong className="capitalize">
+                      {name} {paintingsCount > 0 && <span> - {paintingsCount}</span>}
+                    </strong>
                     {isBuyable && (
                       <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">
                         <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 animate-ping bg-highlight" />
@@ -117,6 +120,7 @@ Filters.propTypes = {
   activeFilter: PropTypes.string,
   filteredTags: PropTypes.array,
   paintingsAmount: PropTypes.number,
+  amountOfPaintings: PropTypes.number,
   setFilterTag: PropTypes.func
 }
 

@@ -38,7 +38,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   const {
     _id = "",
     image = {},
-    fetchedPainting = "",
+    // fetchedPainting = "",
     title = "",
     format = "square",
     slug: { current = "" } = {},
@@ -98,12 +98,12 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       <Link href={linkString}>
         <div className={clsx("relative w-full", imageHeightStyle[format])}>
           <Image
-            // src={imageBuilder(image)
-            //   .width(imageWidth[format])
-            //   .height(imageHeight[format])
-            //   .quality(45)
-            //   .url()}
-            src={fetchedPainting}
+            src={imageBuilder(image)
+              .width(imageWidth[format])
+              .height(imageHeight[format])
+              .quality(45)
+              .url()}
+            // src={fetchedPainting}
             height={imageHeight[format]}
             width={imageWidth[format]}
             alt={`painting: ${title}`}

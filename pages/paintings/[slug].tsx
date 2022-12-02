@@ -10,7 +10,7 @@ import React from "react"
 import Filters from "components/Filters"
 import Footer from "components/Footer"
 import { Painting } from "components"
-import { imageBuilder } from "lib/sanity"
+// import { imageBuilder } from "lib/sanity"
 
 export interface iTag {
   label: string
@@ -68,7 +68,11 @@ const PaintingsPage = ({ slug = "", paintings = [], tags = [] }: PaintingsPagePr
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
           <section className="col-span-full">
             <div className="sticky top-0 z-20 p-4 bg-stone-200 bg-opacity-10 backdrop-blur-lg">
-              <Filters filteredTags={tagsWithAll} activeFilter={slug} />
+              <Filters
+                filteredTags={tagsWithAll}
+                activeFilter={slug}
+                amountOfPaintings={paintings.length}
+              />
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
@@ -99,38 +103,44 @@ export async function getStaticProps({ params }) {
     return { props: {} }
   }
 
-  const imageWidth = {
-    square: 400,
-    landscape: 800,
-    portrait: 400
-  }
+  // const imageWidth = {
+  //   square: 400,
+  //   landscape: 800,
+  //   portrait: 400
+  // }
 
-  const imageHeight = {
-    square: 400,
-    landscape: 400,
-    portrait: 800
-  }
+  // const imageHeight = {
+  //   square: 400,
+  //   landscape: 400,
+  //   portrait: 800
+  // }
 
   const { paintings = [], tags = [] } = data
+
+  // sort paintings by paintingsCount
+  const sortedTags = tags
+    .filter(p => p.paintingsCount > 5)
+    .sort((a, b) => b.paintingsCount - a.paintingsCount)
+
   const filteredPaintings =
     paintings.filter(p => p.tagsV2?.find(t => t.name?.toLowerCase() === slug)) || []
 
-  const paintingsWithPriority = filteredPaintings.map(p => {
-    const { format = "square", image = {} } = p
-    const fetchedPainting = imageBuilder(image)
-      .width(imageWidth[format])
-      .height(imageHeight[format])
-      .quality(45)
-      .url()
+  // const paintingsWithPriority = filteredPaintings.map(p => {
+  //   const { format = "square", image = {} } = p
+  //   const fetchedPainting = imageBuilder(image)
+  //     .width(imageWidth[format])
+  //     .height(imageHeight[format])
+  //     .quality(45)
+  //     .url()
 
-    return { ...p, fetchedPainting }
-  })
+  //   return { ...p, fetchedPainting }
+  // })
 
   return {
     props: {
-      paintings: paintingsWithPriority,
+      paintings: filteredPaintings,
       slug: slug,
-      tags
+      tags: sortedTags
     },
     revalidate: 7200 // 120  min
   }
@@ -139,13 +149,13 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const allTags = await getAllTags()
 
-  const paths = allTags.map(tag => {
-    const { name = "" } = tag
-    if (!name) return
-    return {
-      params: { slug: tag.name.toLowerCase() }
-    }
-  })
+  const paths = allTags
+    .filter(p => p.paintingsCount < 5)
+    .map(tag => {
+      return {
+        params: { slug: tag.name.toLowerCase() }
+      }
+    })
 
   return {
     paths,
