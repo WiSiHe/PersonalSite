@@ -6,18 +6,22 @@ import Navigation from "components/Navigation"
 // import PaintingGrid from "components/PaintingGrid"
 // import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintingsLight } from "lib/api"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { PaintingsPageProps } from "./[slug]"
 import useScrollPosition from "hooks/useScrollPosition"
 import { m } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
 import Footer from "components/Footer"
 import { Painting } from "components"
-import { imageBuilder } from "lib/sanity"
+// import { imageBuilder } from "lib/sanity"
 
 const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
   // state for slice of paintings
-  const [paintingsSlice, setPaintingsSlice] = React.useState(50)
+
+  // console.log("paintingGrid", paintingGrid)
+
+  const [paintingsSlice, setPaintingsSlice] = useState(25)
+  const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const scrollPosition = useScrollPosition()
 
@@ -31,8 +35,20 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
 
   // functions that load more paintings, and at the end of the list, load more paintings
   const loadMorePaintings = () => {
-    setPaintingsSlice(paintingsSlice + 50)
+    if (hasLoadedAllPaintings) return
+    setPaintingsSlice(paintingsSlice + 25)
+    if (paintingsSlice >= paintings.length) {
+      setHasLoadedAllPaintings(true)
+    }
   }
+
+  // load more paintings when scroll position is at the bottom of the page
+  useEffect(() => {
+    if (hasLoadedAllPaintings) return
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+      loadMorePaintings()
+    }
+  }, [scrollPosition, hasLoadedAllPaintings])
 
   return (
     <>
@@ -53,7 +69,10 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
               />
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
-            <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
+            <div
+              className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5"
+              // ref={paintingGrid}
+            >
               {paintings.slice(0, paintingsSlice).map((p, i) => {
                 const { _id } = p
 
@@ -67,11 +86,11 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
               })}
             </div>
           </section>
-          <div className="col-span-full xl:col-span-6 xl:col-start-4 flex justify-center items-center py-10">
+          {/* <div className="col-span-full xl:col-span-6 xl:col-start-4 flex justify-center items-center py-10">
             <button onClick={loadMorePaintings} className="p-4 text-center bg-highlight rounded">
               Load more
             </button>
-          </div>
+          </div> */}
         </section>
 
         {scrollPosition > 400 && (
