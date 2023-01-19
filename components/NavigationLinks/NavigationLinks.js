@@ -1,10 +1,9 @@
-import React from "react"
 import clsx from "clsx"
-import { useRouter } from "next/router"
-import Link from "next/link"
-import { BsChevronRight } from "react-icons/bs"
-
 import { NavItems } from "constants/navigation"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import React from "react"
+import { BsChevronRight } from "react-icons/bs"
 
 const NavigationLinks = () => {
   const router = useRouter()

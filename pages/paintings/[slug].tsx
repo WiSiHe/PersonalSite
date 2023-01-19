@@ -1,15 +1,12 @@
+import { Painting } from "components"
+// import PaintingGrid from "components/PaintingGrid"
+import Filters from "components/Filters"
+import Footer from "components/Footer"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
-
 import React from "react"
-
-// import PaintingGrid from "components/PaintingGrid"
-
-import Filters from "components/Filters"
-import Footer from "components/Footer"
-import { Painting } from "components"
 // import { imageBuilder } from "lib/sanity"
 
 export interface iTag {
@@ -53,7 +50,11 @@ export interface PaintingsPageProps {
   tags: iTag[]
 }
 
-const PaintingsPage = ({ slug = "", paintings = [], tags = [] }: PaintingsPageProps) => {
+const PaintingsPage = ({
+  slug = "",
+  paintings = [],
+  tags = [],
+}: PaintingsPageProps) => {
   const tagsWithAll = [{ name: "All" }, ...tags]
   return (
     <>
@@ -119,11 +120,13 @@ export async function getStaticProps({ params }) {
 
   // sort paintings by paintingsCount
   const sortedTags = tags
-    .filter(p => p.paintingsCount > 5)
+    .filter((p) => p.paintingsCount > 5)
     .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
   const filteredPaintings =
-    paintings.filter(p => p.tagsV2?.find(t => t.name?.toLowerCase() === slug)) || []
+    paintings.filter((p) =>
+      p.tagsV2?.find((t) => t.name?.toLowerCase() === slug)
+    ) || []
 
   // const paintingsWithPriority = filteredPaintings.map(p => {
   //   const { format = "square", image = {} } = p
@@ -140,9 +143,9 @@ export async function getStaticProps({ params }) {
     props: {
       paintings: filteredPaintings,
       slug: slug,
-      tags: sortedTags
+      tags: sortedTags,
     },
-    revalidate: 7200 // 120  min
+    revalidate: 7200, // 120  min
   }
 }
 
@@ -150,15 +153,15 @@ export async function getStaticPaths() {
   const allTags = await getAllTags()
 
   const paths = allTags
-    .filter(p => p.paintingsCount < 5)
-    .map(tag => {
+    .filter((p) => p.paintingsCount < 5)
+    .map((tag) => {
       return {
-        params: { slug: tag.name.toLowerCase() }
+        params: { slug: tag.name.toLowerCase() },
       }
     })
 
   return {
     paths,
-    fallback: true
+    fallback: true,
   }
 }

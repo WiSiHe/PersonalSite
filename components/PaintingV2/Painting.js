@@ -1,20 +1,29 @@
+import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import React from "react"
 
-import { imageBuilder } from "lib/sanity"
-
 const Painting = function ({ paintingData = {} }) {
-  const { _id, image = {}, title = "", tags = [], slug: { current = "" } = {} } = paintingData
+  const {
+    _id,
+    image = {},
+    title = "",
+    tags = [],
+    slug: { current = "" } = {},
+  } = paintingData
 
-  const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
+  const salesTagObj = tags?.find((t) => t.value === "Buyable") || {}
   const { value = "" } = salesTagObj
   const isForSales = value === "Buyable"
 
   const linkString = `/painting/${current}`
 
-  const paintingImage = imageBuilder(image).width(400).height(400).quality(45).url()
+  const paintingImage = imageBuilder(image)
+    .width(400)
+    .height(400)
+    .quality(45)
+    .url()
 
   return (
     <article className="relative flex items-center justify-center flex-shrink-0 h-full overflow-hidden transition-all duration-1000 ease-in-out rounded w-80 group scroll-ml-6 snap-start bg-stone-600 lg:w-96 ">
@@ -55,8 +64,8 @@ Painting.propTypes = {
     _id: PropTypes.any,
     image: PropTypes.object,
     tags: PropTypes.array,
-    title: PropTypes.string
-  })
+    title: PropTypes.string,
+  }),
 }
 
 export default Painting

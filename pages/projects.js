@@ -1,17 +1,14 @@
+import { Project } from "components"
+import Footer from "components/Footer"
+import Main from "components/Main"
+import Meta from "components/Meta/Meta"
+import LogoQR from "icons/LogoQR"
+import hove from "public/images/hove.png"
+import night from "public/images/night-forest.jpeg"
+import websiteImage from "public/images/wisihesiteTemplate.jpeg"
 import React from "react"
 
 import Navigation from "../components/Navigation"
-
-import Main from "components/Main"
-import Meta from "components/Meta/Meta"
-import Footer from "components/Footer"
-import { Project } from "components"
-
-import websiteImage from "public/images/wisihesiteTemplate.jpeg"
-
-import night from "public/images/night-forest.jpeg"
-import hove from "public/images/hove.png"
-import LogoQR from "icons/LogoQR"
 
 export default function ProjectsPage() {
   const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"]
@@ -21,14 +18,14 @@ export default function ProjectsPage() {
     "Blender 2.8",
     "SpeedTree 7",
     "zBrush 2019",
-    "Substance Painter"
+    "Substance Painter",
   ]
   const nokkenTags = [
     "Unreal Engine 5",
     "Blender 3",
     "SpeedTree 8",
     "zBrush 2021",
-    "Substance Painter"
+    "Substance Painter",
   ]
 
   return (
@@ -45,8 +42,9 @@ export default function ProjectsPage() {
           <section className="relative p-4 pt-10 mx-auto col-span-full max-w-screen-2xl">
             <h1 className="text-4xl">My Projects</h1>
             <p className="max-w-2xl pt-4">
-              These are some of my various projects that I have been working on, some of them are
-              finished, some are not, but most of them has some sort of learning experience to it.
+              These are some of my various projects that I have been working on,
+              some of them are finished, some are not, but most of them has some
+              sort of learning experience to it.
             </p>
 
             <div className="relative grid grid-cols-8 gap-10 py-10 xl:gap-16">
@@ -59,11 +57,12 @@ export default function ProjectsPage() {
                 className="xl:col-span-6 xl:flex-row col-span-full"
               >
                 <p className="pb-2 text-sm">
-                  This is/was a very fun project for me, first of all this is heavely connected to
-                  two of my passions, web development and drawing, so in 2021 I got a tattoo that is
-                  linked to this domain, which will kinda work like my portfolio / business card. so
-                  who knows what this website will be in a few years. But it what I like is that it
-                  can be whatever I want it to be.
+                  This is/was a very fun project for me, first of all this is
+                  heavely connected to two of my passions, web development and
+                  drawing, so in 2021 I got a tattoo that is linked to this
+                  domain, which will kinda work like my portfolio / business
+                  card. so who knows what this website will be in a few years.
+                  But it what I like is that it can be whatever I want it to be.
                 </p>
                 <LogoQR height="4.0rem" width="4.0rem" />
               </Project>
@@ -77,10 +76,11 @@ export default function ProjectsPage() {
                 // className="xl:col-span-6 xl:flex-row col-span-full"
               >
                 <p className="pb-2 text-sm">
-                  A small survivor horror game with a Scandinavian setting. it will use a
-                  procedurally forest, and the player will have to escape the monster within the
-                  forest. Nøkken will change shapes, and move quietly behind trees, tracking the
-                  player down, waiting for the right moment to paunch.
+                  A small survivor horror game with a Scandinavian setting. it
+                  will use a procedurally forest, and the player will have to
+                  escape the monster within the forest. Nøkken will change
+                  shapes, and move quietly behind trees, tracking the player
+                  down, waiting for the right moment to paunch.
                 </p>
               </Project>
               <Project
@@ -92,12 +92,14 @@ export default function ProjectsPage() {
                 className="xl:col-span-6 xl:flex-row col-span-full"
               >
                 <p className="max-w-6xl text-sm">
-                  Project Babel as it was called during most of it &rsquo;s development, was
-                  supposed to be a third person adventure game set in a post-apocalyptic world. The
-                  project was in development for about 2 years, but time constraints and the scope
-                  of the project prooved too be to massive for a two person team. We were able to
-                  create 3D spaces, with small gameplay elements here and there, following a
-                  somewhat stylized approach to the 3D models.
+                  Project Babel as it was called during most of it &rsquo;s
+                  development, was supposed to be a third person adventure game
+                  set in a post-apocalyptic world. The project was in
+                  development for about 2 years, but time constraints and the
+                  scope of the project prooved too be to massive for a two
+                  person team. We were able to create 3D spaces, with small
+                  gameplay elements here and there, following a somewhat
+                  stylized approach to the 3D models.
                 </p>
               </Project>
               <Project
@@ -109,9 +111,10 @@ export default function ProjectsPage() {
                 // className="xl:col-span-6 xl:flex-row col-span-full"
               >
                 <p className="text-sm">
-                  Made the website for Hove Music Festival 2019, I got a genereal design to work
-                  with, and made the rest of the design decicions myself. The festival did
-                  unfortunately go bankrupt just a few days before it was due to go live.
+                  Made the website for Hove Music Festival 2019, I got a
+                  genereal design to work with, and made the rest of the design
+                  decicions myself. The festival did unfortunately go bankrupt
+                  just a few days before it was due to go live.
                 </p>
               </Project>
             </div>

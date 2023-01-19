@@ -1,22 +1,19 @@
+import clsx from "clsx"
+import { m } from "framer-motion"
+import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import React from "react"
-import clsx from "clsx"
-
-import { m } from "framer-motion"
-
-import { imageBuilder } from "lib/sanity"
-
+import { FaExclamation } from "react-icons/fa"
 import { GrMultiple } from "react-icons/gr"
 import { RiMovieFill } from "react-icons/ri"
-import { FaExclamation } from "react-icons/fa"
-import { useRouter } from "next/router"
 
 const cardVariants = {
   offscreen: {
     y: 100,
-    opacity: 0
+    opacity: 0,
   },
   onscreen: {
     y: 0,
@@ -24,9 +21,9 @@ const cardVariants = {
     transition: {
       type: "spring",
       bounce: 0.4,
-      duration: 1
-    }
-  }
+      duration: 1,
+    },
+  },
 }
 
 const Painting = ({ paintingData = {}, isPriority = false }) => {
@@ -44,13 +41,13 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     slug: { current = "" } = {},
     images = [],
     video = "",
-    tagsV2 = []
+    tagsV2 = [],
   } = paintingData
 
-  const salesTagObj = tagsV2?.find(t => t.name === "Store") || {}
+  const salesTagObj = tagsV2?.find((t) => t.name === "Store") || {}
 
   // tagsV2 contains NSFW tag
-  const nsfwTagObj = tagsV2?.find(t => t.name === "NSFW") || {}
+  const nsfwTagObj = tagsV2?.find((t) => t.name === "NSFW") || {}
 
   // check if salesTag is empty
   const hasStoreLinks = Object.keys(salesTagObj).length > 0
@@ -69,19 +66,19 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   const imageWidth = {
     square: 400,
     landscape: 800,
-    portrait: 400
+    portrait: 400,
   }
 
   const imageHeight = {
     square: 400,
     landscape: 400,
-    portrait: 800
+    portrait: 800,
   }
 
   const imageHeightStyle = {
     square: "aspect-square",
     landscape: "aspect-video",
-    portrait: "aspect-[9/16]"
+    portrait: "aspect-[9/16]",
   }
 
   return (
@@ -161,8 +158,8 @@ Painting.propTypes = {
     _id: PropTypes.any,
     image: PropTypes.object,
     tags: PropTypes.array,
-    title: PropTypes.string
-  })
+    title: PropTypes.string,
+  }),
 }
 
 export default Painting

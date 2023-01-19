@@ -1,10 +1,7 @@
-import React from "react"
-
-import SocialLinks from "components/SocialLinks"
-
-import Link from "next/link"
-
 import NavigationLinks from "components/NavigationLinks"
+import SocialLinks from "components/SocialLinks"
+import Link from "next/link"
+import React from "react"
 
 const SideMenu = () => {
   return (
@@ -19,7 +16,8 @@ const SideMenu = () => {
         </div>
         <h1 className="text-xl font-playfair">
           <strong>
-            <span className="text-primary">He</span>nrik <span className="text-primary">Wi</span>
+            <span className="text-primary">He</span>nrik{" "}
+            <span className="text-primary">Wi</span>
             lhelm <span className="text-primary">Si</span>ssener
           </strong>
         </h1>

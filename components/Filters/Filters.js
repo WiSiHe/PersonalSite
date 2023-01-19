@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
 import clsx from "clsx"
-import Link from "next/link"
-import { IoClose } from "react-icons/io5"
-import { BsFilter } from "react-icons/bs"
 import { AnimatePresence, m } from "framer-motion"
+import Link from "next/link"
+import PropTypes from "prop-types"
+import React, { useEffect, useState } from "react"
+import { BsFilter } from "react-icons/bs"
+import { IoClose } from "react-icons/io5"
 
-const Filters = ({ filteredTags = [], activeFilter = "", amountOfPaintings = 0 }) => {
+const Filters = ({
+  filteredTags = [],
+  activeFilter = "",
+  amountOfPaintings = 0,
+}) => {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
@@ -17,7 +21,7 @@ const Filters = ({ filteredTags = [], activeFilter = "", amountOfPaintings = 0 }
     <>
       <div className="flex gap-2 items-baseline">
         <button
-          onClick={() => setActive(prev => !prev)}
+          onClick={() => setActive((prev) => !prev)}
           className={clsx(
             "flex gap-1 items-center overflow-clip px-4 py-1 hover:ring text-sm font-medium text-white bg-primary rounded-full"
           )}
@@ -82,8 +86,10 @@ const Filters = ({ filteredTags = [], activeFilter = "", amountOfPaintings = 0 }
               const { name = "", paintingsCount = 0 } = tag
               const convertedLabel = name.toLowerCase()
               const isBuyable = convertedLabel === "store"
-              const isActive = convertedLabel === activeFilter.toLocaleLowerCase()
-              const url = name === "All" ? "/paintings" : `/paintings/${convertedLabel}`
+              const isActive =
+                convertedLabel === activeFilter.toLocaleLowerCase()
+              const url =
+                name === "All" ? "/paintings" : `/paintings/${convertedLabel}`
               return (
                 <li key={i}>
                   <Link
@@ -97,7 +103,8 @@ const Filters = ({ filteredTags = [], activeFilter = "", amountOfPaintings = 0 }
                     )}
                   >
                     <strong className="capitalize">
-                      {name} {paintingsCount > 0 && <span> - {paintingsCount}</span>}
+                      {name}{" "}
+                      {paintingsCount > 0 && <span> - {paintingsCount}</span>}
                     </strong>
                     {isBuyable && (
                       <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">
@@ -121,7 +128,7 @@ Filters.propTypes = {
   filteredTags: PropTypes.array,
   paintingsAmount: PropTypes.number,
   amountOfPaintings: PropTypes.number,
-  setFilterTag: PropTypes.func
+  setFilterTag: PropTypes.func,
 }
 
 export default Filters

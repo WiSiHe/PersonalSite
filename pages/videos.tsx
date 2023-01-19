@@ -1,38 +1,35 @@
+import dynamic from "next/dynamic"
 import PropTypes from "prop-types"
 
-import dynamic from "next/dynamic"
-
 const ReactPlayer = dynamic(() => import("react-player"), {
-  suspense: true
+  suspense: true,
 })
 
+import clsx from "clsx"
+import Footer from "components/Footer"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
-
-import { getAllVideos } from "lib/api"
-import React, { Suspense } from "react"
+import { m } from "framer-motion"
 // import ReactPlayer from "react-player"
 // const ReactPlayer = React.lazy(() => import("react-player"))
-
 import useScrollPosition from "hooks/useScrollPosition"
-import { m } from "framer-motion"
+import { getAllVideos } from "lib/api"
+import React, { Suspense } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
-import Footer from "components/Footer"
-import clsx from "clsx"
 
 const cardVariants = {
   offscreen: {
     y: 200,
-    opacity: 0
+    opacity: 0,
   },
   onscreen: {
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring"
-    }
-  }
+      type: "spring",
+    },
+  },
 }
 
 const PaintingsPage = ({ videos = [] }) => {
@@ -42,7 +39,7 @@ const PaintingsPage = ({ videos = [] }) => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     })
   }
   return (
@@ -113,7 +110,7 @@ const PaintingsPage = ({ videos = [] }) => {
 }
 
 PaintingsPage.propTypes = {
-  videos: PropTypes.array
+  videos: PropTypes.array,
 }
 
 export default PaintingsPage
@@ -127,8 +124,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      videos: data || []
+      videos: data || [],
     },
-    revalidate: 7200 // 120  min
+    revalidate: 7200, // 120  min
   }
 }

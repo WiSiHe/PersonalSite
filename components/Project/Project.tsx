@@ -1,14 +1,14 @@
 import clsx from "clsx"
+import Tag from "components/Tag"
+import { motion } from "framer-motion"
+import Image from "next/image"
 import PropTypes from "prop-types"
 import React from "react"
-import Tag from "components/Tag"
-import Image from "next/image"
-import { motion } from "framer-motion"
 
 const cardVariants = {
   offscreen: {
     y: 150,
-    opacity: 0
+    opacity: 0,
   },
   onscreen: {
     y: 0,
@@ -16,9 +16,9 @@ const cardVariants = {
     transition: {
       type: "spring",
       bounce: 0.4,
-      duration: 1
-    }
-  }
+      duration: 1,
+    },
+  },
 }
 
 const Project = ({
@@ -28,7 +28,7 @@ const Project = ({
   status = "",
   imageLeft = false,
   children,
-  className = ""
+  className = "",
 }) => {
   return (
     <motion.article
@@ -55,9 +55,12 @@ const Project = ({
             Status: <span className="text-primary">{status}</span>
           </strong>
           <ul className="flex flex-wrap mt-2 mb-4 text-xs">
-            {tags.map(tag => {
+            {tags.map((tag) => {
               return (
-                <li className="mb-2 mr-2 rounded-lg bg-primary text-bright" key={tag}>
+                <li
+                  className="mb-2 mr-2 rounded-lg bg-primary text-bright"
+                  key={tag}
+                >
                   <Tag>{tag}</Tag>
                 </li>
               )
@@ -85,13 +88,16 @@ const Project = ({
 }
 
 Project.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
   className: PropTypes.string,
   image: PropTypes.object,
   imageLeft: PropTypes.bool,
   status: PropTypes.string,
   tags: PropTypes.array,
-  title: PropTypes.string
+  title: PropTypes.string,
 }
 
 export default Project

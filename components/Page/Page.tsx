@@ -1,8 +1,7 @@
 // react page wrapper that receives children
+import { motion } from "framer-motion"
 import PropTypes from "prop-types"
 import React from "react"
-
-import { motion } from "framer-motion"
 
 const Page = ({ children }) => {
   return (
@@ -18,7 +17,7 @@ const Page = ({ children }) => {
 }
 
 Page.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
 }
 
 export default Page

@@ -2,12 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.sanity.io", "cdna.artstation.com"]
-  }
+    domains: ["cdn.sanity.io", "cdna.artstation.com"],
+  },
 }
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
+  enabled: process.env.ANALYZE === "true",
 })
 
 module.exports = withBundleAnalyzer(nextConfig)

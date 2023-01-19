@@ -1,11 +1,18 @@
-import React from "react"
-import PropTypes from "prop-types"
 import clsx from "clsx"
-import { SiRedbubble, SiArtstation, SiInstagram, SiLinkedin } from "react-icons/si"
+import PropTypes from "prop-types"
+import React from "react"
+import {
+  SiArtstation,
+  SiInstagram,
+  SiLinkedin,
+  SiRedbubble,
+} from "react-icons/si"
 
 const SocialLinks = ({ alignLeft = false }) => {
   return (
-    <div className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}>
+    <div
+      className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}
+    >
       <ul className="inline-flex space-x-8 ">
         <li className="">
           <a
@@ -74,7 +81,7 @@ const SocialLinks = ({ alignLeft = false }) => {
 }
 
 SocialLinks.propTypes = {
-  alignLeft: PropTypes.bool
+  alignLeft: PropTypes.bool,
 }
 
 export default SocialLinks
