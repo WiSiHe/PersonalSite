@@ -26,7 +26,7 @@ function Logo({ width = 52, height = 52 }) {
 
 Logo.propTypes = {
   height: PropTypes.number,
-  width: PropTypes.number
+  width: PropTypes.number,
 }
 
 export default Logo

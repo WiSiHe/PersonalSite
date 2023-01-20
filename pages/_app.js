@@ -1,8 +1,9 @@
+import "tailwindcss/tailwind.css"
+
+import { Analytics } from "@vercel/analytics/react"
+import { domAnimation, LazyMotion } from "framer-motion"
 import PropTypes from "prop-types"
 import React from "react"
-import "tailwindcss/tailwind.css"
-import { Analytics } from "@vercel/analytics/react"
-import { LazyMotion, domAnimation } from "framer-motion"
 
 const MyApp = function ({ Component, pageProps }) {
   return (
@@ -17,7 +18,7 @@ const MyApp = function ({ Component, pageProps }) {
 
 MyApp.propTypes = {
   Component: PropTypes.any,
-  pageProps: PropTypes.any
+  pageProps: PropTypes.any,
 }
 
 export default MyApp

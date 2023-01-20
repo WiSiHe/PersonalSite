@@ -25,7 +25,7 @@ LogoQR.propTypes = {
   height: PropTypes.string,
   title: PropTypes.any,
   titleId: PropTypes.any,
-  width: PropTypes.string
+  width: PropTypes.string,
 }
 
 export default LogoQR

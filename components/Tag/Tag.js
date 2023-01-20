@@ -6,5 +6,5 @@ export default function Tag({ children }) {
 }
 
 Tag.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
 }

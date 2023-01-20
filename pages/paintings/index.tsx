@@ -1,21 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Painting } from "components"
 import Filters from "components/Filters"
+import Footer from "components/Footer"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
-
+import { m } from "framer-motion"
+import useScrollPosition from "hooks/useScrollPosition"
 // import PaintingGrid from "components/PaintingGrid"
 // import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import React, { useEffect, useState } from "react"
-import { PaintingsPageProps } from "./[slug]"
-import useScrollPosition from "hooks/useScrollPosition"
-import { m } from "framer-motion"
 import { IoArrowUpSharp } from "react-icons/io5"
-import Footer from "components/Footer"
-import { Painting } from "components"
+
+import { PaintingsPageProps } from "./[slug]"
 // import { imageBuilder } from "lib/sanity"
 
-const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPageProps) => {
+const PaintingsPage = ({
+  paintings = [],
+  tags = [],
+  slug = "all",
+}: PaintingsPageProps) => {
   // state for slice of paintings
 
   // console.log("paintingGrid", paintingGrid)
@@ -29,7 +34,7 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     })
   }
 
@@ -45,7 +50,10 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
   // load more paintings when scroll position is at the bottom of the page
   useEffect(() => {
     if (hasLoadedAllPaintings) return
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 200
+    ) {
       loadMorePaintings()
     }
   }, [scrollPosition, hasLoadedAllPaintings])
@@ -86,8 +94,8 @@ const PaintingsPage = ({ paintings = [], tags = [], slug = "all" }: PaintingsPag
               })}
             </div>
           </section>
-          {/* <div className="col-span-full xl:col-span-6 xl:col-start-4 flex justify-center items-center py-10">
-            <button onClick={loadMorePaintings} className="p-4 text-center bg-highlight rounded">
+          {/* <div className="flex items-center justify-center py-10 col-span-full xl:col-span-6 xl:col-start-4">
+            <button onClick={loadMorePaintings} className="p-4 text-center rounded bg-highlight">
               Load more
             </button>
           </div> */}
@@ -128,7 +136,7 @@ export async function getStaticProps() {
   const { paintings = [], tags = [] } = data
 
   const sortedTags = tags
-    .filter(p => p.paintingsCount > 5)
+    .filter((p) => p.paintingsCount > 5)
     .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
   // const randomPaintings = paintings.sort(() => Math.random() - 0.5)
@@ -159,8 +167,8 @@ export async function getStaticProps() {
   return {
     props: {
       paintings: paintings,
-      tags: sortedTags
+      tags: sortedTags,
     },
-    revalidate: 7200 // 120  min
+    revalidate: 7200, // 120  min
   }
 }

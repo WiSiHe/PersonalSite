@@ -6,7 +6,7 @@ import config from "./config"
 
 const builder = imageUrlBuilder({
   projectId: config.projectId,
-  dataset: config.dataset
+  dataset: config.dataset,
 })
 
 // Then we like to make a simple function like this that gives the

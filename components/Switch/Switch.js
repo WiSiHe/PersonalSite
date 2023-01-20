@@ -1,5 +1,5 @@
-import React, { useState } from "react"
 import { Switch } from "@headlessui/react"
+import React, { useState } from "react"
 
 export default function SwitchComponent() {
   const [enabled, setEnabled] = useState(false)

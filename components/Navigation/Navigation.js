@@ -1,13 +1,11 @@
-import PropTypes from "prop-types"
-import React from "react"
-
-import Link from "next/link"
 import clsx from "clsx"
-
 import { NavItems } from "constants/navigation"
-import { useRouter } from "next/router"
 import { motion } from "framer-motion"
 import LogoQR from "icons/LogoQR"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import PropTypes from "prop-types"
+import React from "react"
 
 const container = {
   hidden: { opacity: 0 },
@@ -16,14 +14,14 @@ const container = {
     transition: {
       staggerChildren: 0.5,
       delayChildren: 0.5,
-      type: "spring"
-    }
-  }
+      type: "spring",
+    },
+  },
 }
 
 const animItem = {
   hidden: { opacity: 0, y: -20 },
-  show: { opacity: 1, y: 0 }
+  show: { opacity: 1, y: 0 },
 }
 
 export default function Navigation({ isAbsolute = false }) {
@@ -38,7 +36,7 @@ export default function Navigation({ isAbsolute = false }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{
-        type: "spring"
+        type: "spring",
       }}
       className={clsx(
         "bg-stone-900/90 backdrop-blur-lg z-20 text-white",
@@ -54,7 +52,7 @@ export default function Navigation({ isAbsolute = false }) {
             whileHover={{
               scale: 1.1,
               rotate: 90,
-              transition: { type: "spring" }
+              transition: { type: "spring" },
             }}
             className="flex items-center gap-2 hover:text-red-500"
           >
@@ -102,5 +100,5 @@ export default function Navigation({ isAbsolute = false }) {
 }
 
 Navigation.propTypes = {
-  isAbsolute: PropTypes.bool
+  isAbsolute: PropTypes.bool,
 }

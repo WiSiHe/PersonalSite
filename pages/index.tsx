@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
-
-import Link from "next/link"
-
-import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
-
-import Meta from "components/Meta"
-import Main from "components/Main"
-import Navigation from "components/Navigation"
-
-import Footer from "components/Footer"
-import { getAllTagsAndPaintings } from "../lib/api"
-import { imageBuilder } from "lib/sanity"
-
-import useWindowDimensions from "hooks/useWindowDimension"
-
 import clsx from "clsx"
+import Footer from "components/Footer"
+import Main from "components/Main"
+import Meta from "components/Meta"
+import Navigation from "components/Navigation"
 import { m } from "framer-motion"
-
+import useWindowDimensions from "hooks/useWindowDimension"
+import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
-
+import Link from "next/link"
+import PropTypes from "prop-types"
 import portrait from "public/images/selfPortrait.png"
+import React, { useEffect, useState } from "react"
+import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import { getRandomArbitrary } from "utils/numbers"
+
+import { getAllTagsAndPaintings } from "../lib/api"
 
 export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
 export declare type ImageLoaderProps = {
@@ -81,7 +74,7 @@ export interface RootObject {
 
 export default function Home({
   desktopWallpaper = [],
-  mobileWallpaper = []
+  mobileWallpaper = [],
 }: {
   desktopWallpaper: RootObject[]
   mobileWallpaper: RootObject[]
@@ -136,7 +129,10 @@ export default function Home({
 
       <Main noTopPadding className="flex-col">
         <section className="w-full h-screen">
-          <div className="relative h-full overflow-clip bg-slate-800" key="desktop">
+          <div
+            className="relative h-full overflow-clip bg-slate-800"
+            key="desktop"
+          >
             <div className="relative hidden w-full h-full xl:block">
               <Image
                 src={currentWallpaper.imageUrl}
@@ -178,7 +174,9 @@ export default function Home({
                   // onMouseOver={() => setIsPaused(true)}
                   // onMouseOut={() => setIsPaused(false)}
                   whileHover={{ scale: 1.2 }}
-                  onClick={() => handleGoLeft({ isMobile: width > 764 ? false : true })}
+                  onClick={() =>
+                    handleGoLeft({ isMobile: width > 764 ? false : true })
+                  }
                   className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to previous painting"
                 >
@@ -206,7 +204,9 @@ export default function Home({
                   whileHover={{ scale: 1.2 }}
                   // onMouseOver={() => setIsPaused(true)}
                   // onMouseOut={() => setIsPaused(false)}
-                  onClick={() => handleGoRight({ isMobile: width > 764 ? false : true })}
+                  onClick={() =>
+                    handleGoRight({ isMobile: width > 764 ? false : true })
+                  }
                   className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                   aria-label="Go to next painting"
                 >
@@ -229,7 +229,7 @@ export default function Home({
                   repeatType: "reverse",
                   // duration: 0.5,
                   type: "spring",
-                  bounce: 0.5
+                  bounce: 0.5,
                 }}
                 className="p-4 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                 href="#main"
@@ -240,16 +240,20 @@ export default function Home({
           </div>
         </section>
 
-        <section className="grid w-full h-full grid-cols-12 p-10 min-h-96" id="main">
+        <section
+          className="grid w-full h-full grid-cols-12 p-10 min-h-96"
+          id="main"
+        >
           <section className="col-span-full xl:col-span-4">
             <h1>
               <b>Henrik Wilhelm Sissener</b>
             </h1>
             <p>
-              Short story: Im a digital artist / web developer / hobby designer who has been drawing
-              my whole life. I mostly do character designs, but I try to step into the big world of
-              landscape every now and then, I spend my free time making digital paintings paintings
-              and do some tinkering with new Frontend technologies.
+              Short story: Im a digital artist / web developer / hobby designer
+              who has been drawing my whole life. I mostly do character designs,
+              but I try to step into the big world of landscape every now and
+              then, I spend my free time making digital paintings paintings and
+              do some tinkering with new Frontend technologies.
             </p>
           </section>
           <m.div
@@ -259,7 +263,11 @@ export default function Home({
             viewport={{ once: false, amount: 0.5 }}
             className="relative col-span-4 ring aspect-square"
           >
-            <Image src={portrait} alt="test" className="object-cover w-full h-full " />
+            <Image
+              src={portrait}
+              alt="test"
+              className="object-cover w-full h-full "
+            />
           </m.div>
         </section>
         <section>
@@ -281,7 +289,7 @@ Home.propTypes = {
   tags: PropTypes.array,
   thumbnailImage: PropTypes.any,
   wallpaperPaintings: PropTypes.any,
-  desktopWallpaper: PropTypes.array
+  desktopWallpaper: PropTypes.array,
 }
 
 export async function getStaticProps() {
@@ -294,31 +302,55 @@ export async function getStaticProps() {
   const { paintings = [] } = data
 
   const wallpaperPaintings = paintings.filter(
-    p => p.tagsV2?.length > 1 && p.tagsV2.find(t => t.name.toLowerCase() === "wallpaper")
+    (p) =>
+      p.tagsV2?.length > 1 &&
+      p.tagsV2.find((t) => t.name.toLowerCase() === "wallpaper")
   )
 
-  const mobileWallpaper = wallpaperPaintings.filter(p => p.format === "portrait") || []
+  const mobileWallpaper =
+    wallpaperPaintings.filter((p) => p.format === "portrait") || []
 
-  const mobileWallpapersWithFetchedImages = mobileWallpaper.map(wallpaper => ({
-    ...wallpaper,
-    lowResImageUrl: imageBuilder(wallpaper.image).width(20).height(20).quality(10).url(),
-    imageUrl: imageBuilder(wallpaper.image).width(764).height(800).quality(75).url()
-  }))
+  const mobileWallpapersWithFetchedImages = mobileWallpaper.map(
+    (wallpaper) => ({
+      ...wallpaper,
+      lowResImageUrl: imageBuilder(wallpaper.image)
+        .width(20)
+        .height(20)
+        .quality(10)
+        .url(),
+      imageUrl: imageBuilder(wallpaper.image)
+        .width(764)
+        .height(800)
+        .quality(75)
+        .url(),
+    })
+  )
 
-  const desktopWallpaper = wallpaperPaintings.filter(w => w.format === "landscape") || []
+  const desktopWallpaper =
+    wallpaperPaintings.filter((w) => w.format === "landscape") || []
 
-  const desktopWallpapersWithFetchedImages = desktopWallpaper.map(wallpaper => ({
-    ...wallpaper,
-    lowResImageUrl: imageBuilder(wallpaper.image).width(20).height(20).quality(10).url(),
-    imageUrl: imageBuilder(wallpaper.image).width(1400).height(900).quality(75).url()
-  }))
+  const desktopWallpapersWithFetchedImages = desktopWallpaper.map(
+    (wallpaper) => ({
+      ...wallpaper,
+      lowResImageUrl: imageBuilder(wallpaper.image)
+        .width(20)
+        .height(20)
+        .quality(10)
+        .url(),
+      imageUrl: imageBuilder(wallpaper.image)
+        .width(1400)
+        .height(900)
+        .quality(75)
+        .url(),
+    })
+  )
 
   return {
     props: {
       desktopWallpaper: desktopWallpapersWithFetchedImages,
-      mobileWallpaper: mobileWallpapersWithFetchedImages
+      mobileWallpaper: mobileWallpapersWithFetchedImages,
     },
     // revalidate every hour
-    revalidate: 60 * 60
+    revalidate: 60 * 60,
   }
 }

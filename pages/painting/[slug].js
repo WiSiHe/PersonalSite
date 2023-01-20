@@ -1,40 +1,33 @@
-import React from "react"
-import PropTypes from "prop-types"
-
-import { useRouter } from "next/router"
-import dynamic from "next/dynamic"
-
-import { m } from "framer-motion"
-
-// import Link from "next/link"
-// import dynamic from 'next/dynamic';
-
-import { IoArrowBackSharp } from "react-icons/io5"
-
-// Helpers
-import generatePaintingJsonLd from "helpers/jsonLdHelpers"
-
+import clsx from "clsx"
 // Components
 import Main from "components/Main"
 import Meta from "components/Meta"
 import RedbubbleLink from "components/RedbubbleLink"
-
+import SocialLinks from "components/SocialLinks"
+import { m } from "framer-motion"
+// Helpers
+import generatePaintingJsonLd from "helpers/jsonLdHelpers"
+import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 // Libs
 import { imageBuilder } from "lib/sanity"
-import { getPaintingDetails, getAllPaintingSlugs } from "lib/api"
-import SocialLinks from "components/SocialLinks"
-
-import clsx from "clsx"
+import dynamic from "next/dynamic"
+import { useRouter } from "next/router"
+import PropTypes from "prop-types"
+import React from "react"
+// import Link from "next/link"
+// import dynamic from 'next/dynamic';
+import { IoArrowBackSharp } from "react-icons/io5"
 
 // import ReactPlayer from "react-player"
 // const ReactPlayer = React.lazy(() => import("react-player"))
 const ReactPlayer = dynamic(() => import("react-player"), {
-  suspense: true
+  suspense: true,
 })
 
-import Navigation from "../../components/Navigation"
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import { Suspense } from "react"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+
+import Navigation from "../../components/Navigation"
 
 // const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
@@ -52,7 +45,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
     // tagCount = 0,
     redbubbleUrl = "",
     tagsV2 = [],
-    video = ""
+    video = "",
   } = painting
 
   const { current = "" } = slug
@@ -65,18 +58,18 @@ export default function Gallery({ painting = {}, slug = {} }) {
   const imageAspectStyle = {
     square: "aspect-square",
     landscape: "aspect-video",
-    portrait: "aspect-[9/16]"
+    portrait: "aspect-[9/16]",
   }
 
   const imageHeight = {
     square: 1200,
     landscape: 820,
-    portrait: 1200
+    portrait: 1200,
   }
   const imageWidth = {
     square: 1200,
     landscape: 1200,
-    portrait: 650
+    portrait: 650,
   }
 
   const handleGoBack = () => {
@@ -93,7 +86,10 @@ export default function Gallery({ painting = {}, slug = {} }) {
         url={`https://wisihe.no/painting/${current}`}
       />
       <Navigation />
-      <Main noTopPadding className="grid flex-col flex-1 w-full grid-cols-12 gap-10 p-4 xl:p-20 ">
+      <Main
+        noTopPadding
+        className="grid flex-col flex-1 w-full grid-cols-12 gap-10 p-4 xl:p-20 "
+      >
         <m.div
           className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6"
           initial={{ opacity: 0, x: -100 }}
@@ -144,7 +140,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
               <strong>{title}</strong>
             </h1>
             <div className="flex flex-wrap gap-2">
-              {tagsV2?.map(tag => {
+              {tagsV2?.map((tag) => {
                 const { name = "" } = tag
                 return (
                   <p
@@ -167,7 +163,10 @@ export default function Gallery({ painting = {}, slug = {} }) {
               </h3>
             )}
             {hasRedBubleLink && (
-              <RedbubbleLink hasRedBubleLink={hasRedBubleLink} redbubbleUrl={redbubbleUrl} />
+              <RedbubbleLink
+                hasRedBubleLink={hasRedBubleLink}
+                redbubbleUrl={redbubbleUrl}
+              />
             )}
           </div>
           <div className="pt-10">
@@ -204,7 +203,14 @@ export default function Gallery({ painting = {}, slug = {} }) {
           <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
             <div className="w-full aspect-video">
               <Suspense fallback={<div>Loading...</div>}>
-                <ReactPlayer url={video} loop muted playing width="100%" height="100%" />
+                <ReactPlayer
+                  url={video}
+                  loop
+                  muted
+                  playing
+                  width="100%"
+                  height="100%"
+                />
               </Suspense>
             </div>
           </div>
@@ -216,7 +222,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
 
 Gallery.propTypes = {
   painting: PropTypes.object,
-  slug: PropTypes.object
+  slug: PropTypes.object,
 }
 
 export async function getStaticProps({ params }) {
@@ -231,10 +237,10 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      painting
+      painting,
     },
     //  revalidate evry 3 hour
-    revalidate: 60 * 60 * 3
+    revalidate: 60 * 60 * 3,
   }
 }
 
@@ -243,11 +249,11 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      allPaintings?.map(painting => ({
+      allPaintings?.map((painting) => ({
         params: {
-          slug: painting.slug
-        }
+          slug: painting.slug,
+        },
       })) || [],
-    fallback: false
+    fallback: false,
   }
 }

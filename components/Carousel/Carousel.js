@@ -1,10 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
 import clsx from "clsx"
-
-import { BiRightArrowAlt, BiLeftArrowAlt } from "react-icons/bi"
-import { useRef, useState } from "react"
 import Painting from "components/PaintingV2"
+import PropTypes from "prop-types"
+import React from "react"
+import { useRef, useState } from "react"
+import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi"
 
 const Carousel = ({ paintings = [], filterTag = "" }) => {
   const wrapper = useRef()
@@ -15,21 +14,25 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
 
   const handleStepLeft = () => {
     wrapper.current.scrollTo({
-      left: wrapper.current.scrollLeft - wrapper.current.children[0].clientWidth,
-      behavior: "smooth"
+      left:
+        wrapper.current.scrollLeft - wrapper.current.children[0].clientWidth,
+      behavior: "smooth",
     })
   }
 
   const handleStepRight = () => {
     wrapper.current.scrollTo({
-      left: wrapper.current.scrollLeft + wrapper.current.children[0].clientWidth,
-      behavior: "smooth"
+      left:
+        wrapper.current.scrollLeft + wrapper.current.children[0].clientWidth,
+      behavior: "smooth",
     })
   }
 
-  const handleScroll = e => {
+  const handleScroll = (e) => {
     setStepLeftDisabled(e.target.scrollLeft === 0)
-    setStepRightDisabled(e.target.scrollLeft + e.target.offsetWidth >= e.target.scrollWidth)
+    setStepRightDisabled(
+      e.target.scrollLeft + e.target.offsetWidth >= e.target.scrollWidth
+    )
   }
 
   return (
@@ -54,11 +57,18 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
         onScroll={handleScroll}
       >
         {paintings
-          .filter(p =>
-            p.tags?.find(t => t.value.toLowerCase() === filterTag || filterTag === "all")
+          .filter((p) =>
+            p.tags?.find(
+              (t) => t.value.toLowerCase() === filterTag || filterTag === "all"
+            )
           )
           .map((p, i) => (
-            <Painting paintingData={p} filterTag={filterTag} index={i} key={i} />
+            <Painting
+              paintingData={p}
+              filterTag={filterTag}
+              index={i}
+              key={i}
+            />
           ))}
       </div>
 
@@ -81,7 +91,7 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
 
 Carousel.propTypes = {
   filterTag: PropTypes.string,
-  paintings: PropTypes.array
+  paintings: PropTypes.array,
 }
 
 export default Carousel

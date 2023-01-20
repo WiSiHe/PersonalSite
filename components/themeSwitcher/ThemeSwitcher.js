@@ -6,7 +6,7 @@ const ThemeSwitcher = ({ children }) => {
 }
 
 ThemeSwitcher.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
 }
 
 export default ThemeSwitcher

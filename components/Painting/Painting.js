@@ -1,16 +1,15 @@
+import clsx from "clsx"
+import { motion } from "framer-motion"
+import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import React from "react"
-import clsx from "clsx"
-import { motion } from "framer-motion"
-
-import { imageBuilder } from "lib/sanity"
 
 const cardVariants = {
   offscreen: {
     y: 100,
-    opacity: 0
+    opacity: 0,
   },
   onscreen: {
     y: 0,
@@ -18,9 +17,9 @@ const cardVariants = {
     transition: {
       type: "spring",
       bounce: 0.4,
-      duration: 1
-    }
-  }
+      duration: 1,
+    },
+  },
 }
 
 const Painting = function ({ paintingData = {}, index = 0 }) {
@@ -30,10 +29,10 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
     title = "",
     tags = [],
     // format = "square",
-    slug: { current = "" } = {}
+    slug: { current = "" } = {},
   } = paintingData
 
-  const salesTagObj = tags?.find(t => t.value === "Buyable") || {}
+  const salesTagObj = tags?.find((t) => t.value === "Buyable") || {}
   const { value = "" } = salesTagObj
   const isForSales = value === "Buyable"
 
@@ -81,11 +80,17 @@ const Painting = function ({ paintingData = {}, index = 0 }) {
           className={clsx(
             "relative w-full",
             "h-[320px] md:h-[200px]",
-            isHighlighted ? " lg:h-[480px] xl:h-[610px]" : "lg:h-[240px] xl:h-[300px]"
+            isHighlighted
+              ? " lg:h-[480px] xl:h-[610px]"
+              : "lg:h-[240px] xl:h-[300px]"
           )}
         >
           <Image
-            src={imageBuilder(image).width(imageWidth).height(imageHeight).quality(45).url()}
+            src={imageBuilder(image)
+              .width(imageWidth)
+              .height(imageHeight)
+              .quality(45)
+              .url()}
             // layout="fill"
             // objectFit="cover"
             height={400}
@@ -123,8 +128,8 @@ Painting.propTypes = {
     _id: PropTypes.any,
     image: PropTypes.object,
     tags: PropTypes.array,
-    title: PropTypes.string
-  })
+    title: PropTypes.string,
+  }),
 }
 
 export default Painting

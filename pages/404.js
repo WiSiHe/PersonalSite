@@ -1,12 +1,11 @@
+import Footer from "components/Footer"
+import SideMenu from "components/SideMenu"
+import Image from "next/image"
 import React from "react"
 
 import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
 import Navigation from "../components/Navigation"
-
-import SideMenu from "components/SideMenu"
-import Footer from "components/Footer"
-import Image from "next/image"
 
 export default function Custom404() {
   return (

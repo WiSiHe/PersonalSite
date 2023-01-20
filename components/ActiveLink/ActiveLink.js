@@ -1,6 +1,6 @@
+import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import React from "react"
-import { useRouter } from "next/router"
 function ActiveLink({ children, href, scrollToTop = true, shallow = false }) {
   const router = useRouter()
   const isActive = router.asPath === href
@@ -12,7 +12,7 @@ function ActiveLink({ children, href, scrollToTop = true, shallow = false }) {
 
   const style = isDarkMode ? darkStyle : lightStyle
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     e.preventDefault()
     router.push(href, undefined, { scroll: scrollToTop, shallow: shallow })
   }
@@ -28,7 +28,7 @@ ActiveLink.propTypes = {
   children: PropTypes.any,
   href: PropTypes.any,
   scrollToTop: PropTypes.bool,
-  shallow: PropTypes.bool
+  shallow: PropTypes.bool,
 }
 
 export default ActiveLink
