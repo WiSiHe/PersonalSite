@@ -1,356 +1,177 @@
-import clsx from "clsx"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Painting } from "components"
+import Filters from "components/Filters"
 import Footer from "components/Footer"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 import { m } from "framer-motion"
-import useWindowDimensions from "hooks/useWindowDimension"
-import { imageBuilder } from "lib/sanity"
-import Image from "next/image"
-import Link from "next/link"
-import PropTypes from "prop-types"
-import portrait from "public/images/selfPortrait.png"
-import React, { useEffect, useState } from "react"
-import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
-import { getRandomArbitrary } from "utils/numbers"
+import useScrollPosition from "hooks/useScrollPosition"
+// import PaintingGrid from "components/PaintingGrid"
+// import SideMenu from "components/SideMenu"
+import { getAllTagsAndPaintingsLight } from "lib/api"
+import React from "react"
+import { IoArrowUpSharp } from "react-icons/io5"
 
-import { getAllTagsAndPaintings } from "../lib/api"
+import { PaintingsPageProps } from "./paintings/[slug]"
 
-export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
-export declare type ImageLoaderProps = {
-  src: string
-  width: number
-  quality?: number
-}
+// import { imageBuilder } from "lib/sanity"
 
-export interface painting {
-  blurDataURL: string
-  placeholder: "blur" | "empty"
-  height: number
-  width: number
-  src: string
-  loader: ImageLoader
-}
+const PaintingsPage = ({
+  paintings = [],
+  tags = [],
+  slug = "all",
+}: PaintingsPageProps) => {
+  // state for slice of paintings
 
-export interface ISanityImage {
-  painting: painting | null
-}
+  // console.log("paintingGrid", paintingGrid)
 
-export interface Asset {
-  _ref: string
-  _type: string
-}
+  // const [paintingsSlice, setPaintingsSlice] = useState(25)
+  // const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
-export interface Image {
-  _type: string
-  asset: Asset
-}
+  const scrollPosition = useScrollPosition()
 
-export interface Slug {
-  _type: string
-  current: string
-}
-
-export interface Tag {
-  label: string
-  value: string
-}
-
-export interface RootObject {
-  _createdAt: Date
-  _id: string
-  _rev: string
-  _type: string
-  _updatedAt: Date
-  aspectRatio: string
-  description: string
-  imageUrl: string
-  lowResImageUrl: string
-  image: Image
-  slug: Slug
-  tags: Tag[]
-  title: string
-}
-
-export default function Home({
-  desktopWallpaper = [],
-  mobileWallpaper = [],
-}: {
-  desktopWallpaper: RootObject[]
-  mobileWallpaper: RootObject[]
-}) {
-  const [desktopIndex, setDesktopIndex] = useState(0)
-  const [mobileIndex, setMobileIndex] = useState(0)
-  const { width = 0 } = useWindowDimensions()
-
-  const currentWallpaper = desktopWallpaper[desktopIndex]
-  const currentMobileWallpaper = mobileWallpaper[mobileIndex]
-
-  const handleGoLeft = ({ isMobile = false }) => {
-    if (isMobile) {
-      if (mobileIndex === 0) {
-        return setMobileIndex(mobileWallpaper.length - 1)
-      } else {
-        return setMobileIndex(mobileIndex - 1)
-      }
-    } else {
-      if (desktopIndex === 0) {
-        return setDesktopIndex(desktopWallpaper.length - 1)
-      }
-
-      return setDesktopIndex(desktopIndex - 1)
-    }
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    })
   }
 
-  const handleGoRight = ({ isMobile = false }) => {
-    if (isMobile) {
-      if (mobileIndex === mobileWallpaper.length - 1) {
-        return setMobileIndex(0)
-      }
-      return setMobileIndex(mobileIndex + 1)
-    } else {
-      if (desktopIndex === desktopWallpaper.length - 1) {
-        return setDesktopIndex(0)
-      }
+  // functions that load more paintings, and at the end of the list, load more paintings
+  // const loadMorePaintings = () => {
+  //   if (hasLoadedAllPaintings) return
+  //   // append 25 more paintings to the list
+  //   setPaintingsSlice(paintingsSlice + 25)
 
-      return setDesktopIndex(desktopIndex + 1)
-    }
-  }
+  //   if (paintingsSlice >= paintings.length) {
+  //     setHasLoadedAllPaintings(true)
+  //   }
+  // }
 
-  useEffect(() => {
-    setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)))
-    setMobileIndex(parseInt(getRandomArbitrary(0, mobileWallpaper.length)))
-  }, [desktopWallpaper, mobileWallpaper])
+  // load more paintings when scroll position is at the bottom of the page
+  // useEffect(() => {
+  //   if (hasLoadedAllPaintings) return
+  //   if (
+  //     window.innerHeight + window.scrollY >=
+  //     document.body.offsetHeight - 200
+  //   ) {
+  //     loadMorePaintings()
+  //   }
+  // }, [scrollPosition, hasLoadedAllPaintings])
 
   return (
     <>
-      <Meta url="https://wisihe.no" />
-      <Navigation isAbsolute />
-
-      <Main noTopPadding className="flex-col">
-        <section className="w-full h-screen">
-          <div
-            className="relative h-full overflow-clip bg-slate-800"
-            key="desktop"
-          >
-            <div className="relative hidden w-full h-full xl:block">
-              <Image
-                src={currentWallpaper.imageUrl}
-                blurDataURL={currentWallpaper.lowResImageUrl}
-                sizes="(max-width: 768px) 100vw,
-                (max-width: 1200px) 50vw,
-                33vw"
-                priority
-                fill
-                placeholder="blur"
-                className={clsx(
-                  "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
-                )}
-                alt="headerImage"
+      <Meta
+        title="Gallery"
+        url="https://wisihe.no/gallery"
+        description="A gallery of some of my paintings"
+      />
+      <Navigation />
+      <Main noTopPadding className="overflow-clip">
+        <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
+          <section className="col-span-full">
+            <div className="sticky top-0 z-20 p-4 bg-stone-200 bg-opacity-30 backdrop-blur-lg">
+              <Filters
+                filteredTags={tags}
+                activeFilter={slug}
+                amountOfPaintings={paintings.length}
               />
             </div>
-            <div className="relative block w-full h-full xl:hidden">
-              <Image
-                src={currentMobileWallpaper.imageUrl}
-                blurDataURL={currentMobileWallpaper.lowResImageUrl}
-                sizes="(max-width: 768px) 100vw,
-                (max-width: 1200px) 50vw,
-                33vw"
-                priority
-                fill
-                placeholder="blur"
-                className="object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
-                alt="headerImage"
-              />
-            </div>
-
+            {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div
-              className={`absolute inset-0 w-full flex items-center mix-blend-overlay justify-center h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`}
-            />
+              className="p-4 columns-2 md:columns-3 lg:columns-5"
+              // ref={paintingGrid}
+            >
+              {paintings.map((p, i) => {
+                const { _id } = p
 
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4 ring">
-              <div className="flex items-center justify-between w-full gap-6 p-10">
-                <m.button
-                  // onMouseOver={() => setIsPaused(true)}
-                  // onMouseOut={() => setIsPaused(false)}
-                  whileHover={{ scale: 1.2 }}
-                  onClick={() =>
-                    handleGoLeft({ isMobile: width > 764 ? false : true })
-                  }
-                  className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to previous painting"
-                >
-                  <BsChevronLeft
-                    aria-label="Left"
-                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </m.button>
-                <div className="relative ">
-                  <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full rounded mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
+                const isPriority = i < 3
 
-                  <Link href="/paintings">
-                    <m.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      // whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", duration: 0.5 }}
-                      className="relative py-4 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
-                    >
-                      <b>Go to gallery</b>
-                    </m.div>
-                  </Link>
-                </div>
-                <m.button
-                  whileHover={{ scale: 1.2 }}
-                  // onMouseOver={() => setIsPaused(true)}
-                  // onMouseOut={() => setIsPaused(false)}
-                  onClick={() =>
-                    handleGoRight({ isMobile: width > 764 ? false : true })
-                  }
-                  className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to next painting"
-                >
-                  <BsChevronRight
-                    aria-label="Right"
-                    className="p-2 text-4xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </m.button>
-              </div>
+                return (
+                  <div key={_id} className="mb-4">
+                    <Painting paintingData={p} isPriority={isPriority} />
+                  </div>
+                )
+              })}
             </div>
-            <div className="absolute left-0 right-0 z-10 flex items-center justify-center p-4 bottom-4">
-              <m.a
-                initial={{ y: 0, scale: 1.0 }}
-                animate={{ y: -10, scale: 1.0 }}
-                // whileHover={{ scale: 1.2 }}
-                transition={{
-                  repeat: Infinity,
-                  // repeatDelay: 2,
-
-                  repeatType: "reverse",
-                  // duration: 0.5,
-                  type: "spring",
-                  bounce: 0.5,
-                }}
-                className="p-4 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                href="#main"
-              >
-                <BsChevronDown />
-              </m.a>
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="grid w-full h-full grid-cols-12 p-10 min-h-96"
-          id="main"
-        >
-          <section className="col-span-full xl:col-span-4">
-            <h1>
-              <b>Henrik Wilhelm Sissener</b>
-            </h1>
-            <p>
-              Short story: Im a digital artist / web developer / hobby designer
-              who has been drawing my whole life. I mostly do character designs,
-              but I try to step into the big world of landscape every now and
-              then, I spend my free time making digital paintings paintings and
-              do some tinkering with new Frontend technologies.
-            </p>
           </section>
+          {/* <div className="flex items-center justify-center py-10 col-span-full xl:col-span-6 xl:col-start-4">
+            <button onClick={loadMorePaintings} className="p-4 text-center rounded bg-highlight">
+              Load more
+            </button>
+          </div> */}
+        </section>
+
+        {scrollPosition > 400 && (
           <m.div
-            initial={{ opacity: 0, y: 20, x: 100 }}
-            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            className="relative col-span-4 ring aspect-square"
+            className="fixed z-10 bottom-8 right-8"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ type: "spring" }}
+            key="backbutton"
           >
-            <Image
-              src={portrait}
-              alt="test"
-              className="object-cover w-full h-full "
-            />
+            <button
+              onClick={handleClick}
+              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+            >
+              <IoArrowUpSharp />
+            </button>
           </m.div>
-        </section>
-        <section>
-          <div
-            className={clsx(
-              `absolute w-full flex items-center justify-center h-96 bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`
-            )}
-          />
-        </section>
+        )}
       </Main>
       <Footer />
     </>
   )
 }
 
-Home.propTypes = {
-  headerImage: PropTypes.any,
-  paintings: PropTypes.array,
-  tags: PropTypes.array,
-  thumbnailImage: PropTypes.any,
-  wallpaperPaintings: PropTypes.any,
-  desktopWallpaper: PropTypes.array,
-}
+export default PaintingsPage
 
 export async function getStaticProps() {
-  const data = await getAllTagsAndPaintings()
+  const data = await getAllTagsAndPaintingsLight()
 
   if (data.length < 1) {
     return { props: {} }
   }
 
-  const { paintings = [] } = data
+  const { paintings = [], tags = [] } = data
 
-  const wallpaperPaintings = paintings.filter(
-    (p) =>
-      p.tagsV2?.length > 1 &&
-      p.tagsV2.find((t) => t.name.toLowerCase() === "wallpaper")
-  )
+  const sortedTags = tags
+    .filter((p) => p.paintingsCount > 5)
+    .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
-  const mobileWallpaper =
-    wallpaperPaintings.filter((p) => p.format === "portrait") || []
+  // const randomPaintings = paintings.sort(() => Math.random() - 0.5)
 
-  const mobileWallpapersWithFetchedImages = mobileWallpaper.map(
-    (wallpaper) => ({
-      ...wallpaper,
-      lowResImageUrl: imageBuilder(wallpaper.image)
-        .width(20)
-        .height(20)
-        .quality(10)
-        .url(),
-      imageUrl: imageBuilder(wallpaper.image)
-        .width(764)
-        .height(800)
-        .quality(75)
-        .url(),
-    })
-  )
+  // const imageWidth = {
+  //   square: 400,
+  //   landscape: 800,
+  //   portrait: 400
+  // }
 
-  const desktopWallpaper =
-    wallpaperPaintings.filter((w) => w.format === "landscape") || []
+  // const imageHeight = {
+  //   square: 400,
+  //   landscape: 400,
+  //   portrait: 800
+  // }
 
-  const desktopWallpapersWithFetchedImages = desktopWallpaper.map(
-    (wallpaper) => ({
-      ...wallpaper,
-      lowResImageUrl: imageBuilder(wallpaper.image)
-        .width(20)
-        .height(20)
-        .quality(10)
-        .url(),
-      imageUrl: imageBuilder(wallpaper.image)
-        .width(1400)
-        .height(900)
-        .quality(75)
-        .url(),
-    })
-  )
+  // const paintingsWithPriority = paintings.map(p => {
+  //   const { format = "square", image = {} } = p
+  //   const fetchedPainting = imageBuilder(image)
+  //     .width(imageWidth[format])
+  //     .height(imageHeight[format])
+  //     .quality(45)
+  //     .url()
+
+  //   return { ...p, fetchedPainting }
+  // })
 
   return {
     props: {
-      desktopWallpaper: desktopWallpapersWithFetchedImages,
-      mobileWallpaper: mobileWallpapersWithFetchedImages,
+      paintings: paintings,
+      tags: sortedTags,
     },
-    // revalidate every hour
-    revalidate: 60 * 60,
+    revalidate: 7200, // 120  min
   }
 }

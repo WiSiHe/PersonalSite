@@ -10,7 +10,7 @@ import useScrollPosition from "hooks/useScrollPosition"
 // import PaintingGrid from "components/PaintingGrid"
 // import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintingsLight } from "lib/api"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 import { PaintingsPageProps } from "./[slug]"
@@ -25,8 +25,8 @@ const PaintingsPage = ({
 
   // console.log("paintingGrid", paintingGrid)
 
-  const [paintingsSlice, setPaintingsSlice] = useState(25)
-  const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
+  // const [paintingsSlice, setPaintingsSlice] = useState(25)
+  // const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const scrollPosition = useScrollPosition()
 
@@ -39,24 +39,26 @@ const PaintingsPage = ({
   }
 
   // functions that load more paintings, and at the end of the list, load more paintings
-  const loadMorePaintings = () => {
-    if (hasLoadedAllPaintings) return
-    setPaintingsSlice(paintingsSlice + 25)
-    if (paintingsSlice >= paintings.length) {
-      setHasLoadedAllPaintings(true)
-    }
-  }
+  // const loadMorePaintings = () => {
+  //   if (hasLoadedAllPaintings) return
+  //   // append 25 more paintings to the list
+  //   setPaintingsSlice(paintingsSlice + 25)
+
+  //   if (paintingsSlice >= paintings.length) {
+  //     setHasLoadedAllPaintings(true)
+  //   }
+  // }
 
   // load more paintings when scroll position is at the bottom of the page
-  useEffect(() => {
-    if (hasLoadedAllPaintings) return
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 200
-    ) {
-      loadMorePaintings()
-    }
-  }, [scrollPosition, hasLoadedAllPaintings])
+  // useEffect(() => {
+  //   if (hasLoadedAllPaintings) return
+  //   if (
+  //     window.innerHeight + window.scrollY >=
+  //     document.body.offsetHeight - 200
+  //   ) {
+  //     loadMorePaintings()
+  //   }
+  // }, [scrollPosition, hasLoadedAllPaintings])
 
   return (
     <>
@@ -81,7 +83,7 @@ const PaintingsPage = ({
               className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5"
               // ref={paintingGrid}
             >
-              {paintings.slice(0, paintingsSlice).map((p, i) => {
+              {paintings.map((p, i) => {
                 const { _id } = p
 
                 const isPriority = i < 3

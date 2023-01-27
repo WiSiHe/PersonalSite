@@ -12,11 +12,11 @@ import { RiMovieFill } from "react-icons/ri"
 
 const cardVariants = {
   offscreen: {
-    y: 100,
+    // y: 100,
     opacity: 0,
   },
   onscreen: {
-    y: 0,
+    // y: 0,
     opacity: 1,
     transition: {
       type: "spring",
@@ -88,7 +88,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full rounded overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-highlight cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
+        "relative w-full @container rounded overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-highlight cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
       )}
       key={_id}
     >
@@ -117,8 +117,8 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           </div>
         </div> */}
 
-        <div className="absolute inset-0 flex items-center drop-shadow-3xl justify-center text-white ">
-          <b className="text-xl group-hover:scale-105">{title}</b>
+        <div className="absolute inset-0 flex items-center text-center drop-shadow-2xl justify-center text-white ">
+          <b className="xl:text-xl group-hover:scale-105">{title}</b>
         </div>
         {hasStoreLinks && (
           <div className="absolute flex items-center p-2 text-xs rounded-sm top-2 left-2 bg-highlight drop-shadow-md">

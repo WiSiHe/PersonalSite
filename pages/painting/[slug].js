@@ -73,7 +73,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
   }
 
   const handleGoBack = () => {
-    router.back()
+    router.back({ scroll: false })
   }
 
   return (
@@ -86,10 +86,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         url={`https://wisihe.no/painting/${current}`}
       />
       <Navigation />
-      <Main
-        noTopPadding
-        className="grid flex-col flex-1 w-full grid-cols-12 gap-10 p-4 xl:p-20 "
-      >
+      <Main noTopPadding className="grid grid-cols-12  p-4 xl:gap-4 xl:p-20 ">
         <m.div
           className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6"
           initial={{ opacity: 0, x: -100 }}
@@ -133,7 +130,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
           exit={{ opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="text-section"
-          className="relative flex flex-col justify-between w-full transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4"
+          className="relative  justify-between transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4"
         >
           <div>
             <h1 className="pb-2 text-2xl lg:text-4xl">
