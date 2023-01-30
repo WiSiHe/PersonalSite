@@ -50,11 +50,10 @@ const PaintingsPage = ({ videos = [] }) => {
         description="A gallery of some of my paintings"
       />
       <Navigation />
-      <Main noTopPadding className="p-4">
-        <section className="grid w-full grid-cols-12 gap-10 mx-auto max-w-screen-2xl">
+      <Main noTopPadding>
+        <section className="grid w-full p-4 space-y-4 mx-auto max-w-screen-xl">
           {videos.map((v, i) => {
             const { _id = "", title = "", description = "", video = "" } = v
-
             // every other card is on the other side
             const isEven = i % 2 === 0
 
@@ -66,8 +65,8 @@ const PaintingsPage = ({ videos = [] }) => {
                 viewport={{ once: true, amount: 0.05 }}
                 variants={cardVariants}
                 className={clsx(
-                  "col-span-8 p-4 bg-white rounded shadow-xl h-fit",
-                  !isEven && "col-start-5"
+                  "xl:col-span-8 p-4 bg-white rounded shadow-xl h-fit",
+                  !isEven && "xl:col-start-5"
                 )}
               >
                 <div className="pb-4">

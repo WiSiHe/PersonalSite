@@ -131,7 +131,7 @@ export default function Home({
             <div
               className={`absolute inset-0 w-full flex items-center mix-blend-overlay justify-center h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`}
             />
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4">
+            <div className="absolute left-0 right-0 bottom-0 z-10 flex flex-col items-center justify-center h-fit gap-4">
               <div className="flex items-center justify-between w-full gap-6 p-4">
                 <m.button
                   // onMouseOver={() => setIsPaused(true)}
@@ -151,9 +151,9 @@ export default function Home({
 
                   <Link href="/paintings">
                     <m.div
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      // whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.1 }}
                       transition={{ type: "spring", duration: 0.5 }}
                       className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
                     >
@@ -195,7 +195,7 @@ export default function Home({
           </div>
         </section>
         <section
-          className="max-w-7xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-4 xl:py-10 gap-4 xl:gap-10 px-4"
+          className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-10 gap-4 xl:gap-10 px-4"
           id="main"
         >
           <section className="col-span-9 pb-4 xl:col-start-3 xl:col-span-5 order-2 xl:order-1 text-xs xl:text-base">
@@ -232,10 +232,14 @@ export default function Home({
         <section className="relative h-full flex justify-center items-center">
           <Image src={woods} alt="test" className="object-cover w-full" />
           <div className="absolute inset-0 h-fit w-fit text-white  my-auto p-4 mx-auto">
-            <h2>
-              <b>Still not convinced?</b>
-            </h2>
-            <div className="pb-4">Come on, just a little peak, I dare you!</div>
+            <div className="text-xs">
+              <h2>
+                <strong>Still not convinced?</strong>
+              </h2>
+              <div className="pb-4">
+                Come on, just a little peak, I dare you!
+              </div>
+            </div>
             <Link href="/paintings">
               <div className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
                 <b>Go to gallery</b>
@@ -262,18 +266,18 @@ export default function Home({
             />
           </div>
         </section>
-        <section className="text-center flex justify-center flex-col items-center gap-4 py-10">
+        <section className="text-center flex justify-center flex-col items-center gap-4 py-10 px-4">
           <div className="">
             <h2>Still scrolling, huh?</h2>
             <b>Here, have a picture of a cute dog</b>
           </div>
 
-          <div className="relative aspect-square w-96">
+          <div className="relative aspect-square w-full xl:w-96">
             <Image
               src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=962&q=80"
               fill
               alt="cute dog"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full rounded-full"
             />
           </div>
         </section>
