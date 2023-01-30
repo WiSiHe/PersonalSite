@@ -16,6 +16,7 @@ import woods from "public/images/woods.png"
 import React from "react"
 
 import { getAllTagsAndPaintings } from "../lib/api"
+import { FaFolder, FaPaintBrush, FaVideo } from "react-icons/fa"
 
 export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
 export declare type ImageLoaderProps = {
@@ -82,15 +83,20 @@ export default function Home({
     <>
       <Meta url="https://wisihe.no" />
       <Navigation isAbsolute />
-      <Main noTopPadding className="flex-col">
+      <Main noTopPadding className="flex-col overflow-clip">
         <HeroSection paintings={desktopWallpaper} />
 
-        {/* Personal Description Section */}
         <section
-          className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-10 gap-4 xl:gap-10 px-4"
+          className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-10 xl:py-24 gap-4 xl:gap-16 px-4"
           id="main"
         >
-          <section className="col-span-9 pb-4 xl:col-start-3 xl:col-span-5 order-2 xl:order-1 text-xs xl:text-base">
+          <m.div
+            initial={{ opacity: 0, x: -100 }}
+            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="col-span-9 xl:col-start-3 xl:col-span-5 order-2 xl:order-1 text-xs xl:text-base"
+          >
             <h1>
               <strong>
                 Hi there! My name is <span className="text-primary">He</span>
@@ -106,64 +112,80 @@ export default function Home({
               tinkering with programming, game development and new frontend
               technologies.
             </p>
-          </section>
-          <div
-            // initial={{ opacity: 0, y: 20, x: 100 }}
-            // transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-            // whileInView={{ opacity: 1, y: 0, x: 0 }}
-            // viewport={{ once: true, amount: 0.5 }}
-            className="relative col-span-3 xl:col-span-3 aspect-square order-1 xl:order-2 xl:block"
+          </m.div>
+          <m.div
+            initial={{ opacity: 0, x: 100 }}
+            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="relative col-span-3 xl:col-span-3 order-1 xl:order-2 xl:block"
           >
             <Image
               src={portrait}
               alt="portrait of Henrik Sissener"
-              className="object-cover w-full h-full rounded-full"
+              className="object-cover w-full h-full"
             />
-          </div>
-        </section>
-
-        <section className="grid grid-cols-12 gap-4 xl:gap-10 py-10 px-4  relative ">
-          <div className="absolute from-dark/20 inset-0 bg-gradient-to-t pointer-events-none" />
-          <div className="col-span-full xl:col-span-6 xl:col-start-2  p-4">
-            <h2>
-              <strong>Paintings</strong>
-            </h2>
-            <p>Coming soon</p>
-            <Link href="/paintings">
-              <strong>Take a look at my paintings</strong>
-            </Link>
-          </div>
-          <div className="col-span-full xl:col-span-6 xl:col-start-7  p-4">
-            <h2>
-              <strong>Projects</strong>
-            </h2>
-            <p>Coming soon</p>
-            <Link href="/projects">
-              <strong>Take a look at my projects</strong>
-            </Link>
-          </div>
-          <div className="col-span-full xl:col-span-6 xl:col-start-2  p-4">
-            <h2>
-              <strong>Videos</strong>
-            </h2>
-            <p>Coming soon</p>
-            <Link href="/videos" className="hover:underline">
-              <strong>Take a look at my videos</strong>
-            </Link>
-          </div>
-          <m.div
-            className="absolute left-10 top-0 bottom-0 flex justify-center items-center pointer-events-none"
-            initial={{ opacity: 0, rotate: -180, x: -200, scale: 0.5 }}
-            whileInView={{ opacity: 1, rotate: 45, x: 50, scale: 1 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-          >
-            <LogoQR className="opacity-5" width="20rem" height="20rem" />
           </m.div>
         </section>
+
+        {/* <section className="relative py-20">
+          <div className="absolute from-dark/10 inset-0 bg-gradient-to-t pointer-events-none" />
+          <div className="grid-cols-12 grid gap-4 xl:gap-10 ">
+            <div className="p-4 col-span-full xl:col-span-3 xl:col-start-3 flex gap-4 items-center text-sm">
+              <div className="w-16 h-16 bg-primary shrink-0 flex justify-center items-center text-white">
+                <FaPaintBrush />
+              </div>
+              <div>
+                <h2>
+                  <strong>Paintings</strong>
+                </h2>
+                <p>A collection of my paintings, </p>
+                <Link
+                  href="/paintings"
+                  className="underline underline-offset-2"
+                >
+                  <strong>Take a look at my paintings</strong>
+                </Link>
+              </div>
+            </div>
+            <div className="p-4 col-span-full xl:col-span-3 flex gap-4 items-center text-sm">
+              <div className="w-16 h-16 bg-primary shrink-0 flex justify-center items-center text-white">
+                <FaFolder />
+              </div>
+              <div>
+                <h2>
+                  <strong>Projects</strong>
+                </h2>
+                <p>Some of my old, ongoing or future projects.</p>
+                <Link href="/projects" className="underline underline-offset-2">
+                  <strong>Take a look at my projects</strong>
+                </Link>
+              </div>
+            </div>
+            <div className="p-4 col-span-full xl:col-span-3 flex gap-4 items-center text-sm">
+              <div className="w-16 h-16 bg-primary shrink-0 flex justify-center items-center text-white">
+                <FaVideo />
+              </div>
+              <div>
+                <h2>
+                  <strong>Videos</strong>
+                </h2>
+                <p>
+                  A collection of some stuff I&#39;ve published to YouTube over
+                  the years, some of it is associated with music, some of it is
+                  animations and Game Dev stuff.
+                </p>
+                <Link href="/videos" className="underline underline-offset-2">
+                  <strong>Take a look at my videos</strong>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section> */}
+
         <section className="relative h-full flex justify-center items-center">
           <Image src={woods} alt="test" className="object-cover w-full" />
-          <div className="absolute inset-0 h-fit w-fit text-white  my-auto p-4 mx-auto">
+          <div className="absolute inset-0 h-fit w-fit text-white flex items-center flex-col text-center  my-auto p-4 mx-auto">
             <div className="text-xs">
               <h2>
                 <strong>Still not convinced?</strong>
@@ -172,10 +194,11 @@ export default function Home({
                 Come on, just a little peak, I dare you!
               </div>
             </div>
-            <Link href="/paintings" className="">
-              <div className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
-                <b>Go to gallery</b>
-              </div>
+            <Link
+              href="/paintings"
+              className="relative py-2 text-center text-black text-xs transition bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
+            >
+              <b>Go to gallery</b>
             </Link>
           </div>
         </section>
@@ -203,7 +226,7 @@ export default function Home({
               src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=962&q=80"
               fill
               alt="cute dog"
-              className="object-cover w-full h-full rounded-full"
+              className="object-cover w-full h-full"
             />
           </div>
         </section>

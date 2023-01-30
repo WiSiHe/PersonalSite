@@ -34,9 +34,9 @@ export default function ProjectsPage() {
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
 
-      <Navigation />
+      <Navigation isAbsolute />
 
-      <Main noTopPadding>
+      <Main>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
           <section className="relative p-4 pt-10 mx-auto col-span-full max-w-screen-2xl">
             <h1 className="text-4xl">My Projects</h1>

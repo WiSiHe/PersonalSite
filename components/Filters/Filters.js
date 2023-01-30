@@ -23,7 +23,7 @@ const Filters = ({
         <button
           onClick={() => setActive((prev) => !prev)}
           className={clsx(
-            "flex gap-1 items-center overflow-clip px-4 py-1 hover:ring text-sm font-medium text-white bg-primary rounded-full"
+            "flex gap-1 items-center overflow-clip px-4 py-1 hover:ring text-sm font-medium text-white bg-primary"
           )}
         >
           {active && (
@@ -65,13 +65,13 @@ const Filters = ({
         </button>
         <div
           className={clsx(
-            "relative snap-start uppercase  transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+            "relative snap-start uppercase  transition py-2 pointer-events-none px-4 text-xs  whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
             "bg-highlight hover:bg-highlight text-black"
           )}
         >
           <strong>{activeFilter}</strong>
         </div>
-        <div>Results: {amountOfPaintings}</div>
+        <strong>Results: {amountOfPaintings}</strong>
       </div>
       <AnimatePresence>
         {active && (
@@ -95,7 +95,7 @@ const Filters = ({
                   <Link
                     href={url}
                     className={clsx(
-                      "relative snap-start transition py-2 px-4 text-xs  whitespace-nowrap hover:opacity-90 rounded-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+                      "relative snap-start transition py-2 px-4 text-xs whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                       isBuyable && "ring ring-highlight",
                       isActive
                         ? "bg-highlight hover:bg-highlight text-black"
@@ -103,8 +103,8 @@ const Filters = ({
                     )}
                   >
                     <strong className="capitalize">
-                      {name}{" "}
-                      {paintingsCount > 0 && <span> - {paintingsCount}</span>}
+                      {name}
+                      {paintingsCount > 0 && <span>({paintingsCount})</span>}
                     </strong>
                     {isBuyable && (
                       <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">

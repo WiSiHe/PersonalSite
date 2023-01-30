@@ -98,7 +98,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         >
           <button
             onClick={handleGoBack}
-            className="flex items-center justify-center gap-2 px-4 py-2 text-xl shadow-lg transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
+            className="flex items-center justify-center gap-2 px-4 py-2 text-xl shadow-lg transition-all duration-200 ease-in-out bg-primary text-white hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
           >
             <IoArrowBackSharp /> Back
           </button>
@@ -143,7 +143,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                 const tagSlug = name.toLowerCase().replace(" ", "-")
                 return (
                   <Link
-                    className="px-2 py-1 text-xs text-white capitalize rounded-lg bg-primary"
+                    className="px-2 py-1 text-xs text-white capitalize bg-primary"
                     key={name}
                     href={`/paintings/${tagSlug}`}
                   >
@@ -152,7 +152,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                 )
               })}
             </div>
-            <p className="py-2 rounded-sm">
+            <p className="py-2">
               {description
                 ? description
                 : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat."}

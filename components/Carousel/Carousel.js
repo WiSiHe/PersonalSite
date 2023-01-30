@@ -44,7 +44,7 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
         )}
       >
         <button
-          className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
+          className="p-2 shadow-2xl ring-1 ring-white bg-primary"
           onClick={handleStepLeft}
         >
           <BiLeftArrowAlt className="text-xl text-white" />
@@ -79,7 +79,7 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
         )}
       >
         <button
-          className="p-2 rounded-sm shadow-2xl ring-1 ring-white bg-primary"
+          className="p-2 shadow-2xl ring-1 ring-white bg-primary"
           onClick={handleStepRight}
         >
           <BiRightArrowAlt className="text-xl text-white" />

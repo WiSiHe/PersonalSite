@@ -10,7 +10,7 @@ import useScrollPosition from "hooks/useScrollPosition"
 // import PaintingGrid from "components/PaintingGrid"
 // import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintingsLight } from "lib/api"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 import { PaintingsPageProps } from "./[slug]"
@@ -21,12 +21,8 @@ const PaintingsPage = ({
   tags = [],
   slug = "all",
 }: PaintingsPageProps) => {
-  // state for slice of paintings
-
-  // console.log("paintingGrid", paintingGrid)
-
-  // const [paintingsSlice, setPaintingsSlice] = useState(25)
-  // const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
+  const [paintingsSlice, setPaintingsSlice] = useState(25)
+  const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const scrollPosition = useScrollPosition()
 
@@ -39,26 +35,25 @@ const PaintingsPage = ({
   }
 
   // functions that load more paintings, and at the end of the list, load more paintings
-  // const loadMorePaintings = () => {
-  //   if (hasLoadedAllPaintings) return
-  //   // append 25 more paintings to the list
-  //   setPaintingsSlice(paintingsSlice + 25)
+  const loadMorePaintings = () => {
+    if (hasLoadedAllPaintings) return
+    // append 25 more paintings to the list
+    setPaintingsSlice(paintingsSlice + 25)
 
-  //   if (paintingsSlice >= paintings.length) {
-  //     setHasLoadedAllPaintings(true)
-  //   }
-  // }
+    if (paintingsSlice >= paintings.length) {
+      setHasLoadedAllPaintings(true)
+    }
+  }
 
-  // load more paintings when scroll position is at the bottom of the page
-  // useEffect(() => {
-  //   if (hasLoadedAllPaintings) return
-  //   if (
-  //     window.innerHeight + window.scrollY >=
-  //     document.body.offsetHeight - 200
-  //   ) {
-  //     loadMorePaintings()
-  //   }
-  // }, [scrollPosition, hasLoadedAllPaintings])
+  useEffect(() => {
+    if (hasLoadedAllPaintings) return
+    if (
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 200
+    ) {
+      loadMorePaintings()
+    }
+  }, [scrollPosition, hasLoadedAllPaintings])
 
   return (
     <>
@@ -78,12 +73,8 @@ const PaintingsPage = ({
                 amountOfPaintings={paintings.length}
               />
             </div>
-            {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
-            <div
-              className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5"
-              // ref={paintingGrid}
-            >
-              {paintings.map((p, i) => {
+            <div className="p-2 xl:p-4 columns-2 sm:columns-2 md:columns-3 lg:columns-5">
+              {paintings.slice(0, paintingsSlice).map((p, i) => {
                 const { _id } = p
 
                 const isPriority = i < 3
@@ -96,11 +87,6 @@ const PaintingsPage = ({
               })}
             </div>
           </section>
-          {/* <div className="flex items-center justify-center py-10 col-span-full xl:col-span-6 xl:col-start-4">
-            <button onClick={loadMorePaintings} className="p-4 text-center rounded bg-highlight">
-              Load more
-            </button>
-          </div> */}
         </section>
 
         {scrollPosition > 400 && (
@@ -114,7 +100,7 @@ const PaintingsPage = ({
           >
             <button
               onClick={handleClick}
-              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
             >
               <IoArrowUpSharp />
             </button>

@@ -82,9 +82,9 @@ export default function Navigation({ isAbsolute = false }) {
                   <Link
                     href={item.url}
                     className={clsx(
-                      "transition-all hover:text-highlight hover:decoration-2  hover:decoration-highlight  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+                      "transition-all hover:text-highlight hover:decoration-2 hover:underline underline-offset-2  hover:decoration-highlight  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                       isActive &&
-                        "underline underline-offset-1 decoration-highlight text-highlight decoration-2"
+                        "underline decoration-highlight text-highlight decoration-2"
                     )}
                   >
                     <b>{item.text}</b>

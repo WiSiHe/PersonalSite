@@ -37,7 +37,7 @@ const Project = ({
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative flex flex-col overflow-hidden bg-white rounded-lg shadow-xl xl:h-[512px]",
+        "relative flex flex-col overflow-hidden bg-white shadow-xl xl:h-[512px]",
         className
       )}
     >
@@ -57,10 +57,7 @@ const Project = ({
           <ul className="flex flex-wrap mt-2 mb-4 text-xs">
             {tags.map((tag) => {
               return (
-                <li
-                  className="mb-2 mr-2 rounded-lg bg-primary text-bright"
-                  key={tag}
-                >
+                <li className="mb-2 mr-2 bg-primary text-bright" key={tag}>
                   <Tag>{tag}</Tag>
                 </li>
               )

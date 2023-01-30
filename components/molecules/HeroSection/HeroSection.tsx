@@ -33,7 +33,7 @@ const HeroSection = ({ paintings = [] }) => {
   }
 
   return (
-    <section className="w-full mt-14 h-[50lvh] xl:h-[80lvh]">
+    <section className="w-full mt-14 xl:mt-0 h-[70lvh] xl:h-[100lvh]">
       <div className="relative h-full bg-slate-800">
         <div className="relative w-full h-full">
           <Image
@@ -59,16 +59,16 @@ const HeroSection = ({ paintings = [] }) => {
             <m.button
               whileHover={{ scale: 1.2 }}
               onClick={() => handleGoLeft()}
-              className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
+              className="flex-shrink-0 fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
               aria-label="Go to previous painting"
             >
               <BsChevronLeft
                 aria-label="Left"
-                className="p-2 text-3xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               />
             </m.button>
             <div className="relative ">
-              <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full rounded mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
+              <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full  mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
 
               <Link href="/paintings">
                 <m.div
@@ -76,7 +76,7 @@ const HeroSection = ({ paintings = [] }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", duration: 0.5 }}
-                  className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
+                  className="relative py-2 text-center text-black transition bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
                 >
                   <b>Go to gallery</b>
                 </m.div>
@@ -85,12 +85,12 @@ const HeroSection = ({ paintings = [] }) => {
             <m.button
               whileHover={{ scale: 1.2 }}
               onClick={handleGoRight}
-              className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+              className="z-10 focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
               aria-label="Go to next painting"
             >
               <BsChevronRight
                 aria-label="Right"
-                className="p-2 text-3xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               />
             </m.button>
           </div>
@@ -105,7 +105,7 @@ const HeroSection = ({ paintings = [] }) => {
                   type: "spring",
                   bounce: 0.5,
                 }}
-                className="p-2 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+                className="p-2 bg-white focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
                 href="#main"
               >
                 <BsChevronDown />

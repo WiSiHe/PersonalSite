@@ -49,8 +49,8 @@ const PaintingsPage = ({ videos = [] }) => {
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Navigation />
-      <Main noTopPadding>
+      <Navigation isAbsolute />
+      <Main>
         <section className="grid w-full p-4 space-y-4 mx-auto max-w-screen-xl">
           {videos.map((v, i) => {
             const { _id = "", title = "", description = "", video = "" } = v
@@ -65,7 +65,7 @@ const PaintingsPage = ({ videos = [] }) => {
                 viewport={{ once: true, amount: 0.05 }}
                 variants={cardVariants}
                 className={clsx(
-                  "xl:col-span-8 p-4 bg-white rounded shadow-xl h-fit",
+                  "xl:col-span-8 p-4 bg-white shadow-xl h-fit",
                   !isEven && "xl:col-start-5"
                 )}
               >
@@ -96,7 +96,7 @@ const PaintingsPage = ({ videos = [] }) => {
           >
             <button
               onClick={handleClick}
-              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white rounded-lg shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+              className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
             >
               <IoArrowUpSharp />
             </button>
