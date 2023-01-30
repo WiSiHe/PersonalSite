@@ -210,11 +210,11 @@ export default function Home({
               tinkering with new Frontend technologies.
             </p>
           </section>
-          <m.div
-            initial={{ opacity: 0, y: 20, x: 100 }}
-            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
+          <div
+            // initial={{ opacity: 0, y: 20, x: 100 }}
+            // transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+            // whileInView={{ opacity: 1, y: 0, x: 0 }}
+            // viewport={{ once: true, amount: 0.5 }}
             className="relative col-span-4 xl:col-span-3 aspect-square order-1 xl:order-2 xl:block"
           >
             <Image
@@ -222,30 +222,22 @@ export default function Home({
               alt="portrait of Henrik Sissener"
               className="object-cover w-full h-full rounded-full"
             />
-          </m.div>
+          </div>
         </section>
-        <m.div className="absolute">
+        <div className="absolute">
           <LogoQR className="opacity-5" width="10rem" height="10rem" />
-        </m.div>
+        </div>
         <section className="relative max-h-screen h-full overflow-clip flex justify-center items-center">
           <Image src={woods} alt="test" className="object-cover w-full" />
           <div className="absolute inset-0 h-fit w-fit text-white  my-auto p-4 mx-auto">
             <h2>
               <b>Still not convinced?</b>
             </h2>
-            <m.div className="pb-4">
-              Come on, just a little peak, I dare you!
-            </m.div>
+            <div className="pb-4">Come on, just a little peak, I dare you!</div>
             <Link href="/paintings">
-              <m.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                // whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
-              >
+              <div className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
                 <b>Go to gallery</b>
-              </m.div>
+              </div>
             </Link>
             <div></div>
           </div>
