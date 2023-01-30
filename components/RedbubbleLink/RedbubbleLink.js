@@ -20,7 +20,6 @@ const RedbubbleLink = ({ hasRedBubleLink, redbubbleUrl }) => {
               ? "hover:opacity-90"
               : "opacity-30 cursor-not-allowed"
           )}
-          disabled
         >
           <SiRedbubble className="mr-2 text-bright" />
           <strong className="text-bright">Redbubble store</strong>

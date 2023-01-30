@@ -24,6 +24,7 @@ const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
 })
 
+import Link from "next/link"
 import { Suspense } from "react"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
@@ -73,7 +74,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
   }
 
   const handleGoBack = () => {
-    router.back({ scroll: false })
+    router.back({ scroll: true })
   }
 
   return (
@@ -86,9 +87,9 @@ export default function Gallery({ painting = {}, slug = {} }) {
         url={`https://wisihe.no/painting/${current}`}
       />
       <Navigation />
-      <Main noTopPadding className="grid grid-cols-12  p-4 xl:gap-4 xl:p-20 ">
+      <Main noTopPadding className="grid grid-cols-12 xl:gap-4 xl:p-20 ">
         <m.div
-          className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6"
+          className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6 "
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
@@ -97,7 +98,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         >
           <button
             onClick={handleGoBack}
-            className="flex items-center justify-center gap-2 px-4 py-2 text-xl transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
+            className="flex items-center justify-center gap-2 px-4 py-2 text-xl shadow-lg transition-all duration-200 ease-in-out bg-white rounded-lg hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
           >
             <IoArrowBackSharp /> Back
           </button>
@@ -130,22 +131,24 @@ export default function Gallery({ painting = {}, slug = {} }) {
           exit={{ opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="text-section"
-          className="relative  justify-between transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4"
+          className="relative p-4 justify-between transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4"
         >
           <div>
-            <h1 className="pb-2 text-2xl lg:text-4xl">
+            <h1 className="pb-2 pt-2 xl:pt-0 text-2xl lg:text-4xl">
               <strong>{title}</strong>
             </h1>
             <div className="flex flex-wrap gap-2">
               {tagsV2?.map((tag) => {
                 const { name = "" } = tag
+                const tagSlug = name.toLowerCase().replace(" ", "-")
                 return (
-                  <p
+                  <Link
                     className="px-2 py-1 text-xs text-white capitalize rounded-lg bg-primary"
                     key={name}
+                    href={`/paintings/${tagSlug}`}
                   >
                     {name}
-                  </p>
+                  </Link>
                 )
               })}
             </div>
@@ -166,7 +169,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
               />
             )}
           </div>
-          <div className="pt-10">
+          <div className="pb-10 pt-10 xl:pt-4 xl:pb-0">
             <SocialLinks />
           </div>
         </m.div>
@@ -178,7 +181,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                 <div
                   key={`picture-${index}`}
                   className={clsx(
-                    "bg-white relative col-span-full xl:col-span-5 xl:col-start-3",
+                    "bg-white relative col-span-full xl:col-span-5 xl:col-start-3 pb-4",
                     imageAspectStyle[format]
                   )}
                 >
