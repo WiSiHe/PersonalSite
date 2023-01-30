@@ -110,7 +110,7 @@ export default function Home({
       <Navigation isAbsolute />
 
       <Main noTopPadding className="flex-col">
-        <section className="w-full h-[80dvh]">
+        <section className="w-full h-[80lvh]">
           <div className="relative h-full bg-slate-800">
             <div className="relative w-full h-full">
               <Image
