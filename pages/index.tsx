@@ -110,7 +110,7 @@ export default function Home({
       <Navigation isAbsolute />
 
       <Main noTopPadding className="flex-col">
-        <section className="w-full h-[80lvh]">
+        <section className="w-full h-[70lvh]">
           <div className="relative h-full bg-slate-800">
             <div className="relative w-full h-full">
               <Image
@@ -195,10 +195,10 @@ export default function Home({
           </div>
         </section>
         <section
-          className=" max-w-7xl items-center mx-auto grid w-full overflow-clip h-full grid-cols-12 py-10 gap-4 xl:gap-10 px-4"
+          className="max-w-7xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-4 xl:py-10 gap-4 xl:gap-10 px-4"
           id="main"
         >
-          <section className="col-span-8 pb-4 xl:col-start-3 xl:col-span-5 order-2 xl:order-1">
+          <section className="col-span-9 pb-4 xl:col-start-3 xl:col-span-5 order-2 xl:order-1 text-xs xl:text-base">
             <h1>
               <strong>Henrik Wilhelm Sissener</strong>
             </h1>
@@ -215,7 +215,7 @@ export default function Home({
             // transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
             // whileInView={{ opacity: 1, y: 0, x: 0 }}
             // viewport={{ once: true, amount: 0.5 }}
-            className="relative col-span-4 xl:col-span-3 aspect-square order-1 xl:order-2 xl:block"
+            className="relative col-span-3 xl:col-span-3 aspect-square order-1 xl:order-2 xl:block"
           >
             <Image
               src={portrait}
@@ -224,10 +224,12 @@ export default function Home({
             />
           </div>
         </section>
-        <div className="absolute">
-          <LogoQR className="opacity-5" width="10rem" height="10rem" />
-        </div>
-        <section className="relative max-h-screen h-full overflow-clip flex justify-center items-center">
+        {/* <section className="bg-stone-300">
+          <div className="">
+            <LogoQR className="opacity-5" width="10rem" height="10rem" />
+          </div>
+        </section> */}
+        <section className="relative h-full flex justify-center items-center">
           <Image src={woods} alt="test" className="object-cover w-full" />
           <div className="absolute inset-0 h-fit w-fit text-white  my-auto p-4 mx-auto">
             <h2>
@@ -239,7 +241,6 @@ export default function Home({
                 <b>Go to gallery</b>
               </div>
             </Link>
-            <div></div>
           </div>
         </section>
 
