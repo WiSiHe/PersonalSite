@@ -1,13 +1,13 @@
 import clsx from "clsx"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import PropTypes from "prop-types"
 import React from "react"
 
-import SocialLinks from "../SocialLinks/SocialLinks"
+import SocialLinks from "../../SocialLinks/SocialLinks"
 
 export default function Footer({ fixed = false, onlyMobile = false }) {
   return (
-    <motion.footer
+    <m.footer
       initial={{ y: 50 }}
       animate={{ y: 0 }}
       exit={{ y: 50 }}
@@ -21,7 +21,7 @@ export default function Footer({ fixed = false, onlyMobile = false }) {
       )}
     >
       <SocialLinks />
-    </motion.footer>
+    </m.footer>
   )
 }
 

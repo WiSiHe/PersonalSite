@@ -1,10 +1,11 @@
 import clsx from "clsx"
-import Footer from "components/Footer"
+import { Footer, HeroSection } from "components"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 import { m } from "framer-motion"
 import LogoQR from "icons/LogoQR"
+// import LogoQR from "icons/LogoQR"
 // import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
@@ -12,9 +13,7 @@ import Link from "next/link"
 import PropTypes from "prop-types"
 import portrait from "public/images/selfPortrait.png"
 import woods from "public/images/woods.png"
-import React, { useEffect, useState } from "react"
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
-import { getRandomArbitrary } from "utils/numbers"
+import React from "react"
 
 import { getAllTagsAndPaintings } from "../lib/api"
 
@@ -79,135 +78,33 @@ export default function Home({
 }: {
   desktopWallpaper: RootObject[]
 }) {
-  const [desktopIndex, setDesktopIndex] = useState(0)
-  // const { width = 0 } = useWindowDimensions()
-
-  const currentWallpaper = desktopWallpaper[desktopIndex]
-
-  const handleGoLeft = () => {
-    if (desktopIndex === 0) {
-      return setDesktopIndex(desktopWallpaper.length - 1)
-    }
-
-    return setDesktopIndex(desktopIndex - 1)
-  }
-
-  const handleGoRight = () => {
-    if (desktopIndex === desktopWallpaper.length - 1) {
-      return setDesktopIndex(0)
-    }
-
-    return setDesktopIndex(desktopIndex + 1)
-  }
-
-  useEffect(() => {
-    setDesktopIndex(parseInt(getRandomArbitrary(0, desktopWallpaper.length)))
-  }, [desktopWallpaper])
-
   return (
     <>
       <Meta url="https://wisihe.no" />
       <Navigation isAbsolute />
-
       <Main noTopPadding className="flex-col">
-        <section className="w-full h-[70lvh]">
-          <div className="relative h-full bg-slate-800">
-            <div className="relative w-full h-full">
-              <Image
-                src={currentWallpaper.imageUrl}
-                blurDataURL={currentWallpaper.lowResImageUrl}
-                sizes="(max-width: 768px) 100vw,
-                (max-width: 1200px) 50vw,
-                33vw"
-                priority
-                fill
-                placeholder="blur"
-                className={clsx(
-                  "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
-                )}
-                alt="headerImage"
-              />
-            </div>
-            <div
-              className={`absolute inset-0 w-full flex items-center mix-blend-overlay justify-center h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`}
-            />
-            <div className="absolute left-0 right-0 bottom-0 z-10 flex flex-col items-center justify-center h-fit gap-4">
-              <div className="flex items-center justify-between w-full gap-6 p-4">
-                <m.button
-                  // onMouseOver={() => setIsPaused(true)}
-                  // onMouseOut={() => setIsPaused(false)}
-                  whileHover={{ scale: 1.2 }}
-                  onClick={() => handleGoLeft()}
-                  className="flex-shrink-0 rounded-lg fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to previous painting"
-                >
-                  <BsChevronLeft
-                    aria-label="Left"
-                    className="p-2 text-3xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </m.button>
-                <div className="relative ">
-                  <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full rounded mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
+        <HeroSection paintings={desktopWallpaper} />
 
-                  <Link href="/paintings">
-                    <m.div
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", duration: 0.5 }}
-                      className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
-                    >
-                      <b>Go to gallery</b>
-                    </m.div>
-                  </Link>
-                </div>
-                <m.button
-                  whileHover={{ scale: 1.2 }}
-                  // onMouseOver={() => setIsPaused(true)}
-                  // onMouseOut={() => setIsPaused(false)}
-                  onClick={handleGoRight}
-                  className="z-10 rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                  aria-label="Go to next painting"
-                >
-                  <BsChevronRight
-                    aria-label="Right"
-                    className="p-2 text-3xl text-center text-black transition bg-white rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  />
-                </m.button>
-              </div>
-            </div>
-            {/* <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">
-              <m.a
-                initial={{ y: 0, scale: 1.0 }}
-                animate={{ y: -10, scale: 1.0 }}
-                transition={{
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  type: "spring",
-                  bounce: 0.5,
-                }}
-                className="p-2 bg-white rounded-lg focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                href="#main"
-              >
-                <BsChevronDown />
-              </m.a>
-            </div> */}
-          </div>
-        </section>
+        {/* Personal Description Section */}
         <section
           className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-10 gap-4 xl:gap-10 px-4"
           id="main"
         >
           <section className="col-span-9 pb-4 xl:col-start-3 xl:col-span-5 order-2 xl:order-1 text-xs xl:text-base">
             <h1>
-              <strong>Henrik Wilhelm Sissener</strong>
+              <strong>
+                Hi there! My name is <span className="text-primary">He</span>
+                nrik <span className="text-primary">Wi</span>
+                lhelm <span className="text-primary">Si</span>ssener
+              </strong>
             </h1>
             <p>
               I&#39;m a digital artist / web developer / hobby designer who has
               been drawing my whole life. I mostly do character designs, but I
-              try to step into the big world of landscape every now and then, I
-              spend my free time making digital paintings paintings and do some
-              tinkering with new Frontend technologies.
+              try to step into the big world of landscape paintings every now
+              and then. I spend my free time making digital paintings and
+              tinkering with programming, game development and new frontend
+              technologies.
             </p>
           </section>
           <div
@@ -224,11 +121,46 @@ export default function Home({
             />
           </div>
         </section>
-        {/* <section className="bg-stone-300">
-          <div className="">
-            <LogoQR className="opacity-5" width="10rem" height="10rem" />
+
+        <section className="grid grid-cols-12 gap-4 xl:gap-10 py-10 px-4  relative ">
+          <div className="absolute from-dark/20 inset-0 bg-gradient-to-t pointer-events-none" />
+          <div className="col-span-full xl:col-span-6 xl:col-start-2  p-4">
+            <h2>
+              <strong>Paintings</strong>
+            </h2>
+            <p>Coming soon</p>
+            <Link href="/paintings">
+              <strong>Take a look at my paintings</strong>
+            </Link>
           </div>
-        </section> */}
+          <div className="col-span-full xl:col-span-6 xl:col-start-7  p-4">
+            <h2>
+              <strong>Projects</strong>
+            </h2>
+            <p>Coming soon</p>
+            <Link href="/projects">
+              <strong>Take a look at my projects</strong>
+            </Link>
+          </div>
+          <div className="col-span-full xl:col-span-6 xl:col-start-2  p-4">
+            <h2>
+              <strong>Videos</strong>
+            </h2>
+            <p>Coming soon</p>
+            <Link href="/videos" className="hover:underline">
+              <strong>Take a look at my videos</strong>
+            </Link>
+          </div>
+          <m.div
+            className="absolute left-10 top-0 bottom-0 flex justify-center items-center pointer-events-none"
+            initial={{ opacity: 0, rotate: -180, x: -200, scale: 0.5 }}
+            whileInView={{ opacity: 1, rotate: 45, x: 50, scale: 1 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
+          >
+            <LogoQR className="opacity-5" width="20rem" height="20rem" />
+          </m.div>
+        </section>
         <section className="relative h-full flex justify-center items-center">
           <Image src={woods} alt="test" className="object-cover w-full" />
           <div className="absolute inset-0 h-fit w-fit text-white  my-auto p-4 mx-auto">
@@ -240,7 +172,7 @@ export default function Home({
                 Come on, just a little peak, I dare you!
               </div>
             </div>
-            <Link href="/paintings">
+            <Link href="/paintings" className="">
               <div className="relative py-2 text-center text-black transition rounded bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent">
                 <b>Go to gallery</b>
               </div>
@@ -251,14 +183,8 @@ export default function Home({
         <section className="col-span-full">
           <div className="relative w-full h-full xl:block">
             <Image
-              src={currentWallpaper.imageUrl}
-              blurDataURL={currentWallpaper.lowResImageUrl}
-              sizes="(max-width: 768px) 100vw,
-                (max-width: 1200px) 50vw,
-                33vw"
-              priority
+              src={woods}
               fill
-              placeholder="blur"
               className={clsx(
                 "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
               )}
@@ -320,8 +246,8 @@ export async function getStaticProps() {
         .quality(10)
         .url(),
       imageUrl: imageBuilder(wallpaper.image)
-        .width(1400)
-        .height(900)
+        .width(1920)
+        .height(1080)
         .quality(75)
         .url(),
     })

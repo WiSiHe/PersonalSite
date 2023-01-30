@@ -1,5 +1,4 @@
-import { Project } from "components"
-import Footer from "components/Footer"
+import { Footer, Project } from "components"
 import Main from "components/Main"
 import Meta from "components/Meta/Meta"
 import LogoQR from "icons/LogoQR"

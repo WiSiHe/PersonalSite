@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Painting } from "components"
+import { Footer } from "components"
 import Filters from "components/Filters"
-import Footer from "components/Footer"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"

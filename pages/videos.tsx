@@ -6,7 +6,7 @@ const ReactPlayer = dynamic(() => import("react-player"), {
 })
 
 import clsx from "clsx"
-import Footer from "components/Footer"
+import { Footer } from "components"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"

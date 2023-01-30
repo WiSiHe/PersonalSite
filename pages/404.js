@@ -1,17 +1,16 @@
-import Footer from "components/Footer"
 import SideMenu from "components/SideMenu"
 import Image from "next/image"
 import React from "react"
 
 import Main from "../components/Main"
 import Meta from "../components/Meta/Meta"
-import Navigation from "../components/Navigation"
+// import Navigation from "../components/Navigation"
 
 export default function Custom404() {
   return (
     <>
       <Meta />
-      <Navigation hideOnDesktop />
+      {/* <Navigation hideOnDesktop /> */}
 
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12">
@@ -35,7 +34,6 @@ export default function Custom404() {
           </section>
         </section>
       </Main>
-      <Footer />
     </>
   )
 }

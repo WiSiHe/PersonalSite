@@ -1,7 +1,7 @@
 import { Painting } from "components"
+import { Footer } from "components"
 // import PaintingGrid from "components/PaintingGrid"
 import Filters from "components/Filters"
-import Footer from "components/Footer"
 import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
