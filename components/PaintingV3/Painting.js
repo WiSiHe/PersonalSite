@@ -88,7 +88,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full @container overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-highlight cursor-pointer focus-within:ring focus-within:ring-highlight focus-within:z-10"
+        "relative w-full @container overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
       )}
       key={_id}
     >
@@ -113,7 +113,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
         </div>
         <div className="absolute inset-0 w-full h-full">
           <div className="flex items-center justify-center w-full h-full">
-            <div className="w-0 h-0 transition-all duration-1000 ease-in-out origin-center bg-black rounded-full opacity-0 group-hover:rounded-none group-hover:h-full group-hover:w-full group-hover:opacity-100 bg-opacity-40 backdrop-blur-sm" />
+            <div className=" transition-all duration-1000 ease-in-out origin-center bg-primary/20 opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 backdrop-blur-sm" />
           </div>
         </div>
 
@@ -122,8 +122,8 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
         </div>
         {hasStoreLinks && (
           <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
-            <div className="relative w-2 h-2 mr-2 bg-white rounded-full">
-              <span className="absolute inset-0 inline-flex w-full h-full bg-white rounded-full opacity-100 animate-ping"></span>
+            <div className="relative w-2 h-2 mr-2 bg-dark rounded-full">
+              <span className="absolute inset-0 inline-flex w-full h-full bg-dark rounded-full opacity-100 animate-ping"></span>
             </div>
             <b>For sale</b>
           </div>

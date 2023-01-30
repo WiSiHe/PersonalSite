@@ -50,8 +50,8 @@ const PaintingsPage = ({ videos = [] }) => {
         description="A gallery of some of my paintings"
       />
       <Navigation isAbsolute />
-      <Main>
-        <section className="grid w-full p-4 space-y-4 mx-auto max-w-screen-xl">
+      <Main className="pb-10">
+        <section className="grid w-full p-4 mt-6 gap-4 space-y-4 mx-auto max-w-screen-xl">
           {videos.map((v, i) => {
             const { _id = "", title = "", description = "", video = "" } = v
             // every other card is on the other side

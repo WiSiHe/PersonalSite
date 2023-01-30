@@ -21,8 +21,8 @@ const RedbubbleLink = ({ hasRedBubleLink, redbubbleUrl }) => {
               : "opacity-30 cursor-not-allowed"
           )}
         >
-          <SiRedbubble className="mr-2 text-bright" />
-          <strong className="text-bright">Redbubble store</strong>
+          <SiRedbubble className="mr-2 text-white" />
+          <strong className="text-white">Redbubble store</strong>
         </button>
       </a>
     </>

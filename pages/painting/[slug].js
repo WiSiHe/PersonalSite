@@ -131,7 +131,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
           exit={{ opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="text-section"
-          className="relative p-4 justify-between transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit bg-stone-300 xl:bg-white xl:p-6 xl:col-span-4"
+          className="relative p-4 justify-between transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-4"
         >
           <div>
             <h1 className="pb-2 pt-2 xl:pt-0 text-2xl lg:text-4xl">

@@ -123,7 +123,7 @@ export default function Home({
             <Image
               src={portrait}
               alt="portrait of Henrik Sissener"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full aspect-square xl:rounded-full"
             />
           </m.div>
         </section>
@@ -196,7 +196,7 @@ export default function Home({
             </div>
             <Link
               href="/paintings"
-              className="relative py-2 text-center text-black text-xs transition bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
+              className="relative py-2 text-center text-black text-xs transition bg-primary px-7 hover:ring"
             >
               <b>Go to gallery</b>
             </Link>

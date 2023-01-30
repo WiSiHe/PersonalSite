@@ -57,7 +57,7 @@ const Project = ({
           <ul className="flex flex-wrap mt-2 mb-4 text-xs">
             {tags.map((tag) => {
               return (
-                <li className="mb-2 mr-2 bg-primary text-bright" key={tag}>
+                <li className="mb-2 mr-2 bg-primary text-white" key={tag}>
                   <Tag>{tag}</Tag>
                 </li>
               )

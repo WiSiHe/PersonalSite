@@ -39,7 +39,7 @@ export default function Navigation({ isAbsolute = false }) {
         type: "spring",
       }}
       className={clsx(
-        "bg-stone-900/90 backdrop-blur-lg z-20 text-white",
+        "bg-dark backdrop-blur-lg z-20 text-white",
         isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
       )}
     >
@@ -54,15 +54,15 @@ export default function Navigation({ isAbsolute = false }) {
               rotate: 90,
               transition: { type: "spring" },
             }}
-            className="flex items-center gap-2 hover:text-red-500"
+            className="flex items-center gap-2"
           >
             <Link
               href="/"
               aria-label="Navigate to the homepage"
-              className="flex items-center justify-center p-2 text-sm text-white hover:underline decoration-4 group-active:bg-highlight group-focus:ring group-focus:ring-highlight "
+              className="flex items-center justify-center p-2 text-sm text-white hover:underline decoration-4 active:bg-primary  focus:fill-primary focus:outline-none"
             >
               <LogoQR
-                className="transition-all ease-in-out fill-white hover:fill-highlight"
+                className="transition-all ease-in-out fill-white hover:fill-primary focus:fill-primary"
                 width="2.5rem"
                 height="2.5rem"
               />
@@ -82,9 +82,9 @@ export default function Navigation({ isAbsolute = false }) {
                   <Link
                     href={item.url}
                     className={clsx(
-                      "transition-all hover:text-highlight hover:decoration-2 hover:underline underline-offset-2  hover:decoration-highlight  active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+                      "transition-all hover:text-primary hover:decoration-2 hover:underline underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus:ring focus:ring-primary",
                       isActive &&
-                        "underline decoration-highlight text-highlight decoration-2"
+                        "underline decoration-primary text-primary decoration-2"
                     )}
                   >
                     <b>{item.text}</b>

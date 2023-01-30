@@ -31,7 +31,6 @@
   .focus-ring {
     @apply ring ring-highlight;
   }
-  
   .animation-delay-1000 {
     animation-delay: 1s;
   }

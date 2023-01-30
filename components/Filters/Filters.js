@@ -66,7 +66,7 @@ const Filters = ({
         <div
           className={clsx(
             "relative snap-start uppercase  transition py-2 pointer-events-none px-4 text-xs  whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
-            "bg-highlight hover:bg-highlight text-black"
+            "bg-dark hover:bg-dark text-white"
           )}
         >
           <strong>{activeFilter}</strong>
@@ -80,7 +80,7 @@ const Filters = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ type: "spring" }}
-            className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-stone-200 backdrop-blur-lg "
+            className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-bright backdrop-blur-lg "
           >
             {filteredTags.map((tag, i) => {
               const { name = "", paintingsCount = 0 } = tag
@@ -98,7 +98,7 @@ const Filters = ({
                       "relative snap-start transition py-2 px-4 text-xs whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                       isBuyable && "ring ring-highlight",
                       isActive
-                        ? "bg-highlight hover:bg-highlight text-black"
+                        ? "bg-highlight hover:bg-highlight text-white"
                         : "text-white bg-primary"
                     )}
                   >
@@ -108,7 +108,7 @@ const Filters = ({
                     </strong>
                     {isBuyable && (
                       <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -right-2 -top-2 text-dark bg-highlight">
-                        <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 animate-ping bg-highlight" />
+                        <span className="absolute inset-0 inline-flex w-full h-full text-white rounded-full opacity-100 animate-ping bg-highlight" />
                         <strong>!</strong>
                       </div>
                     )}

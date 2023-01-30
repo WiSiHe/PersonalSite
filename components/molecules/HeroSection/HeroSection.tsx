@@ -52,7 +52,7 @@ const HeroSection = ({ paintings = [] }) => {
           />
         </div>
         <div
-          className={`absolute inset-0 w-full flex items-center mix-blend-overlay justify-center h-full bg-gradient-to-r from-blue-200 to-orange-500 via-purple-500 animate-gradient-xy`}
+          className={`absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay`}
         />
         <div className="absolute left-0 right-0 bottom-0 z-10 flex flex-col items-center justify-center h-fit gap-4">
           <div className="flex items-center xl:justify-center justify-between w-full gap-6 p-4">
@@ -64,22 +64,17 @@ const HeroSection = ({ paintings = [] }) => {
             >
               <BsChevronLeft
                 aria-label="Left"
-                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               />
             </m.button>
             <div className="relative ">
-              <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full  mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" />
+              {/* <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full  mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" /> */}
 
-              <Link href="/paintings">
-                <m.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", duration: 0.5 }}
-                  className="relative py-2 text-center text-black transition bg-highlight px-7 hover:ring focus:outline-none focus:outline-highlight focus:border-transparent"
-                >
-                  <b>Go to gallery</b>
-                </m.div>
+              <Link
+                href="/paintings"
+                className="relative py-2 text-center text-white transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
+              >
+                <b>Go to gallery</b>
               </Link>
             </div>
             <m.button
