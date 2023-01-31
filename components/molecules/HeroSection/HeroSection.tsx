@@ -64,7 +64,7 @@ const HeroSection = ({ paintings = [] }) => {
             >
               <BsChevronLeft
                 aria-label="Left"
-                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-transparent"
               />
             </m.button>
             <div className="relative ">
@@ -72,7 +72,7 @@ const HeroSection = ({ paintings = [] }) => {
 
               <Link
                 href="/paintings"
-                className="relative py-2 text-center text-white transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
+                className="relative py-2 text-center text-white transition bg-primary px-7  focus-visible:outline-none focus-visible:ring-highlight focus-visible:ring-2 focus-visible:border-transparent"
               >
                 <b>Go to gallery</b>
               </Link>
@@ -85,7 +85,7 @@ const HeroSection = ({ paintings = [] }) => {
             >
               <BsChevronRight
                 aria-label="Right"
-                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg"
               />
             </m.button>
           </div>

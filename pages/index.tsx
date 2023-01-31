@@ -4,7 +4,7 @@ import Main from "components/Main"
 import Meta from "components/Meta"
 import Navigation from "components/Navigation"
 import { m } from "framer-motion"
-import LogoQR from "icons/LogoQR"
+// import LogoQR from "icons/LogoQR"
 // import LogoQR from "icons/LogoQR"
 // import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
@@ -15,10 +15,11 @@ import portrait from "public/images/selfPortrait.png"
 import woods from "public/images/woods.png"
 import React from "react"
 
+// import { FaFolder, FaPaintBrush, FaVideo } from "react-icons/fa"
 import { getAllTagsAndPaintings } from "../lib/api"
-import { FaFolder, FaPaintBrush, FaVideo } from "react-icons/fa"
 
 export declare type ImageLoader = (resolverProps: ImageLoaderProps) => string
+
 export declare type ImageLoaderProps = {
   src: string
   width: number
@@ -196,7 +197,7 @@ export default function Home({
             </div>
             <Link
               href="/paintings"
-              className="relative py-2 text-center text-black text-xs transition bg-primary px-7 hover:ring"
+              className="relative py-2 text-center text-white text-white transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
             >
               <b>Go to gallery</b>
             </Link>

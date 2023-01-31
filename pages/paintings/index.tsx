@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Painting } from "components"
 import { Footer } from "components"
-import Filters from "components/Filters"
 import Main from "components/Main"
 import Meta from "components/Meta"
+import Filters from "components/molecules/Filters"
 import Navigation from "components/Navigation"
 import { m } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
