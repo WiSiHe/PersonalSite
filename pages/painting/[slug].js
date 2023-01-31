@@ -1,9 +1,6 @@
 import clsx from "clsx"
 // Components
-import Main from "components/Main"
-import Meta from "components/Meta"
-import RedbubbleLink from "components/RedbubbleLink"
-import SocialLinks from "components/SocialLinks"
+import { Main, Meta, Navigation, RedbubbleLink, SocialLinks } from "components"
 import { m } from "framer-motion"
 // Helpers
 import generatePaintingJsonLd from "helpers/jsonLdHelpers"
@@ -11,26 +8,17 @@ import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 // Libs
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import React from "react"
-// import Link from "next/link"
-// import dynamic from 'next/dynamic';
+import { Suspense } from "react"
 import { IoArrowBackSharp } from "react-icons/io5"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
-// import ReactPlayer from "react-player"
-// const ReactPlayer = React.lazy(() => import("react-player"))
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
 })
-
-import Link from "next/link"
-import { Suspense } from "react"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-
-import Navigation from "../../components/Navigation"
-
-// const SocialLinks = dynamic(() => import('components/SocialLinks'));
 
 export default function Gallery({ painting = {}, slug = {} }) {
   const router = useRouter()

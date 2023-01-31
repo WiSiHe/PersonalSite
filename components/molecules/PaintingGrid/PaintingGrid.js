@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import Painting from "components/Painting"
+import { Painting } from "components"
 import PropTypes from "prop-types"
 import React from "react"
 

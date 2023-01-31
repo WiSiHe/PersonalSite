@@ -1,13 +1,8 @@
-import { Footer, Project } from "components"
-import Main from "components/Main"
-import Meta from "components/Meta/Meta"
-import LogoQR from "icons/LogoQR"
+import { Footer, LogoQR, Main, Meta, Navigation, Project } from "components"
 import hove from "public/images/hove.png"
 import night from "public/images/night-forest.jpeg"
 import websiteImage from "public/images/wisihesiteTemplate.jpeg"
 import React from "react"
-
-import Navigation from "../components/Navigation"
 
 export default function ProjectsPage() {
   const websiteTags = ["NextJS 12", "Sanity", "Tailwind 3", "FramerMotion 5"]

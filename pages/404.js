@@ -1,9 +1,6 @@
-import SideMenu from "components/SideMenu"
+import { Main, Meta, SideMenu } from "components"
 import Image from "next/image"
 import React from "react"
-
-import Main from "../components/Main"
-import Meta from "../components/Meta/Meta"
 // import Navigation from "../components/Navigation"
 
 export default function Custom404() {

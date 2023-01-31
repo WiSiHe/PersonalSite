@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import Tag from "components/Tag"
+import Tag from "components/atoms/Tag"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import PropTypes from "prop-types"

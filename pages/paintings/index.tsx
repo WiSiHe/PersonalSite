@@ -1,20 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Painting } from "components"
-import { Footer } from "components"
-import Main from "components/Main"
-import Meta from "components/Meta"
-import Filters from "components/molecules/Filters"
-import Navigation from "components/Navigation"
+import { Filters, Footer, Main, Meta, Navigation, Painting } from "components"
 import { m } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
-// import PaintingGrid from "components/PaintingGrid"
-// import SideMenu from "components/SideMenu"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import React, { useEffect, useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 import { PaintingsPageProps } from "./[slug]"
-// import { imageBuilder } from "lib/sanity"
 
 const PaintingsPage = ({
   paintings = [],

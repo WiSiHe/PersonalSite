@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import Painting from "components/PaintingV2"
+import Painting from "components/atoms/PaintingV2"
 import PropTypes from "prop-types"
 import React from "react"
 import { useRef, useState } from "react"

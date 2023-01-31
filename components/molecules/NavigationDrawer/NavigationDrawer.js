@@ -1,10 +1,7 @@
 import clsx from "clsx"
-import NavigationLinks from "components/NavigationLinks"
+import { NavigationLinks, Overlay, SocialLinks } from "components"
 import React from "react"
 import { RiCloseFill } from "react-icons/ri"
-
-import Overlay from "../Overlay"
-import SocialLinks from "../SocialLinks/SocialLinks"
 
 const NavigationDrawer = () => {
   // const [navDrawerActive, setNavDrawerActive] = React.useState(false)

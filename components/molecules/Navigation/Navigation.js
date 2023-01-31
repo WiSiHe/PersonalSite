@@ -1,7 +1,7 @@
 import clsx from "clsx"
+import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
 import { motion } from "framer-motion"
-import LogoQR from "icons/LogoQR"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import PropTypes from "prop-types"

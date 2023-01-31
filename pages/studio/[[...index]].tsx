@@ -1,4 +1,4 @@
-import Navigation from "components/Navigation"
+import { Navigation } from "components"
 import Head from "next/head"
 import { NextStudio } from "next-sanity/studio"
 import { NextStudioHead } from "next-sanity/studio/head"

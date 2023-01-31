@@ -3,7 +3,7 @@ import { m } from "framer-motion"
 import PropTypes from "prop-types"
 import React from "react"
 
-import SocialLinks from "../../SocialLinks/SocialLinks"
+import SocialLinks from "../SocialLinks/SocialLinks"
 
 export default function Footer({ fixed = false, onlyMobile = false }) {
   return (

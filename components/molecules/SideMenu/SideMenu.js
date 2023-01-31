@@ -1,5 +1,5 @@
-import NavigationLinks from "components/NavigationLinks"
-import SocialLinks from "components/SocialLinks"
+import NavigationLinks from "components/atoms/NavigationLinks/NavigationLinks"
+import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import Link from "next/link"
 import React from "react"
 
