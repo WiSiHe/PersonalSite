@@ -1,19 +1,23 @@
-import clsx from "clsx"
-import { Footer, HeroSection, Main, Meta, Navigation } from "components"
+import {
+  Footer,
+  HeroSection,
+  Main,
+  Meta,
+  Navigation,
+  SalesPointsSection,
+} from "components"
 import { m } from "framer-motion"
 import { ILandingPage } from "lib/models/landingPage"
-// import LogoQR from "icons/LogoQR"
-// import LogoQR from "icons/LogoQR"
 // import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
 import PropTypes from "prop-types"
+import night from "public/images/night-forest.jpeg"
 import portrait from "public/images/selfPortrait.png"
 import woods from "public/images/woods.png"
 import React from "react"
 
-// import { FaFolder, FaPaintBrush, FaVideo } from "react-icons/fa"
 import { getAllTagsAndPaintings } from "../lib/api"
 
 export default function Home({
@@ -29,7 +33,7 @@ export default function Home({
         <HeroSection paintings={desktopWallpaper} />
 
         <section
-          className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 py-10 xl:py-24 gap-4 xl:gap-16 px-4"
+          className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 pt-6 xl:pt-24 gap-4 xl:gap-16 px-4"
           id="main"
         >
           <m.div
@@ -70,63 +74,18 @@ export default function Home({
           </m.div>
         </section>
 
-        {/* <section className="relative py-20">
-          <div className="absolute from-dark/10 inset-0 bg-gradient-to-t pointer-events-none" />
-          <div className="grid-cols-12 grid gap-4 xl:gap-10 ">
-            <div className="p-4 col-span-full xl:col-span-3 xl:col-start-3 flex gap-4 items-center text-sm">
-              <div className="w-16 h-16 bg-primary shrink-0 flex justify-center items-center text-white">
-                <FaPaintBrush />
-              </div>
-              <div>
-                <h2>
-                  <strong>Paintings</strong>
-                </h2>
-                <p>A collection of my paintings, </p>
-                <Link
-                  href="/paintings"
-                  className="underline underline-offset-2"
-                >
-                  <strong>Take a look at my paintings</strong>
-                </Link>
-              </div>
-            </div>
-            <div className="p-4 col-span-full xl:col-span-3 flex gap-4 items-center text-sm">
-              <div className="w-16 h-16 bg-primary shrink-0 flex justify-center items-center text-white">
-                <FaFolder />
-              </div>
-              <div>
-                <h2>
-                  <strong>Projects</strong>
-                </h2>
-                <p>Some of my old, ongoing or future projects.</p>
-                <Link href="/projects" className="underline underline-offset-2">
-                  <strong>Take a look at my projects</strong>
-                </Link>
-              </div>
-            </div>
-            <div className="p-4 col-span-full xl:col-span-3 flex gap-4 items-center text-sm">
-              <div className="w-16 h-16 bg-primary shrink-0 flex justify-center items-center text-white">
-                <FaVideo />
-              </div>
-              <div>
-                <h2>
-                  <strong>Videos</strong>
-                </h2>
-                <p>
-                  A collection of some stuff I&#39;ve published to YouTube over
-                  the years, some of it is associated with music, some of it is
-                  animations and Game Dev stuff.
-                </p>
-                <Link href="/videos" className="underline underline-offset-2">
-                  <strong>Take a look at my videos</strong>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section> */}
+        <section className="relative py-10 xl:py-10">
+          <div className="absolute from-dark/5 inset-0 bg-gradient-to-t pointer-events-none" />
+          <SalesPointsSection />
+        </section>
 
-        <section className="relative h-full flex justify-center items-center">
-          <Image src={woods} alt="test" className="object-cover w-full" />
+        <section className="relative h-full xl:min-h-[80vh] min-h-[40vh] xl:h-full flex justify-center items-center">
+          <Image
+            src={woods}
+            alt="Two boys in a dark forest"
+            className="object-cover w-full h-full"
+            fill
+          />
           <div className="absolute inset-0 h-fit w-fit text-white flex items-center flex-col text-center  my-auto p-4 mx-auto">
             <div className="text-xs">
               <h2>
@@ -138,28 +97,34 @@ export default function Home({
             </div>
             <Link
               href="/paintings"
-              className="relative py-2 text-center text-white text-white transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
+              className="relative py-2 text-center text-white text-sm transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
             >
               <b>Go to gallery</b>
             </Link>
           </div>
         </section>
-
-        <section className="col-span-full">
-          <div className="relative w-full h-full xl:block">
-            <Image
-              src={woods}
-              fill
-              className={clsx(
-                "object-cover w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform bg-center bg-cover md:block bg-gray-50"
-              )}
-              alt="headerImage"
-            />
-          </div>
+        <section className="text-center py-20 xl:py-40">
+          <h2>
+            <strong>Still scrolling, huh?</strong>
+          </h2>
+          <p>
+            I was kinda hoping that you would have clicked one of the links or
+            buttons by now...
+          </p>
         </section>
+
+        <section className="relative h-full xl:min-h-[80vh] min-h-[40vh] xl:h-full flex justify-center items-center">
+          <Image
+            src={night}
+            fill
+            alt="Dark magical woods made in 3D"
+            className="object-cover w-full h-full"
+          />
+        </section>
+
         <section className="text-center flex justify-center flex-col items-center gap-4 py-10 px-4">
           <div className="">
-            <h2>Still scrolling, huh?</h2>
+            <h2>You win!</h2>
             <b>Here, have a picture of a cute dog</b>
           </div>
 

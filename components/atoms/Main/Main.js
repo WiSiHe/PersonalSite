@@ -7,7 +7,7 @@ const Main = ({ noTopPadding = false, className = "", children }) => {
     "flex flex-1 bg-bright relative w-full dark:text-white min-h-screen"
 
   return (
-    <main className={clsx(mainCss, className, !noTopPadding && "mt-16")}>
+    <main className={clsx(mainCss, className, !noTopPadding && "mt-14")}>
       {children}
     </main>
   )

@@ -48,7 +48,22 @@ const PaintingsPage = ({ videos = [] }) => {
       />
       <Navigation isAbsolute />
       <Main className="pb-10">
-        <section className="grid w-full p-4 mt-6 gap-4 space-y-4 mx-auto max-w-screen-xl">
+        <section className="grid grid-cols-12 w-full p-4 mt-6 gap-4 space-y-4 mx-auto max-w-screen-lg">
+          <section className="col-span-full xl:col-span-10">
+            <h1 className="text-4xl font-bold">Videos</h1>
+            <p>
+              <q cite="ChatGPT">
+                Step into the world of Henrik&#39;s creativity through his
+                dynamic videos. This page features a showcase of his exceptional
+                videography skills, capturing the essence of his art and
+                projects in motion. From captivating animations to exciting
+                time-lapses, immerse yourself in Henrik&#39;s unique style and
+                get a glimpse into his process. Click play and be transported to
+                his creative universe.
+              </q>{" "}
+              - ChatGPT
+            </p>
+          </section>
           {videos.map((v, i) => {
             const { _id = "", title = "", description = "", video = "" } = v
             // every other card is on the other side
@@ -62,7 +77,7 @@ const PaintingsPage = ({ videos = [] }) => {
                 viewport={{ once: true, amount: 0.05 }}
                 variants={cardVariants}
                 className={clsx(
-                  "xl:col-span-8 p-4 bg-white shadow-xl h-fit",
+                  "xl:col-span-8 p-4 bg-white col-span-full shadow-xl h-fit",
                   !isEven && "xl:col-start-5"
                 )}
               >

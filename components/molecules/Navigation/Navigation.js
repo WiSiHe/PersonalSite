@@ -43,7 +43,7 @@ export default function Navigation({ isAbsolute = false }) {
         isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
       )}
     >
-      <div className="flex items-center justify-between px-4 py-2 mx-auto">
+      <div className="flex items-center justify-between px-2 xl:px-4 py-2 mx-auto">
         <div className="flex items-center">
           <motion.div
             initial={{ opacity: 0, x: -100, rotate: -180 }}
@@ -59,7 +59,7 @@ export default function Navigation({ isAbsolute = false }) {
             <Link
               href="/"
               aria-label="Navigate to the homepage"
-              className="flex items-center justify-center p-2 text-sm text-white hover:underline decoration-4 active:bg-primary  focus:fill-primary focus:outline-none"
+              className="flex items-center justify-center text-sm text-white focus-visible:fill-primary decoration-4 focus:fill-primary focus:outline-none"
             >
               <LogoQR
                 className="transition-all ease-in-out fill-white hover:fill-primary focus:fill-primary"
@@ -82,7 +82,7 @@ export default function Navigation({ isAbsolute = false }) {
                   <Link
                     href={item.url}
                     className={clsx(
-                      "transition-all hover:text-primary hover:decoration-2 hover:underline underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus:ring focus:ring-primary",
+                      "transition-all hover:text-primary hover:decoration-2 hover:underline underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus-visible:underline",
                       isActive &&
                         "underline decoration-primary text-primary decoration-2"
                     )}

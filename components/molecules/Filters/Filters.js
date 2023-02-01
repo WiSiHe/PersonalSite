@@ -23,7 +23,7 @@ const Filters = ({
         <button
           onClick={() => setActive((prev) => !prev)}
           className={clsx(
-            "flex gap-1 items-center overflow-clip px-4 py-1 hover:ring text-sm font-medium text-white bg-primary"
+            "flex gap-1 items-center overflow-clip px-4 py-1 text-sm font-medium text-white bg-primary hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-highlight focus:outline-none"
           )}
         >
           {active && (
@@ -80,7 +80,7 @@ const Filters = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ type: "spring" }}
-            className="absolute left-0 right-0 flex flex-wrap gap-3 p-4 shadow-xl top-16 bg-bright backdrop-blur-lg "
+            className="absolute left-0 right-0 flex flex-wrap gap-4 px-2 py-4 xl:px-4 shadow-xl top-16 bg-bright backdrop-blur-lg "
           >
             {filteredTags.map((tag, i) => {
               const { name = "", paintingsCount = 0 } = tag
@@ -98,8 +98,8 @@ const Filters = ({
                       "relative snap-start transition py-2 px-4 text-xs whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
                       isBuyable && "ring ring-highlight",
                       isActive
-                        ? "bg-highlight hover:bg-highlight text-white"
-                        : "text-white bg-primary"
+                        ? "bg-highlight hover:bg-highlight text-dark"
+                        : "text-white bg-primary hover:bg-primary/90"
                     )}
                   >
                     <strong className="capitalize">

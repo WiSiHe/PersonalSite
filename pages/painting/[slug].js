@@ -75,7 +75,10 @@ export default function Gallery({ painting = {}, slug = {} }) {
         url={`https://wisihe.no/painting/${current}`}
       />
       <Navigation />
-      <Main noTopPadding className="grid grid-cols-12 xl:gap-4 xl:p-20 ">
+      <Main
+        noTopPadding
+        className="flex flex-col xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 "
+      >
         <m.div
           className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6 "
           initial={{ opacity: 0, x: -100 }}
@@ -99,7 +102,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="MainPainting"
           className={clsx(
-            "flex relative flex-col col-span-full w-full xl:col-span-5 xl:col-start-3",
+            "flex relative flex-col h-fit col-span-full w-full xl:col-span-5 xl:col-start-3",
             imageAspectStyle[format]
           )}
         >
@@ -110,6 +113,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
               .height(imageHeight[format])
               .quality(75)
               .url()}
+            className={clsx("h-fit")}
           />
         </m.div>
 
