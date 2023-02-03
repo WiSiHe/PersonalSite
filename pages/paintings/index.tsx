@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 import { PaintingsPageProps } from "./[slug]"
+import clsx from "clsx"
 
 const PaintingsPage = ({
   paintings = [],
@@ -65,14 +66,27 @@ const PaintingsPage = ({
                 amountOfPaintings={paintings.length}
               />
             </div>
-            <div className="p-2 xl:p-4 columns-2 sm:columns-2 md:columns-3 lg:columns-5">
+            <div className="grid grid-cols-12 gap-2 p-2 xl:gap-4 xl:p-4">
               {paintings.slice(0, paintingsSlice).map((p, i) => {
-                const { _id } = p
+                const { _id, format = "" } = p
+                console.log("format", format)
+
+                const gridStyle = {
+                  landscape: "col-span-6 xl:col-span-2 xl:row-span-2",
+                  portrait: "col-span-6 xl:col-span-2 xl:row-span-2",
+                  square: "col-span-6 xl:col-span-4 xl:row-span-4",
+                }
 
                 const isPriority = i < 3
 
                 return (
-                  <div key={_id} className="mb-4">
+                  <div
+                    key={_id}
+                    className={clsx(
+                      gridStyle[format]
+                      // "relative h-full w-full"
+                    )}
+                  >
                     <Painting paintingData={p} isPriority={isPriority} />
                   </div>
                 )

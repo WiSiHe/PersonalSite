@@ -12,16 +12,16 @@ import { RiMovieFill } from "react-icons/ri"
 
 const cardVariants = {
   offscreen: {
-    // y: 100,
+    y: 100,
     opacity: 0,
   },
   onscreen: {
-    // y: 0,
+    y: 0,
     opacity: 1,
     transition: {
       type: "spring",
-      bounce: 0.4,
-      duration: 1,
+      // bounce: 0.4,
+      // duration: 1,
     },
   },
 }
@@ -75,11 +75,11 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     portrait: 800,
   }
 
-  const imageHeightStyle = {
-    square: "aspect-square",
-    landscape: "aspect-video",
-    portrait: "aspect-[9/16]",
-  }
+  // const imageHeightStyle = {
+  //   square: "aspect-square",
+  //   landscape: "aspect-video",
+  //   portrait: "aspect-[9/16]",
+  // }
 
   return (
     <m.article
@@ -88,42 +88,42 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full @container overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+        "relative w-full @container h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
       )}
       key={_id}
     >
       <Link href={linkString}>
-        <div className={clsx("relative w-full", imageHeightStyle[format])}>
-          <Image
-            src={imageBuilder(image)
-              .width(imageWidth[format])
-              .height(imageHeight[format])
-              .quality(45)
-              .url()}
-            // src={fetchedPainting}
-            height={imageHeight[format]}
-            width={imageWidth[format]}
-            alt={`painting: ${title}`}
-            priority={isPriority}
-            className="object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover group-hover:scale-125 bg-gray-50 "
-          />
-          {isNsfw && !isNsfwUrl && (
-            <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />
-          )}
-        </div>
+        <Image
+          src={imageBuilder(image)
+            .width(imageWidth[format])
+            .height(imageHeight[format])
+            .quality(45)
+            .url()}
+          // src={fetchedPainting}
+          height={imageHeight[format]}
+          width={imageWidth[format]}
+          // fill
+          alt={`painting: ${title}`}
+          priority={isPriority}
+          className="object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover group-hover:scale-125 bg-gray-50 "
+        />
+        {isNsfw && !isNsfwUrl && (
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />
+        )}
+
         <div className="absolute inset-0 w-full h-full">
           <div className="flex items-center justify-center w-full h-full">
-            <div className=" transition-all duration-1000 ease-in-out origin-center bg-primary/20 opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 backdrop-blur-sm" />
+            <div className="transition-all duration-1000 ease-in-out origin-center opacity-0 bg-primary/20 group-hover:h-full group-hover:w-full group-hover:opacity-100 backdrop-blur-sm" />
           </div>
         </div>
 
-        <div className="absolute inset-0 flex items-center text-center drop-shadow-2xl justify-center text-white ">
+        <div className="absolute inset-0 flex items-center justify-center text-center text-white drop-shadow-2xl ">
           <b className="text-sm xl:text-xl group-hover:scale-105">{title}</b>
         </div>
         {hasStoreLinks && (
           <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
-            <div className="relative w-2 h-2 mr-2 bg-dark rounded-full">
-              <span className="absolute inset-0 inline-flex w-full h-full bg-dark rounded-full opacity-100 animate-ping"></span>
+            <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
+              <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
             </div>
             <b>For sale</b>
           </div>

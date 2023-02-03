@@ -19,7 +19,7 @@ const Filters = ({
 
   return (
     <>
-      <div className="flex gap-2 items-baseline">
+      <div className="flex items-baseline gap-2">
         <button
           onClick={() => setActive((prev) => !prev)}
           className={clsx(
@@ -80,7 +80,7 @@ const Filters = ({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ type: "spring" }}
-            className="absolute left-0 right-0 flex flex-wrap gap-4 px-2 py-4 xl:px-4 shadow-xl top-16 bg-bright backdrop-blur-lg "
+            className="absolute left-0 right-0 z-20 flex flex-wrap gap-4 px-2 py-4 shadow-xl xl:px-4 top-16 bg-bright backdrop-blur-lg "
           >
             {filteredTags.map((tag, i) => {
               const { name = "", paintingsCount = 0 } = tag

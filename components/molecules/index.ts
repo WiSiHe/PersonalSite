@@ -1,7 +1,6 @@
 export { default as Carousel } from "./Carousel"
 export { default as Filters } from "./Filters"
 export { default as Footer } from "./Footer"
-export { default as HeroSection } from "./HeroSection"
 export { default as Navigation } from "./Navigation"
 export { default as NavigationDrawer } from "./NavigationDrawer"
 export { default as PaintingGrid } from "./PaintingGrid"

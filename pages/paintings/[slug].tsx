@@ -20,6 +20,7 @@ export interface iPainting {
   _updatedAt: string
   aspectRatio?: string
   redbubbleUrl?: string
+  format?: string
   title: string
   slug: {
     current: string
