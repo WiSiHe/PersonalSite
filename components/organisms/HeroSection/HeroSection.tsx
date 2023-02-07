@@ -28,9 +28,10 @@ const HeroSection = ({ paintings = [] }) => {
   //   return setDesktopIndex(desktopIndex + 1)
   // }
 
-  useEffect(() => {
-    setDesktopIndex(parseInt(getRandomArbitrary(0, paintings.length)))
-  }, [paintings])
+  // useEffect(() => {
+  //   // if (!paintings.length) return
+  //   setDesktopIndex(parseInt(getRandomArbitrary(0, paintings.length)))
+  // }, [paintings])
 
   return (
     <section className="w-full mt-14 xl:mt-0 h-[53.5lvh] xl:h-[100lvh]">

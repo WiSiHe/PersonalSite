@@ -18,7 +18,7 @@ import portrait from "public/images/selfPortrait.png"
 import woods from "public/images/woods.png"
 import React from "react"
 
-import { getAllTagsAndPaintings } from "../lib/api"
+import { getAllWallpapers } from "../lib/api"
 
 export default function Home({
   desktopWallpaper = [],
@@ -165,7 +165,8 @@ Home.propTypes = {
 }
 
 export async function getStaticProps() {
-  const data = await getAllTagsAndPaintings()
+  // const data = await getAllTagsAndPaintings()
+  const data = await getAllWallpapers()
 
   if (data.length < 1) {
     return { props: {} }
@@ -173,27 +174,22 @@ export async function getStaticProps() {
 
   const { paintings = [] } = data
 
-  const wallpaperPaintings = paintings.filter(
-    (p) =>
-      p.tagsV2?.length > 1 &&
-      p.tagsV2.find((t) => t.name.toLowerCase() === "wallpaper")
-  )
+  // sort paintings randomly
+  paintings.sort(() => Math.random() - 0.5)
 
-  const desktopWallpapersWithFetchedImages = wallpaperPaintings.map(
-    (wallpaper) => ({
-      ...wallpaper,
-      lowResImageUrl: imageBuilder(wallpaper.image)
-        .width(20)
-        .height(20)
-        .quality(10)
-        .url(),
-      imageUrl: imageBuilder(wallpaper.image)
-        .width(1920)
-        .height(1080)
-        .quality(75)
-        .url(),
-    })
-  )
+  const desktopWallpapersWithFetchedImages = paintings.map((wallpaper) => ({
+    ...wallpaper,
+    lowResImageUrl: imageBuilder(wallpaper.image)
+      .width(20)
+      .height(20)
+      .quality(10)
+      .url(),
+    imageUrl: imageBuilder(wallpaper.image)
+      .width(1920)
+      .height(1080)
+      .quality(75)
+      .url(),
+  }))
 
   return {
     props: {
