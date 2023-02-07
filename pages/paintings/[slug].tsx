@@ -71,14 +71,11 @@ const PaintingsPage = ({
               />
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
-            <div className="p-4 columns-1 sm:columns-2 md:columns-3 lg:columns-5">
-              {paintings
-                // .filter(p => p.tags?.find(t => t.name.toLowerCase() === slug || slug === "all"))
-                .map((p, i) => (
-                  <div key={i} className="mb-4">
-                    <Painting paintingData={p} index={i} />
-                  </div>
-                ))}
+            <div className="grid grid-cols-12 gap-2 p-2 xl:gap-4 xl:p-4">
+              {paintings.map((p, i) => {
+                const { _id } = p
+                return <Painting paintingData={p} key={_id} />
+              })}
             </div>
           </section>
         </section>

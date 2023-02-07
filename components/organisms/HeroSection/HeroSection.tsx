@@ -33,7 +33,7 @@ const HeroSection = ({ paintings = [] }) => {
   }
 
   return (
-    <section className="w-full mt-14 xl:mt-0 h-[70lvh] xl:h-[100lvh]">
+    <section className="w-full mt-14 xl:mt-0 h-[53.5lvh] xl:h-[100lvh]">
       <div className="relative h-full bg-slate-800">
         <div className="relative w-full h-full">
           <Image
@@ -54,9 +54,9 @@ const HeroSection = ({ paintings = [] }) => {
         <div
           className={`absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay`}
         />
-        <div className="absolute left-0 right-0 bottom-0 z-10 flex flex-col items-center justify-center h-fit gap-4">
-          <div className="flex items-center xl:justify-center justify-between w-full gap-6 p-4">
-            <m.button
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4">
+          <div className="flex items-center justify-center w-full gap-6 p-4 xl:justify-center">
+            {/* <m.button
               whileHover={{ scale: 1.2 }}
               onClick={() => handleGoLeft()}
               className="flex-shrink-0 fl w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
@@ -66,18 +66,18 @@ const HeroSection = ({ paintings = [] }) => {
                 aria-label="Left"
                 className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-transparent"
               />
-            </m.button>
+            </m.button> */}
             <div className="relative ">
               {/* <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full  mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" /> */}
 
               <Link
                 href="/paintings"
-                className="relative py-2 text-center text-white transition bg-primary px-7  focus-visible:outline-none focus-visible:ring-highlight focus-visible:ring-2 focus-visible:border-transparent"
+                className="relative py-2 text-center text-white transition drop-shadow-xl bg-primary px-7 focus-visible:outline-none focus-visible:ring-highlight focus-visible:ring-2 focus-visible:border-transparent"
               >
                 <b>Go to gallery</b>
               </Link>
             </div>
-            <m.button
+            {/* <m.button
               whileHover={{ scale: 1.2 }}
               onClick={handleGoRight}
               className="z-10 focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
@@ -87,7 +87,7 @@ const HeroSection = ({ paintings = [] }) => {
                 aria-label="Right"
                 className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg"
               />
-            </m.button>
+            </m.button> */}
           </div>
         </div>
         {/* <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">

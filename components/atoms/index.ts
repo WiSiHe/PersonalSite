@@ -1,5 +1,6 @@
 export { default as ActiveLink } from "./ActiveLink"
 export { default as LogoQR } from "./icons/LogoQR"
+export { default as Input } from "./Input"
 export { default as Main } from "./Main"
 export { default as Meta } from "./Meta"
 export { default as Modal } from "./Modal"

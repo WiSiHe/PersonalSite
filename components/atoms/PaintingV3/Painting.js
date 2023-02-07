@@ -42,6 +42,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     images = [],
     video = "",
     tagsV2 = [],
+    className = "",
   } = paintingData
 
   const salesTagObj = tagsV2?.find((t) => t.name === "Store") || {}
@@ -75,11 +76,17 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     portrait: 800,
   }
 
-  // const imageHeightStyle = {
-  //   square: "aspect-square",
-  //   landscape: "aspect-video",
-  //   portrait: "aspect-[9/16]",
-  // }
+  const imageHeightStyle = {
+    square: "aspect-square",
+    landscape: "aspect-video",
+    portrait: "aspect-[9/16]",
+  }
+
+  const gridStyle = {
+    landscape: "col-span-6 xl:col-span-2 xl:row-span-2",
+    portrait: "col-span-6 xl:col-span-2 xl:row-span-2",
+    square: "col-span-6 xl:col-span-4 xl:row-span-4",
+  }
 
   return (
     <m.article
@@ -88,7 +95,10 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       viewport={{ once: true, amount: 0.1 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full @container h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+        "relative w-full @container h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10",
+        // imageHeightStyle[format],
+        // gridStyle[format],
+        "col-span-6 xl:col-span-2 aspect-square"
       )}
       key={_id}
     >

@@ -15,7 +15,7 @@ export default function Footer({ fixed = false, onlyMobile = false }) {
         type: "spring",
       }}
       className={clsx(
-        "w-full p-4 text-white bg-dark",
+        "w-full p-8 xl:p-4 text-white bg-dark",
         fixed && "fixed bottom-0",
         onlyMobile && " block lg:hidden"
       )}

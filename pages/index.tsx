@@ -33,7 +33,7 @@ export default function Home({
         <HeroSection paintings={desktopWallpaper} />
 
         <section
-          className="max-w-screen-xl xl:items-center mx-auto grid relative w-full grid-cols-12 pt-6 xl:pt-24 gap-4 xl:gap-16 px-4"
+          className="relative grid w-full max-w-screen-xl grid-cols-12 gap-4 px-4 pt-6 mx-auto xl:items-center xl:pt-24 xl:gap-16"
           id="main"
         >
           <m.div
@@ -41,7 +41,7 @@ export default function Home({
             transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
-            className="col-span-9 xl:col-start-3 xl:col-span-5 order-2 xl:order-1 text-xs xl:text-base"
+            className="order-2 col-span-9 text-xs xl:col-start-3 xl:col-span-5 xl:order-1 xl:text-base"
           >
             <h1>
               <strong>
@@ -64,7 +64,7 @@ export default function Home({
             transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
-            className="relative col-span-3 xl:col-span-3 order-1 xl:order-2 xl:block"
+            className="relative order-1 col-span-3 xl:col-span-3 xl:order-2 xl:block"
           >
             <Image
               src={portrait}
@@ -75,7 +75,7 @@ export default function Home({
         </section>
 
         <section className="relative py-10 xl:py-10">
-          <div className="absolute from-dark/5 inset-0 bg-gradient-to-t pointer-events-none" />
+          <div className="absolute inset-0 pointer-events-none from-dark/5 bg-gradient-to-t" />
           <SalesPointsSection />
         </section>
 
@@ -86,7 +86,7 @@ export default function Home({
             className="object-cover w-full h-full"
             fill
           />
-          <div className="absolute inset-0 h-fit w-fit text-white flex items-center flex-col text-center  my-auto p-4 mx-auto">
+          <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-white h-fit w-fit">
             <div className="text-xs">
               <h2>
                 <strong>Still not convinced?</strong>
@@ -97,13 +97,13 @@ export default function Home({
             </div>
             <Link
               href="/paintings"
-              className="relative py-2 text-center text-white text-sm transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
+              className="relative py-2 text-sm text-center text-white transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
             >
               <b>Go to gallery</b>
             </Link>
           </div>
         </section>
-        <section className="text-center py-20 xl:py-40">
+        <section className="px-4 py-20 text-center xl:py-40">
           <h2>
             <strong>Still scrolling, huh?</strong>
           </h2>
@@ -122,13 +122,13 @@ export default function Home({
           />
         </section>
 
-        <section className="text-center flex justify-center flex-col items-center gap-4 py-10 px-4">
+        <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 text-center">
           <div className="">
             <h2>You win!</h2>
             <b>Here, have a picture of a cute dog</b>
           </div>
 
-          <div className="relative aspect-square w-full xl:w-96">
+          <div className="relative w-full aspect-square xl:w-96">
             <Image
               src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=962&q=80"
               fill
