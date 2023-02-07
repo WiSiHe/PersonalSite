@@ -3,12 +3,11 @@ import { useState } from "react"
 
 const TestPage = () => {
   const [inputCode, setInputCode] = useState("")
+  const inputCodeArray = inputCode.split("")
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
-
-  const inputCodeArray = inputCode.split("")
 
   return (
     <>

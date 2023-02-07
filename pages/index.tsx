@@ -70,6 +70,9 @@ export default function Home({
               src={portrait}
               alt="portrait of Henrik Sissener"
               className="object-cover w-full h-full aspect-square xl:rounded-full"
+              sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
             />
           </m.div>
         </section>
@@ -85,6 +88,9 @@ export default function Home({
             alt="Two boys in a dark forest"
             className="object-cover w-full h-full"
             fill
+            sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
           />
           <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-white h-fit w-fit">
             <div className="text-xs">
@@ -119,6 +125,9 @@ export default function Home({
             fill
             alt="Dark magical woods made in 3D"
             className="object-cover w-full h-full"
+            sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
           />
         </section>
 
@@ -134,6 +143,9 @@ export default function Home({
               fill
               alt="cute dog"
               className="object-cover w-full h-full"
+              sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
             />
           </div>
         </section>

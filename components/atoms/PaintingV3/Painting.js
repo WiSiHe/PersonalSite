@@ -109,6 +109,9 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
             .height(imageHeight[format])
             .quality(45)
             .url()}
+          sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
           // src={fetchedPainting}
           height={imageHeight[format]}
           width={imageWidth[format]}

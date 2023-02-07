@@ -3,7 +3,7 @@ import { m } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
+import { BsChevronDown } from "react-icons/bs"
 import { getRandomArbitrary } from "utils/numbers"
 
 const HeroSection = ({ paintings = [] }) => {
@@ -12,25 +12,25 @@ const HeroSection = ({ paintings = [] }) => {
 
   const currentWallpaper = paintings[desktopIndex]
 
+  // const handleGoLeft = () => {
+  //   if (desktopIndex === 0) {
+  //     return setDesktopIndex(paintings.length - 1)
+  //   }
+
+  //   return setDesktopIndex(desktopIndex - 1)
+  // }
+
+  // const handleGoRight = () => {
+  //   if (desktopIndex === paintings.length - 1) {
+  //     return setDesktopIndex(0)
+  //   }
+
+  //   return setDesktopIndex(desktopIndex + 1)
+  // }
+
   useEffect(() => {
     setDesktopIndex(parseInt(getRandomArbitrary(0, paintings.length)))
   }, [paintings])
-
-  const handleGoLeft = () => {
-    if (desktopIndex === 0) {
-      return setDesktopIndex(paintings.length - 1)
-    }
-
-    return setDesktopIndex(desktopIndex - 1)
-  }
-
-  const handleGoRight = () => {
-    if (desktopIndex === paintings.length - 1) {
-      return setDesktopIndex(0)
-    }
-
-    return setDesktopIndex(desktopIndex + 1)
-  }
 
   return (
     <section className="w-full mt-14 xl:mt-0 h-[53.5lvh] xl:h-[100lvh]">
@@ -40,8 +40,8 @@ const HeroSection = ({ paintings = [] }) => {
             src={currentWallpaper.imageUrl}
             blurDataURL={currentWallpaper.lowResImageUrl}
             // sizes="(max-width: 768px) 100vw,
-            //     (max-width: 1200px) 50vw,
-            //     33vw"
+            // (max-width: 1200px) 50vw,
+            // 33vw"
             priority
             fill
             placeholder="blur"
@@ -90,22 +90,22 @@ const HeroSection = ({ paintings = [] }) => {
             </m.button> */}
           </div>
         </div>
-        {/* <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">
-              <m.a
-                initial={{ y: 0, scale: 1.0 }}
-                animate={{ y: -10, scale: 1.0 }}
-                transition={{
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  type: "spring",
-                  bounce: 0.5,
-                }}
-                className="p-2 bg-white focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-                href="#main"
-              >
-                <BsChevronDown />
-              </m.a>
-            </div> */}
+        <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">
+          <m.a
+            initial={{ y: 0, scale: 1.0 }}
+            animate={{ y: -10, scale: 1.0 }}
+            transition={{
+              repeat: Infinity,
+              repeatType: "reverse",
+              type: "spring",
+              bounce: 0.5,
+            }}
+            className="p-2 bg-white focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
+            href="#main"
+          >
+            <BsChevronDown />
+          </m.a>
+        </div>
       </div>
     </section>
   )
