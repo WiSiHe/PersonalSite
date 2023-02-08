@@ -15,7 +15,6 @@ const HeroSection = ({ paintings = [] }) => {
   const currentWallpaper = paintings[desktopIndex]
 
   const { width } = useWindowDimensions()
-  console.log("w", width)
 
   const handleGoLeft = () => {
     if (desktopIndex === 0) {
@@ -51,7 +50,7 @@ const HeroSection = ({ paintings = [] }) => {
       className={clsx(
         "transition-all w-full duration-500 ease-in-out",
         // imageHeightStyle[currentWallpaper.format]
-        "w-full h-[100lvh] xl:h-[100lvh]"
+        "w-full h-[100svh]"
       )}
     >
       <div className="relative h-full bg-slate-800">
