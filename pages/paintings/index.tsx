@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 import { PaintingsPageProps } from "./[slug]"
-import clsx from "clsx"
 
 const PaintingsPage = ({
   paintings = [],
@@ -75,7 +74,7 @@ const PaintingsPage = ({
             </div>
 
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
-              {paintings.slice(0, paintingsSlice).map((p, i) => {
+              {paintings.slice(0, paintingsSlice).map((p) => {
                 const { _id } = p
                 return <Painting paintingData={p} key={_id} />
               })}
@@ -121,36 +120,13 @@ export async function getStaticProps() {
     .filter((p) => p.paintingsCount > 5)
     .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
-  // const randomPaintings = paintings.sort(() => Math.random() - 0.5)
-
-  // const imageWidth = {
-  //   square: 400,
-  //   landscape: 800,
-  //   portrait: 400
-  // }
-
-  // const imageHeight = {
-  //   square: 400,
-  //   landscape: 400,
-  //   portrait: 800
-  // }
-
-  // const paintingsWithPriority = paintings.map(p => {
-  //   const { format = "square", image = {} } = p
-  //   const fetchedPainting = imageBuilder(image)
-  //     .width(imageWidth[format])
-  //     .height(imageHeight[format])
-  //     .quality(45)
-  //     .url()
-
-  //   return { ...p, fetchedPainting }
-  // })
+  const randomPaintings = paintings.sort(() => Math.random() - 0.5)
 
   return {
     props: {
-      paintings: paintings,
+      paintings: randomPaintings,
       tags: sortedTags,
     },
-    revalidate: 7200, // 120  min
+    revalidate: 60 * 60 * 24, // 24 hours
   }
 }

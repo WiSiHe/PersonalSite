@@ -15,19 +15,19 @@ import { getAllVideos } from "lib/api"
 import React, { Suspense } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
-const cardVariants = {
-  offscreen: {
-    y: 200,
-    opacity: 0,
-  },
-  onscreen: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-    },
-  },
-}
+// const cardVariants = {
+//   offscreen: {
+//     y: 200,
+//     opacity: 0,
+//   },
+//   onscreen: {
+//     y: 0,
+//     opacity: 1,
+//     transition: {
+//       type: "spring",
+//     },
+//   },
+// }
 
 const PaintingsPage = ({ videos = [] }) => {
   const scrollPosition = useScrollPosition()

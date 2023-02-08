@@ -57,6 +57,14 @@ export const convertStringToTitleCase = (str: string) => {
   )
 }
 
+export const slugify = (str: string) => {
+  if (!str) return ""
+  return str
+    .toLowerCase()
+    .replace(/[^\w ]+/g, "")
+    .replace(/ +/g, "-")
+}
+
 // export const listFormat = (list: string[]) => {
 //   return new Intl.ListFormat("en-US", {
 //     style: "long",

@@ -1,6 +1,7 @@
 import { Filters, Footer, Main, Meta, Navigation, Painting } from "components"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
 import React from "react"
+import { slugify } from "utils/string"
 // import { imageBuilder } from "lib/sanity"
 
 export interface iTag {
@@ -75,7 +76,7 @@ const PaintingsPage = ({
             </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
-              {paintings.map((p, i) => {
+              {paintings.map((p) => {
                 const { _id } = p
                 return <Painting paintingData={p} key={_id} />
               })}
@@ -119,9 +120,8 @@ export async function getStaticProps({ params }) {
     .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
   const filteredPaintings =
-    paintings.filter((p) =>
-      p.tagsV2?.find((t) => t.name?.toLowerCase() === slug)
-    ) || []
+    paintings.filter((p) => p.tagsV2?.find((t) => slugify(t.name) === slug)) ||
+    []
 
   // const paintingsWithPriority = filteredPaintings.map(p => {
   //   const { format = "square", image = {} } = p
@@ -150,8 +150,10 @@ export async function getStaticPaths() {
   const paths = allTags
     .filter((p) => p.paintingsCount < 5)
     .map((tag) => {
+      const { name = "" } = tag
+      const slug = slugify(name)
       return {
-        params: { slug: tag.name.toLowerCase() },
+        params: { slug: slug },
       }
     })
 
