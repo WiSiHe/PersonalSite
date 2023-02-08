@@ -1,6 +1,6 @@
 import clsx from "clsx"
 // Components
-import { Main, Meta, Navigation, RedbubbleLink, SocialLinks } from "components"
+import { Main, Meta, RedbubbleLink, SocialLinks } from "components"
 import { m } from "framer-motion"
 // Helpers
 import generatePaintingJsonLd from "helpers/jsonLdHelpers"
@@ -74,7 +74,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         jsonLd={generatePaintingJsonLd(painting)}
         url={`https://wisihe.no/painting/${current}`}
       />
-      <Navigation />
+
       <Main
         noTopPadding
         className="flex flex-col xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 "

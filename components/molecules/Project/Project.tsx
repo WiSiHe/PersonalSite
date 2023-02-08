@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import Tag from "components/atoms/Tag"
 import { motion } from "framer-motion"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import PropTypes from "prop-types"
 import React from "react"
 
@@ -21,6 +21,16 @@ const cardVariants = {
   },
 }
 
+interface ProjectProps {
+  image?: string | StaticImageData
+  tags?: string[]
+  title?: string
+  status?: string
+  imageLeft?: boolean
+  children?: React.ReactNode
+  className?: string
+}
+
 const Project = ({
   image = "",
   tags = [],
@@ -29,7 +39,7 @@ const Project = ({
   imageLeft = false,
   children,
   className = "",
-}) => {
+}: ProjectProps) => {
   return (
     <motion.article
       initial="offscreen"
@@ -43,7 +53,7 @@ const Project = ({
     >
       <div
         className={clsx(
-          "flex flex-col justify-between  p-4 ",
+          "flex flex-col justify-between p-4",
           imageLeft ? "order-2 xl:order-2" : "order-2 xl:order-1"
         )}
       >

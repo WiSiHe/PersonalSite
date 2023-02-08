@@ -56,12 +56,6 @@ const HeroSection = ({ paintings = [] }) => {
       <div className="relative h-full bg-slate-800">
         <div className="relative w-full h-full">
           <Image
-            // src={currentWallpaper.imageUrl}
-            // src={imageBuilder(currentWallpaper.image)
-            //   .width(1920)
-            //   .height(1080)
-            //   .quality(75)
-            //   .url()}
             src={imageBuilder(currentWallpaper.image)
               .width(!isMobile ? 1920 : 375)
               .height(!isMobile ? 1080 : 768)
@@ -85,7 +79,7 @@ const HeroSection = ({ paintings = [] }) => {
           className={`absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay`}
         />
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4">
-          <div className="flex items-center justify-center w-full gap-6 p-4 xl:justify-center">
+          <div className="flex items-center justify-between w-full gap-6 p-4 xl:justify-center">
             <m.button
               whileHover={{ scale: 1.2 }}
               onClick={() => handleGoLeft()}

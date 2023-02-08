@@ -1,4 +1,4 @@
-import { Main, Navigation } from "components"
+import { Main } from "components"
 import { useState } from "react"
 
 const TestPage = () => {
@@ -11,7 +11,6 @@ const TestPage = () => {
 
   return (
     <>
-      <Navigation />
       <Main noTopPadding className="">
         <section className="flex flex-col items-center justify-center w-full p-4 bg-gray-400">
           {/* input field where every character is styled in a box */}
@@ -30,7 +29,6 @@ const TestPage = () => {
                 )
               })}
             </div>
-
             <input
               type="text"
               name="one-time-code"

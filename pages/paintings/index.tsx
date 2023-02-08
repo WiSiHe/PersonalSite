@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Filters, Footer, Main, Meta, Navigation, Painting } from "components"
+import { Filters, Footer, Main, Meta, Painting } from "components"
 import { m } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
 import { getAllTagsAndPaintingsLight } from "lib/api"
@@ -54,7 +54,6 @@ const PaintingsPage = ({
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Navigation />
       <Main noTopPadding className="overflow-clip">
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">

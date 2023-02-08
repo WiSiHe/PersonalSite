@@ -98,7 +98,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
         "relative w-full @container h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10",
         // imageHeightStyle[format],
         // gridStyle[format],
-        "col-span-6 xl:col-span-2 aspect-square"
+        "col-span-6 xl:col-span-3 aspect-square"
       )}
       key={_id}
     >
@@ -110,7 +110,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
             .quality(45)
             .url()}
           sizes="(max-width: 768px) 50vw,
-            20vw"
+            25vw"
           // src={fetchedPainting}
           height={imageHeight[format]}
           width={imageWidth[format]}

@@ -19,10 +19,10 @@ const container = {
   },
 }
 
-const animItem = {
-  hidden: { opacity: 0, y: -20 },
-  show: { opacity: 1, y: 0 },
-}
+// const animItem = {
+//   hidden: { opacity: 0, y: -20 },
+//   show: { opacity: 1, y: 0 },
+// }
 
 export default function Navigation({ isAbsolute = false }) {
   const router = useRouter()
@@ -78,7 +78,7 @@ export default function Navigation({ isAbsolute = false }) {
               const isActive = asPathWithSpacing.includes(item.url)
 
               return (
-                <motion.li key={i} variants={animItem}>
+                <motion.li key={i}>
                   <Link
                     href={item.url}
                     className={clsx(

@@ -69,9 +69,10 @@ const Filters = ({
             "bg-dark hover:bg-dark text-white"
           )}
         >
-          <strong>{activeFilter}</strong>
+          <strong>
+            {activeFilter}({amountOfPaintings})
+          </strong>
         </div>
-        <strong>Results: {amountOfPaintings}</strong>
       </div>
       <AnimatePresence>
         {active && (

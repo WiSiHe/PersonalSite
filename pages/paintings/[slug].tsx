@@ -1,4 +1,4 @@
-import { Filters, Footer, Main, Meta, Navigation, Painting } from "components"
+import { Filters, Footer, Main, Meta, Painting } from "components"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
 import React from "react"
 import { slugify } from "utils/string"
@@ -59,8 +59,6 @@ const PaintingsPage = ({
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Navigation />
-
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
           <section className="col-span-full">
@@ -72,9 +70,9 @@ const PaintingsPage = ({
               />
             </div>
             <div className="p-2 xl:p-4">
-              <h1 className="text-2xl font-bold">Browse some of my: {slug}</h1>
+              <h1 className="text-2xl font-bold">Painting gallery</h1>
+              <p className="mt-2">Filter:{slug}</p>
             </div>
-            {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.map((p) => {
                 const { _id } = p

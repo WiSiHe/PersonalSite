@@ -1,4 +1,3 @@
-import { Navigation } from "components"
 import Head from "next/head"
 import { NextStudio } from "next-sanity/studio"
 import { NextStudioHead } from "next-sanity/studio/head"
@@ -19,7 +18,6 @@ export default function StudioPage() {
         <NextStudioHead favicons={false} />
       </Head>
 
-      <Navigation />
       <section className="p-4">
         <NextStudio config={config}>
           <StudioProvider config={config}>

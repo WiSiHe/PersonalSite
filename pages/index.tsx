@@ -1,21 +1,12 @@
-import {
-  Footer,
-  HeroSection,
-  Main,
-  Meta,
-  Navigation,
-  SalesPointsSection,
-} from "components"
-import { m } from "framer-motion"
+import { Footer, HeroSection, Main, Meta } from "components"
+// import { m } from "framer-motion"
 import { ILandingPage } from "lib/models/landingPage"
 // import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
-import Image from "next/image"
-import Link from "next/link"
 import PropTypes from "prop-types"
-import night from "public/images/night-forest.jpeg"
-import portrait from "public/images/selfPortrait.png"
-import woods from "public/images/woods.png"
+// import night from "public/images/night-forest.jpeg"
+// import portrait from "public/images/selfPortrait.png"
+// import woods from "public/images/woods.png"
 import React from "react"
 
 import { getAllWallpapers } from "../lib/api"
@@ -28,11 +19,11 @@ export default function Home({
   return (
     <>
       <Meta url="https://wisihe.no" />
-      <Navigation isAbsolute />
+
       <Main noTopPadding className="flex-col overflow-clip">
         <HeroSection paintings={desktopWallpaper} />
 
-        <section
+        {/* <section
           className="relative grid w-full max-w-screen-xl grid-cols-12 gap-4 px-4 pt-6 mx-auto xl:items-center xl:pt-24 xl:gap-16"
           id="main"
         >
@@ -148,7 +139,7 @@ export default function Home({
             33vw"
             />
           </div>
-        </section>
+        </section> */}
       </Main>
       <Footer />
     </>
