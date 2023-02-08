@@ -40,10 +40,10 @@ export default function Navigation({ isAbsolute = false }) {
       }}
       className={clsx(
         "bg-dark backdrop-blur-lg z-20 text-white",
-        isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
+        isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
-      <div className="flex items-center justify-between px-2 xl:px-4 py-2 mx-auto">
+      <div className="flex items-center justify-between px-2 py-2 mx-auto xl:px-4">
         <div className="flex items-center">
           <motion.div
             initial={{ opacity: 0, x: -100, rotate: -180 }}

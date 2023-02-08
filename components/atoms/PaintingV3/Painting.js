@@ -42,7 +42,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     images = [],
     video = "",
     tagsV2 = [],
-    className = "",
+    // className = "",
   } = paintingData
 
   const salesTagObj = tagsV2?.find((t) => t.name === "Store") || {}
@@ -66,27 +66,27 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
 
   const imageWidth = {
     square: 400,
-    landscape: 800,
+    landscape: 400,
     portrait: 400,
   }
 
   const imageHeight = {
     square: 400,
     landscape: 400,
-    portrait: 800,
+    portrait: 400,
   }
 
-  const imageHeightStyle = {
-    square: "aspect-square",
-    landscape: "aspect-video",
-    portrait: "aspect-[9/16]",
-  }
+  // const imageHeightStyle = {
+  //   square: "aspect-square",
+  //   landscape: "aspect-video",
+  //   portrait: "aspect-[9/16]",
+  // }
 
-  const gridStyle = {
-    landscape: "col-span-6 xl:col-span-2 xl:row-span-2",
-    portrait: "col-span-6 xl:col-span-2 xl:row-span-2",
-    square: "col-span-6 xl:col-span-4 xl:row-span-4",
-  }
+  // const gridStyle = {
+  //   landscape: "col-span-6 xl:col-span-2 xl:row-span-2",
+  //   portrait: "col-span-6 xl:col-span-2 xl:row-span-2",
+  //   square: "col-span-6 xl:col-span-4 xl:row-span-4",
+  // }
 
   return (
     <m.article
@@ -109,9 +109,8 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
             .height(imageHeight[format])
             .quality(45)
             .url()}
-          sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
+          sizes="(max-width: 768px) 50vw,
+            20vw"
           // src={fetchedPainting}
           height={imageHeight[format]}
           width={imageWidth[format]}

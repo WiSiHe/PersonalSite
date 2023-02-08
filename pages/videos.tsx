@@ -48,7 +48,7 @@ const PaintingsPage = ({ videos = [] }) => {
       />
       <Navigation isAbsolute />
       <Main className="pb-10">
-        <section className="grid grid-cols-12 w-full p-4 mt-6 gap-4 space-y-4 mx-auto max-w-screen-lg">
+        <section className="grid w-full max-w-screen-lg grid-cols-12 gap-4 p-4 mx-auto mt-6 space-y-4">
           <section className="col-span-full xl:col-span-10">
             <h1 className="text-4xl font-bold">Videos</h1>
             <p>
@@ -70,12 +70,12 @@ const PaintingsPage = ({ videos = [] }) => {
             const isEven = i % 2 === 0
 
             return (
-              <m.div
+              <div
                 key={_id}
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{ once: true, amount: 0.05 }}
-                variants={cardVariants}
+                // initial="offscreen"
+                // whileInView="onscreen"
+                // viewport={{ once: true, amount: 0.05 }}
+                // variants={cardVariants}
                 className={clsx(
                   "xl:col-span-8 p-4 bg-white col-span-full shadow-xl h-fit",
                   !isEven && "xl:col-start-5"
@@ -92,7 +92,7 @@ const PaintingsPage = ({ videos = [] }) => {
                     <ReactPlayer url={video} loop width="100%" height="100%" />
                   </Suspense>
                 </div>
-              </m.div>
+              </div>
             )
           })}
         </section>

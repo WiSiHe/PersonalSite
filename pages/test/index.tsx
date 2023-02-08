@@ -12,7 +12,7 @@ const TestPage = () => {
   return (
     <>
       <Navigation />
-      <Main noTopPadding>
+      <Main noTopPadding className="">
         <section className="flex flex-col items-center justify-center w-full p-4 bg-gray-400">
           {/* input field where every character is styled in a box */}
           <form className="space-y-6" onSubmit={onSubmit}>

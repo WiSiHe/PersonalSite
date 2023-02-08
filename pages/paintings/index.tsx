@@ -66,7 +66,15 @@ const PaintingsPage = ({
                 amountOfPaintings={paintings.length}
               />
             </div>
-            <div className="grid grid-cols-12 gap-2 p-2 xl:gap-4 xl:p-4">
+            <div className="p-2 xl:p-4">
+              <h1 className="text-2xl font-bold">Welcome to my gallery</h1>
+              <p className="mt-2">
+                Here you can find some of my paintings. I have a wide range of
+                paintings.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.slice(0, paintingsSlice).map((p, i) => {
                 const { _id } = p
                 return <Painting paintingData={p} key={_id} />

@@ -70,8 +70,11 @@ const PaintingsPage = ({
                 amountOfPaintings={paintings.length}
               />
             </div>
+            <div className="p-2 xl:p-4">
+              <h1 className="text-2xl font-bold">Browse some of my: {slug}</h1>
+            </div>
             {/* <PaintingGrid paintings={paintings} filterTag={slug} /> */}
-            <div className="grid grid-cols-12 gap-2 p-2 xl:gap-4 xl:p-4">
+            <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.map((p, i) => {
                 const { _id } = p
                 return <Painting paintingData={p} key={_id} />
