@@ -65,13 +65,16 @@ const Filters = ({
         </button>
         <div
           className={clsx(
-            "relative snap-start uppercase  transition py-2 pointer-events-none px-4 text-xs  whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
+            "relative snap-start uppercase transition py-2 pointer-events-none px-4 text-xs whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
             "bg-dark hover:bg-dark text-white"
           )}
         >
-          <strong>
+          <m.strong
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
             {activeFilter}({amountOfPaintings})
-          </strong>
+          </m.strong>
         </div>
       </div>
       <AnimatePresence>

@@ -1,3 +1,4 @@
+export { default as Canvas } from "./Canvas"
 export { default as Carousel } from "./Carousel"
 export { default as Filters } from "./Filters"
 export { default as Footer } from "./Footer"

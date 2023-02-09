@@ -117,21 +117,32 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           // fill
           alt={`painting: ${title}`}
           priority={isPriority}
-          className="object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover group-hover:scale-125 bg-gray-50 "
+          className={clsx(
+            !isNsfw && !isNsfwUrl && "group-hover:scale-125",
+            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover  bg-gray-50 "
+          )}
         />
         {isNsfw && !isNsfwUrl && (
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-2xl" />
+          <div className="absolute inset-0 bg-black/10 backdrop-blur-2xl" />
         )}
 
         <div className="absolute inset-0 w-full h-full">
           <div className="flex items-center justify-center w-full h-full">
-            <div className="transition-all duration-1000 ease-in-out origin-center opacity-0 bg-primary/20 group-hover:h-full group-hover:w-full group-hover:opacity-100 backdrop-blur-sm" />
+            <div
+              className={clsx(
+                !isNsfw && !isNsfwUrl && "backdrop-blur-sm bg-primary/20",
+                "transition-all duration-1000 ease-in-out origin-center opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 "
+              )}
+            />
           </div>
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center text-center text-white drop-shadow-2xl ">
-          <b className="text-sm xl:text-xl group-hover:scale-105">{title}</b>
+        <div className="absolute inset-0 flex items-center justify-center text-center text-white">
+          <strong className="text-sm xl:text-xl group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)]">
+            {title}
+          </strong>
         </div>
+
         {hasStoreLinks && (
           <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
             <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">

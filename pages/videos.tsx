@@ -48,7 +48,7 @@ const PaintingsPage = ({ videos = [] }) => {
         description="A gallery of some of my paintings"
       />
       <Main className="py-4 xl:py-10" noTopPadding>
-        <section className="grid w-full max-w-screen-lg grid-cols-12 gap-4 p-4 mx-auto space-y-4">
+        <section className="grid w-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto space-y-4">
           <section className="col-span-full">
             <h1 className="text-4xl">Videos</h1>
             <p>Here you can find some of my videos.</p>

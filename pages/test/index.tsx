@@ -1,4 +1,4 @@
-import { Main } from "components"
+import { Canvas, Main } from "components"
 import { useState } from "react"
 
 const TestPage = () => {
@@ -47,6 +47,11 @@ const TestPage = () => {
               </button>
             </div>
           </form>
+        </section>
+        <section>
+          <div className="absolute inset-0 ring">
+            <Canvas />
+          </div>
         </section>
       </Main>
     </>

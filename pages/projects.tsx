@@ -29,7 +29,7 @@ export default function ProjectsPage() {
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
       <Main noTopPadding className="py-4 xl:py-10">
-        <section className="relative grid gap-4 p-4 h-full max-w-screen-lg mx-auto grid-cols-12">
+        <section className="relative grid gap-4 p-4 h-full max-w-screen-xl mx-auto grid-cols-12">
           <div className="col-span-full xl:col-span-8">
             <h1 className="text-4xl">My Projects</h1>
             <p>
