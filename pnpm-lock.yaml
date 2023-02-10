@@ -56,6 +56,7 @@ specifiers:
   three-stdlib: ^2.19.0
   typescript: 4.5.4
   webpack: ^5.75.0
+  zod: ^3.20.6
 
 dependencies:
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
@@ -104,6 +105,7 @@ dependencies:
   three-stdlib: 2.21.5_three@0.135.0
   typescript: 4.5.4
   webpack: 5.75.0
+  zod: 3.20.6
 
 devDependencies:
   '@babel/core': 7.20.12
@@ -7647,6 +7649,10 @@ packages:
       archiver-utils: 2.1.0
       compress-commons: 4.1.1
       readable-stream: 3.6.0
+    dev: false
+
+  /zod/3.20.6:
+    resolution: {integrity: sha512-oyu0m54SGCtzh6EClBVqDDlAYRz4jrVtKwQ7ZnsEmMI9HnzuZFj8QFwAY1M5uniIYACdGvv0PBWPF2kO0aNofA==}
     dev: false
 
   /zstddec/0.0.2:

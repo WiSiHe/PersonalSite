@@ -8,13 +8,18 @@ import { useState } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 // import { getRandomArbitrary } from "utils/numbers"
 
-const HeroSection = ({ paintings = [], introText = "" }) => {
+interface HeroSectionProps {
+  paintings: any[]
+  introText?: string
+}
+
+const HeroSection = ({ paintings = [], introText = "" }: HeroSectionProps) => {
   const [desktopIndex, setDesktopIndex] = useState(0)
   // const { width = 0 } = useWindowDimensions()
 
   const currentWallpaper = paintings[desktopIndex]
 
-  const { width } = useWindowDimensions()
+  const { width = 0 } = useWindowDimensions()
 
   const handleGoLeft = () => {
     if (desktopIndex === 0) {

@@ -93,7 +93,7 @@
     "**/*.ts",
     "**/*.tsx",
     "lib/sanity.js",
-    "lib/sanity.js", "schemas/settings/OpenGraphPreview.js"  ],
+    "lib/sanity.js", "schemas/settings/OpenGraphPreview.js", "components/molecules/Canvas/Canvas.js", "lib/sanity.image.js", "plugins/settings.js"  ],
   "exclude": [
     "node_modules"
   ]

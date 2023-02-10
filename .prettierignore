@@ -11,3 +11,4 @@ package.json
 styles
 README.md
 tsconfig.json
+sanity.config.ts

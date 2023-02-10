@@ -1,20 +1,18 @@
 import dynamic from "next/dynamic"
-import PropTypes from "prop-types"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
 })
 
-import clsx from "clsx"
 import { Footer, Main, Meta } from "components"
 import { m } from "framer-motion"
 // import ReactPlayer from "react-player"
 // const ReactPlayer = React.lazy(() => import("react-player"))
 import useScrollPosition from "hooks/useScrollPosition"
 import { getAllVideos } from "lib/api"
+import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import React, { Suspense } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
-import { isEven } from "utils/numbers"
 
 const cardVariants = {
   offscreen: {
@@ -30,7 +28,11 @@ const cardVariants = {
   },
 }
 
-const PaintingsPage = ({ videos = [] }) => {
+interface iSanityVideoProps {
+  videos: iSanityVideo[]
+}
+
+const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
   const scrollPosition = useScrollPosition()
 
   const handleClick = () => {
@@ -101,10 +103,6 @@ const PaintingsPage = ({ videos = [] }) => {
       <Footer />
     </>
   )
-}
-
-PaintingsPage.propTypes = {
-  videos: PropTypes.array,
 }
 
 export default PaintingsPage

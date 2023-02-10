@@ -46,19 +46,19 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   return {} as any
 }
 
-export async function getPostAndMoreStories(
-  slug: string,
-  token?: string | null
-): Promise<{ post: Post; morePosts: Post[] }> {
-  if (projectId) {
-    const client = createClient({
-      projectId,
-      dataset,
-      apiVersion,
-      useCdn,
-      token: token || undefined,
-    })
-    return await client.fetch(postAndMoreStoriesQuery, { slug })
-  }
-  return { post: null, morePosts: [] }
-}
+// export async function getPostAndMoreStories(
+//   slug: string,
+//   token?: string | null
+// ): Promise<{ post: Post; morePosts: Post[] }> {
+//   if (projectId) {
+//     const client = createClient({
+//       projectId,
+//       dataset,
+//       apiVersion,
+//       useCdn,
+//       token: token || undefined,
+//     })
+//     return await client.fetch(postAndMoreStoriesQuery, { slug })
+//   }
+//   return { post: null, morePosts: [] }
+// }

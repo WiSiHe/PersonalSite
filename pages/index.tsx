@@ -1,9 +1,9 @@
 import { Footer, HeroSection, Main, Meta } from "components"
 // import { m } from "framer-motion"
 import { ILandingPage } from "lib/models/landingPage"
+import { iSanityImage } from "lib/models/objects/sanityImage"
 // import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
-import PropTypes from "prop-types"
 // import night from "public/images/night-forest.jpeg"
 // import portrait from "public/images/selfPortrait.png"
 // import woods from "public/images/woods.png"
@@ -146,15 +146,6 @@ export default function Home({
   )
 }
 
-Home.propTypes = {
-  headerImage: PropTypes.any,
-  paintings: PropTypes.array,
-  tags: PropTypes.array,
-  thumbnailImage: PropTypes.any,
-  wallpaperPaintings: PropTypes.any,
-  desktopWallpaper: PropTypes.array,
-}
-
 export async function getStaticProps() {
   // const data = await getAllTagsAndPaintings()
   const data = await getAllWallpapers()
@@ -168,19 +159,21 @@ export async function getStaticProps() {
   // sort paintings randomly
   paintings.sort(() => Math.random() - 0.5)
 
-  const desktopWallpapersWithFetchedImages = paintings.map((wallpaper) => ({
-    ...wallpaper,
-    lowResImageUrl: imageBuilder(wallpaper.image)
-      .width(20)
-      .height(20)
-      .quality(10)
-      .url(),
-    imageUrl: imageBuilder(wallpaper.image)
-      .width(1920)
-      .height(1080)
-      .quality(75)
-      .url(),
-  }))
+  const desktopWallpapersWithFetchedImages = paintings.map(
+    (wallpaper: { image: iSanityImage }) => ({
+      ...wallpaper,
+      lowResImageUrl: imageBuilder(wallpaper.image)
+        .width(20)
+        .height(20)
+        .quality(10)
+        .url(),
+      imageUrl: imageBuilder(wallpaper.image)
+        .width(1920)
+        .height(1080)
+        .quality(75)
+        .url(),
+    })
+  )
 
   return {
     props: {

@@ -1,7 +1,16 @@
-import PropTypes from "prop-types"
-import * as React from "react"
+interface iLogoProps {
+  titleId?: string
+  width?: string
+  height?: string
+  [key: string]: any
+}
 
-function LogoQR({ titleId = "", width = "1rem", height = "1rem", ...props }) {
+function LogoQR({
+  titleId = "",
+  width = "1rem",
+  height = "1rem",
+  ...props
+}: iLogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,13 +28,6 @@ function LogoQR({ titleId = "", width = "1rem", height = "1rem", ...props }) {
       <path d="M43 467v26h52v-52H43v26z" />
     </svg>
   )
-}
-
-LogoQR.propTypes = {
-  height: PropTypes.string,
-  title: PropTypes.any,
-  titleId: PropTypes.any,
-  width: PropTypes.string,
 }
 
 export default LogoQR

@@ -2,7 +2,6 @@ import clsx from "clsx"
 import Tag from "components/atoms/Tag"
 import { motion } from "framer-motion"
 import Image, { StaticImageData } from "next/image"
-import PropTypes from "prop-types"
 import React from "react"
 
 const cardVariants = {
@@ -92,19 +91,6 @@ const Project = ({
       </div>
     </motion.article>
   )
-}
-
-Project.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-  className: PropTypes.string,
-  image: PropTypes.object,
-  imageLeft: PropTypes.bool,
-  status: PropTypes.string,
-  tags: PropTypes.array,
-  title: PropTypes.string,
 }
 
 export default Project

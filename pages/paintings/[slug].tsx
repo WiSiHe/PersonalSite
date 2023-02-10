@@ -7,6 +7,9 @@ import {
   ScrollToTopButton,
 } from "components"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
+import { painting } from "lib/models/landingPage"
+import { iSanityTag } from "lib/models/objects/SanityTag"
+import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import React from "react"
 import { slugify } from "utils/string"
 // import { imageBuilder } from "lib/sanity"
@@ -42,9 +45,7 @@ export interface iPainting {
     }
   }
   tags: iPaintingTag[]
-  tagsV2: {
-    name: string
-  }
+  tagsV2: iSanityTag[]
 }
 
 export interface PaintingsPageProps {
@@ -58,6 +59,7 @@ const PaintingsPage = ({
   paintings = [],
   tags = [],
 }: PaintingsPageProps) => {
+  console.log({ paintings })
   const tagsWithAll = [{ name: "All" }, ...tags]
   return (
     <>
@@ -97,7 +99,7 @@ const PaintingsPage = ({
 
 export default PaintingsPage
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { slug = "" } = params
 
   const data = await getAllTagsAndPaintingsLight()
@@ -106,19 +108,10 @@ export async function getStaticProps({ params }) {
     return { props: {} }
   }
 
-  // const imageWidth = {
-  //   square: 400,
-  //   landscape: 800,
-  //   portrait: 400
-  // }
-
-  // const imageHeight = {
-  //   square: 400,
-  //   landscape: 400,
-  //   portrait: 800
-  // }
-
-  const { paintings = [], tags = [] } = data
+  const {
+    paintings = [],
+    tags = [],
+  }: { paintings: iSanityPainting[]; tags: iSanityTag[] } = data
 
   // sort paintings by paintingsCount
   const sortedTags = tags
@@ -128,17 +121,6 @@ export async function getStaticProps({ params }) {
   const filteredPaintings =
     paintings.filter((p) => p.tagsV2?.find((t) => slugify(t.name) === slug)) ||
     []
-
-  // const paintingsWithPriority = filteredPaintings.map(p => {
-  //   const { format = "square", image = {} } = p
-  //   const fetchedPainting = imageBuilder(image)
-  //     .width(imageWidth[format])
-  //     .height(imageHeight[format])
-  //     .quality(45)
-  //     .url()
-
-  //   return { ...p, fetchedPainting }
-  // })
 
   return {
     props: {
@@ -151,7 +133,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const allTags = await getAllTags()
+  const allTags = (await getAllTags()) as iSanityTag[]
 
   const paths = allTags
     .filter((p) => p.paintingsCount < 5)

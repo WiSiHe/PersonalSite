@@ -1,7 +1,11 @@
-import PropTypes from "prop-types"
 import * as React from "react"
 
-function Logo({ width = 52, height = 52 }) {
+interface iLogoProps {
+  width?: number
+  height?: number
+}
+
+function Logo({ width = 52, height = 52 }: iLogoProps) {
   return (
     <svg
       width={width}
@@ -22,11 +26,6 @@ function Logo({ width = 52, height = 52 }) {
       />
     </svg>
   )
-}
-
-Logo.propTypes = {
-  height: PropTypes.number,
-  width: PropTypes.number,
 }
 
 export default Logo

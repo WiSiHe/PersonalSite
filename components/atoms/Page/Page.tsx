@@ -1,23 +1,21 @@
 // react page wrapper that receives children
-import { motion } from "framer-motion"
-import PropTypes from "prop-types"
+import { m } from "framer-motion"
 import React from "react"
 
-const Page = ({ children }) => {
+interface iPageProps {
+  children: React.ReactNode
+}
+const Page = ({ children }: iPageProps) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
       transition={{ type: "spring", duration: 0.5 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
-}
-
-Page.propTypes = {
-  children: PropTypes.any,
 }
 
 export default Page

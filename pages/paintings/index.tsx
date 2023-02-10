@@ -9,15 +9,24 @@ import {
 } from "components"
 import useScrollPosition from "hooks/useScrollPosition"
 import { getAllTagsAndPaintingsLight } from "lib/api"
+import { iSanityPainting } from "lib/models/objects/sanityPainting"
+import { iSanityTag } from "lib/models/objects/SanityTag"
 import React, { useEffect, useState } from "react"
 
 import { PaintingsPageProps } from "./[slug]"
+
+interface iPaintingsPageProps {
+  paintings: PaintingsPageProps["paintings"]
+  tags: PaintingsPageProps["tags"]
+  slug: PaintingsPageProps["slug"]
+}
 
 const PaintingsPage = ({
   paintings = [],
   tags = [],
   slug = "all",
-}: PaintingsPageProps) => {
+}: iPaintingsPageProps) => {
+  console.log({ tags })
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
@@ -93,7 +102,11 @@ export async function getStaticProps() {
     return { props: {} }
   }
 
-  const { paintings = [], tags = [] } = data
+  const {
+    paintings = [],
+    tags = [],
+  }: { paintings: iSanityPainting[]; tags: iSanityTag[] } = data
+  // define tags as iSanityTag
 
   const sortedTags = tags
     .filter((p) => p.paintingsCount > 5)
