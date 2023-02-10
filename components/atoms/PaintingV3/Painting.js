@@ -92,7 +92,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     <m.article
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.4 }}
       variants={cardVariants}
       className={clsx(
         "relative w-full @container h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10",
@@ -123,7 +123,12 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           )}
         />
         {isNsfw && !isNsfwUrl && (
-          <div className="absolute inset-0 bg-black/10 backdrop-blur-2xl" />
+          <div
+            className={clsx(
+              "absolute inset-0 bg-black/10 ",
+              "backdrop-blur-2xl"
+            )}
+          />
         )}
 
         <div className="absolute inset-0 w-full h-full">

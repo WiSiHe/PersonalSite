@@ -29,7 +29,7 @@ specifiers:
   eslint-config-next: ^13.0.3
   eslint-config-prettier: ^8.5.0
   eslint-plugin-simple-import-sort: ^9.0.0
-  framer-motion: ^5.6.0
+  framer-motion: 9.0.2
   husky: ^8.0.2
   intl-segmenter-polyfill: ^0.4.4
   next: ^13.0.3
@@ -80,7 +80,7 @@ dependencies:
   date-fns: 2.29.3
   eslint-config-prettier: 8.6.0_eslint@8.32.0
   eslint-plugin-simple-import-sort: 9.0.0_eslint@8.32.0
-  framer-motion: 5.6.0_s5bkewqcpty6lpe3bzrlwkxlwu
+  framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
   intl-segmenter-polyfill: 0.4.4
   next: 13.1.2_pjwopsidmaokadturxaafygjp4
   next-sanity: 4.1.0_tnhuquzpphwqkpgj4x5d33ztkq
@@ -1419,7 +1419,7 @@ packages:
       eventsource: 2.0.2
       fast-deep-equal: 3.1.3
       groq: 3.2.4
-      groq-js: 1.2.1-beta.0
+      groq-js: 1.2.1-beta.1
       mendoza: 2.1.1
       simple-get: 4.0.1
       split2: 4.1.0
@@ -3885,34 +3885,6 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
-  /framer-motion/5.6.0_s5bkewqcpty6lpe3bzrlwkxlwu:
-    resolution: {integrity: sha512-Y4FtwUU+LUWLKSzoT6Sq538qluvhpe6izdQK8/xZeVjQZ/ORKGfZzyhzcUxNfscqnfEa3dUOA47s+dwrSipdGA==}
-    peerDependencies:
-      '@react-three/fiber': '*'
-      react: '>=16.8 || ^17.0.0'
-      react-dom: '>=16.8 || ^17.0.0'
-      three: ^0.135.0
-    peerDependenciesMeta:
-      '@react-three/fiber':
-        optional: true
-      three:
-        optional: true
-    dependencies:
-      '@react-three/fiber': 8.10.0_c7h2szcr7kgy54vvkd2ak74764
-      framesync: 6.0.1
-      hey-listen: 1.0.8
-      popmotion: 11.0.3
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-merge-refs: 1.1.0
-      react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
-      style-value-types: 5.0.0
-      three: 0.135.0
-      tslib: 2.4.1
-    optionalDependencies:
-      '@emotion/is-prop-valid': 0.8.8
-    dev: false
-
   /framer-motion/6.5.1_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-o1BGqqposwi7cgDrtg0dNONhkmPsUFDaLcKXigzuTFC5x58mE8iyTazxSudFzmT6MEyJKfjjU8ItoMe3W+3fiw==}
     peerDependencies:
@@ -3933,6 +3905,21 @@ packages:
 
   /framer-motion/8.5.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-z5hQvIa+9uFcA2aFmT+6XsUfuVPl9Y1uhs5yntxU1Q0E6hm4wDRpvFlB/yYN/cdfXUctf/1Q1Rep/dqOipz8sg==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.15.5
+      hey-listen: 1.0.8
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.4.1
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framer-motion/9.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-n7ZdIUBrT1xklowQNRQ6/h54+3ysmz422CP0rrhjE1X2tshiJy0WWQ7tv6y/fcOSQd23htNA9vvbUFLYMQ5lEQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -4264,8 +4251,8 @@ packages:
     resolution: {integrity: sha512-qJeuEgziddryH1ClsJvMoZM9aXNQbBViNZZrJwhHKr2wU8HGGM7uNWNVFglWXMX60MMaa2SClX3UohP76Ut68g==}
     dev: false
 
-  /groq-js/1.2.1-beta.0:
-    resolution: {integrity: sha512-XuR2maCVCn+VYoMiDXI0dOWTvQ/U5MbgStSfcLpGdgEiM9b22D0P8YSWhsvr6Y4WnOT9EpoMbB/Yd2TIzMV9YA==}
+  /groq-js/1.2.1-beta.1:
+    resolution: {integrity: sha512-hmfctKi0Za0wj9VRRVytMiJKAe/QdqOtYKnHAIL8VgzuLSOP3EzXHEYJFNDbkaml8mVuFvfT9vO6DsPtofPp8w==}
     engines: {node: '>= 14'}
     dev: false
 

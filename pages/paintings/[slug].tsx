@@ -1,4 +1,11 @@
-import { Filters, Footer, Main, Meta, Painting } from "components"
+import {
+  Filters,
+  Footer,
+  Main,
+  Meta,
+  Painting,
+  ScrollToTopButton,
+} from "components"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
 import React from "react"
 import { slugify } from "utils/string"
@@ -81,6 +88,7 @@ const PaintingsPage = ({
             </div>
           </section>
         </section>
+        <ScrollToTopButton />
       </Main>
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import PropTypes from "prop-types"
@@ -12,17 +12,17 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.5,
-      delayChildren: 0.5,
+      staggerChildren: 0.2,
+      delayChildren: 0.4,
       type: "spring",
     },
   },
 }
 
-// const animItem = {
-//   hidden: { opacity: 0, y: -20 },
-//   show: { opacity: 1, y: 0 },
-// }
+const animItem = {
+  hidden: { opacity: 0, y: -100 },
+  show: { opacity: 1, y: 0 },
+}
 
 export default function Navigation({ isAbsolute = false }) {
   const router = useRouter()
@@ -30,14 +30,8 @@ export default function Navigation({ isAbsolute = false }) {
   const asPathWithSpacing = asPath.replace(/\//g, "/")
 
   return (
-    <motion.nav
+    <nav
       aria-label="Main Navigation"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{
-        type: "spring",
-      }}
       className={clsx(
         "bg-dark backdrop-blur-lg z-20 text-white",
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
@@ -45,7 +39,7 @@ export default function Navigation({ isAbsolute = false }) {
     >
       <div className="flex items-center justify-between px-2 py-2 mx-auto xl:px-4">
         <div className="flex items-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -100, rotate: -180 }}
             animate={{ opacity: 1, x: 0, rotate: 0 }}
             transition={{ type: "spring", delay: 0.5, bounce: 0.25 }}
@@ -67,8 +61,8 @@ export default function Navigation({ isAbsolute = false }) {
                 height="2.5rem"
               />
             </Link>
-          </motion.div>
-          <motion.ul
+          </m.div>
+          <m.ul
             className="flex items-center gap-4 px-4"
             variants={container}
             initial="hidden"
@@ -78,7 +72,7 @@ export default function Navigation({ isAbsolute = false }) {
               const isActive = asPathWithSpacing.includes(item.url)
 
               return (
-                <motion.li key={i}>
+                <m.li key={i} variants={animItem}>
                   <Link
                     href={item.url}
                     className={clsx(
@@ -89,13 +83,13 @@ export default function Navigation({ isAbsolute = false }) {
                   >
                     <b>{item.text}</b>
                   </Link>
-                </motion.li>
+                </m.li>
               )
             })}
-          </motion.ul>
+          </m.ul>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   )
 }
 

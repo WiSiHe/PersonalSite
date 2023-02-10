@@ -5,10 +5,10 @@ import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 // import { getRandomArbitrary } from "utils/numbers"
 
-const HeroSection = ({ paintings = [] }) => {
+const HeroSection = ({ paintings = [], introText = "" }) => {
   const [desktopIndex, setDesktopIndex] = useState(0)
   // const { width = 0 } = useWindowDimensions()
 
@@ -53,28 +53,27 @@ const HeroSection = ({ paintings = [] }) => {
         "w-full h-[100svh]"
       )}
     >
-      <div className="relative h-full bg-slate-800">
-        <div className="relative w-full h-full">
-          <Image
-            src={imageBuilder(currentWallpaper.image)
-              .width(!isMobile ? 1920 : 375)
-              .height(!isMobile ? 1080 : 768)
-              .quality(75)
-              .url()}
-            blurDataURL={imageBuilder(currentWallpaper.image)
-              .width(!isMobile ? 192 : 108)
-              .height(!isMobile ? 108 : 192)
-              .quality(10)
-              .url()}
-            priority
-            fill
-            placeholder="blur"
-            className={clsx(
-              "object-cover b w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform md:block bg-gray-50"
-            )}
-            alt="headerImage"
-          />
-        </div>
+      <div className="relative h-full bg-dark">
+        <Image
+          src={imageBuilder(currentWallpaper.image)
+            .width(!isMobile ? 1920 : 375)
+            .height(!isMobile ? 1080 : 768)
+            .quality(75)
+            .url()}
+          blurDataURL={imageBuilder(currentWallpaper.image)
+            .width(!isMobile ? 192 : 108)
+            .height(!isMobile ? 108 : 192)
+            .quality(10)
+            .url()}
+          priority
+          fill
+          placeholder="blur"
+          className={clsx(
+            "object-cover b w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform md:block bg-gray-50"
+          )}
+          alt="headerImage"
+        />
+
         <div
           className={`absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay`}
         />
@@ -114,7 +113,7 @@ const HeroSection = ({ paintings = [] }) => {
             </m.button>
           </div>
         </div>
-        <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">
+        {/* <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">
           <m.a
             initial={{ y: 0, scale: 1.0 }}
             animate={{ y: -10, scale: 1.0 }}
@@ -129,7 +128,7 @@ const HeroSection = ({ paintings = [] }) => {
           >
             <BsChevronDown />
           </m.a>
-        </div>
+        </div> */}
       </div>
     </section>
   )
