@@ -7,14 +7,14 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
-    "lint:fix": "npm run format && npm run lint -- --fix",
+    "lint:fix": "pnpm run format && pnpm run lint -- --fix",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "test-all": "pnpm run check-format && pnpm run check-lint && pnpm run check-types && pnpm run build",
     "prepare": "husky install"
   },
   "prettier": {

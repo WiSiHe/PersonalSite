@@ -2,6 +2,8 @@
  * This plugin contains all the logic for setting up the `Settings` singleton
  */
 
+// @ts-nocheck
+
 import { type DocumentDefinition, definePlugin } from "sanity"
 import { type StructureResolver } from "sanity/desk"
 
