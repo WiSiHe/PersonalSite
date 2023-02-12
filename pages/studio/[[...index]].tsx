@@ -15,17 +15,15 @@ export default function StudioPage() {
   return (
     <>
       <Head>
-        <NextStudioHead favicons={false} />
+        <NextStudioHead favicons={true} />
       </Head>
 
-      <section className="p-4">
-        <NextStudio config={config}>
-          <StudioProvider config={config}>
-            {/* <GlobalStyle /> */}
-            <StudioLayout />
-          </StudioProvider>
-        </NextStudio>
-      </section>
+      <NextStudio config={config}>
+        <StudioProvider config={config}>
+          {/* <GlobalStyle /> */}
+          <StudioLayout />
+        </StudioProvider>
+      </NextStudio>
     </>
   )
 }
