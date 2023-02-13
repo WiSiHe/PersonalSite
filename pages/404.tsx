@@ -27,6 +27,7 @@ export default function Custom404() {
               <h1 className="font-serif text-3xl">404</h1>
               <h2>Oh no! I could not find the page you were looking for!</h2>
               <h3>Page not found</h3>
+              <div>test</div>
             </div>
           </section>
         </section>
