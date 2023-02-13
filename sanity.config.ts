@@ -17,8 +17,10 @@ import { deskTool } from "sanity/desk"
 import authorType from "schemas/author"
 import paintingType from "schemas/painting"
 import postType from "schemas/post"
+import projectType from "schemas/project"
 import settingsType from "schemas/settings"
 import tagType from "schemas/tag"
+import videoType from "schemas/video"
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Next.js Blog with Sanity.io"
@@ -30,7 +32,15 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [authorType, postType, settingsType, paintingType, tagType],
+    types: [
+      authorType,
+      postType,
+      settingsType,
+      paintingType,
+      tagType,
+      videoType,
+      projectType,
+    ],
     // types: [],
   },
   plugins: [

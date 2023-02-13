@@ -4,7 +4,7 @@ const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
 })
 
-import { Footer, Main, Meta } from "components"
+import { Chip, Footer, Main, Meta } from "components"
 import { m } from "framer-motion"
 // import ReactPlayer from "react-player"
 // const ReactPlayer = React.lazy(() => import("react-player"))
@@ -13,6 +13,7 @@ import { getAllVideos } from "lib/api"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import React, { Suspense } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
+import { isNotEmptyArray } from "utils/array"
 
 const cardVariants = {
   offscreen: {
@@ -55,8 +56,14 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
             <h1 className="text-4xl">Videos</h1>
             <p>Here you can find some of my videos.</p>
           </section>
-          {videos.map((v) => {
-            const { _id = "", title = "", description = "", video = "" } = v
+          {videos.map((video) => {
+            const {
+              _id = "",
+              title = "",
+              description = "",
+              videoUrl = "",
+              tags = [],
+            } = video
 
             return (
               <m.div
@@ -65,17 +72,28 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.1 }}
                 variants={cardVariants}
-                className="p-4 xl:p-6 bg-white col-span-full shadow-xl aspect-video"
+                className="p-4 bg-white col-span-full xl:col-span-6 shadow-xl aspect-video"
               >
                 <div className="pb-8">
                   <h2 className="text-lg">
                     <strong>{title}</strong>
                   </h2>
-                  <p>{description}</p>
+                  <div>{description}</div>
+                  {isNotEmptyArray(tags) && (
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((tag) => {
+                        return (
+                          <div key={tag.name}>
+                            <Chip>{tag.name}</Chip>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
                 </div>
 
                 <Suspense fallback={<div>Loading...</div>}>
-                  <ReactPlayer url={video} loop width="100%" height="100%" />
+                  <ReactPlayer url={videoUrl} loop width="100%" height="100%" />
                 </Suspense>
               </m.div>
             )

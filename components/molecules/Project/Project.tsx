@@ -1,8 +1,14 @@
+import { PortableText } from "@portabletext/react"
 import clsx from "clsx"
-import Tag from "components/atoms/Tag"
-import { motion } from "framer-motion"
-import Image, { StaticImageData } from "next/image"
+import { Chip } from "components/atoms"
+import { m } from "framer-motion"
+import useWindowDimensions from "hooks/useWindowDimension"
+import { iSanityProject } from "lib/models/objects/sanityProject"
+import { imageBuilder } from "lib/sanity"
+import Image from "next/image"
+import Link from "next/link"
 import React from "react"
+import { FaArrowRight } from "react-icons/fa"
 
 const cardVariants = {
   offscreen: {
@@ -20,76 +26,97 @@ const cardVariants = {
   },
 }
 
-interface ProjectProps {
-  image?: string | StaticImageData
-  tags?: string[]
-  title?: string
-  status?: string
+// extend the SanityImage type with a url property
+
+interface iProjectProps extends iSanityProject {
   imageLeft?: boolean
-  children?: React.ReactNode
-  className?: string
 }
 
 const Project = ({
-  image = "",
+  image,
   tags = [],
+  description = "",
   title = "",
-  status = "",
-  imageLeft = false,
-  children,
-  className = "",
-}: ProjectProps) => {
+  // imageLeft = false,
+  slug,
+  // content,
+  status,
+}: iProjectProps) => {
+  const { width = 0 } = useWindowDimensions()
+
+  const isMobile = width < 765
+
   return (
-    <motion.article
+    <m.article
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.05 }}
       variants={cardVariants}
       className={clsx(
-        "relative flex flex-col overflow-hidden bg-white shadow-xl xl:h-[512px]",
-        className
+        "relative w-full grid bg-white shadow-xl grid-cols-3 aspect-square xl:aspect-video "
       )}
     >
-      <div
+      {/* <div
         className={clsx(
-          "flex flex-col justify-between p-4",
-          imageLeft ? "order-2 xl:order-2" : "order-2 xl:order-1"
-        )}
-      >
-        <div>
-          <h2 className="text-4xl">
-            <strong>{title}</strong>
-          </h2>
-          <strong>
-            Status: <span className="text-primary">{status}</span>
-          </strong>
-          <ul className="flex flex-wrap mt-2 mb-4 text-xs">
-            {tags.map((tag) => {
-              return (
-                <li className="mb-2 mr-2 bg-primary text-white" key={tag}>
-                  <Tag>{tag}</Tag>
-                </li>
-              )
-            })}
-          </ul>
-          <div className="max-w-6xl">{children}</div>
-        </div>
-      </div>
-      <div
-        className={clsx(
-          "relative  w-full h-full bg-primary aspect-square",
+          "relative bg-primary aspect-square w-full h-full col-span-full xl:col-span-1",
           imageLeft ? "order-1 xl:order-1" : "order-1 xl:order-2"
         )}
       >
         <Image
-          src={image}
-          alt="test"
-          className="object-cover"
+          src={imageBuilder(image).width(600).height(600).quality(45).url()}
+          alt={title}
+          className={clsx("object-cover w-full h-full")}
           fill
-          // layout="fill"
         />
+      </div> */}
+
+      <Image
+        src={imageBuilder(image)
+          .width(isMobile ? 400 : 1280)
+          .height(isMobile ? 400 : 720)
+          .quality(65)
+          .url()}
+        alt={title}
+        className={clsx("object-cover w-full h-full")}
+        fill
+      />
+
+      <div
+        className={clsx(
+          "p-6 col-span-full z-10 bg-dark/40 text-white flex flex-col justify-between"
+        )}
+      >
+        <div className="w-full xl:max-w-xl">
+          <h2 className="text-2xl xl:text-4xl">
+            <strong>{title}</strong>
+          </h2>
+          <ul className="flex flex-wrap gap-2 py-2 text-sm xl:text-base">
+            {tags.map((tag, i) => {
+              return (
+                <li key={tag.name + i} className="px-1 bg-primary">
+                  {tag.name}
+                </li>
+              )
+            })}
+          </ul>
+          <strong>
+            Status: <span className="">{status}</span>
+          </strong>
+
+          {description && <div className="text-sm">{description}</div>}
+          {/* <PortableText value={content} /> */}
+        </div>
+
+        <div className="flex items-center justify-end ">
+          <Link
+            href={`/project/${slug.current}`}
+            className="flex items-center gap-1 px-2 whitespace-nowrap text-dark bg-highlight"
+          >
+            <strong>See Details</strong> <FaArrowRight />
+          </Link>
+        </div>
       </div>
-    </motion.article>
+    </m.article>
   )
 }
 

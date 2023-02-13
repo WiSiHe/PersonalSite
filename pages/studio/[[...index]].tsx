@@ -17,13 +17,14 @@ export default function StudioPage() {
       <Head>
         <NextStudioHead favicons={true} />
       </Head>
-
-      <NextStudio config={config}>
-        <StudioProvider config={config}>
-          {/* <GlobalStyle /> */}
-          <StudioLayout />
-        </StudioProvider>
-      </NextStudio>
+      <section>
+        <NextStudio config={config}>
+          <StudioProvider config={config}>
+            {/* <GlobalStyle /> */}
+            <StudioLayout />
+          </StudioProvider>
+        </NextStudio>
+      </section>
     </>
   )
 }

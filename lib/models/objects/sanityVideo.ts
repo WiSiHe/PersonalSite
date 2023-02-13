@@ -1,3 +1,5 @@
+import { iSanityTag } from "./SanityTag"
+
 export interface iSanityVideo {
   _id: string
   _type: "video"
@@ -6,5 +8,6 @@ export interface iSanityVideo {
   _rev: string
   title: string
   description: string
-  video: string
+  videoUrl: string
+  tags: iSanityTag[]
 }

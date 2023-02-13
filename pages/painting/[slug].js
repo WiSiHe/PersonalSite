@@ -222,7 +222,9 @@ export async function getStaticProps({ params }) {
   const data = await getPaintingDetails(slug)
 
   if (data.length < 1) {
-    return { props: {} }
+    return {
+      notFound: true,
+    }
   }
 
   const painting = data[0] || {}

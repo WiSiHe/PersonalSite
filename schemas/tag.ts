@@ -1,10 +1,10 @@
-import { UserIcon } from "@sanity/icons"
+import { TagIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 export default defineType({
   name: "tag",
   title: "Tag",
-  icon: UserIcon,
+  icon: TagIcon,
   type: "document",
   fields: [
     defineField({
@@ -25,4 +25,11 @@ export default defineType({
           .warning("Description should be between 10 and 200 characters"),
     }),
   ],
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "description",
+      media: "icon",
+    },
+  },
 })
