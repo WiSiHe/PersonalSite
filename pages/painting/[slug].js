@@ -77,7 +77,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
 
       <Main
         noTopPadding
-        className="flex flex-col xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 "
+        className="flex flex-col xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 overflow-clip"
       >
         <m.div
           className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6 "
@@ -89,7 +89,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         >
           <button
             onClick={handleGoBack}
-            className="flex items-center justify-center gap-2 px-4 py-2 text-xl shadow-lg transition-all duration-200 ease-in-out bg-primary text-white hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
+            className="flex items-center justify-center gap-2 px-4 py-2 text-xl text-white transition-all duration-200 ease-in-out shadow-lg bg-primary hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
           >
             <IoArrowBackSharp /> Back
           </button>
@@ -123,10 +123,10 @@ export default function Gallery({ painting = {}, slug = {} }) {
           exit={{ opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="text-section"
-          className="relative p-4 justify-between transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-4"
+          className="relative justify-between p-4 transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-4"
         >
           <div>
-            <h1 className="pb-2 pt-2 xl:pt-0 text-2xl lg:text-4xl">
+            <h1 className="pt-2 pb-2 text-2xl xl:pt-0 lg:text-4xl">
               <strong>{title}</strong>
             </h1>
             <div className="flex flex-wrap gap-2">
@@ -161,7 +161,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
               />
             )}
           </div>
-          <div className="pb-10 pt-10 xl:pt-4 xl:pb-0">
+          <div className="pt-10 pb-10 xl:pt-4 xl:pb-0">
             <SocialLinks />
           </div>
         </m.div>
@@ -173,7 +173,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                 <div
                   key={`picture-${index}`}
                   className={clsx(
-                    "bg-white relative col-span-full xl:col-span-5 xl:col-start-3 pb-4",
+                    "bg-white relative col-span-full w-full xl:col-span-5 xl:col-start-3 pb-4",
                     imageAspectStyle[format]
                   )}
                 >
