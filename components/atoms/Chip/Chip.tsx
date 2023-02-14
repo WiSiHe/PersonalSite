@@ -6,13 +6,13 @@ interface iChipProps {
 
 const Chip = ({ children }: iChipProps) => {
   return (
-    <span
+    <div
       className={clsx(
         "py-2 px-4 text-xs whitespace-nowrap shrink-0 text-white bg-primary"
       )}
     >
       {children}
-    </span>
+    </div>
   )
 }
 

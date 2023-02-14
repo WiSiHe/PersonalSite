@@ -11,6 +11,7 @@ import { painting } from "lib/models/landingPage"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import React from "react"
+import { isEmptyArray } from "utils/array"
 import { slugify } from "utils/string"
 // import { imageBuilder } from "lib/sanity"
 
@@ -60,6 +61,7 @@ const PaintingsPage = ({
   tags = [],
 }: PaintingsPageProps) => {
   const tagsWithAll = [{ name: "All" }, ...tags]
+
   return (
     <>
       <Meta
@@ -104,7 +106,9 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   const data = await getAllTagsAndPaintingsLight()
 
   if (data.length < 1) {
-    return { props: {} }
+    return {
+      notFound: true,
+    }
   }
 
   const {
@@ -112,14 +116,20 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     tags = [],
   }: { paintings: iSanityPainting[]; tags: iSanityTag[] } = data
 
+  if (isEmptyArray(paintings) || isEmptyArray(tags)) {
+    return {
+      notFound: true,
+    }
+  }
+
   // sort paintings by paintingsCount
   const sortedTags = tags
     .filter((p) => p.paintingsCount > 5)
     .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
-  const filteredPaintings =
-    paintings.filter((p) => p.tagsV2?.find((t) => slugify(t.name) === slug)) ||
-    []
+  const filteredPaintings = paintings.filter((p) =>
+    p.tagsV2?.find((t) => slugify(t?.name) === slugify(slug))
+  )
 
   return {
     props: {

@@ -45,10 +45,13 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
     // className = "",
   } = paintingData
 
-  const salesTagObj = tagsV2?.find((t) => t.name === "Store") || {}
+  // filter out null values of tagsV2
+  const filteredTags = tagsV2.filter((t) => t !== null)
+
+  const salesTagObj = filteredTags?.find((t) => t.name === "Store") || {}
 
   // tagsV2 contains NSFW tag
-  const nsfwTagObj = tagsV2?.find((t) => t.name === "NSFW") || {}
+  const nsfwTagObj = filteredTags?.find((t) => t.name === "NSFW") || {}
 
   // check if salesTag is empty
   const hasStoreLinks = Object.keys(salesTagObj).length > 0

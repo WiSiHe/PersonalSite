@@ -1,7 +1,7 @@
 // getAllProjectsLight
 
 import { PortableText } from "@portabletext/react"
-import { Chip, Main } from "components"
+import { BackButton, Chip, Footer, Main } from "components"
 import { getAllProjectsLight, getProjectDetails } from "lib/api"
 import {
   iSanityProject,
@@ -17,14 +17,14 @@ interface PageProps {
 }
 
 const ProjectPage = ({ project }: PageProps) => {
-  console.log("project", project)
   if (project && isEmptyObject(project)) {
     return <div>404</div>
   }
 
   return (
-    <Main noTopPadding className="flex-col overflow-clip">
-      <section className="p-2 xl:p-0">
+    <Main noTopPadding className="flex-col min-h-screen overflow-clip">
+      <BackButton />
+      <section className="">
         <div className="relative w-full aspect-square xl:aspect-video">
           {project?.image && (
             <Image
@@ -34,41 +34,44 @@ const ProjectPage = ({ project }: PageProps) => {
             />
           )}
 
-          <div className="absolute inset-0 z-10 flex items-center justify-center text-center text-white bg-dark/60">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white bg-dark/60">
             <h1 className="text-4xl xl:text-8xl">
               <strong>{project?.title}</strong>
             </h1>
+            <div>
+              {project?.projectStart} - {project?.projectEnd}
+            </div>
+            <div>
+              Status: <strong>{project?.status}</strong>
+            </div>
           </div>
         </div>
-        <section className="max-w-screen-xl py-4 mx-auto">
-          {project?.tags?.length > 0 && (
-            <ul className="flex flex-wrap gap-2 pb-4 ">
-              {project?.tags.map((tag) => {
-                return (
-                  <li className="whitespace-nowrap" key={tag.name}>
-                    <Chip>{tag.name}</Chip>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-          <PortableText value={project?.content} />
-          <p>
-            {project?.projectStart} - {project?.projectEnd}
-          </p>
-          <div>
-            <h2>Status</h2>
+      </section>
+      <section className="w-full max-w-screen-xl px-4 py-4 mx-auto xl:py-20">
+        {project?.tags?.length > 0 && (
+          <ul className="flex flex-wrap max-w-xl gap-2 pb-4">
+            {project?.tags.map((tag) => {
+              return (
+                <li className="whitespace-nowrap" key={tag.name}>
+                  <Chip>{tag.name}</Chip>
+                </li>
+              )
+            })}
+          </ul>
+        )}
 
-            <p>{project?.status}</p>
-          </div>
-        </section>
+        <div className="max-w-xl w-f ">
+          <PortableText value={project?.content} />
+        </div>
       </section>
 
       {project?.connectedPaintings?.length > 0 && (
         <section className="px-4 py-10 bg-dark">
-          <h2 className="text-white">
-            <strong>Related artwork</strong>
-          </h2>
+          <div className="pb-4 text-center">
+            <h2 className="text-center text-white">
+              <strong>Related artwork</strong>
+            </h2>
+          </div>
           <ul className="grid max-w-screen-xl grid-cols-12 gap-4 mx-auto">
             {project?.connectedPaintings?.map((artwork) => {
               const { _id = "", title = "", image } = artwork
@@ -94,6 +97,7 @@ const ProjectPage = ({ project }: PageProps) => {
           </ul>
         </section>
       )}
+      <Footer />
     </Main>
   )
 }

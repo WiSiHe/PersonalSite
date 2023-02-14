@@ -110,7 +110,7 @@ const Project = ({
         <div className="flex items-center justify-end ">
           <Link
             href={`/project/${slug.current}`}
-            className="flex items-center gap-1 px-2 whitespace-nowrap text-dark bg-highlight"
+            className="flex items-center gap-1 px-2 py-1 whitespace-nowrap text-dark bg-highlight"
           >
             <strong>See Details</strong> <FaArrowRight />
           </Link>

@@ -1,4 +1,5 @@
 export { default as ActiveLink } from "./ActiveLink"
+export { default as BackButton } from "./BackButton"
 export { default as Chip } from "./Chip"
 export { default as LogoQR } from "./icons/LogoQR"
 export { default as Input } from "./Input"
