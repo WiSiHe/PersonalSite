@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
+import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,7 +10,7 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 // import { getRandomArbitrary } from "utils/numbers"
 
 interface HeroSectionProps {
-  paintings: any[]
+  paintings: iSanityPainting[]
   introText?: string
 }
 

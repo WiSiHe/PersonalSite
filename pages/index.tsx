@@ -1,7 +1,7 @@
 import { Footer, HeroSection, Main, Meta } from "components"
 // import { m } from "framer-motion"
-import { ILandingPage } from "lib/models/landingPage"
 import { iSanityImage } from "lib/models/objects/sanityImage"
+import { iSanityPainting } from "lib/models/objects/sanityPainting"
 // import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
 // import night from "public/images/night-forest.jpeg"
@@ -14,7 +14,7 @@ import { getAllWallpapers } from "../lib/api"
 export default function Home({
   desktopWallpaper = [],
 }: {
-  desktopWallpaper: ILandingPage[]
+  desktopWallpaper: iSanityPainting[]
 }) {
   return (
     <>
