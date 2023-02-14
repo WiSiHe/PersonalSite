@@ -8,8 +8,8 @@ import {
 } from "components"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
 import { painting } from "lib/models/landingPage"
-import { iSanityTag } from "lib/models/objects/SanityTag"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
+import { iSanityTag } from "lib/models/objects/SanityTag"
 import React from "react"
 import { slugify } from "utils/string"
 // import { imageBuilder } from "lib/sanity"
@@ -59,7 +59,6 @@ const PaintingsPage = ({
   paintings = [],
   tags = [],
 }: PaintingsPageProps) => {
-  console.log({ paintings })
   const tagsWithAll = [{ name: "All" }, ...tags]
   return (
     <>

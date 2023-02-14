@@ -26,7 +26,6 @@ const PaintingsPage = ({
   tags = [],
   slug = "all",
 }: iPaintingsPageProps) => {
-  console.log({ tags })
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 

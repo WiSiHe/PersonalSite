@@ -241,13 +241,14 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const allPaintings = await getAllPaintingSlugs()
 
+  const paths = allPaintings?.map((painting) => ({
+    params: {
+      slug: painting.slug,
+    },
+  }))
+
   return {
-    paths:
-      allPaintings?.map((painting) => ({
-        params: {
-          slug: painting.slug,
-        },
-      })) || [],
+    paths,
     fallback: false,
   }
 }

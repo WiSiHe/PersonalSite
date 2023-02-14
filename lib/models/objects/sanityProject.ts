@@ -1,5 +1,7 @@
+import { ISanityImage } from "../landingPage"
 import { iSanityTag } from "./SanityTag"
 import { iSanityImage } from "./sanityImage"
+import { iSanityPainting } from "./sanityPainting"
 
 interface iSanitySlug {
   _type: string
@@ -16,6 +18,10 @@ export interface iSanityProject {
   projectStart: string
   projectEnd: string
   content: any
-  connectedPaintings: any
+  connectedPaintings: iSanityPainting[]
   image: iSanityImage
+}
+
+export interface iSanityProjectLight {
+  slug: iSanitySlug
 }
