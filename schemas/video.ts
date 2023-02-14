@@ -99,7 +99,8 @@ export default defineType({
   preview: {
     select: {
       title: "title",
-      media: "video",
+      subtitle: "description",
+      media: "thumbnail",
     },
   },
 })

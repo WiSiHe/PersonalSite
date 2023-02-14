@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import dynamic from "next/dynamic"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
@@ -14,6 +15,8 @@ import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import React, { Suspense } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 import { isNotEmptyArray } from "utils/array"
+import { isNotEmptyObject } from "utils/object"
+import { imageBuilder } from "lib/sanity"
 
 const cardVariants = {
   offscreen: {
@@ -60,10 +63,13 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
             const {
               _id = "",
               title = "",
-              description = "",
+              description = "Short description of video",
               videoUrl = "",
               tags = [],
+              thumbnail = {},
             } = video
+
+            const hasThumbnail = isNotEmptyObject(thumbnail)
 
             return (
               <m.div
@@ -74,13 +80,13 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 variants={cardVariants}
                 className="p-4 bg-white shadow-xl col-span-full aspect-video"
               >
-                <div className="pb-8">
-                  <h2 className="text-lg">
+                <div className="">
+                  <h2 className="text-3xl">
                     <strong>{title}</strong>
                   </h2>
-                  <div>{description}</div>
+
                   {isNotEmptyArray(tags) && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-2">
                       {tags.map((tag) => {
                         return (
                           <div key={tag.name}>
@@ -90,10 +96,31 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                       })}
                     </div>
                   )}
+                  <div>{description}</div>
                 </div>
 
                 <Suspense fallback={<div>Loading...</div>}>
-                  <ReactPlayer url={videoUrl} loop width="100%" height="100%" />
+                  <ReactPlayer
+                    url={videoUrl}
+                    loop
+                    width="100%"
+                    height="100%"
+                    light={
+                      <img
+                        src={
+                          hasThumbnail
+                            ? imageBuilder(thumbnail)
+                                .width(400)
+                                .height(400)
+                                .quality(35)
+                                .url()
+                            : "/images/woods.png"
+                        }
+                        alt={title}
+                        className="object-cover w-full h-full bg-primary"
+                      />
+                    }
+                  />
                 </Suspense>
               </m.div>
             )
