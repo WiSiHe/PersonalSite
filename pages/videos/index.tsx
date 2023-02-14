@@ -78,7 +78,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.1 }}
                 variants={cardVariants}
-                className="p-4 bg-white shadow-xl col-span-full aspect-video"
+                className="relative p-4 bg-white shadow-xl col-span-full xl:col-span-6 aspect-video"
               >
                 <div className="">
                   <h2 className="text-3xl">

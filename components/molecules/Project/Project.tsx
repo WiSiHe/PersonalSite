@@ -50,10 +50,10 @@ const Project = ({
     <m.article
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.05 }}
+      viewport={{ once: true, amount: 0.01 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full grid bg-white shadow-xl grid-cols-3 aspect-square xl:aspect-video "
+        "relative w-full grid bg-white shadow-xl grid-cols-3 aspect-square xl:aspect-video"
       )}
     >
       {/* <div
