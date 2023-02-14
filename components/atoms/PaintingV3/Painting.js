@@ -46,7 +46,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   } = paintingData
 
   // filter out null values of tagsV2
-  const filteredTags = tagsV2.filter((t) => t !== null)
+  const filteredTags = tagsV2?.filter((t) => t !== null)
 
   const salesTagObj = filteredTags?.find((t) => t.name === "Store") || {}
 

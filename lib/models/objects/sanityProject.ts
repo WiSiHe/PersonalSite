@@ -2,6 +2,7 @@ import { ISanityImage } from "../landingPage"
 import { iSanityTag } from "./SanityTag"
 import { iSanityImage } from "./sanityImage"
 import { iSanityPainting } from "./sanityPainting"
+import { iSanityVideo } from "./sanityVideo"
 
 interface iSanitySlug {
   _type: string
@@ -20,6 +21,8 @@ export interface iSanityProject {
   content: any
   connectedPaintings: iSanityPainting[]
   image: iSanityImage
+  extraImages: ISanityImage[]
+  connectedVideo: iSanityVideo
 }
 
 export interface iSanityProjectLight {

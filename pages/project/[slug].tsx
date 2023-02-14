@@ -9,7 +9,9 @@ import {
 } from "lib/models/objects/sanityProject"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
-import { isEmptyArray } from "utils/array"
+import { Suspense } from "react"
+import ReactPlayer from "react-player"
+import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { isEmptyObject } from "utils/object"
 
 interface PageProps {
@@ -21,6 +23,7 @@ const ProjectPage = ({ project }: PageProps) => {
     return <div>404</div>
   }
 
+  console.log({ project })
   return (
     <Main noTopPadding className="flex-col min-h-screen overflow-clip">
       <BackButton />
@@ -31,6 +34,7 @@ const ProjectPage = ({ project }: PageProps) => {
               src={imageBuilder(project.image).url()}
               fill
               alt={project.title}
+              className="object-cover"
             />
           )}
 
@@ -42,28 +46,68 @@ const ProjectPage = ({ project }: PageProps) => {
               {project?.projectStart} - {project?.projectEnd}
             </div>
             <div>
-              Status: <strong>{project?.status}</strong>
+              Status: <strong className="capitalize">{project?.status}</strong>
             </div>
           </div>
         </div>
       </section>
-      <section className="w-full max-w-screen-xl px-4 py-4 mx-auto xl:py-20">
-        {project?.tags?.length > 0 && (
-          <ul className="flex flex-wrap max-w-xl gap-2 pb-4">
-            {project?.tags.map((tag) => {
-              return (
-                <li className="whitespace-nowrap" key={tag.name}>
-                  <Chip>{tag.name}</Chip>
-                </li>
-              )
-            })}
-          </ul>
-        )}
-
-        <div className="max-w-xl w-f ">
+      <section className="w-full max-w-screen-xl py-4 mx-auto xl:py-20">
+        <div className="max-w-xl">
+          {project?.tags?.length > 0 && (
+            <ul className="flex flex-wrap gap-2 pb-4">
+              {project?.tags.map((tag) => {
+                return (
+                  <li className="capitalize whitespace-nowrap" key={tag.name}>
+                    <Chip>{tag.name}</Chip>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
           <PortableText value={project?.content} />
         </div>
       </section>
+
+      {isNotEmptyArray(project?.extraImages) && (
+        <section className="p-4 bg-dark">
+          <div className="grid max-w-screen-xl grid-cols-2 gap-4 mx-auto xl:grid-cols-4">
+            {project.extraImages.map((image, i) => {
+              return (
+                <div className="relative aspect-square" key={i}>
+                  <Image
+                    src={imageBuilder(image)
+                      .width(400)
+                      .height(400)
+                      .quality(35)
+                      .url()}
+                    sizes="(max-width: 768px) 100vw,
+                      (max-width: 1200px) 50vw,
+                      25vw"
+                    fill
+                    className="object-cover"
+                    alt={project.title}
+                  />
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      )}
+
+      {project?.connectedVideo?.videoUrl && (
+        <section className="relative py-10">
+          <div className="w-full max-w-screen-xl mx-auto aspect-square xl:aspect-video">
+            <Suspense fallback={<div>Loading...</div>}>
+              <ReactPlayer
+                url={project.connectedVideo.videoUrl}
+                loop
+                width="100%"
+                height="100%"
+              />
+            </Suspense>
+          </div>
+        </section>
+      )}
 
       {project?.connectedPaintings?.length > 0 && (
         <section className="px-4 py-10 bg-dark">

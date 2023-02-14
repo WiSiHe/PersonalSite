@@ -117,6 +117,21 @@ export default defineType({
       description: "Paintings connected to the project",
       of: [{ type: "reference", to: { type: "painting" } }],
     }),
+
+    defineField({
+      name: "extraImages",
+      title: "Extra Images",
+      type: "array",
+      description: "Extra images of the project",
+      of: [{ type: "image" }],
+    }),
+
+    defineField({
+      name: "connectedVideo",
+      title: "Connected Video",
+      type: "reference",
+      to: [{ type: "video" }],
+    }),
     defineField({
       name: "tags",
       title: "Tags",
