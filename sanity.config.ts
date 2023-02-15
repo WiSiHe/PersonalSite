@@ -14,9 +14,9 @@ import { settingsPlugin, settingsStructure } from "plugins/settings"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
 // import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash"
-import authorType from "schemas/author"
+// import authorType from "schemas/author"
 import paintingType from "schemas/painting"
-import postType from "schemas/post"
+// import postType from "schemas/post"
 import projectType from "schemas/project"
 import settingsType from "schemas/settings"
 import tagType from "schemas/tag"
@@ -33,9 +33,9 @@ export default defineConfig({
   schema: {
     // If you want more content types, you can add them to this array
     types: [
-      authorType,
-      postType,
-      settingsType,
+      // authorType,
+      // postType,
+      // settingsType,
       paintingType,
       tagType,
       videoType,

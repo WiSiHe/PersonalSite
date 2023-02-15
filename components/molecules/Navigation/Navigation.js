@@ -1,11 +1,28 @@
 import clsx from "clsx"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
-import { m } from "framer-motion"
+import { AnimatePresence, m } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import React from "react"
+
+// const container = {
+//   hidden: { opacity: 0 },
+//   show: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.2,
+//       delayChildren: 0.4,
+//       type: "spring",
+//     },
+//   },
+//   transition: {
+//     staggerChildren: 0.2,
+//     delayChildren: 0.4,
+//     type: "spring",
+//   },
+// }
 
 const container = {
   hidden: { opacity: 0 },
@@ -13,13 +30,19 @@ const container = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      delayChildren: 0.4,
+      delayChildren: 0.2,
+      bounce: 0.05,
       type: "spring",
     },
   },
 }
 
-const animItem = {
+// const animItem = {
+//   initial: { opacity: 0, y: -100 },
+//   animate: { opacity: 1, y: 0 },
+// }
+
+const listItem = {
   hidden: { opacity: 0, y: -100 },
   show: { opacity: 1, y: 0 },
 }
@@ -62,31 +85,42 @@ export default function Navigation({ isAbsolute = false }) {
               />
             </Link>
           </m.div>
-          <m.ul
-            className="flex items-center gap-4 px-4"
-            variants={container}
-            initial="hidden"
-            animate="show"
-          >
-            {NavItems.map((item, i) => {
-              const isActive = asPathWithSpacing.includes(item.url)
-
-              return (
-                <m.li key={i} variants={animItem}>
-                  <Link
-                    href={item.url}
-                    className={clsx(
-                      "transition-all hover:text-primary hover:decoration-2 hover:underline underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus-visible:underline",
-                      isActive &&
-                        "underline decoration-primary text-primary decoration-2"
-                    )}
+          <AnimatePresence>
+            <m.ul
+              className="flex items-center gap-4 px-4"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {NavItems.map((item, i) => {
+                const isActive = asPathWithSpacing.includes(item.url)
+                return (
+                  <m.li
+                    key={i}
+                    variants={listItem}
+                    // initial={{ opacity: 0, y: -200, x: -100 }}
+                    // animate={{ opacity: 1, y: 0, x: 0 }}
+                    // transition={{
+                    //   type: "spring",
+                    //   delay: 0.2 * (i * 0.4),
+                    //   bounce: 0.25,
+                    // }}
                   >
-                    <b>{item.text}</b>
-                  </Link>
-                </m.li>
-              )
-            })}
-          </m.ul>
+                    <Link
+                      href={item.url}
+                      className={clsx(
+                        "transition-all hover:text-primary hover:decoration-2 hover:underline underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus-visible:underline",
+                        isActive &&
+                          "underline decoration-primary text-primary decoration-2"
+                      )}
+                    >
+                      <strong>{item.text}</strong>
+                    </Link>
+                  </m.li>
+                )
+              })}
+            </m.ul>
+          </AnimatePresence>
         </div>
       </div>
     </nav>

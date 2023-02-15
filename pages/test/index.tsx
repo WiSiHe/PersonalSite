@@ -1,4 +1,4 @@
-import { Canvas, Main } from "components"
+import { Main } from "components"
 import { useState } from "react"
 
 const TestPage = () => {
@@ -8,12 +8,6 @@ const TestPage = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
   }
-
-  // const handleDeleteSanityData = async () => {
-  // delete specific document
-  // sanity documents delete --dataset=production d3d22cd7-a1b7-4ad3-87c9-f861923249b7
-  //   'sanity documents query "*[_type == "video" && _id == "8e2a0bf7-2fcb-4a44-98bf-5dac226e77ee"]._id" --apiVersion 2021-03-25  | groq "*" -o ndjson | xargs sanity documents delete'
-  // }
 
   return (
     <>
@@ -53,11 +47,6 @@ const TestPage = () => {
               </button>
             </div>
           </form>
-        </section>
-        <section>
-          <div className="absolute inset-0 ring">
-            <Canvas />
-          </div>
         </section>
       </Main>
     </>

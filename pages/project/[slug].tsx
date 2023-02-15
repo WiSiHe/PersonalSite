@@ -8,12 +8,15 @@ import {
   iSanityProjectLight,
 } from "lib/models/objects/sanityProject"
 import { imageBuilder } from "lib/sanity"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import { Suspense } from "react"
-import ReactPlayer from "react-player"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { isEmptyObject } from "utils/object"
 
+const ReactPlayer = dynamic(() => import("react-player"), {
+  suspense: true,
+})
 interface PageProps {
   project: iSanityProject
 }
@@ -22,8 +25,6 @@ const ProjectPage = ({ project }: PageProps) => {
   if (project && isEmptyObject(project)) {
     return <div>404</div>
   }
-
-  console.log({ project })
   return (
     <Main noTopPadding className="flex-col min-h-screen overflow-clip">
       <BackButton />

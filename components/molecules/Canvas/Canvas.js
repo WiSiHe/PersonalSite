@@ -18,62 +18,62 @@ function Canvas() {
   const [dy, setDy] = useState(1.5)
 
   // update the counter
-  //   useLayoutEffect(() => {
-  //     if (!shouldStop) {
-  //       let timerId
+  useLayoutEffect(() => {
+    if (!shouldStop) {
+      let timerId
 
-  //       const animate = () => {
-  //         setCounter((c) => c + 1)
+      const animate = () => {
+        setCounter((c) => c + 1)
 
-  //         timerId = requestAnimationFrame(animate)
-  //       }
-  //       timerId = requestAnimationFrame(animate)
-  //       return () => cancelAnimationFrame(timerId)
-  //     }
-  //   }, [shouldStop])
+        timerId = requestAnimationFrame(animate)
+      }
+      timerId = requestAnimationFrame(animate)
+      return () => cancelAnimationFrame(timerId)
+    }
+  }, [shouldStop])
 
-  //   useEffect(() => {
-  //     const canvas = canvasRef.current
-  //     const context = canvas.getContext("2d")
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const context = canvas.getContext("2d")
 
-  //     context.clearRect(0, 0, 350, 350)
+    context.clearRect(0, 0, 350, 350)
 
-  //     // motion
-  //     if (motionType === "Circle") {
-  //       setPositionX((x) => Math.sin(counter * 0.025) * 130 + 165)
-  //       setPositionY((y) => -Math.cos(counter * 0.025) * 130 + 165)
-  //     }
-  //     if (motionType === "Bounce") {
-  //       setPositionX((x) => x + dx)
-  //       setPositionY((y) => y + dy)
-  //     }
+    // motion
+    if (motionType === "Circle") {
+      setPositionX((x) => Math.sin(counter * 0.025) * 130 + 165)
+      setPositionY((y) => -Math.cos(counter * 0.025) * 130 + 165)
+    }
+    if (motionType === "Bounce") {
+      setPositionX((x) => x + dx)
+      setPositionY((y) => y + dy)
+    }
 
-  //     // collision
-  //     if (positionX > 300) {
-  //       setDx((dxPrev) => dxPrev * -1)
-  //       setPositionX((x) => x - 10)
-  //     }
-  //     if (positionX < 30) {
-  //       setDx((dxPrev) => dxPrev * -1)
-  //       setPositionX((x) => x + 10)
-  //     }
-  //     if (positionY > 300) {
-  //       setDy((dyPrev) => dyPrev * -1)
-  //       setPositionY((y) => y - 10)
-  //     }
-  //     if (positionY < 30) {
-  //       setDy((dyPrev) => dyPrev * -1)
-  //       setPositionY((y) => y + 10)
-  //     }
+    // collision
+    if (positionX > 300) {
+      setDx((dxPrev) => dxPrev * -1)
+      setPositionX((x) => x - 10)
+    }
+    if (positionX < 30) {
+      setDx((dxPrev) => dxPrev * -1)
+      setPositionX((x) => x + 10)
+    }
+    if (positionY > 300) {
+      setDy((dyPrev) => dyPrev * -1)
+      setPositionY((y) => y - 10)
+    }
+    if (positionY < 30) {
+      setDy((dyPrev) => dyPrev * -1)
+      setPositionY((y) => y + 10)
+    }
 
-  //     context.fillStyle = "#ddeaf8"
+    context.fillStyle = "#ddeaf8"
 
-  //     for (let i = 0; i < particles; i++) {
-  //       context.fillRect(positionX, positionY, 20, 20)
-  //       context.fillRect(positionX + 20, positionY, 20, 20)
-  //       context.fillRect(positionX + 40, positionY, 20, 20)
-  //     }
-  //   }, [counter])
+    for (let i = 0; i < particles; i++) {
+      context.fillRect(positionX, positionY, 20, 20)
+      context.fillRect(positionX + 20, positionY, 20, 20)
+      context.fillRect(positionX + 40, positionY, 20, 20)
+    }
+  }, [counter])
 
   //   useEffect(() => {
   //     const canvas = canvasRef.current
@@ -164,9 +164,9 @@ function Canvas() {
           width="350px"
           height="350px"
           // onClick={changeMotionType}
-          className="border border-gray-300 bg-white"
+          className="bg-white border border-gray-300"
         />
-        {/* <div className="bg-red-500/5 absolute inset-0 backdrop-blur-xl" /> */}
+        {/* <div className="absolute inset-0 bg-red-500/5 backdrop-blur-xl" /> */}
       </div>
       <h3>Frame count: {counter}</h3>
       <p>Motion type is {motionType}</p>

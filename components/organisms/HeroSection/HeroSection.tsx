@@ -14,13 +14,13 @@ interface HeroSectionProps {
   introText?: string
 }
 
-const HeroSection = ({ paintings = [], introText = "" }: HeroSectionProps) => {
+const HeroSection = ({ paintings = [] }: HeroSectionProps) => {
   const [desktopIndex, setDesktopIndex] = useState(0)
   // const { width = 0 } = useWindowDimensions()
 
   const currentWallpaper = paintings[desktopIndex]
 
-  const { width = 0 } = useWindowDimensions()
+  const { width = 766 } = useWindowDimensions()
 
   const handleGoLeft = () => {
     if (desktopIndex === 0) {
@@ -96,16 +96,23 @@ const HeroSection = ({ paintings = [], introText = "" }: HeroSectionProps) => {
                 className="p-2 text-3xl text-center text-black transition bg-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-transparent"
               />
             </m.button>
-            <div className="relative ">
-              {/* <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full  mix-blend-overlay blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" /> */}
+            <m.div
+              className="relative"
+              whileHover={{ scale: 1.1 }}
+              transition={{
+                type: "spring",
+                bounce: 0.5,
+              }}
+            >
+              {/* <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" /> */}
 
               <Link
                 href="/paintings"
-                className="relative py-2 text-center text-white transition drop-shadow-xl hover:bg-primary/90 hover:ring-highlight hover:ring bg-primary px-7 focus-visible:outline-none focus-visible:ring-highlight focus-visible:ring-2 focus-visible:border-transparent"
+                className="relative py-2 text-center text-white transition drop-shadow-xl hover:ring-highlight hover:ring bg-primary px-7 focus-visible:outline-none focus-visible:ring-highlight focus-visible:ring-2 focus-visible:border-transparent"
               >
                 <b>Go to gallery</b>
               </Link>
-            </div>
+            </m.div>
             <m.button
               whileHover={{ scale: 1.2 }}
               onClick={handleGoRight}
