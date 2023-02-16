@@ -12,11 +12,11 @@ import { m } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
 import { getAllVideos } from "lib/api"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
+import { imageBuilder } from "lib/sanity"
 import React, { Suspense } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 import { isNotEmptyArray } from "utils/array"
 import { isNotEmptyObject } from "utils/object"
-import { imageBuilder } from "lib/sanity"
 
 const cardVariants = {
   offscreen: {
@@ -63,7 +63,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
             const {
               _id = "",
               title = "",
-              description = "Short description of video",
+              description = "",
               videoUrl = "",
               tags = [],
               thumbnail = {},
@@ -78,13 +78,13 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 whileInView="onscreen"
                 viewport={{ once: true, amount: 0.1 }}
                 variants={cardVariants}
-                className="relative p-4 bg-white shadow-xl col-span-full xl:col-span-6 aspect-video"
+                className="relative h-full p-4 bg-white shadow-xl col-span-full"
               >
                 <div className="">
                   <h2 className="text-3xl">
                     <strong>{title}</strong>
                   </h2>
-
+                  <div>{description}</div>
                   {isNotEmptyArray(tags) && (
                     <div className="flex flex-wrap gap-2 mt-2">
                       {tags.map((tag) => {
@@ -96,32 +96,33 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                       })}
                     </div>
                   )}
-                  <div>{description}</div>
                 </div>
 
-                <Suspense fallback={<div>Loading...</div>}>
-                  <ReactPlayer
-                    url={videoUrl}
-                    loop
-                    width="100%"
-                    height="100%"
-                    light={
-                      <img
-                        src={
-                          hasThumbnail
-                            ? imageBuilder(thumbnail)
-                                .width(400)
-                                .height(400)
-                                .quality(35)
-                                .url()
-                            : "/images/woods.png"
-                        }
-                        alt={title}
-                        className="object-cover w-full h-full bg-primary"
-                      />
-                    }
-                  />
-                </Suspense>
+                <div className="mt-4 aspect-video">
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <ReactPlayer
+                      url={videoUrl}
+                      loop
+                      width="100%"
+                      height="100%"
+                      light={
+                        <img
+                          src={
+                            hasThumbnail
+                              ? imageBuilder(thumbnail)
+                                  .width(650)
+                                  .height(380)
+                                  .quality(35)
+                                  .url()
+                              : "/images/woods.png"
+                          }
+                          alt={title}
+                          className="object-cover w-full h-full aspect-video bg-primary"
+                        />
+                      }
+                    />
+                  </Suspense>
+                </div>
               </m.div>
             )
           })}

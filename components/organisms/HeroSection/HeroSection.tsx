@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import { Loader } from "components/atoms"
 import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
@@ -79,10 +80,10 @@ const HeroSection = ({ paintings = [] }: HeroSectionProps) => {
           )}
           alt="headerImage"
         />
-
         <div
           className={`absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay`}
         />
+
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center h-full gap-4">
           <div className="flex items-center justify-between w-full gap-6 p-4 xl:justify-center">
             <m.button
