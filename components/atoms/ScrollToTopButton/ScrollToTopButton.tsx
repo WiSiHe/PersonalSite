@@ -1,10 +1,14 @@
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion"
 import { m } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
+import { useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 const ScrollToTopButton = () => {
   const scrollPosition = useScrollPosition()
+  const { scrollYProgress } = useScroll()
+
+  const [shouldDisplayButton, setShouldDisplayButton] = useState(false)
 
   const handleClick = () => {
     window.scrollTo({
@@ -14,9 +18,18 @@ const ScrollToTopButton = () => {
     })
   }
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log("Page scroll: ", latest)
+    if (latest > 0.02) {
+      setShouldDisplayButton(true)
+    } else if (latest < 0.02 && shouldDisplayButton) {
+      setShouldDisplayButton(false)
+    }
+  })
+
   return (
     <AnimatePresence>
-      {scrollPosition > 400 && (
+      {shouldDisplayButton && (
         <m.div
           className="fixed z-10 bottom-8 right-8"
           initial={{ opacity: 0, y: 100 }}

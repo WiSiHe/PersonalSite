@@ -4,16 +4,45 @@
 
 /* Declarations outside layers are never purged */
 *:not(.a11y-focus-within\:focus-ring *, .a11y-focus\:focus-ring) {
-  @apply focus-within:focus-ring;
+  @apply focus-visible:focus-ring;
 }
 
 @layer base {
+
+
+  * {
+    @apply scrollbar-hidden;
+    @apply cursor-none;
+  }
+
+  html {
+    @apply cursor-auto;
+    @apply text-base;
+    @apply font-roboto;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1{
+    @apply text-4xl;
+    @apply font-playfair;
+  }
+  h2 {
+    @apply text-3xl;
+    @apply font-playfair;
+  }
+  h3 {
+    @apply text-2xl;
+    @apply font-playfair;
+  }
+
   h1,
   h2,
   h3 {
+    @apply font-serif;
     font-family: "Playfair Display", serif;
   }
   body {
+    @apply font-sans;
     font-family: "Roboto", sans-serif;
   }
 }
