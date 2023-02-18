@@ -1,14 +1,46 @@
 import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion"
 import { m } from "framer-motion"
-import useScrollPosition from "hooks/useScrollPosition"
+// import useScrollPosition from "hooks/useScrollPosition"
 import { useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 const ScrollToTopButton = () => {
-  const scrollPosition = useScrollPosition()
+  // const scrollPosition = useScrollPosition()
   const { scrollYProgress } = useScroll()
 
   const [shouldDisplayButton, setShouldDisplayButton] = useState(false)
+
+  const buttonVariants = {
+    hidden: {
+      opacity: 0,
+      y: 100,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 1,
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 1,
+      },
+    },
+    hover: {
+      scale: 1.1,
+      backgroundColor: "#DE0D92",
+
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 1,
+      },
+    },
+  }
 
   const handleClick = () => {
     window.scrollTo({
@@ -31,18 +63,18 @@ const ScrollToTopButton = () => {
     <AnimatePresence>
       {shouldDisplayButton && (
         <m.div
+          variants={buttonVariants}
           className="fixed z-10 bottom-8 right-8"
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 100 }}
-          transition={{ type: "spring" }}
-          key="backbutton"
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          whileHover="hover"
         >
           <button
             onClick={handleClick}
-            className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white shadow active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
+            className="flex items-center justify-center p-2 text-2xl transition-all duration-200 ease-in-out bg-white shadow hover:text-white group hover:bg-primary ring-highlight focus-within:ring hover:ring active:bg-highlight focus:outline-none focus:ring focus-visible:ring-highlight focus-visible:text-white focus-visible:bg-primary"
           >
-            <IoArrowUpSharp />
+            <IoArrowUpSharp className="" />
           </button>
         </m.div>
       )}

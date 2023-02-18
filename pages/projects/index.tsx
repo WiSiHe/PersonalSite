@@ -21,9 +21,9 @@ export default function ProjectsPage({ projects = [] }: PageProps) {
           <div className="col-span-full xl:col-span-8">
             <h1 className="text-4xl">My Projects</h1>
             <p>
-              These are some of my various projects that I have been working on,
-              some of them are finished, some are not, but most of them has some
-              sort of learning experience to it.
+              Discover a collection of my ongoing and completed projects, each
+              with unique learning experiences. Explore my portfolio to see my
+              creative journey.
             </p>
           </div>
           {projects.map((project, i) => {

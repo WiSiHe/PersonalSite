@@ -8,6 +8,5 @@ public
 .vercel
 pnpm-lock.yaml
 package.json
-styles
 README.md
 tsconfig.json

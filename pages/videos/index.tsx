@@ -50,14 +50,22 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
     <>
       <Meta
         title="Gallery"
-        url="https://wisihe.no/gallery"
-        description="A gallery of some of my paintings"
+        url="https://wisihe.no/videos"
+        description="A gallery of some of my videos"
       />
       <Main className="py-4 xl:py-10" noTopPadding>
         <section className="grid w-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto space-y-4">
           <section className="col-span-full">
             <h1 className="text-4xl">Videos</h1>
-            <p>Here you can find some of my videos.</p>
+            <p>
+              Explore a collection of my diverse videos, ranging from painting
+              time-lapses and game development to hand-drawn animations. My
+              videos are a creative outlet that showcase my passions and
+              interests, allowing me to experiment with various techniques and
+              technologies. Each video project represents a unique opportunity
+              to challenge myself and learn new skills, whether it&lsquo;s
+              through the creative process or technical execution.
+            </p>
           </section>
           {videos.map((video) => {
             const {

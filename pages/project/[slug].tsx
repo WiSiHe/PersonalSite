@@ -1,7 +1,14 @@
 // getAllProjectsLight
 
 import { PortableText } from "@portabletext/react"
-import { BackButton, Chip, Footer, Main } from "components"
+import {
+  BackButton,
+  Chip,
+  Footer,
+  Main,
+  ProjectStatus,
+  ScrollToTopButton,
+} from "components"
 import { getAllProjectsLight, getProjectDetails } from "lib/api"
 import {
   iSanityProject,
@@ -43,19 +50,19 @@ const ProjectPage = ({ project }: PageProps) => {
             <h1 className="text-4xl xl:text-8xl">
               <strong>{project?.title}</strong>
             </h1>
-            <div>
-              {project?.projectStart} - {project?.projectEnd}
+            <div className="pb-1">
+              {project?.projectStart} - {project?.projectEnd ?? "Present"}
             </div>
-            <div>
-              Status: <strong className="capitalize">{project?.status}</strong>
-            </div>
+            <ProjectStatus status={project?.status} />
           </div>
         </div>
       </section>
       <section className="w-full max-w-screen-xl py-4 mx-auto xl:py-20">
+        <h2>{project?.title}</h2>
         <div className="max-w-xl">
           {project?.tags?.length > 0 && (
             <ul className="flex flex-wrap gap-2 pb-4">
+              <ProjectStatus status={project?.status} />
               {project?.tags.map((tag) => {
                 return (
                   <li className="capitalize whitespace-nowrap" key={tag.name}>
@@ -142,6 +149,7 @@ const ProjectPage = ({ project }: PageProps) => {
           </ul>
         </section>
       )}
+      <ScrollToTopButton />
       <Footer />
     </Main>
   )

@@ -5,6 +5,7 @@ specifiers:
   '@headlessui/react': ^1.7.4
   '@next/bundle-analyzer': ^13.0.5
   '@next/eslint-plugin-next': ^12.3.3
+  '@next/font': ^13.1.6
   '@portabletext/react': ^2.0.1
   '@react-three/drei': ^9.42.2
   '@react-three/fiber': ^8.9.1
@@ -58,6 +59,7 @@ specifiers:
 
 dependencies:
   '@headlessui/react': 1.7.10_biqbaboplfbrettd7655fr4n2y
+  '@next/font': 13.1.6
   '@portabletext/react': 2.0.1_react@18.2.0
   '@react-three/drei': 9.56.24_7qqknv4jfjxiznqpp6hwc2f6ti
   '@react-three/fiber': 8.11.1_c7h2szcr7kgy54vvkd2ak74764
@@ -959,6 +961,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.1.6:
+    resolution: {integrity: sha512-AITjmeb1RgX1HKMCiA39ztx2mxeAyxl4ljv2UoSBUGAbFFMg8MO7YAvjHCgFhD39hL7YTbFjol04e/BPBH5RzQ==}
+    dev: false
 
   /@next/swc-android-arm-eabi/13.1.6:
     resolution: {integrity: sha512-F3/6Z8LH/pGlPzR1AcjPFxx35mPqjE5xZcf+IL+KgbW9tMkp7CYi1y7qKrEWU7W4AumxX/8OINnDQWLiwLasLQ==}

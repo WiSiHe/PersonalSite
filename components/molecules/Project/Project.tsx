@@ -1,6 +1,5 @@
-import { PortableText } from "@portabletext/react"
 import clsx from "clsx"
-import { Chip } from "components/atoms"
+import { ProjectStatus } from "components/atoms"
 import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityProject } from "lib/models/objects/sanityProject"
@@ -12,17 +11,25 @@ import { FaArrowRight } from "react-icons/fa"
 
 const cardVariants = {
   offscreen: {
-    y: 150,
     opacity: 0,
+    y: 150,
   },
   onscreen: {
-    y: 0,
     opacity: 1,
+    y: 0,
+  },
+  hover: {
+    scale: 1.02,
     transition: {
       type: "spring",
       bounce: 0.4,
       duration: 1,
     },
+  },
+  transition: {
+    type: "spring",
+    bounce: 0.4,
+    duration: 0.1,
   },
 }
 
@@ -50,26 +57,13 @@ const Project = ({
     <m.article
       initial="offscreen"
       whileInView="onscreen"
+      whileHover="hover"
       viewport={{ once: true, amount: 0.01 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full grid bg-white shadow-xl grid-cols-3 aspect-square xl:aspect-video"
+        "relative w-full grid bg-white shadow grid-cols-3 aspect-square xl:aspect-video hover:shadow-2xl"
       )}
     >
-      {/* <div
-        className={clsx(
-          "relative bg-primary aspect-square w-full h-full col-span-full xl:col-span-1",
-          imageLeft ? "order-1 xl:order-1" : "order-1 xl:order-2"
-        )}
-      >
-        <Image
-          src={imageBuilder(image).width(600).height(600).quality(45).url()}
-          alt={title}
-          className={clsx("object-cover w-full h-full")}
-          fill
-        />
-      </div> */}
-
       <Image
         src={imageBuilder(image)
           .width(isMobile ? 400 : 1280)
@@ -83,36 +77,45 @@ const Project = ({
 
       <div
         className={clsx(
-          "p-6 col-span-full z-10 bg-dark/40 text-white flex flex-col justify-between"
+          "p-6 col-span-full z-10 bg-dark/60 text-white flex flex-col justify-between"
         )}
       >
-        <div className="w-full xl:max-w-xl">
-          <h2 className="text-2xl xl:text-4xl">
-            <strong>{title}</strong>
-          </h2>
-          <ul className="flex flex-wrap gap-2 py-2 text-sm xl:text-base">
+        <div className="w-full">
+          <div className="flex items-center gap-2">
+            <h2 className="text-2xl xl:text-4xl">
+              <strong>{title}</strong>
+            </h2>
+          </div>
+          <ul className="flex flex-wrap items-baseline gap-2 py-2 text-sm xl:text-base xl:max-w-xl">
+            <ProjectStatus status={status} />
             {tags.map((tag, i) => {
               return (
                 <li key={tag.name + i} className="px-1 bg-primary">
-                  {tag.name}
+                  <div className="">{tag.name}</div>
                 </li>
               )
             })}
           </ul>
-          <strong>
-            Status: <span className="">{status}</span>
-          </strong>
-
-          {description && <div className="text-sm">{description}</div>}
-          {/* <PortableText value={content} /> */}
+          {description && (
+            <div className="drop-shadow-md xl:max-w-xl">{description}</div>
+          )}
         </div>
 
         <div className="flex items-center justify-end ">
           <Link
             href={`/project/${slug.current}`}
-            className="flex items-center gap-1 px-2 py-1 whitespace-nowrap text-dark bg-highlight"
+            className="focus-visible:outline-none group focus-visible:ring ring-highlight focus-visible:border-transparent"
           >
-            <strong>See Details</strong> <FaArrowRight />
+            <m.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", bounce: 0.4, duration: 1 }}
+              whileHover={{ scale: 1.1, boxShadow: "0 0 10px #DE0D92" }}
+              className="flex items-center gap-1 px-2 py-1 transition-all ease-linear whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white group"
+            >
+              <strong>See Details</strong>{" "}
+              <FaArrowRight className="transition-all duration-500 ease-in-out group-hover:ml-1" />
+            </m.div>
           </Link>
         </div>
       </div>
