@@ -1,16 +1,18 @@
-import clsx from "clsx"
-import { Mask } from "components/atoms"
+// import clsx from "clsx"
+// import { Mask } from "components/atoms"
 import {
   m,
-  useMotionValue,
-  useMotionValueEvent,
+  // useMotionValue,
+  // useMotionValueEvent,
   useScroll,
   useSpring,
 } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import night from "public/images/night-forest.jpeg"
+// import night from "public/images/night-forest.jpeg"
 import woods from "public/images/woods.png"
+
+// import ImageExplotionSection from "../ImageExplotionSection"
 
 const ScrollSection = () => {
   const { scrollYProgress, scrollY } = useScroll()
@@ -27,6 +29,54 @@ const ScrollSection = () => {
         style={{ scaleY }}
         className="fixed top-0 bottom-0 left-0 right-0 z-20 w-2 bg-primary"
       />
+
+      {/* dw */}
+
+      {/* <section className="px-4 py-20 text-center xl:py-40">
+        <h2>
+          <strong>Still scrolling, huh?</strong>
+        </h2>
+        <p>
+          I was kinda hoping that you would have clicked one of the links or
+          buttons by now...
+        </p>
+      </section> */}
+
+      {/* test */}
+
+      {/* <ImageExplotionSection /> */}
+
+      {/* test */}
+      <section className="relative grid grid-cols-12 gap-4 p-4 xl:p-10 xl:aspect-video bg-dark overflow-clip">
+        <div className="z-10 my-auto text-white xl:col-start-3 col-span-full xl:col-span-3 ">
+          <h3>
+            Fancy <span className="text-primary">animations!</span>
+          </h3>
+          <p className="drop-shadow">
+            I enjoy playing around with 3D modeling and animation. The image on
+            the{" "}
+            <strong className="hidden text-xl underline text-primary xl:inline">
+              right
+            </strong>
+            <strong className="inline underline xl:hidden text-primary">
+              below
+            </strong>{" "}
+            is a quick creation I put together using Spline. In the past,
+            I&#39;ve designed a variety of game assets including trees, rocks,
+            and structures.
+            <br /> More information coming soon!
+          </p>
+        </div>
+        <div className="xl:inset-0 xl:translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
+          <iframe
+            src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+            width="100%"
+            height="100%"
+            // className="absolute inset-0 w-full h-full "
+          ></iframe>
+        </div>
+      </section>
+
       <m.section
         initial={{ opacity: 0 }}
         // animate={{ opacity: 1 }}
@@ -64,67 +114,7 @@ const ScrollSection = () => {
         </div>
       </m.section>
 
-      {/* dw */}
-
-      <section className="px-4 py-20 text-center xl:py-40">
-        <h2>
-          <strong>Still scrolling, huh?</strong>
-        </h2>
-        <p>
-          I was kinda hoping that you would have clicked one of the links or
-          buttons by now...
-        </p>
-      </section>
-
-      {/* test */}
-
-      <section className="relative grid grid-cols-12 gap-4 p-4 xl:gap-10 ring">
-        {[...Array(12)].map((_, i) => (
-          <m.div
-            className="relative ring bg-tertiary aspect-video"
-            key={i}
-            // initial={{ opacity: 0, x: -200 }}
-            // whileInView={{ opacity: 1, x: 0 }}
-            // viewport={{ once: false, amount: 0.2 }}
-            // transition={{ duration: 0.2, type: "spring" }}
-            // key={1}
-          >
-            <Image
-              src={night}
-              fill
-              alt="Dark magical woods made in 3D"
-              className="object-cover w-full h-full "
-              sizes="(max-width: 768px) 100vw,
-      (max-width: 1200px) 50vw,
-      33vw"
-            />
-          </m.div>
-        ))}
-      </section>
-
-      {/* test */}
-      <section className="relative grid grid-cols-12 gap-4 p-10 aspect-video bg-dark">
-        <div className="z-10 col-span-4 col-start-2 my-auto text-white ">
-          <h3>OOh fancy animations</h3>
-          <p>
-            I enjoy playing around with 3D modeling and animation. The image on
-            the right is a quick creation I put together using Spline. In the
-            past, I&#39;ve designed a variety of game assets including trees,
-            rocks, and structures. Keep an eye out for more information coming
-            soon!
-          </p>
-        </div>
-        <div className="absolute inset-0">
-          <iframe
-            src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
-            width="100%"
-            height="100%"
-            // className="absolute inset-0 w-full h-full "
-          ></iframe>
-        </div>
-      </section>
-
-      <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 text-center overflow-clip ">
+      {/* <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 text-center overflow-clip ">
         <div className="">
           <h2>You win!</h2>
           <b>Here, have a picture of a cute dog</b>
@@ -147,7 +137,7 @@ const ScrollSection = () => {
       33vw"
           />
         </m.div>
-      </section>
+      </section> */}
     </>
   )
 }
