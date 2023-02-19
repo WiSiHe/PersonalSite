@@ -1,10 +1,10 @@
-import { Main } from "components"
+import { Main, ScrollSection } from "components"
 
 const TestPage = () => {
   return (
     <>
-      <Main noTopPadding className="">
-        test
+      <Main noTopPadding className="flex-col">
+        <ScrollSection />
       </Main>
     </>
   )

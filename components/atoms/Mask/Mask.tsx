@@ -4,7 +4,7 @@ const Mask = () => {
   const { width = 766, height = 100 } = useWindowDimensions()
 
   return (
-    <div className="absolute inset-0 bg-white bg-opacity-50">
+    <div className="absolute inset-0 pointer-events-none overflow-clip">
       <svg
         //   id="visual"
         viewBox={`0 0 ${width} ${height}`}
@@ -14,6 +14,7 @@ const Mask = () => {
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
         className="fill-dark"
+        id="visual"
       >
         <g transform={`translate(${width}, 0)`}>
           <path
