@@ -30,7 +30,7 @@ export default function Home({
         <HeroSection paintings={desktopWallpaper} />
 
         <section
-          className="relative w-full max-w-screen-xl px-4 pt-4 mx-auto xl:pt-10"
+          className="relative w-full max-w-screen-xl px-4 py-4 mx-auto xl:py-10"
           id="main"
         >
           <m.div
@@ -75,10 +75,10 @@ export default function Home({
           </m.div> */}
         </section>
 
-        <section className="relative py-10 xl:py-10">
+        {/* <section className="relative py-10 xl:py-10">
           <div className="absolute inset-0 pointer-events-none from-dark/5 bg-gradient-to-t" />
           <SalesPointsSection />
-        </section>
+        </section> */}
         <ScrollSection />
       </Main>
       <Footer />

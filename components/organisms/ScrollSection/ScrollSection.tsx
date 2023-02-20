@@ -15,7 +15,7 @@ import woods from "public/images/woods.png"
 // import ImageExplotionSection from "../ImageExplotionSection"
 
 const ScrollSection = () => {
-  const { scrollYProgress, scrollY } = useScroll()
+  const { scrollYProgress } = useScroll()
 
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -25,10 +25,10 @@ const ScrollSection = () => {
 
   return (
     <>
-      <m.div
+      {/* <m.div
         style={{ scaleY }}
         className="fixed top-0 bottom-0 left-0 right-0 z-20 w-2 bg-primary"
-      />
+      /> */}
 
       {/* dw */}
 
@@ -49,9 +49,11 @@ const ScrollSection = () => {
       {/* test */}
       <section className="relative grid grid-cols-12 gap-4 p-4 xl:p-10 xl:aspect-video bg-dark overflow-clip">
         <div className="z-10 my-auto text-white xl:col-start-3 col-span-full xl:col-span-3 ">
-          <h3>
-            Fancy <span className="text-primary">animations!</span>
-          </h3>
+          <h2>
+            <strong>
+              Fancy <span className="text-primary">animations!</span>
+            </strong>
+          </h2>
           <p className="drop-shadow">
             I enjoy playing around with 3D modeling and animation. The image on
             the{" "}
@@ -64,6 +66,7 @@ const ScrollSection = () => {
             is a quick creation I put together using Spline. In the past,
             I&#39;ve designed a variety of game assets including trees, rocks,
             and structures.
+            <br />
             <br /> More information coming soon!
           </p>
         </div>
