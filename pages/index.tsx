@@ -48,7 +48,7 @@ export default function Home({
                 lhelm <span className="text-primary">Si</span>ssener
               </strong>
             </h1>
-            <div className="pt-2">
+            <div className="pt-2 xl:max-w-md">
               <p>
                 I&#39;m a digital artist and web developer who enjoys character
                 design and landscape painting. In my free time, I create digital

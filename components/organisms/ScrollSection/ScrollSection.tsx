@@ -1,5 +1,6 @@
 // import clsx from "clsx"
 // import { Mask } from "components/atoms"
+import { GridStyleWrapper } from "components/atoms"
 import {
   m,
   // useMotionValue,
@@ -11,6 +12,7 @@ import Image from "next/image"
 import Link from "next/link"
 // import night from "public/images/night-forest.jpeg"
 import woods from "public/images/woods.png"
+import ImageExplotionSection from "../ImageExplotionSection"
 
 // import ImageExplotionSection from "../ImageExplotionSection"
 
@@ -25,14 +27,31 @@ const ScrollSection = () => {
 
   return (
     <>
-      {/* <m.div
-        style={{ scaleY }}
-        className="fixed top-0 bottom-0 left-0 right-0 z-20 w-2 bg-primary"
-      /> */}
+      <svg
+        width="25"
+        height="25"
+        viewBox="0 0 242 242"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="fixed z-10 top-4 right-4 stroke-primary"
+      >
+        <m.circle
+          cx="121"
+          cy="121"
+          r="111"
+          pathLength={1}
+          stroke-width="20"
+          style={{ pathLength: scaleY }}
+        />
+      </svg>
 
-      {/* dw */}
+      <section className="relative text-white xl:aspect-video bg-dark ring">
+        <GridStyleWrapper>
+          <ImageExplotionSection />
+        </GridStyleWrapper>
+      </section>
 
-      {/* <section className="px-4 py-20 text-center xl:py-40">
+      <section className="px-4 py-20 text-center xl:py-40">
         <h2>
           <strong>Still scrolling, huh?</strong>
         </h2>
@@ -40,54 +59,68 @@ const ScrollSection = () => {
           I was kinda hoping that you would have clicked one of the links or
           buttons by now...
         </p>
-      </section> */}
+      </section>
 
       {/* test */}
-
-      {/* <ImageExplotionSection /> */}
-
-      {/* test */}
-      <section className="relative grid grid-cols-12 gap-4 p-4 xl:p-10 xl:aspect-video bg-dark overflow-clip">
-        <div className="z-10 my-auto text-white xl:col-start-3 col-span-full xl:col-span-3 ">
-          <h2>
-            <strong>
-              Fancy <span className="text-primary">animations!</span>
-            </strong>
-          </h2>
-          <p className="drop-shadow">
-            I enjoy playing around with 3D modeling and animation. The image on
-            the{" "}
-            <strong className="hidden text-xl underline text-primary xl:inline">
-              right
-            </strong>
-            <strong className="inline underline xl:hidden text-primary">
-              below
-            </strong>{" "}
-            is a quick creation I put together using Spline. In the past,
-            I&#39;ve designed a variety of game assets including trees, rocks,
-            and structures.
-            <br />
-            <br /> More information coming soon!
-          </p>
-        </div>
-        <div className="xl:inset-0 xl:translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
-          <iframe
-            src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
-            width="100%"
-            height="100%"
-            // className="absolute inset-0 w-full h-full "
-          ></iframe>
+      <section className="relative p-4 xl:p-10 bg-dark overflow-clip">
+        <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
+          <div className="z-10 p-4 my-auto text-white col-span-full xl:col-span-6">
+            <m.h2
+              initial={{
+                opacity: 0,
+                scale: 0,
+              }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <strong>
+                Fancy <span className="text-primary">animations!</span>
+              </strong>
+            </m.h2>
+            <m.div
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <p className="drop-shadow">
+                I enjoy playing around with 3D modeling and animation. The image
+                on the{" "}
+                <strong className="hidden text-xl underline text-primary xl:inline">
+                  right
+                </strong>
+                <strong className="inline underline xl:hidden text-primary">
+                  below
+                </strong>{" "}
+                is a quick creation I put together using Spline. In the past,
+                I&#39;ve designed a variety of game assets including trees,
+                rocks, and structures.
+                <br />
+                <br /> More information coming soon!
+              </p>
+            </m.div>
+          </div>
+          <div className="xl:inset-0 xl:translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
+            <iframe
+              src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+              width="100%"
+              height="100%"
+              // className="absolute inset-0 w-full h-full "
+            ></iframe>
+          </div>
         </div>
       </section>
 
       <m.section
-        initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
+        initial={{ opacity: 0, scale: 0.5 }}
         viewport={{ once: true, amount: 0.5 }}
         whileInView={{
           opacity: 1,
+          scale: 1,
         }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
         className="relative grid h-full grid-flow-col-dense aspect-square xl:aspect-video overflow-clip"
       >
         <Image
