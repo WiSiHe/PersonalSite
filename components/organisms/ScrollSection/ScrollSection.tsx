@@ -10,8 +10,8 @@ import {
 } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-// import night from "public/images/night-forest.jpeg"
-import woods from "public/images/woods.png"
+import explorer from "public/images/explorer.png"
+
 import ImageExplotionSection from "../ImageExplotionSection"
 
 // import ImageExplotionSection from "../ImageExplotionSection"
@@ -45,7 +45,7 @@ const ScrollSection = () => {
         />
       </svg>
 
-      <section className="relative text-white xl:aspect-video bg-dark ring">
+      <section className="relative text-white xl:aspect-video bg-dark">
         <GridStyleWrapper>
           <ImageExplotionSection />
         </GridStyleWrapper>
@@ -61,7 +61,6 @@ const ScrollSection = () => {
         </p>
       </section>
 
-      {/* test */}
       <section className="relative p-4 xl:p-10 bg-dark overflow-clip">
         <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
           <div className="z-10 p-4 my-auto text-white col-span-full xl:col-span-6">
@@ -113,26 +112,27 @@ const ScrollSection = () => {
         </div>
       </section>
 
-      <m.section
-        initial={{ opacity: 0, scale: 0.5 }}
-        viewport={{ once: true, amount: 0.5 }}
-        whileInView={{
-          opacity: 1,
-          scale: 1,
-        }}
-        transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-        className="relative grid h-full grid-flow-col-dense aspect-square xl:aspect-video overflow-clip"
-      >
-        <Image
-          src={woods}
-          alt="Two boys in a dark forest"
-          className="object-cover w-full h-full"
-          style={{ clipPath: "url(#mask)" }}
-          fill
-          sizes="(max-width: 768px) 100vw,
+      <section className="relative grid h-full grid-flow-col-dense aspect-square xl:aspect-video overflow-clip">
+        <m.div
+          initial={{ opacity: 0, x: -200 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+          }}
+          className="relative"
+        >
+          <Image
+            src={explorer}
+            alt="Female explorer"
+            className="object-cover w-full h-full"
+            fill
+            sizes="(max-width: 768px) 100vw,
       (max-width: 1200px) 50vw,
       33vw"
-        />
+          />
+        </m.div>
 
         <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-white h-fit w-fit">
           <div className="text-xs">
@@ -148,7 +148,7 @@ const ScrollSection = () => {
             <b>Go to gallery</b>
           </Link>
         </div>
-      </m.section>
+      </section>
 
       {/* <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 text-center overflow-clip ">
         <div className="">
