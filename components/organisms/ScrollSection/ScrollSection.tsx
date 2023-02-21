@@ -1,6 +1,6 @@
 // import clsx from "clsx"
 // import { Mask } from "components/atoms"
-import { GridStyleWrapper } from "components/atoms"
+import { GridStyleWrapper, LinkButton } from "components/atoms"
 import {
   m,
   // useMotionValue,
@@ -11,6 +11,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import explorer from "public/images/explorer.png"
+import night from "public/images/night-forest.jpeg"
 
 import ImageExplotionSection from "../ImageExplotionSection"
 
@@ -45,21 +46,73 @@ const ScrollSection = () => {
         />
       </svg>
 
-      <section className="relative text-white xl:aspect-video bg-dark">
+      <section className="relative xl:aspect-video bg-dark">
         <GridStyleWrapper>
+          <div className="relative z-10 max-w-screen-xl px-4 py-10 mx-auto text-white">
+            <m.h2
+              initial={{
+                opacity: 0,
+                scale: 0,
+              }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="pb-2"
+            >
+              <strong>Paintings!</strong>
+            </m.h2>
+            <m.div
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="xl:max-w-lg"
+            >
+              <p>
+                A collection of my paintings, some old, some new. I&#39;m trying
+                out new styles and techniques all the time, but I&#39;ll always
+                have a soft spot for the portraits and landscapes.
+              </p>
+            </m.div>
+            <div className="relative mt-4 col-span-full xl:hidden aspect-video">
+              <Image
+                src={night}
+                fill
+                alt="Dark magical woods made in 3D"
+                className="object-cover w-full h-full"
+                sizes="(max-width: 768px) 100vw,
+(max-width: 1200px) 50vw,
+33vw"
+              />
+            </div>
+          </div>
+
           <ImageExplotionSection />
         </GridStyleWrapper>
       </section>
 
-      <section className="px-4 py-20 text-center xl:py-40">
-        <h2>
+      {/* <section className="px-4 py-20 text-center xl:py-40">
+        <m.h2
+          initial={{
+            opacity: 0,
+            scale: 0,
+          }}
+          whileInView={{ opacity: 1, scale: 1 }}
+        >
           <strong>Still scrolling, huh?</strong>
-        </h2>
+        </m.h2>
         <p>
           I was kinda hoping that you would have clicked one of the links or
           buttons by now...
         </p>
-      </section>
+
+        <div className="flex justify-center pt-4">
+          <LinkButton href="/paintings">
+            <strong>Paintings</strong>
+          </LinkButton>
+        </div>
+      </section> */}
 
       <section className="relative p-4 xl:p-10 bg-dark overflow-clip">
         <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
@@ -134,19 +187,18 @@ const ScrollSection = () => {
           />
         </m.div>
 
-        <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-white h-fit w-fit">
+        <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-dark h-fit w-fit">
           <div className="text-xs">
             <h2>
               <strong>Still not convinced?</strong>
             </h2>
             <div className="pb-4">Come on, just a little peak, I dare you!</div>
           </div>
-          <Link
-            href="/paintings"
-            className="relative py-2 text-sm text-center text-white transition bg-primary px-7 hover:ring focus:outline-none focus:ring-highlight focus:ring-2 focus:border-transparent"
-          >
-            <b>Go to gallery</b>
-          </Link>
+          <div className="flex justify-center pt-4">
+            <LinkButton href="/paintings">
+              <strong>Paintings</strong>
+            </LinkButton>
+          </div>
         </div>
       </section>
 
