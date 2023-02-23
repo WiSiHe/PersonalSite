@@ -41,7 +41,7 @@ const ScrollSection = () => {
           cy="121"
           r="111"
           pathLength={1}
-          stroke-width="20"
+          strokeWidth="20"
           style={{ pathLength: scaleY }}
         />
       </svg>
