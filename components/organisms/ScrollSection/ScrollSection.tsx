@@ -9,7 +9,6 @@ import {
   useSpring,
 } from "framer-motion"
 import Image from "next/image"
-import Link from "next/link"
 import explorer from "public/images/explorer.png"
 import night from "public/images/night-forest.jpeg"
 
@@ -159,8 +158,12 @@ const ScrollSection = () => {
               src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
               width="100%"
               height="100%"
-              // className="absolute inset-0 w-full h-full "
             ></iframe>
+            {/* <iframe
+              src="https://my.spline.design/untitled-3f2ec415e151a3950fc15a746bf30936/"
+              width="100%"
+              height="100%"
+            ></iframe> */}
           </div>
         </div>
       </section>

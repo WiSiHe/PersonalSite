@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { Loader } from "components/atoms"
+import { LinkButton, Loader } from "components/atoms"
 import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
@@ -106,13 +106,9 @@ const HeroSection = ({ paintings = [] }: HeroSectionProps) => {
               }}
             >
               {/* <div className="absolute -inset-0.5 w-full animate-tilt transition-all duration-500 h-full blur from-pink-600 to-purple-400 hover:to-purple-200 bg-gradient-to-r" /> */}
-
-              <Link
-                href="/paintings"
-                className="relative py-2 text-center text-white transition drop-shadow-xl hover:ring-highlight hover:ring bg-primary px-7 focus-visible:outline-none focus-visible:ring-highlight focus-visible:ring-2 focus-visible:border-transparent"
-              >
-                <b>Go to gallery</b>
-              </Link>
+              <LinkButton href="/paintings">
+                <strong>Go to gallery</strong>
+              </LinkButton>
             </m.div>
             <m.button
               whileHover={{ scale: 1.2 }}

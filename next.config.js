@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const nextConfig = {
+  experimental: {
+    typedRoutes: true,
+  },
   reactStrictMode: true,
   images: {
     domains: ["cdn.sanity.io", "cdna.artstation.com", "images.unsplash.com"],
