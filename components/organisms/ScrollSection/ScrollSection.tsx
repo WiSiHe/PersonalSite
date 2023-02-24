@@ -66,13 +66,15 @@ const ScrollSection = () => {
               }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="xl:max-w-lg"
+              className="space-y-4 xl:max-w-lg"
             >
               <p>
                 A collection of my paintings, some old, some new. I&#39;m trying
                 out new styles and techniques all the time, but I&#39;ll always
                 have a soft spot for the portraits and landscapes.
               </p>
+
+              <LinkButton href="/paintings">Paintings</LinkButton>
             </m.div>
             <div className="relative mt-4 col-span-full xl:hidden aspect-video">
               <Image

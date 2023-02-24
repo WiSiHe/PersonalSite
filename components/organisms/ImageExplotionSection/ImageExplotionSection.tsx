@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import { LinkButton } from "components/atoms"
 import { m } from "framer-motion"
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
