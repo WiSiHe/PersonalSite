@@ -27,7 +27,7 @@ const BackButton = () => {
   }
 
   return (
-    <div className="fixed z-20 bottom-4 left-4 xl:top-24 xl:left-4">
+    <div className="fixed z-20 top-24 left-4">
       <m.button
         variants={buttonVariant}
         initial="hidden"

@@ -23,7 +23,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.11",
     "@next/env": "^13.2.0",
-    "@next/font": "^13.2.0",
     "@portabletext/react": "^2.0.1",
     "@react-three/drei": "^9.56.26",
     "@react-three/fiber": "^8.11.5",

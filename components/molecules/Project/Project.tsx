@@ -13,13 +13,15 @@ const cardVariants = {
   offscreen: {
     opacity: 0,
     y: 150,
+    scale: 0.9,
   },
   onscreen: {
     opacity: 1,
     y: 0,
+    scale: 1,
   },
   hover: {
-    scale: 1.02,
+    scale: 1.001,
     transition: {
       type: "spring",
       bounce: 0.4,

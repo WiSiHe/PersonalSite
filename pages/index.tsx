@@ -1,18 +1,8 @@
-import {
-  Footer,
-  HeroSection,
-  Main,
-  Meta,
-  SalesPointsSection,
-  ScrollSection,
-} from "components"
+import { Footer, HeroSection, Main, Meta, ScrollSection } from "components"
 import { m } from "framer-motion"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
-// import useWindowDimensions from "hooks/useWindowDimension"
 import { imageBuilder } from "lib/sanity"
-import Image from "next/image"
-import portrait from "public/images/selfPortrait.png"
 import React from "react"
 
 import { getAllWallpapers } from "../lib/api"
