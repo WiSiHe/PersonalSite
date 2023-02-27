@@ -5,7 +5,7 @@ import { m } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 
 interface HeroSectionProps {
@@ -34,6 +34,30 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
     return setDesktopIndex(desktopIndex + 1)
   }
 
+  // const [count, setCount] = useState(0)
+  // console.log("count", count)
+  // const [mousedOver, setMousedOver] = useState(false)
+  // console.log("mousedOver", mousedOver)
+
+  // useEffect(() => {
+  //   // set an interval timer if we are currently moused over
+  //   if (mousedOver) {
+  //     const timer = setInterval(() => {
+  //       // cycle prevCount using mod instead of checking for hard-coded length
+  //       setCount((prevCount) => (prevCount + 1) % paintings.length)
+  //     }, 1000)
+  //     // automatically clear timer the next time this effect is fired or
+  //     // the component is unmounted
+  //     return () => clearInterval(timer)
+  //   } else {
+  //     // otherwise (not moused over), reset the counter
+  //     setCount(0)
+  //   }
+  //   // the dependency on mousedOver means that this effect is fired
+  //   // every time mousedOver changes
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [mousedOver])
+
   return (
     <section
       className={clsx(
@@ -59,7 +83,6 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
             and explore programming, game development, and frontend
             technologies.
           </p>
-
           <div className="flex items-center justify-between gap-4">
             <LinkButton href="/paintings">
               <strong>Go to gallery</strong>
@@ -114,24 +137,9 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
           className={
             "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay"
           }
+          // onMouseOver={() => setMousedOver(true)}
+          // onMouseOut={() => setMousedOver(false)}
         />
-
-        {/* <div className="absolute left-0 right-0 z-10 flex items-center justify-center bottom-2">
-          <m.a
-            initial={{ y: 0, scale: 1.0 }}
-            animate={{ y: -10, scale: 1.0 }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "reverse",
-              type: "spring",
-              bounce: 0.5,
-            }}
-            className="p-2 bg-white focus:outline-none hover:ring focus:ring ring-highlight focus:border-transparent"
-            href="#main"
-          >
-            <BsChevronDown />
-          </m.a>
-        </div> */}
       </div>
     </section>
   )
