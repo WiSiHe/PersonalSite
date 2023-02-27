@@ -55,6 +55,7 @@ const ScrollSection = () => {
               }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
               className="pb-2"
             >
               <strong>Paintings!</strong>
@@ -65,6 +66,7 @@ const ScrollSection = () => {
                 y: 50,
               }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               className="space-y-4 xl:max-w-lg"
             >

@@ -2,7 +2,6 @@ import clsx from "clsx"
 import { LinkButton } from "components/atoms"
 import { m } from "framer-motion"
 import Image from "next/image"
-import night from "public/images/night-forest.jpeg"
 import bathtub from "public/images/paintings/bathtub.jpg"
 import celestial from "public/images/paintings/Celestial.jpg"
 import creepy from "public/images/paintings/creepy.jpg"
@@ -112,20 +111,26 @@ const ImageExplotionSection = () => {
 
         return (
           <m.div
-            initial={{ opacity: 0, x: 0, y: 0, scale: 0.1, zIndex: 0 }}
+            initial={{
+              opacity: 0,
+              x: randomXValue,
+              y: randomYValue,
+              scale: 0.1,
+              zIndex: 0,
+            }}
             whileInView={{
               scale: randomScaleValue,
               opacity: 1,
               zIndex: 10,
-              x: randomXValue,
-              y: randomYValue,
+              x: 0,
+              y: 0,
               transition: {
                 duration: 1,
                 type: "spring",
               },
             }}
             whileHover={{
-              scale: randomScaleValue + 0.1,
+              scale: randomScaleValue + 0.02,
               z: 10,
               transition: {
                 duration: 1,

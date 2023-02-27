@@ -1,11 +1,11 @@
 import clsx from "clsx"
-import { LinkButton, Loader } from "components/atoms"
-import { AnimatePresence, m } from "framer-motion"
+import { LinkButton } from "components/atoms"
+import { HeroSectionLoader } from "components/molecules"
+import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 // import { getRandomArbitrary } from "utils/numbers"
@@ -17,7 +17,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ paintings = [] }: HeroSectionProps) => {
   const [desktopIndex, setDesktopIndex] = useState(0)
-  const [mounted, setMounted] = useState(false)
+
   // const { width = 0 } = useWindowDimensions()
 
   const currentWallpaper = paintings[desktopIndex]
@@ -53,75 +53,15 @@ const HeroSection = ({ paintings = [] }: HeroSectionProps) => {
 
   const isMobile = width < 765
 
-  useEffect(() => {
-    console.log("mounted")
-    setMounted(true)
-  }, [])
-
   return (
     <section
       className={clsx(
         "transition-all w-full duration-500 ease-in-out relative",
         // imageHeightStyle[currentWallpaper.format]
-        "w-full h-[100svh]"
+        "w-full h-[70svh] min-h-[70vh]"
       )}
     >
-      <section className="absolute inset-0 z-20 grid w-full h-full grid-cols-12 pointer-events-none">
-        <AnimatePresence>
-          {!mounted && (
-            <>
-              <m.div
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0 flex items-center justify-center bg-white "
-              ></m.div>
-
-              <m.div
-                initial={{ x: 0 }}
-                animate={{ x: 0 }}
-                exit={{ x: -5000 }}
-                transition={{ duration: 2, delay: 1, type: "spring" }}
-                className="z-20 w-full col-span-6 col-start-1 bg-dark"
-              />
-
-              <m.div
-                initial={{ x: 0 }}
-                animate={{ x: 0 }}
-                exit={{ x: 5000 }}
-                transition={{ duration: 2, delay: 1, type: "spring" }}
-                className="z-20 w-full col-span-3 col-start-10 bg-dark"
-              />
-
-              <m.div
-                initial={{ x: 0 }}
-                animate={{ x: 0 }}
-                exit={{ x: -5000 }}
-                transition={{ duration: 2, delay: 1.1, type: "spring" }}
-                className="z-20 w-full col-span-1 col-start-1 bg-darj"
-              />
-
-              <m.div
-                initial={{ x: 0 }}
-                animate={{ x: 0 }}
-                exit={{ x: 5000 }}
-                transition={{ duration: 2, delay: 1.1, type: "spring" }}
-                className="z-20 w-full col-span-9 col-start-4 bg-dark"
-              />
-
-              <m.div
-                initial={{ x: 0 }}
-                animate={{ x: 0 }}
-                exit={{ x: -5000 }}
-                transition={{ duration: 2, delay: 1.1, type: "spring" }}
-                className="z-20 w-full col-span-8 col-start-1 bg-dark"
-              />
-            </>
-          )}
-        </AnimatePresence>
-      </section>
-
+      <HeroSectionLoader />
       <div className="relative h-full bg-dark">
         <Image
           src={imageBuilder(currentWallpaper.image)
