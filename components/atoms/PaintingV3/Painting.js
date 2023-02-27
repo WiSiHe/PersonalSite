@@ -12,11 +12,11 @@ import { RiMovieFill } from "react-icons/ri"
 
 const cardVariants = {
   offscreen: {
-    y: 100,
+    // y: 100,
     opacity: 0,
   },
   onscreen: {
-    y: 0,
+    // y: 0,
     opacity: 1,
     transition: {
       type: "spring",

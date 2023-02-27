@@ -1,5 +1,11 @@
-import { Footer, HeroSection, Main, Meta, ScrollSection } from "components"
-import { m } from "framer-motion"
+import {
+  Footer,
+  HeroSectionDesktop,
+  HeroSectionMobile,
+  Main,
+  Meta,
+  ScrollSection,
+} from "components"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
@@ -17,52 +23,29 @@ export default function Home({
       <Meta url="https://wisihe.no" />
 
       <Main noTopPadding className="flex-col overflow-clip">
-        <HeroSection paintings={desktopWallpaper} />
+        <HeroSectionMobile paintings={desktopWallpaper} />
+        <HeroSectionDesktop paintings={desktopWallpaper} />
 
         <section
-          className="relative w-full max-w-screen-xl px-4 py-4 mx-auto xl:py-10"
+          className="relative w-full max-w-screen-xl px-4 py-4 mx-auto xl:hidden xl:py-10"
           id="main"
         >
-          <m.div
-            initial={{ opacity: 0, x: -100 }}
-            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            className="order-2 col-span-9 xl:col-start-1 xl:col-span-6"
-          >
-            <h1>
-              <strong>
-                Hi there!
-                <br /> My name is <span className="text-primary">He</span>
-                nrik <span className="text-primary">Wi</span>
-                lhelm <span className="text-primary">Si</span>ssener
-              </strong>
-            </h1>
-            <div className="pt-2 xl:max-w-md">
-              <p>
-                I&#39;m a digital artist and web developer who enjoys character
-                design and landscape painting. In my free time, I create digital
-                art and explore programming, game development, and frontend
-                technologies.
-              </p>
-            </div>
-          </m.div>
-          {/* <m.div
-            initial={{ opacity: 0, x: 100 }}
-            transition={{ type: "spring", duration: 0.5, delay: 0.5 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            className="relative order-1 col-span-3 md:col-span-2 xl:col-span-3 xl:order-2 xl:block"
-          >
-            <Image
-              src={portrait}
-              alt="portrait of Henrik Sissener"
-              className="object-cover w-full h-full aspect-square xl:rounded-full"
-              sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
-            />
-          </m.div> */}
+          <h1>
+            <strong>
+              Hi there!
+              <br /> My name is <span className="text-primary">He</span>
+              nrik <span className="text-primary">Wi</span>
+              lhelm <span className="text-primary">Si</span>ssener
+            </strong>
+          </h1>
+          <div className="pt-2 xl:max-w-md">
+            <p>
+              I&#39;m a digital artist and web developer who enjoys character
+              design and landscape painting. In my free time, I create digital
+              art and explore programming, game development, and frontend
+              technologies.
+            </p>
+          </div>
         </section>
 
         {/* <section className="relative py-10 xl:py-10">
