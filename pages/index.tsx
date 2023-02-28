@@ -27,7 +27,7 @@ export default function Home({
         <HeroSectionDesktop paintings={desktopWallpaper} />
 
         <section
-          className="relative w-full max-w-screen-xl px-4 py-4 mx-auto xl:hidden xl:py-10"
+          className="relative w-full max-w-screen-xl px-4 py-10 mx-auto xl:hidden"
           id="main"
         >
           <h1>

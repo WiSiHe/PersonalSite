@@ -7,7 +7,6 @@ import {
   ScrollToTopButton,
 } from "components"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
-import { painting } from "lib/models/landingPage"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import React from "react"
@@ -17,7 +16,9 @@ import { slugify } from "utils/string"
 
 export interface iTag {
   label: string
+  name: string
   count: number
+  description: string
 }
 export interface iPaintingTag {
   label: string
@@ -62,6 +63,14 @@ const PaintingsPage = ({
 }: PaintingsPageProps) => {
   const tagsWithAll = [{ name: "All" }, ...tags]
 
+  const currentTag = tags.find((t) => slugify(t.name) === slug)
+
+  const { description = "" } = currentTag || {
+    description: "",
+  }
+
+  console.log("currentTag", currentTag)
+
   return (
     <>
       <Meta
@@ -81,7 +90,7 @@ const PaintingsPage = ({
             </div>
             <div className="p-2 xl:p-4">
               <h1 className="text-2xl font-bold">Painting gallery</h1>
-              <p className="mt-2">Filter:{slug}</p>
+              <p>{description}</p>
             </div>
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.map((p) => {

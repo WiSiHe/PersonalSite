@@ -47,7 +47,7 @@ const ScrollSection = () => {
 
       <section className="relative xl:aspect-video bg-dark">
         <GridStyleWrapper>
-          <div className="sticky top-0 z-20 grid grid-cols-12 p-4 text-white xl:p-10">
+          <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-white xl:px-10">
             <div className="relative mt-4 col-span-full xl:hidden aspect-video">
               <Image
                 src={night}
@@ -59,7 +59,7 @@ const ScrollSection = () => {
 33vw"
               />
             </div>
-            <div className="col-start-1 col-span-full xl:sticky xl:col-span-4">
+            <div className="col-start-1 gap-4 pt-4 col-span-full xl:sticky xl:col-span-4">
               <m.h2
                 initial={{
                   opacity: 0,
@@ -118,11 +118,11 @@ const ScrollSection = () => {
           <LinkButton href="/paintings">
             <strong>Paintings</strong>
           </LinkButton>
-          <LinkButton href="/3d">
-            <strong>3D</strong>
+          <LinkButton href="/projects">
+            <strong>Projects</strong>
           </LinkButton>
-          <LinkButton href="/code">
-            <strong>Code</strong>
+          <LinkButton href="/videos">
+            <strong>Videos</strong>
           </LinkButton>
         </div>
       </section>

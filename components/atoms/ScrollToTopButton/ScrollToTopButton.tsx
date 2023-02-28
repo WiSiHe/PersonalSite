@@ -51,7 +51,6 @@ const ScrollToTopButton = () => {
   }
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log("Page scroll: ", latest)
     if (latest > 0.02) {
       setShouldDisplayButton(true)
     } else if (latest < 0.02 && shouldDisplayButton) {

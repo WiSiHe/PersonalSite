@@ -84,8 +84,8 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
         // viewport={{ once: true, amount: 0.1 }}
         className="absolute z-10 flex h-full col-span-4 col-start-1 my-auto space-y-4 bg-white/60 backdrop-blur-xl"
       >
-        <div className="flex flex-col justify-between p-10">
-          <div>
+        <div className="flex flex-col justify-between gap-4 p-10">
+          <div className="flex flex-col gap-4">
             <h1 className="text-8xl">
               <strong>Henrik Wilhelm Sissener</strong>
             </h1>
