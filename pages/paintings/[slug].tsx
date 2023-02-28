@@ -90,7 +90,7 @@ const PaintingsPage = ({
             </div>
             <div className="p-2 xl:p-4">
               <h1 className="text-2xl font-bold">Painting gallery</h1>
-              <p>{description}</p>
+              <p className="max-w-lg">{description}</p>
             </div>
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.map((p) => {
