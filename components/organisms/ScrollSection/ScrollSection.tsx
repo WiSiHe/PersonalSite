@@ -47,37 +47,7 @@ const ScrollSection = () => {
 
       <section className="relative xl:aspect-video bg-dark">
         <GridStyleWrapper>
-          <div className="relative z-10 max-w-screen-xl px-4 py-10 mx-auto text-white">
-            <m.h2
-              initial={{
-                opacity: 0,
-                scale: 0,
-              }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="pb-2"
-            >
-              <strong>Paintings!</strong>
-            </m.h2>
-            <m.div
-              initial={{
-                opacity: 0,
-                y: 50,
-              }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="space-y-4 xl:max-w-lg"
-            >
-              <p>
-                A collection of my paintings, some old, some new. I&#39;m trying
-                out new styles and techniques all the time, but I&#39;ll always
-                have a soft spot for the portraits and landscapes.
-              </p>
-
-              <LinkButton href="/paintings">Paintings</LinkButton>
-            </m.div>
+          <div className="sticky top-0 z-20 grid grid-cols-12 p-4 text-white xl:p-10">
             <div className="relative mt-4 col-span-full xl:hidden aspect-video">
               <Image
                 src={night}
@@ -89,19 +59,53 @@ const ScrollSection = () => {
 33vw"
               />
             </div>
+            <div className="col-start-1 col-span-full xl:sticky xl:col-span-4">
+              <m.h2
+                initial={{
+                  opacity: 0,
+                  scale: 0,
+                }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="pb-2"
+              >
+                <strong>Paintings!</strong>
+              </m.h2>
+              <m.div
+                initial={{
+                  opacity: 0,
+                  y: 50,
+                }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="space-y-4 xl:max-w-lg"
+              >
+                <p>
+                  A collection of my paintings, some old, some new. I&#39;m
+                  trying out new styles and techniques all the time, but
+                  I&#39;ll always have a soft spot for the portraits and
+                  landscapes.
+                </p>
+
+                <LinkButton href="/paintings">Paintings</LinkButton>
+              </m.div>
+            </div>
           </div>
 
           <ImageExplotionSection />
         </GridStyleWrapper>
       </section>
 
-      {/* <section className="px-4 py-20 text-center xl:py-40">
+      <section className="px-4 py-20 text-center xl:py-40">
         <m.h2
           initial={{
             opacity: 0,
             scale: 0,
           }}
           whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
         >
           <strong>Still scrolling, huh?</strong>
         </m.h2>
@@ -110,16 +114,29 @@ const ScrollSection = () => {
           buttons by now...
         </p>
 
-        <div className="flex justify-center pt-4">
+        <div className="flex justify-center gap-4 pt-4">
           <LinkButton href="/paintings">
             <strong>Paintings</strong>
           </LinkButton>
+          <LinkButton href="/3d">
+            <strong>3D</strong>
+          </LinkButton>
+          <LinkButton href="/code">
+            <strong>Code</strong>
+          </LinkButton>
         </div>
-      </section> */}
+      </section>
 
       <section className="relative p-4 xl:p-10 bg-dark overflow-clip">
         <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
-          <div className="z-10 p-4 my-auto text-white col-span-full xl:col-span-6">
+          <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
+            <iframe
+              src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+              width="100%"
+              height="100%"
+            />
+          </div>
+          <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
             <m.h2
               initial={{
                 opacity: 0,
@@ -141,14 +158,12 @@ const ScrollSection = () => {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <p className="drop-shadow">
-                I enjoy playing around with 3D modeling and animation. The image
-                on the{" "}
-                <strong className="hidden text-xl underline text-primary xl:inline">
-                  right
+                I enjoy playing around with 3D modeling and animation. The
+                object{" "}
+                <strong className="hidden text-xl text-primary xl:inline">
+                  on the left
                 </strong>
-                <strong className="inline underline xl:hidden text-primary">
-                  below
-                </strong>{" "}
+                <strong className="inline xl:hidden text-primary">above</strong>{" "}
                 is a quick creation I put together using Spline. In the past,
                 I&#39;ve designed a variety of game assets including trees,
                 rocks, and structures.
@@ -156,18 +171,6 @@ const ScrollSection = () => {
                 <br /> More information coming soon!
               </p>
             </m.div>
-          </div>
-          <div className="xl:inset-0 xl:translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
-            <iframe
-              src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
-              width="100%"
-              height="100%"
-            ></iframe>
-            {/* <iframe
-              src="https://my.spline.design/untitled-3f2ec415e151a3950fc15a746bf30936/"
-              width="100%"
-              height="100%"
-            ></iframe> */}
           </div>
         </div>
       </section>

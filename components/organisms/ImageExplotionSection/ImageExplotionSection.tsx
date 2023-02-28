@@ -139,6 +139,7 @@ const ImageExplotionSection = () => {
               },
             }}
             transition={{ duration: 0.4, type: "spring" }}
+            viewport={{ once: true }}
             className={clsx(
               "aspect-video",
               "relative flex items-center justify-center text-white bg-primary h-full w-full shadow-2xl",
