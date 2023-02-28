@@ -6,7 +6,10 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import { useState } from "react"
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
+import {
+  /*BsChevronDown,*/ BsChevronLeft,
+  BsChevronRight,
+} from "react-icons/bs"
 // import { getRandomArbitrary } from "utils/numbers"
 
 interface HeroSectionProps {
