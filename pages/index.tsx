@@ -88,9 +88,14 @@ export async function getStaticProps() {
     })
   )
 
+  // sort paintings randomly
+  const sortedPaintings = desktopWallpapersWithFetchedImages.sort(
+    () => Math.random() - 0.5
+  )
+
   return {
     props: {
-      desktopWallpaper: desktopWallpapersWithFetchedImages,
+      desktopWallpaper: sortedPaintings,
     },
     // revalidate every hour
     revalidate: 60 * 60,
