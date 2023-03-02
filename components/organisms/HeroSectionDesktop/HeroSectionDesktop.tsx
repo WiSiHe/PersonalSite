@@ -15,18 +15,18 @@ interface HeroSectionProps {
 
 const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
   const [desktopIndex, setDesktopIndex] = useState(0)
-  const [time, setTime] = useState(0)
-  const [mousedOver, setMousedOver] = useState(false)
+  // const [time, setTime] = useState(0)
+  // const [mousedOver, setMousedOver] = useState(false)
 
   const currentWallpaper = paintings[desktopIndex]
 
   // convert time into a percentage with roof of 100%
-  const percentage = Math.min(time / 100, 1) * 100
+  // const percentage = Math.min(time / 100, 1) * 100
 
-  const timerStyle = `${percentage}%`
+  // const timerStyle = `${percentage}%`
 
   const handleGoLeft = () => {
-    setTime(0)
+    // setTime(0)
     if (desktopIndex === 0) {
       return setDesktopIndex(paintings.length - 1)
     }
@@ -35,7 +35,7 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
   }
 
   const handleGoRight = () => {
-    setTime(0)
+    // setTime(0)
     if (desktopIndex === paintings.length - 1) {
       return setDesktopIndex(0)
     }
@@ -44,30 +44,30 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
   }
 
   //  useEffect that counts down from 5 to 0
-  useEffect(() => {
-    // if timer is zero wait one second.
+  // useEffect(() => {
+  //   // if timer is zero wait one second.
 
-    if (time === 0) {
-      setTimeout(() => {
-        return setTime((prevTime) => prevTime + 1)
-      }, 8000)
-    }
+  //   if (time === 0) {
+  //     setTimeout(() => {
+  //       return setTime((prevTime) => prevTime + 1)
+  //     }, 8000)
+  //   }
 
-    if (!mousedOver) {
-      const timer = setInterval(() => {
-        setTime((prevTime) => prevTime + 1)
-      }, 100)
+  //   if (!mousedOver) {
+  //     const timer = setInterval(() => {
+  //       setTime((prevTime) => prevTime + 1)
+  //     }, 100)
 
-      return () => clearInterval(timer)
-    }
-  }, [mousedOver, time])
+  //     return () => clearInterval(timer)
+  //   }
+  // }, [mousedOver, time])
 
-  useEffect(() => {
-    if (time === 100) {
-      handleGoRight()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [time])
+  // useEffect(() => {
+  //   if (time === 100) {
+  //     handleGoRight()
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [time])
 
   return (
     <section
@@ -105,8 +105,8 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
               onClick={() => handleGoLeft()}
               className="flex-shrink-0 p-1 bg-white w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
               aria-label="Go to previous painting"
-              onMouseOver={() => setMousedOver(true)}
-              onMouseOut={() => setMousedOver(false)}
+              // onMouseOver={() => setMousedOver(true)}
+              // onMouseOut={() => setMousedOver(false)}
             >
               <BsChevronLeft aria-label="Left" className="p-2 text-3xl " />
             </m.button>
@@ -118,18 +118,18 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
               onClick={handleGoRight}
               className="flex-shrink-0 p-1 bg-white w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
               aria-label="Go to next painting"
-              onMouseOver={() => setMousedOver(true)}
-              onMouseOut={() => setMousedOver(false)}
+              // onMouseOver={() => setMousedOver(true)}
+              // onMouseOut={() => setMousedOver(false)}
             >
               <BsChevronRight aria-label="Right" className="p-2 text-3xl" />
             </m.button>
           </div>
         </div>
       </m.div>
-      <m.div
+      {/* <m.div
         style={{ width: timerStyle }}
         className="absolute inset-0 z-10 h-2 transition-all ease-linear col-span-full bg-primary"
-      />
+      /> */}
 
       <div className="relative h-full col-span-full bg-dark aspect-video">
         <HeroSectionLoader />
@@ -156,8 +156,8 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
           className={
             "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay"
           }
-          onMouseOver={() => setMousedOver(true)}
-          onMouseOut={() => setMousedOver(false)}
+          // onMouseOver={() => setMousedOver(true)}
+          // onMouseOut={() => setMousedOver(false)}
         />
       </div>
     </section>
