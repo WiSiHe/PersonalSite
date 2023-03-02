@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import {
   Filters,
   Footer,
@@ -69,14 +70,12 @@ const PaintingsPage = ({
     description: "",
   }
 
-  console.log("currentTag", currentTag)
-
   return (
     <>
       <Meta
         title="Gallery"
         url="https://wisihe.no/gallery"
-        description="A gallery of some of my paintings"
+        description={description ?? "A gallery of some of my paintings"}
       />
       <Main noTopPadding>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
@@ -95,7 +94,14 @@ const PaintingsPage = ({
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.map((p) => {
                 const { _id } = p
-                return <Painting paintingData={p} key={_id} />
+                return (
+                  <div
+                    key={_id}
+                    className={clsx("col-span-6 xl:col-span-3 aspect-square")}
+                  >
+                    <Painting paintingData={p} />
+                  </div>
+                )
               })}
             </div>
           </section>

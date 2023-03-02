@@ -1,23 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  Filters,
-  Footer,
-  Main,
-  Meta,
-  Painting,
-  ScrollToTopButton,
-} from "components"
+import clsx from "clsx"
+import { FilterBar, Footer, Main, Meta, Painting } from "components"
 import useScrollPosition from "hooks/useScrollPosition"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
+import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 
 import { PaintingsPageProps } from "./[slug]"
 
 interface iPaintingsPageProps {
   paintings: PaintingsPageProps["paintings"]
-  tags: PaintingsPageProps["tags"]
+  tags: iSanityTag[]
   slug: PaintingsPageProps["slug"]
 }
 
@@ -26,13 +21,15 @@ const PaintingsPage = ({
   tags = [],
   slug = "all",
 }: iPaintingsPageProps) => {
+  const router = useRouter()
+
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const scrollPosition = useScrollPosition()
 
   // functions that load more paintings, and at the end of the list, load more paintings
-  const loadMorePaintings = () => {
+  function loadMorePaintings() {
     if (hasLoadedAllPaintings) return
     // append 25 more paintings to the list
     setPaintingsSlice(paintingsSlice + 25)
@@ -62,13 +59,13 @@ const PaintingsPage = ({
       <Main noTopPadding className="overflow-clip">
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">
-            <div className="sticky top-0 z-20 px-2 py-4 xl:px-4 bg-bright bg-opacity-30 backdrop-blur-lg">
+            {/* <div className="sticky top-0 z-20 px-2 py-4 xl:px-4 bg-bright bg-opacity-30 backdrop-blur-lg">
               <Filters
                 filteredTags={tags}
                 activeFilter={slug}
                 amountOfPaintings={paintings.length}
               />
-            </div>
+            </div> */}
             <div className="p-2 xl:p-4">
               <h1 className="text-2xl font-bold">Welcome to my gallery</h1>
               <p className="mt-2">
@@ -80,12 +77,20 @@ const PaintingsPage = ({
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.slice(0, paintingsSlice).map((p) => {
                 const { _id } = p
-                return <Painting paintingData={p} key={_id} />
+                return (
+                  <div
+                    key={_id}
+                    className={clsx("col-span-6 xl:col-span-3 aspect-square")}
+                  >
+                    <Painting paintingData={p} />
+                  </div>
+                )
               })}
             </div>
           </section>
         </section>
-        <ScrollToTopButton />
+
+        <FilterBar filters={tags} />
       </Main>
       <Footer />
     </>
