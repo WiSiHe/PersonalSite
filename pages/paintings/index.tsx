@@ -5,13 +5,14 @@ import useScrollPosition from "hooks/useScrollPosition"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
-import { useRouter } from "next/router"
+import { useCombinedStore } from "lib/store"
+// import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 
 import { PaintingsPageProps } from "./[slug]"
 
 interface iPaintingsPageProps {
-  paintings: PaintingsPageProps["paintings"]
+  paintings: iSanityPainting[]
   tags: iSanityTag[]
   slug: PaintingsPageProps["slug"]
 }
@@ -21,10 +22,27 @@ const PaintingsPage = ({
   tags = [],
   slug = "all",
 }: iPaintingsPageProps) => {
-  const router = useRouter()
+  // const router = useRouter()
 
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
+
+  const sorting = useCombinedStore((state) => state.paintingSorting)
+
+  const sortedPaintings = paintings.sort((a, b) => {
+    if (sorting === "newest") {
+      return new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+    }
+    if (sorting === "oldest") {
+      return new Date(a._createdAt).getTime() - new Date(b._createdAt).getTime()
+    }
+    if (sorting === "trending") {
+      return b.likes - a.likes
+    }
+    return 0
+  })
+
+  const colStyle = useCombinedStore((state) => state.colStyle)
 
   const scrollPosition = useScrollPosition()
 
@@ -75,12 +93,16 @@ const PaintingsPage = ({
             </div>
 
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
-              {paintings.slice(0, paintingsSlice).map((p) => {
+              {sortedPaintings.slice(0, paintingsSlice).map((p) => {
                 const { _id } = p
                 return (
                   <div
                     key={_id}
-                    className={clsx("col-span-6 xl:col-span-3 aspect-square")}
+                    className={clsx(
+                      "aspect-square",
+                      // "col-span-6 xl:col-span-3",
+                      colStyle
+                    )}
                   >
                     <Painting paintingData={p} />
                   </div>
