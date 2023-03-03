@@ -1,4 +1,5 @@
 export { default as FilterBar } from "./FilterBar"
+export { default as FilterModal } from "./FilterModal"
 export { default as HeroSectionDesktop } from "./HeroSectionDesktop"
 export { default as HeroSectionMobile } from "./HeroSectionMobile"
 export { default as ImageExplotionSection } from "./ImageExplotionSection"

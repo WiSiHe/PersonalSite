@@ -46,6 +46,17 @@ const PaintingsPage = ({
     return Math.random() - 0.5
   })
 
+  const filterList: string[] = useCombinedStore((state) => state.filterList)
+
+  const filteredPaintings = sortedPaintings.filter((p) => {
+    if (filterList.length === 0) return true
+
+    const paintingTags = p.tagsV2.map((t) => t.name)
+    const hasAllTags = filterList.every((f) => paintingTags.includes(f))
+
+    return hasAllTags
+  })
+
   const colStyle = useCombinedStore((state) => state.colStyle)
 
   const scrollPosition = useScrollPosition()
@@ -90,7 +101,7 @@ const PaintingsPage = ({
             </div>
 
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
-              {sortedPaintings.slice(0, paintingsSlice).map((p) => {
+              {filteredPaintings.slice(0, paintingsSlice).map((p) => {
                 const { _id } = p
                 return (
                   <div
