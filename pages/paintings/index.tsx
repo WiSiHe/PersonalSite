@@ -31,15 +31,19 @@ const PaintingsPage = ({
 
   const sortedPaintings = paintings.sort((a, b) => {
     if (sorting === "newest") {
-      return new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+      return new Date(b.paintedAt).getTime() - new Date(a.paintedAt).getTime()
     }
     if (sorting === "oldest") {
-      return new Date(a._createdAt).getTime() - new Date(b._createdAt).getTime()
+      return new Date(a.paintedAt).getTime() - new Date(b.paintedAt).getTime()
     }
     if (sorting === "trending") {
       return b.likes - a.likes
     }
-    return 0
+    if (sorting === "alphabetical") {
+      return a.title.localeCompare(b.title)
+    }
+
+    return Math.random() - 0.5
   })
 
   const colStyle = useCombinedStore((state) => state.colStyle)
@@ -77,13 +81,6 @@ const PaintingsPage = ({
       <Main noTopPadding className="overflow-clip">
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">
-            {/* <div className="sticky top-0 z-20 px-2 py-4 xl:px-4 bg-bright bg-opacity-30 backdrop-blur-lg">
-              <Filters
-                filteredTags={tags}
-                activeFilter={slug}
-                amountOfPaintings={paintings.length}
-              />
-            </div> */}
             <div className="p-2 xl:p-4">
               <h1 className="text-2xl font-bold">Welcome to my gallery</h1>
               <p className="mt-2">
@@ -100,7 +97,7 @@ const PaintingsPage = ({
                     key={_id}
                     className={clsx(
                       "aspect-square",
-                      // "col-span-6 xl:col-span-3",
+                      "col-span-6 xl:col-span-3",
                       colStyle
                     )}
                   >

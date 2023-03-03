@@ -17,12 +17,6 @@ export default defineType({
     },
   ],
   fields: [
-    // defineField({
-    //   name: "name",
-    //   title: "Name",
-    //   type: "string",
-    //   validation: (rule) => rule.required(),
-    // }),
     defineField({
       name: "title",
       title: "Title",
@@ -125,6 +119,13 @@ export default defineType({
       title: "Twitter URL",
       type: "url",
       fieldset: "links",
+    }),
+    defineField({
+      name: "paintedAt",
+      title: "Painted At",
+      type: "datetime",
+      description: "Date when the painting was painted",
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "tagsV2",

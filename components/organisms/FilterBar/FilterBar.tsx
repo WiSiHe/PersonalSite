@@ -10,9 +10,13 @@ import { BsFillGrid1X2Fill } from "react-icons/bs"
 import { IoClose, IoFilterSharp } from "react-icons/io5"
 
 const testFilter = [
+  //   {
+  //     name: "Trending",
+  //     value: "trending",
+  //   },
   {
-    name: "Trending",
-    value: "trending",
+    name: "Random",
+    value: "random",
   },
   {
     name: "Newest",
@@ -35,17 +39,19 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   const sorting = useCombinedStore((state) => state.paintingSorting)
   const setSorting = useCombinedStore((state) => state.setPaintingSorting)
 
-  const colStyle = useCombinedStore((state) => state.colStyle)
   const colSize = useCombinedStore((state) => state.colSize)
   const setColSize = useCombinedStore((state) => state.setColSize)
-  const setColStyle = useCombinedStore((state) => state.setColStyle)
+
+  const amountOfActiveFilters = 0
 
   const handleSetPaintingColStyleIncrease = () => {
-    if (colSize === 6) return
+    if (colSize === 3) return
+    setColSize(colSize + 1)
   }
 
   const handleSetPaintingColStyleDecrease = () => {
-    if (colSize === 2) return
+    if (colSize === 1) return
+    setColSize(colSize - 1)
   }
 
   return (
@@ -55,33 +61,34 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
           <AnimatePresence>
             {gridOptionsOpen && (
               <motion.button
-                initial={{ opacity: 0, x: -100, scale: 0.8 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -100, scale: 0.8 }}
-                transition={{ type: "spring", duration: 0.4 }}
+                initial={{ x: -10, scale: 0.8 }}
+                animate={{ x: 0, scale: 1 }}
+                exit={{ x: -10, scale: 0.8 }}
+                transition={{ type: "spring" }}
                 className="p-4 bg-white"
                 onClick={handleSetPaintingColStyleDecrease}
+                disabled={colSize === 1}
               >
                 <BiMinus />
               </motion.button>
             )}
-          </AnimatePresence>
 
-          <button
-            className="p-4 bg-white"
-            onClick={() => setGridOptionsOpen((prev) => !prev)}
-          >
-            <BsFillGrid1X2Fill />
-          </button>
-          <AnimatePresence>
+            <motion.button
+              className="p-4 bg-white"
+              onClick={() => setGridOptionsOpen((prev) => !prev)}
+            >
+              <BsFillGrid1X2Fill />
+            </motion.button>
+
             {gridOptionsOpen && (
               <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ type: "spring", duration: 0.4, delay: 0.4 }}
+                initial={{ x: -10, scale: 0.8 }}
+                animate={{ x: 0, scale: 1 }}
+                exit={{ x: 0, y: 100, scale: 0.8 }}
+                transition={{ type: "spring" }}
                 className="p-4 bg-white"
                 onClick={handleSetPaintingColStyleIncrease}
+                disabled={colSize === 3}
               >
                 <BiPlus />
               </motion.button>
@@ -128,8 +135,13 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         </button>
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="p-4 bg-white"
+          className="relative p-4 bg-white"
         >
+          {amountOfActiveFilters > 0 && (
+            <div className="text-[10px] absolute -top-2 -right-2 bg-primary  rounded-full w-6 h-6 flex justify-center items-center text-white">
+              {amountOfActiveFilters}
+            </div>
+          )}
           <AnimatePresence>
             {isOpen ? (
               <motion.div

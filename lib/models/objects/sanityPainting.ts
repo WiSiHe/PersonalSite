@@ -8,7 +8,7 @@ export interface iSanityPainting {
   imagesCount: number | null
   redbubbleUrl: string | null
   likes: number
-  _createdAt: string
+  paintedAt: string
   slug: {
     _type: "slug"
     current: string
