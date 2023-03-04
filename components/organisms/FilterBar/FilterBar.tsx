@@ -4,7 +4,8 @@ import { ScrollToTopButton } from "components/atoms"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { AiOutlineOrderedList } from "react-icons/ai"
 import { BiMinus, BiPlus } from "react-icons/bi"
 import { BsFillGrid1X2Fill } from "react-icons/bs"
 import { IoClose, IoFilterSharp } from "react-icons/io5"
@@ -61,6 +62,16 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
     setColSize(colSize - 1)
   }
 
+  const handleToggleSorting = () => {
+    if (sorting === "random") {
+      setSorting("newest")
+    } else if (sorting === "newest") {
+      setSorting("oldest")
+    } else if (sorting === "oldest") {
+      setSorting("random")
+    }
+  }
+
   return (
     <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6 bg-gradient-to-t from-dark/40 ">
       <div className="relative flex flex-1 gap-4">
@@ -108,11 +119,15 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
       <RadioGroup
         value={sorting}
         onChange={setSorting}
-        className="flex gap-4 p-2 bg-white "
+        className={clsx(" bg-white hidden xl:flex p-1")}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
         {testFilter.map((filter) => (
-          <RadioGroup.Option key={filter.value} value={filter.value}>
+          <RadioGroup.Option
+            key={filter.value}
+            value={filter.value}
+            className="text-center cursor-pointer"
+          >
             {({ checked }) => (
               <div className={clsx("cursor-pointer relative p-2")}>
                 {checked && (
@@ -134,11 +149,18 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
           </RadioGroup.Option>
         ))}
       </RadioGroup>
+      <button
+        className="flex items-center justify-center gap-2 p-3 capitalize bg-white xl:hidden"
+        onClick={handleToggleSorting}
+      >
+        {sorting}
+        <AiOutlineOrderedList />
+      </button>
 
       <div className="flex justify-end flex-1 gap-4">
         {amountOfActiveFilters > 0 && (
           <button
-            className="text-xs text-white uppercase"
+            className="hidden text-xs text-white uppercase xl:block"
             onClick={clearFilterList}
           >
             <strong>Clear all</strong>

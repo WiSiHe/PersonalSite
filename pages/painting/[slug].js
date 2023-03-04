@@ -77,10 +77,10 @@ export default function Gallery({ painting = {}, slug = {} }) {
 
       <Main
         noTopPadding
-        className="flex flex-col xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 overflow-clip"
+        className="flex flex-col min-h-screen xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 overflow-clip bg-tertiary"
       >
         <m.div
-          className="fixed z-10 bottom-4 left-4 xl:top-24 xl:left-6 "
+          className="fixed z-10 top-24 left-6 "
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
