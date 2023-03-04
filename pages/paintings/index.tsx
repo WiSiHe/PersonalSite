@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import clsx from "clsx"
 import { FilterBar, Footer, Main, Meta, Painting } from "components"
 import useScrollPosition from "hooks/useScrollPosition"
@@ -7,48 +6,27 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 // import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react"
-
-import { PaintingsPageProps } from "./[slug]"
+import React, { useCallback, useEffect, useState } from "react"
+import { sortPaintings } from "utils/painting"
 
 interface iPaintingsPageProps {
   paintings: iSanityPainting[]
   tags: iSanityTag[]
-  slug: PaintingsPageProps["slug"]
 }
 
-const PaintingsPage = ({
-  paintings = [],
-  tags = [],
-  slug = "all",
-}: iPaintingsPageProps) => {
+const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   // const router = useRouter()
+
+  // const [paintingsList, setPaintingsList] =
+  //   useState<iSanityPainting[]>(paintings)
 
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const sorting = useCombinedStore((state) => state.paintingSorting)
-
-  const sortedPaintings = paintings.sort((a, b) => {
-    if (sorting === "newest") {
-      return new Date(b.paintedAt).getTime() - new Date(a.paintedAt).getTime()
-    }
-    if (sorting === "oldest") {
-      return new Date(a.paintedAt).getTime() - new Date(b.paintedAt).getTime()
-    }
-    if (sorting === "trending") {
-      return b.likes - a.likes
-    }
-    if (sorting === "alphabetical") {
-      return a.title.localeCompare(b.title)
-    }
-
-    return Math.random() - 0.5
-  })
-
   const filterList: string[] = useCombinedStore((state) => state.filterList)
 
-  const filteredPaintings = sortedPaintings.filter((p) => {
+  const filteredPaintings = paintings.filter((p) => {
     if (filterList.length === 0) return true
 
     const paintingTags = p.tagsV2.map((t) => t.name)
@@ -80,7 +58,21 @@ const PaintingsPage = ({
     ) {
       loadMorePaintings()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollPosition, hasLoadedAllPaintings])
+
+  // sort and filter paintings
+  // useEffect(() => {
+  //   if (!paintings) return
+
+  //   if (sorting === "random") {
+  //     setPaintingsList(paintings.sort(() => Math.random() - 0.5))
+  //   } else {
+  //     setPaintingsList(sortPaintings(paintings, sorting))
+  //   }
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [sorting])
 
   return (
     <>
@@ -100,22 +92,24 @@ const PaintingsPage = ({
               </p>
             </div>
 
-            <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
-              {filteredPaintings.slice(0, paintingsSlice).map((p) => {
-                const { _id } = p
-                return (
-                  <div
-                    key={_id}
-                    className={clsx(
-                      "aspect-square",
-                      "col-span-6 xl:col-span-3",
-                      colStyle
-                    )}
-                  >
-                    <Painting paintingData={p} />
-                  </div>
-                )
-              })}
+            <div className="grid grid-cols-12 mb-10">
+              {sortPaintings(filteredPaintings, sorting)
+                .slice(0, paintingsSlice)
+                .map((p) => {
+                  const { _id } = p
+                  return (
+                    <div
+                      key={_id}
+                      className={clsx(
+                        "aspect-square",
+                        // "col-span-6 xl:col-span-3",
+                        colStyle
+                      )}
+                    >
+                      <Painting paintingData={p} />
+                    </div>
+                  )
+                })}
             </div>
           </section>
         </section>
