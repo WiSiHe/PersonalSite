@@ -17,6 +17,7 @@ specifiers:
   '@sanity/ui': ^1.2.5
   '@sanity/vision': ^3.5.0
   '@sanity/webhook': ^2.0.0
+  '@tailwindcss/container-queries': ^0.1.0
   '@types/node': 18.14.1
   '@types/react': ^18.0.28
   '@types/three': ^0.149.0
@@ -72,6 +73,7 @@ dependencies:
   '@sanity/ui': 1.2.5_23mhwjhnzfjwvdn7ol54k26zom
   '@sanity/vision': 3.5.0_23mhwjhnzfjwvdn7ol54k26zom
   '@sanity/webhook': 2.0.0
+  '@tailwindcss/container-queries': 0.1.0_tailwindcss@3.2.7
   '@vercel/analytics': 0.1.10_react@18.2.0
   clsx: 1.2.1
   framer-motion: 9.1.6_biqbaboplfbrettd7655fr4n2y
@@ -1656,6 +1658,14 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tailwindcss/container-queries/0.1.0_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-t1GeJ9P8ual160BvKy6Y1sG7bjChArMaK6iRXm3ZYjZGN2FTzmqb5ztsTDb9AsTSJD4NMHtsnaI2ielrXEk+hw==}
+    peerDependencies:
+      tailwindcss: '>=3.2.0'
+    dependencies:
+      tailwindcss: 3.2.7
     dev: false
 
   /@tanstack/react-virtual/3.0.0-beta.29_react@18.2.0:

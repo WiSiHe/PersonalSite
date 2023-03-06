@@ -5,8 +5,7 @@ import { getAllTagsAndPaintingsLight } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-// import { useRouter } from "next/router"
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { sortPaintings } from "utils/painting"
 
 interface iPaintingsPageProps {
@@ -15,11 +14,6 @@ interface iPaintingsPageProps {
 }
 
 const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
-  // const router = useRouter()
-
-  // const [paintingsList, setPaintingsList] =
-  //   useState<iSanityPainting[]>(paintings)
-
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
@@ -61,19 +55,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollPosition, hasLoadedAllPaintings])
 
-  // sort and filter paintings
-  // useEffect(() => {
-  //   if (!paintings) return
-
-  //   if (sorting === "random") {
-  //     setPaintingsList(paintings.sort(() => Math.random() - 0.5))
-  //   } else {
-  //     setPaintingsList(sortPaintings(paintings, sorting))
-  //   }
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [sorting])
-
   return (
     <>
       <Meta
@@ -91,7 +72,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 paintings.
               </p>
             </div>
-
+            <FilterBar filters={tags} />
             <div className="grid grid-cols-12 mb-10">
               {sortPaintings(filteredPaintings, sorting)
                 .slice(0, paintingsSlice)
@@ -113,8 +94,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
             </div>
           </section>
         </section>
-
-        <FilterBar filters={tags} />
       </Main>
       <Footer />
     </>

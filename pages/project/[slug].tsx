@@ -60,9 +60,9 @@ const ProjectPage = ({ project }: PageProps) => {
             </div>
           </div>
         </section>
-        <section className="w-full max-w-screen-xl px-4 py-4 mx-auto xl:py-20">
-          <h2 className="mb-2">{project?.title}</h2>
-          <div className="max-w-xl">
+        <section className="grid items-start w-full max-w-screen-xl grid-cols-12 gap-4 px-4 py-4 mx-auto xl:py-20">
+          <div className="xl:col-span-6 col-span-full">
+            <h2 className="mb-2">{project?.title}</h2>
             {project?.tags?.length > 0 && (
               <ul className="flex flex-wrap gap-2 pb-4">
                 <ProjectStatus status={project?.status} />
@@ -77,11 +77,8 @@ const ProjectPage = ({ project }: PageProps) => {
             )}
             <PortableText value={project?.content} />
           </div>
-        </section>
-
-        {isNotEmptyArray(project?.extraImages) && (
-          <section className="p-4 bg-dark">
-            <div className="grid max-w-screen-xl grid-cols-2 gap-4 mx-auto xl:grid-cols-4">
+          {isNotEmptyArray(project?.extraImages) && (
+            <div className="grid grid-cols-2 col-span-6 gap-2 xl:mt-12 xl:grid-cols-3">
               {project.extraImages.map((image, i) => {
                 return (
                   <div className="relative aspect-square" key={i}>
@@ -102,8 +99,8 @@ const ProjectPage = ({ project }: PageProps) => {
                 )
               })}
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
         {project?.connectedVideo?.videoUrl && (
           <section className="relative py-10">

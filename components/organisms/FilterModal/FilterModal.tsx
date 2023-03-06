@@ -30,7 +30,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
       <Dialog
         open={isFilterModalOpen}
         onClose={setFilterModalOpen}
-        className="fixed right-0 flex items-center justify-end w-full h-full max-w-xs my-auto max-h-[70vh] z-10 pr-6 overflow-y-scroll top-10 bottom-10"
+        className="fixed right-0 flex items-center justify-end w-full h-full max-w-xs my-auto max-h-[100svh] xl:max-h-[100svh] z-20  overflow-y-scroll top-0 bottom-0"
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -42,20 +42,22 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
         />
         <Dialog.Panel className="relative z-10 w-full h-full overflow-y-scroll bg-white">
           {/* <Dialog.Title>Filters</Dialog.Title> */}
-          <Dialog.Description className="sticky top-0 flex flex-col gap-4 p-4 pb-4 bg-white shadow-lg">
+          <Dialog.Description className="sticky top-0 flex flex-col gap-8 p-4 pb-4 shadow-lg bg-wh">
             <div className="flex items-center justify-between">
-              <strong>Mediums</strong>
-              <button onClick={setFilterModalOpen}>
+              <strong>Filter</strong>
+              <button onClick={setFilterModalOpen} className="text-2xl">
                 <IoClose />
               </button>
             </div>
-
-            <button className="w-full ring-dark ring" onClick={clearFilterList}>
-              Clear All
+            <button
+              className="w-full ring-dark ring hover:bg-primary/90 hover:text-white"
+              onClick={clearFilterList}
+            >
+              <strong>Clear All</strong>
             </button>
           </Dialog.Description>
 
-          <ul className="p-4 py-4">
+          <ul className="px-4 py-4">
             {filters.map((filter, i) => {
               const isLastElement = i === filters.length - 1
               return (
@@ -68,7 +70,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
                     )}
                   >
                     <label htmlFor={filter.name} className="cursor-pointer">
-                      {filter.name}({filter.paintingsCount})
+                      {filter.name} - {filter.paintingsCount}
                     </label>
                     <input
                       id={filter.name}

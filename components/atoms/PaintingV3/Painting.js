@@ -98,7 +98,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
       viewport={{ once: true, amount: 0.4 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+        "relative w-full @container hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
       )}
       key={_id}
     >
@@ -112,14 +112,14 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           sizes="(max-width: 768px) 50vw,
             25vw"
           // src={fetchedPainting}
-          height={imageHeight[format]}
-          width={imageWidth[format]}
-          // fill
+          // height={imageHeight[format]}
+          // width={imageWidth[format]}
+          fill
           alt={`painting: ${title}`}
           priority={isPriority}
           className={clsx(
             !isNsfw && !isNsfwUrl && "group-hover:scale-125",
-            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover  bg-gray-50 "
+            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
           )}
         />
         {isNsfw && !isNsfwUrl && (
@@ -143,7 +143,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center text-center text-white">
-          <strong className="text-sm xl:text-xl group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)]">
+          <strong className="text-xs xl:text-xl group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm">
             {title}
           </strong>
         </div>
@@ -153,7 +153,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
             <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
               <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
             </div>
-            <b>For sale</b>
+            <strong className="text-xs @xs:text-sm">For sale</strong>
           </div>
         )}
 

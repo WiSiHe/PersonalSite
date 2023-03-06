@@ -36,30 +36,32 @@ interface iFilterBar {
 }
 
 const FilterBar = ({ filters = [] }: iFilterBar) => {
-  const [gridOptionsOpen, setGridOptionsOpen] = useState(false)
-
   const sorting = useCombinedStore((state) => state.paintingSorting)
   const setSorting = useCombinedStore((state) => state.setPaintingSorting)
 
   const colSize = useCombinedStore((state) => state.colSize)
   const setColSize = useCombinedStore((state) => state.setColSize)
+  const setColStyle = useCombinedStore((state) => state.setColStyle)
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
-  const isFilterModalOpen = useCombinedStore((state) => state.modalOpen)
+  // const isFilterModalOpen = useCombinedStore((state) => state.modalOpen)
   const setFilterModalOpen = useCombinedStore((state) => state.setModalOpen)
 
   const amountOfActiveFilters = filterList.length
 
-  const handleSetPaintingColStyleIncrease = () => {
-    if (colSize === 3) return
-    setColSize(colSize + 1)
-  }
-
-  const handleSetPaintingColStyleDecrease = () => {
-    if (colSize === 1) return
-    setColSize(colSize - 1)
+  const toggleColSize = () => {
+    if (colSize === 1) {
+      setColSize(2)
+      setColStyle("col-span-4 xl:col-span-3")
+    } else if (colSize === 2) {
+      setColSize(3)
+      setColStyle("col-span-6 xl:col-span-2")
+    } else if (colSize === 3) {
+      setColSize(1)
+      setColStyle("col-span-full xl:col-span-4")
+    }
   }
 
   const handleToggleSorting = () => {
@@ -75,42 +77,18 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   return (
     <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6 bg-gradient-to-t from-dark/40 ">
       <div className="relative flex flex-1 gap-4">
-        <div className="hidden xl:block">
+        <div className="">
           <AnimatePresence>
-            {gridOptionsOpen && (
-              <motion.button
-                initial={{ x: -10, scale: 0.8 }}
-                animate={{ x: 0, scale: 1 }}
-                exit={{ x: -10, scale: 0.8 }}
-                transition={{ type: "spring" }}
-                className="p-4 bg-white"
-                onClick={handleSetPaintingColStyleDecrease}
-                disabled={colSize === 1}
-              >
-                <BiMinus />
-              </motion.button>
-            )}
-
             <motion.button
-              className="p-4 bg-white"
-              onClick={() => setGridOptionsOpen((prev) => !prev)}
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 10 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="p-4 bg-white hover:bg-primary hover:text-white"
+              onClick={toggleColSize}
             >
               <BsFillGrid1X2Fill />
             </motion.button>
-
-            {gridOptionsOpen && (
-              <motion.button
-                initial={{ x: -10, scale: 0.8 }}
-                animate={{ x: 0, scale: 1 }}
-                exit={{ x: 0, y: 100, scale: 0.8 }}
-                transition={{ type: "spring" }}
-                className="p-4 bg-white"
-                onClick={handleSetPaintingColStyleIncrease}
-                disabled={colSize === 3}
-              >
-                <BiPlus />
-              </motion.button>
-            )}
           </AnimatePresence>
         </div>
         <ScrollToTopButton isFixed={false} />
@@ -150,7 +128,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         ))}
       </RadioGroup>
       <button
-        className="flex items-center justify-center gap-2 p-3 capitalize bg-white xl:hidden"
+        className="flex items-center justify-center gap-2 p-3 capitalize bg-white hover:text-white hover:bg-primary xl:hidden"
         onClick={handleToggleSorting}
       >
         {sorting}
@@ -167,9 +145,8 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
           </button>
         )}
         <motion.button
-          layout
           onClick={setFilterModalOpen}
-          className="relative p-4 bg-white"
+          className="relative p-4 bg-white hover:bg-primary hover:text-white"
         >
           {amountOfActiveFilters > 0 && (
             <div className="text-[10px] absolute pointer-events-none overflow-clip -top-2 -right-2 bg-primary rounded-full w-6 h-6 flex justify-center items-center text-white">
@@ -177,7 +154,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
             </div>
           )}
           <AnimatePresence>
-            {isFilterModalOpen ? <IoClose /> : <IoFilterSharp />}
+            <IoFilterSharp />
           </AnimatePresence>
         </motion.button>
       </div>
