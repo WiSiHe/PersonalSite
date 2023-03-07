@@ -12,7 +12,7 @@ interface GenerateNextApiRequest extends NextApiRequest {
 }
 
 const configuration = new Configuration({
-  apiKey: process.env.NEXT_OPENAI_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 })
 
 const openai = new OpenAIApi(configuration)
@@ -28,17 +28,20 @@ export default async function handler(
     return
   }
 
-  const aiResult = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: promt,
-    // temperature: 0.9, // higher temperature means more creative, less coherent
-    // maxTokens: 100, // max number of tokens to generate
-    // frequencyPenalty: 0.5, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
-    // presencePenalty: 0.0, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
-  })
-
-  const response =
-    aiResult.data.choices[0].text?.trim() || "Sorry, I don't know"
-
-  res.status(200).json({ text: response })
+  try {
+    const aiResult = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: promt,
+      // temperature: 0.9, // higher temperature means more creative, less coherent
+      // maxTokens: 100, // max number of tokens to generate
+      // frequencyPenalty: 0.5, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
+      // presencePenalty: 0.0, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
+    })
+    const response = aiResult.data.choices[0].text || "Sorry, I don't know"
+    res.status(200).json({ text: response })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ text: "Sorry, I don't know" })
+    return
+  }
 }
