@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react"
 const TestPage = () => {
   const [prompt, setPrompt] = useState("")
   const [answer, setAnswer] = useState("")
+  const [joke, setJoke] = useState("")
   const callApi = async () => {
     // const myMessage = "What does, Hello, world! mean?"
 
@@ -25,6 +26,12 @@ const TestPage = () => {
     }
   }
 
+  const getJoke = async () => {
+    const response = await fetch("/api/getJoke").then((res) => res.json())
+    console.log("response", response)
+    setJoke(response.text)
+  }
+
   const handleSubmission = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     callApi()
@@ -43,6 +50,11 @@ const TestPage = () => {
           <button>click me</button>
         </form>
         {answer}
+        <div>
+          joke stuff
+          <button onClick={getJoke}>get joke</button>
+          {joke}
+        </div>
       </Main>
     </>
   )

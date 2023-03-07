@@ -20,15 +20,12 @@ import { isNotEmptyObject } from "utils/object"
 
 const cardVariants = {
   offscreen: {
-    y: 200,
+    y: 100,
     opacity: 0,
   },
   onscreen: {
     y: 0,
     opacity: 1,
-    transition: {
-      type: "spring",
-    },
   },
 }
 
@@ -84,9 +81,9 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 key={_id}
                 initial="offscreen"
                 whileInView="onscreen"
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true }}
                 variants={cardVariants}
-                className="relative h-full p-4 bg-white shadow-xl col-span-full"
+                className="relative h-full p-4 bg-white shadow-xl col-span-full xl:col-span-6"
               >
                 <div className="">
                   <h2 className="text-3xl">
