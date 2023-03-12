@@ -21,7 +21,6 @@ export default function Home({
   return (
     <>
       <Meta url="https://wisihe.no" />
-
       <Main noTopPadding className="flex-col overflow-clip">
         <HeroSectionMobile paintings={desktopWallpaper} />
         <HeroSectionDesktop paintings={desktopWallpaper} />
@@ -47,11 +46,6 @@ export default function Home({
             </p>
           </div>
         </section>
-
-        {/* <section className="relative py-10 xl:py-10">
-          <div className="absolute inset-0 pointer-events-none from-dark/5 bg-gradient-to-t" />
-          <SalesPointsSection />
-        </section> */}
         <ScrollSection />
       </Main>
       <Footer />

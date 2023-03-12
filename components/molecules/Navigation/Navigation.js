@@ -64,11 +64,11 @@ export default function Navigation({ isAbsolute = false }) {
       <m.div
         initial={{ opacity: 0, x: -100, rotate: -180 }}
         animate={{ opacity: 1, x: 0, rotate: 0 }}
-        transition={{ type: "spring", delay: 0.5, bounce: 0.25 }}
+        transition={{ type: "spring", bounce: 0.25 }}
         whileHover={{
           scale: 1.1,
           rotate: 90,
-          transition: { type: "spring" },
+          transition: { type: "spring", delay: 0, duration: 0.5, bounce: 0.25 },
         }}
         className="flex items-center gap-2"
       >

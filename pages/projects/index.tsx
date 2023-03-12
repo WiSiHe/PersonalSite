@@ -4,7 +4,6 @@ import { getAllProjectsAndTags } from "lib/api"
 import { iSanityProject } from "lib/models/objects/sanityProject"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import React, { useState } from "react"
-import painting from "schemas/painting"
 import { isEven } from "utils/numbers"
 
 interface PageProps {
@@ -12,9 +11,19 @@ interface PageProps {
   tags: iSanityTag[]
 }
 
+// const projectStatus = [
+//   "completed",
+//   "ongoing",
+//   "planned",
+//   "abandoned",
+//   "inProgress",
+//   "onHold",
+//   "paused",
+// ]
+
 export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
   const [currentFilter, setCurrentFilter] = useState<string>("all")
-  console.log("currentFilter", currentFilter)
+  // const [currentStatusFilter, setCurrentStatusFilter] = useState<string>("all")
 
   const allTags = [{ name: "all", projectCount: projects.length }, ...tags]
   return (
@@ -34,8 +43,24 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
             </p>
           </div>
 
+          {/* {projectStatus.length > 0 && (
+            <section className="flex gap-1 col-span-full">
+              {projectStatus.map((status) => {
+                return (
+                  <button
+                    key={status}
+                    className="px-3 py-2 text-xs text-white uppercase rounded-full bg-dark hover:bg-gray-700"
+                    onClick={() => setCurrentStatusFilter(status)}
+                  >
+                    <strong>{status}</strong>
+                  </button>
+                )
+              })}
+            </section>
+          )} */}
+
           {tags.length > 0 && (
-            <section className="flex gap-2 overflow-x-scroll xl:flex-wrap col-span-full">
+            <section className="flex gap-1 overflow-x-scroll xl:flex-wrap col-span-full">
               {allTags
                 .sort((a, b) => b.projectCount - a.projectCount)
                 .map((filter) => {
@@ -43,7 +68,7 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
                   return (
                     <button
                       key={name}
-                      className="px-3 py-2 text-xs text-white uppercase bg-gray-800 rounded-full shrink-0 hover:bg-gray-700"
+                      className="px-3 py-2 text-xs text-white uppercase rounded-full bg-dark shrink-0 hover:bg-gray-700"
                       onClick={() => {
                         setCurrentFilter(name)
                       }}
@@ -68,9 +93,21 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
               }
               return false
             })
+            // .filter((project) => {
+            //   const { status = "" } = project
+            //   if (currentStatusFilter === "all") {
+            //     return true
+            //   }
+            //   if (status === currentStatusFilter) {
+            //     return true
+            //   }
+            //   return false
+            // })
             .map((project, i) => {
               const { _id = "" } = project
+              console.log("project", project)
               const isLeft = isEven(i)
+
               return (
                 <div className={clsx("col-span-full xl:col-span-6")} key={_id}>
                   <Project {...project} imageLeft={isLeft} />

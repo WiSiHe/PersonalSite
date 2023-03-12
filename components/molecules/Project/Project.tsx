@@ -92,8 +92,8 @@ const Project = ({
             <ProjectStatus status={status} />
             {tags.map((tag, i) => {
               return (
-                <li key={tag.name + i} className="px-1 bg-primary">
-                  <div className="">{tag.name}</div>
+                <li key={tag.name + i} className="px-2 py-1 bg-primary">
+                  <div className="text-xs">{tag.name}</div>
                 </li>
               )
             })}

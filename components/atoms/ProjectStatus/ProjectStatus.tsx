@@ -41,7 +41,7 @@ const ProjectStatus = ({ status }: iStatus) => {
   return (
     <div
       className={clsx(
-        "flex items-center gap-1 px-2 py-1 backdrop-blur text-dark",
+        "flex items-center text-xs gap-1 px-2 py-1 backdrop-blur text-dark",
         projectStatusColor[status]
       )}
     >

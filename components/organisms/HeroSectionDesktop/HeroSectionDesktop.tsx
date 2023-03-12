@@ -73,7 +73,7 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
     <section
       className={clsx(
         "transition-all w-full duration-500 gap-4 ease-in-out hidden items-center relative xl:grid grid-cols-12",
-        "w-full h-[80svh] min-h-[80vh]"
+        "w-full h-full min-h-[70vh]"
       )}
     >
       <m.div
