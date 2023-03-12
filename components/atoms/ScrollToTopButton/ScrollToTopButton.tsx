@@ -70,7 +70,7 @@ const ScrollToTopButton = ({ isFixed = true }: iScrollToTopButton) => {
             onClick={handleClick}
             whileHover={{ scale: 1.1 }}
             className={clsx(
-              "flex items-center justify-center p-4 transition-all duration-200 ease-in-out bg-white shadow hover:text-white group hover:bg-primary ring-highlight focus-within:ring hover:ring active:bg-highlight focus:outline-none focus:ring focus-visible:ring-highlight focus-visible:text-white focus-visible:bg-primary"
+              "flex items-center rounded-full justify-center p-4 transition-all duration-200 ease-in-out bg-white shadow hover:text-white group hover:bg-primary ring-highlight focus-within:ring hover:ring active:bg-highlight focus:outline-none focus:ring focus-visible:ring-highlight focus-visible:text-white focus-visible:bg-primary"
             )}
           >
             <IoArrowUpSharp />

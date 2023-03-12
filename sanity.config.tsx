@@ -2,6 +2,7 @@
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
+import { Stack, Text, TextInput } from "@sanity/ui"
 import { visionTool } from "@sanity/vision"
 import {
   apiVersion,
@@ -30,12 +31,22 @@ export default defineConfig({
   projectId,
   dataset,
   title,
+  // form: {
+  //   components: {
+  //     input: (props) => {
+  //       const { elementProps } = props
+  //       console.log("elementProps", elementProps)
+
+  //       return <TextInput {...elementProps} />
+  //     },
+  //   },
+  // },
   schema: {
     // If you want more content types, you can add them to this array
     types: [
       // authorType,
       // postType,
-      // settingsType,
+      settingsType,
       paintingType,
       tagType,
       videoType,
@@ -47,7 +58,7 @@ export default defineConfig({
     deskTool({
       structure: settingsStructure(settingsType),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
-      //   defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
+      // defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     settingsPlugin({ type: settingsType.name }),

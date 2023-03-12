@@ -1,7 +1,10 @@
 import { PackageIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
+import { Stack, Text, TextInput } from "@sanity/ui"
+
 import tagType from "./tag"
+import { SanityAI } from "components"
 
 export default defineType({
   name: "project",
@@ -139,6 +142,32 @@ export default defineType({
       of: [{ type: "reference", to: { type: tagType.name } }],
       description: "Tags for the video",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "metaDescription",
+      title: "Meta Description",
+      type: "text",
+      components: {
+        input: (props) => {
+          const { elementProps, value = "" } = props
+
+          const { onChange, ref } = elementProps
+          console.log("elementProps", elementProps)
+
+          return (
+            <Stack space={2}>
+              {/* <Text>Characters: {value.length}</Text> */}
+              <SanityAI
+                value={value}
+                // handleChange={handleChange}
+                inputRef={ref}
+              />
+              ChatGPT:
+              <TextInput {...elementProps} />
+            </Stack>
+          )
+        },
+      },
     }),
   ],
   preview: {

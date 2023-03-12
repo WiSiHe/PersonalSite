@@ -36,13 +36,13 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ type: "spring" }}
-          className="fixed inset-0 bg-dark/40"
+          transition={{ type: "spring", duration: 0.4 }}
+          className="fixed inset-0 bg-dark/40 backdrop-filter backdrop-blur-sm"
           aria-hidden="true"
         />
         <Dialog.Panel className="relative z-10 w-full h-full overflow-y-scroll bg-white">
           {/* <Dialog.Title>Filters</Dialog.Title> */}
-          <Dialog.Description className="sticky top-0 flex flex-col gap-8 p-4 pb-4 shadow-lg bg-wh">
+          <Dialog.Description className="sticky top-0 flex flex-col gap-8 p-4 pb-4 bg-white shadow-lg">
             <div className="flex items-center justify-between">
               <strong>Filter</strong>
               <button onClick={setFilterModalOpen} className="text-2xl">

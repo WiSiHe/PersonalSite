@@ -75,29 +75,27 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   }
 
   return (
-    <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6 bg-gradient-to-t from-dark/40 ">
+    <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6">
       <div className="relative flex flex-1 gap-4">
-        <div className="">
-          <AnimatePresence>
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 10 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="p-4 bg-white hover:bg-primary hover:text-white"
-              onClick={toggleColSize}
-            >
-              <BsFillGrid1X2Fill />
-            </motion.button>
-          </AnimatePresence>
-        </div>
+        <AnimatePresence>
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="p-4 bg-white rounded-full shadow-xl hover:bg-primary hover:text-white"
+            onClick={toggleColSize}
+          >
+            <BsFillGrid1X2Fill />
+          </motion.button>
+        </AnimatePresence>
         <ScrollToTopButton isFixed={false} />
       </div>
 
       <RadioGroup
         value={sorting}
         onChange={setSorting}
-        className={clsx(" bg-white hidden xl:flex p-1")}
+        className={clsx("bg-white hidden xl:flex p-1 rounded-full shadow-xl")}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
         {testFilter.map((filter) => (
@@ -110,13 +108,13 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
               <div className={clsx("cursor-pointer relative p-2")}>
                 {checked && (
                   <motion.div
-                    className="absolute inset-0 z-0 w-full h-full bg-primary"
+                    className="absolute inset-0 z-0 w-full h-full rounded-full bg-primary hover:opacity-90"
                     layoutId="underline"
                   />
                 )}
                 <div
                   className={clsx(
-                    "z-10 relative text-sm transition-all duration-200 delay-200 ease-in-out",
+                    "z-10 relative text-sm transition-all duration-200 delay-200 ease-in-out hover:underline hover:decoration-3",
                     checked ? "text-white" : "text-primary"
                   )}
                 >
@@ -128,7 +126,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         ))}
       </RadioGroup>
       <button
-        className="flex items-center justify-center gap-2 p-3 capitalize bg-white hover:text-white hover:bg-primary xl:hidden"
+        className="flex items-center justify-center gap-2 p-3 capitalize bg-white rounded-full shadow-xl hover:text-white hover:bg-primary xl:hidden"
         onClick={handleToggleSorting}
       >
         {sorting}
@@ -146,7 +144,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         )}
         <motion.button
           onClick={setFilterModalOpen}
-          className="relative p-4 bg-white hover:bg-primary hover:text-white"
+          className="relative p-4 bg-white rounded-full shadow-xl hover:bg-primary hover:text-white"
         >
           {amountOfActiveFilters > 0 && (
             <div className="text-[10px] absolute pointer-events-none overflow-clip -top-2 -right-2 bg-primary rounded-full w-6 h-6 flex justify-center items-center text-white">

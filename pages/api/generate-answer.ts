@@ -29,14 +29,17 @@ export default async function handler(
   }
 
   try {
-    const aiResult = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: promt,
-      // temperature: 0.9, // higher temperature means more creative, less coherent
-      // maxTokens: 100, // max number of tokens to generate
-      // frequencyPenalty: 0.5, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
-      // presencePenalty: 0.0, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
-    })
+    const aiResult = await openai.createCompletion(
+      {
+        model: "text-davinci-003",
+        prompt: promt,
+        max_tokens: 100, // max number of tokens to generate
+        temperature: 0.9, // higher temperature means more creative, less coherent
+        frequency_penalty: 0.5, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
+        presence_penalty: 0.0, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
+      },
+      { timeout: 0 }
+    )
     const response = aiResult.data.choices[0].text || "Sorry, I don't know"
     res.status(200).json({ text: response })
   } catch (error) {
