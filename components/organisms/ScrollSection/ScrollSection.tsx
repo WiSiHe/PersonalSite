@@ -98,7 +98,7 @@ const ScrollSection = () => {
         </GridStyleWrapper>
       </section>
 
-      <section className="px-4 py-20 text-center xl:py-40">
+      {/* <section className="px-4 py-20 text-center xl:py-40">
         <m.h2
           initial={{
             opacity: 0,
@@ -125,54 +125,58 @@ const ScrollSection = () => {
             <strong>Videos</strong>
           </LinkButton>
         </div>
-      </section>
+      </section> */}
 
-      <section className="relative p-4 xl:p-10 bg-dark overflow-clip">
-        <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
-          <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
-            <iframe
-              src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
-              width="100%"
-              height="100%"
-            />
-          </div>
-          <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
-            <m.h2
-              initial={{
-                opacity: 0,
-                scale: 0,
-              }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <strong>
-                Fancy <span className="text-primary">animations!</span>
-              </strong>
-            </m.h2>
-            <m.div
-              initial={{
-                opacity: 0,
-                y: 50,
-              }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <p className="drop-shadow">
-                I enjoy playing around with 3D modeling and animation. The
-                object{" "}
-                <strong className="hidden text-xl text-primary xl:inline">
-                  on the left
+      <section className="relative p-4 bg-dark overflow-clip">
+        <GridStyleWrapper>
+          <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
+            <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
+              <iframe
+                src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+                width="100%"
+                height="100%"
+              />
+            </div>
+            <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
+              <m.h2
+                initial={{
+                  opacity: 0,
+                  scale: 0,
+                }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <strong>
+                  Fancy <span className="text-primary">animations!</span>
                 </strong>
-                <strong className="inline xl:hidden text-primary">above</strong>{" "}
-                is a quick creation I put together using Spline. In the past,
-                I&#39;ve designed a variety of game assets including trees,
-                rocks, and structures.
-                <br />
-                <br /> More information coming soon!
-              </p>
-            </m.div>
+              </m.h2>
+              <m.div
+                initial={{
+                  opacity: 0,
+                  y: 50,
+                }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <p className="drop-shadow">
+                  I enjoy playing around with 3D modeling and animation. The
+                  object{" "}
+                  <strong className="hidden text-xl text-primary xl:inline">
+                    on the left
+                  </strong>
+                  <strong className="inline xl:hidden text-primary">
+                    above
+                  </strong>{" "}
+                  is a quick creation I put together using Spline. In the past,
+                  I&#39;ve designed a variety of game assets including trees,
+                  rocks, and structures.
+                  <br />
+                  <br /> More information coming soon!
+                </p>
+              </m.div>
+            </div>
           </div>
-        </div>
+        </GridStyleWrapper>
       </section>
 
       <section className="relative grid h-full grid-flow-col-dense aspect-square xl:aspect-video overflow-clip">

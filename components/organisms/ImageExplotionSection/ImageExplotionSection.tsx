@@ -131,10 +131,11 @@ const ImageExplotionSection = () => {
             }}
             whileHover={{
               scale: randomScaleValue + 0.02,
+              // boxShadow: "0px 0px 37px 8px rgba(255,255,255,0.32)",
+              boxShadow: "0px 0px 37px 8px #DE0D92",
               z: 10,
               transition: {
                 duration: 1,
-
                 type: "spring",
               },
             }}

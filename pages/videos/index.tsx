@@ -52,7 +52,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
       />
       <Main className="py-4 xl:py-10" noTopPadding>
         <section className="grid w-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto space-y-4">
-          <section className="col-span-full">
+          <section className="col-span-full xl:col-span-8">
             <h1 className="text-4xl">Videos</h1>
             <p>
               Explore a collection of my diverse videos, ranging from painting
@@ -83,18 +83,18 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 whileInView="onscreen"
                 viewport={{ once: true }}
                 variants={cardVariants}
-                className="relative h-full p-4 bg-white shadow-xl col-span-full xl:col-span-6"
+                className="relative flex flex-col justify-between h-full bg-white shadow-xl col-span-full xl:col-span-6"
               >
-                <div className="">
+                <div className="p-4">
                   <h2 className="text-3xl">
                     <strong>{title}</strong>
                   </h2>
                   <div>{description}</div>
                   {isNotEmptyArray(tags) && (
-                    <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="absolute bottom-0 left-0 right-0 flex flex-wrap gap-2 p-4 pointer-events-none">
                       {tags.map((tag) => {
                         return (
-                          <div key={tag.name}>
+                          <div key={tag.name} className="text-xs">
                             <Chip>{tag.name}</Chip>
                           </div>
                         )
@@ -103,7 +103,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                   )}
                 </div>
 
-                <div className="mt-4 aspect-video">
+                <div className="aspect-video">
                   <Suspense fallback={<div>Loading...</div>}>
                     <ReactPlayer
                       url={videoUrl}
