@@ -32,10 +32,10 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
         title="Projects"
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
-      <Main noTopPadding className="min-h-screen py-4 xl:py-10">
+      <Main className="min-h-screen">
         <section className="relative grid h-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto">
           <div className="col-span-full xl:col-span-8">
-            <h1 className="text-4xl">My Projects</h1>
+            <h1>My Projects</h1>
             <p>
               Discover a collection of my ongoing and completed projects, each
               with unique learning experiences. Explore my portfolio to see my

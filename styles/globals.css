@@ -21,6 +21,10 @@
   }
   */
 
+  body {
+    @apply bg-tertiary;
+  }
+
   h1 {
     @apply text-3xl xl:text-5xl;
   }

@@ -72,57 +72,36 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
   return (
     <section
       className={clsx(
-        "transition-all w-full duration-500 gap-4 ease-in-out hidden items-center relative xl:grid grid-cols-12",
-        "w-full h-full min-h-[70vh]"
+        "transition-all w-full duration-500 ease-in-out hidden items-center relative xl:grid grid-cols-12",
+        "w-full h-full min-h-screen"
       )}
     >
       <m.div
-        initial={{ opacity: 0, x: -400 }}
-        transition={{ type: "spring", delay: 2.0 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring", delay: 1.4 }}
         // whileInView={{ opacity: 1, x: 0 }}
         // viewport={{ once: true, amount: 0.1 }}
-        className="absolute z-10 flex h-full col-span-4 col-start-1 my-auto space-y-4 bg-white/60 backdrop-blur-xl"
+        className="absolute z-10 flex col-span-4 col-start-2 my-auto ring-white ring-offset-4 ring-4 h-fit bg-tertiary/40 backdrop-blur-2xl"
       >
-        <div className="flex flex-col justify-between gap-4 p-10">
+        <div className="flex flex-col justify-center gap-4 p-10">
           <div className="flex flex-col gap-4">
-            <h1 className="text-8xl">
+            <h1 className="text-dark text-8xl">
               <strong>Henrik Wilhelm Sissener</strong>
             </h1>
-            <p>
-              I&#39;m a digital artist and web developer who enjoys character
-              design and landscape painting. In my free time, I create digital
-              art and explore programming, game development, and frontend
-              technologies.
-            </p>
-            <LinkButton href="/paintings">
-              <strong>Go to gallery</strong>
-            </LinkButton>
-          </div>
-          <div className="flex items-center justify-center gap-4">
-            <m.button
-              whileHover={{ scale: 1.2 }}
-              onClick={() => handleGoLeft()}
-              className="flex-shrink-0 p-1 bg-white w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
-              aria-label="Go to previous painting"
-              // onMouseOver={() => setMousedOver(true)}
-              // onMouseOut={() => setMousedOver(false)}
-            >
-              <BsChevronLeft aria-label="Left" className="p-2 text-3xl " />
-            </m.button>
-            <span className="text-xs">
-              {desktopIndex + 1} / {paintings.length}
-            </span>
-            <m.button
-              whileHover={{ scale: 1.2 }}
-              onClick={handleGoRight}
-              className="flex-shrink-0 p-1 bg-white w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
-              aria-label="Go to next painting"
-              // onMouseOver={() => setMousedOver(true)}
-              // onMouseOut={() => setMousedOver(false)}
-            >
-              <BsChevronRight aria-label="Right" className="p-2 text-3xl" />
-            </m.button>
+            <ul className="list-disc list-inside text-dark">
+              <li>Digital artist and web developer</li>
+              <li>Enjoys character design and landscape painting</li>
+              <li>
+                Passionate about programming, game development, and frontend
+                technologies.
+              </li>
+            </ul>
+            <div className="flex justify-end">
+              <LinkButton href="/paintings">
+                <strong>Go to gallery</strong>
+              </LinkButton>
+            </div>
           </div>
         </div>
       </m.div>
@@ -130,9 +109,35 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
         style={{ width: timerStyle }}
         className="absolute inset-0 z-10 h-2 transition-all ease-linear col-span-full bg-primary"
       /> */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 flex items-center justify-center col-start-5 gap-4 p-4">
+        <m.button
+          whileHover={{ scale: 1.2 }}
+          onClick={() => handleGoLeft()}
+          className="flex-shrink-0 p-1 bg-white w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
+          aria-label="Go to previous painting"
+          // onMouseOver={() => setMousedOver(true)}
+          // onMouseOut={() => setMousedOver(false)}
+        >
+          <BsChevronLeft aria-label="Left" className="p-2 text-3xl " />
+        </m.button>
+        <span className="p-4 text-xs bg-white">
+          {desktopIndex + 1} / {paintings.length}
+        </span>
+        <m.button
+          whileHover={{ scale: 1.2 }}
+          onClick={handleGoRight}
+          className="flex-shrink-0 p-1 bg-white w-fit hover:ring focus:outline-none focus:ring ring-highlight focus:border-transparent"
+          aria-label="Go to next painting"
+          // onMouseOver={() => setMousedOver(true)}
+          // onMouseOut={() => setMousedOver(false)}
+        >
+          <BsChevronRight aria-label="Right" className="p-2 text-3xl" />
+        </m.button>
+      </div>
 
       <div className="relative h-full col-span-full bg-dark aspect-video">
         <HeroSectionLoader />
+
         <Image
           src={imageBuilder(currentWallpaper.image)
             .width(1920)
@@ -152,13 +157,11 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
           )}
           alt=""
         />
-        <div
+        {/* <div
           className={
-            "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary/90 to-highlight animate-gradient-xy mix-blend-overlay"
+            "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary to-highlight animate-gradient-xy mix-blend-hue "
           }
-          // onMouseOver={() => setMousedOver(true)}
-          // onMouseOut={() => setMousedOver(false)}
-        />
+        /> */}
       </div>
     </section>
   )

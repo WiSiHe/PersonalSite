@@ -62,11 +62,11 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Main noTopPadding className="overflow-clip">
+      <Main className="overflow-clip">
         <section className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 ring">
           <section className="col-span-full">
             <div className="p-2 xl:p-4">
-              <h1 className="text-2xl font-bold">Welcome to my gallery</h1>
+              <h1 className="">Welcome to my gallery</h1>
               <p className="mt-2">
                 Here you can find some of my paintings. I have a wide range of
                 paintings.

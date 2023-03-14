@@ -51,10 +51,10 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
         url="https://wisihe.no/videos"
         description="A gallery of some of my videos"
       />
-      <Main className="py-4 xl:py-10" noTopPadding>
+      <Main className="">
         <section className="grid w-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto space-y-4">
           <section className="col-span-full xl:col-span-8">
-            <h1 className="text-4xl">Videos</h1>
+            <h1>Videos</h1>
             <p>
               Explore a collection of my diverse videos, ranging from painting
               time-lapses and game development to hand-drawn animations. My

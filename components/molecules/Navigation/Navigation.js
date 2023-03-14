@@ -47,7 +47,7 @@ const container = {
 //   show: { opacity: 1, y: 0 },
 // }
 
-export default function Navigation({ isAbsolute = false }) {
+export default function Navigation({ isAbsolute = true }) {
   const router = useRouter()
   const { asPath = "" } = router
   const asPathWithSpacing = asPath.replace(/\//g, "/")
@@ -56,9 +56,8 @@ export default function Navigation({ isAbsolute = false }) {
     <nav
       aria-label="Main Navigation"
       className={clsx(
-        "bg-dark backdrop-blur-lg z-20 text-white",
-        isAbsolute ? "absolute top-0 left-0 right-0" : "relative",
-        "flex items-center justify-between px-2 py-2 mx-auto xl:px-4"
+        "z-20 flex items-center justify-between px-2 py-2 mx-auto xl:px-4",
+        isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
       <m.div
@@ -70,15 +69,15 @@ export default function Navigation({ isAbsolute = false }) {
           rotate: 90,
           transition: { type: "spring", delay: 0, duration: 0.5, bounce: 0.25 },
         }}
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 mix-blend-difference"
       >
         <Link
           href="/"
           aria-label="Navigate to the homepage"
-          className="flex items-center justify-center text-sm text-white focus-visible:fill-primary decoration-4 focus:fill-primary focus:outline-none"
+          className="flex items-center justify-center text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none"
         >
           <LogoQR
-            className="transition-all ease-in-out fill-white hover:fill-primary focus:fill-primary"
+            className="transition-all ease-in-out fill-dark hover:fill-white focus:fill-white"
             width="2.5rem"
             height="2.5rem"
           />
@@ -86,10 +85,10 @@ export default function Navigation({ isAbsolute = false }) {
       </m.div>
 
       <m.ul
-        className="flex items-center gap-4"
         variants={container}
         initial="hidden"
         animate="show"
+        className="flex items-center gap-4 "
       >
         <AnimatePresence>
           {NavItems.map((item, i) => {
@@ -109,12 +108,12 @@ export default function Navigation({ isAbsolute = false }) {
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all hover:text-primary hover:decoration-2 hover:underline underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus-visible:underline",
+                    "transition-all   text-dark px-4 py-2  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus-visible:underline",
                     isActive &&
-                      "underline decoration-primary text-primary decoration-2"
+                      "underline decoration-primary text-white decoration-2 bg-primary"
                   )}
                 >
-                  <strong>{item.text}</strong>
+                  <strong className="drop-shadow">{item.text}</strong>
                 </Link>
               </m.li>
             )
