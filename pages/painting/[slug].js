@@ -18,6 +18,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
+  ssr: false,
 })
 
 export default function Gallery({ painting = {}, slug = {} }) {
