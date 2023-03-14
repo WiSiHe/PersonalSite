@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { m } from "framer-motion"
+import { AnimatePresence, m } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
@@ -18,11 +18,11 @@ const cardVariants = {
   onscreen: {
     // y: 0,
     opacity: 1,
-    transition: {
-      type: "spring",
-      // bounce: 0.4,
-      // duration: 1,
-    },
+  },
+  transition: {
+    type: "spring",
+    bounce: 0.2,
+    duration: 1,
   },
 }
 
@@ -33,15 +33,14 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   const isNsfwUrl = slug === "nsfw"
 
   const {
-    _id = "",
     image = {},
     // fetchedPainting = "",
     title = "",
-    format = "square",
+    // format = "square",
     slug: { current = "" } = {},
-    images = [],
     video = "",
     tagsV2 = [],
+    imagesCount = 0,
     // className = "",
   } = paintingData
 
@@ -58,8 +57,6 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   // check if nsfwTag is empty
   const isNsfw = Object.keys(nsfwTagObj).length > 0
 
-  const amounOfExtraImages = images?.length
-
   const linkString = `/painting/${current}`
 
   // const isHighlighted = index % 12 === 4
@@ -67,17 +64,17 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   // const imageWidth = isHighlighted ? 800 : 400
   // const imageHeight = isHighlighted ? 800 : 400
 
-  const imageWidth = {
-    square: 400,
-    landscape: 400,
-    portrait: 400,
-  }
+  // const imageWidth = {
+  //   square: 400,
+  //   landscape: 400,
+  //   portrait: 400,
+  // }
 
-  const imageHeight = {
-    square: 400,
-    landscape: 400,
-    portrait: 400,
-  }
+  // const imageHeight = {
+  //   square: 400,
+  //   landscape: 400,
+  //   portrait: 400,
+  // }
 
   // const imageHeightStyle = {
   //   square: "aspect-square",
@@ -92,90 +89,87 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   // }
 
   return (
-    <m.article
-      initial="offscreen"
-      whileInView="onscreen"
-      viewport={{ once: true, amount: 0.4 }}
-      variants={cardVariants}
-      className={clsx(
-        "relative w-full @container hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
-      )}
-      key={_id}
-    >
-      <Link href={linkString}>
-        <Image
-          src={imageBuilder(image)
-            .width(imageWidth[format])
-            .height(imageHeight[format])
-            .quality(45)
-            .url()}
-          sizes="(max-width: 768px) 50vw,
-            25vw"
-          // src={fetchedPainting}
-          // height={imageHeight[format]}
-          // width={imageWidth[format]}
-          fill
-          alt={`painting: ${title}`}
-          priority={isPriority}
-          className={clsx(
-            !isNsfw && !isNsfwUrl && "group-hover:scale-125",
-            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
-          )}
-        />
-        {isNsfw && !isNsfwUrl && (
-          <div
+    <AnimatePresence>
+      <m.article
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.4 }}
+        variants={cardVariants}
+        className={clsx(
+          "relative w-full @container hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+        )}
+      >
+        <Link href={linkString}>
+          <Image
+            src={imageBuilder(image).width(400).height(400).quality(55).url()}
+            sizes="(max-width: 768px) 50vw,
+            33vw"
+            // src={fetchedPainting}
+            // height={imageHeight[format]}
+            // width={imageWidth[format]}
+            fill
+            alt={`painting: ${title}`}
+            priority={isPriority}
             className={clsx(
-              "absolute inset-0 bg-black/10 ",
-              "backdrop-blur-2xl"
+              !isNsfw && !isNsfwUrl && "group-hover:scale-125",
+              "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
             )}
           />
-        )}
-
-        <div className="absolute inset-0 w-full h-full">
-          <div className="flex items-center justify-center w-full h-full">
+          {isNsfw && !isNsfwUrl && (
             <div
               className={clsx(
-                !isNsfw && !isNsfwUrl && "backdrop-blur-sm bg-primary/20",
-                "transition-all duration-1000 ease-in-out origin-center opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 "
+                "absolute inset-0 bg-black/10 ",
+                "backdrop-blur-2xl"
               )}
             />
+          )}
+
+          <div className="absolute inset-0 w-full h-full">
+            <div className="flex items-center justify-center w-full h-full">
+              <div
+                className={clsx(
+                  !isNsfw && !isNsfwUrl && "backdrop-blur-sm bg-primary/20",
+                  "transition-all duration-1000 ease-in-out origin-center opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 "
+                )}
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="absolute inset-0 flex items-center justify-center text-center text-white">
-          <strong className="text-xs xl:text-xl group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm">
-            {title}
-          </strong>
-        </div>
-
-        {hasStoreLinks && (
-          <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
-            <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
-              <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
-            </div>
-            <strong className="text-xs @xs:text-sm">For sale</strong>
+          <div className="absolute text-center text-white bottom-4 left-4">
+            <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
+              {title}
+            </strong>
           </div>
-        )}
 
-        <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
-          {video && (
-            <div className="p-2 bg-white">
-              <RiMovieFill />
+          {hasStoreLinks && (
+            <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
+              <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
+                <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+              </div>
+              <strong className="text-xs @xs:text-sm">For sale</strong>
             </div>
           )}
-          {amounOfExtraImages > 0 && (
-            <div className="p-2 bg-white">
-              <GrMultiple />
-            </div>
-          )}
-          {isNsfw && (
-            <div className="p-2 bg-white">
-              <FaExclamation />
-            </div>
-          )}
-        </div>
-      </Link>
-    </m.article>
+
+          <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
+            {video && (
+              <div className="p-2 bg-white">
+                <RiMovieFill />
+              </div>
+            )}
+            {imagesCount > 0 && (
+              <div className="p-2 bg-white">
+                <GrMultiple />
+              </div>
+            )}
+            {isNsfw && (
+              <div className="p-2 bg-white">
+                <FaExclamation />
+              </div>
+            )}
+          </div>
+        </Link>
+      </m.article>
+    </AnimatePresence>
   )
 }
 

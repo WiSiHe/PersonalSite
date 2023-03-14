@@ -39,9 +39,9 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   const sorting = useCombinedStore((state) => state.paintingSorting)
   const setSorting = useCombinedStore((state) => state.setPaintingSorting)
 
-  const colSize = useCombinedStore((state) => state.colSize)
-  const setColSize = useCombinedStore((state) => state.setColSize)
-  const setColStyle = useCombinedStore((state) => state.setColStyle)
+  // const colSize = useCombinedStore((state) => state.colSize)
+  // const setColSize = useCombinedStore((state) => state.setColSize)
+  // const setColStyle = useCombinedStore((state) => state.setColStyle)
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
@@ -51,18 +51,18 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
 
   const amountOfActiveFilters = filterList.length
 
-  const toggleColSize = () => {
-    if (colSize === 1) {
-      setColSize(2)
-      setColStyle("col-span-4 xl:col-span-3")
-    } else if (colSize === 2) {
-      setColSize(3)
-      setColStyle("col-span-6 xl:col-span-2")
-    } else if (colSize === 3) {
-      setColSize(1)
-      setColStyle("col-span-full xl:col-span-4")
-    }
-  }
+  // const toggleColSize = () => {
+  //   if (colSize === 1) {
+  //     setColSize(2)
+  //     setColStyle("col-span-4 xl:col-span-3")
+  //   } else if (colSize === 2) {
+  //     setColSize(3)
+  //     setColStyle("col-span-6 xl:col-span-2")
+  //   } else if (colSize === 3) {
+  //     setColSize(1)
+  //     setColStyle("col-span-full xl:col-span-4")
+  //   }
+  // }
 
   const handleToggleSorting = () => {
     if (sorting === "random") {
@@ -77,7 +77,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   return (
     <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6">
       <div className="relative flex flex-1 gap-4">
-        <AnimatePresence>
+        {/* <AnimatePresence>
           <motion.button
             initial={{ opacity: 0, scale: 0.8, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -88,14 +88,16 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
           >
             <BsFillGrid1X2Fill />
           </motion.button>
-        </AnimatePresence>
+        </AnimatePresence> */}
         <ScrollToTopButton isFixed={false} />
       </div>
 
       <RadioGroup
         value={sorting}
         onChange={setSorting}
-        className={clsx("bg-white hidden xl:flex p-1 rounded-full shadow-xl")}
+        className={clsx(
+          "bg-white hidden xl:flex p-2 gap-1 rounded-full shadow-xl"
+        )}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
         {testFilter.map((filter) => (
@@ -105,7 +107,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
             className="text-center cursor-pointer"
           >
             {({ checked }) => (
-              <div className={clsx("cursor-pointer relative p-2")}>
+              <div className={clsx("cursor-pointer relative py-2 px-4")}>
                 {checked && (
                   <motion.div
                     className="absolute inset-0 z-0 w-full h-full rounded-full bg-primary hover:opacity-90"
@@ -114,7 +116,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
                 )}
                 <div
                   className={clsx(
-                    "z-10 relative text-sm transition-all duration-200 delay-200 ease-in-out hover:underline hover:decoration-3",
+                    "z-10 relative transition-all duration-200 delay-200 ease-in-out hover:underline hover:decoration-3",
                     checked ? "text-white" : "text-primary"
                   )}
                 >

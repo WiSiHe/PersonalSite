@@ -73,7 +73,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               </p>
             </div>
             <FilterBar filters={tags} />
-            <div className="grid grid-cols-12 mb-10">
+            <div className="grid grid-cols-12 gap-4 p-4 mb-10">
               {sortPaintings(filteredPaintings, sorting)
                 .slice(0, paintingsSlice)
                 .map((p) => {
@@ -83,8 +83,8 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                       key={_id}
                       className={clsx(
                         "aspect-square",
-                        // "col-span-6 xl:col-span-3",
-                        colStyle
+                        "col-span-6 xl:col-span-3"
+                        // colStyle
                       )}
                     >
                       <Painting paintingData={p} />
