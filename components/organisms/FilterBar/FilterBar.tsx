@@ -96,7 +96,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         value={sorting}
         onChange={setSorting}
         className={clsx(
-          "bg-white hidden xl:flex p-2 gap-1 rounded-full shadow-xl"
+          "bg-white hidden xl:flex p-2 gap-2 rounded-full shadow-xl"
         )}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
@@ -107,19 +107,19 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
             className="text-center cursor-pointer"
           >
             {({ checked }) => (
-              <div className={clsx("cursor-pointer relative py-2 px-4")}>
+              <div
+                className={clsx(
+                  "cursor-pointer relative py-2 px-4 hover:bg-primary/40 rounded-full hover:text-white",
+                  checked ? "text-white" : "text-primary"
+                )}
+              >
                 {checked && (
                   <motion.div
                     className="absolute inset-0 z-0 w-full h-full rounded-full bg-primary hover:opacity-90"
                     layoutId="underline"
                   />
                 )}
-                <div
-                  className={clsx(
-                    "z-10 relative transition-all duration-200 delay-200 ease-in-out hover:underline hover:decoration-3",
-                    checked ? "text-white" : "text-primary"
-                  )}
-                >
+                <div className={clsx("z-10 relative")}>
                   <strong>{filter.name}</strong>
                 </div>
               </div>
