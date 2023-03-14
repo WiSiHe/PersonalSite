@@ -3,6 +3,7 @@ import dynamic from "next/dynamic"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
+  ssr: false,
 })
 
 import { Chip, Footer, Main, Meta } from "components"
