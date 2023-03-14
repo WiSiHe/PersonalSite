@@ -79,26 +79,24 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
               {filters.map((filter, i) => {
                 const isLastElement = i === filters.length - 1
                 return (
-                  <>
-                    <li
-                      key={i}
-                      className={clsx(
-                        "flex justify-between py-2",
-                        !isLastElement && "border-b"
-                      )}
-                    >
-                      <label htmlFor={filter.name} className="cursor-pointer">
-                        {filter.name} - {filter.paintingsCount}
-                      </label>
-                      <input
-                        id={filter.name}
-                        type="checkbox"
-                        checked={filterList.includes(filter.name)}
-                        onChange={() => handleToggleFilter(filter.name)}
-                        className="cursor-pointer accent-primary"
-                      />
-                    </li>
-                  </>
+                  <li
+                    key={i}
+                    className={clsx(
+                      "flex justify-between py-2",
+                      !isLastElement && "border-b"
+                    )}
+                  >
+                    <label htmlFor={filter.name} className="cursor-pointer">
+                      {filter.name} - {filter.paintingsCount}
+                    </label>
+                    <input
+                      id={filter.name}
+                      type="checkbox"
+                      checked={filterList.includes(filter.name)}
+                      onChange={() => handleToggleFilter(filter.name)}
+                      className="cursor-pointer accent-primary"
+                    />
+                  </li>
                 )
               })}
             </ul>
