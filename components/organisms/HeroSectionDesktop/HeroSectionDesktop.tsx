@@ -6,7 +6,11 @@ import { imageBuilder } from "lib/sanity"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import { BiGame } from "react-icons/bi"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
+
+import { HiOutlineDesktopComputer } from "react-icons/hi"
+import { BsFillBrushFill } from "react-icons/bs"
 
 interface HeroSectionProps {
   paintings: iSanityPainting[]
@@ -95,32 +99,45 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
         "w-full h-full min-h-screen"
       )}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, x: -100 }}
-        animate={{ opacity: 1, scale: 1, x: 0 }}
-        transition={{ type: "spring", bounce: 0.05 }}
+      <div
         // whileInView={{ opacity: 1, x: 0 }}
         // viewport={{ once: true, amount: 0.1 }}
         className="absolute z-20 flex h-full col-span-3 col-start-1 my-auto bg-primary"
       >
         <div className="flex flex-col justify-center p-4">
           <div className="flex flex-col gap-10">
-            <h1 className="text-white text-8xl">
+            <motion.h1
+              initial={{
+                opacity: 0,
+                x: -40,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                type: "spring",
+              }}
+              className="text-white text-8xl"
+            >
               <strong>Henrik Wilhelm Sissener</strong>
-            </h1>
+            </motion.h1>
             <motion.ul
               variants={container}
               initial="hidden"
               animate="show"
               className="text-lg text-white list-inside"
             >
-              <motion.li variants={item}>
-                <span>Web developer</span>
+              <motion.li variants={item} className="flex items-center gap-2">
+                <HiOutlineDesktopComputer />
+                <span>Frontend developer</span>
               </motion.li>
-              <motion.li variants={item}>
+              <motion.li variants={item} className="flex items-center gap-2">
+                <BsFillBrushFill />
                 <span>Digital artist</span>
               </motion.li>
-              <motion.li variants={item}>
+              <motion.li variants={item} className="flex items-center gap-2">
+                <BiGame />
                 <span>Game developer</span>
               </motion.li>
             </motion.ul>
@@ -133,7 +150,7 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
             </Link>
           </div>
         </div>
-      </motion.div>
+      </div>
       {/* <m.div
         style={{ width: timerStyle }}
         className="absolute inset-0 z-10 h-2 transition-all ease-linear col-span-full bg-primary"
@@ -164,7 +181,7 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
         </motion.button>
       </div>
 
-      <div className="relative h-full col-span-full bg-dark aspect-video">
+      <div className="relative h-full col-span-9 col-start-4">
         {/* <HeroSectionLoader /> */}
         <div className="absolute inset-0 z-10 h-full pointer-events-none from bg-gradient-to-bl from-primary via-transparent" />
         <Image
