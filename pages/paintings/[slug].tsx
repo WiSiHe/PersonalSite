@@ -77,19 +77,19 @@ const PaintingsPage = ({
         url="https://wisihe.no/gallery"
         description={description ?? "A gallery of some of my paintings"}
       />
-      <Main noTopPadding>
+      <Main>
         <section className="relative grid flex-1 flex-grow h-full min-h-screen grid-cols-12 overflow-clip">
           <section className="col-span-full">
+            <div className="p-2 xl:p-4">
+              <h1 className="capitalize">{slug} gallery</h1>
+              <p className="max-w-lg">{description}</p>
+            </div>
             <div className="sticky top-0 z-20 p-4 bg-stone-200 bg-opacity-10 backdrop-blur-lg">
               <Filters
                 filteredTags={tagsWithAll}
                 activeFilter={slug}
                 amountOfPaintings={paintings.length}
               />
-            </div>
-            <div className="p-2 xl:p-4">
-              <h1 className="text-2xl font-bold">Painting gallery</h1>
-              <p className="max-w-lg">{description}</p>
             </div>
             <div className="grid grid-cols-12 gap-2 p-2 mb-10 xl:gap-4 xl:p-4">
               {paintings.map((p) => {

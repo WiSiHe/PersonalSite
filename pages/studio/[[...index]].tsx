@@ -4,6 +4,7 @@ import { NextStudioHead } from "next-sanity/studio/head"
 import React from "react"
 import { StudioLayout, StudioProvider } from "sanity"
 import config from "sanity.config"
+import { Main } from "components"
 // import { createGlobalStyle } from "styled-components"
 
 // const GlobalStyle = createGlobalStyle(({ theme }) => ({
@@ -17,14 +18,14 @@ export default function StudioPage() {
       <Head>
         <NextStudioHead favicons={true} />
       </Head>
-      <section>
+      <Main className="flex-col h-[95vh]">
         <NextStudio config={config}>
           <StudioProvider config={config}>
             {/* <GlobalStyle /> */}
             <StudioLayout />
           </StudioProvider>
         </NextStudio>
-      </section>
+      </Main>
     </>
   )
 }

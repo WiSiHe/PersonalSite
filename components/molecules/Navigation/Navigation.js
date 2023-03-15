@@ -7,23 +7,6 @@ import { useRouter } from "next/router"
 import PropTypes from "prop-types"
 import React from "react"
 
-// const container = {
-//   hidden: { opacity: 0 },
-//   show: {
-//     opacity: 1,
-//     transition: {
-//       staggerChildren: 0.2,
-//       delayChildren: 0.4,
-//       type: "spring",
-//     },
-//   },
-//   transition: {
-//     staggerChildren: 0.2,
-//     delayChildren: 0.4,
-//     type: "spring",
-//   },
-// }
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -37,15 +20,10 @@ const container = {
   },
 }
 
-// const animItem = {
-//   initial: { opacity: 0, y: -100 },
-//   animate: { opacity: 1, y: 0 },
-// }
-
-// const listItem = {
-//   hidden: { opacity: 0, y: -100 },
-//   show: { opacity: 1, y: 0 },
-// }
+const listItem = {
+  hidden: { opacity: 0, y: -100 },
+  show: { opacity: 1, y: 0 },
+}
 
 export default function Navigation({ isAbsolute = true }) {
   const router = useRouter()
@@ -56,7 +34,7 @@ export default function Navigation({ isAbsolute = true }) {
     <nav
       aria-label="Main Navigation"
       className={clsx(
-        "z-20 flex items-center justify-between px-2 py-2 mx-auto xl:px-4",
+        "z-30 flex items-center justify-between px-2 py-2 mx-auto xl:px-4 bg-transparent mix-blend-difference",
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
@@ -69,15 +47,15 @@ export default function Navigation({ isAbsolute = true }) {
           rotate: 90,
           transition: { type: "spring", delay: 0, duration: 0.5, bounce: 0.25 },
         }}
-        className="flex items-center gap-2 mix-blend-difference"
+        className="flex items-center gap-2"
       >
         <Link
           href="/"
           aria-label="Navigate to the homepage"
-          className="flex items-center justify-center text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none"
+          className="flex items-center justify-center text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
         >
           <LogoQR
-            className="transition-all ease-in-out fill-dark hover:fill-white focus:fill-white"
+            className="transition-all ease-in-out fill-white"
             width="2.5rem"
             height="2.5rem"
           />
@@ -96,21 +74,16 @@ export default function Navigation({ isAbsolute = true }) {
             return (
               <m.li
                 key={i}
-                // variants={listItem}
-                initial={{ opacity: 0, y: -200, x: -100 }}
-                animate={{ opacity: 1, y: 0, x: 0 }}
-                transition={{
-                  type: "spring",
-                  delay: 0.2 * (i * 0.4),
-                  bounce: 0.25,
-                }}
+                variants={listItem}
+                className="mix-blend-difference"
               >
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all   text-dark px-4 py-2  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none focus-visible:underline",
-                    isActive &&
-                      "underline decoration-primary text-white decoration-2 bg-primary"
+                    "transition-all mix-blend-difference text-white px-4 py-2  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
+                    isActive
+                      ? "underline decoration-primary text-white decoration-2 bg-primary"
+                      : "bg-transparent"
                   )}
                 >
                   <strong className="drop-shadow">{item.text}</strong>
