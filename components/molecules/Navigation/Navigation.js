@@ -34,7 +34,7 @@ export default function Navigation({ isAbsolute = true }) {
     <nav
       aria-label="Main Navigation"
       className={clsx(
-        "z-30 flex items-center justify-between px-2 py-2 mx-auto xl:px-4 bg-transparent mix-blend-difference",
+        "z-30 flex items-center justify-between px-2 py-2 mx-auto xl:px-4 bg-transparent",
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
@@ -55,7 +55,7 @@ export default function Navigation({ isAbsolute = true }) {
           className="flex items-center justify-center text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
         >
           <LogoQR
-            className="transition-all ease-in-out fill-white"
+            className="transition-all ease-in-out fill-dark"
             width="2.5rem"
             height="2.5rem"
           />
@@ -80,7 +80,7 @@ export default function Navigation({ isAbsolute = true }) {
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all mix-blend-difference text-white px-4 py-2  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
+                    "transition-all mix-blend-difference text-dark px-4 py-2  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
                       : "bg-transparent"
