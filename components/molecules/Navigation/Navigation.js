@@ -66,7 +66,7 @@ export default function Navigation({ isAbsolute = true }) {
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex items-center gap-4 "
+        className="flex items-center gap-1 xl:gap-4"
       >
         <AnimatePresence>
           {NavItems.map((item, i) => {

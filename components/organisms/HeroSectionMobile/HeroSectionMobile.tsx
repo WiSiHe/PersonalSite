@@ -44,7 +44,7 @@ const HeroSectionMobile = ({ paintings = [] }: HeroSectionProps) => {
     <section
       className={clsx(
         "transition-all w-full duration-500 ease-in-out relative xl:hidden",
-        "w-full h-[50svh] min-h-[50vh]"
+        "w-full h-[100svh]"
       )}
     >
       <HeroSectionLoader />
