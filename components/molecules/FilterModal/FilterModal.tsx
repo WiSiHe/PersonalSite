@@ -75,25 +75,30 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
               </button>
             </motion.div>
 
-            <ul className="px-4 py-4">
+            <ul className="py-4 ">
               {filters.map((filter, i) => {
                 const isLastElement = i === filters.length - 1
+                const { name = "", paintingsCount = 0 } = filter
+
+                const isStoreFilter = name === "Store"
+
                 return (
                   <li
                     key={i}
                     className={clsx(
-                      "flex justify-between py-2",
-                      !isLastElement && "border-b"
+                      "flex justify-between py-2 px-4 hover:bg-primary/10",
+                      !isLastElement && "border-b",
+                      isStoreFilter && "bg-highlight"
                     )}
                   >
-                    <label htmlFor={filter.name} className="cursor-pointer">
-                      {filter.name} - {filter.paintingsCount}
+                    <label htmlFor={name} className="w-full cursor-pointer">
+                      {name} - {paintingsCount}
                     </label>
                     <input
-                      id={filter.name}
+                      id={name}
                       type="checkbox"
-                      checked={filterList.includes(filter.name)}
-                      onChange={() => handleToggleFilter(filter.name)}
+                      checked={filterList.includes(name)}
+                      onChange={() => handleToggleFilter(name)}
                       className="cursor-pointer accent-primary"
                     />
                   </li>

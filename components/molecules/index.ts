@@ -1,6 +1,8 @@
 export { default as Canvas } from "./Canvas"
 export { default as Carousel } from "./Carousel"
+export { default as FilterModal } from "./FilterModal"
 export { default as Filters } from "./Filters"
+export { default as FilterSortButton } from "./FilterSortButton"
 export { default as Footer } from "./Footer"
 export { default as HeroSectionLoader } from "./HeroSectionLoader"
 export { default as Navigation } from "./Navigation"
