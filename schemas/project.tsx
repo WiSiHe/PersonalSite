@@ -152,7 +152,6 @@ export default defineType({
           const { elementProps, value = "" } = props
 
           const { onChange, ref } = elementProps
-          console.log("elementProps", elementProps)
 
           return (
             <Stack space={2}>

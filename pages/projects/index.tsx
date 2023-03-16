@@ -105,7 +105,6 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
             // })
             .map((project, i) => {
               const { _id = "" } = project
-              console.log("project", project)
               const isLeft = isEven(i)
 
               return (

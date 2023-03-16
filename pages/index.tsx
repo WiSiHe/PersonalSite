@@ -158,7 +158,7 @@ export async function getStaticProps() {
   // define tags as iSanityTag
 
   const sortedTags = tags
-    .filter((p) => p.paintingsCount > 5)
+    .filter((p) => p.paintingsCount > 2)
     .sort((a, b) => b.paintingsCount - a.paintingsCount)
 
   const randomPaintings = paintings.sort(() => Math.random() - 0.5)

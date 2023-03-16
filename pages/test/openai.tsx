@@ -19,7 +19,6 @@ const TestPage = () => {
     console.log(response)
 
     if (response.text) {
-      console.log(response)
       setAnswer(response.text)
     } else {
       console.log("error")
@@ -28,7 +27,7 @@ const TestPage = () => {
 
   const getJoke = async () => {
     const response = await fetch("/api/getJoke").then((res) => res.json())
-    console.log("response", response)
+
     setJoke(response.text)
   }
 

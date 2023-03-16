@@ -34,7 +34,7 @@ export default function Navigation({ isAbsolute = true }) {
     <nav
       aria-label="Main Navigation"
       className={clsx(
-        "z-30 flex items-center justify-between px-2 py-2 mx-auto xl:px-4 bg-transparent",
+        "z-20 flex items-center justify-between py-2 mx-auto px-4",
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
