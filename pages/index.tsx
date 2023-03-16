@@ -85,8 +85,21 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
       <Main className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 gap-4 p-4">
         <section className="col-span-full">
           <FilterBar filters={tags} />
-          <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4">
-            <section className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6 xl:col-span-4">
+          <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">
+            <motion.section
+              initial={{
+                opacity: 0,
+                scale: 0.9,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{
+                type: "spring",
+              }}
+              className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6 xl:col-span-4"
+            >
               <motion.h1
                 initial={{
                   opacity: 0,
@@ -99,6 +112,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 transition={{
                   type: "spring",
                 }}
+                // className="text-4xl @xl:text-purple-500 @6xl:text-red-500   @7xl:text-yellow-400"
               >
                 <strong>Henrik Wilhelm Sissener</strong>
               </motion.h1>
@@ -116,7 +130,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                   <span>Game developer</span>
                 </motion.li>
               </motion.ul>
-            </section>
+            </motion.section>
             {sortPaintings(filteredPaintings, sorting)
               .slice(0, paintingsSlice)
               .map((p) => {

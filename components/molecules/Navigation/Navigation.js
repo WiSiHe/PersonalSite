@@ -43,9 +43,7 @@ export default function Navigation({ isAbsolute = true }) {
         animate={{ opacity: 1, x: 0, rotate: 0 }}
         transition={{ type: "spring", bounce: 0.25 }}
         whileHover={{
-          scale: 1.1,
           rotate: 90,
-          transition: { type: "spring", delay: 0, duration: 0.5, bounce: 0.25 },
         }}
         className="flex items-center gap-2"
       >
