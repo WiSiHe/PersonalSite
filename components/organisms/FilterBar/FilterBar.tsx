@@ -1,14 +1,13 @@
-import { RadioGroup } from "@headlessui/react"
+import { Popover, RadioGroup } from "@headlessui/react"
 import clsx from "clsx"
 import { ScrollToTopButton } from "components/atoms"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { useEffect, useState } from "react"
 import { AiOutlineOrderedList } from "react-icons/ai"
-import { BiMinus, BiPlus } from "react-icons/bi"
-import { BsFillGrid1X2Fill } from "react-icons/bs"
-import { IoClose, IoFilterSharp } from "react-icons/io5"
+import { BiSortDown, BiSortUp } from "react-icons/bi"
+import { FaRandom } from "react-icons/fa"
+import { IoFilterSharp } from "react-icons/io5"
 
 import FilterModal from "../FilterModal"
 
@@ -20,14 +19,17 @@ const testFilter = [
   {
     name: "Random",
     value: "random",
+    icon: <FaRandom />,
   },
   {
     name: "Newest",
     value: "newest",
+    icon: <BiSortDown />,
   },
   {
     name: "Oldest",
     value: "oldest",
+    icon: <BiSortUp />,
   },
 ]
 
@@ -119,7 +121,8 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
                     layoutId="underline"
                   />
                 )}
-                <div className={clsx("z-10 relative")}>
+                <div className="relative flex items-center gap-1">
+                  {filter.icon}
                   <strong>{filter.name}</strong>
                 </div>
               </div>
@@ -127,13 +130,43 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
           </RadioGroup.Option>
         ))}
       </RadioGroup>
-      <button
-        className="flex items-center justify-center gap-2 p-3 capitalize bg-white rounded-full shadow-xl hover:text-white hover:bg-primary xl:hidden"
-        onClick={handleToggleSorting}
-      >
-        {sorting}
-        <AiOutlineOrderedList />
-      </button>
+      <Popover className="relative xl:hidden">
+        <Popover.Button className="flex items-center justify-center gap-2 px-8 py-4 capitalize bg-white rounded-full shadow-xl hover:text-white hover:bg-primary">
+          <AiOutlineOrderedList />
+          {sorting}
+        </Popover.Button>
+
+        <Popover.Panel className="absolute left-0 right-0 z-10 p-1 -top-52">
+          <RadioGroup
+            value={sorting}
+            onChange={setSorting}
+            className={clsx("bg-white flex-col flex")}
+          >
+            <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
+            {testFilter.map((filter) => (
+              <RadioGroup.Option
+                key={filter.value}
+                value={filter.value}
+                className="text-center cursor-pointer"
+              >
+                {({ checked }) => (
+                  <div
+                    className={clsx(
+                      "cursor-pointer relative px-8 py-5 transition-all",
+                      checked ? "text-white bg-primary" : "text-primary"
+                    )}
+                  >
+                    <div className="relative flex items-center gap-1">
+                      <span className="flex-shrink-0 ">{filter.icon}</span>
+                      <strong>{filter.name}</strong>
+                    </div>
+                  </div>
+                )}
+              </RadioGroup.Option>
+            ))}
+          </RadioGroup>
+        </Popover.Panel>
+      </Popover>
 
       <div className="flex justify-end flex-1 gap-4">
         {amountOfActiveFilters > 0 && (
