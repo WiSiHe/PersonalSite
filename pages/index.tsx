@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"
 import { HiOutlineDesktopComputer } from "react-icons/hi"
+import { isEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 
 const container = {
@@ -33,12 +34,35 @@ interface iPaintingsPageProps {
   tags: iSanityTag[]
 }
 
+const Test = () => {
+  return (
+    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square xl:col-span-4">
+      <iframe
+        src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+        width="100%"
+        height="100%"
+      />
+    </div>
+  )
+}
+
+const Test2 = () => {
+  return (
+    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square xl:col-span-4 bg-primary">
+      Placeholder
+    </div>
+  )
+}
+
 const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
+  const scrollPosition = useScrollPosition()
+
   const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const sorting = useCombinedStore((state) => state.paintingSorting)
   const filterList: string[] = useCombinedStore((state) => state.filterList)
+  const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
   const filteredPaintings = paintings.filter((p) => {
     if (filterList.length === 0) return true
@@ -48,10 +72,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
 
     return hasAllTags
   })
-
-  const colStyle = useCombinedStore((state) => state.colStyle)
-
-  const scrollPosition = useScrollPosition()
 
   // functions that load more paintings, and at the end of the list, load more paintings
   function loadMorePaintings() {
@@ -131,23 +151,50 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 </motion.li>
               </motion.ul>
             </motion.section>
-            {sortPaintings(filteredPaintings, sorting)
-              .slice(0, paintingsSlice)
-              .map((p) => {
-                const { _id } = p
-                return (
-                  <div
-                    key={_id}
-                    className={clsx(
-                      "aspect-square",
-                      "col-span-6 lg:col-span-3 xl:col-span-2"
-                      // colStyle
-                    )}
-                  >
-                    <Painting paintingData={p} />
-                  </div>
-                )
-              })}
+            {!isEmptyArray(filteredPaintings) ? (
+              <>
+                {sortPaintings(filteredPaintings, sorting)
+                  .slice(0, paintingsSlice)
+                  .map((p, i) => {
+                    const { _id } = p
+                    return (
+                      <>
+                        {i === 8 && <Test2 key={i} />}
+                        {i === 20 && <Test key={i} />}
+                        <div
+                          key={_id}
+                          className={clsx(
+                            "aspect-square",
+                            "col-span-6 lg:col-span-3 xl:col-span-2"
+                          )}
+                        >
+                          <Painting paintingData={p} />
+                        </div>
+                      </>
+                    )
+                  })}
+              </>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring" }}
+                className="flex flex-col items-center justify-center col-span-8 gap-4 ring ring-primary"
+              >
+                <h2 className="text-2xl text-center">
+                  No paintings found with the selected filters
+                </h2>
+                <p className="text-center">
+                  Try removing some filters to see more paintings
+                </p>
+                <button
+                  onClick={clearFilterList}
+                  className="px-4 py-3 text-white bg-primary hover:bg-primary/90"
+                >
+                  Clear Filters
+                </button>
+              </motion.div>
+            )}
           </div>
         </section>
       </Main>

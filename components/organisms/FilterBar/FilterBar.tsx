@@ -27,7 +27,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
       <div className="flex justify-end flex-1 gap-4">
         {amountOfActiveFilters > 0 && (
           <button
-            className="hidden px-4 text-xs text-white uppercase rounded-full xl:block hover:bg-primary"
+            className="hidden px-4 text-xs uppercase rounded-full hover:text-white text-dark drop-shadow xl:block hover:bg-primary"
             onClick={clearFilterList}
             aria-label="Clear all filters"
           >
