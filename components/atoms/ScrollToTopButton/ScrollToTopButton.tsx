@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion"
 import { m } from "framer-motion"
+import useScrollPosition from "hooks/useScrollPosition"
 // import useScrollPosition from "hooks/useScrollPosition"
 import { useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
@@ -10,10 +11,10 @@ interface iScrollToTopButton {
 }
 
 const ScrollToTopButton = ({ isFixed = true }: iScrollToTopButton) => {
-  // const scrollPosition = useScrollPosition()
-  const { scrollYProgress } = useScroll()
+  const scrollPosition = useScrollPosition()
+  // const { scrollYProgress } = useScroll()
 
-  const [shouldDisplayButton, setShouldDisplayButton] = useState(false)
+  // const [shouldDisplayButton, setShouldDisplayButton] = useState(false)
 
   const buttonVariants = {
     hidden: {
@@ -45,17 +46,17 @@ const ScrollToTopButton = ({ isFixed = true }: iScrollToTopButton) => {
     })
   }
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.02) {
-      setShouldDisplayButton(true)
-    } else if (latest < 0.02 && shouldDisplayButton) {
-      setShouldDisplayButton(false)
-    }
-  })
+  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  //   if (latest > 0.02) {
+  //     setShouldDisplayButton(true)
+  //   } else if (latest < 0.02 && shouldDisplayButton) {
+  //     setShouldDisplayButton(false)
+  //   }
+  // })
 
   return (
     <AnimatePresence>
-      {shouldDisplayButton && (
+      {scrollPosition > 200 && (
         <m.div
           variants={buttonVariants}
           className={clsx(

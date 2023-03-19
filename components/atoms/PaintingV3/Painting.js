@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import { AnimatePresence, m } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
@@ -27,7 +26,7 @@ import { RiMovieFill } from "react-icons/ri"
 //   },
 // }
 
-const Painting = ({ paintingData = {}, isPriority = false }) => {
+const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
   const router = useRouter()
   const { slug = "" } = router.query
 
@@ -112,7 +111,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
           fill
           // alt={`painting: ${title}`}
           alt=""
-          priority={isPriority}
+          priority={shouldBeLazy}
           className={clsx(
             !isNsfw && !isNsfwUrl && "group-hover:scale-125",
             "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"

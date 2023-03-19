@@ -43,6 +43,7 @@ const Test = () => {
         src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
         width="100%"
         height="100%"
+        title="spline"
       />
     </div>
   )
@@ -51,12 +52,12 @@ const Test = () => {
 const Test2 = () => {
   return (
     <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square bg-primary">
-      {/* placeholder */}
       <iframe
         src="https://workshop-shaders.vercel.app/"
         width="100%"
         height="100%"
         className="overflow-hidden pointer-events-none"
+        title="shader"
       />
     </div>
   )
@@ -201,6 +202,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               <>
                 {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                   const { _id } = p
+                  const shouldBeLazy = i > 12
                   return (
                     <>
                       {i === 8 && !hasFilters && <Test key={i} />}
@@ -212,7 +214,10 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                           "col-span-6 lg:col-span-3"
                         )}
                       >
-                        <Painting paintingData={p} />
+                        <Painting
+                          paintingData={p}
+                          shouldBeLazy={shouldBeLazy}
+                        />
                       </div>
                     </>
                   )
