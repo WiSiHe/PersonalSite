@@ -79,7 +79,10 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const sorting = useCombinedStore((state) => state.paintingSorting)
-  // const filterList: string[] = useCombinedStore((state) => state.filterList)
+  const filterList: string[] = useCombinedStore((state) => state.filterList)
+
+  const hasFilters = isNotEmptyArray(filterList)
+
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
   // todo  add sorting to the filter from query params
@@ -138,59 +141,70 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
         <section className="col-span-full">
           <FilterBar filters={tags} />
           <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">
-            <motion.section
-              initial={{
-                opacity: 0,
-                scale: 0.9,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-              transition={{
-                type: "spring",
-              }}
-              className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6 "
-            >
-              <motion.h1
+            {!hasFilters && (
+              <motion.section
                 initial={{
                   opacity: 0,
-                  x: -40,
+                  scale: 0.9,
                 }}
                 animate={{
                   opacity: 1,
-                  x: 0,
+                  scale: 1,
                 }}
                 transition={{
                   type: "spring",
                 }}
-                // className="text-4xl @xl:text-purple-500 @6xl:text-red-500   @7xl:text-yellow-400"
+                className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6"
               >
-                <strong>Henrik Wilhelm Sissener</strong>
-              </motion.h1>
-              <motion.ul variants={container} initial="hidden" animate="show">
-                <motion.li variants={item} className="flex items-center gap-2">
-                  <HiOutlineDesktopComputer />
-                  <span>Frontend developer</span>
-                </motion.li>
-                <motion.li variants={item} className="flex items-center gap-2">
-                  <BsFillBrushFill />
-                  <span>Digital artist</span>
-                </motion.li>
-                <motion.li variants={item} className="flex items-center gap-2">
-                  <BiGame />
-                  <span>Game developer</span>
-                </motion.li>
-              </motion.ul>
-            </motion.section>
+                <motion.h1
+                  initial={{
+                    opacity: 0,
+                    x: -40,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  className="text-4xl  @6xl:text-5xl  @7xl:text-7xl"
+                >
+                  <strong>Henrik Wilhelm Sissener</strong>
+                </motion.h1>
+                <motion.ul variants={container} initial="hidden" animate="show">
+                  <motion.li
+                    variants={item}
+                    className="flex items-center gap-2"
+                  >
+                    <HiOutlineDesktopComputer />
+                    <span>Frontend developer</span>
+                  </motion.li>
+                  <motion.li
+                    variants={item}
+                    className="flex items-center gap-2"
+                  >
+                    <BsFillBrushFill />
+                    <span>Digital artist</span>
+                  </motion.li>
+                  <motion.li
+                    variants={item}
+                    className="flex items-center gap-2"
+                  >
+                    <BiGame />
+                    <span>Game developer</span>
+                  </motion.li>
+                </motion.ul>
+              </motion.section>
+            )}
             {isNotEmptyArray(filterPaintingsV2) ? (
               <>
                 {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                   const { _id } = p
                   return (
                     <>
-                      {i === 8 && <Test key={i} />}
-                      {i === 20 && <Test2 key={i} />}
+                      {i === 8 && !hasFilters && <Test key={i} />}
+                      {i === 20 && !hasFilters && <Test2 key={i} />}
                       <div
                         key={_id}
                         className={clsx(

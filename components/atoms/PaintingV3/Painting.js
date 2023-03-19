@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { AnimatePresence, m } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
+import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -30,7 +31,9 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
   const router = useRouter()
   const { slug = "" } = router.query
 
-  const isNsfwUrl = slug === "nsfw"
+  const filterList = useCombinedStore((state) => state.filterList)
+
+  const isNsfwUrl = slug === "nsfw" || filterList.includes("nsfw")
 
   const {
     image = {},
