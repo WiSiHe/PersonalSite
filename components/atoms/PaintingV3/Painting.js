@@ -103,6 +103,12 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
       <Link href={linkString}>
         <Image
           src={imageBuilder(image).width(400).height(400).quality(55).url()}
+          blurDataURL={imageBuilder(image)
+            .width(20)
+            .height(20)
+            .quality(1)
+            .url()}
+          placeholder="blur"
           sizes="(max-width: 768px) 50vw,
             33vw"
           // src={fetchedPainting}
@@ -111,7 +117,7 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
           fill
           // alt={`painting: ${title}`}
           alt=""
-          priority={shouldBeLazy}
+          priority={!shouldBeLazy}
           className={clsx(
             !isNsfw && !isNsfwUrl && "group-hover:scale-125",
             "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"

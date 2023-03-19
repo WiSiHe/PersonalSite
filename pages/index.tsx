@@ -202,7 +202,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               <>
                 {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                   const { _id } = p
-                  const shouldBeLazy = i > 12
+                  const shouldBeLazy = i >= 8
                   return (
                     <>
                       {i === 8 && !hasFilters && <Test key={i} />}
