@@ -7,7 +7,7 @@ const useScrollPosition = () => {
     const updatePosition = () => {
       setScrollPosition(window.pageYOffset)
     }
-    window.addEventListener("scroll", updatePosition)
+    window.addEventListener("scroll", updatePosition, { passive: true })
     updatePosition()
     return () => window.removeEventListener("scroll", updatePosition)
   }, [])
