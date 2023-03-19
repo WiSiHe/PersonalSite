@@ -36,7 +36,7 @@ interface iPaintingsPageProps {
 
 const Test = () => {
   return (
-    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square xl:col-span-4">
+    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square">
       <iframe
         src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
         width="100%"
@@ -48,8 +48,13 @@ const Test = () => {
 
 const Test2 = () => {
   return (
-    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square xl:col-span-4 bg-primary">
-      Placeholder
+    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square bg-primary">
+      placeholder
+      {/* <iframe
+        src="https://workshop-shaders.vercel.app/"
+        width="100%"
+        height="100%"
+      /> */}
     </div>
   )
 }
@@ -118,7 +123,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               transition={{
                 type: "spring",
               }}
-              className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6 xl:col-span-4"
+              className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6 "
             >
               <motion.h1
                 initial={{
@@ -165,7 +170,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                           key={_id}
                           className={clsx(
                             "aspect-square",
-                            "col-span-6 lg:col-span-3 xl:col-span-2"
+                            "col-span-6 lg:col-span-3"
                           )}
                         >
                           <Painting paintingData={p} />
@@ -179,7 +184,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: "spring" }}
-                className="flex flex-col items-center justify-center col-span-8 gap-4 ring ring-primary"
+                className="flex flex-col items-center justify-center gap-4 p-4 col-span-full ring ring-primary"
               >
                 <h2 className="text-2xl text-center">
                   No paintings found with the selected filters

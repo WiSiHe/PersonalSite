@@ -12,11 +12,11 @@ import { RiMovieFill } from "react-icons/ri"
 
 const cardVariants = {
   offscreen: {
-    // y: 100,
+    y: 100,
     opacity: 0,
   },
   onscreen: {
-    // y: 0,
+    y: 0,
     opacity: 1,
   },
   transition: {
@@ -108,7 +108,8 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
             // height={imageHeight[format]}
             // width={imageWidth[format]}
             fill
-            alt={`painting: ${title}`}
+            // alt={`painting: ${title}`}
+            alt=""
             priority={isPriority}
             className={clsx(
               !isNsfw && !isNsfwUrl && "group-hover:scale-125",
@@ -124,7 +125,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
             />
           )}
 
-          <div className="absolute inset-0 w-full h-full">
+          {/* <div className="absolute inset-0 w-full h-full">
             <div className="flex items-center justify-center w-full h-full">
               <div
                 className={clsx(
@@ -133,7 +134,7 @@ const Painting = ({ paintingData = {}, isPriority = false }) => {
                 )}
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="absolute text-center text-white bottom-4 left-4">
             <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
