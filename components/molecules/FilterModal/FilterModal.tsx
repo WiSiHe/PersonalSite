@@ -3,14 +3,20 @@ import clsx from "clsx"
 import { motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
+import { useRouter } from "next/router"
 import { Fragment } from "react"
 import { IoClose } from "react-icons/io5"
+import { slugify } from "utils/string"
 
 interface iFilterModal {
   filters?: iSanityTag[]
 }
 
 const FilterModal = ({ filters = [] }: iFilterModal) => {
+  const router = useRouter()
+  const { query } = router
+  // const { filter = [] } = query
+
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const setFilterList = useCombinedStore((state) => state.setFilterList)
 
@@ -19,11 +25,25 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
   const handleToggleFilter = (filter: string) => {
-    if (filterList.includes(filter)) {
-      setFilterList(filterList.filter((f) => f !== filter))
+    const slugifiedFilter = slugify(filter)
+    if (filterList.includes(slugifiedFilter)) {
+      const newFilters = filterList.filter((f) => f !== slugifiedFilter)
+      setFilterList(newFilters)
+      router.replace({ query: { ...query, filter: newFilters } }, undefined, {
+        shallow: true,
+      })
     } else {
-      setFilterList([...filterList, filter])
+      const newFilters = [...filterList, slugifiedFilter]
+      setFilterList(newFilters)
+      router.replace({ query: { ...query, filter: newFilters } }, undefined, {
+        shallow: true,
+      })
     }
+  }
+
+  const handleClearFilterList = () => {
+    clearFilterList()
+    router.replace(router.pathname, undefined, { shallow: true })
   }
 
   return (
@@ -69,7 +89,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
               </div>
               <button
                 className="w-full ring-dark ring hover:bg-primary/90 hover:text-white"
-                onClick={clearFilterList}
+                onClick={handleClearFilterList}
               >
                 <strong>Clear All</strong>
               </button>
@@ -97,7 +117,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
                     <input
                       id={name}
                       type="checkbox"
-                      checked={filterList.includes(name)}
+                      checked={filterList.includes(slugify(name))}
                       onChange={() => handleToggleFilter(name)}
                       className="cursor-pointer accent-primary"
                     />

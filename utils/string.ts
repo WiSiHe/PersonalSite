@@ -1,3 +1,7 @@
+export const isString = (str: string) => {
+  return typeof str === "string"
+}
+
 export const isStringValid = (str: string) => {
   return !isNaN(parseFloat(str))
 }

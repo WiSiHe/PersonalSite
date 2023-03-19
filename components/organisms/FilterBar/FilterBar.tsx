@@ -2,6 +2,7 @@ import { FilterModal, FilterSortButton, ScrollToTopButton } from "components"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
+import { useRouter } from "next/router"
 import { IoFilterSharp } from "react-icons/io5"
 
 interface iFilterBar {
@@ -9,12 +10,18 @@ interface iFilterBar {
 }
 
 const FilterBar = ({ filters = [] }: iFilterBar) => {
+  const router = useRouter()
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
   const setFilterModalOpen = useCombinedStore((state) => state.setModalOpen)
 
   const amountOfActiveFilters = filterList.length
+
+  const handleClearFilterList = () => {
+    clearFilterList()
+    router.replace(router.pathname, undefined, { shallow: true })
+  }
 
   return (
     <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6">
@@ -28,7 +35,7 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         {amountOfActiveFilters > 0 && (
           <button
             className="hidden px-4 text-xs uppercase rounded-full hover:text-white text-dark drop-shadow xl:block hover:bg-primary"
-            onClick={clearFilterList}
+            onClick={handleClearFilterList}
             aria-label="Clear all filters"
           >
             <strong>Clear all</strong>
