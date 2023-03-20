@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import { motion } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
@@ -91,7 +92,9 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
   // }
 
   return (
-    <article
+    <motion.article
+      // layout
+      layoutId={title}
       // initial="offscreen"
       // whileInView="onscreen"
       // viewport={{ once: true, amount: 0.4 }}
@@ -176,7 +179,7 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
           )}
         </div>
       </Link>
-    </article>
+    </motion.article>
   )
 }
 

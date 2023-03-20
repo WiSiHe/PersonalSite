@@ -101,6 +101,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
           exit={{ opacity: 0 }}
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="MainPainting"
+          layoutId={title}
           className={clsx(
             "flex relative flex-col h-fit col-span-full w-full xl:col-span-8",
             imageAspectStyle[format]
