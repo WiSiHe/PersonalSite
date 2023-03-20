@@ -51,20 +51,16 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
         url="https://wisihe.no/videos"
         description="A gallery of some of my videos"
       />
-      <Main className="">
-        <section className="grid w-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto space-y-4">
-          <section className="col-span-full xl:col-span-8">
-            <h1>Videos</h1>
-            <p>
-              Explore a collection of my diverse videos, ranging from painting
-              time-lapses and game development to hand-drawn animations. My
-              videos are a creative outlet that showcase my passions and
-              interests, allowing me to experiment with various techniques and
-              technologies. Each video project represents a unique opportunity
-              to challenge myself and learn new skills, whether it&lsquo;s
-              through the creative process or technical execution.
-            </p>
-          </section>
+      <Main className="flex-col p-4">
+        <section className="max-w-2xl">
+          <h1>Videos</h1>
+          <p>
+            Find my diverse videos: painting time-lapses, game dev, and
+            hand-drawn animations. A chance to learn new skills and experiment
+            creatively.
+          </p>
+        </section>
+        <section className="grid grid-cols-12 gap-4 pt-4">
           {videos.map((video) => {
             const {
               _id = "",
@@ -84,7 +80,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 whileInView="onscreen"
                 viewport={{ once: true }}
                 variants={cardVariants}
-                className="relative flex flex-col justify-between h-full bg-white shadow-xl col-span-full xl:col-span-6"
+                className="relative flex flex-col justify-between h-full bg-white shadow-xl col-span-full xl:col-span-4"
               >
                 <div className="p-4">
                   <h2 className="text-3xl">
