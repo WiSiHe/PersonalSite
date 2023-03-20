@@ -40,8 +40,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
 
   const { current = "" } = slug
 
-  // const uniqueTags = [...new Set(tags)]
-  const hasRedBubleLink = redbubbleUrl !== ""
+  const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
 
   const hasStoreLinks = hasRedBubleLink
 
@@ -78,7 +77,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
 
       <Main
         noTopPadding
-        className="flex flex-col min-h-screen xl:grid xl:grid-cols-12 xl:gap-4 xl:p-20 overflow-clip bg-tertiary"
+        className="flex flex-col min-h-screen p-4 pt-20 xl:grid xl:grid-cols-12 xl:gap-4 overflow-clip bg-tertiary"
       >
         <m.div
           className="fixed z-10 top-24 left-6 "
@@ -103,7 +102,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
           transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
           key="MainPainting"
           className={clsx(
-            "flex relative flex-col h-fit col-span-full w-full xl:col-span-5 xl:col-start-3",
+            "flex relative flex-col h-fit col-span-full w-full xl:col-span-8",
             imageAspectStyle[format]
           )}
         >
@@ -174,7 +173,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
                 <div
                   key={`picture-${index}`}
                   className={clsx(
-                    "bg-white relative col-span-full w-full xl:col-span-5 xl:col-start-3 pb-4",
+                    "bg-white relative col-span-full w-full xl:col-span-8",
                     imageAspectStyle[format]
                   )}
                 >
