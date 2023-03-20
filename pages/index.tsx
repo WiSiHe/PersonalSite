@@ -205,8 +205,8 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                   const shouldBeLazy = i >= 8
                   return (
                     <>
-                      {i === 8 && !hasFilters && <Test key={i} />}
-                      {i === 20 && !hasFilters && <Test2 key={i} />}
+                      {/* {i === 8 && !hasFilters && <Test key={i} />}
+                      {i === 20 && !hasFilters && <Test2 key={i} />} */}
                       <div
                         key={_id}
                         className={clsx(
