@@ -69,12 +69,12 @@ const Test3 = () => {
     <>
       <Script
         type="module"
-        src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
+        src="https://unpkg.com/@splinetool/viewer@0.9.269/build/spline-viewer.js"
       ></Script>
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<spline-viewer url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global"></spline-viewer>',
+            '<spline-viewer loading-anim url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global"></spline-viewer>',
         }}
         className="flex items-center justify-center col-span-6 row-span-1 text-white lg:row-span-2 lg:col-span-4 xl:col-span-6 aspect-square"
       />

@@ -81,13 +81,13 @@ export default function Gallery({ painting = {}, slug = {} }) {
         noTopPadding
         className="flex flex-col min-h-screen p-4 pt-20 mx-auto xl:grid xl:grid-cols-12 xl:gap-4 overflow-clip bg-tertiary max-w-screen-2xl"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <m.div
-            className="fixed z-10 top-24 left-6 "
+            className="fixed z-10 top-20 left-6 "
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            transition={{ type: "spring" }}
+            transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
             key="backbutton"
           >
             <button

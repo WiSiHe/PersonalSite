@@ -95,7 +95,7 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
     <AnimatePresence>
       <motion.article
         layout
-        // layoutId={title}
+        layoutId={title}
         // initial="offscreen"
         // whileInView="onscreen"
         // viewport={{ once: true, amount: 0.4 }}
@@ -140,13 +140,15 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
           </div> */}
 
           <div className="absolute text-center text-white bottom-4 left-4">
-            <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
-              {title}
-            </strong>
+            <h2>
+              <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
+                {title}
+              </strong>
+            </h2>
           </div>
 
           {hasStoreLinks && (
-            <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
+            <div className="absolute flex items-center p-2 text-xs rounded-lg top-2 left-2 bg-highlight">
               <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
                 <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
               </div>
@@ -156,17 +158,17 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
 
           <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
             {video && (
-              <div className="p-2 bg-white">
+              <div className="p-2 bg-white rounded-lg">
                 <RiMovieFill />
               </div>
             )}
             {imagesCount > 0 && (
-              <div className="p-2 bg-white">
+              <div className="p-2 bg-white rounded-lg">
                 <GrMultiple />
               </div>
             )}
             {isNsfw && (
-              <div className="p-2 bg-white">
+              <div className="p-2 bg-white rounded-lg">
                 <FaExclamation />
               </div>
             )}
