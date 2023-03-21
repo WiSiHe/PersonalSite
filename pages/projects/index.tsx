@@ -32,7 +32,7 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
         title="Projects"
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
-      <Main className="min-h-screen">
+      <Main className="min-h-screen mx-auto max-w-screen-2xl">
         <section className="relative grid h-full grid-cols-12 gap-4 p-4">
           <div className="col-span-full xl:col-span-8">
             <h1>My Projects</h1>
@@ -67,7 +67,7 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
                   return (
                     <button
                       key={name}
-                      className="px-3 py-2 text-xs text-white uppercase rounded-full bg-dark shrink-0 hover:bg-gray-700"
+                      className="px-3 py-2 text-xs text-white capitalize rounded-lg bg-dark shrink-0 hover:bg-gray-700"
                       onClick={() => {
                         setCurrentFilter(name)
                       }}
@@ -107,7 +107,12 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
               const isLeft = isEven(i)
 
               return (
-                <div className={clsx("col-span-full xl:col-span-4")} key={_id}>
+                <div
+                  className={clsx(
+                    "col-span-full xl:col-span-4 overflow-clip rounded-lg h-full"
+                  )}
+                  key={_id}
+                >
                   <Project {...project} imageLeft={isLeft} />
                 </div>
               )

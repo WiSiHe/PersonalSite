@@ -51,7 +51,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
         url="https://wisihe.no/videos"
         description="A gallery of some of my videos"
       />
-      <Main className="flex-col p-4">
+      <Main className="flex-col p-4 mx-auto max-w-screen-2xl">
         <section className="max-w-2xl">
           <h1>Videos</h1>
           <p>
@@ -80,7 +80,7 @@ const PaintingsPage = ({ videos = [] }: iSanityVideoProps) => {
                 whileInView="onscreen"
                 viewport={{ once: true }}
                 variants={cardVariants}
-                className="relative flex flex-col justify-between h-full bg-white shadow-xl col-span-full xl:col-span-4"
+                className="relative flex flex-col justify-between h-full bg-white rounded-lg shadow-xl col-span-full xl:col-span-4 overflow-clip"
               >
                 <div className="p-4">
                   <h2 className="text-3xl">

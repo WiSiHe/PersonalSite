@@ -70,15 +70,11 @@ export default function Navigation({ isAbsolute = true }) {
           {NavItems.map((item, i) => {
             const isActive = asPathWithSpacing.includes(item.url)
             return (
-              <m.li
-                key={i}
-                variants={listItem}
-                className="mix-blend-difference"
-              >
+              <m.li key={i} variants={listItem}>
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all mix-blend-difference text-dark px-4 py-2  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
+                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
                       : "bg-transparent"

@@ -63,7 +63,7 @@ const Project = ({
       viewport={{ once: true, amount: 0.01 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full grid bg-white shadow grid-cols-3 aspect-square xl:aspect-video hover:shadow-2xl"
+        "relative w-full h-full grid bg-white shadow grid-cols-3 aspect-square xl:aspect-video hover:shadow-2xl"
       )}
     >
       <Image
@@ -113,7 +113,7 @@ const Project = ({
               animate={{ scale: 1 }}
               transition={{ type: "spring", bounce: 0.4, duration: 1 }}
               whileHover={{ scale: 1.1, boxShadow: "0 0 10px #DE0D92" }}
-              className="flex items-center gap-1 px-2 py-1 transition-all ease-linear whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white group"
+              className="flex items-center gap-1 px-2 py-1 transition-all ease-linear rounded-lg whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white group"
             >
               <strong>See Details</strong>{" "}
               <FaArrowRight className="transition-all duration-500 ease-in-out group-hover:ml-1" />

@@ -92,10 +92,10 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
   // }
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <motion.article
-        // layout
-        layoutId={title}
+        layout
+        // layoutId={title}
         // initial="offscreen"
         // whileInView="onscreen"
         // viewport={{ once: true, amount: 0.4 }}

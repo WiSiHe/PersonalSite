@@ -29,8 +29,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
     return hasAllTags
   })
 
-  const colStyle = useCombinedStore((state) => state.colStyle)
-
   const scrollPosition = useScrollPosition()
 
   // functions that load more paintings, and at the end of the list, load more paintings

@@ -143,7 +143,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
         url="https://wisihe.no/gallery"
         description="A gallery of some of my paintings"
       />
-      <Main className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 gap-4 p-4">
+      <Main className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 gap-4 p-4 mx-auto max-w-screen-2xl">
         <section className="col-span-full">
           <FilterBar filters={tags} />
           <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">

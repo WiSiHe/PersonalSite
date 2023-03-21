@@ -79,7 +79,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
 
       <Main
         noTopPadding
-        className="flex flex-col min-h-screen p-4 pt-20 xl:grid xl:grid-cols-12 xl:gap-4 overflow-clip bg-tertiary"
+        className="flex flex-col min-h-screen p-4 pt-20 mx-auto xl:grid xl:grid-cols-12 xl:gap-4 overflow-clip bg-tertiary max-w-screen-2xl"
       >
         <AnimatePresence mode="wait">
           <m.div
