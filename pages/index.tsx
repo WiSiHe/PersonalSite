@@ -7,6 +7,7 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
+import Script from "next/script"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"
@@ -60,6 +61,24 @@ const Test2 = () => {
         title="shader"
       />
     </div>
+  )
+}
+
+const Test3 = () => {
+  return (
+    <>
+      <Script
+        type="module"
+        src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
+      ></Script>
+      <div
+        dangerouslySetInnerHTML={{
+          __html:
+            '<spline-viewer url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global"></spline-viewer>',
+        }}
+        className="flex items-center justify-center col-span-6 row-span-1 text-white lg:row-span-2 lg:col-span-4 xl:col-span-6 aspect-square"
+      />
+    </>
   )
 }
 
@@ -207,10 +226,10 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               <>
                 {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                   const { _id } = p
-                  console.log("p", p)
                   const shouldBeLazy = i >= 8
                   return (
                     <>
+                      {i === 8 && !hasFilters && <Test3 key={i} />}
                       <div
                         key={_id}
                         className={clsx(
