@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { imageBuilder } from "lib/sanity"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
@@ -92,50 +92,43 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
   // }
 
   return (
-    <motion.article
-      // layout
-      layoutId={title}
-      // initial="offscreen"
-      // whileInView="onscreen"
-      // viewport={{ once: true, amount: 0.4 }}
-      // variants={cardVariants}
-      className={clsx(
-        "relative w-full @container hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
-      )}
-    >
-      <Link href={linkString}>
-        <Image
-          src={imageBuilder(image).width(400).height(400).quality(55).url()}
-          blurDataURL={imageBuilder(image)
-            .width(20)
-            .height(20)
-            .quality(1)
-            .url()}
-          placeholder="blur"
-          sizes="(max-width: 768px) 50vw,
+    <AnimatePresence mode="wait">
+      <motion.article
+        // layout
+        layoutId={title}
+        // initial="offscreen"
+        // whileInView="onscreen"
+        // viewport={{ once: true, amount: 0.4 }}
+        // variants={cardVariants}
+        transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
+        className={clsx(
+          "relative w-full @container rounded-lg hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+        )}
+      >
+        <Link href={linkString} className="absolute inset-0">
+          <Image
+            src={imageBuilder(image).width(400).height(400).quality(55).url()}
+            blurDataURL={imageBuilder(image)
+              .width(20)
+              .height(20)
+              .quality(1)
+              .url()}
+            placeholder="blur"
+            sizes="(max-width: 768px) 50vw,
             33vw"
-          // src={fetchedPainting}
-          // height={imageHeight[format]}
-          // width={imageWidth[format]}
-          fill
-          // alt={`painting: ${title}`}
-          alt=""
-          priority={!shouldBeLazy}
-          className={clsx(
-            !isNsfw && !isNsfwUrl && "group-hover:scale-125",
-            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
-          )}
-        />
-        {isNsfw && !isNsfwUrl && (
-          <div
+            fill
+            alt=""
+            priority={!shouldBeLazy}
             className={clsx(
-              "absolute inset-0 bg-black/10 ",
-              "backdrop-blur-2xl"
+              !isNsfw && !isNsfwUrl && "group-hover:scale-110",
+              "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
             )}
           />
-        )}
+          {isNsfw && !isNsfwUrl && (
+            <div className={clsx("absolute inset-0", "backdrop-blur-xl")} />
+          )}
 
-        {/* <div className="absolute inset-0 w-full h-full">
+          {/* <div className="absolute inset-0 w-full h-full">
             <div className="flex items-center justify-center w-full h-full">
               <div
                 className={clsx(
@@ -146,40 +139,41 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
             </div>
           </div> */}
 
-        <div className="absolute text-center text-white bottom-4 left-4">
-          <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
-            {title}
-          </strong>
-        </div>
-
-        {hasStoreLinks && (
-          <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
-            <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
-              <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
-            </div>
-            <strong className="text-xs @xs:text-sm">For sale</strong>
+          <div className="absolute text-center text-white bottom-4 left-4">
+            <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
+              {title}
+            </strong>
           </div>
-        )}
 
-        <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
-          {video && (
-            <div className="p-2 bg-white">
-              <RiMovieFill />
+          {hasStoreLinks && (
+            <div className="absolute flex items-center p-2 text-xs top-2 left-2 bg-highlight drop-shadow-md">
+              <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
+                <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+              </div>
+              <strong className="text-xs @xs:text-sm">For sale</strong>
             </div>
           )}
-          {imagesCount > 0 && (
-            <div className="p-2 bg-white">
-              <GrMultiple />
-            </div>
-          )}
-          {isNsfw && (
-            <div className="p-2 bg-white">
-              <FaExclamation />
-            </div>
-          )}
-        </div>
-      </Link>
-    </motion.article>
+
+          <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
+            {video && (
+              <div className="p-2 bg-white">
+                <RiMovieFill />
+              </div>
+            )}
+            {imagesCount > 0 && (
+              <div className="p-2 bg-white">
+                <GrMultiple />
+              </div>
+            )}
+            {isNsfw && (
+              <div className="p-2 bg-white">
+                <FaExclamation />
+              </div>
+            )}
+          </div>
+        </Link>
+      </motion.article>
+    </AnimatePresence>
   )
 }
 

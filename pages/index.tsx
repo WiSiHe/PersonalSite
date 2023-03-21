@@ -94,6 +94,11 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   //   return hasAllTags
   // })
 
+  {
+    /* {i === 8 && !hasFilters && <Test key={i} />}
+                      {i === 20 && !hasFilters && <Test2 key={i} />} */
+  }
+
   const filterPaintingsV2 = useMemo(() => {
     const filteredPaintings = paintings.filter((p) => {
       if (isEmptyArray(filterArray) || !filter) return true
@@ -155,7 +160,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 transition={{
                   type: "spring",
                 }}
-                className="flex flex-col justify-center h-full gap-4 p-4 text-white xl:p-4 bg-primary col-span-full lg:col-span-6"
+                className="flex flex-col justify-center h-full gap-4 p-4 text-white rounded-lg xl:p-4 bg-primary col-span-full lg:col-span-4 xl:col-span-3"
               >
                 <motion.h1
                   initial={{
@@ -202,16 +207,15 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               <>
                 {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                   const { _id } = p
+                  console.log("p", p)
                   const shouldBeLazy = i >= 8
                   return (
                     <>
-                      {/* {i === 8 && !hasFilters && <Test key={i} />}
-                      {i === 20 && !hasFilters && <Test2 key={i} />} */}
                       <div
                         key={_id}
                         className={clsx(
                           "aspect-square",
-                          "col-span-6 lg:col-span-3"
+                          "col-span-6 lg:col-span-4 xl:col-span-3"
                         )}
                       >
                         <Painting
