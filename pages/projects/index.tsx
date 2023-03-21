@@ -33,13 +33,12 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
         description="A collection of Henrik Wilhelm Sissener's previous projects"
       />
       <Main className="min-h-screen">
-        <section className="relative grid h-full max-w-screen-xl grid-cols-12 gap-4 p-4 mx-auto">
+        <section className="relative grid h-full grid-cols-12 gap-4 p-4">
           <div className="col-span-full xl:col-span-8">
             <h1>My Projects</h1>
             <p>
               Discover a collection of my ongoing and completed projects, each
-              with unique learning experiences. Explore my portfolio to see my
-              creative journey.
+              with unique learning experiences.
             </p>
           </div>
 
@@ -108,7 +107,7 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
               const isLeft = isEven(i)
 
               return (
-                <div className={clsx("col-span-full xl:col-span-6")} key={_id}>
+                <div className={clsx("col-span-full xl:col-span-4")} key={_id}>
                   <Project {...project} imageLeft={isLeft} />
                 </div>
               )
