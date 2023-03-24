@@ -50,7 +50,7 @@ export default function Navigation({ isAbsolute = true }) {
         <Link
           href="/"
           aria-label="Navigate to the homepage"
-          className="flex items-center justify-center text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
+          className="flex items-center justify-center p-1 text-sm bg-white rounded-lg drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
         >
           <LogoQR
             className="transition-all ease-in-out fill-dark"
@@ -74,10 +74,10 @@ export default function Navigation({ isAbsolute = true }) {
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg  hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
+                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg drop-shadow hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
-                      : "bg-transparent"
+                      : "bg-white"
                   )}
                 >
                   <strong className="drop-shadow">{item.text}</strong>
