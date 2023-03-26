@@ -1,5 +1,12 @@
 import clsx from "clsx"
-import { Footer, Main, Meta, Project, ScrollToTopButton } from "components"
+import {
+  Chip,
+  Footer,
+  Main,
+  Meta,
+  Project,
+  ScrollToTopButton,
+} from "components"
 import { getAllProjectsAndTags } from "lib/api"
 import { iSanityProject } from "lib/models/objects/sanityProject"
 import { iSanityTag } from "lib/models/objects/SanityTag"
@@ -42,39 +49,24 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
             </p>
           </div>
 
-          {/* {projectStatus.length > 0 && (
-            <section className="flex gap-1 col-span-full">
-              {projectStatus.map((status) => {
-                return (
-                  <button
-                    key={status}
-                    className="px-3 py-2 text-xs text-white uppercase rounded-full bg-dark hover:bg-gray-700"
-                    onClick={() => setCurrentStatusFilter(status)}
-                  >
-                    <strong>{status}</strong>
-                  </button>
-                )
-              })}
-            </section>
-          )} */}
-
           {tags.length > 0 && (
             <section className="flex gap-1 overflow-x-scroll xl:flex-wrap col-span-full">
               {allTags
                 .sort((a, b) => b.projectCount - a.projectCount)
                 .map((filter) => {
                   const { name = "", projectCount = 0 } = filter
+
+                  const isSelected = name === currentFilter
                   return (
                     <button
                       key={name}
-                      className="px-3 py-2 text-xs text-white capitalize rounded-lg bg-dark shrink-0 hover:bg-gray-700"
                       onClick={() => {
                         setCurrentFilter(name)
                       }}
                     >
-                      <strong>
+                      <Chip hasStatus={isSelected ? "selected" : "notSelected"}>
                         {name}({projectCount})
-                      </strong>
+                      </Chip>
                     </button>
                   )
                 })}
@@ -92,16 +84,6 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
               }
               return false
             })
-            // .filter((project) => {
-            //   const { status = "" } = project
-            //   if (currentStatusFilter === "all") {
-            //     return true
-            //   }
-            //   if (status === currentStatusFilter) {
-            //     return true
-            //   }
-            //   return false
-            // })
             .map((project, i) => {
               const { _id = "" } = project
               const isLeft = isEven(i)

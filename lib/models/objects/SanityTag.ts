@@ -3,4 +3,5 @@ export interface iSanityTag {
   name: string
   paintingsCount: number
   projectCount: number
+  videoCount?: number
 }
