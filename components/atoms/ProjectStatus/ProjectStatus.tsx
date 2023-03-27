@@ -41,11 +41,11 @@ const ProjectStatus = ({ status }: iStatus) => {
   return (
     <div
       className={clsx(
-        "flex items-center text-xs gap-1 px-2 py-1 backdrop-blur text-dark",
+        "flex items-center text-xs gap-1 py-2 px-4 rounded backdrop-blur text-dark",
         projectStatusColor[status]
       )}
     >
-      <div className={clsx()}>{projectStatusIcon[status]}</div>
+      <div>{projectStatusIcon[status]}</div>
       <div className="capitalize">
         <strong>{status}</strong>
       </div>

@@ -8,7 +8,7 @@ import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
 import Script from "next/script"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"
 import { HiOutlineDesktopComputer } from "react-icons/hi"
@@ -203,7 +203,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                     className="flex items-center gap-2"
                   >
                     <HiOutlineDesktopComputer />
-                    <span>Frontend developer</span>
+                    <span>Senior Front-end developer</span>
                   </motion.li>
                   <motion.li
                     variants={item}

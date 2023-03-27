@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { ProjectStatus } from "components/atoms"
+import { Chip, ProjectStatus } from "components/atoms"
 import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityProject } from "lib/models/objects/sanityProject"
@@ -63,7 +63,7 @@ const Project = ({
       viewport={{ once: true, amount: 0.01 }}
       variants={cardVariants}
       className={clsx(
-        "relative w-full h-full grid bg-white shadow grid-cols-3 aspect-square xl:aspect-video hover:shadow-2xl"
+        "relative w-full h-full  grid bg-white shadow grid-cols-3 aspect-square hover:shadow-2xl"
       )}
     >
       <Image
@@ -91,9 +91,10 @@ const Project = ({
           <ul className="flex flex-wrap items-baseline gap-2 py-2 text-sm xl:text-base xl:max-w-xl">
             <ProjectStatus status={status} />
             {tags.map((tag, i) => {
+              const { name = "" } = tag
               return (
-                <li key={tag.name + i} className="px-2 py-1 bg-primary">
-                  <div className="text-xs">{tag.name}</div>
+                <li key={name + i}>
+                  <Chip>{name}</Chip>
                 </li>
               )
             })}

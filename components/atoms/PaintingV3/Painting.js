@@ -94,7 +94,7 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
   return (
     <AnimatePresence>
       <motion.article
-        layout
+        // layout
         layoutId={title}
         // initial="offscreen"
         // whileInView="onscreen"

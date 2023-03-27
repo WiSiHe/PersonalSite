@@ -1,6 +1,13 @@
 import clsx from "clsx"
 // Components
-import { Main, Meta, RedbubbleLink, SocialLinks } from "components"
+import {
+  Chip,
+  Footer,
+  Main,
+  Meta,
+  RedbubbleLink,
+  Society6Link,
+} from "components"
 import { AnimatePresence } from "framer-motion"
 import { m } from "framer-motion"
 // Helpers
@@ -36,6 +43,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
     format = "square",
     // tagCount = 0,
     redbubbleUrl = "",
+    society6Url = "",
     tagsV2 = [],
     video = "",
   } = painting
@@ -43,8 +51,9 @@ export default function Gallery({ painting = {}, slug = {} }) {
   const { current = "" } = slug
 
   const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
+  const hasSociety6Link = society6Url !== "" && society6Url !== null
 
-  const hasStoreLinks = hasRedBubleLink
+  const hasStoreLinks = hasRedBubleLink || hasSociety6Link
 
   const imageAspectStyle = {
     square: "aspect-square",
@@ -81,7 +90,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         noTopPadding
         className="flex flex-col min-h-screen p-4 pt-20 mx-auto xl:grid xl:grid-cols-12 xl:gap-4 overflow-clip bg-tertiary max-w-screen-2xl"
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence>
           <m.div
             className="fixed z-10 top-20 left-6 "
             initial={{ opacity: 0, x: -100 }}
@@ -106,7 +115,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
             key="MainPainting"
             layoutId={title}
             className={clsx(
-              "flex relative flex-col h-fit col-span-full w-full xl:col-span-8",
+              "flex relative flex-col h-fit col-span-full w-full xl:col-span-8 pb-4",
               imageAspectStyle[format]
             )}
           >
@@ -127,74 +136,67 @@ export default function Gallery({ painting = {}, slug = {} }) {
             exit={{ opacity: 0 }}
             transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
             key="text-section"
-            className="relative justify-between p-4 transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-4"
+            className="relative justify-between p-0 transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-4"
           >
-            <div>
-              <h1 className="pt-2 pb-2 text-2xl xl:pt-0 lg:text-4xl">
+            <div className="space-y-4">
+              <h1>
                 <strong>{title}</strong>
               </h1>
-              <div className="flex flex-wrap gap-2">
+
+              <div className="flex flex-wrap gap-1">
                 {tagsV2?.map((tag) => {
                   const { name = "" } = tag
                   const tagSlug = name.toLowerCase().replace(" ", "-")
                   return (
-                    <Link
-                      className="px-2 py-1 text-xs text-white capitalize bg-primary"
-                      key={name}
-                      href={`/paintings/${tagSlug}`}
-                    >
-                      {name}
+                    <Link key={name} href={`/paintings/${tagSlug}`}>
+                      <Chip>{name}</Chip>
                     </Link>
                   )
                 })}
               </div>
-              <p className="py-2">
-                {description
-                  ? description
-                  : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis, augue eu mattis ultrices, ipsum metus porttitor turpis, et convallis lorem tortor nec erat."}
-              </p>
+              <p className="">{description && description}</p>
+
               {hasStoreLinks && (
-                <h3>
-                  <b>Store links:</b>
-                </h3>
+                <div className="p-4 bg-highlight">
+                  <h3>
+                    <strong>Store links</strong>
+                  </h3>
+                  <p>
+                    I also sell prints, posters, and other products of my
+                    artwork, available in various formats like framed prints,
+                    canvas prints, and phone cases.
+                  </p>
+                  <div className="flex items-center gap-4 pt-4">
+                    <RedbubbleLink href={redbubbleUrl} />
+                    <Society6Link href={society6Url} />
+                  </div>
+                </div>
               )}
-              {hasRedBubleLink && (
-                <RedbubbleLink
-                  hasRedBubleLink={hasRedBubleLink}
-                  redbubbleUrl={redbubbleUrl}
-                />
-              )}
-            </div>
-            <div className="pt-10 pb-10 xl:pt-4 xl:pb-0">
-              <SocialLinks />
             </div>
           </m.div>
 
-          {imagesCount > 0 && (
-            <>
-              {images.map((image, index) => {
-                return (
-                  <div
-                    key={`picture-${index}`}
-                    className={clsx(
-                      "bg-white relative col-span-full w-full xl:col-span-8",
-                      imageAspectStyle[format]
-                    )}
-                  >
-                    <LazyLoadImage
-                      alt={title}
-                      src={imageBuilder(image)
-                        .width(imageWidth[format])
-                        .height(imageHeight[format])
-                        .quality(75)
-                        .url()}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                )
-              })}
-            </>
-          )}
+          {imagesCount > 0 &&
+            images.map((image, index) => {
+              return (
+                <div
+                  key={`picture-${index}`}
+                  className={clsx(
+                    "bg-white relative col-span-full w-full xl:col-span-8",
+                    imageAspectStyle[format]
+                  )}
+                >
+                  <LazyLoadImage
+                    alt={title}
+                    src={imageBuilder(image)
+                      .width(imageWidth[format])
+                      .height(imageHeight[format])
+                      .quality(75)
+                      .url()}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              )
+            })}
           {video && (
             <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
               <div className="w-full aspect-video">
@@ -213,6 +215,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
           )}
         </AnimatePresence>
       </Main>
+      <Footer />
     </>
   )
 }

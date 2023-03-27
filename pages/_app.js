@@ -43,7 +43,18 @@ const MyApp = function ({ Component, pageProps }) {
           {/* </div> */}
         </div>
       </LazyMotion>
-      <Analytics />
+      <Analytics
+        beforeSend={(event) => {
+          // Ignore all events that have a `/private` inside the URL
+          if (event.url.includes("/studio")) {
+            return null
+          }
+          if (event.url.includes("/test")) {
+            return null
+          }
+          return event
+        }}
+      />
     </>
   )
 }

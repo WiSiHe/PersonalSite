@@ -14,10 +14,10 @@ const Chip = ({ children, hasStatus = "notSelected" }: iChipProps) => {
     <div
       className={clsx(
         statusStyle[hasStatus],
-        "py-2 px-4 text-xs rounded uppercase whitespace-nowrap shrink-0 "
+        "py-2 px-4 text-xs flex rounded uppercase whitespace-nowrap shrink-0 pointer-events-none"
       )}
     >
-      <strong>{children}</strong>
+      <strong className="flex items-center gap-1">{children}</strong>
     </div>
   )
 }
