@@ -46,10 +46,10 @@ const MyApp = function ({ Component, pageProps }) {
       <Analytics
         beforeSend={(event) => {
           // Ignore all events that have a `/private` inside the URL
-          if (event.url.includes("/studio")) {
+          if (event.url.includes("studio")) {
             return null
           }
-          if (event.url.includes("/test")) {
+          if (event.url.includes("test")) {
             return null
           }
           return event
