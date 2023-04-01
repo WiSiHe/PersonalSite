@@ -2,7 +2,11 @@
 import Link from "next/link"
 import { SiSociety6 } from "react-icons/si"
 
-const Society6Link = ({ href = "" }) => {
+interface iSociety6Link {
+  href?: string | null
+}
+
+const Society6Link = ({ href = "" }: iSociety6Link) => {
   if (!href) return null
   return (
     <>

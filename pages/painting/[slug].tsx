@@ -1,5 +1,4 @@
 import clsx from "clsx"
-// Components
 import {
   Chip,
   Footer,
@@ -10,33 +9,42 @@ import {
 } from "components"
 import { AnimatePresence } from "framer-motion"
 import { m } from "framer-motion"
-// Helpers
 import generatePaintingJsonLd from "helpers/jsonLdHelpers"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
-// Libs
+import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
+import { GetStaticProps } from "next"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import PropTypes from "prop-types"
 import React from "react"
 import { Suspense } from "react"
 import { IoArrowBackSharp } from "react-icons/io5"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-// import { getAllPaintingSlugs, getPaintingDetails } from "@/lib/api"
+import { isEmptyObject } from "sanity"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
   ssr: false,
 })
 
-export default function Gallery({ painting = {}, slug = {} }) {
+interface PageProps {
+  painting: iSanityPainting
+  slug: string
+}
+
+// params: { slug: 'full-metal-alchemist-arm' }
+
+interface Query {
+  [key: string]: string
+}
+
+export default function Gallery({ painting, slug }: PageProps) {
   const router = useRouter()
 
   const {
     // _id,
     images = [],
-    imagesCount = 0,
     title = "",
     description = "",
     image,
@@ -47,8 +55,6 @@ export default function Gallery({ painting = {}, slug = {} }) {
     tagsV2 = [],
     video = "",
   } = painting
-
-  const { current = "" } = slug
 
   const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
   const hasSociety6Link = society6Url !== "" && society6Url !== null
@@ -73,7 +79,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
   }
 
   const handleGoBack = () => {
-    router.back({ scroll: false })
+    router.back()
   }
 
   return (
@@ -83,7 +89,7 @@ export default function Gallery({ painting = {}, slug = {} }) {
         description={description}
         image={imageBuilder(image).width(128).height(128).quality(75).url()}
         jsonLd={generatePaintingJsonLd(painting)}
-        url={`https://wisihe.no/painting/${current}`}
+        url={`https://wisihe.no/painting/${slug}`}
       />
 
       <Main
@@ -175,28 +181,27 @@ export default function Gallery({ painting = {}, slug = {} }) {
             </div>
           </m.div>
 
-          {imagesCount > 0 &&
-            images.map((image, index) => {
-              return (
-                <div
-                  key={`picture-${index}`}
-                  className={clsx(
-                    "bg-white relative col-span-full w-full xl:col-span-8",
-                    imageAspectStyle[format]
-                  )}
-                >
-                  <LazyLoadImage
-                    alt={title}
-                    src={imageBuilder(image)
-                      .width(imageWidth[format])
-                      .height(imageHeight[format])
-                      .quality(75)
-                      .url()}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              )
-            })}
+          {images?.map((image, index) => {
+            return (
+              <div
+                key={`picture-${index}`}
+                className={clsx(
+                  "bg-white relative col-span-full w-full xl:col-span-8",
+                  imageAspectStyle[format]
+                )}
+              >
+                <LazyLoadImage
+                  alt={title}
+                  src={imageBuilder(image)
+                    .width(imageWidth[format])
+                    .height(imageHeight[format])
+                    .quality(75)
+                    .url()}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            )
+          })}
           {video && (
             <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
               <div className="w-full aspect-video">
@@ -220,26 +225,27 @@ export default function Gallery({ painting = {}, slug = {} }) {
   )
 }
 
-Gallery.propTypes = {
-  painting: PropTypes.object,
-  slug: PropTypes.object,
-}
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { params = {} } = ctx
 
-export async function getStaticProps({ params }) {
-  const { slug = "" } = params
-  const data = await getPaintingDetails(slug)
-
-  if (data.length < 1) {
+  if (!params.slug) {
     return {
       notFound: true,
     }
   }
 
-  const painting = data[0] || {}
+  const painting = await getPaintingDetails(params.slug)
+
+  if (isEmptyObject(painting)) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
       painting,
+      slug: params.slug,
     },
     //  revalidate evry 3 hour
     revalidate: 60 * 60 * 3,
@@ -257,6 +263,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
+    // fallback: "blocking",
     fallback: false,
   }
 }

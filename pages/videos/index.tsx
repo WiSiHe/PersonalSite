@@ -43,14 +43,14 @@ const PaintingsPage = ({ videos = [], tags = [] }: iSanityVideoProps) => {
           </p>
         </section>
         <section className="flex flex-wrap gap-1 pt-4">
-          {allTags.map((tag) => {
+          {allTags.map((tag, i) => {
             const { name = "", videoCount = 0 } = tag
 
             const isSelected = name === selectedTag
 
             return (
               <>
-                <button onClick={() => handleSelectTag(name)}>
+                <button onClick={() => handleSelectTag(name)} key={i}>
                   <Chip
                     key={name}
                     hasStatus={isSelected ? "selected" : "notSelected"}

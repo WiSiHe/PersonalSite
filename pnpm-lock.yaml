@@ -20,6 +20,7 @@ specifiers:
   '@tailwindcss/container-queries': ^0.1.0
   '@types/node': 18.15.3
   '@types/react': ^18.0.28
+  '@types/react-lazy-load-image-component': ^1.5.2
   '@types/three': ^0.149.0
   '@typescript-eslint/eslint-plugin': ^5.55.0
   '@typescript-eslint/parser': ^5.55.0
@@ -87,7 +88,6 @@ dependencies:
   react-icons: 4.8.0_react@18.2.0
   react-intersection-observer: 9.4.3_react@18.2.0
   react-is: 18.2.0
-  react-lazy-load-image-component: 1.5.6_biqbaboplfbrettd7655fr4n2y
   react-player: 2.12.0_react@18.2.0
   sanity: 3.6.0_wmkicuy746ejrszlrmb4abjsnq
   satori: 0.4.2
@@ -106,6 +106,7 @@ devDependencies:
   '@sanity/types': 3.6.0
   '@types/node': 18.15.3
   '@types/react': 18.0.28
+  '@types/react-lazy-load-image-component': 1.5.2
   '@types/three': 0.149.0
   '@typescript-eslint/eslint-plugin': 5.55.0_342y7v4tc7ytrrysmit6jo4wri
   '@typescript-eslint/parser': 5.55.0_vgl77cfdswitgr47lm5swmv43m
@@ -120,6 +121,7 @@ devDependencies:
   postcss: 8.4.21
   prettier: 2.8.4
   prop-types: 15.8.1
+  react-lazy-load-image-component: 1.5.6_biqbaboplfbrettd7655fr4n2y
   tailwindcss: 3.2.7
   typescript: 4.9.5
   zod: 3.21.4
@@ -1791,6 +1793,13 @@ packages:
     dependencies:
       '@types/react': 18.0.28
     dev: false
+
+  /@types/react-lazy-load-image-component/1.5.2:
+    resolution: {integrity: sha512-4NLJsMJVrMv18FuMIkUUBVj/PH9A+BvLKrZC75EWiEFn1IsMrZHgL1tVKw5QBfoa0Qjz6SkWIzEvwcyZ8PgnIg==}
+    dependencies:
+      '@types/react': 18.0.28
+      csstype: 3.1.1
+    dev: true
 
   /@types/react-reconciler/0.26.7:
     resolution: {integrity: sha512-mBDYl8x+oyPX/VBb3E638N0B7xG+SPk/EAMcVPeexqus/5aTpTphQi0curhhshOqRrc9t6OPoJfEUkbymse/lQ==}
@@ -4834,7 +4843,7 @@ packages:
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
-    dev: false
+    dev: true
 
   /lodash.defaults/4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
@@ -4866,7 +4875,7 @@ packages:
 
   /lodash.throttle/4.1.1:
     resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
-    dev: false
+    dev: true
 
   /lodash.union/4.6.0:
     resolution: {integrity: sha512-c4pB2CdGrGdjMKYLA+XiRDO7Y0PRQbm/Gzg8qMj+QH+pFVAoTp5sBpO0odL3FjoPCGjK96p6qsP+yQoiLoOBcw==}
@@ -5852,7 +5861,7 @@ packages:
       lodash.throttle: 4.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    dev: false
+    dev: true
 
   /react-lifecycles-compat/3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}

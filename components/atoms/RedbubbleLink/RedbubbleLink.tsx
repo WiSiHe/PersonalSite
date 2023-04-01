@@ -1,10 +1,12 @@
-import clsx from "clsx"
 import Link from "next/link"
-import PropTypes from "prop-types"
 import React from "react"
 import { SiRedbubble } from "react-icons/si"
 
-const RedbubbleLink = ({ href = "" }) => {
+interface iRedbubbleLink {
+  href?: string | null
+}
+
+const RedbubbleLink = ({ href = "" }: iRedbubbleLink) => {
   if (!href) return null
 
   return (
@@ -21,10 +23,6 @@ const RedbubbleLink = ({ href = "" }) => {
       </div>
     </Link>
   )
-}
-
-RedbubbleLink.propTypes = {
-  redbubbleUrl: PropTypes.string,
 }
 
 export default RedbubbleLink
