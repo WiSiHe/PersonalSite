@@ -1,6 +1,0 @@
-export { default as FilterBar } from "./FilterBar"
-export { default as HeroSectionDesktop } from "./HeroSectionDesktop"
-export { default as HeroSectionMobile } from "./HeroSectionMobile"
-export { default as ImageExplotionSection } from "./ImageExplotionSection"
-export { default as SalesPointsSection } from "./SalesPointsSection"
-export { default as ScrollSection } from "./ScrollSection"

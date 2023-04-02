@@ -1,11 +1,15 @@
 import clsx from "clsx"
 import { m } from "framer-motion"
-import PropTypes from "prop-types"
 import React from "react"
 
 import SocialLinks from "../SocialLinks/SocialLinks"
 
-export default function Footer({ fixed = false, onlyMobile = false }) {
+interface iFooterProps {
+  fixed?: boolean
+  onlyMobile?: boolean
+}
+
+const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
   return (
     <m.footer
       initial={{ y: 50 }}
@@ -25,7 +29,4 @@ export default function Footer({ fixed = false, onlyMobile = false }) {
   )
 }
 
-Footer.propTypes = {
-  fixed: PropTypes.bool,
-  onlyMobile: PropTypes.bool,
-}
+export default Footer

@@ -13,7 +13,7 @@ import Image from "next/image"
 import explorer from "public/images/explorer.png"
 import night from "public/images/night-forest.jpeg"
 
-import ImageExplotionSection from "../ImageExplotionSection"
+import ImageExplotionSection from "../ImageExplotionSection/ImageExplotionSection"
 
 // import ImageExplotionSection from "../ImageExplotionSection"
 

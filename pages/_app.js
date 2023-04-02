@@ -1,6 +1,7 @@
 import "styles/globals.css"
-import Navigation from "components/molecules/Navigation/Navigation"
+
 import { Analytics } from "@vercel/analytics/react"
+import Navigation from "components/molecules/Navigation/Navigation"
 import { domAnimation, LazyMotion } from "framer-motion"
 import { Inter, Lobster, Roboto } from "next/font/google"
 import PropTypes from "prop-types"

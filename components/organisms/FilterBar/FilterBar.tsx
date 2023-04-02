@@ -1,5 +1,6 @@
-import { FilterModal, FilterSortButton } from "components"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
+import FilterModal from "components/molecules/FilterModal/FilterModal"
+import FilterSortButton from "components/molecules/FilterSortButton/FilterSortButton"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
@@ -62,4 +63,4 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   )
 }
 
-export default FilterBar
+export { FilterBar }

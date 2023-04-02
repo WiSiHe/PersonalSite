@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
-import { HeroSectionLoader } from "components/molecules"
+import HeroSectionLoader from "components/molecules/HeroSectionLoader/HeroSectionLoader"
 import { m } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"

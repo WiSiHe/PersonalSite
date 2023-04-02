@@ -1,6 +1,6 @@
-import { SideMenu } from "components"
 import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
+import SideMenu from "components/molecules/SideMenu/SideMenu"
 import Image from "next/image"
 import React from "react"
 // import Navigation from "../components/Navigation"

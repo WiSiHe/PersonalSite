@@ -1,11 +1,9 @@
-import {
-  Footer,
-  HeroSectionDesktop,
-  HeroSectionMobile,
-  ScrollSection,
-} from "components"
 import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
+import Footer from "components/molecules/Footer/Footer"
+import HeroSectionDesktop from "components/organisms/HeroSectionDesktop/HeroSectionDesktop"
+import HeroSectionMobile from "components/organisms/HeroSectionMobile/HeroSectionMobile"
+import ScrollSection from "components/organisms/ScrollSection/ScrollSection"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"

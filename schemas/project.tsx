@@ -4,7 +4,7 @@ import { defineField, defineType } from "sanity"
 import { Stack, Text, TextInput } from "@sanity/ui"
 
 import tagType from "./tag"
-import { SanityAI } from "components"
+import SanityAI from "components/molecules/SanityAI/SanityAI"
 
 export default defineType({
   name: "project",
