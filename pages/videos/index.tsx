@@ -31,7 +31,7 @@ const PaintingsPage = ({ videos = [], tags = [] }: iSanityVideoProps) => {
         url="https://wisihe.no/videos"
         description="A gallery of some of my videos"
       />
-      <Main className="flex-col p-4 mx-auto max-w-screen-2xl">
+      <Main className="flex-col min-h-screen p-4 mx-auto max-w-screen-2xl">
         <section className="max-w-2xl">
           <h1>Videos</h1>
           <p>
@@ -40,7 +40,7 @@ const PaintingsPage = ({ videos = [], tags = [] }: iSanityVideoProps) => {
             creatively.
           </p>
         </section>
-        <section className="flex flex-wrap gap-1 pt-4">
+        <section className="flex gap-1 pt-4 overflow-x-scroll">
           {allTags.map((tag, i) => {
             const { name = "", videoCount = 0 } = tag
 
