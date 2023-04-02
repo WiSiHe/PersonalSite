@@ -129,39 +129,28 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
               "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
             )}
           />
-          {isNsfw && !isNsfwUrl && (
-            <div className={clsx("absolute inset-0", "backdrop-blur-xl")} />
-          )}
 
-          {/* <div className="absolute inset-0 w-full h-full">
-            <div className="flex items-center justify-center w-full h-full">
-              <div
-                className={clsx(
-                  !isNsfw && !isNsfwUrl && "backdrop-blur-sm bg-primary/20",
-                  "transition-all duration-1000 ease-in-out origin-center opacity-0 group-hover:h-full group-hover:w-full group-hover:opacity-100 "
-                )}
-              />
-            </div>
-          </div> */}
-
-          <div className="absolute text-center text-white bottom-4 left-4">
+          <div className="absolute z-10 left-4 top-4 right-4">
             <h2>
-              <strong className="text-xs group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)] @xs:text-sm text-b @md:text-xl">
+              <strong className="text-md text-white group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)]  @md:text-sm">
                 {title}
               </strong>
             </h2>
           </div>
 
-          {hasStoreLinks && (
-            <div className="absolute flex items-center p-2 text-xs rounded-lg top-2 left-2 bg-highlight">
-              <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
-                <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
-              </div>
-              <strong className="text-xs @xs:text-sm">For sale</strong>
-            </div>
+          {isNsfw && !isNsfwUrl && (
+            <div className={clsx("absolute inset-0", "backdrop-blur-xl")} />
           )}
 
           <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
+            {hasStoreLinks && (
+              <div className="flex items-center p-2 text-xs rounded-lg bg-highlight">
+                <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
+                  <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+                </div>
+                <strong className="text-xs @xs:text-sm">For sale</strong>
+              </div>
+            )}
             {video && (
               <div className="p-2 bg-white rounded-lg">
                 <RiMovieFill />

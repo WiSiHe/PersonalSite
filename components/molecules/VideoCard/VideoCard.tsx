@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Chip from "components/atoms/Chip/Chip"
+
 import { AnimatePresence, m } from "framer-motion"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import { imageBuilder } from "lib/sanity"
@@ -7,6 +7,8 @@ import dynamic from "next/dynamic"
 import { useState } from "react"
 import { isNotEmptyArray } from "utils/array"
 import { isNotEmptyObject } from "utils/object"
+
+const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
@@ -47,7 +49,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
         whileInView="onscreen"
         viewport={{ once: true }}
         variants={cardVariants}
-        className="relative flex flex-col justify-between h-full bg-white rounded-lg shadow-xl col-span-full xl:col-span-4 overflow-clip"
+        className="relative flex flex-col justify-between bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-4"
       >
         <div className="p-4">
           <h2 className="">
@@ -83,7 +85,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
                   : "/images/woods.png"
               }
               alt={title}
-              className="object-cover bg-primary"
+              className="object-cover h-full bg-primary"
             />
           }
         />

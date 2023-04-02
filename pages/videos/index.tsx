@@ -76,9 +76,7 @@ const PaintingsPage = ({ videos = [], tags = [] }: iSanityVideoProps) => {
               })
             })
             .map((video) => {
-              const { _id = "" } = video
-
-              return <VideoCard video={video} key={_id} />
+              return <VideoCard video={video} key={video._id} />
             })}
         </section>
 
