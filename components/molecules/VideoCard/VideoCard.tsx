@@ -49,7 +49,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
         whileInView="onscreen"
         viewport={{ once: true }}
         variants={cardVariants}
-        className="relative flex flex-col justify-between bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-4"
+        className="relative bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-4 aspect-square "
       >
         <div className="p-4">
           <h2 className="">
