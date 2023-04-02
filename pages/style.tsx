@@ -1,4 +1,4 @@
-import { Main } from "components"
+import Main from "components/atoms/Main/Main"
 
 const StylePage = () => {
   return (

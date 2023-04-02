@@ -1,4 +1,5 @@
-import { Main, ScrollSection } from "components"
+import { ScrollSection } from "components"
+import Main from "components/atoms/Main/Main"
 
 const TestPage = () => {
   return (

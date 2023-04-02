@@ -1,12 +1,22 @@
 import Head from "next/head"
-import PropTypes from "prop-types"
 import React from "react"
 
+type MetaProps = {
+  title?: string
+  description?: string
+  image?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: string
+  jsonLd?: string
+  url?: string
+}
+
 const DEFAULT_TAGS = {
-  title: "WiSiHe - Design",
+  title: "WiSiHe",
   description:
-    "Art, designs, game development, web development, and other various projects of Henrik Wilhelm Sissener - WiSiHe",
-  image: "https://wisihe.no/images/woods.png",
+    "WiSiHe is a digital agency that creates digital solutions for the web and mobile.",
+  image: "/images/wisihe.png",
   url: "https://wisihe.no",
 }
 
@@ -19,7 +29,7 @@ const Meta = ({
   ogImage,
   jsonLd,
   url,
-}) => {
+}: MetaProps) => {
   return (
     <Head>
       <title>{title ? `${title} - WiSiHe` : DEFAULT_TAGS.title}</title>
@@ -56,28 +66,6 @@ const Meta = ({
       )}
     </Head>
   )
-}
-
-Meta.defaultProps = {
-  title: "",
-  description: "",
-  image: "",
-  ogTitle: "",
-  ogDescription: "",
-  ogImage: "",
-  jsonLd: "",
-  url: "",
-}
-
-Meta.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  ogTitle: PropTypes.string,
-  ogDescription: PropTypes.string,
-  ogImage: PropTypes.string,
-  jsonLd: PropTypes.string,
-  url: PropTypes.string,
 }
 
 export default Meta

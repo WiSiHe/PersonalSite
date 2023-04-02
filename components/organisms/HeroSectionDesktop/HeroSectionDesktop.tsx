@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import { HeroSectionLoader } from "components/molecules"
 import { motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
@@ -8,9 +7,8 @@ import Link from "next/link"
 import { useState } from "react"
 import { BiGame } from "react-icons/bi"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
-
-import { HiOutlineDesktopComputer } from "react-icons/hi"
 import { BsFillBrushFill } from "react-icons/bs"
+import { HiOutlineDesktopComputer } from "react-icons/hi"
 
 interface HeroSectionProps {
   paintings: iSanityPainting[]

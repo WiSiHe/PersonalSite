@@ -1,12 +1,9 @@
 import clsx from "clsx"
-import {
-  Chip,
-  Footer,
-  Main,
-  Meta,
-  Project,
-  ScrollToTopButton,
-} from "components"
+import { Footer, Project } from "components"
+import Chip from "components/atoms/Chip/Chip"
+import Main from "components/atoms/Main/Main"
+import Meta from "components/atoms/Meta/Meta"
+import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import { getAllProjectsAndTags } from "lib/api"
 import { iSanityProject } from "lib/models/objects/sanityProject"
 import { iSanityTag } from "lib/models/objects/SanityTag"

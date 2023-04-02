@@ -1,60 +1,19 @@
-import clsx from "clsx"
-import {
-  Filters,
-  Footer,
-  Main,
-  Meta,
-  Painting,
-  ScrollToTopButton,
-} from "components"
+import { Filters, Footer } from "components"
+import Main from "components/atoms/Main/Main"
+import Meta from "components/atoms/Meta/Meta"
+import Painting from "components/atoms/PaintingV3/Painting"
+import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import { getAllTags, getAllTagsAndPaintingsLight } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import React from "react"
 import { isEmptyArray } from "utils/array"
 import { slugify } from "utils/string"
-// import { imageBuilder } from "lib/sanity"
-
-export interface iTag {
-  label: string
-  name: string
-  count: number
-  description: string
-}
-export interface iPaintingTag {
-  label: string
-  value: string
-}
-
-export interface iPainting {
-  _id: string
-  _type: string
-  _rev: string
-  _createdAt: string
-  _updatedAt: string
-  aspectRatio?: string
-  redbubbleUrl?: string
-  format?: string
-  title: string
-  slug: {
-    current: string
-    _type: string
-  }
-  image: {
-    _type: string
-    asset: {
-      _ref: string
-      _type: string
-    }
-  }
-  tags: iPaintingTag[]
-  tagsV2: iSanityTag[]
-}
 
 export interface PaintingsPageProps {
   slug: string
-  paintings: iPainting[]
-  tags: iTag[]
+  paintings: iSanityPainting[]
+  tags: iSanityTag[]
 }
 
 const PaintingsPage = ({
@@ -97,7 +56,7 @@ const PaintingsPage = ({
                 return (
                   <div
                     key={_id}
-                    className={clsx("col-span-6 xl:col-span-3 aspect-square")}
+                    className="col-span-6 xl:col-span-3 aspect-square"
                   >
                     <Painting paintingData={p} />
                   </div>

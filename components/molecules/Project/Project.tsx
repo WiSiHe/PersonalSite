@@ -1,5 +1,6 @@
 import clsx from "clsx"
-import { Chip, ProjectStatus } from "components/atoms"
+import Chip from "components/atoms/Chip/Chip"
+import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"
 import { m } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityProject } from "lib/models/objects/sanityProject"

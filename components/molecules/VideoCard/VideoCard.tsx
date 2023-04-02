@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Chip } from "components/atoms"
+import Chip from "components/atoms/Chip/Chip"
 import { m } from "framer-motion"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import { imageBuilder } from "lib/sanity"

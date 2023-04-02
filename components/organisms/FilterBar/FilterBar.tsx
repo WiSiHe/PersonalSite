@@ -1,4 +1,5 @@
-import { FilterModal, FilterSortButton, ScrollToTopButton } from "components"
+import { FilterModal, FilterSortButton } from "components"
+import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"

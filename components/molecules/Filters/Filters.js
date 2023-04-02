@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import { AnimatePresence, m } from "framer-motion"
 import Link from "next/link"
-import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { BsFilter } from "react-icons/bs"
 import { IoClose } from "react-icons/io5"
@@ -125,14 +124,6 @@ const Filters = ({
       </AnimatePresence>
     </>
   )
-}
-
-Filters.propTypes = {
-  activeFilter: PropTypes.string,
-  filteredTags: PropTypes.array,
-  paintingsAmount: PropTypes.number,
-  amountOfPaintings: PropTypes.number,
-  setFilterTag: PropTypes.func,
 }
 
 export default Filters

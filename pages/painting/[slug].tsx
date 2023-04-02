@@ -1,12 +1,10 @@
 import clsx from "clsx"
-import {
-  Chip,
-  Footer,
-  Main,
-  Meta,
-  RedbubbleLink,
-  Society6Link,
-} from "components"
+import { Footer } from "components"
+import Chip from "components/atoms/Chip/Chip"
+import Main from "components/atoms/Main/Main"
+import Meta from "components/atoms/Meta/Meta"
+import RedbubbleLink from "components/atoms/RedbubbleLink/RedbubbleLink"
+import Society6Link from "components/atoms/Society6Link/Society6link"
 import { AnimatePresence } from "framer-motion"
 import { m } from "framer-motion"
 import generatePaintingJsonLd from "helpers/jsonLdHelpers"

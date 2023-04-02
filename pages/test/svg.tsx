@@ -1,7 +1,6 @@
 import clsx from "clsx"
-import { Loader, Main } from "components"
-import { m, useMotionValueEvent, useTime, useTransform } from "framer-motion"
-import { useEffect } from "react"
+import Main from "components/atoms/Main/Main"
+import { m } from "framer-motion"
 
 const container = {
   hidden: { opacity: 1 },

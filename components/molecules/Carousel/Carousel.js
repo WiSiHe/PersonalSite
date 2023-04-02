@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import Painting from "components/atoms/PaintingV2"
 import PropTypes from "prop-types"
 import React from "react"
 import { useRef, useState } from "react"
@@ -62,13 +61,14 @@ const Carousel = ({ paintings = [], filterTag = "" }) => {
               (t) => t.value.toLowerCase() === filterTag || filterTag === "all"
             )
           )
-          .map((p, i) => (
-            <Painting
-              paintingData={p}
-              filterTag={filterTag}
-              index={i}
-              key={i}
-            />
+          .map((_, i) => (
+            <p key={i}>dw</p>
+            // <Painting
+            //   paintingData={p}
+            //   filterTag={filterTag}
+            //   index={i}
+            //   key={i}
+            // />
           ))}
       </div>
 

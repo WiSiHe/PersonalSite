@@ -4,7 +4,6 @@ import { NavItems } from "constants/navigation"
 import { AnimatePresence, m } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import PropTypes from "prop-types"
 import React from "react"
 
 const container = {
@@ -25,7 +24,10 @@ const listItem = {
   show: { opacity: 1, y: 0 },
 }
 
-export default function Navigation({ isAbsolute = true }) {
+interface iNavigationProps {
+  isAbsolute?: boolean
+}
+const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
   const router = useRouter()
   const { asPath = "" } = router
   const asPathWithSpacing = asPath.replace(/\//g, "/")
@@ -91,6 +93,4 @@ export default function Navigation({ isAbsolute = true }) {
   )
 }
 
-Navigation.propTypes = {
-  isAbsolute: PropTypes.bool,
-}
+export default Navigation

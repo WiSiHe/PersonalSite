@@ -1,8 +1,17 @@
 import clsx from "clsx"
-import PropTypes from "prop-types"
 import React from "react"
 
-const Main = ({ noTopPadding = false, className = "", children }) => {
+interface iMainProps {
+  noTopPadding?: boolean
+  className?: string
+  children: React.ReactNode
+}
+
+const Main = ({
+  noTopPadding = false,
+  className = "",
+  children,
+}: iMainProps) => {
   const mainCss = "flex flex-1 bg-tertiary relative w-full dark:text-white"
 
   return (
@@ -10,12 +19,6 @@ const Main = ({ noTopPadding = false, className = "", children }) => {
       {children}
     </main>
   )
-}
-
-Main.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  noTopPadding: PropTypes.bool,
 }
 
 export default Main

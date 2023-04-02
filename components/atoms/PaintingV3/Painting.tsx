@@ -1,11 +1,11 @@
 import clsx from "clsx"
 import { AnimatePresence, motion } from "framer-motion"
+import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import PropTypes from "prop-types"
 import React from "react"
 import { FaExclamation } from "react-icons/fa"
 import { GrMultiple } from "react-icons/gr"
@@ -27,7 +27,12 @@ import { RiMovieFill } from "react-icons/ri"
 //   },
 // }
 
-const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
+interface iProjectProps {
+  paintingData: iSanityPainting
+  shouldBeLazy?: boolean
+}
+
+const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   const router = useRouter()
   const { slug = "" } = router.query
 
@@ -162,7 +167,7 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
                 <RiMovieFill />
               </div>
             )}
-            {imagesCount > 0 && (
+            {imagesCount && imagesCount > 0 && (
               <div className="p-2 bg-white rounded-lg">
                 <GrMultiple />
               </div>
@@ -177,17 +182,6 @@ const Painting = ({ paintingData = {}, shouldBeLazy = false }) => {
       </motion.article>
     </AnimatePresence>
   )
-}
-
-Painting.propTypes = {
-  index: PropTypes.number,
-  isPriority: PropTypes.bool,
-  paintingData: PropTypes.shape({
-    _id: PropTypes.any,
-    image: PropTypes.object,
-    tags: PropTypes.array,
-    title: PropTypes.string,
-  }),
 }
 
 export default Painting

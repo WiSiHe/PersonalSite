@@ -1,5 +1,8 @@
 import clsx from "clsx"
-import { FilterBar, Footer, Main, Meta, Painting } from "components"
+import { FilterBar, Footer } from "components"
+import Main from "components/atoms/Main/Main"
+import Meta from "components/atoms/Meta/Meta"
+import Painting from "components/atoms/PaintingV3/Painting"
 import { motion } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
 import { getAllTagsAndPaintingsLight } from "lib/api"
@@ -37,32 +40,32 @@ interface iPaintingsPageProps {
   tags: iSanityTag[]
 }
 
-const Test = () => {
-  return (
-    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square">
-      <iframe
-        src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
-        width="100%"
-        height="100%"
-        title="spline"
-      />
-    </div>
-  )
-}
+// const Test = () => {
+//   return (
+//     <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square">
+//       <iframe
+//         src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+//         width="100%"
+//         height="100%"
+//         title="spline"
+//       />
+//     </div>
+//   )
+// }
 
-const Test2 = () => {
-  return (
-    <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square bg-primary">
-      <iframe
-        src="https://workshop-shaders.vercel.app/"
-        width="100%"
-        height="100%"
-        className="overflow-hidden pointer-events-none"
-        title="shader"
-      />
-    </div>
-  )
-}
+// const Test2 = () => {
+//   return (
+//     <div className="flex items-center justify-center col-span-12 row-span-2 text-white lg:col-span-6 aspect-square bg-primary">
+//       <iframe
+//         src="https://workshop-shaders.vercel.app/"
+//         width="100%"
+//         height="100%"
+//         className="overflow-hidden pointer-events-none"
+//         title="shader"
+//       />
+//     </div>
+//   )
+// }
 
 const Test3 = () => {
   return (

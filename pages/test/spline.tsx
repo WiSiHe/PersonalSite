@@ -1,4 +1,4 @@
-import { Main } from "components"
+import Main from "components/atoms/Main/Main"
 import Script from "next/script"
 import React from "react"
 

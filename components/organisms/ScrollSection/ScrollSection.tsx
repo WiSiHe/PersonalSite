@@ -1,6 +1,7 @@
 // import clsx from "clsx"
 // import { Mask } from "components/atoms"
-import { GridStyleWrapper, LinkButton } from "components/atoms"
+import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
+import LinkButton from "components/atoms/LinkButton/LinkButton"
 import {
   m,
   // useMotionValue,

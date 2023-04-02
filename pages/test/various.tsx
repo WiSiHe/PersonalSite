@@ -1,4 +1,4 @@
-import { Loader, Main } from "components"
+import Main from "components/atoms/Main/Main"
 
 const TestPage = () => {
   // generate random svg shapes

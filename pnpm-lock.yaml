@@ -83,6 +83,7 @@ dependencies:
   next-sanity: 4.1.6_otqgvosh6yoyy6tbdmlgg72piq
   next-sitemap: 4.0.6_jccvrrmb7rb3yyi3af3znueaea
   openai: 3.2.1
+  prop-types: 15.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
@@ -120,7 +121,6 @@ devDependencies:
   intl-segmenter-polyfill: 0.4.4
   postcss: 8.4.21
   prettier: 2.8.7
-  prop-types: 15.8.1
   react-lazy-load-image-component: 1.5.6_biqbaboplfbrettd7655fr4n2y
   tailwindcss: 3.3.1
   typescript: 4.9.5
