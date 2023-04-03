@@ -20,21 +20,21 @@ import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      delayChildren: 1,
-      staggerChildren: 0.5,
-    },
-  },
-}
+// const container = {
+//   hidden: { opacity: 0 },
+//   show: {
+//     opacity: 1,
+//     transition: {
+//       delayChildren: 1,
+//       staggerChildren: 0.5,
+//     },
+//   },
+// }
 
-const item = {
-  hidden: { opacity: 0, x: -40 },
-  show: { opacity: 1, x: 0 },
-}
+// const item = {
+//   hidden: { opacity: 0, x: -40 },
+//   show: { opacity: 1, x: 0 },
+// }
 
 interface iPaintingsPageProps {
   paintings: iSanityPainting[]
@@ -171,60 +171,25 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
           <FilterBar filters={tags} />
           <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">
             {!hasFilters && (
-              <motion.section
-                initial={{
-                  opacity: 0,
-                  scale: 0.9,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  type: "spring",
-                }}
-                className="flex flex-col justify-center h-full gap-4 p-4 text-white rounded-lg xl:p-4 bg-primary col-span-full lg:col-span-4 xl:col-span-3"
-              >
-                <motion.h1
-                  initial={{
-                    opacity: 0,
-                    x: -40,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    type: "spring",
-                  }}
-                  className="text-4xl  @6xl:text-5xl  @7xl:text-7xl"
-                >
+              <section className="flex flex-col justify-center h-full gap-4 p-4 text-white rounded-lg xl:p-4 bg-primary col-span-full lg:col-span-4 xl:col-span-3">
+                <h1 className="text-4xl  @6xl:text-5xl  @7xl:text-7xl">
                   <strong>Henrik Wilhelm Sissener</strong>
-                </motion.h1>
-                <motion.ul variants={container} initial="hidden" animate="show">
-                  <motion.li
-                    variants={item}
-                    className="flex items-center gap-2"
-                  >
+                </h1>
+                <ul>
+                  <li className="flex items-center gap-2">
                     <HiOutlineDesktopComputer />
                     <span>Senior Front-end developer</span>
-                  </motion.li>
-                  <motion.li
-                    variants={item}
-                    className="flex items-center gap-2"
-                  >
+                  </li>
+                  <li className="flex items-center gap-2">
                     <BsFillBrushFill />
                     <span>Digital artist</span>
-                  </motion.li>
-                  <motion.li
-                    variants={item}
-                    className="flex items-center gap-2"
-                  >
+                  </li>
+                  <li className="flex items-center gap-2">
                     <BiGame />
                     <span>Game developer</span>
-                  </motion.li>
-                </motion.ul>
-              </motion.section>
+                  </li>
+                </ul>
+              </section>
             )}
             {isNotEmptyArray(filterPaintingsV2) ? (
               <>
