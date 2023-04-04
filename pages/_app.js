@@ -1,7 +1,13 @@
 import "styles/globals.css"
 
 import { Analytics } from "@vercel/analytics/react"
-import Navigation from "components/molecules/Navigation/Navigation"
+import dynamic from "next/dynamic"
+
+const Footer = dynamic(() => import("components/molecules/Footer/Footer"))
+// import Navigation from "components/molecules/Navigation/Navigation"
+const Navigation = dynamic(() =>
+  import("components/molecules/Navigation/Navigation")
+)
 import { domAnimation, LazyMotion } from "framer-motion"
 import { Inter, Lobster, Roboto } from "next/font/google"
 import PropTypes from "prop-types"
@@ -41,6 +47,7 @@ const MyApp = function ({ Component, pageProps }) {
           {/* <Cursor /> */}
           <Component {...pageProps} />
           {/* </div> */}
+          <Footer />
         </div>
       </LazyMotion>
       <Analytics

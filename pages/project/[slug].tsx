@@ -5,7 +5,6 @@ import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
 import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
-import Footer from "components/molecules/Footer/Footer"
 import { getAllProjectsLight, getProjectDetails } from "lib/api"
 import {
   iSanityProject,
@@ -147,7 +146,6 @@ const ProjectPage = ({ project }: PageProps) => {
         )}
         <ScrollToTopButton />
       </Main>
-      <Footer />
     </>
   )
 }

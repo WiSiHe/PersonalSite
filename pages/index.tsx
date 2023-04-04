@@ -2,7 +2,6 @@ import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
 import Painting from "components/atoms/PaintingV3/Painting"
-import Footer from "components/molecules/Footer/Footer"
 import { FilterBar } from "components/organisms/FilterBar/FilterBar"
 import { motion } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
@@ -12,7 +11,7 @@ import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
 import Script from "next/script"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { Fragment, useEffect, useMemo, useState } from "react"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"
 import { HiOutlineDesktopComputer } from "react-icons/hi"
@@ -78,7 +77,7 @@ const Test3 = () => {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<spline-viewer loading-anim url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global"></spline-viewer>',
+            '<spline-viewer loading-anim url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global" no-controls></spline-viewer>',
         }}
         className="flex items-center justify-center col-span-6 row-span-1 text-white lg:row-span-2 lg:col-span-4 xl:col-span-6 aspect-square"
       />
@@ -109,19 +108,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
 
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
-  // todo  add sorting to the filter from query params
-  // const filteredPaintings = paintings.filter((p) => {
-  //   if (isEmptyArray(filterArray) || !filter) return true
-  //   const paintingTags = p.tagsV2.map((t) => slugify(t.name))
-  //   const hasAllTags = filterArray.every((f) => paintingTags.includes(f))
-  //   return hasAllTags
-  // })
-
-  {
-    /* {i === 8 && !hasFilters && <Test key={i} />}
-                      {i === 20 && !hasFilters && <Test2 key={i} />} */
-  }
-
   const filterPaintingsV2 = useMemo(() => {
     const filteredPaintings = paintings.filter((p) => {
       if (isEmptyArray(filterArray) || !filter) return true
@@ -131,11 +117,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
     })
     return sortPaintings(filteredPaintings, sorting)
   }, [filter, filterArray, paintings, sorting])
-
-  // useEffect(() => {
-  //   if (isEmptyArray(filterArray)) return
-
-  // }, [filterArray])
 
   // functions that load more paintings, and at the end of the list, load more paintings
   function loadMorePaintings() {
@@ -194,13 +175,11 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
             {isNotEmptyArray(filterPaintingsV2) ? (
               <>
                 {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
-                  const { _id } = p
                   const shouldBeLazy = i >= 8
                   return (
-                    <>
+                    <Fragment key={p._id}>
                       {i === 8 && !hasFilters && <Test3 key={i} />}
                       <div
-                        key={_id}
                         className={clsx(
                           "aspect-square",
                           "col-span-6 lg:col-span-4 xl:col-span-3"
@@ -211,7 +190,7 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                           shouldBeLazy={shouldBeLazy}
                         />
                       </div>
-                    </>
+                    </Fragment>
                   )
                 })}
               </>
@@ -239,7 +218,6 @@ const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
           </div>
         </section>
       </Main>
-      <Footer />
     </>
   )
 }

@@ -3,7 +3,6 @@ import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
-import Footer from "components/molecules/Footer/Footer"
 import Project from "components/molecules/Project/Project"
 import { getAllProjectsAndTags } from "lib/api"
 import { iSanityProject } from "lib/models/objects/sanityProject"
@@ -100,7 +99,6 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
         </section>
         <ScrollToTopButton />
       </Main>
-      <Footer />
     </>
   )
 }

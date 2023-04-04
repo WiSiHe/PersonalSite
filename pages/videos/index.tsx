@@ -3,7 +3,6 @@ import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
-import Footer from "components/molecules/Footer/Footer"
 import VideoCard from "components/molecules/VideoCard/VideoCard"
 import { getAllVideosAndTags } from "lib/api"
 import { iSanityTag } from "lib/models/objects/SanityTag"
@@ -82,7 +81,6 @@ const PaintingsPage = ({ videos = [], tags = [] }: iSanityVideoProps) => {
 
         <ScrollToTopButton />
       </Main>
-      <Footer />
     </>
   )
 }

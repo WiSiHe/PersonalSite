@@ -4,7 +4,6 @@ import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
 import RedbubbleLink from "components/atoms/RedbubbleLink/RedbubbleLink"
 import Society6Link from "components/atoms/Society6Link/Society6link"
-import Footer from "components/molecules/Footer/Footer"
 import { AnimatePresence } from "framer-motion"
 import { m } from "framer-motion"
 import generatePaintingJsonLd from "helpers/jsonLdHelpers"
@@ -218,7 +217,6 @@ export default function Gallery({ painting, slug }: PageProps) {
           )}
         </AnimatePresence>
       </Main>
-      <Footer />
     </>
   )
 }
