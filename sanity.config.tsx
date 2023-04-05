@@ -11,7 +11,7 @@ import { productionUrl } from "plugins/productionUrl"
 import { settingsPlugin, settingsStructure } from "plugins/settings"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
-import { media } from "sanity-plugin-media"
+// import { media } from "sanity-plugin-media"
 // import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash"
 // import authorType from "schemas/author"
 import paintingType from "schemas/painting"
@@ -74,7 +74,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    media(),
+    // media(),
     deskTool({
       structure: settingsStructure(settingsType),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
