@@ -24,7 +24,9 @@ const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
   ssr: false,
 })
-
+interface PreviewData {
+  token?: string
+}
 interface PageProps {
   painting: iSanityPainting
   slug: string
@@ -221,8 +223,12 @@ export default function Gallery({ painting, slug }: PageProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
-  const { params = {} } = ctx
+export const getStaticProps: GetStaticProps<
+  PageProps,
+  Query,
+  PreviewData
+> = async (ctx) => {
+  const { preview = false, previewData = {}, params = {} } = ctx
 
   if (!params.slug) {
     return {
@@ -230,7 +236,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     }
   }
 
-  const painting = await getPaintingDetails(params.slug)
+  const token = previewData.token
+
+  const painting = await getPaintingDetails(params.slug, token)
 
   if (isEmptyObject(painting)) {
     return {
@@ -242,6 +250,8 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     props: {
       painting,
       slug: params.slug,
+      preview,
+      token: previewData.token ?? null,
     },
     //  revalidate evry 3 hour
     revalidate: 60 * 60 * 3,

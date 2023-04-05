@@ -5,25 +5,40 @@ import { Stack, Text, TextInput } from "@sanity/ui"
 
 import tagType from "./tag"
 import SanityAI from "components/molecules/SanityAI/SanityAI"
+import { FaWeibo } from "react-icons/fa"
 
 export default defineType({
   name: "project",
   title: "Project",
   icon: PackageIcon,
   type: "document",
+  groups: [
+    {
+      name: "seo",
+      title: "SEO",
+      default: true,
+      icon: <FaWeibo />,
+    },
+  ],
   fields: [
     defineField({
       name: "name",
       title: "Name",
       type: "string",
-      description: "Name of the project",
-      validation: (rule) => rule.required(),
+      description: (
+        <details>
+          <summary>Why is this important?</summary>
+          The Googlebot is an indexer of...
+        </details>
+      ),
+      validation: (rule) => rule.required().error("Name is required"),
     }),
     defineField({
       name: "title",
       title: "SEO Title",
       type: "string",
       description: "Title of the project",
+      group: "seo",
       validation: (rule) =>
         rule
           .required()
@@ -67,6 +82,7 @@ export default defineType({
       title: "SEO Description",
       type: "text",
       description: "Short description of the project",
+      group: "seo",
       validation: (rule) =>
         rule
           .required()
@@ -168,6 +184,18 @@ export default defineType({
         },
       },
     }),
+    // defineField({
+    //   name: "discount",
+    //   description: "Contact an Administrator to change this value",
+    //   type: "number",
+    //   readOnly: ({ currentUser }) => {
+    //     const isAdmin = currentUser?.roles.some(
+    //       (role) => role.name === "administrator"
+    //     )
+
+    //     return !isAdmin
+    //   },
+    // }),
   ],
   preview: {
     select: {

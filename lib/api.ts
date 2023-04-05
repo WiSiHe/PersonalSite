@@ -1,3 +1,5 @@
+import { apiVersion, dataset, projectId, useCdn } from "lib/sanity.api"
+import { createClient, groq } from "next-sanity"
 import { iSanityTag } from "./models/objects/SanityTag"
 import { iSanityPainting } from "./models/objects/sanityPainting"
 import client from "./sanity"
@@ -13,6 +15,22 @@ import client from "./sanity"
 //     }
 //   })
 // }
+
+const paintingFields = `
+  title,
+  description,
+  format,
+  image,
+  'slug': slug.current,
+  redbubbleUrl,
+  society6Url,
+  likes,
+  paintedAt,
+  tagsV2,
+  video,
+  images,
+  imagesCount
+`
 
 // const postFields = `
 //   _id,
@@ -55,9 +73,39 @@ export async function getPainting(slug: string): Promise<iSanityPainting> {
   return results
 }
 
+const paintingDetailsQuery = groq`
+  *[_type == "painting" && slug.current == $slug]{
+    title,
+    description,
+    format,
+    image,
+    'slug': slug.current,
+    redbubbleUrl,
+    society6Url,
+    _id,
+    images,
+    "tagCount": count(tagsV2),
+    "imagesCount": count(images),
+    tagsV2[]->{name},
+    video
+  }[0]
+`
+
 export async function getPaintingDetails(
-  slug: string
+  slug: string,
+  token?: string | null
 ): Promise<iSanityPainting> {
+  if (token) {
+    const client = createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn,
+      token: token || undefined,
+    })
+    return await client.fetch(paintingDetailsQuery, { slug })
+  }
+
   const results = await client.fetch(
     `*[_type == "painting" && slug.current == $slug]{
       title, description, format, image, slug, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
@@ -66,6 +114,12 @@ export async function getPaintingDetails(
   )
   return results || []
 }
+
+export const paintingBySlugQuery = groq`
+*[_type == "painting" && slug.current == $slug][0] {
+  ${paintingFields}
+}
+`
 
 export async function getAllTags(): Promise<iSanityTag[]> {
   const results = await client.fetch(

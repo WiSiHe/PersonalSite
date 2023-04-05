@@ -19,8 +19,6 @@ const TestPage = () => {
       body: JSON.stringify({ prompt: prompt }),
     }).then((res) => res.json())
 
-    console.log(response)
-
     if (response.text) {
       setAnswer(response.text)
       setResponses([...responses, response.text])
