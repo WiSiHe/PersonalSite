@@ -1,9 +1,8 @@
 import clsx from "clsx"
-import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { m } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
 // import useScrollPosition from "hooks/useScrollPosition"
-import { useState } from "react"
 import { IoArrowUpSharp } from "react-icons/io5"
 
 interface iScrollToTopButton {

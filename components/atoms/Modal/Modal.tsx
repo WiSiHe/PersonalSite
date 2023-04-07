@@ -1,8 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react"
-import PropTypes from "prop-types"
 import React, { Fragment } from "react"
 
-const Modal = ({ isOpen = false, closeModal, children }) => {
+// src/components/Modal.tsx
+interface iModalProps {
+  isOpen?: boolean
+  closeModal: () => void
+  children: React.ReactNode
+}
+
+const Modal = ({ isOpen = false, closeModal, children }: iModalProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -27,12 +33,6 @@ const Modal = ({ isOpen = false, closeModal, children }) => {
       </Dialog>
     </Transition>
   )
-}
-
-Modal.propTypes = {
-  children: PropTypes.any,
-  closeModal: PropTypes.any,
-  isOpen: PropTypes.any,
 }
 
 export default Modal

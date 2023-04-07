@@ -34,18 +34,16 @@ interface iProjectProps {
 
 const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   const router = useRouter()
-  const { slug = "" } = router.query
-
   const filterList = useCombinedStore((state) => state.filterList)
 
-  const isNsfwUrl = slug === "nsfw" || filterList.includes("nsfw")
+  const isNsfwUrl = router.query.slug === "nsfw" || filterList.includes("nsfw")
 
   const {
     image = {},
     // fetchedPainting = "",
     title = "",
     // format = "square",
-    slug: { current = "" } = {},
+    slug = "",
     video = "",
     tagsV2 = [],
     imagesCount = 0,
@@ -65,7 +63,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   // check if nsfwTag is empty
   const isNsfw = Object.keys(nsfwTagObj).length > 0
 
-  const linkString = `/painting/${current}`
+  const linkString = `/painting/${slug}`
 
   // const isHighlighted = index % 12 === 4
 

@@ -4,7 +4,7 @@ import { FaLightbulb, FaPause, FaRegLightbulb } from "react-icons/fa"
 import { MdOutlineCancel } from "react-icons/md"
 
 interface iStatus {
-  status:
+  status?:
     | "inProgress"
     | "completed"
     | "onHold"
@@ -15,7 +15,7 @@ interface iStatus {
     | "planned"
 }
 
-const ProjectStatus = ({ status }: iStatus) => {
+const ProjectStatus = ({ status = "unknown" }: iStatus) => {
   const projectStatusColor = {
     inProgress: "bg-blue-500 text-white",
     completed: "bg-green-500 text-white",

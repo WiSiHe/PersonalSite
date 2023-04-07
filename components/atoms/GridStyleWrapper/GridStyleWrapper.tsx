@@ -1,23 +1,22 @@
 import { m } from "framer-motion"
-import { useState } from "react"
 
 interface GridStyleWrapperProps {
   children: React.ReactNode
 }
 
-const variant = {
-  initial: {
-    opacity: 0,
-    scale: 0,
-  },
-  inView: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 5,
-    },
-  },
-}
+// const variant = {
+//   initial: {
+//     opacity: 0,
+//     scale: 0,
+//   },
+//   inView: {
+//     opacity: 1,
+//     scale: 1,
+//     transition: {
+//       duration: 5,
+//     },
+//   },
+// }
 
 const GridStyleWrapper = ({ children }: GridStyleWrapperProps) => {
   return (

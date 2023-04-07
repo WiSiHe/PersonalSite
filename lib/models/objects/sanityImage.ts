@@ -1,10 +1,10 @@
 export interface iSanityImageAsset {
   _ref: string
-  _type: "sanity.imageAsset"
+  _type: "sanity.imageAsset" | "reference"
 }
 
 export interface iSanityImageCrop {
-  _type: "sanity.imageHotspot"
+  _type: "sanity.imageCrop"
   bottom: number
   left: number
   right: number
@@ -21,6 +21,6 @@ export interface iSanityImageHotspot {
 export interface iSanityImage {
   _type: "image"
   asset: iSanityImageAsset
-  crop: iSanityImageCrop
-  hotspot: iSanityImageHotspot
+  crop?: iSanityImageCrop
+  hotspot?: iSanityImageHotspot
 }
