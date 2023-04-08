@@ -81,9 +81,8 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
               }
               return false
             })
-            .map((project, i) => {
+            .map((project) => {
               const { _id = "" } = project
-              const isLeft = isEven(i)
 
               return (
                 <div
@@ -92,7 +91,7 @@ export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
                   )}
                   key={_id}
                 >
-                  <Project {...project} imageLeft={isLeft} />
+                  <Project {...project} />
                 </div>
               )
             })}

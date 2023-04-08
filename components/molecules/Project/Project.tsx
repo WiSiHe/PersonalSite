@@ -38,20 +38,14 @@ const cardVariants = {
 
 // extend the SanityImage type with a url property
 
-interface iProjectProps extends iSanityProject {
-  imageLeft?: boolean
-}
-
 const Project = ({
   image,
   tags = [],
   description = "",
   title = "",
-  // imageLeft = false,
   slug,
-  // content,
   status,
-}: iProjectProps) => {
+}: iSanityProject) => {
   const { width = 0 } = useWindowDimensions()
 
   const isMobile = width < 765

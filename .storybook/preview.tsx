@@ -5,7 +5,7 @@ import React from "react"
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
-    layout: "centered",
+    layout: "padded",
     decorators: [
       (Story) => (
         <div style={{ margin: "3em" }}>

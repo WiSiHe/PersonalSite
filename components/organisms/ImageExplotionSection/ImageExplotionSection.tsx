@@ -163,26 +163,4 @@ const ImageExplotionSection = () => {
   )
 }
 
-{
-  /* <m.div
-className="relative row-start-2 row-end-4 ring bg-tertiary"
-
-// initial={{ opacity: 0, x: -200 }}
-// whileInView={{ opacity: 1, x: 0 }}
-// viewport={{ once: false, amount: 0.2 }}
-// transition={{ duration: 0.2, type: "spring" }}
-// key={1}
->
-<Image
-  src={night}
-  fill
-  alt="Dark magical woods made in 3D"
-  className="object-cover w-full h-full "
-  sizes="(max-width: 768px) 100vw,
-(max-width: 1200px) 50vw,
-33vw"
-/>
-</m.div> */
-}
-
 export default ImageExplotionSection

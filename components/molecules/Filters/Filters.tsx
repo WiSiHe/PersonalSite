@@ -8,7 +8,7 @@ import { IoClose } from "react-icons/io5"
 
 interface iFiltersProps {
   filteredTags?: iSanityTag[]
-  activeFilter?: string
+  activeFilter: string
   amountOfPaintings?: number
 }
 
@@ -23,9 +23,11 @@ const Filters = ({
     setActive(false)
   }, [activeFilter])
 
+  console.log(filteredTags)
+
   return (
     <>
-      <div className="flex items-baseline gap-2">
+      <div className="flex flex-wrap gap-2">
         <button
           onClick={() => setActive((prev) => !prev)}
           className={clsx(
@@ -69,6 +71,7 @@ const Filters = ({
             </m.div>
           )}
         </button>
+
         <div
           className={clsx(
             "relative snap-start uppercase transition py-2 pointer-events-none px-4 text-xs whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
