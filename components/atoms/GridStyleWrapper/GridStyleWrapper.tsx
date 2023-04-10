@@ -1,22 +1,8 @@
-import { m } from "framer-motion"
+import { motion } from "framer-motion"
 
 interface GridStyleWrapperProps {
   children: React.ReactNode
 }
-
-// const variant = {
-//   initial: {
-//     opacity: 0,
-//     scale: 0,
-//   },
-//   inView: {
-//     opacity: 1,
-//     scale: 1,
-//     transition: {
-//       duration: 5,
-//     },
-//   },
-// }
 
 const GridStyleWrapper = ({ children }: GridStyleWrapperProps) => {
   return (
@@ -31,7 +17,7 @@ const GridStyleWrapper = ({ children }: GridStyleWrapperProps) => {
             height="100"
             patternUnits="userSpaceOnUse"
           >
-            <m.circle
+            <motion.circle
               cx="50"
               cy="50"
               r="2.5"
@@ -49,7 +35,7 @@ const GridStyleWrapper = ({ children }: GridStyleWrapperProps) => {
           </pattern>
         </defs>
 
-        <m.rect
+        <motion.rect
           x="0"
           y="0"
           width="100%"

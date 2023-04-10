@@ -1,4 +1,4 @@
-import { m } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 
 interface LinkButtonProps {
@@ -12,7 +12,7 @@ const LinkButton = ({ children, href }: LinkButtonProps) => {
       href={href}
       className="relative block focus-visible:outline-none max-w-min group focus-visible:ring ring-highlight focus-visible:border-transparent"
     >
-      <m.div
+      <motion.div
         initial={{ scale: 0.9 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", bounce: 0.4, duration: 1 }}
@@ -20,7 +20,7 @@ const LinkButton = ({ children, href }: LinkButtonProps) => {
         className="px-4 py-2 transition-all ease-linear w-fit whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
       >
         {children}
-      </m.div>
+      </motion.div>
     </Link>
   )
 }

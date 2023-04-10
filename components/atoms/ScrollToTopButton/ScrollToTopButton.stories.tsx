@@ -17,10 +17,22 @@ export default meta
 
 type Story = StoryObj<typeof ScrollToTopButton>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: {
+    isFixed: false,
+    isAlwaysVisible: false,
+  },
+}
 
 export const IsFixed: Story = {
   args: {
     isFixed: true,
+    isAlwaysVisible: false,
+  },
+}
+
+export const IsVisible: Story = {
+  args: {
+    isAlwaysVisible: true,
   },
 }

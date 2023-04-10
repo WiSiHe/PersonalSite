@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { m } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import bathtub from "public/images/paintings/bathtub.jpg"
 import celestial from "public/images/paintings/Celestial.jpg"
@@ -109,7 +109,7 @@ const ImageExplotionSection = () => {
         const currentStyle = randomlySortedStyles[i]
 
         return (
-          <m.div
+          <motion.div
             initial={{
               opacity: 0,
               x: randomXValue,
@@ -156,7 +156,7 @@ const ImageExplotionSection = () => {
 (max-width: 1200px) 50vw,
 33vw"
             />
-          </m.div>
+          </motion.div>
         )
       })}
     </section>

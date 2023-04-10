@@ -9,12 +9,31 @@ const meta: Meta<typeof OTPForm> = {
   tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    layout: "centered",
+    // layout: "centered",
   },
 }
 
 export default meta
 
 type Story = StoryObj<typeof OTPForm>
+
+// const [inputCode, setInputCode] = useState("")
+
+// const handleChange = (inputValue: string) => {
+//   if (inputValue.length <= 6) {
+//     setInputCode(inputValue)
+//   }
+// }
+
+// const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+//   e.preventDefault()
+//   if (inputCode.length === 6) {
+//     // submit code to the backend
+//   } else {
+//     // handle error
+//   }
+// }
+
+// const
 
 export const Default: Story = {}

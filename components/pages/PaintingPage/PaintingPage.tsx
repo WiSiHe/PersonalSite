@@ -6,7 +6,7 @@ const RedbubbleLink = dynamic(
 const Society6Link = dynamic(
   () => import("components/atoms/Society6Link/Society6link")
 )
-import { AnimatePresence, m } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
@@ -69,7 +69,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
 
   return (
     <AnimatePresence>
-      <m.div
+      <motion.div
         className="fixed z-10 top-20 left-6 "
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
@@ -83,9 +83,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         >
           <IoArrowBackSharp /> Back
         </button>
-      </m.div>
+      </motion.div>
 
-      <m.div
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -107,9 +107,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
             .url()}
           className="h-fit"
         />
-      </m.div>
+      </motion.div>
 
-      <m.div
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -152,7 +152,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
             </div>
           )}
         </div>
-      </m.div>
+      </motion.div>
 
       {images?.map((image, index) => {
         return (

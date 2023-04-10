@@ -15,7 +15,6 @@ interface iFilterModal {
 const FilterModal = ({ filters = [] }: iFilterModal) => {
   const router = useRouter()
   const { query } = router
-  // const { filter = [] } = query
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const setFilterList = useCombinedStore((state) => state.setFilterList)

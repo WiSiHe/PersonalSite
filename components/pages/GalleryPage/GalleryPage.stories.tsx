@@ -1,26 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import Main from "./Main"
+import GalleryPage from "./GalleryPage"
+// import { dummyPaintings, dummyTags } from "./dummyData"
 
-const meta: Meta<typeof Main> = {
-  title: "Atoms/Main",
-  component: Main,
+const meta: Meta<typeof GalleryPage> = {
+  title: "Page/GalleryPage",
+  component: GalleryPage,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    layout: "centered",
+    layout: "fullscreen",
   },
 }
 
 export default meta
 
-type Story = StoryObj<typeof Main>
+type Story = StoryObj<typeof GalleryPage>
 
 export const Default: Story = {}
-
-export const WithChildren: Story = {
-  args: {
-    children: "Hello world",
-  },
-}

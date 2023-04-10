@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { AnimatePresence, m } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { iSanityTag } from "lib/models/objects/SanityTag"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
@@ -35,7 +35,7 @@ const Filters = ({
           )}
         >
           {active && (
-            <m.div
+            <motion.div
               initial={{ x: -100 }}
               animate={{ x: 0 }}
               exit={{ x: -100 }}
@@ -43,17 +43,17 @@ const Filters = ({
               className="flex items-center gap-1"
             >
               <strong>Close</strong>{" "}
-              <m.div
+              <motion.div
                 initial={{ opacity: 0, rotate: 180 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
               >
                 <IoClose />
-              </m.div>
-            </m.div>
+              </motion.div>
+            </motion.div>
           )}
           {!active && (
-            <m.div
+            <motion.div
               initial={{ x: 100 }}
               animate={{ x: 0 }}
               exit={{ x: 100 }}
@@ -61,14 +61,14 @@ const Filters = ({
               className="flex items-center gap-1"
             >
               <strong>Filter</strong>{" "}
-              <m.div
+              <motion.div
                 initial={{ opacity: 0, rotate: 180 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ type: "spring", delay: 0.2, bounce: 0.4 }}
               >
                 <BsFilter />
-              </m.div>
-            </m.div>
+              </motion.div>
+            </motion.div>
           )}
         </button>
 
@@ -78,17 +78,17 @@ const Filters = ({
             "bg-dark hover:bg-dark text-white"
           )}
         >
-          <m.strong
+          <motion.strong
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
           >
             {activeFilter}({amountOfPaintings})
-          </m.strong>
+          </motion.strong>
         </div>
       </div>
       <AnimatePresence>
         {active && (
-          <m.ul
+          <motion.ul
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
@@ -129,7 +129,7 @@ const Filters = ({
                 </li>
               )
             })}
-          </m.ul>
+          </motion.ul>
         )}
       </AnimatePresence>
     </>

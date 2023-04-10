@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
-import { AnimatePresence, m } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
@@ -40,7 +40,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
-      <m.div
+      <motion.div
         initial={{ opacity: 0, x: -100, rotate: -180 }}
         animate={{ opacity: 1, x: 0, rotate: 0 }}
         transition={{ type: "spring", bounce: 0.25 }}
@@ -60,9 +60,9 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
             height="2.5rem"
           />
         </Link>
-      </m.div>
+      </motion.div>
 
-      <m.ul
+      <motion.ul
         variants={container}
         initial="hidden"
         animate="show"
@@ -72,7 +72,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
           {NavItems.map((item, i) => {
             const isActive = asPathWithSpacing.includes(item.url)
             return (
-              <m.li key={i} variants={listItem}>
+              <motion.li key={i} variants={listItem}>
                 <Link
                   href={item.url}
                   className={clsx(
@@ -84,11 +84,11 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                 >
                   <strong className="drop-shadow">{item.text}</strong>
                 </Link>
-              </m.li>
+              </motion.li>
             )
           })}
         </AnimatePresence>
-      </m.ul>
+      </motion.ul>
     </nav>
   )
 }

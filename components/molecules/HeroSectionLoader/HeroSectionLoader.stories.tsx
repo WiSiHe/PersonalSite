@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import HeroSectionLoader from "./HeroSectionLoader"
+import Image from "next/image"
 
 const meta: Meta<typeof HeroSectionLoader> = {
   title: "Molecules/HeroSectionLoader",
@@ -9,7 +10,7 @@ const meta: Meta<typeof HeroSectionLoader> = {
   tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    layout: "fullscreen",
+    layout: "padding",
   },
 }
 
@@ -18,3 +19,12 @@ export default meta
 type Story = StoryObj<typeof HeroSectionLoader>
 
 export const Default: Story = {}
+
+export const WithBackground: Story = {
+  render: (args) => (
+    <section className="relative aspect-video">
+      <HeroSectionLoader {...args} />
+      <Image src="/images/woods.png" fill alt="" />
+    </section>
+  ),
+}

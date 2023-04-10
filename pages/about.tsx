@@ -1,50 +1,21 @@
-import Main from "components/atoms/Main/Main"
 import Meta from "components/atoms/Meta/Meta"
-import HeroSectionDesktop from "components/organisms/HeroSectionDesktop/HeroSectionDesktop"
-import HeroSectionMobile from "components/organisms/HeroSectionMobile/HeroSectionMobile"
-import ScrollSection from "components/organisms/ScrollSection/ScrollSection"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import React from "react"
 
 import { getAllWallpapers } from "../lib/api"
+import AboutPage from "components/pages/AboutPage"
 
 export default function Home({
-  desktopWallpaper = [],
+  wallpapers = [],
 }: {
-  desktopWallpaper: iSanityPainting[]
+  wallpapers: iSanityPainting[]
 }) {
   return (
     <>
       <Meta url="https://wisihe.no" />
-      <Main noTopPadding className="flex-col overflow-clip">
-        <HeroSectionMobile paintings={desktopWallpaper} />
-        <HeroSectionDesktop paintings={desktopWallpaper} />
-
-        <section
-          className="relative w-full max-w-screen-xl px-4 py-10 mx-auto xl:hidden"
-          id="main"
-        >
-          <h1>
-            <strong>
-              Hi there!
-              <br /> My name is <span className="text-primary">He</span>
-              nrik <span className="text-primary">Wi</span>
-              lhelm <span className="text-primary">Si</span>ssener
-            </strong>
-          </h1>
-          <div className="pt-2 xl:max-w-md">
-            <p>
-              I&#39;m a digital artist and web developer who enjoys character
-              design and landscape painting. In my free time, I create digital
-              art and explore programming, game development, and frontend
-              technologies.
-            </p>
-          </div>
-        </section>
-        <ScrollSection />
-      </Main>
+      <AboutPage wallpapers={wallpapers} />
     </>
   )
 }

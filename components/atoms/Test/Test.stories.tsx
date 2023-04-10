@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import Main from "./Main"
+import Test from "./Test"
 
-const meta: Meta<typeof Main> = {
-  title: "Atoms/Main",
-  component: Main,
+const meta: Meta<typeof Test> = {
+  title: "Atoms/Test",
+  component: Test,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],
   parameters: {
@@ -15,12 +15,6 @@ const meta: Meta<typeof Main> = {
 
 export default meta
 
-type Story = StoryObj<typeof Main>
+type Story = StoryObj<typeof Test>
 
 export const Default: Story = {}
-
-export const WithChildren: Story = {
-  args: {
-    children: "Hello world",
-  },
-}

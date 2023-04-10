@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import PropTypes from "prop-types"
 import React from "react"
 import {
   SiArtstation,
@@ -11,7 +10,10 @@ import {
 const SocialLinks = ({ alignLeft = false }) => {
   return (
     <div
-      className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}
+      className={clsx(
+        "flex mix-blend-difference",
+        alignLeft ? "justify-start" : "justify-center"
+      )}
     >
       <ul className="inline-flex space-x-8 ">
         <li className="">
@@ -24,7 +26,6 @@ const SocialLinks = ({ alignLeft = false }) => {
           >
             {/* <label className="sr-only">open redbubble in new window</label> */}
             <SiRedbubble
-              alt="redbubble"
               aria-hidden="true"
               className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-primary group-focus:ring group-focus:text-primary group-focus:ring-primary"
             />
@@ -39,7 +40,6 @@ const SocialLinks = ({ alignLeft = false }) => {
             className="group focus:outline-none"
           >
             <SiArtstation
-              alt="artstation"
               aria-hidden="true"
               className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-primary group-focus:ring group-focus:text-primary group-focus:ring-primary"
             />
@@ -54,7 +54,6 @@ const SocialLinks = ({ alignLeft = false }) => {
             className="group focus:outline-none"
           >
             <SiInstagram
-              alt="instagram"
               aria-hidden="true"
               className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-primary group-focus:ring group-focus:text-primary group-focus:ring-primary"
             />
@@ -69,7 +68,6 @@ const SocialLinks = ({ alignLeft = false }) => {
             className="group focus:outline-none"
           >
             <SiLinkedin
-              alt="linkedin"
               aria-hidden="true"
               className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-primary group-focus:ring group-focus:text-primary group-focus:ring-primary"
             />
@@ -78,10 +76,6 @@ const SocialLinks = ({ alignLeft = false }) => {
       </ul>
     </div>
   )
-}
-
-SocialLinks.propTypes = {
-  alignLeft: PropTypes.bool,
 }
 
 export default SocialLinks

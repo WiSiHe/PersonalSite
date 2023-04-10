@@ -21,4 +21,9 @@ type Story = StoryObj<typeof Input>
 
 export const Default: Story = {}
 
-export const WithChildren: Story = {}
+export const WithLabel: Story = {
+  args: {
+    label: "Email",
+    type: "email",
+  },
+}

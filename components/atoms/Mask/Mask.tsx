@@ -1,7 +1,21 @@
+import clsx from "clsx"
 import useWindowDimensions from "hooks/useWindowDimension"
 
-const Mask = () => {
+interface iMask {
+  color: "white" | "black" | "dark" | "default" | "primary" | "highlight"
+}
+
+const Mask = ({ color = "dark" }: iMask) => {
   const { width = 766, height = 100 } = useWindowDimensions()
+
+  const maskColor = {
+    dark: "fill-dark",
+    white: "fill-white",
+    black: "fill-black",
+    primary: "fill-primary",
+    highlight: "fill-highlight",
+    default: "fill-dark",
+  }
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-clip">
@@ -13,7 +27,7 @@ const Mask = () => {
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
-        className="fill-dark"
+        className={clsx(maskColor[color])}
         id="visual"
       >
         <g transform={`translate(${width}, 0)`}>

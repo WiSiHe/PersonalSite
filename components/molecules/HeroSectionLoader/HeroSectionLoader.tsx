@@ -1,68 +1,69 @@
-import { AnimatePresence, m } from "framer-motion"
-import { useEffect, useState } from "react"
+import clsx from "clsx"
+import { AnimatePresence, motion } from "framer-motion"
 
-const HeroSectionLoader = () => {
-  const [mounted, setMounted] = useState(false)
+interface HeroSectionLoaderProps {
+  isDisplayed?: boolean
+  color?: "white" | "black" | "dark" | "default" | "primary"
+}
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+const HeroSectionLoader = ({
+  isDisplayed = true,
+  color = "default",
+}: HeroSectionLoaderProps) => {
+  if (!isDisplayed) return null
+
+  const backgroundStyle = {
+    white: "bg-white",
+    black: "bg-black",
+    dark: "bg-dark",
+    default: "bg-white",
+    primary: "bg-primary",
+  }
 
   return (
     <section className="absolute inset-0 z-20 grid w-full h-full grid-cols-12 pointer-events-none">
-      <AnimatePresence>
-        {!mounted && (
-          <>
-            <m.div
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className="absolute inset-0 flex items-center justify-center bg-white "
-            ></m.div>
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 flex items-center justify-center bg-white"
+      />
 
-            <m.div
-              initial={{ x: 0 }}
-              animate={{ x: 0 }}
-              exit={{ x: -5000 }}
-              transition={{ duration: 2, delay: 1, type: "spring" }}
-              className="z-20 w-full col-span-6 col-start-1 bg-dark"
-            />
+      <motion.div
+        initial={{ x: 0 }}
+        animate={{ x: -1000 }}
+        transition={{ duration: 2, delay: 1, type: "spring" }}
+        className={clsx("z-20 col-span-6 col-start-1", backgroundStyle[color])}
+      />
 
-            <m.div
-              initial={{ x: 0 }}
-              animate={{ x: 0 }}
-              exit={{ x: 5000 }}
-              transition={{ duration: 2, delay: 1, type: "spring" }}
-              className="z-20 w-full col-span-3 col-start-10 bg-dark"
-            />
+      <motion.div
+        initial={{ x: 0 }}
+        animate={{ x: 1000 }}
+        exit={{ x: 0 }}
+        transition={{ duration: 2, delay: 1, type: "spring" }}
+        className={clsx("z-20 col-span-3 col-start-10", backgroundStyle[color])}
+      />
 
-            <m.div
-              initial={{ x: 0 }}
-              animate={{ x: 0 }}
-              exit={{ x: -5000 }}
-              transition={{ duration: 2, delay: 1.1, type: "spring" }}
-              className="z-20 w-full col-span-1 col-start-1 bg-darj"
-            />
+      <motion.div
+        initial={{ x: 0 }}
+        animate={{ x: -1000 }}
+        transition={{ duration: 2, delay: 1.5, type: "spring" }}
+        className={clsx("z-20 col-span-1 col-start-1", backgroundStyle[color])}
+      />
 
-            <m.div
-              initial={{ x: 0 }}
-              animate={{ x: 0 }}
-              exit={{ x: 5000 }}
-              transition={{ duration: 2, delay: 1.1, type: "spring" }}
-              className="z-20 w-full col-span-9 col-start-4 bg-dark"
-            />
+      <motion.div
+        initial={{ x: 0 }}
+        animate={{ x: 1000 }}
+        transition={{ duration: 2, delay: 1.5, type: "spring" }}
+        className={clsx("z-20 col-span-9 col-start-4", backgroundStyle[color])}
+      />
 
-            <m.div
-              initial={{ x: 0 }}
-              animate={{ x: 0 }}
-              exit={{ x: -5000 }}
-              transition={{ duration: 2, delay: 1.1, type: "spring" }}
-              className="z-20 w-full col-span-8 col-start-1 bg-dark"
-            />
-          </>
-        )}
-      </AnimatePresence>
+      <motion.div
+        initial={{ x: 0 }}
+        animate={{ x: -1000 }}
+        transition={{ duration: 2, delay: 2, type: "spring" }}
+        className={clsx("z-20 col-span-8 col-start-1", backgroundStyle[color])}
+      />
     </section>
   )
 }
