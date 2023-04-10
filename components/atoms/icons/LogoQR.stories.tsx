@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import Cursor from "./Cursor"
+import LogoQR from "./LogoQR"
 
-const meta: Meta<typeof Cursor> = {
-  title: "Atoms/Cursor",
-  component: Cursor,
+const meta: Meta<typeof LogoQR> = {
+  title: "Atoms/LogoQR",
+  component: LogoQR,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],
   parameters: {
@@ -15,6 +15,14 @@ const meta: Meta<typeof Cursor> = {
 
 export default meta
 
-type Story = StoryObj<typeof Cursor>
+type Story = StoryObj<typeof LogoQR>
 
 export const Default: Story = {}
+
+export const WithCustomSize: Story = {
+  args: {
+    height: 200,
+    width: 200,
+    titleId: "custom-size",
+  },
+}

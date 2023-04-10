@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import ImageExplotionSection from "./ImageExplotionSection"
+import SalesPointsSection from "./SalesPointsSection"
 
-const meta: Meta<typeof ImageExplotionSection> = {
-  title: "Organisms/ImageExplotionSection",
-  component: ImageExplotionSection,
+const meta: Meta<typeof SalesPointsSection> = {
+  title: "Templates/SalesPointsSection",
+  component: SalesPointsSection,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],
   parameters: {
@@ -15,6 +15,6 @@ const meta: Meta<typeof ImageExplotionSection> = {
 
 export default meta
 
-type Story = StoryObj<typeof ImageExplotionSection>
+type Story = StoryObj<typeof SalesPointsSection>
 
 export const Default: Story = {}

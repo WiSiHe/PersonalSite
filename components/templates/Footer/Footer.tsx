@@ -1,8 +1,8 @@
 import clsx from "clsx"
-import { m } from "framer-motion"
+import { motion } from "framer-motion"
 import React from "react"
 
-import SocialLinks from "../SocialLinks/SocialLinks"
+import SocialLinks from "../../molecules/SocialLinks/SocialLinks"
 
 interface iFooterProps {
   fixed?: boolean
@@ -11,7 +11,7 @@ interface iFooterProps {
 
 const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
   return (
-    <m.footer
+    <motion.footer
       initial={{ y: 50 }}
       animate={{ y: 0 }}
       exit={{ y: 50 }}
@@ -25,7 +25,7 @@ const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
       )}
     >
       <SocialLinks />
-    </m.footer>
+    </motion.footer>
   )
 }
 

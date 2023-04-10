@@ -11,7 +11,6 @@ interface iPaintingsPageProps {
 }
 
 const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
-  console.log("paintings", paintings)
   return (
     <>
       <Meta

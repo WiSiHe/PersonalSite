@@ -1,7 +1,7 @@
 interface iLogoProps {
   titleId?: string
-  width?: string
-  height?: string
+  width?: number | string
+  height?: number | string
   [key: string]: unknown
 }
 

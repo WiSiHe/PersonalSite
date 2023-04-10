@@ -1,7 +1,7 @@
 import Main from "components/atoms/Main/Main"
-import HeroSectionDesktop from "components/organisms/HeroSectionDesktop/HeroSectionDesktop"
-import HeroSectionMobile from "components/organisms/HeroSectionMobile/HeroSectionMobile"
-import ScrollSection from "components/organisms/ScrollSection/ScrollSection"
+import HeroSectionDesktop from "components/templates/HeroSectionDesktop/HeroSectionDesktop"
+import HeroSectionMobile from "components/templates/HeroSectionMobile/HeroSectionMobile"
+import ScrollSection from "components/templates/ScrollSection/ScrollSection"
 import { iSanityWallpaperPaintings } from "lib/models/objects/sanityPainting"
 
 interface iAboutPage {

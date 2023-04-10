@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import Chip from "components/atoms/Chip/Chip"
 import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"
-import { m } from "framer-motion"
+import { motion } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityProject } from "lib/models/objects/sanityProject"
 import { imageBuilder } from "lib/sanity"
@@ -48,10 +48,14 @@ const Project = ({
 }: iSanityProject) => {
   const { width = 0 } = useWindowDimensions()
 
+  if (!image) {
+    return <p>No data</p>
+  }
+
   const isMobile = width < 765
 
   return (
-    <m.article
+    <motion.article
       initial="offscreen"
       whileInView="onscreen"
       whileHover="hover"
@@ -104,7 +108,7 @@ const Project = ({
             href={`/project/${slug.current}`}
             className="focus-visible:outline-none group focus-visible:ring ring-highlight focus-visible:border-transparent"
           >
-            <m.div
+            <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", bounce: 0.4, duration: 1 }}
@@ -113,11 +117,11 @@ const Project = ({
             >
               <strong>See Details</strong>{" "}
               <FaArrowRight className="transition-all duration-500 ease-in-out group-hover:ml-1" />
-            </m.div>
+            </motion.div>
           </Link>
         </div>
       </div>
-    </m.article>
+    </motion.article>
   )
 }
 

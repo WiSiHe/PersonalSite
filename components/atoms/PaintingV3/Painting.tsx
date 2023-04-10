@@ -36,6 +36,10 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   const router = useRouter()
   const filterList = useCombinedStore((state) => state.filterList)
 
+  if (!paintingData) {
+    return <div>No painting data</div>
+  }
+
   const isNsfwUrl = router.query.slug === "nsfw" || filterList.includes("nsfw")
 
   const {
@@ -105,7 +109,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
         // variants={cardVariants}
         transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
         className={clsx(
-          "relative w-full @container rounded-lg hover:z-10 h-full overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+          "relative w-full h-full @container rounded-lg hover:z-10 overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
         )}
       >
         <Link href={linkString} className="absolute inset-0">

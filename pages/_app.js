@@ -3,7 +3,7 @@ import "styles/globals.css"
 import { Analytics } from "@vercel/analytics/react"
 import dynamic from "next/dynamic"
 
-const Footer = dynamic(() => import("components/molecules/Footer/Footer"))
+const Footer = dynamic(() => import("components/templates/Footer/Footer"))
 // import Navigation from "components/molecules/Navigation/Navigation"
 const Navigation = dynamic(() =>
   import("components/molecules/Navigation/Navigation")

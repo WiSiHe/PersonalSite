@@ -1,5 +1,5 @@
 import Main from "components/atoms/Main/Main"
-import ScrollSection from "components/organisms/ScrollSection/ScrollSection"
+import ScrollSection from "components/templates/ScrollSection/ScrollSection"
 
 const TestPage = () => {
   return (

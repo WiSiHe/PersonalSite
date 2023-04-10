@@ -15,7 +15,7 @@ import config from "sanity.config"
 export default function StudioPage() {
   return (
     <>
-      <Meta />
+      <Meta title="Studio" description="Sanity Studio" />
       {/* <Head>
         <NextStudioHead favicons={true} />
       </Head> */}
