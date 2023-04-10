@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { useState } from "react"
 
 import OTPForm from "./OTPForm"
 
@@ -17,23 +18,33 @@ export default meta
 
 type Story = StoryObj<typeof OTPForm>
 
-// const [inputCode, setInputCode] = useState("")
+const OTPFormWithHooks = () => {
+  // Sets the hooks for both the label and primary props
+  const [value, setValue] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-// const handleChange = (inputValue: string) => {
-//   if (inputValue.length <= 6) {
-//     setInputCode(inputValue)
-//   }
-// }
+  const handleChange = (e: string) => {
+    setValue(e)
+  }
 
-// const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-//   e.preventDefault()
-//   if (inputCode.length === 6) {
-//     // submit code to the backend
-//   } else {
-//     // handle error
-//   }
-// }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setTimeout(() => {
+      setIsSubmitting(false)
+    }, 3000)
+  }
 
-// const
+  return (
+    <OTPForm
+      inputCode={value}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      isSubmitting={isSubmitting}
+    />
+  )
+}
 
-export const Default: Story = {}
+export const Default: Story = {
+  render: () => <OTPFormWithHooks />,
+}

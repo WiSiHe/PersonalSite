@@ -50,6 +50,7 @@ const SanityAI = ({ value = "", inputRef }: SanityAIProps) => {
             className="flex-1 w-full p-2 ring ring-green-800"
           />
         </div>
+        <div>{value}</div>
         <button
           className="flex-shrink-0 px-3 py-1 text-white bg-green-800 w-fit"
           onClick={generateDescription}

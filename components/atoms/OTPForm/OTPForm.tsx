@@ -2,7 +2,7 @@ import clsx from "clsx"
 
 interface iOTPFormProps {
   inputCode: string
-  handleChange: (inputValue: string) => void
+  handleChange: (value: string) => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   isSubmitting?: boolean
 }
@@ -24,7 +24,7 @@ const OTPForm = ({
             <label
               key={i}
               htmlFor="one-time-code"
-              className="flex items-center justify-center w-10 h-10 p-4 text-2xl leading-tight text-center bg-gray-200"
+              className="flex items-center justify-center w-10 h-10 p-4 text-3xl leading-tight text-center bg-gray-200"
             >
               {hasValue ? inputCodeArray[i] : "*"}
             </label>
@@ -40,7 +40,7 @@ const OTPForm = ({
           maxLength={6}
           required
           onChange={(e) => handleChange(e.target.value)}
-          className="w-full px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+          className="w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
         />
       </div>
 
