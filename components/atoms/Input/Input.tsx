@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+// import { forwardRef } from "react"
 
 interface InputProps {
   type: "text" | "email" | "password" | "number"

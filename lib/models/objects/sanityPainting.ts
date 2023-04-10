@@ -1,21 +1,24 @@
 import { iSanityImage } from "./sanityImage"
 
+interface iTag {
+  name: string
+}
+
+type iPaintingFormat = "square" | "landscape" | "portrait"
+
 export interface iSanityPainting {
   _id: string
-  format: "square" | "landscape" | "portrait"
-  image: iSanityImage | string | null
+  format: iPaintingFormat
+  image: iSanityImage | string
   images?: iSanityImage[] | null
   imagesCount: number | null
   redbubbleUrl: string | null
   society6Url: string | null
   description: string
-  likes: number
   paintedAt: string
   slug: string
-  tagsV2: {
-    name: string
-  }[]
-  tagCount: number
+  tagsV2: iTag[]
+  tagCount: number | null
   title: string
   video?: string | null
 }

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import PaintingPage from "./PaintingPage"
+import { dummyPainting } from "./paintingDummyData"
 
 const meta: Meta<typeof PaintingPage> = {
   title: "Page/PaintingPage",
@@ -18,3 +19,9 @@ export default meta
 type Story = StoryObj<typeof PaintingPage>
 
 export const Default: Story = {}
+
+export const WithData: Story = {
+  args: {
+    painting: dummyPainting,
+  },
+}

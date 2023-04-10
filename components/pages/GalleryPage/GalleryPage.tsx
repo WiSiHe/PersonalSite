@@ -57,8 +57,6 @@ interface iPaintingsPageProps {
 }
 
 const GalleryPage = ({ paintings, tags }: iPaintingsPageProps) => {
-  console.log("tags", tags)
-  console.log("paintings", paintings)
   const router = useRouter()
   const { query } = router
 

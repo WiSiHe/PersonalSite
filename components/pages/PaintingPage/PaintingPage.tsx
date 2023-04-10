@@ -14,6 +14,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { IoArrowBackSharp } from "react-icons/io5"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { slugify } from "utils/string"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
@@ -28,13 +29,12 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
   const router = useRouter()
 
   const {
-    // _id,
     images = [],
     title = "",
     description = "",
     image,
     format = "square",
-    // tagCount = 0,
+
     redbubbleUrl = "",
     society6Url = "",
     tagsV2 = [],
@@ -125,9 +125,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           <div className="flex flex-wrap gap-1">
             {tagsV2?.map((tag) => {
               const { name = "" } = tag
-              const tagSlug = name.toLowerCase().replace(" ", "-")
+              const tagSlug = slugify(name)
               return (
-                <Link key={name} href={`/paintings/${tagSlug}`}>
+                <Link key={name} href={`/?filter=${tagSlug}`}>
                   <Chip>{name}</Chip>
                 </Link>
               )

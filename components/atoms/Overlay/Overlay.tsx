@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { FC, useEffect, useState } from "react"
+import React, { FC } from "react"
 
 type Props = {
   display?: boolean
