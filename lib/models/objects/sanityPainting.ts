@@ -1,24 +1,28 @@
+import { iSanityTag } from "./SanityTag"
 import { iSanityImage } from "./sanityImage"
-
-interface iTag {
-  name: string
-}
 
 type iPaintingFormat = "square" | "landscape" | "portrait"
 
 export interface iSanityPainting {
   _id: string
-  format: iPaintingFormat
+  format?: iPaintingFormat
   image: iSanityImage | string
   images?: iSanityImage[] | null
   imagesCount: number | null
-  redbubbleUrl: string | null
-  society6Url: string | null
-  description: string
+  redbubbleUrl?: string | null
+  society6Url?: string | null
+  description?: string
   paintedAt: string
   slug: string
-  tagsV2: iTag[]
-  tagCount: number | null
+  tagsV2: iSanityTag[]
+  tagCount?: number | null
   title: string
   video?: string | null
+}
+
+export interface iSanityWallpaperPaintings {
+  image: iSanityImage
+  _id: string
+  lowResImageUrl: string
+  imageUrl: string
 }

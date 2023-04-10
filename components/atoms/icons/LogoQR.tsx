@@ -2,13 +2,14 @@ interface iLogoProps {
   titleId?: string
   width?: string
   height?: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 function LogoQR({
   titleId = "",
   width = "1rem",
   height = "1rem",
+
   ...props
 }: iLogoProps) {
   return (

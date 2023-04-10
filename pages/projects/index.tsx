@@ -6,24 +6,13 @@ import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopBut
 import Project from "components/molecules/Project/Project"
 import { getAllProjectsAndTags } from "lib/api"
 import { iSanityProject } from "lib/models/objects/sanityProject"
-import { iSanityTag } from "lib/models/objects/SanityTag"
+import { iSanityProjectTag } from "lib/models/objects/SanityTag"
 import React, { useState } from "react"
-import { isEven } from "utils/numbers"
 
 interface PageProps {
   projects: iSanityProject[]
-  tags: iSanityTag[]
+  tags: iSanityProjectTag[]
 }
-
-// const projectStatus = [
-//   "completed",
-//   "ongoing",
-//   "planned",
-//   "abandoned",
-//   "inProgress",
-//   "onHold",
-//   "paused",
-// ]
 
 export default function ProjectsPage({ projects = [], tags = [] }: PageProps) {
   const [currentFilter, setCurrentFilter] = useState<string>("all")
@@ -115,7 +104,7 @@ export async function getStaticProps() {
     tags = [],
   }: {
     projects: iSanityProject[]
-    tags: iSanityTag[]
+    tags: iSanityProjectTag[]
   } = data
 
   const filteredTags = tags.filter((tag) => {

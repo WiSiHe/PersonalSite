@@ -1,16 +1,16 @@
 import Meta from "components/atoms/Meta/Meta"
-import { iSanityImage } from "lib/models/objects/sanityImage"
-import { iSanityPainting } from "lib/models/objects/sanityPainting"
+import AboutPage from "components/pages/AboutPage"
+import { iSanityWallpaperPaintings } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import React from "react"
+import { isEmptyArray } from "utils/array"
 
 import { getAllWallpapers } from "../lib/api"
-import AboutPage from "components/pages/AboutPage"
 
 export default function Home({
   wallpapers = [],
 }: {
-  wallpapers: iSanityPainting[]
+  wallpapers: iSanityWallpaperPaintings[]
 }) {
   return (
     <>
@@ -22,32 +22,30 @@ export default function Home({
 
 export async function getStaticProps() {
   // const data = await getAllTagsAndPaintings()
-  const data = await getAllWallpapers()
+  const { paintings = [] } = await getAllWallpapers()
 
-  if (data.length < 1) {
-    return { props: {} }
+  if (isEmptyArray(paintings)) {
+    return {
+      notFound: true,
+    }
   }
-
-  const { paintings = [] } = data
 
   // sort paintings randomly
   paintings.sort(() => Math.random() - 0.5)
 
-  const desktopWallpapersWithFetchedImages = paintings.map(
-    (wallpaper: { image: iSanityImage }) => ({
-      ...wallpaper,
-      lowResImageUrl: imageBuilder(wallpaper.image)
-        .width(20)
-        .height(20)
-        .quality(10)
-        .url(),
-      imageUrl: imageBuilder(wallpaper.image)
-        .width(1920)
-        .height(1080)
-        .quality(75)
-        .url(),
-    })
-  )
+  const desktopWallpapersWithFetchedImages = paintings.map((wallpaper) => ({
+    ...wallpaper,
+    lowResImageUrl: imageBuilder(wallpaper.image)
+      .width(20)
+      .height(20)
+      .quality(10)
+      .url(),
+    imageUrl: imageBuilder(wallpaper.image)
+      .width(1920)
+      .height(1080)
+      .quality(75)
+      .url(),
+  }))
 
   // sort paintings randomly
   const sortedPaintings = desktopWallpapersWithFetchedImages.sort(
@@ -56,9 +54,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      desktopWallpaper: sortedPaintings,
+      wallpapers: sortedPaintings,
     },
-    // revalidate every hour
-    revalidate: 60 * 60,
+    // revalidate every four hours
+    revalidate: 60 * 60 * 4,
   }
 }

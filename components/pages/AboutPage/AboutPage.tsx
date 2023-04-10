@@ -2,17 +2,17 @@ import Main from "components/atoms/Main/Main"
 import HeroSectionDesktop from "components/organisms/HeroSectionDesktop/HeroSectionDesktop"
 import HeroSectionMobile from "components/organisms/HeroSectionMobile/HeroSectionMobile"
 import ScrollSection from "components/organisms/ScrollSection/ScrollSection"
-import { iSanityPainting } from "lib/models/objects/sanityPainting"
+import { iSanityWallpaperPaintings } from "lib/models/objects/sanityPainting"
 
 interface iAboutPage {
-  wallpapers: iSanityPainting[]
+  wallpapers: iSanityWallpaperPaintings[]
 }
 
 const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
   return (
     <Main noTopPadding className="flex-col overflow-clip">
-      {/* <HeroSectionMobile paintings={wallpapers} />
-      <HeroSectionDesktop paintings={wallpapers} /> */}
+      <HeroSectionMobile paintings={wallpapers} />
+      <HeroSectionDesktop paintings={wallpapers} />
 
       <section
         className="relative w-full max-w-screen-xl px-4 py-10 mx-auto xl:hidden"

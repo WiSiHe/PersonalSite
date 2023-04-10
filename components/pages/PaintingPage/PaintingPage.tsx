@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import Loader from "components/atoms/Loader/Loader"
 const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
 const RedbubbleLink = dynamic(
   () => import("components/atoms/RedbubbleLink/RedbubbleLink")
@@ -28,8 +29,12 @@ interface iPaintingPageProps {
 const PaintingPage = ({ painting }: iPaintingPageProps) => {
   const router = useRouter()
 
+  if (!painting) {
+    return <Loader color="primary" />
+  }
+
   const {
-    images = [],
+    images,
     title = "",
     description = "",
     image,

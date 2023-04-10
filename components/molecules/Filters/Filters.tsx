@@ -1,13 +1,13 @@
 import clsx from "clsx"
 import { AnimatePresence, motion } from "framer-motion"
-import { iSanityTag } from "lib/models/objects/SanityTag"
+import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { BsFilter } from "react-icons/bs"
 import { IoClose } from "react-icons/io5"
 
 interface iFiltersProps {
-  filteredTags?: iSanityTag[]
+  filteredTags: iSanityPaintingTag[]
   activeFilter: string
   amountOfPaintings?: number
 }
@@ -22,8 +22,6 @@ const Filters = ({
   useEffect(() => {
     setActive(false)
   }, [activeFilter])
-
-  console.log(filteredTags)
 
   return (
     <>

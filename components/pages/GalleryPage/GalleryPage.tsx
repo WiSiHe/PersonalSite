@@ -1,10 +1,12 @@
 import clsx from "clsx"
+import Loader from "components/atoms/Loader/Loader"
 import Main from "components/atoms/Main/Main"
 import Painting from "components/atoms/PaintingV3/Painting"
 import { FilterBar } from "components/organisms/FilterBar/FilterBar"
+import { motion } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
-import { iSanityTag } from "lib/models/objects/SanityTag"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
+import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
 import Script from "next/script"
@@ -15,7 +17,6 @@ import { HiOutlineDesktopComputer } from "react-icons/hi"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
-import { motion } from "framer-motion"
 
 const Test3 = () => {
   return (
@@ -53,10 +54,10 @@ const Test3 = () => {
 
 interface iPaintingsPageProps {
   paintings: iSanityPainting[]
-  tags: iSanityTag[]
+  tags: iSanityPaintingTag[]
 }
 
-const GalleryPage = ({ paintings, tags }: iPaintingsPageProps) => {
+const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   const router = useRouter()
   const { query } = router
 
@@ -110,6 +111,10 @@ const GalleryPage = ({ paintings, tags }: iPaintingsPageProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollPosition, hasLoadedAllPaintings])
+
+  if (isEmptyArray(paintings)) {
+    return <Loader color="primary" />
+  }
 
   return (
     <Main className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 gap-4 p-4 mx-auto max-w-screen-2xl">

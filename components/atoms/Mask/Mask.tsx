@@ -27,7 +27,7 @@ const Mask = ({ color = "dark" }: iMask) => {
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
-        className={clsx(maskColor[color])}
+        className={clsx("", maskColor[color])}
         id="visual"
       >
         <g transform={`translate(${width}, 0)`}>

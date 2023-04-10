@@ -1,25 +1,17 @@
 import Meta from "components/atoms/Meta/Meta"
-
 import GalleryPage from "components/pages/GalleryPage"
-
-import useScrollPosition from "hooks/useScrollPosition"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
-import { iSanityTag } from "lib/models/objects/SanityTag"
-import { useCombinedStore } from "lib/store"
-import { useRouter } from "next/router"
-
-import React, { useEffect, useMemo, useState } from "react"
-import { isEmptyArray, isNotEmptyArray } from "utils/array"
-import { sortPaintings } from "utils/painting"
-import { slugify } from "utils/string"
+import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
+import React from "react"
 
 interface iPaintingsPageProps {
   paintings: iSanityPainting[]
-  tags: iSanityTag[]
+  tags: iSanityPaintingTag[]
 }
 
 const PaintingsPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
+  console.log("paintings", paintings)
   return (
     <>
       <Meta
@@ -44,7 +36,7 @@ export async function getStaticProps() {
   const {
     paintings = [],
     tags = [],
-  }: { paintings: iSanityPainting[]; tags: iSanityTag[] } = data
+  }: { paintings: iSanityPainting[]; tags: iSanityPaintingTag[] } = data
   // define tags as iSanityTag
 
   const sortedTags = tags

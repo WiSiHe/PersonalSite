@@ -5,13 +5,13 @@ import Meta from "components/atoms/Meta/Meta"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import VideoCard from "components/molecules/VideoCard/VideoCard"
 import { getAllVideosAndTags } from "lib/api"
-import { iSanityTag } from "lib/models/objects/SanityTag"
+import { iSanityVideoTag } from "lib/models/objects/SanityTag"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import React, { useState } from "react"
 
 interface iSanityVideoProps {
   videos: iSanityVideo[]
-  tags: iSanityTag[]
+  tags: iSanityVideoTag[]
 }
 
 const PaintingsPage = ({ videos = [], tags = [] }: iSanityVideoProps) => {
@@ -99,7 +99,7 @@ export async function getStaticProps() {
     tags = [],
   }: {
     videos: iSanityVideo[]
-    tags: iSanityTag[]
+    tags: iSanityVideoTag[]
   } = data
 
   const filteredTags = tags.filter((tag) => {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
+import { dummyPaintings, dummyTags } from "./dummyData"
 import GalleryPage from "./GalleryPage"
 // import { dummyPaintings, dummyTags } from "./dummyData"
 
@@ -18,4 +19,16 @@ export default meta
 
 type Story = StoryObj<typeof GalleryPage>
 
-export const Default: Story = {}
+export const Default: Story = {
+  args: {
+    paintings: [],
+    tags: [],
+  },
+}
+
+export const WithPaintings: Story = {
+  args: {
+    paintings: dummyPaintings,
+    tags: dummyTags,
+  },
+}

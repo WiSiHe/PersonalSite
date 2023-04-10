@@ -178,15 +178,13 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths() {
-  const allProjects = (await getAllProjectsLight()) as iSanityProjectLight[]
+  const allProjects = await getAllProjectsLight()
 
-  const paths =
-    allProjects.map((project) => {
-      const { slug } = project
-      return {
-        params: { slug: slug?.current },
-      }
-    }) || []
+  const paths = allProjects.map((project) => ({
+    params: {
+      slug: project.slug,
+    },
+  }))
 
   return {
     paths,

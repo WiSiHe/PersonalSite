@@ -1,8 +1,17 @@
 export interface iSanityTag {
-  _id: string
+  _id?: string
   name: string
-  description: string
+  description?: string | null
+}
+
+export interface iSanityPaintingTag extends iSanityTag {
   paintingsCount: number
+}
+
+export interface iSanityVideoTag extends iSanityTag {
+  videoCount: number
+}
+
+export interface iSanityProjectTag extends iSanityTag {
   projectCount: number
-  videoCount?: number
 }

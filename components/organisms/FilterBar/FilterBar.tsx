@@ -2,13 +2,13 @@ import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopBut
 import FilterModal from "components/molecules/FilterModal/FilterModal"
 import FilterSortButton from "components/molecules/FilterSortButton/FilterSortButton"
 import { AnimatePresence, motion } from "framer-motion"
-import { iSanityTag } from "lib/models/objects/SanityTag"
+import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
 import { IoFilterSharp } from "react-icons/io5"
 
 interface iFilterBar {
-  filters?: iSanityTag[]
+  filters?: iSanityPaintingTag[]
 }
 
 const FilterBar = ({ filters = [] }: iFilterBar) => {

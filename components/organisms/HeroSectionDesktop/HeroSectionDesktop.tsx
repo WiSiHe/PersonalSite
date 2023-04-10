@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import { motion } from "framer-motion"
-import { iSanityPainting } from "lib/models/objects/sanityPainting"
-import { imageBuilder } from "lib/sanity"
+import { iSanityWallpaperPaintings } from "lib/models/objects/sanityPainting"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -11,8 +10,7 @@ import { BsFillBrushFill } from "react-icons/bs"
 import { HiOutlineDesktopComputer } from "react-icons/hi"
 
 interface HeroSectionProps {
-  paintings: iSanityPainting[]
-  introText?: string
+  paintings: iSanityWallpaperPaintings[]
 }
 
 const container = {
@@ -90,6 +88,8 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
 
   // add evevnt listener to update window width using match media
 
+  if (!currentWallpaper) return null
+
   return (
     <section
       className={clsx(
@@ -97,11 +97,7 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
         "w-full h-full min-h-screen"
       )}
     >
-      <div
-        // whileInView={{ opacity: 1, x: 0 }}
-        // viewport={{ once: true, amount: 0.1 }}
-        className="absolute z-20 flex h-full col-span-3 col-start-1 my-auto bg-primary"
-      >
+      <div className="absolute z-20 flex h-full col-span-3 col-start-1 my-auto bg-primary">
         <div className="flex flex-col justify-center p-4">
           <div className="flex flex-col gap-10">
             <motion.h1
@@ -183,22 +179,25 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
         {/* <HeroSectionLoader /> */}
         <div className="absolute inset-0 z-10 h-full pointer-events-none from bg-gradient-to-bl from-primary via-transparent" />
         <Image
-          src={imageBuilder(currentWallpaper.image)
-            .width(1920)
-            .height(1080)
-            .quality(75)
-            .url()}
-          blurDataURL={imageBuilder(currentWallpaper.image)
-            .width(192)
-            .height(108)
-            .quality(10)
-            .url()}
+          // src={imageBuilder(currentWallpaper.image)
+          //   .width(1920)
+          //   .height(1080)
+          //   .quality(75)
+          //   .url()}
+          // blurDataURL={imageBuilder(currentWallpaper.image)
+          //   .width(192)
+          //   .height(108)
+          //   .quality(10)
+          //   .url()}
+          src={currentWallpaper.imageUrl}
+          blurDataURL={currentWallpaper.lowResImageUrl}
           priority
           fill
           placeholder="blur"
           className={clsx("object-cover w-full h-full bg-dark")}
           alt=""
         />
+
         {/* <div
           className={
             "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary to-highlight animate-gradient-xy mix-blend-hue "

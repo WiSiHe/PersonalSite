@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { motion } from "framer-motion"
-import { iSanityTag } from "lib/models/objects/SanityTag"
+import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
 import { Fragment } from "react"
@@ -9,7 +9,7 @@ import { IoClose } from "react-icons/io5"
 import { slugify } from "utils/string"
 
 interface iFilterModal {
-  filters?: iSanityTag[]
+  filters?: iSanityPaintingTag[]
 }
 
 const FilterModal = ({ filters = [] }: iFilterModal) => {

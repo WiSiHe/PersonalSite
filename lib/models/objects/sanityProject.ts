@@ -26,5 +26,5 @@ export interface iSanityProject {
 }
 
 export interface iSanityProjectLight {
-  slug: iSanitySlug
+  slug: string
 }

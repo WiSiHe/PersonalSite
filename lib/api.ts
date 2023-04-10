@@ -3,6 +3,7 @@ import { createClient, groq } from "next-sanity"
 import { iSanityTag } from "./models/objects/SanityTag"
 import { iSanityPainting } from "./models/objects/sanityPainting"
 import client from "./sanity"
+import { iSanityProjectLight } from "./models/objects/sanityProject"
 
 // const getUniquePosts = (posts) => {
 //   const slugs = new Set()
@@ -193,9 +194,11 @@ export async function getAllNewTags() {
   return results
 }
 
-export async function getAllWallpapers() {
+export async function getAllWallpapers(): Promise<{
+  paintings: iSanityPainting[]
+}> {
   const results = await client.fetch(
-    `*[_type == "tag" && name == "Wallpaper"]{_id,  name, "paintings": *[_type == "painting" && references(^._id)]}[0]`
+    `*[_type == "tag" && name == "Wallpaper"]{"paintings": *[_type == "painting" && references(^._id)]{_id, image}}[0]`
   )
 
   return results
@@ -205,7 +208,7 @@ export async function getAllWallpapers() {
 
 export async function getAllProjects() {
   const results = await client.fetch(
-    `*[_type == "project"]| order(projectStart desc){title, description, projectStart, projectEnd, status, content, name, slug, image, slug, _id, tags[]->{name}}`
+    `*[_type == "project"]| order(projectStart desc){title, description, projectStart, projectEnd, status, content, name, image, 'slug': slug.current, _id, tags[]->{name}}`
   )
   return results
 }
@@ -223,14 +226,18 @@ export async function getAllProjectsAndTags() {
   return results
 }
 
-export async function getAllProjectsLight() {
-  const results = await client.fetch(`*[_type == "project"]{slug}`)
+export async function getAllProjectsLight(): Promise<
+  Pick<iSanityPainting, "slug">[]
+> {
+  const results = await client.fetch(
+    `*[_type == "project"]{'slug': slug.current}`
+  )
   return results
 }
 
 export async function getProjectDetails(slug: string) {
   const results = await client.fetch(
-    `*[_type == "project" && slug.current == $slug]| order(_updatedAt desc){title, description, extraImages, projectStart, projectEnd, status, content, name, slug, image, slug, _id, connectedVideo->{videoUrl}, connectedPaintings[]->{title, slug, image}, tags[]->{name}}`,
+    `*[_type == "project" && slug.current == $slug]| order(_updatedAt desc){title, description, extraImages, projectStart, projectEnd, status, content, name, 'slug': slug.current, image, slug, _id, connectedVideo->{videoUrl}, connectedPaintings[]->{title, slug, image}, tags[]->{name}}`,
     {
       slug,
     }
