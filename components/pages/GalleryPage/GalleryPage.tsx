@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import Loader from "components/atoms/Loader/Loader"
 import Main from "components/atoms/Main/Main"
-import Painting from "components/atoms/PaintingV3/Painting"
+import Painting from "components/molecules/Painting/Painting"
 import { FilterBar } from "components/organisms/FilterBar/FilterBar"
 import { motion } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"

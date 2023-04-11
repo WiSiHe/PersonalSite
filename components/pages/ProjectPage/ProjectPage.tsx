@@ -20,6 +20,7 @@ interface PageProps {
 }
 
 const ProjectPage = ({ project }: PageProps) => {
+  console.log("project", project)
   return (
     <Main noTopPadding className="flex-col min-h-screen overflow-clip">
       <BackButton />

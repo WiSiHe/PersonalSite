@@ -3,8 +3,8 @@
   "version": "2.5.3",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "start": "next start",
+    "dev": "next -p 1992",
+    "start": "next start -p 1992",
     "build": "next build",
     "sitemap": "next-sitemap",
     "lint": "eslint --ext .js --ignore-path .gitignore .",

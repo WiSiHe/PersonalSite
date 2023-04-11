@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import RedbubbleLink from "./RedbubbleLink"
 
 const meta: Meta<typeof RedbubbleLink> = {
-  title: "Atoms/RedbubbleLink",
+  title: "Atoms/Store/RedbubbleLink",
   component: RedbubbleLink,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],

@@ -10,7 +10,7 @@ import {
 import Painting from "./Painting"
 
 const meta: Meta<typeof Painting> = {
-  title: "Atoms/Painting",
+  title: "Molecules/Painting",
   component: Painting,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],

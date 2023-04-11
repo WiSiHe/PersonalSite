@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import Society6link from "./Society6link"
 
 const meta: Meta<typeof Society6link> = {
-  title: "Atoms/Society6link",
+  title: "Atoms/Store/Society6link",
   component: Society6link,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],

@@ -1,27 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { dummyTags } from "./dummyData"
-import { FilterBar } from "./FilterBar"
+import Carousel from "./Carousel"
+import { dummyPaintings } from "./dummyData"
 
-const meta: Meta<typeof FilterBar> = {
-  title: "Organisms/FilterBar",
-  component: FilterBar,
+const meta: Meta<typeof Carousel> = {
+  title: "Organisms/Carousel",
+  component: Carousel,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    // layout: "padded",
+    layout: "fullscreen",
   },
 }
 
 export default meta
 
-type Story = StoryObj<typeof FilterBar>
+type Story = StoryObj<typeof Carousel>
 
 export const Default: Story = {}
 
-export const WithFilters: Story = {
+export const WithImages: Story = {
   args: {
-    filters: dummyTags,
+    paintings: dummyPaintings,
   },
 }

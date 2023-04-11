@@ -1,15 +1,32 @@
 import clsx from "clsx"
+import Painting from "components/molecules/Painting/Painting"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import React from "react"
 import { useRef } from "react"
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi"
+import { isNotEmptyArray } from "utils/array"
 
 interface iCarouselProps {
   paintings: iSanityPainting[]
+  gradientColor?:
+    | "default"
+    | "black"
+    | "white"
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "highlight"
+  hasGradient?: boolean
 }
 
-const Carousel = ({ paintings = [] }: iCarouselProps) => {
+const Carousel = ({
+  paintings = [],
+  gradientColor = "default",
+  hasGradient = true,
+}: iCarouselProps) => {
   const wrapper = useRef<HTMLDivElement>(null)
+
+  const hasPaintings = isNotEmptyArray(paintings)
 
   // const [stepLeftDisabled, setStepLeftDisabled] = useState(true)
 
@@ -41,49 +58,58 @@ const Carousel = ({ paintings = [] }: iCarouselProps) => {
   //   )
   // }
 
-  return (
-    <div className="relative pl-4 lg:h-96 h-80">
-      <div
-        className={clsx(
-          // stepLeftDisabled && "hidden",
-          "absolute top-0 bottom-0 left-4 z-20 flex items-center justify-center w-20 pointer-events-none"
-        )}
-      >
-        <button
-          className="p-2 shadow-2xl ring-1 ring-white bg-primary"
-          onClick={handleStepLeft}
-        >
-          <BiLeftArrowAlt className="text-xl text-white" />
-        </button>
-      </div>
+  const gradientStyle = {
+    default: "from-tertiary to-transparent",
+    black: "from-black to-transparent",
+    white: "from-white to-transparent",
+    primary: "from-primary to-transparent",
+    secondary: "from-secondary to-transparent",
+    tertiary: "from-tertiary to-transparent",
+    highlight: "from-highlight to-transparent",
+  }
 
+  return (
+    <div className="relative h-96">
       <div
-        className="relative flex w-full h-full space-x-4 overflow-x-scroll snap-x snap-mandatory scroll-pl-6 scroll-ml-6 scrollbar-hidden"
+        className="relative flex w-full h-full gap-4 px-4 py-2 overflow-x-scroll snap-x scroll-smooth scrollbar-hidden"
         ref={wrapper}
         // onScroll={handleScroll}
       >
-        {paintings.map((_, i) => (
-          <p key={i}>dw</p>
-          // <Painting
-          //   paintingData={p}
-          //   filterTag={filterTag}
-          //   index={i}
-          //   key={i}
-          // />
+        {paintings.map((painting, i) => (
+          <div key={i} className="aspect-square snap-center">
+            <Painting paintingData={painting} />
+          </div>
         ))}
       </div>
-
       <div
         className={clsx(
-          // stepRightDisabled && "hidden",
-          "absolute top-0 bottom-0 right-0 flex items-center justify-center w-20"
+          gradientStyle[gradientColor],
+          hasGradient
+            ? "absolute top-0 bottom-0 right-0 z-20 flex items-center justify-center h-full pointer-events-none bg-gradient-to-l aspect-square"
+            : "hidden"
         )}
-      >
+      />
+
+      <div className="flex justify-end gap-4 p-4">
         <button
-          className="p-2 shadow-2xl ring-1 ring-white bg-primary"
-          onClick={handleStepRight}
+          className={clsx(
+            "p-2 text-xl text-white drop-shadow ring ring-highlight bg-primary",
+            !hasPaintings && "opacity-50 cursor-not-allowed"
+          )}
+          onClick={handleStepLeft}
+          disabled={!hasPaintings}
         >
-          <BiRightArrowAlt className="text-xl text-white" />
+          <BiLeftArrowAlt />
+        </button>
+        <button
+          className={clsx(
+            "p-2 text-xl text-white drop-shadow ring ring-highlight bg-primary",
+            !hasPaintings && "opacity-50 cursor-not-allowed"
+          )}
+          onClick={handleStepRight}
+          disabled={!hasPaintings}
+        >
+          <BiRightArrowAlt />
         </button>
       </div>
     </div>

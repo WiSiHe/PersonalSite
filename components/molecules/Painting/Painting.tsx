@@ -11,21 +11,21 @@ import { FaExclamation } from "react-icons/fa"
 import { GrMultiple } from "react-icons/gr"
 import { RiMovieFill } from "react-icons/ri"
 
-// const cardVariants = {
-//   offscreen: {
-//     y: 100,
-//     opacity: 0,
-//   },
-//   onscreen: {
-//     y: 0,
-//     opacity: 1,
-//   },
-//   transition: {
-//     type: "spring",
-//     bounce: 0.2,
-//     duration: 1,
-//   },
-// }
+const cardVariants = {
+  offscreen: {
+    y: 100,
+    opacity: 0,
+  },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+  },
+  transition: {
+    type: "spring",
+    bounce: 0.2,
+    duration: 1,
+  },
+}
 
 interface iProjectProps {
   paintingData: iSanityPainting
@@ -103,16 +103,16 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
       <motion.article
         // layout
         layoutId={title}
-        // initial="offscreen"
-        // whileInView="onscreen"
-        // viewport={{ once: true, amount: 0.4 }}
-        // variants={cardVariants}
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.4 }}
+        variants={cardVariants}
         transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
         className={clsx(
-          "relative w-full h-full @container rounded-lg hover:z-10 overflow-hidden hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
+          "relative w-full h-full @container rounded-lg hover:z-10 hover:shadow-xl overflow-clip focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
         )}
       >
-        <Link href={linkString} className="absolute inset-0">
+        <Link href={linkString} className="absolute inset-0 overflow-clip">
           <Image
             src={imageBuilder(image).width(400).height(400).quality(55).url()}
             blurDataURL={imageBuilder(image)
@@ -141,30 +141,30 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
           </div>
 
           {isNsfw && !isNsfwUrl && (
-            <div className={clsx("absolute inset-0", "backdrop-blur-xl")} />
+            <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
           )}
 
-          <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md">
+          <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md text-dark">
             {hasStoreLinks && (
-              <div className="flex items-center p-2 text-xs rounded-lg bg-highlight">
-                <div className="relative w-2 h-2 mr-2 rounded-full bg-dark">
+              <div className="flex items-center gap-2 p-2 text-xs rounded-lg bg-highlight">
+                <div className="relative w-2 h-2 rounded-full bg-dark">
                   <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
                 </div>
-                <strong className="text-xs @xs:text-sm">For sale</strong>
+                <strong>For sale</strong>
               </div>
             )}
             {video && (
-              <div className="p-2 bg-white rounded-lg">
+              <div className="flex items-center justify-center p-2 bg-white rounded-lg">
                 <RiMovieFill />
               </div>
             )}
             {imagesCount && imagesCount > 0 && (
-              <div className="p-2 bg-white rounded-lg">
+              <div className="flex items-center justify-center p-2 bg-white rounded-lg">
                 <GrMultiple />
               </div>
             )}
             {isNsfw && (
-              <div className="p-2 bg-white rounded-lg">
+              <div className="flex items-center justify-center p-2 bg-white rounded-lg">
                 <FaExclamation />
               </div>
             )}
