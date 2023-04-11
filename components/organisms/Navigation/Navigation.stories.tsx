@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import Navigation from "./Navigation"
 
 const meta: Meta<typeof Navigation> = {
-  title: "Molecules/Navigation",
+  title: "Organisms/Navigation",
   component: Navigation,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],

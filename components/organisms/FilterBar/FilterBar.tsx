@@ -1,6 +1,6 @@
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
-import FilterModal from "components/molecules/FilterModal/FilterModal"
 import FilterSortButton from "components/molecules/FilterSortButton/FilterSortButton"
+import FilterModal from "components/organisms/FilterModal/FilterModal"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"

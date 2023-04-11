@@ -6,7 +6,7 @@ import dynamic from "next/dynamic"
 const Footer = dynamic(() => import("components/templates/Footer/Footer"))
 // import Navigation from "components/molecules/Navigation/Navigation"
 const Navigation = dynamic(() =>
-  import("components/molecules/Navigation/Navigation")
+  import("components/organisms/Navigation/Navigation")
 )
 import { domAnimation, LazyMotion } from "framer-motion"
 import { Inter, Lobster, Roboto } from "next/font/google"

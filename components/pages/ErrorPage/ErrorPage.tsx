@@ -1,5 +1,5 @@
 import Main from "components/atoms/Main/Main"
-import SideMenu from "components/molecules/SideMenu/SideMenu"
+import SideMenu from "components/organisms/SideMenu/SideMenu"
 import Image from "next/image"
 
 const ErrorPage = () => {
