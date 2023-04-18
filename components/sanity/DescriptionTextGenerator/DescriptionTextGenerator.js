@@ -1,22 +1,47 @@
 import { BlockContentIcon } from "@sanity/icons"
 import { Button, Card, Flex, Label, Text, TextArea } from "@sanity/ui"
-import { useState } from "react"
+import clsx from "clsx"
+import { getPaintingTags } from "lib/api"
+import { useEffect, useMemo, useState } from "react"
 import { BiLoader } from "react-icons/bi"
-import { set, StringInputProps, unset } from "sanity"
+import { set, unset, useFormValue } from "sanity"
+import { isEmptyArray } from "utils/array"
+import { slugify } from "utils/string"
 
 const Loader = () => <BiLoader className="animate-spin" />
 
-const DescriptionTextGenerator = (props: StringInputProps) => {
+// const DescriptionTextGenerator = (props:StringInputProps) => {
+const DescriptionTextGenerator = (props) => {
   // The onChange function is used to update the value of the field
   const { value, onChange } = props
+  // const tagsss = useFormValue(["tagsV2"])
+  const slug = useFormValue(["slug"])
+
+  // const docId = useFormValue(["_id"])
 
   const [isLoading, setIsLoading] = useState(false)
   const [promt, setPromt] = useState("")
-  const currentPromt = `Write a short objective description of a painting. It should be 320 characters or less, and given the following description: ${promt}`
+  const [tags, setTags] = useState([])
+
+  const tagsToString = useMemo(() => {
+    // filter out empty tags and tags with store name
+
+    return tags
+      .filter((tag) => slugify(tag.name) !== "store")
+      .map((tag) => tag.name)
+      .join(", ")
+  }, [tags])
+
+  const currentPromt = clsx(
+    isEmptyArray(tags)
+      ? `Write an objective description of a painting and given the following description: ${promt}`
+      : `Write an objective description of a painting and given the following description: ${promt}, and given the following descriptive keywords: ${tagsToString}.`
+  )
+
+  console.log("currentPromt", currentPromt)
 
   const callApi = async () => {
     setIsLoading(true)
-
     const response = await fetch("/api/openai", {
       method: "POST",
       headers: {
@@ -42,6 +67,20 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
     }
   }
 
+  const fetchTags = async () => {
+    // fetch tags from sanity
+    const tags = await getPaintingTags(slug.current)
+
+    const { tagsV2 = [] } = tags
+
+    setTags(tagsV2)
+  }
+
+  useEffect(() => {
+    fetchTags()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
       <Card>
@@ -50,7 +89,7 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
             <TextArea
               onChange={(event) => setPromt(event.currentTarget.value)}
               padding={2}
-              placeholder="placeholder"
+              placeholder="Write a short objective description of a painting. It should be 320 characters or less, and given the following description"
               value={promt}
             />
           </Card>

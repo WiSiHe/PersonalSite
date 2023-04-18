@@ -1,4 +1,5 @@
 import { TagIcon } from "@sanity/icons"
+import TagDescriptionGenerator from "components/sanity/TagDescriptionGenerator"
 import { defineField, defineType } from "sanity"
 
 export default defineType({
@@ -17,12 +18,10 @@ export default defineType({
       name: "description",
       title: "Description",
       type: "text",
-      description: "Short description of the tag",
-      validation: (rule) =>
-        rule
-          .max(200)
-          .min(10)
-          .warning("Description should be between 10 and 200 characters"),
+      components: {
+        input: TagDescriptionGenerator,
+      },
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {

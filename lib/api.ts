@@ -116,6 +116,16 @@ export async function getPaintingDetails(
   return results || []
 }
 
+export async function getPaintingTags(slug: string): Promise<iSanityTag[]> {
+  const results = await client.fetch(
+    `*[_type == "painting" && slug.current == $slug]{
+      tagsV2[]->{name},
+    }[0]`,
+    { slug }
+  )
+  return results
+}
+
 export const paintingBySlugQuery = groq`
 *[_type == "painting" && slug.current == $slug][0] {
   ${paintingFields}

@@ -1,20 +1,38 @@
 import { ImageIcon } from "@sanity/icons"
 import DescriptionTextGenerator from "components/sanity/DescriptionTextGenerator"
 import { defineField, defineType } from "sanity"
+import { FaWeibo } from "react-icons/fa"
+import SEODescriptionGenerator from "components/sanity/SEODescriptionGenerator"
 
 export default defineType({
   name: "painting",
   title: "Painting",
   icon: ImageIcon,
   type: "document",
-  fieldsets: [
+  groups: [
     {
-      name: "links",
-      title: "Social Media Links",
-      options: {
-        collapsible: true,
-        collapsed: true,
-      },
+      name: "seo",
+      title: "SEO",
+      default: false,
+      icon: FaWeibo,
+    },
+    {
+      name: "media",
+      title: "Media",
+      default: false,
+      icon: ImageIcon,
+    },
+    {
+      name: "AI",
+      title: "AI",
+      default: false,
+      icon: ImageIcon,
+    },
+    {
+      name: "social",
+      title: "Social",
+      default: false,
+      icon: ImageIcon,
     },
   ],
   fields: [
@@ -22,6 +40,7 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      group: "seo",
       description: "Title of the painting",
       validation: (rule) =>
         rule
@@ -30,10 +49,12 @@ export default defineType({
           .min(5)
           .warning("Title should be between 5 and 50 characters"),
     }),
+
     defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
+      group: "seo",
       description: "The slug is used to generate the URL of the painting",
       options: {
         source: "title",
@@ -42,20 +63,10 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      description: "Short description of the painting",
-      // example: 'Write a short objective SEO description of the following: digital painting about a dark skinned girl, wearing a red coat and blue scarf, with large curly hair and a green rim light on her left side.'
-      components: {
-        input: DescriptionTextGenerator,
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "image",
       title: "Primary Image",
       type: "image",
+      group: "media",
       description: "The main image of the painting",
       options: {
         hotspot: true,
@@ -63,9 +74,21 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      group: ["AI"],
+      components: {
+        input: DescriptionTextGenerator,
+      },
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
       name: "images",
       title: "Images",
       type: "array",
+      group: "media",
       of: [{ type: "image", options: { hotspot: true } }],
       description: "Additional images of the painting",
       //   validation: (rule) => rule.required(),
@@ -74,23 +97,28 @@ export default defineType({
       name: "video",
       title: "Video",
       type: "url",
+      group: "media",
       description: "YouTube or Vimeo URL",
       // validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "featured",
-      title: "Featured",
-      type: "boolean",
-      description: "Featured paintings will be displayed on the home page",
-      options: {
-        layout: "checkbox",
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      group: ["seo", "AI"],
+      description:
+        "This description will be used in the meta description for SEO purposes",
+      components: {
+        input: SEODescriptionGenerator,
       },
     }),
     defineField({
       name: "format",
       title: "Format",
       type: "string",
+
       initialValue: "square",
+      description: "Aspect ratio of the painting",
       validation: (rule) => rule.required(),
       options: {
         list: ["square", "landscape", "portrait"],
@@ -100,25 +128,25 @@ export default defineType({
       name: "redbubbleUrl",
       title: "Redbubble URL",
       type: "url",
-      fieldset: "links",
+      group: "social",
     }),
     defineField({
       name: "society6Url",
       title: "Society6 URL",
       type: "url",
-      fieldset: "links",
+      group: "social",
     }),
     defineField({
       name: "instagramUrl",
       title: "Instagram URL",
       type: "url",
-      fieldset: "links",
+      group: "social",
     }),
     defineField({
       name: "twitterUrl",
       title: "Twitter URL",
       type: "url",
-      fieldset: "links",
+      group: "social",
     }),
     defineField({
       name: "paintedAt",
