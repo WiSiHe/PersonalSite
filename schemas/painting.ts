@@ -1,4 +1,5 @@
 import { ImageIcon } from "@sanity/icons"
+import DescriptionTextGenerator from "components/sanity/DescriptionTextGenerator"
 import { defineField, defineType } from "sanity"
 
 export default defineType({
@@ -45,12 +46,11 @@ export default defineType({
       title: "Description",
       type: "text",
       description: "Short description of the painting",
-      validation: (rule) =>
-        rule
-          .required()
-          .max(200)
-          .min(10)
-          .warning("Description should be between 10 and 200 characters"),
+      // example: 'Write a short objective SEO description of the following: digital painting about a dark skinned girl, wearing a red coat and blue scarf, with large curly hair and a green rim light on her left side.'
+      components: {
+        input: DescriptionTextGenerator,
+      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "image",
