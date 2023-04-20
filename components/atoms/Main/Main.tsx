@@ -12,7 +12,7 @@ const Main = ({
   className = "",
   children,
 }: iMainProps) => {
-  const mainCss = "flex flex-1 bg-tertiary relative w-full dark:text-white"
+  const mainCss = "flex flex-1 bg-tertiary relative w-full"
 
   return (
     <main className={clsx(mainCss, className, !noTopPadding && "mt-14")}>
