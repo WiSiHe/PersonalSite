@@ -9,7 +9,7 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { useRouter } from "next/router"
-import Script from "next/script"
+// import Script from "next/script"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"
@@ -18,23 +18,23 @@ import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
 
-const Test3 = () => {
-  return (
-    <>
-      <Script
-        type="module"
-        src="https://unpkg.com/@splinetool/viewer@0.9.269/build/spline-viewer.js"
-      />
-      <div
-        dangerouslySetInnerHTML={{
-          __html:
-            '<spline-viewer loading-anim url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global" no-controls></spline-viewer>',
-        }}
-        className="flex items-center justify-center col-span-6 row-span-1 text-white lg:row-span-2 lg:col-span-4 xl:col-span-6 aspect-square"
-      />
-    </>
-  )
-}
+// const Test3 = () => {
+//   return (
+//     <>
+//       <Script
+//         type="module"
+//         src="https://unpkg.com/@splinetool/viewer@0.9.269/build/spline-viewer.js"
+//       />
+//       <div
+//         dangerouslySetInnerHTML={{
+//           __html:
+//             '<spline-viewer loading-anim url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global" no-controls></spline-viewer>',
+//         }}
+//         className="flex items-center justify-center col-span-6 row-span-1 text-white lg:row-span-2 lg:col-span-4 xl:col-span-6 aspect-square"
+//       />
+//     </>
+//   )
+// }
 
 // const container = {
 //   hidden: { opacity: 0 },
@@ -148,7 +148,7 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 const shouldBeLazy = i >= 8
                 return (
                   <Fragment key={p._id}>
-                    {i === 8 && !hasFilters && <Test3 key={i} />}
+                    {/* {i === 8 && !hasFilters && <Test3 key={i} />} */}
                     <div
                       className={clsx(
                         "aspect-square",

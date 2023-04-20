@@ -55,7 +55,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
           <h2 className="">
             <strong>{title}</strong>
           </h2>
-          <p>{description}</p>
+          <p className="line-clamp-2">{description}</p>
           {isNotEmptyArray(tags) && displayTags && (
             <div className="absolute bottom-0 left-0 right-0 flex flex-wrap gap-2 p-4 pointer-events-none">
               {tags.map((tag) => {

@@ -102,7 +102,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
     <AnimatePresence>
       <motion.article
         // layout
-        layoutId={title}
+        // layoutId={title}
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true, amount: 0.4 }}

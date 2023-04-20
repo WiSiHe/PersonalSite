@@ -2,17 +2,17 @@ import { BlockContentIcon } from "@sanity/icons"
 import { Button, Card, Text } from "@sanity/ui"
 import { useState } from "react"
 import { BiLoader } from "react-icons/bi"
-import { set, unset, useFormValue } from "sanity"
+import { set, StringInputProps, unset, useFormValue } from "sanity"
 
 const Loader = () => <BiLoader className="animate-spin" />
 
-const SEODescriptionGenerator = (props) => {
+const TagDescriptionGenerator = (props: StringInputProps) => {
   const { value, onChange } = props
-  const description = useFormValue(["description"])
+  const name = useFormValue(["name"]) as string
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const currentPromt = `Rewrite and improve upon the following text:${description},  and make it into a good SEO description in 122 characters or less and don't use hastags.`
+  const currentPromt = `Give a keyword description for the tag: ${name}`
 
   const callApi = async () => {
     setIsLoading(true)
@@ -33,7 +33,7 @@ const SEODescriptionGenerator = (props) => {
   }
 
   const generateSEODescription = async () => {
-    if (!description) return
+    if (!name) return
     try {
       callApi()
     } catch (error) {
@@ -51,7 +51,7 @@ const SEODescriptionGenerator = (props) => {
             type="button"
             tone="primary"
             // padding={2}
-            disabled={isLoading || !description}
+            disabled={isLoading || !name}
           />
         </Card>
 
@@ -65,4 +65,4 @@ const SEODescriptionGenerator = (props) => {
   )
 }
 
-export default SEODescriptionGenerator
+export default TagDescriptionGenerator

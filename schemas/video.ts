@@ -2,6 +2,7 @@ import { DocumentVideoIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
 import tagType from "./tag"
+import VideoDescriptionGenerator from "components/sanity/VideoDescriptionGenerator"
 
 export default defineType({
   name: "video",
@@ -31,23 +32,7 @@ export default defineType({
           .min(5)
           .warning("Title should be between 5 and 50 characters"),
     }),
-    // defineField({
-    //   name: "name",
-    //   title: "Name",
-    //   type: "string",
-    // }),
-    defineField({
-      name: "description",
-      title: "SEO Description",
-      type: "text",
-      description: "Short description of the video",
-      validation: (rule) =>
-        rule
-          .required()
-          .max(200)
-          .min(10)
-          .warning("Description should be between 10 and 200 characters"),
-    }),
+
     defineField({
       name: "slug",
       title: "Slug",
@@ -57,7 +42,16 @@ export default defineType({
         source: "title",
         maxLength: 96,
       },
-      //   validation: (rule) => rule.required(),
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      components: {
+        input: VideoDescriptionGenerator,
+      },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "videoUrl",
@@ -71,14 +65,7 @@ export default defineType({
       title: "Thumbnail",
       type: "image",
       description: "The thumbnail of the video",
-      //   validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "content",
-      title: "Content",
-      type: "array",
-      description: "Content of the project",
-      of: [{ type: "block" }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "linkedPainting",

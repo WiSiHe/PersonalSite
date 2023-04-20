@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react"
+import clsx from "clsx"
 import BackButton from "components/atoms/BackButton/BackButton"
 import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
@@ -8,11 +9,18 @@ import { iSanityProject } from "lib/models/objects/sanityProject"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
 import Image from "next/image"
+import Link from "next/link"
 import { Suspense } from "react"
 import { isNotEmptyArray } from "utils/array"
+import {
+  paintingAspectRatio,
+  paintingImageHeight,
+  paintingImageWidth,
+} from "utils/painting"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
+  ssr: false,
 })
 
 interface PageProps {
@@ -20,7 +28,6 @@ interface PageProps {
 }
 
 const ProjectPage = ({ project }: PageProps) => {
-  console.log("project", project)
   return (
     <Main noTopPadding className="flex-col min-h-screen overflow-clip">
       <BackButton />
@@ -110,25 +117,35 @@ const ProjectPage = ({ project }: PageProps) => {
               <strong>Related artwork</strong>
             </h2>
           </div>
-          <ul className="grid max-w-screen-xl grid-cols-12 gap-4 mx-auto">
+          <ul className="grid max-w-screen-xl grid-cols-12 gap-4 mx-auto ">
             {project?.connectedPaintings?.map((artwork) => {
-              const { _id = "", title = "", image } = artwork
+              const { _id = "", title = "", image, slug, format } = artwork
               return (
-                <li key={_id} className="relative col-span-3 aspect-square">
-                  <h3>{title}</h3>
-                  <Image
-                    src={imageBuilder(image)
-                      .width(400)
-                      .height(400)
-                      .quality(35)
-                      .url()}
-                    fill
-                    alt={title}
-                    className="object-cover w-full h-full"
-                    sizes="(max-width: 768px) 100vw,
-            (max-width: 1200px) 50vw,
-            33vw"
-                  />
+                <li
+                  key={_id}
+                  className={clsx(
+                    "relative col-span-4",
+                    paintingAspectRatio(format)
+                  )}
+                >
+                  <Link href={`/painting/${slug}`}>
+                    <Image
+                      src={imageBuilder(image)
+                        .width(paintingImageWidth(format))
+                        .height(paintingImageHeight(format))
+                        .quality(35)
+                        .url()}
+                      fill
+                      alt={title}
+                      className={clsx(
+                        "object-cover w-full h-full",
+                        paintingAspectRatio(format)
+                      )}
+                      //           sizes="(max-width: 768px) 100vw,
+                      // (max-width: 1200px) 50vw,
+                      // 33vw"
+                    />
+                  </Link>
                 </li>
               )
             })}

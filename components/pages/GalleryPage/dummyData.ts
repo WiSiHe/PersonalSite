@@ -200,6 +200,7 @@ export const dummyTags: iSanityPaintingTag[] = [
 export const dummyPaintings: iSanityPainting[] = [
   {
     _id: "b97e02c4-bbe6-41aa-b89e-d131f6487218",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -238,6 +239,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "a1b0026d-4373-492a-977b-ce1bcbc9e187",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -265,6 +267,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "910a9574-ccf3-4eee-ac93-546621cc87cb",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -315,6 +318,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b278daf5-9d5e-4cdb-932a-2e31ecea5345",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -339,6 +343,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "9c264a78-38d4-49c4-9548-0f011787486f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -372,6 +377,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b487ce8b-8cde-4891-888b-012f1e76917e",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -410,6 +416,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "8957c3d5-752e-4d7e-85a3-d2fe693e4402",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -454,6 +461,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "83c880ae-77d9-4146-9d41-e96cc236a7b3",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -475,6 +483,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "960f3c35-5583-4a4e-be6e-33d814d988c2",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -519,6 +528,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c54cf70d-8bcd-4a2b-bf32-87f1250375a0",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -560,6 +570,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "cbb81710-de5b-4bbb-95f9-43785ce76ec7",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -598,6 +609,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ee625d5a-f396-4eff-bf49-f6fa8b18b467",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -642,6 +654,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "d445b81c-606e-489d-8959-4f0f0994a6c6",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -669,6 +682,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "be10e465-b54a-449e-801c-b72d5ddd5287",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -722,6 +736,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e6bbe9b4-7321-4f54-92d8-4ee7ce254a81",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -763,6 +778,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "9d9d9276-3be4-4769-9606-60b20fed0ad8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -793,6 +809,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e7349f9e-61dc-49b7-8760-d8eab17b275c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -837,6 +854,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "dacd0b3f-5061-4c2a-b00d-c92bc8cb0e61",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -861,6 +879,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7d47cfd0-5587-436c-8cec-51c0f5b11dca",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -885,6 +904,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ce297305-9f56-4b77-bbaa-47b4a320899f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -909,6 +929,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "d0f2b24f-3e59-4539-a17d-d89588423eff",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -942,6 +963,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c795b5c0-9efb-469e-9ca6-09dcca175262",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -980,6 +1002,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c5177094-8f43-4a20-8404-4ae3bee8d3ac",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1007,6 +1030,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "defa6b18-c215-4f5c-ad21-3c2fde64b8fd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1034,6 +1058,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b2528fde-4f85-4cc9-89b9-5ff7c4715ec4",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1084,6 +1109,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7e35eb0a-dc9f-4383-8809-55538c2bdfad",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1122,6 +1148,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f9771576-dfca-4841-86b8-02062cadc207",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1163,6 +1190,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f48a13e4-96b7-42f7-bac2-1b21533edd33",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1207,6 +1235,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b3d3f3b5-f6cb-49b1-a81f-3c0ef0a58557",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1248,6 +1277,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f54a9d76-28e9-4cbd-b661-154024b8bf0d",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1272,6 +1302,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "12f36526-4ea8-44b9-80a3-4012faec3d35",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1319,6 +1350,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "77931c0d-3841-4685-95c4-076e6d825d59",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1343,6 +1375,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ead5843e-6d73-4f17-8b66-8a44b9a6447a",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1384,6 +1417,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "040776a2-7a26-4a78-808d-c596a1f4f7eb",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1408,6 +1442,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3291dcdc-4857-4cdb-9f82-28c0a625c870",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1458,6 +1493,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2a24940f-fddc-4bd8-b4da-abccaba25b3f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1499,6 +1535,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b36d04f6-e7d2-4bf6-9853-4804de456187",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1549,6 +1586,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "43d6754f-95c2-4394-863d-dbcc4f79fe84",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1573,6 +1611,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "6b201ddf-28cd-4292-ad11-cac19a462cbd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1597,6 +1636,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "df056735-1140-4141-ad6d-17eba213fd94",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1641,6 +1681,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "49e5efe1-ca6a-4ff7-9385-d86406decbf8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1691,6 +1732,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ceb25dac-91bf-4b3a-a3fc-ee531d353452",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1729,6 +1771,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "1c08dbcf-2505-4344-96d0-59b050635941",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1776,6 +1819,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2266e0eb-e712-4344-ad94-a31a160de893",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1800,6 +1844,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f7c8061a-c7ef-4602-a648-3bebddde3906",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1833,6 +1878,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7567fd04-b21c-4290-9392-246dbb14c7fd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1871,6 +1917,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7d190a36-b013-4046-b4e0-bab7038827fd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1909,6 +1956,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "72368a85-e931-4773-a691-f317a011a563",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1947,6 +1995,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c09985bd-81f2-4b1d-b01c-c873afeef410",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -1985,6 +2034,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "898c7aa1-ac01-4e40-a635-e7447db31a78",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2023,6 +2073,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b7b30f81-7470-4760-9643-4398eff3b080",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2076,6 +2127,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "599682c8-fd4d-435e-b651-672685d0294d",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2109,6 +2161,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "0f68a896-9906-4b7b-bace-52d8dea6da94",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2147,6 +2200,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3468cff7-8a4c-4f9c-9357-bf5c5e9de86a",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2188,6 +2242,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "dcdbe31a-2588-49fb-a404-47efb1b557b1",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2229,6 +2284,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "4ee043fe-799f-4d04-8898-93e1066283dd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2267,6 +2323,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "5c266138-ebf7-4449-aa8d-6c2de931562f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2314,6 +2371,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e26a98f6-d80a-4648-acce-32308fed1bf4",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2342,6 +2400,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "4636a241-a1e1-45ef-bdb7-97713c490708",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2383,6 +2442,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "bb9c484a-a74a-4a24-8881-5cd18fa7543e",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2430,6 +2490,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "24380ef0-da48-4dd7-97f4-e3a7e45c3e9d",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2477,6 +2538,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3e0a87d1-b691-4bcf-9ff6-f9d5b4d04f04",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2507,6 +2569,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "d591c785-be5e-451c-9a06-8b66c297def0",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2554,6 +2617,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "23aca63e-29af-4e95-8e1f-470e049ed586",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2595,6 +2659,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "73b08546-8aa7-4921-92cc-fdaace8dc8bc",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2622,6 +2687,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "4d11fc72-4d38-40b6-9624-5e0d6312bc5f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2669,6 +2735,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f1669bc8-fa76-4009-b38f-75659bf0c58b",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2716,6 +2783,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "64d5b246-77db-4e58-b3a9-c912fdee4512",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2757,6 +2825,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "749a4cae-8138-49fd-be36-aad2d295ab1c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2778,6 +2847,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "85a99a05-2a1f-4189-be46-dcf4db25f8ea",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2811,6 +2881,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "691a3322-16a9-4d4a-91b6-8a35e1e90168",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2838,6 +2909,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "857d0e44-7e91-4b60-a198-8171c619ecd3",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2883,6 +2955,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "5f082aaf-ac7f-47a8-882d-892033724441",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2921,6 +2994,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "09aee0d0-2baa-4612-995a-ab35b886f33f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2951,6 +3025,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e772dfd3-809b-4c74-a47c-1b08e2816e11",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -2995,6 +3070,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c53496ab-eef9-450d-8dc8-e5486f500c30",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3028,6 +3104,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f2cc25f1-bdfe-48a6-a7b5-f5447c075a68",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3066,6 +3143,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "32c045f0-a09d-433e-984d-e8d260eecbb4",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3107,6 +3185,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e0ed2305-5e5c-454d-a70a-13b77d693704",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3154,6 +3233,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3e4a6676-5cb6-4ef7-8fc6-dec2a89ab6fa",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3195,6 +3275,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "478bff3f-16cc-4a2f-9a6e-acef320553af",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3236,6 +3317,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "58b27fb6-b6aa-4fa6-a6ec-bf535b7a8fc9",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3260,6 +3342,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "17a137b0-a83c-4eb0-bbe3-c145b9e8a6dd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3298,6 +3381,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "59e3f90f-5e48-4ce6-ae89-5da260db04fd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3339,6 +3423,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "71fe4369-9f12-4c1f-bc7d-980484e343dd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3377,6 +3462,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "53fb0dc5-a077-424e-aa18-d3a6846d8290",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3410,6 +3496,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "4cb2e631-1911-438a-965d-9136ed608298",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3437,6 +3524,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "be036762-276b-4aea-998f-3971299e0225",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3473,6 +3561,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "42ad865f-902e-4aeb-85bb-f714b60acdad",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3511,6 +3600,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "297f223c-6eb3-48f1-9df1-a538dda373c4",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3535,6 +3625,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "dab3893a-39e5-49c9-b004-b2a71e3db309",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3559,6 +3650,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "49d185f5-c545-4ec9-86a6-35a144576264",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3589,6 +3681,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "82291339-6532-4d71-ad8e-7fec5823e605",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3622,6 +3715,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2671e0da-55ba-4215-84f4-2fc4b5489cbc",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3666,6 +3760,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e0382630-ca91-414b-9329-bd32d8358bec",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3693,6 +3788,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "a73995c8-7b7c-403a-bcc5-fed056e23d43",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3746,6 +3842,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "37f0fe6e-c06b-469e-98eb-617249b10dee",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3787,6 +3884,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "41f71e18-ee57-4afe-8422-6ac5465207e8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3808,6 +3906,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "9452229e-82c3-423b-b987-a0fb08aa831a",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3858,6 +3957,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "30f5cc05-2dd1-4a16-bad3-c22986c247be",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3905,6 +4005,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ea70b295-ee40-4ce3-a1a7-3e86a724c829",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3941,6 +4042,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "931db669-09fe-48f9-875e-ce3eb89ef142",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -3979,6 +4081,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "69ab1a47-6834-40b4-8389-473e9000e5b8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4020,6 +4123,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "a7610faa-7a5e-4565-a89a-34850f4a92ee",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4064,6 +4168,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "6472e7db-49fe-462a-84f8-a99dd96a842d",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4094,6 +4199,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7bed7230-44f4-4a8e-971d-3c737654dbea",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4130,6 +4236,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "cd5254ad-eb8b-4ae5-9aa2-e3c64ec6ec33",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4171,6 +4278,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "1b0cfaee-2af3-4c26-a28c-6e7c3509e68d",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4198,6 +4306,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e33d6fff-cda7-4836-8b98-ded00f730288",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4242,6 +4351,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3e1a35e9-972c-462c-9460-80b1ff2873e8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4275,6 +4385,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "6700663a-1ad0-43a2-a136-d508dc3977a4",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4302,6 +4413,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "73e616c4-9e4d-450b-9a4b-5c53da5ec6a2",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4326,6 +4438,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "5f2d4b81-f6c8-45d9-91ac-f7e2ce77d858",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4367,6 +4480,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "efa0a4a6-093f-4e02-83d8-a5c29dc282a5",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4411,6 +4525,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "37a15096-10e8-4086-99ab-c671480796cf",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4452,6 +4567,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ca31a657-1ebd-4d4e-ab8b-c7768e93cf17",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4482,6 +4598,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "1e5df5f3-2b37-42d0-9eb1-7b9f2aa5694a",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4526,6 +4643,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "99f8d558-d4b3-4c4e-be53-58c515e9d811",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4576,6 +4694,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "cd089f13-0ac0-499f-abe9-462700761c5c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4614,6 +4733,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "04b4d5b3-7e26-430f-bacb-a9b1f0560c3b",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4661,6 +4781,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "4a10ac9a-2d07-41e8-9983-1736c63f90d8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4711,6 +4832,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "d6a538b8-1fd2-4194-b342-bb0bf11f3623",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4749,6 +4871,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3890c2b5-8f53-41fa-a0e6-aa252c0ec7c7",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4793,6 +4916,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c4ca19b8-bae5-40fc-bf48-5582bb537cab",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4831,6 +4955,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "15c0cb16-8ea2-4815-93a0-6458805c532e",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4878,6 +5003,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "73e958a4-2644-4dd1-a7ca-a520c6f45174",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4902,6 +5028,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "48d457ee-2e9d-461c-8260-acdba40fa6b0",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4949,6 +5076,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2e3fce3f-4698-4ded-8054-aaf2911014b6",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -4993,6 +5121,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b3f20466-a60e-4649-a3af-323522ddea1c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5017,6 +5146,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "43389fbf-fffa-439c-a71b-59a286a4449c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5064,6 +5194,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "267bbbdf-c8da-4081-9743-a3cbd93d1c5b",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5102,6 +5233,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "72da3f07-42bf-4448-a9b8-dfba653ca82f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5141,6 +5273,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f5553452-8a92-4e5b-938a-33c9e3a27b94",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5179,6 +5312,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b4871ba8-28d5-4c19-8466-2ce903b4f078",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5221,6 +5355,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "e36e777d-a6ae-4638-b674-5b963d9d6eea",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5262,6 +5397,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c8a522c8-00fa-45b9-9c61-03e97d6df82f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5303,6 +5439,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "9d6304d1-924d-4cb9-ae5f-0435d20edb82",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5344,6 +5481,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "db7160a9-566a-4ea9-a2ff-de167643e06c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5368,6 +5506,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "eed5b3c8-41fd-4080-a7da-df80668f80a9",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5401,6 +5540,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "257850b3-18db-4a5e-a83c-f848be533a48",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5451,6 +5591,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "a9e272ec-41e5-4630-aa2d-d2ef93490e88",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5498,6 +5639,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "844ac207-58f8-4874-a232-5190955c1df1",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5522,6 +5664,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "62c389d5-a28e-40d2-8e57-c9eb9aad6556",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5552,6 +5695,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "79146c26-a81e-408d-8dea-60aabc151f15",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5602,6 +5746,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "067af76f-809f-45fa-9c81-9795f5d905f2",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5652,6 +5797,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b9a1fa9d-5160-4766-adc7-8889e5346d2c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5679,6 +5825,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "798296e8-5954-4927-a8a4-2814a50e40f5",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5712,6 +5859,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "68f80a35-f852-43b3-80ec-9de7cd93f6c3",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5742,6 +5890,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "539edfbe-be67-4d85-9997-6e1a27ca2516",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5792,6 +5941,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "cfac3e0a-97cb-40ea-a1f0-eb51fb8c990c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5833,6 +5983,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "727971a9-6d7c-4064-97d5-33d03dc00643",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5874,6 +6025,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "6f231e6b-4209-4659-88a0-3fe6b860762c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5927,6 +6079,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "030e96a1-be84-4be7-9500-90031d8f694f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -5968,6 +6121,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "fcf5df35-728c-4302-8ae0-385866bc654d",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6015,6 +6169,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "43b03d60-5b44-4d11-be14-b0310c8022d1",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6053,6 +6208,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "d04963c5-860e-4a39-a736-5d90183c1cb5",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6083,6 +6239,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "75fc30d3-ee7b-4173-bd9f-07025401fa78",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6104,6 +6261,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f6088371-7977-4075-bf3d-8c0e7393aa63",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6142,6 +6300,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7afd94f8-1506-4e28-8f9d-19afcd3ddde3",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6184,6 +6343,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "054cdf72-9928-48c6-91a8-f54824580e04",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6225,6 +6385,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "0229f5db-994b-4ba9-a5bf-f5a73ec404ad",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6269,6 +6430,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "0f3aff17-612a-497f-a775-115cf2f07f7e",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6310,6 +6472,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2a908178-99d4-462d-91dd-6a1e1c113929",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6357,6 +6520,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "69d1f728-b967-4c4d-9c3f-cbca72204df2",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6395,6 +6559,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "48618c52-ffe9-440b-aa19-098bc7ded273",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6425,6 +6590,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "a7705031-2f59-4c6a-b132-9b4ae570d0f0",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6463,6 +6629,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "89153c65-2411-4bf3-8e85-dc3726893087",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6504,6 +6671,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7376d004-01aa-4458-83db-e4691d223b92",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6542,6 +6710,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "1217019e-31ff-4fa4-abd5-ad37552a3f4a",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6583,6 +6752,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "75de41a2-ece0-4409-8657-e0a70ac84a3c",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6624,6 +6794,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2469596f-7bb0-41a6-8031-a1c4b9aa9607",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6645,6 +6816,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "c1233e92-e172-43ac-894a-b7693405719b",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6686,6 +6858,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "14319539-d383-447d-87f5-0704739cdce9",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6713,6 +6886,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "97879089-a90f-49e6-a12a-09463badfd08",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6763,6 +6937,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ab2d5273-e714-42e9-aabf-07f129da6932",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6796,6 +6971,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "088581ed-7313-4b56-9e3c-46365a3d7886",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6826,6 +7002,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "97749ccf-92a6-4938-9296-6da7ef34cc97",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6867,6 +7044,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b88d2a40-cb64-4c5b-a638-766b5cdfeb29",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6894,6 +7072,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "675f709e-ed95-4f6d-8605-0c238d918a77",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6932,6 +7111,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "39fcea2f-18c4-4c2c-ae36-353dc813c094",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -6970,6 +7150,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "778d2873-7355-4b79-aa8f-be986196aece",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -7014,6 +7195,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "23c163f9-ae3a-4a33-9c5a-e54e3ae14036",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -7038,6 +7220,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "138ece60-3e76-426c-8f5b-b0528f615855",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -7076,6 +7259,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "a848a15f-2173-4ea8-b0b1-418c53b6a3f9",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {

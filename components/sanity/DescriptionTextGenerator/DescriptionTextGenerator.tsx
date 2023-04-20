@@ -2,26 +2,26 @@ import { BlockContentIcon } from "@sanity/icons"
 import { Button, Card, Flex, Label, Text, TextArea } from "@sanity/ui"
 import clsx from "clsx"
 import { getPaintingTags } from "lib/api"
+import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useEffect, useMemo, useState } from "react"
 import { BiLoader } from "react-icons/bi"
-import { set, unset, useFormValue } from "sanity"
+import { set, StringInputProps, unset, useFormValue } from "sanity"
 import { isEmptyArray } from "utils/array"
 import { slugify } from "utils/string"
 
 const Loader = () => <BiLoader className="animate-spin" />
 
-// const DescriptionTextGenerator = (props:StringInputProps) => {
-const DescriptionTextGenerator = (props) => {
+const DescriptionTextGenerator = (props: StringInputProps) => {
   // The onChange function is used to update the value of the field
   const { value, onChange } = props
   // const tagsss = useFormValue(["tagsV2"])
-  const slug = useFormValue(["slug"])
+  const slug = useFormValue(["slug", "current"]) as string
 
   // const docId = useFormValue(["_id"])
 
   const [isLoading, setIsLoading] = useState(false)
   const [promt, setPromt] = useState("")
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState<iSanityTag[]>([])
 
   const tagsToString = useMemo(() => {
     // filter out empty tags and tags with store name
@@ -69,9 +69,9 @@ const DescriptionTextGenerator = (props) => {
 
   const fetchTags = async () => {
     // fetch tags from sanity
-    const tags = await getPaintingTags(slug.current)
+    const tags = await getPaintingTags(slug)
 
-    const { tagsV2 = [] } = tags
+    const tagsV2 = tags
 
     setTags(tagsV2)
   }

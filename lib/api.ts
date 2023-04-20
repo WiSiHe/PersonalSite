@@ -3,7 +3,10 @@ import { createClient, groq } from "next-sanity"
 import { iSanityTag } from "./models/objects/SanityTag"
 import { iSanityPainting } from "./models/objects/sanityPainting"
 import client from "./sanity"
-import { iSanityProjectLight } from "./models/objects/sanityProject"
+import {
+  iSanityProject,
+  iSanityProjectLight,
+} from "./models/objects/sanityProject"
 
 // const getUniquePosts = (posts) => {
 //   const slugs = new Set()
@@ -245,9 +248,9 @@ export async function getAllProjectsLight(): Promise<
   return results
 }
 
-export async function getProjectDetails(slug: string) {
+export async function getProjectDetails(slug: string): Promise<iSanityProject> {
   const results = await client.fetch(
-    `*[_type == "project" && slug.current == $slug]| order(_updatedAt desc){title, description, extraImages, projectStart, projectEnd, status, content, name, 'slug': slug.current, image, slug, _id, connectedVideo->{videoUrl}, connectedPaintings[]->{title, slug, image}, tags[]->{name}}`,
+    `*[_type == "project" && slug.current == $slug]| order(_updatedAt desc){title, description, extraImages, projectStart, projectEnd, status, content, name, 'slug': slug.current, image, slug, _id, connectedVideo->{videoUrl}, connectedPaintings[]->{title, 'slug': slug.current, format, image}, tags[]->{name}}[0]`,
     {
       slug,
     }

@@ -2,7 +2,6 @@ import Meta from "components/atoms/Meta/Meta"
 import ProjectPage from "components/pages/ProjectPage"
 import { getAllProjectsLight, getProjectDetails } from "lib/api"
 import { iSanityProject } from "lib/models/objects/sanityProject"
-import { isEmptyArray } from "utils/array"
 import { isEmptyObject } from "utils/object"
 
 interface PageProps {
@@ -23,17 +22,9 @@ const Page = ({ project }: PageProps) => {
 
 export async function getStaticProps({ params }: { params: { slug: string } }) {
   const { slug = "" } = params
-  const data = await getProjectDetails(slug)
+  const projectDetails = await getProjectDetails(slug)
 
-  if (isEmptyArray(data)) {
-    return {
-      notFound: true,
-    }
-  }
-
-  const project = data[0] || {}
-
-  if (isEmptyObject(project)) {
+  if (isEmptyObject(projectDetails)) {
     return {
       notFound: true,
     }
@@ -41,7 +32,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
   return {
     props: {
-      project,
+      project: projectDetails,
     },
     //  revalidate evry 3 hour
     revalidate: 60 * 60 * 3,

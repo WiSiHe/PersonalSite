@@ -5,7 +5,7 @@ type iPaintingFormat = "square" | "landscape" | "portrait"
 
 export interface iSanityPainting {
   _id: string
-  format?: iPaintingFormat
+  format: iPaintingFormat
   image: iSanityImage | string
   images?: iSanityImage[] | null
   imagesCount: number | null

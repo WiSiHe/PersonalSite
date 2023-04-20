@@ -10,6 +10,7 @@ export const dummyPaintings: iSanityPainting[] = [
         _type: "reference",
       },
     },
+    format: "portrait",
     imagesCount: null,
     paintedAt: "2018-08-02T07:24:00.000Z",
     redbubbleUrl: null,
@@ -27,6 +28,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3291dcdc-4857-4cdb-9f82-28c0a625c870",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -77,6 +79,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2a24940f-fddc-4bd8-b4da-abccaba25b3f",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -118,6 +121,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "b36d04f6-e7d2-4bf6-9853-4804de456187",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -168,6 +172,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "43d6754f-95c2-4394-863d-dbcc4f79fe84",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -192,6 +197,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "6b201ddf-28cd-4292-ad11-cac19a462cbd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -216,6 +222,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "df056735-1140-4141-ad6d-17eba213fd94",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -260,6 +267,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "49e5efe1-ca6a-4ff7-9385-d86406decbf8",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -310,6 +318,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "ceb25dac-91bf-4b3a-a3fc-ee531d353452",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -348,6 +357,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "1c08dbcf-2505-4344-96d0-59b050635941",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -395,6 +405,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "2266e0eb-e712-4344-ad94-a31a160de893",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -419,6 +430,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "f7c8061a-c7ef-4602-a648-3bebddde3906",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -452,6 +464,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "7567fd04-b21c-4290-9392-246dbb14c7fd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -490,6 +503,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "3e4a6676-5cb6-4ef7-8fc6-dec2a89ab6fa",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -531,6 +545,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "478bff3f-16cc-4a2f-9a6e-acef320553af",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -572,6 +587,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "58b27fb6-b6aa-4fa6-a6ec-bf535b7a8fc9",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -596,6 +612,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "17a137b0-a83c-4eb0-bbe3-c145b9e8a6dd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -634,6 +651,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "59e3f90f-5e48-4ce6-ae89-5da260db04fd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -675,6 +693,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "71fe4369-9f12-4c1f-bc7d-980484e343dd",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
@@ -713,6 +732,7 @@ export const dummyPaintings: iSanityPainting[] = [
   },
   {
     _id: "53fb0dc5-a077-424e-aa18-d3a6846d8290",
+    format: "portrait",
     image: {
       _type: "image",
       asset: {
