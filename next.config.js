@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.sanity.io", "cdna.artstation.com", "images.unsplash.com"],
+    domains: [
+      "cdn.sanity.io",
+      "cdna.artstation.com",
+      "images.unsplash.com",
+      "oaidalleapiprodscus.blob.core.windows.net",
+    ],
   },
 }
 

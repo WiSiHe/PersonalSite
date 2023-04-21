@@ -42,9 +42,11 @@ const MyApp = function ({ Component, pageProps }) {
         className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter`}
         // className={`${lobster.variable} font-lobster`}
       >
-        <SkipToMainContentLink />
+        <header>
+          <SkipToMainContentLink />
+          <Navigation />
+        </header>
         {/* <div className="cursor-none"> */}
-        <Navigation />
         {/* <Cursor /> */}
         <Component {...pageProps} />
         {/* </div> */}

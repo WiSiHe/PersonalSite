@@ -1,8 +1,8 @@
 import clsx from "clsx"
+import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import React from "react"
-
-import SocialLinks from "../../molecules/SocialLinks/SocialLinks"
 
 interface iFooterProps {
   fixed?: boolean
@@ -19,12 +19,13 @@ const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
         type: "spring",
       }}
       className={clsx(
-        "w-full p-8 xl:p-4 text-white bg-dark",
+        "w-full p-8 xl:p-4 text-white bg-dark flex  items-center justify-center  gap-4",
         fixed && "fixed bottom-0",
         onlyMobile && " block lg:hidden"
       )}
     >
       <SocialLinks />
+      <Link href="/test">Test Page</Link>
     </motion.footer>
   )
 }

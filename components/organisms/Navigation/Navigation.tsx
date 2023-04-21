@@ -41,18 +41,20 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
       )}
     >
       <motion.div
-        initial={{ opacity: 0, x: -100, rotate: -180 }}
-        animate={{ opacity: 1, x: 0, rotate: 0 }}
-        transition={{ type: "spring", bounce: 0.25 }}
+        initial={{ opacity: 0, x: -100, rotate: -180, scale: 0.5 }}
+        animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+        transition={{ type: "spring" }}
         whileHover={{
           rotate: 90,
+          scale: 1.1,
+          transition: { type: "spring", stiffness: 300, damping: 10 },
         }}
         className="flex items-center gap-2"
       >
         <Link
           href="/"
           aria-label="Navigate to the homepage"
-          className="flex items-center justify-center p-1 text-sm bg-white rounded-lg drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
+          className="flex items-center justify-center p-1 text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
         >
           <LogoQR
             className="transition-all ease-in-out fill-dark"
@@ -79,7 +81,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                     "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
-                      : "bg-white text-dark"
+                      : " text-dark"
                   )}
                 >
                   <strong className="drop-shadow">{item.text}</strong>

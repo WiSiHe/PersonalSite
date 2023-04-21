@@ -24,7 +24,6 @@ const SocialLinks = ({ alignLeft = false }) => {
             aria-label="redbubble"
             className="group focus:outline-none"
           >
-            {/* <label className="sr-only">open redbubble in new window</label> */}
             <SiRedbubble
               aria-hidden="true"
               className="group-focus:rounded-full group-focus:outline-none group-hover:text-primary group-active:bg-primary group-focus:ring group-focus:text-primary group-focus:ring-primary"

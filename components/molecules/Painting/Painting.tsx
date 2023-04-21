@@ -132,42 +132,39 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             )}
           />
 
-          <div className="absolute z-10 left-4 top-4 right-4">
-            <h2>
-              <strong className="text-md text-white group-hover:scale-105 drop-shadow-[0_0px_5px_rgba(0,0,0,1)]  @md:text-sm">
-                {title}
-              </strong>
-            </h2>
-          </div>
-
           {isNsfw && !isNsfwUrl && (
             <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
           )}
 
-          <div className="absolute flex items-center gap-2 text-xs bottom-2 right-2 drop-shadow-md text-dark">
-            {hasStoreLinks && (
-              <div className="flex items-center gap-2 p-2 text-xs rounded-lg bg-highlight">
-                <div className="relative w-2 h-2 rounded-full bg-dark">
-                  <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs bg-white border-t-4 border-t-primary text-dark">
+            <div>
+              <h2 className="text-base">{title}</h2>
+            </div>
+            <div className="flex gap-2">
+              {hasStoreLinks && (
+                <div className="flex items-center gap-2 p-2 text-xs rounded-lg bg-highlight">
+                  <div className="relative w-2 h-2 rounded-full bg-dark">
+                    <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+                  </div>
+                  <strong>For sale</strong>
                 </div>
-                <strong>For sale</strong>
-              </div>
-            )}
-            {video && (
-              <div className="flex items-center justify-center p-2 bg-white rounded-lg">
-                <RiMovieFill />
-              </div>
-            )}
-            {imagesCount && imagesCount > 0 && (
-              <div className="flex items-center justify-center p-2 bg-white rounded-lg">
-                <GrMultiple />
-              </div>
-            )}
-            {isNsfw && (
-              <div className="flex items-center justify-center p-2 bg-white rounded-lg">
-                <FaExclamation />
-              </div>
-            )}
+              )}
+              {video && (
+                <div className="flex items-center justify-center p-2 bg-white rounded-lg">
+                  <RiMovieFill />
+                </div>
+              )}
+              {imagesCount && imagesCount > 0 && (
+                <div className="flex items-center justify-center p-2 bg-white rounded-lg">
+                  <GrMultiple />
+                </div>
+              )}
+              {isNsfw && (
+                <div className="flex items-center justify-center p-2 bg-white rounded-lg">
+                  <FaExclamation />
+                </div>
+              )}
+            </div>
           </div>
         </Link>
       </motion.article>
