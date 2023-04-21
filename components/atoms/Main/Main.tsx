@@ -15,7 +15,10 @@ const Main = ({
   const mainCss = "flex flex-1 bg-tertiary relative w-full"
 
   return (
-    <main className={clsx(mainCss, className, !noTopPadding && "mt-14")}>
+    <main
+      id="main"
+      className={clsx(mainCss, className, !noTopPadding && "mt-14")}
+    >
       {children}
     </main>
   )

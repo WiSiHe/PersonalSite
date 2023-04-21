@@ -8,7 +8,8 @@ const Footer = dynamic(() => import("components/templates/Footer/Footer"))
 const Navigation = dynamic(() =>
   import("components/organisms/Navigation/Navigation")
 )
-import { domAnimation, LazyMotion } from "framer-motion"
+
+import SkipToMainContentLink from "components/atoms/SkipToMainContentLink/SkipToMainContentLink"
 import { Inter, Lobster, Roboto } from "next/font/google"
 import PropTypes from "prop-types"
 import React from "react"
@@ -37,19 +38,19 @@ const lobster = Lobster({
 const MyApp = function ({ Component, pageProps }) {
   return (
     <>
-      <LazyMotion features={domAnimation}>
-        <div
-          className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter`}
-          // className={`${lobster.variable} font-lobster`}
-        >
-          {/* <div className="cursor-none"> */}
-          <Navigation />
-          {/* <Cursor /> */}
-          <Component {...pageProps} />
-          {/* </div> */}
-          <Footer />
-        </div>
-      </LazyMotion>
+      <div
+        className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter`}
+        // className={`${lobster.variable} font-lobster`}
+      >
+        <SkipToMainContentLink />
+        {/* <div className="cursor-none"> */}
+        <Navigation />
+        {/* <Cursor /> */}
+        <Component {...pageProps} />
+        {/* </div> */}
+        <Footer />
+      </div>
+
       <Analytics
         beforeSend={(event) => {
           // Ignore all events that have a `/private` inside the URL

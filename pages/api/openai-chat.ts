@@ -38,10 +38,10 @@ export default async function handler(
 ) {
   const promt = req.body.prompt
   const messages = req.body.messages
-  // const maxTokens = req.body.maxTokens || 100
+  const maxTokens = req.body.maxTokens || 1000
   const temperature = req.body.temperature || 1
-  // const frequencyPenalty = req.body.frequencyPenalty || 0.5
-  // const presencePenalty = req.body.presencePenalty || 0.5
+  const frequencyPenalty = req.body.frequencyPenalty || 0.5
+  const presencePenalty = req.body.presencePenalty || 0.5
 
   if (!promt || promt === "") {
     res.status(400).json({ role: "assistant", content: "No prompt provided" })
@@ -49,25 +49,19 @@ export default async function handler(
   }
 
   try {
-    const aiResult = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      // max_tokens: 100,
-      stream: false,
-      // frequency_penalty: 0.5,
-      // presence_penalty: 0.5,
-      // temperature: 0.7,
-      // top_p: 1,
-      // messages: [
-      //   {
-      //     role: "user",
-      //     content: promt,
-      //   },
-      // ],
-      messages: messages,
-      temperature: temperature, // higher temperature means more creative, less coherent
-    })
-
-    console.log("aiResult", aiResult)
+    const aiResult = await openai.createChatCompletion(
+      {
+        model: "gpt-3.5-turbo",
+        max_tokens: maxTokens,
+        stream: false,
+        frequency_penalty: frequencyPenalty,
+        presence_penalty: presencePenalty,
+        temperature: temperature,
+        top_p: 1,
+        messages: messages,
+      },
+      { timeout: 0 }
+    )
 
     const response = aiResult?.data?.choices[0]?.message || {
       role: "assistant",

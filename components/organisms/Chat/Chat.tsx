@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import Avatar from "components/atoms/Avatar"
+import { motion } from "framer-motion"
 import React, { useState } from "react"
 import { FaRobot, FaSpinner, FaUser } from "react-icons/fa"
 import { isNotEmptyObject } from "utils/object"
@@ -42,7 +43,6 @@ const Chat = () => {
         }),
       }).then((res) => res.json())
       if (isNotEmptyObject(response)) {
-        console.log("response", response)
         setChatLogs([
           ...chatLogs,
           { role: "user", content: requestMessage },
@@ -69,7 +69,10 @@ const Chat = () => {
           const { role, content } = message
           const isBot = role === "assistant"
           return (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
               key={index}
               className={clsx("flex gap-2", isBot ? "self-start" : "self-end")}
             >
@@ -86,7 +89,7 @@ const Chat = () => {
               {!isBot && (
                 <Avatar size="large" Image={<FaUser />} color="primary" />
               )}
-            </div>
+            </motion.div>
           )
         })}
         {isLoading && (
