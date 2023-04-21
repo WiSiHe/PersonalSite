@@ -6,7 +6,6 @@ interface iLogoProps {
 }
 
 function LogoQR({
-  titleId = "",
   width = "1rem",
   height = "1rem",
 
@@ -18,7 +17,8 @@ function LogoQR({
       width={width}
       height={height}
       viewBox="0 0 542 544"
-      aria-labelledby={titleId}
+      role="img"
+      aria-label="QR Code Logo"
       {...props}
     >
       <path d="M7 79v62h124V17H7v62zm106 0v44H25V35h88v44z" />

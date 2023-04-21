@@ -76,10 +76,10 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg drop-shadow hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
+                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
-                      : "bg-white"
+                      : "bg-white text-dark"
                   )}
                 >
                   <strong className="drop-shadow">{item.text}</strong>
