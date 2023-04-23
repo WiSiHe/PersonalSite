@@ -4,7 +4,7 @@ import React from "react"
 interface Avatar {
   label?: string
   size?: "default" | "small" | "large"
-  color: "primary" | "secondary" | "tertiary"
+  color: "primary" | "secondary" | "tertiary" | "white" | "black" | "gray"
   Image?: React.ReactNode
 }
 
@@ -25,7 +25,7 @@ const Avatar = ({
   const initials = firstName[0] + lastName[0]
 
   const baseStyle =
-    "capitalize rounded-full flex items-center justify-center overflow-clip flex-shrink-0"
+    "capitalize rounded-full z-10 flex items-center justify-center overflow-clip flex-shrink-0"
 
   const sizeStyle = {
     default: "w-8 h-8 text-sm",
@@ -37,11 +37,17 @@ const Avatar = ({
     primary: "bg-primary text-white",
     secondary: "bg-secondary text-white",
     tertiary: "bg-tertiary text-dark",
+    white: "bg-white text-dark",
+    black: "bg-black text-white",
+    gray: "bg-gray-300 text-dark",
   }
 
   return (
-    <div className={clsx(baseStyle, sizeStyle[size], colorStyle[color])}>
-      {Image ? Image : initials}
+    <div className="relative">
+      {/* <span className="absolute w-8 h-8 rounded-full inset-2 animate-ping bg-primary"></span> */}
+      <div className={clsx(baseStyle, sizeStyle[size], colorStyle[color])}>
+        {Image ? Image : initials}
+      </div>
     </div>
   )
 }

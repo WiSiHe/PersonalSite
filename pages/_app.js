@@ -48,6 +48,7 @@ const MyApp = function ({ Component, pageProps }) {
         </header>
         {/* <div className="cursor-none"> */}
         {/* <Cursor /> */}
+
         <Component {...pageProps} />
         {/* </div> */}
         <Footer />
