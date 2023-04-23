@@ -7,9 +7,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
+import { BsYoutube } from "react-icons/bs"
 import { FaExclamation } from "react-icons/fa"
-import { GrMultiple } from "react-icons/gr"
+// import { GrMultiple } from "react-icons/gr"
 import { RiMovieFill } from "react-icons/ri"
+import { TbBoxMultiple } from "react-icons/tb"
 
 const cardVariants = {
   offscreen: {
@@ -99,47 +101,48 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   // }
 
   return (
-    <AnimatePresence>
-      <motion.article
-        // layout
-        // layoutId={title}
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.4 }}
-        variants={cardVariants}
-        transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
-        className={clsx(
-          "relative w-full h-full @container rounded-lg hover:z-10 hover:shadow-xl overflow-clip focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
-        )}
-      >
-        <Link href={linkString} className="absolute inset-0 overflow-clip">
-          <Image
-            src={imageBuilder(image).width(400).height(400).quality(55).url()}
-            blurDataURL={imageBuilder(image)
-              .width(20)
-              .height(20)
-              .quality(1)
-              .url()}
-            placeholder="blur"
-            sizes="(max-width: 768px) 50vw,
-            33vw"
-            fill
-            alt=""
-            priority={!shouldBeLazy}
-            className={clsx(
-              !isNsfw && !isNsfwUrl && "group-hover:scale-110",
-              "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-50"
-            )}
-          />
-
-          {isNsfw && !isNsfwUrl && (
-            <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
+    <Link href={linkString} className="">
+      <AnimatePresence>
+        <motion.article
+          // layout
+          // layoutId={title}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true }}
+          variants={cardVariants}
+          transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
+          className={clsx(
+            "relative w-full h-full @container bg-white rounded-lg overflow-clip hover:z-10 hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
           )}
+        >
+          <div className="relative aspect-square bg-primary overflow-clip">
+            <Image
+              src={imageBuilder(image).width(400).height(400).quality(55).url()}
+              blurDataURL={imageBuilder(image)
+                .width(20)
+                .height(20)
+                .quality(1)
+                .url()}
+              placeholder="blur"
+              sizes="(max-width: 768px) 50vw,
+            33vw"
+              fill
+              alt=""
+              priority={!shouldBeLazy}
+              className={clsx(
+                !isNsfw && !isNsfwUrl && "group-hover:scale-110",
+                "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-100"
+              )}
+            />
+            {isNsfw && !isNsfwUrl && (
+              <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
+            )}
+          </div>
 
-          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs bg-white border-t-4 border-t-primary text-dark">
-            <div>
-              <h2 className="text-base">{title}</h2>
-            </div>
+          <div className="z-10 flex items-center justify-between gap-2 p-4 text-xs bg-white border-t-4 border-t-primary">
+            <h2 className="text-lg capitalize text-primary">
+              <strong>{title}</strong>
+            </h2>
             <div className="flex gap-2">
               {hasStoreLinks && (
                 <div className="flex items-center gap-2 p-2 text-xs rounded-lg bg-highlight">
@@ -150,25 +153,25 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
                 </div>
               )}
               {video && (
-                <div className="flex items-center justify-center p-2 bg-white rounded-lg">
-                  <RiMovieFill />
+                <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary">
+                  <BsYoutube />
                 </div>
               )}
               {imagesCount && imagesCount > 0 && (
-                <div className="flex items-center justify-center p-2 bg-white rounded-lg">
-                  <GrMultiple />
+                <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary stroke-white">
+                  <TbBoxMultiple />
                 </div>
               )}
               {isNsfw && (
-                <div className="flex items-center justify-center p-2 bg-white rounded-lg">
+                <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary">
                   <FaExclamation />
                 </div>
               )}
             </div>
           </div>
-        </Link>
-      </motion.article>
-    </AnimatePresence>
+        </motion.article>
+      </AnimatePresence>
+    </Link>
   )
 }
 

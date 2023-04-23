@@ -13,6 +13,7 @@ interface iFilterBar {
 
 const FilterBar = ({ filters = [] }: iFilterBar) => {
   const router = useRouter()
+
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 

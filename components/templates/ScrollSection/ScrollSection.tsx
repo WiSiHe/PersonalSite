@@ -3,7 +3,7 @@
 import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import {
-  m,
+  motion,
   // useMotionValue,
   // useMotionValueEvent,
   useScroll,
@@ -36,7 +36,7 @@ const ScrollSection = () => {
         xmlns="http://www.w3.org/2000/svg"
         className="fixed z-10 top-4 right-4 stroke-primary"
       >
-        <m.circle
+        <motion.circle
           cx="121"
           cy="121"
           r="111"
@@ -61,7 +61,7 @@ const ScrollSection = () => {
               />
             </div>
             <div className="col-start-1 gap-4 pt-4 col-span-full xl:sticky xl:col-span-4">
-              <m.h2
+              <motion.h2
                 initial={{
                   opacity: 0,
                   scale: 0,
@@ -72,8 +72,8 @@ const ScrollSection = () => {
                 className="pb-2"
               >
                 <strong>Paintings!</strong>
-              </m.h2>
-              <m.div
+              </motion.h2>
+              <motion.div
                 initial={{
                   opacity: 0,
                   y: 50,
@@ -91,7 +91,7 @@ const ScrollSection = () => {
                 </p>
 
                 <LinkButton href="/paintings">Paintings</LinkButton>
-              </m.div>
+              </motion.div>
             </div>
           </div>
 
@@ -100,7 +100,7 @@ const ScrollSection = () => {
       </section>
 
       {/* <section className="px-4 py-20 text-center xl:py-40">
-        <m.h2
+        <motion.h2
           initial={{
             opacity: 0,
             scale: 0,
@@ -109,7 +109,7 @@ const ScrollSection = () => {
           viewport={{ once: true }}
         >
           <strong>Still scrolling, huh?</strong>
-        </m.h2>
+        </motion.h2>
         <p>
           I was kinda hoping that you would have clicked one of the links or
           buttons by now...
@@ -139,7 +139,7 @@ const ScrollSection = () => {
               />
             </div>
             <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
-              <m.h2
+              <motion.h2
                 initial={{
                   opacity: 0,
                   scale: 0,
@@ -150,8 +150,8 @@ const ScrollSection = () => {
                 <strong>
                   Fancy <span className="text-primary">animations!</span>
                 </strong>
-              </m.h2>
-              <m.div
+              </motion.h2>
+              <motion.div
                 initial={{
                   opacity: 0,
                   y: 50,
@@ -174,14 +174,14 @@ const ScrollSection = () => {
                   <br />
                   <br /> More information coming soon!
                 </p>
-              </m.div>
+              </motion.div>
             </div>
           </div>
         </GridStyleWrapper>
       </section>
 
       <section className="relative grid h-full grid-flow-col-dense aspect-square xl:aspect-video overflow-clip">
-        <m.div
+        <motion.div
           initial={{ opacity: 0, x: -200 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.5 }}
@@ -200,7 +200,7 @@ const ScrollSection = () => {
       (max-width: 1200px) 50vw,
       33vw"
           />
-        </m.div>
+        </motion.div>
 
         <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-dark h-fit w-fit">
           <div className="text-xs">
@@ -223,7 +223,7 @@ const ScrollSection = () => {
           <b>Here, have a picture of a cute dog</b>
         </div>
 
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 400 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.05 }}
@@ -239,7 +239,7 @@ const ScrollSection = () => {
       (max-width: 1200px) 50vw,
       33vw"
           />
-        </m.div>
+        </motion.div>
       </section> */}
     </>
   )

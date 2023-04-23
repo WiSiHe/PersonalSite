@@ -150,10 +150,7 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                   <Fragment key={p._id}>
                     {/* {i === 8 && !hasFilters && <Test3 key={i} />} */}
                     <div
-                      className={clsx(
-                        "aspect-square",
-                        "col-span-6 lg:col-span-4 xl:col-span-3"
-                      )}
+                      className={clsx("col-span-6 lg:col-span-4 xl:col-span-3")}
                     >
                       <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
                     </div>
