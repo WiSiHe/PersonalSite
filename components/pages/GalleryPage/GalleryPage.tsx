@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import Loader from "components/atoms/Loader/Loader"
 import Main from "components/atoms/Main/Main"
+import RandomShape from "components/atoms/RandomShape"
 import Painting from "components/molecules/Painting/Painting"
 import { FilterBar } from "components/organisms/FilterBar/FilterBar"
 import { motion } from "framer-motion"
@@ -122,7 +123,13 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
         <FilterBar filters={tags} />
         <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">
           {!hasFilters && (
-            <section className="flex flex-col justify-center gap-4 p-4 text-white rounded-lg xl:p-4 bg-primary col-span-full lg:col-span-4 xl:col-span-4">
+            <section className="relative flex flex-col justify-center gap-4 p-4 text-white rounded-lg bg-primary overflow-clip xl:p-4 col-span-full lg:col-span-4 xl:col-span-3">
+              <div
+                className={
+                  "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary to-highlight animate-gradient-xy mix-blend-hue "
+                }
+              />
+              {/* <RandomShape /> */}
               <h1 className="text-4xl">
                 <strong>Henrik Wilhelm Sissener</strong>
               </h1>
@@ -151,7 +158,7 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                     {/* {i === 8 && !hasFilters && <Test3 key={i} />} */}
                     <div
                       key={p._id}
-                      className={clsx("col-span-6 lg:col-span-4 xl:col-span-2")}
+                      className={clsx("col-span-6 lg:col-span-4 xl:col-span-3")}
                     >
                       <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
                     </div>

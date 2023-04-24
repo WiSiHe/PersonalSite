@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { AnimatePresence, m } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
@@ -44,20 +44,45 @@ const VideoCard = ({ video }: VideoCardProps) => {
 
   return (
     <AnimatePresence>
-      <m.div
+      <motion.div
         initial="offscreen"
         whileInView="onscreen"
         viewport={{ once: true }}
         variants={cardVariants}
-        className="relative bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-4 aspect-square "
+        className="relative bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-4"
       >
+        <div className="relative bg-primary aspect-video">
+          <ReactPlayer
+            url={videoUrl}
+            loop
+            width="100%"
+            height="100%"
+            onStart={() => setDisplayTags(false)}
+            // className="w-full h-full"
+            light={
+              <img
+                src={
+                  hasThumbnail
+                    ? imageBuilder(thumbnail)
+                        .width(650)
+                        .height(380)
+                        .quality(35)
+                        .url()
+                    : "/images/woods.png"
+                }
+                alt={title}
+                className="object-cover w-full h-full bg-primary"
+              />
+            }
+          />
+        </div>
         <div className="p-4">
-          <h2 className="">
+          <h2 className="line-clamp-1">
             <strong>{title}</strong>
           </h2>
           <p className="line-clamp-2">{description}</p>
-          {isNotEmptyArray(tags) && displayTags && (
-            <div className="absolute bottom-0 left-0 right-0 flex flex-wrap gap-2 p-4 pointer-events-none">
+          {isNotEmptyArray(tags) && (
+            <div className="flex flex-wrap gap-2 pt-4 pointer-events-none">
               {tags.map((tag) => {
                 const { name = "" } = tag
                 return <Chip key={name}>{name}</Chip>
@@ -65,31 +90,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
             </div>
           )}
         </div>
-
-        <ReactPlayer
-          url={videoUrl}
-          loop
-          width="100%"
-          height="100%"
-          onStart={() => setDisplayTags(false)}
-          className="aspect-video"
-          light={
-            <img
-              src={
-                hasThumbnail
-                  ? imageBuilder(thumbnail)
-                      .width(650)
-                      .height(380)
-                      .quality(35)
-                      .url()
-                  : "/images/woods.png"
-              }
-              alt={title}
-              className="object-cover h-full bg-primary"
-            />
-          }
-        />
-      </m.div>
+      </motion.div>
     </AnimatePresence>
   )
 }

@@ -36,7 +36,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
     <nav
       aria-label="Main Navigation"
       className={clsx(
-        "z-20 flex items-center justify-between py-2 mx-auto px-4",
+        "z-20 flex items-center justify-between py-2 mx-auto px-4 max-w-screen-3xl",
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >
@@ -54,7 +54,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         <Link
           href="/"
           aria-label="Navigate to the homepage"
-          className="flex items-center justify-center p-1 text-sm drop-shadow focus-visible:fill-white decoration-4 focus:fill-white focus:outline-none mix-blend-difference"
+          className="flex items-center justify-center p-1 text-sm drop-shadow decoration-4"
         >
           <LogoQR
             className="transition-all ease-in-out fill-dark"
@@ -78,7 +78,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg hover:bg-primary hover:text-white underline-offset-2  hover:decoration-primary  active:bg-primary focus:outline-none",
+                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg hover:bg-primary hover:text-white   active:bg-primary",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
                       : " text-dark"

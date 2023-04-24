@@ -19,6 +19,7 @@ module.exports = {
         "gradient-xy": "gradient-xy 15s linear infinite",
         progress: "progress 15s linear infinite",
         tilt: "tilt 10s linear infinite",
+        "animated-gradient": "animated-gradient 10s ease-in-out infinite",
       },
       keyframes: {
         "gradient-y": {
@@ -49,6 +50,17 @@ module.exports = {
           "50%": {
             "background-size": "200% 200%",
             "background-position": "right center",
+          },
+        },
+        "animated-gradient": {
+          "0%": {
+            "background-position": "0% 50%",
+          },
+          "50%": {
+            "background-position": "100% 50%",
+          },
+          "100%": {
+            "background-position": "0% 50%",
           },
         },
         blob: {

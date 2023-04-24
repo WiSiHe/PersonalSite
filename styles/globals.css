@@ -4,7 +4,7 @@
 
 /* Declarations outside layers are never purged */
 *:not(.a11y-focus-within\:focus-ring *, .a11y-focus\:focus-ring) {
-  @apply focus-visible:focus-ring;
+  @apply focus-visible:outline-primary focus-visible:outline-4;
 }
 
 @layer base {

@@ -21,7 +21,7 @@ const VideosPage = ({ videos = [], tags = [] }: VideosPage) => {
   }
 
   return (
-    <Main className="flex-col min-h-screen p-4 mx-auto max-w-screen-2xl">
+    <Main className="flex-col min-h-screen p-4 mx-auto max-w-screen-3xl">
       <section className="max-w-2xl">
         <h1>Videos</h1>
         <p>

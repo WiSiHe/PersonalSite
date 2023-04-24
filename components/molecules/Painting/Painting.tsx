@@ -10,7 +10,7 @@ import React from "react"
 import { BsYoutube } from "react-icons/bs"
 import { FaExclamation } from "react-icons/fa"
 // import { GrMultiple } from "react-icons/gr"
-import { RiMovieFill } from "react-icons/ri"
+// import { RiMovieFill } from "react-icons/ri"
 import { TbBoxMultiple } from "react-icons/tb"
 
 const cardVariants = {
@@ -24,8 +24,8 @@ const cardVariants = {
   },
   transition: {
     type: "spring",
-    bounce: 0.2,
-    duration: 1,
+    // bounce: 0.2,
+    // duration: 1,
   },
 }
 
@@ -71,49 +71,18 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
 
   const linkString = `/painting/${slug}`
 
-  // const isHighlighted = index % 12 === 4
-
-  // const imageWidth = isHighlighted ? 800 : 400
-  // const imageHeight = isHighlighted ? 800 : 400
-
-  // const imageWidth = {
-  //   square: 400,
-  //   landscape: 400,
-  //   portrait: 400,
-  // }
-
-  // const imageHeight = {
-  //   square: 400,
-  //   landscape: 400,
-  //   portrait: 400,
-  // }
-
-  // const imageHeightStyle = {
-  //   square: "aspect-square",
-  //   landscape: "aspect-video",
-  //   portrait: "aspect-[9/16]",
-  // }
-
-  // const gridStyle = {
-  //   landscape: "col-span-6 xl:col-span-2 xl:row-span-2",
-  //   portrait: "col-span-6 xl:col-span-2 xl:row-span-2",
-  //   square: "col-span-6 xl:col-span-4 xl:row-span-4",
-  // }
-
   return (
-    <Link href={linkString} className="">
+    <Link href={linkString} className="rounded-lg">
       <AnimatePresence>
         <motion.article
           // layout
           // layoutId={title}
-          // initial="offscreen"
-          // whileInView="onscreen"
-          // viewport={{ once: true }}
-          // variants={cardVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={cardVariants}
           // transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
-          className={clsx(
-            "relative w-full h-full @container bg-white rounded-lg overflow-clip hover:z-10 hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
-          )}
+          className="relative w-full h-full @container group bg-white rounded-lg overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
         >
           <div className="relative aspect-square bg-primary overflow-clip">
             <Image
@@ -137,7 +106,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
               )}
             />
             {hasStoreLinks && (
-              <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-4 top-4 bg-highlight">
+              <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
                 <div className="relative w-2 h-2 rounded-full bg-dark">
                   <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
                 </div>
@@ -149,11 +118,11 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             )}
           </div>
 
-          <div className="z-10 flex items-start justify-between gap-2 p-4 text-xs bg-white border-t-4 border-t-primary ">
-            <h2 className="text-lg capitalize text-primary line-clamp-1">
+          <div className="flex items-start justify-between gap-2 p-2 text-xs bg-white border-t-4 border-t-primary ">
+            <h2 className="text-lg capitalize line-clamp-1">
               <strong>{title}</strong>
             </h2>
-            <div className="flex items-start gap-2">
+            <div className="flex items-start gap-1">
               {video && (
                 <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary">
                   <BsYoutube />

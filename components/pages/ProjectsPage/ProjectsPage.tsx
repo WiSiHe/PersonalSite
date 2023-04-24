@@ -17,7 +17,7 @@ const ProjectsPage = ({ projects = [], tags = [] }: iProjectsPage) => {
 
   const allTags = [{ name: "all", projectCount: projects.length }, ...tags]
   return (
-    <Main className="min-h-screen mx-auto max-w-screen-2xl">
+    <Main className="min-h-screen mx-auto max-w-screen-3xl">
       <section className="relative grid h-full grid-cols-12 gap-4 p-4">
         <div className="col-span-full xl:col-span-8">
           <h1>My Projects</h1>

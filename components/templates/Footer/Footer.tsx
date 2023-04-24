@@ -19,7 +19,7 @@ const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
         type: "spring",
       }}
       className={clsx(
-        "w-full p-8 xl:p-4 text-white bg-dark flex  items-center justify-center  gap-4",
+        "w-full p-10  text-white bg-dark flex  items-center justify-center  gap-4",
         fixed && "fixed bottom-0",
         onlyMobile && " block lg:hidden"
       )}
