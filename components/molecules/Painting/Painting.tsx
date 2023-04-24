@@ -106,11 +106,11 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
         <motion.article
           // layout
           // layoutId={title}
-          initial="offscreen"
-          whileInView="onscreen"
-          viewport={{ once: true }}
-          variants={cardVariants}
-          transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
+          // initial="offscreen"
+          // whileInView="onscreen"
+          // viewport={{ once: true }}
+          // variants={cardVariants}
+          // transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
           className={clsx(
             "relative w-full h-full @container bg-white rounded-lg overflow-clip hover:z-10 hover:shadow-xl focus:outline-none group hover:ring hover:ring-primary cursor-pointer focus-within:ring focus-within:ring-primary focus-within:z-10"
           )}
@@ -121,11 +121,13 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
               blurDataURL={imageBuilder(image)
                 .width(20)
                 .height(20)
-                .quality(1)
+                .quality(10)
                 .url()}
               placeholder="blur"
-              sizes="(max-width: 768px) 50vw,
-            33vw"
+              sizes="(max-width: 640px) 100vw,
+              (max-width: 1280px) 50vw,
+              (max-width: 1536px) 33vw,
+              25vw"
               fill
               alt=""
               priority={!shouldBeLazy}
@@ -134,24 +136,24 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
                 "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-100"
               )}
             />
+            {hasStoreLinks && (
+              <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-4 top-4 bg-highlight">
+                <div className="relative w-2 h-2 rounded-full bg-dark">
+                  <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+                </div>
+                <strong>For sale</strong>
+              </div>
+            )}
             {isNsfw && !isNsfwUrl && (
               <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
             )}
           </div>
 
-          <div className="z-10 flex items-center justify-between gap-2 p-4 text-xs bg-white border-t-4 border-t-primary">
-            <h2 className="text-lg capitalize text-primary">
+          <div className="z-10 flex items-start justify-between gap-2 p-4 text-xs bg-white border-t-4 border-t-primary ">
+            <h2 className="text-lg capitalize text-primary line-clamp-1">
               <strong>{title}</strong>
             </h2>
-            <div className="flex gap-2">
-              {hasStoreLinks && (
-                <div className="flex items-center gap-2 p-2 text-xs rounded-lg bg-highlight">
-                  <div className="relative w-2 h-2 rounded-full bg-dark">
-                    <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
-                  </div>
-                  <strong>For sale</strong>
-                </div>
-              )}
+            <div className="flex items-start gap-2">
               {video && (
                 <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary">
                   <BsYoutube />

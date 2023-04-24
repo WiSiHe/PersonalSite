@@ -8,6 +8,9 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      maxWidth: {
+        "screen-3xl": "1920px",
+      },
       animation: {
         "spin-slow": "spin 3s linear infinite",
         blob: "blob 20s ease-in-out infinite",

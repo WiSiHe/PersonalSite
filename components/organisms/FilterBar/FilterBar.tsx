@@ -27,14 +27,14 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   }
 
   return (
-    <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 xl:pb-4 xl:px-6">
-      <div className="relative flex flex-1 gap-4">
+    <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 pointer-events-none xl:pb-4 xl:px-6 bg-gradient-to-t from-dark/80">
+      <div className="relative flex flex-1 gap-4 pointer-events-auto">
         <ScrollToTopButton isFixed={false} />
       </div>
 
       <FilterSortButton />
 
-      <div className="flex justify-end flex-1 gap-4">
+      <div className="flex justify-end flex-1 gap-4 pointer-events-auto">
         {amountOfActiveFilters > 0 && (
           <button
             className="hidden px-4 text-xs uppercase bg-white rounded-full hover:text-white text-dark drop-shadow xl:block hover:bg-primary"

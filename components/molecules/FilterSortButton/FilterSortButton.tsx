@@ -42,7 +42,7 @@ const FilterSortButton = () => {
         value={sorting}
         onChange={setSorting}
         className={clsx(
-          "bg-white hidden xl:flex p-2 gap-2 rounded-full shadow-xl"
+          "bg-white hidden xl:flex p-2 gap-2 rounded-full shadow-xl pointer-events-auto"
         )}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>

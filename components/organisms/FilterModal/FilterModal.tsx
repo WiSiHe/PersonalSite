@@ -50,7 +50,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
       <Dialog
         open={isFilterModalOpen}
         onClose={setFilterModalOpen}
-        className="fixed right-0 flex items-center justify-end w-full h-full max-w-xs my-auto max-h-[100svh] xl:max-h-[100svh] z-20  overflow-y-scroll top-0 bottom-0"
+        className="fixed right-0 flex pointer-events-auto items-center justify-end w-full h-full max-w-xs my-auto max-h-[100svh] xl:max-h-[100svh] z-20  overflow-y-scroll top-0 bottom-0"
       >
         {isFilterModalOpen && (
           <motion.div

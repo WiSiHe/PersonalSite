@@ -117,13 +117,13 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   }
 
   return (
-    <Main className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 gap-4 p-4 mx-auto max-w-screen-2xl">
+    <Main className="relative grid flex-1 flex-grow w-full h-full min-h-screen grid-cols-12 gap-4 p-4 mx-auto max-w-screen-3xl">
       <section className="col-span-full">
         <FilterBar filters={tags} />
         <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">
           {!hasFilters && (
-            <section className="flex flex-col justify-center h-full gap-4 p-4 text-white rounded-lg xl:p-4 bg-primary col-span-full lg:col-span-4 xl:col-span-3">
-              <h1 className="text-4xl  @6xl:text-5xl  @7xl:text-7xl">
+            <section className="flex flex-col justify-center gap-4 p-4 text-white rounded-lg xl:p-4 bg-primary col-span-full lg:col-span-4 xl:col-span-4">
+              <h1 className="text-4xl">
                 <strong>Henrik Wilhelm Sissener</strong>
               </h1>
               <ul>
@@ -147,14 +147,15 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                 const shouldBeLazy = i >= 8
                 return (
-                  <Fragment key={p._id}>
+                  <>
                     {/* {i === 8 && !hasFilters && <Test3 key={i} />} */}
                     <div
-                      className={clsx("col-span-6 lg:col-span-4 xl:col-span-3")}
+                      key={p._id}
+                      className={clsx("col-span-6 lg:col-span-4 xl:col-span-2")}
                     >
                       <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
                     </div>
-                  </Fragment>
+                  </>
                 )
               })}
             </>
