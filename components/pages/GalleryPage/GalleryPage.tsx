@@ -1,9 +1,11 @@
 import clsx from "clsx"
 import Loader from "components/atoms/Loader/Loader"
 import Main from "components/atoms/Main/Main"
-import RandomShape from "components/atoms/RandomShape"
 import Painting from "components/molecules/Painting/Painting"
-import { FilterBar } from "components/organisms/FilterBar/FilterBar"
+import dynamic from "next/dynamic"
+
+const FilterBar = dynamic(() => import("components/organisms/FilterBar"))
+
 import { motion } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
@@ -18,41 +20,6 @@ import { HiOutlineDesktopComputer } from "react-icons/hi"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
-
-// const Test3 = () => {
-//   return (
-//     <>
-//       <Script
-//         type="module"
-//         src="https://unpkg.com/@splinetool/viewer@0.9.269/build/spline-viewer.js"
-//       />
-//       <div
-//         dangerouslySetInnerHTML={{
-//           __html:
-//             '<spline-viewer loading-anim url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global" no-controls></spline-viewer>',
-//         }}
-//         className="flex items-center justify-center col-span-6 row-span-1 text-white lg:row-span-2 lg:col-span-4 xl:col-span-6 aspect-square"
-//       />
-//     </>
-//   )
-// }
-
-// const container = {
-//   hidden: { opacity: 0 },
-//   show: {
-//     opacity: 1,
-//     transition: {
-//       delayChildren: 1,
-//       staggerChildren: 0.5,
-//     },
-//   },
-// }
-
-// const item = {
-//   hidden: { opacity: 0, x: -40 },
-//   show: { opacity: 1, x: 0 },
-// }
-
 interface iPaintingsPageProps {
   paintings: iSanityPainting[]
   tags: iSanityPaintingTag[]
@@ -158,7 +125,9 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                     {/* {i === 8 && !hasFilters && <Test3 key={i} />} */}
                     <div
                       key={p._id}
-                      className={clsx("col-span-6 lg:col-span-4 xl:col-span-3")}
+                      className={clsx(
+                        "col-span-full lg:col-span-4 xl:col-span-3"
+                      )}
                     >
                       <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
                     </div>

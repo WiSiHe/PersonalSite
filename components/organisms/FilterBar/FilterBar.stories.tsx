@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { dummyTags } from "./dummyData"
-import { FilterBar } from "./FilterBar"
+import FilterBar from "./FilterBar"
 
 const meta: Meta<typeof FilterBar> = {
   title: "Organisms/FilterBar",

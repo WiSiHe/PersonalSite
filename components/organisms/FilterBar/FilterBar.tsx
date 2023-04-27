@@ -64,4 +64,4 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   )
 }
 
-export { FilterBar }
+export default FilterBar
