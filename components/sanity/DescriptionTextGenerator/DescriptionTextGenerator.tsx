@@ -6,10 +6,19 @@ import { iSanityTag } from "lib/models/objects/SanityTag"
 import { useEffect, useMemo, useState } from "react"
 import { BiLoader } from "react-icons/bi"
 import { set, StringInputProps, unset, useFormValue } from "sanity"
-import { isEmptyArray } from "utils/array"
+import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { slugify } from "utils/string"
 
 const Loader = () => <BiLoader className="animate-spin" />
+
+interface Tag {
+  name: string
+}
+
+function getTagNames(tags: Tag[]): string {
+  if (isEmptyArray(tags)) return ""
+  return tags.map((tag) => tag.name).join(", ")
+}
 
 const DescriptionTextGenerator = (props: StringInputProps) => {
   // The onChange function is used to update the value of the field
@@ -22,23 +31,23 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
   const [isLoading, setIsLoading] = useState(false)
   const [promt, setPromt] = useState("")
   const [tags, setTags] = useState<iSanityTag[]>([])
+  const [convertedTagString, setConvertedTagString] = useState("")
 
-  const tagsToString = useMemo(() => {
-    // filter out empty tags and tags with store name
+  // const hasTags = isNotEmptyArray(tags)
 
-    return tags
-      .filter((tag) => slugify(tag.name) !== "store")
-      .map((tag) => tag.name)
-      .join(", ")
+  useEffect(() => {
+    const hasTags = isNotEmptyArray(tags)
+
+    if (!hasTags) return
+    const tagsToString = getTagNames(tags)
+    setConvertedTagString(tagsToString)
   }, [tags])
 
   const currentPromt = clsx(
-    isEmptyArray(tags)
+    !convertedTagString
       ? `Write an objective description of a painting and given the following description: ${promt}`
-      : `Write an objective description of a painting and given the following description: ${promt}, and given the following descriptive keywords: ${tagsToString}.`
+      : `Write an objective description of a painting and given the following description: ${promt}, and given the following descriptive keywords: ${convertedTagString}.`
   )
-
-  console.log("currentPromt", currentPromt)
 
   const callApi = async () => {
     setIsLoading(true)
@@ -71,9 +80,7 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
     // fetch tags from sanity
     const tags = await getPaintingTags(slug)
 
-    const tagsV2 = tags
-
-    setTags(tagsV2)
+    setTags(tags)
   }
 
   useEffect(() => {

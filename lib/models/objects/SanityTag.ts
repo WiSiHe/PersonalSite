@@ -15,3 +15,8 @@ export interface iSanityVideoTag extends iSanityTag {
 export interface iSanityProjectTag extends iSanityTag {
   projectCount: number
 }
+
+export interface iSanityTagV2 {
+  _id?: string
+  name: string
+}

@@ -126,7 +126,9 @@ export async function getPaintingTags(slug: string): Promise<iSanityTag[]> {
     }[0]`,
     { slug }
   )
-  return results
+
+  const { tagsV2 } = results
+  return tagsV2 || []
 }
 
 export const paintingBySlugQuery = groq`
