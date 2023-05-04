@@ -24,13 +24,14 @@ interface Query {
 }
 
 export default function Gallery({ painting, slug }: PageProps) {
-  const { title = "", description = "", image } = painting
+  const { title = "", seoDescription = "", image } = painting
+  console.log("painting", painting)
 
   return (
     <>
       <Meta
         title={title}
-        description={description}
+        description={seoDescription}
         image={imageBuilder(image).width(128).height(128).quality(75).url()}
         jsonLd={generatePaintingJsonLd(painting)}
         url={`https://wisihe.no/painting/${slug}`}

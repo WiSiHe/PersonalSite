@@ -12,6 +12,7 @@ export interface iSanityPainting {
   redbubbleUrl?: string | null
   society6Url?: string | null
   description?: string
+  seoDescription?: string
   paintedAt: string
   slug: string
   tagsV2: iSanityTag[]

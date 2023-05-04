@@ -275,7 +275,7 @@ const Chat = () => {
             placeholder="Type your message..."
             value={requestMessage}
             onChange={handleInputChange}
-            className="w-full' px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="w-full' px-4 py-2 border border-gray-300 rounded-md focus:ring-1 focus:ring-blue-500"
           />
         </div>
         <div className="flex gap-4">
@@ -284,7 +284,7 @@ const Chat = () => {
             // onClick={handleSubmitQuestion}
             disabled={isLoading || !requestMessage}
             className={clsx(
-              "flex items-center gap-2 px-4 py-2 text-white  rounded-md focus:outline-none hover:bg-blue-600",
+              "flex items-center gap-2 px-4 py-2 text-white  rounded-md hover:bg-blue-600",
               isDisabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-500"
             )}
           >
@@ -296,7 +296,7 @@ const Chat = () => {
             onClick={handleSubmitImage}
             disabled={isLoading}
             className={clsx(
-              "flex items-center gap-2 px-4 py-2 text-white rounded-md focus:outline-none hover:bg-blue-600",
+              "flex items-center gap-2 px-4 py-2 text-white rounded-md hover:bg-blue-600",
               isDisabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-500"
             )}
           >

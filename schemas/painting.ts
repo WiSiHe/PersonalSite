@@ -81,7 +81,19 @@ export default defineType({
       components: {
         input: DescriptionTextGenerator,
       },
+      description: "Description of the painting",
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      group: ["seo", "AI"],
+      description:
+        "This description will be used in the meta description for SEO purposes",
+      components: {
+        input: SEODescriptionGenerator,
+      },
     }),
 
     defineField({
@@ -101,17 +113,7 @@ export default defineType({
       description: "YouTube or Vimeo URL",
       // validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: "seoDescription",
-      title: "SEO Description",
-      type: "text",
-      group: ["seo", "AI"],
-      description:
-        "This description will be used in the meta description for SEO purposes",
-      components: {
-        input: SEODescriptionGenerator,
-      },
-    }),
+
     defineField({
       name: "format",
       title: "Format",

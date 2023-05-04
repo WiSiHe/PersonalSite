@@ -36,15 +36,14 @@ export default async function handler(
   req: GenerateNextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const promt = req.body.prompt
   const messages = req.body.messages
   const maxTokens = req.body.maxTokens || 1000
-  const temperature = req.body.temperature || 1
+  const temperature = req.body.temperature || 0.7
   const frequencyPenalty = req.body.frequencyPenalty || 0.5
   const presencePenalty = req.body.presencePenalty || 0.5
 
-  if (!promt || promt === "") {
-    res.status(400).json({ role: "assistant", content: "No prompt provided" })
+  if (!messages || messages.length === 0) {
+    res.status(400).json({ role: "assistant", content: "No messages provided" })
     return
   }
 
@@ -61,13 +60,13 @@ export default async function handler(
     const aiResult = await openai.createChatCompletion(
       {
         model: "gpt-3.5-turbo",
-        max_tokens: maxTokens,
+        max_tokens: maxTokens, // 1000,
         stream: false,
-        frequency_penalty: frequencyPenalty,
-        presence_penalty: presencePenalty,
-        temperature: temperature,
-        top_p: 1,
-        messages: messages,
+        frequency_penalty: frequencyPenalty, // 0.5,
+        presence_penalty: presencePenalty, // 0.5,
+        temperature: temperature, // 0.7,
+        top_p: 1, // 1,
+        messages: messages, // [  { role: 'user', content: 'How many stars are in the sky?' } ],
       },
       { timeout: 0 }
     )

@@ -1,12 +1,7 @@
 import clsx from "clsx"
 import Loader from "components/atoms/Loader/Loader"
 const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
-const RedbubbleLink = dynamic(
-  () => import("components/atoms/RedbubbleLink/RedbubbleLink")
-)
-const Society6Link = dynamic(
-  () => import("components/atoms/Society6Link/Society6link")
-)
+
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
@@ -21,6 +16,14 @@ const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
   ssr: false,
 })
+const RedbubbleLink = dynamic(
+  () => import("components/atoms/RedbubbleLink/RedbubbleLink"),
+  { suspense: true, ssr: false }
+)
+const Society6Link = dynamic(
+  () => import("components/atoms/Society6Link/Society6link"),
+  { suspense: true, ssr: false }
+)
 
 interface iPaintingPageProps {
   painting: iSanityPainting
@@ -75,7 +78,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed z-10 top-20 left-6 "
+        className="fixed z-10 top-24 left-6 "
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -100 }}

@@ -12,7 +12,7 @@ const SEODescriptionGenerator = (props: StringInputProps) => {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const currentPromt = `Rewrite and improve upon the following text:${description},  and make it into a good SEO description in 122 characters or less and don't use hastags.`
+  const currentPromt = `You are an AI SEO writer, re-write the following text:${description}, and make it into a good SEO description in 122 characters.`
 
   const callApi = async () => {
     setIsLoading(true)
