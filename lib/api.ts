@@ -263,3 +263,12 @@ export async function getProjectDetails(slug: string): Promise<iSanityProject> {
   )
   return results
 }
+
+export async function getAllProjectsSlugs(): Promise<
+  Pick<iSanityPainting, "slug">[]
+> {
+  const data = await client.fetch(
+    `*[_type == "project"]{ 'slug': slug.current }`
+  )
+  return data
+}

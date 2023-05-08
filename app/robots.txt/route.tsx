@@ -6,14 +6,13 @@ import { getBaseUrl } from "utils/url"
  */
 export async function GET(request: Request) {
   const body = `# *
-User-agent: *
-Disallow: *
+  User-agent: *
+  Disallow: *
+  # Host
+  Host: ${getBaseUrl()}
 
-# Host
-Host: ${getBaseUrl()}
-
-# Sitemaps
-Sitemap: ${getBaseUrl()}/sitemap.xml`
+  # Sitemaps
+  Sitemap: ${getBaseUrl()}/sitemap.xml`
 
   const headers = {
     "Cache-Control": "max-age=0, s-maxage=3600",
