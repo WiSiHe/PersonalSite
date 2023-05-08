@@ -3,9 +3,10 @@ import clsx from "clsx"
 import { motion } from "framer-motion"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { useRouter } from "next/router"
+import { usePathname, useRouter } from "next/navigation"
 import { Fragment } from "react"
 import { IoClose } from "react-icons/io5"
+import { isEmptyArray } from "utils/array"
 import { slugify } from "utils/string"
 
 interface iFilterModal {
@@ -14,7 +15,8 @@ interface iFilterModal {
 
 const FilterModal = ({ filters = [] }: iFilterModal) => {
   const router = useRouter()
-  const { query } = router
+
+  const pathname = usePathname()
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const setFilterList = useCombinedStore((state) => state.setFilterList)
@@ -25,24 +27,30 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
 
   const handleToggleFilter = (filter: string) => {
     const slugifiedFilter = slugify(filter)
+
+    // pathname?filter=filter1,filter2,filter3
+
     if (filterList.includes(slugifiedFilter)) {
+      console.log(filterList)
       const newFilters = filterList.filter((f) => f !== slugifiedFilter)
       setFilterList(newFilters)
-      router.replace({ query: { ...query, filter: newFilters } }, undefined, {
-        shallow: true,
-      })
+
+      if (isEmptyArray(newFilters)) {
+        return router.replace(pathname ?? "/")
+      }
+
+      const newRouteWithFilters = `${pathname}?filter=${newFilters.join(",")}`
+      router.replace(newRouteWithFilters)
     } else {
       const newFilters = [...filterList, slugifiedFilter]
       setFilterList(newFilters)
-      router.replace({ query: { ...query, filter: newFilters } }, undefined, {
-        shallow: true,
-      })
+      router.replace(`${pathname}?filter=${newFilters.join(",")}`)
     }
   }
 
   const handleClearFilterList = () => {
     clearFilterList()
-    router.replace(router.pathname, undefined, { shallow: true })
+    router.replace(pathname ?? "/")
   }
 
   return (

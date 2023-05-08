@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx"
 import Loader from "components/atoms/Loader/Loader"
 import Main from "components/atoms/Main/Main"
@@ -11,7 +12,7 @@ import useScrollPosition from "hooks/useScrollPosition"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { useRouter } from "next/router"
+import { useParams, useSearchParams } from "next/navigation"
 // import Script from "next/script"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import { BiGame } from "react-icons/bi"
@@ -26,15 +27,9 @@ interface iPaintingsPageProps {
 }
 
 const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
-  const router = useRouter()
-  const { query } = router
+  const searchParams = useSearchParams()
 
-  const { filter = "" } = query
-
-  const filterArray: string[] = useMemo(() => {
-    const newArray = Array.isArray(filter) ? filter : [filter]
-    return newArray
-  }, [filter])
+  const allFilter = searchParams?.getAll("filter")
 
   const scrollPosition = useScrollPosition()
 
@@ -50,13 +45,14 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
 
   const filterPaintingsV2 = useMemo(() => {
     const filteredPaintings = paintings.filter((p) => {
-      if (isEmptyArray(filterArray) || !filter) return true
+      if (allFilter && isEmptyArray(allFilter)) return true
       const paintingTags = p.tagsV2.map((t) => slugify(t.name))
-      const hasAllTags = filterArray.every((f) => paintingTags.includes(f))
+      const hasAllTags =
+        allFilter && allFilter.every((f) => paintingTags.includes(f))
       return hasAllTags
     })
     return sortPaintings(filteredPaintings, sorting)
-  }, [filter, filterArray, paintings, sorting])
+  }, [allFilter, paintings, sorting])
 
   // functions that load more paintings, and at the end of the list, load more paintings
   function loadMorePaintings() {
@@ -91,12 +87,6 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
         <div className="grid grid-cols-12 gap-2 mb-10 xl:gap-4 @container">
           {!hasFilters && (
             <section className="relative flex flex-col justify-center gap-4 p-4 text-white rounded-lg bg-primary overflow-clip xl:p-4 col-span-full lg:col-span-4 xl:col-span-3">
-              <div
-                className={
-                  "absolute inset-0 w-full flex items-center justify-center h-full bg-gradient-to-r from-dark via-primary to-highlight animate-gradient-xy mix-blend-hue "
-                }
-              />
-              {/* <RandomShape /> */}
               <h1 className="text-4xl">
                 <strong>Henrik Wilhelm Sissener</strong>
               </h1>
@@ -140,6 +130,7 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring" }}
+              key="no-paintings-found"
               className="flex flex-col items-center justify-center gap-4 p-4 col-span-full ring ring-primary"
             >
               <h2 className="text-2xl text-center">

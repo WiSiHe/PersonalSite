@@ -1,9 +1,10 @@
+"use client"
 import clsx from "clsx"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import React from "react"
 
 const container = {
@@ -28,9 +29,9 @@ interface iNavigationProps {
   isAbsolute?: boolean
 }
 const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
-  const router = useRouter()
-  const { asPath = "" } = router
-  const asPathWithSpacing = asPath.replace(/\//g, "/")
+  const pathName = usePathname()
+
+  const asPathWithSpacing = pathName?.replace(/\//g, "/") || ""
 
   return (
     <nav

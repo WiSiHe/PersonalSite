@@ -1,6 +1,6 @@
 import { apiVersion, dataset, projectId, useCdn } from "lib/sanity.api"
 import { createClient, groq } from "next-sanity"
-import { iSanityTag } from "./models/objects/SanityTag"
+import { iSanityPaintingTag, iSanityTag } from "./models/objects/SanityTag"
 import { iSanityPainting } from "./models/objects/sanityPainting"
 import client from "./sanity"
 import {
@@ -169,7 +169,10 @@ export async function getAllTagsAndPaintings() {
   return results
 }
 
-export async function getAllTagsAndPaintingsLight() {
+export async function getAllTagsAndPaintingsLight(): Promise<{
+  tags: iSanityPaintingTag[]
+  paintings: iSanityPainting[]
+}> {
   const paintingQuery = /* groq */ `*[_type == "painting"]{
     title, image, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id, tagsV2[]->{name}, video}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, description, "paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`

@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
@@ -5,7 +6,6 @@ import { imageBuilder } from "lib/sanity"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/router"
 import React from "react"
 import { BsYoutube } from "react-icons/bs"
 import { FaExclamation } from "react-icons/fa"
@@ -35,14 +35,13 @@ interface iProjectProps {
 }
 
 const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
-  const router = useRouter()
   const filterList = useCombinedStore((state) => state.filterList)
 
   if (!paintingData) {
     return <div>No painting data</div>
   }
 
-  const isNsfwUrl = router.query.slug === "nsfw" || filterList.includes("nsfw")
+  const isNsfwUrl = filterList.includes("nsfw")
 
   const {
     image = {},
@@ -118,23 +117,23 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             )}
           </div>
 
-          <div className="flex items-start justify-between gap-2 p-2 text-xs bg-white border-t-4 border-t-primary ">
-            <h2 className="text-lg capitalize line-clamp-1">
+          <div className="flex items-start justify-between gap-2 p-2 text-xs border-t-4 bg-primary border-t-primary ">
+            <h2 className="text-lg text-white capitalize line-clamp-1">
               <strong>{title}</strong>
             </h2>
             <div className="flex items-start gap-1">
               {video && (
-                <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary">
+                <div className="flex items-center justify-center p-2 text-white rounded-lg ring-white ring-1">
                   <BsYoutube />
                 </div>
               )}
               {imagesCount && imagesCount > 0 && (
-                <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary stroke-white">
+                <div className="flex items-center justify-center p-2 text-white rounded-lg ring-white ring-1 stroke-white">
                   <TbBoxMultiple />
                 </div>
               )}
               {isNsfw && (
-                <div className="flex items-center justify-center p-2 text-white rounded-lg bg-primary">
+                <div className="flex items-center justify-center p-2 text-white rounded-lg ring-white ring-1">
                   <FaExclamation />
                 </div>
               )}

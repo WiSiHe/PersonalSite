@@ -151,6 +151,13 @@ export default defineType({
       type: "reference",
       to: [{ type: "video" }],
     }),
+
+    defineField({
+      name: "connectedPage",
+      title: "Connected Page",
+      description: "External page connected to the project",
+      type: "slug",
+    }),
     defineField({
       name: "tags",
       title: "Tags",
@@ -159,43 +166,6 @@ export default defineType({
       description: "Tags for the video",
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: "metaDescription",
-      title: "Meta Description",
-      type: "text",
-      components: {
-        input: (props) => {
-          const { elementProps, value = "" } = props
-
-          const { onChange, ref } = elementProps
-
-          return (
-            <Stack space={2}>
-              {/* <Text>Characters: {value.length}</Text> */}
-              <SanityAI
-                value={value}
-                // handleChange={handleChange}
-                inputRef={ref}
-              />
-              ChatGPT:
-              <TextInput {...elementProps} />
-            </Stack>
-          )
-        },
-      },
-    }),
-    // defineField({
-    //   name: "discount",
-    //   description: "Contact an Administrator to change this value",
-    //   type: "number",
-    //   readOnly: ({ currentUser }) => {
-    //     const isAdmin = currentUser?.roles.some(
-    //       (role) => role.name === "administrator"
-    //     )
-
-    //     return !isAdmin
-    //   },
-    // }),
   ],
   preview: {
     select: {

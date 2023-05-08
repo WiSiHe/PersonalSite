@@ -75,3 +75,7 @@ export const slugify = (str: string) => {
 //     type: "conjunction",
 //   }).format(list)
 // }
+
+export function stripTrailingSlash(input: string): string {
+  return input.replace(/\/$/, "")
+}
