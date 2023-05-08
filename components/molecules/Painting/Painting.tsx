@@ -1,4 +1,3 @@
-"use client"
 import clsx from "clsx"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"

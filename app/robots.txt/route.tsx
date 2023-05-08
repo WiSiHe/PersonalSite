@@ -4,15 +4,15 @@ import { getBaseUrl } from "utils/url"
  * This Route is static (default)
  * Returns a robots.txt file
  */
-export async function GET(request: Request) {
+export async function GET() {
   const body = `# *
-  User-agent: *
-  Disallow: *
-  # Host
-  Host: ${getBaseUrl()}
+    User-agent: *
+    Disallow: *
+    # Host
+    Host: ${getBaseUrl()}
 
-  # Sitemaps
-  Sitemap: ${getBaseUrl()}/sitemap.xml`
+    # Sitemaps
+    Sitemap: ${getBaseUrl()}/sitemap.xml`
 
   const headers = {
     "Cache-Control": "max-age=0, s-maxage=3600",

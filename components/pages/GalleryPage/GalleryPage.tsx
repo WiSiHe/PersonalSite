@@ -111,17 +111,12 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
               {filterPaintingsV2.slice(0, paintingsSlice).map((p, i) => {
                 const shouldBeLazy = i >= 8
                 return (
-                  <>
-                    {/* {i === 8 && !hasFilters && <Test3 key={i} />} */}
-                    <div
-                      key={p._id}
-                      className={clsx(
-                        "col-span-full lg:col-span-4 xl:col-span-3"
-                      )}
-                    >
-                      <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
-                    </div>
-                  </>
+                  <div
+                    key={p._id}
+                    className="col-span-full lg:col-span-4 xl:col-span-3"
+                  >
+                    <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
+                  </div>
                 )
               })}
             </>

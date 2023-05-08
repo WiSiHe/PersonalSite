@@ -19,12 +19,8 @@ export default function Error({
     <Main className="items-center justify-center min-h-screen">
       <div className="p-10 bg-white rounded-lg drop-shadow-2xl h-fit">
         <h2>Something went wrong!</h2>
-        <button
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
-        >
+        <p>{error.message}</p>
+        <button onClick={() => reset()} className="px-4 py-3 bg-primary">
           Try again
         </button>
       </div>
