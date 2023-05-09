@@ -31,7 +31,6 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
     // pathname?filter=filter1,filter2,filter3
 
     if (filterList.includes(slugifiedFilter)) {
-      console.log(filterList)
       const newFilters = filterList.filter((f) => f !== slugifiedFilter)
       setFilterList(newFilters)
 

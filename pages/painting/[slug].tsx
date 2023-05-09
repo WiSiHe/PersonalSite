@@ -25,7 +25,6 @@ interface Query {
 
 export default function Gallery({ painting, slug }: PageProps) {
   const { title = "", seoDescription = "", image } = painting
-  console.log("painting", painting)
 
   return (
     <>

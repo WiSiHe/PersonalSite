@@ -1,5 +1,4 @@
 "use client"
-import clsx from "clsx"
 import Loader from "components/atoms/Loader/Loader"
 import Main from "components/atoms/Main/Main"
 import Painting from "components/molecules/Painting/Painting"
@@ -12,7 +11,7 @@ import useScrollPosition from "hooks/useScrollPosition"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { useParams, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 // import Script from "next/script"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import { BiGame } from "react-icons/bi"
@@ -30,6 +29,13 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   const searchParams = useSearchParams()
 
   const allFilter = searchParams?.getAll("filter")
+  console.log("allFilter", allFilter)
+
+  const splitFilters = useMemo(() => {
+    if (!allFilter) return []
+    if (allFilter && isEmptyArray(allFilter)) return []
+    return allFilter.map((f) => f.split(",")).flat()
+  }, [allFilter])
 
   const scrollPosition = useScrollPosition()
 
@@ -45,14 +51,17 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
 
   const filterPaintingsV2 = useMemo(() => {
     const filteredPaintings = paintings.filter((p) => {
-      if (allFilter && isEmptyArray(allFilter)) return true
+      if (splitFilters && isEmptyArray(splitFilters)) return true
       const paintingTags = p.tagsV2.map((t) => slugify(t.name))
-      const hasAllTags =
-        allFilter && allFilter.every((f) => paintingTags.includes(f))
+      // console.log("paintingTags", paintingTags)
+      // console.log("allFilter", allFilter)
+      const hasAllTags = splitFilters?.every((f) => paintingTags.includes(f))
+      // console.log("hasAllTags", hasAllTags)
+
       return hasAllTags
     })
     return sortPaintings(filteredPaintings, sorting)
-  }, [allFilter, paintings, sorting])
+  }, [splitFilters, paintings, sorting])
 
   // functions that load more paintings, and at the end of the list, load more paintings
   function loadMorePaintings() {
@@ -113,7 +122,7 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
                 return (
                   <div
                     key={p._id}
-                    className="col-span-full lg:col-span-4 xl:col-span-3"
+                    className="col-span-full md:col-span-6 lg:col-span-4 xl:col-span-3"
                   >
                     <Painting paintingData={p} shouldBeLazy={shouldBeLazy} />
                   </div>

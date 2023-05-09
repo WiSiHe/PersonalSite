@@ -17,12 +17,22 @@ export default function Error({
 
   return (
     <Main className="items-center justify-center min-h-screen">
-      <div className="p-10 bg-white rounded-lg drop-shadow-2xl h-fit">
-        <h2>Something went wrong!</h2>
-        <p>{error.message}</p>
-        <button onClick={() => reset()} className="px-4 py-3 bg-primary">
-          Try again
-        </button>
+      <div className="p-10 bg-white rounded h-fit">
+        <h1>Something went wrong!</h1>
+        <div className="py-4">
+          <strong>Error:</strong>
+          <div className="p-4 bg-gray-200">
+            <code>{error.message}.</code>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <button
+            onClick={() => reset()}
+            className="px-4 py-3 text-white rounded bg-primary "
+          >
+            Try again
+          </button>
+        </div>
       </div>
     </Main>
   )
