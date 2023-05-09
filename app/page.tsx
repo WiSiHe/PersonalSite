@@ -9,39 +9,25 @@ export const metadata = {
   type: "website",
 }
 
-// default SEO
-// export const metadata = {
-// 	title: {
-// 		default: "Home",
-// 		template: "%s | (TR) Next App dir",
-// 	},
-// 	openGraph: {
-// 		title: "(TR) Next App dir",
-// 		locale: "en-US",
-// 		type: "website",
-// 	},
-// };
-
-export const revalidate = 3600 // every hour
+export const revalidate = 60 * 60 * 3 // 3 hours
 
 async function getAllPaintings() {
   const { paintings = [], tags = [] } = await getAllTagsAndPaintingsLight()
 
-  // define tags as iSanityTag
-
   const sortedTags = tags
-    .filter((p) => p.paintingsCount > 2)
-    .sort((a, b) => b.paintingsCount - a.paintingsCount)
-
-    // sort tags so that the tag with Store is first
+    .filter((tag) => tag.paintingsCount > 2)
     .sort((a, b) => {
-      if (a.name === "Store") {
-        return -1
+      // Put the "Store" tag first
+      if (a.name === "Store") return -1
+      if (b.name === "Store") return 1
+
+      // Sort by paintingsCount in descending order
+      if (b.paintingsCount !== a.paintingsCount) {
+        return b.paintingsCount - a.paintingsCount
       }
-      if (b.name === "Store") {
-        return 1
-      }
-      return 0
+
+      // Sort by name if paintingsCount is the same
+      return a.name.localeCompare(b.name)
     })
 
   const randomPaintings = paintings.sort(() => Math.random() - 0.5)
@@ -50,7 +36,6 @@ async function getAllPaintings() {
 }
 
 export default async function Home() {
-  // revalidate every 3 hour
   const paintings = await getAllPaintings()
 
   if (!paintings) {

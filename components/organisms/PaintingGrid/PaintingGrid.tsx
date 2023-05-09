@@ -1,4 +1,5 @@
 "use client"
+import GreeterCard from "components/molecules/GreeterCard"
 import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
 import useScrollPosition from "hooks/useScrollPosition"
@@ -88,25 +89,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
   return (
     <section className="grid w-full grid-cols-12 gap-2 mb-10 xl:gap-4">
-      <section className="relative flex flex-col justify-center gap-4 p-4 text-white rounded-lg bg-primary overflow-clip xl:p-4 col-span-full md:col-span-6 lg:col-span-4 xl:col-span-3">
-        <h1 className="text-4xl">
-          <strong>Henrik Wilhelm Sissener</strong>
-        </h1>
-        <ul>
-          <li className="flex items-center gap-2">
-            <HiOutlineDesktopComputer />
-            <span>Senior Front-end developer</span>
-          </li>
-          <li className="flex items-center gap-2">
-            <BsFillBrushFill />
-            <span>Digital artist</span>
-          </li>
-          <li className="flex items-center gap-2">
-            <BiGame />
-            <span>Game developer</span>
-          </li>
-        </ul>
-      </section>
+      <GreeterCard />
 
       {!isEmptyArray(filterPaintingsV2) ? (
         filterPaintingsV2.map((painting) => (
