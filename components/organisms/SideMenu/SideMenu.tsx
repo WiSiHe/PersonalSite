@@ -1,4 +1,3 @@
-import NavigationLinks from "components/atoms/NavigationLinks/NavigationLinks"
 import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import Link from "next/link"
 import React from "react"
@@ -24,10 +23,6 @@ const SideMenu = () => {
         <div className="mt-4">
           <SocialLinks />
         </div>
-      </div>
-      <div className="">
-        <hr className="mb-6 bg-stone-800 border-stone-50" />
-        <NavigationLinks />
       </div>
     </section>
   )

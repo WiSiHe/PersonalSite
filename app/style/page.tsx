@@ -1,11 +1,16 @@
 import Main from "components/atoms/Main/Main"
-import Meta from "components/atoms/Meta/Meta"
 
-const StylePage = () => {
+export const metadata = {
+  title: "Style guide - WiSiHe",
+  description: "A gallery of some of my paintings",
+  locale: "en-US",
+  type: "website",
+}
+
+export default async function Home() {
   return (
     <>
-      <Meta />
-      <Main noTopPadding className="p-4">
+      <Main className="min-h-screen p-4">
         <div className="w-full space-y-2 capitalize">
           <h1>h1</h1>
           <h2>h2</h2>
@@ -30,5 +35,3 @@ const StylePage = () => {
     </>
   )
 }
-
-export default StylePage

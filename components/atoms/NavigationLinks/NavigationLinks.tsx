@@ -1,18 +1,18 @@
 import clsx from "clsx"
 import { NavItems } from "constants/navigation"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import React from "react"
 import { BsChevronRight } from "react-icons/bs"
 
 const NavigationLinks = () => {
-  const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <>
       <ul className="grid gap-4 p-2">
         {NavItems.map((item, i) => {
-          const isActive = router.asPath === item.url
+          const isActive = pathname === item.url
           return (
             <li key={i}>
               <Link

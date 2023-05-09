@@ -1,11 +1,11 @@
 import Main from "components/atoms/Main/Main"
+import ErrorPage from "components/pages/ErrorPage"
 
 export default function NotFound() {
   return (
     <>
       <Main>
-        <h2>Not Found</h2>
-        <p>Could not find requested resource</p>
+        <ErrorPage />
       </Main>
     </>
   )

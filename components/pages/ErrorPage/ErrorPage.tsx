@@ -18,10 +18,10 @@ const ErrorPage = () => {
             priority
             fill
           />
-          <div className="z-10 p-8 text-center transition duration-1000 ease-in-out transform translate-y-40 bg-white shadow-lg dark:bg-gray-900 md:transform-none ">
-            <h1 className="font-serif text-3xl">404</h1>
-            <h2>Oh no! I could not find the page you were looking for!</h2>
-            <h3>Page not found</h3>
+          <div className="z-10 p-10 text-center transition duration-1000 ease-in-out transform translate-y-40 bg-white shadow-lg dark:bg-gray-900 md:transform-none ">
+            <h1>404</h1>
+            <h2>You seem a little lost!</h2>
+            <p>Page not found</p>
           </div>
         </section>
       </section>

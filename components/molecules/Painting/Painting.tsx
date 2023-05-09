@@ -8,7 +8,6 @@ import Link from "next/link"
 import React from "react"
 import { BsYoutube } from "react-icons/bs"
 import { FaExclamation } from "react-icons/fa"
-
 import { TbBoxMultiple } from "react-icons/tb"
 
 const cardVariants = {
@@ -79,7 +78,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
           // transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
           className="relative w-full h-full @container group bg-white rounded-lg overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
         >
-          <div className="relative aspect-square bg-primary">
+          <div className="relative aspect-square bg-primary overflow-clip">
             <Image
               src={imageBuilder(image).width(400).height(400).quality(55).url()}
               blurDataURL={imageBuilder(image)

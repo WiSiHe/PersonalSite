@@ -1,7 +1,10 @@
 import { apiVersion, dataset, projectId, useCdn } from "lib/sanity.api"
 import { createClient, groq } from "next-sanity"
 import { iSanityPaintingTag, iSanityTag } from "./models/objects/SanityTag"
-import { iSanityPainting } from "./models/objects/sanityPainting"
+import {
+  iSanityPainting,
+  iSanityWallpaperPaintings,
+} from "./models/objects/sanityPainting"
 import client from "./sanity"
 import {
   iSanityProject,
@@ -214,7 +217,7 @@ export async function getAllNewTags() {
 }
 
 export async function getAllWallpapers(): Promise<{
-  paintings: iSanityPainting[]
+  paintings: iSanityWallpaperPaintings[]
 }> {
   const results = await client.fetch(
     `*[_type == "tag" && name == "Wallpaper"]{"paintings": *[_type == "painting" && references(^._id)]{_id, image}}[0]`
