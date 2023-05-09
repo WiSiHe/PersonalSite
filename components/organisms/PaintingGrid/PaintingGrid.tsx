@@ -112,7 +112,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
         filterPaintingsV2.map((painting) => (
           <div
             key={painting._id}
-            className="col-span-6 lg:col-span-4 xl:col-span-3"
+            className="col-span-full lg:col-span-4 xl:col-span-3"
           >
             <Painting paintingData={painting} />
           </div>
