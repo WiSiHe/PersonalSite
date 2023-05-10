@@ -3,10 +3,8 @@ import { getAllVideosAndTags } from "lib/api"
 import { notFound } from "next/navigation"
 
 export const metadata = {
-  title: "My Gallery",
-  description: "A gallery of some of my paintings",
-  locale: "en-US",
-  type: "website",
+  title: "Videos | WiSiHe",
+  description: "A gallery of some of my videos",
 }
 
 export const revalidate = 60 * 60 * 3 // 3 hours

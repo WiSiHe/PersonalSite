@@ -122,7 +122,7 @@ export async function getPaintingDetails(
 
   const results = await client.fetch(
     `*[_type == "painting" && slug.current == $slug]{
-      title, description, format, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+      title, description, format, paintedAt, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
     }[0]`,
     { slug }
   )

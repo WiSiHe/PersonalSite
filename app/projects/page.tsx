@@ -3,7 +3,7 @@ import { getAllProjectsAndTags } from "lib/api"
 import { notFound } from "next/navigation"
 
 export const metadata = {
-  title: "My Gallery",
+  title: "Projects | WiSiHe",
   description: "A gallery of some of my paintings",
   locale: "en-US",
   type: "website",

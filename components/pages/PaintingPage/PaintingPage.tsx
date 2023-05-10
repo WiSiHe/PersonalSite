@@ -41,12 +41,19 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     description = "",
     image,
     format = "square",
-
+    paintedAt,
     redbubbleUrl = "",
     society6Url = "",
     tagsV2 = [],
     video = "",
   } = painting
+
+  const formatDate = (date: string) => {
+    const d = new Date(date)
+    const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d)
+    const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d)
+    return `${mo} ${ye}`
+  }
 
   const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
   const hasSociety6Link = society6Url !== "" && society6Url !== null
@@ -128,6 +135,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           <h1>
             <strong>{title}</strong>
           </h1>
+          <p className="text-sm text-gray-500">
+            {paintedAt && formatDate(paintedAt)}
+          </p>
 
           <div className="flex flex-wrap gap-1">
             {tagsV2?.map((tag) => {
