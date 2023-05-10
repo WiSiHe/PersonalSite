@@ -109,7 +109,7 @@ export async function getPaintingDetails(
       dataset,
       apiVersion,
       useCdn,
-      token: token || undefined,
+      token: token,
     })
     return await client.fetch(paintingDetailsQuery, { slug })
   }
@@ -120,7 +120,7 @@ export async function getPaintingDetails(
     }[0]`,
     { slug }
   )
-  return results || []
+  return results || {}
 }
 
 export async function getPaintingTags(slug: string): Promise<iSanityTag[]> {

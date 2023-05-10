@@ -1,5 +1,5 @@
+"use client"
 import clsx from "clsx"
-import Loader from "components/atoms/Loader/Loader"
 const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
 
 import { AnimatePresence, motion } from "framer-motion"
@@ -7,9 +7,10 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { notFound, useRouter } from "next/navigation"
 import { IoArrowBackSharp } from "react-icons/io5"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { isEmptyObject } from "utils/object"
 import { slugify } from "utils/string"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
@@ -32,9 +33,7 @@ interface iPaintingPageProps {
 const PaintingPage = ({ painting }: iPaintingPageProps) => {
   const router = useRouter()
 
-  if (!painting) {
-    return <Loader color="primary" />
-  }
+  if (isEmptyObject(painting)) return notFound()
 
   const {
     images,
