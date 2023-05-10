@@ -35,7 +35,7 @@ interface RootProps {
 
 export default function RootLayout({ children }: RootProps) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter`}
       >
