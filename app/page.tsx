@@ -44,9 +44,5 @@ export default async function Home() {
 
   const { randomPaintings, tags } = paintings
 
-  return (
-    <>
-      <GalleryPage paintings={randomPaintings} tags={tags} />
-    </>
-  )
+  return <GalleryPage paintings={randomPaintings} tags={tags} />
 }

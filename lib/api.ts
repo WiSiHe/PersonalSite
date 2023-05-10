@@ -1,6 +1,11 @@
 import { apiVersion, dataset, projectId, useCdn } from "lib/sanity.api"
 import { createClient, groq } from "next-sanity"
-import { iSanityPaintingTag, iSanityTag } from "./models/objects/SanityTag"
+import {
+  iSanityPaintingTag,
+  iSanityProjectTag,
+  iSanityTag,
+  iSanityVideoTag,
+} from "./models/objects/SanityTag"
 import {
   iSanityPainting,
   iSanityWallpaperPaintings,
@@ -10,6 +15,7 @@ import {
   iSanityProject,
   iSanityProjectLight,
 } from "./models/objects/sanityProject"
+import { iSanityVideo } from "./models/objects/sanityVideo"
 
 // const getUniquePosts = (posts) => {
 //   const slugs = new Set()
@@ -196,7 +202,10 @@ export async function getAllVideos() {
   return results
 }
 
-export async function getAllVideosAndTags() {
+export async function getAllVideosAndTags(): Promise<{
+  videos: iSanityVideo[]
+  tags: iSanityVideoTag[]
+}> {
   const videoQuery = /* groq */ `*[_type == "video"]| order(_updatedAt desc){title,thumbnail,description, content, linkedPainting->{name, image}, videoUrl, _id, "tags": tags[]->{name}}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, "videoCount": count(*[_type == "video" && references(^._id)].title)}`
 
@@ -235,7 +244,10 @@ export async function getAllProjects() {
   return results
 }
 
-export async function getAllProjectsAndTags() {
+export async function getAllProjectsAndTags(): Promise<{
+  projects: iSanityProject[]
+  tags: iSanityProjectTag[]
+}> {
   const projectQuery = /* groq */ `*[_type == "project"]| order(projectStart desc){title, description, projectStart, projectEnd, status, content, name, slug, image, slug, _id, tags[]->{name}}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, "projectCount": count(*[_type == "project" && references(^._id)].title)}`
 
