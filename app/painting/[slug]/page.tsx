@@ -55,13 +55,13 @@ export default async function LandingPage({ params }: { params: Params }) {
 
   const {
     title = "Not found",
-    seoDescription = "",
+    seoDescription = "placeholder",
     slug = "",
     image,
     paintedAt,
   } = painting
 
-  const cleanSEODescription = seoDescription.replace(/(<([^>]+)>)/gi, "")
+  const cleanSEODescription = seoDescription?.replace(/(<([^>]+)>)/gi, "")
 
   const paintingUrl = `https://wisihe.no/painting/${slug}`
 
