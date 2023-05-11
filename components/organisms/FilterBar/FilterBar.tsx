@@ -1,10 +1,12 @@
+"use client"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import FilterSortButton from "components/molecules/FilterSortButton/FilterSortButton"
 import FilterModal from "components/organisms/FilterModal/FilterModal"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { IoFilterSharp } from "react-icons/io5"
 
 interface iFilterBar {
@@ -13,6 +15,8 @@ interface iFilterBar {
 
 const FilterBar = ({ filters = [] }: iFilterBar) => {
   const router = useRouter()
+  const pathName = usePathname()
+  const currentPath = pathName ?? "/"
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
@@ -23,11 +27,11 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
 
   const handleClearFilterList = () => {
     clearFilterList()
-    router.replace(router.pathname, undefined, { shallow: true })
+    router.replace(currentPath)
   }
 
   return (
-    <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-2 pt-4 pb-10 pointer-events-none xl:pb-4 xl:px-6 bg-gradient-to-t from-dark/80">
+    <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-4 pt-4 pb-10 pointer-events-none xl:pb-4 xl:px-6">
       <div className="relative flex flex-1 gap-4 pointer-events-auto">
         <ScrollToTopButton isFixed={false} />
       </div>

@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://wisihe.no
-
-# Sitemaps
-Sitemap: https://wisihe.no/sitemap.xml

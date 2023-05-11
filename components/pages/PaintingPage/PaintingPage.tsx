@@ -1,5 +1,5 @@
+"use client"
 import clsx from "clsx"
-import Loader from "components/atoms/Loader/Loader"
 const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
 
 import { AnimatePresence, motion } from "framer-motion"
@@ -7,9 +7,10 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { useRouter } from "next/router"
+import { notFound, useRouter } from "next/navigation"
 import { IoArrowBackSharp } from "react-icons/io5"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { isEmptyObject } from "utils/object"
 import { slugify } from "utils/string"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
@@ -32,9 +33,7 @@ interface iPaintingPageProps {
 const PaintingPage = ({ painting }: iPaintingPageProps) => {
   const router = useRouter()
 
-  if (!painting) {
-    return <Loader color="primary" />
-  }
+  if (isEmptyObject(painting)) return notFound()
 
   const {
     images,
@@ -42,12 +41,19 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     description = "",
     image,
     format = "square",
-
+    paintedAt,
     redbubbleUrl = "",
     society6Url = "",
     tagsV2 = [],
     video = "",
   } = painting
+
+  const formatDate = (date: string) => {
+    const d = new Date(date)
+    const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d)
+    const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d)
+    return `${mo} ${ye}`
+  }
 
   const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
   const hasSociety6Link = society6Url !== "" && society6Url !== null
@@ -99,7 +105,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ type: "spring", delay: 0.5, duration: 0.5 }}
         key="MainPainting"
-        // layoutId={title}
+        layoutId={title}
         className={clsx(
           "flex relative flex-col h-fit col-span-full w-full xl:col-span-8 pb-4",
           imageAspectStyle[format]
@@ -129,6 +135,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           <h1>
             <strong>{title}</strong>
           </h1>
+          <p className="text-sm text-gray-500">
+            {paintedAt && formatDate(paintedAt)}
+          </p>
 
           <div className="flex flex-wrap gap-1">
             {tagsV2?.map((tag) => {

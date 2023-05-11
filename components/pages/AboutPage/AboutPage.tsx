@@ -9,6 +9,7 @@ interface iAboutPage {
 }
 
 const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
+  console.log("wallpapers", wallpapers)
   return (
     <Main noTopPadding className="flex-col overflow-clip">
       <HeroSectionMobile paintings={wallpapers} />

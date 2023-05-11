@@ -1,3 +1,4 @@
+"use client"
 // import clsx from "clsx"
 // import { Mask } from "components/atoms"
 import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
@@ -99,35 +100,6 @@ const ScrollSection = () => {
         </GridStyleWrapper>
       </section>
 
-      {/* <section className="px-4 py-20 text-center xl:py-40">
-        <motion.h2
-          initial={{
-            opacity: 0,
-            scale: 0,
-          }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-        >
-          <strong>Still scrolling, huh?</strong>
-        </motion.h2>
-        <p>
-          I was kinda hoping that you would have clicked one of the links or
-          buttons by now...
-        </p>
-
-        <div className="flex justify-center gap-4 pt-4">
-          <LinkButton href="/paintings">
-            <strong>Paintings</strong>
-          </LinkButton>
-          <LinkButton href="/projects">
-            <strong>Projects</strong>
-          </LinkButton>
-          <LinkButton href="/videos">
-            <strong>Videos</strong>
-          </LinkButton>
-        </div>
-      </section> */}
-
       <section className="relative p-4 bg-dark overflow-clip">
         <GridStyleWrapper>
           <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
@@ -216,31 +188,6 @@ const ScrollSection = () => {
           </div>
         </div>
       </section>
-
-      {/* <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 text-center overflow-clip ">
-        <div className="">
-          <h2>You win!</h2>
-          <b>Here, have a picture of a cute dog</b>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 400 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.05 }}
-          transition={{ duration: 0.2, type: "spring" }}
-          className="relative aspect-square w-96"
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=962&q=80"
-            fill
-            alt="cute dog"
-            className="object-cover w-full h-full"
-            sizes="(max-width: 768px) 100vw,
-      (max-width: 1200px) 50vw,
-      33vw"
-          />
-        </motion.div>
-      </section> */}
     </>
   )
 }

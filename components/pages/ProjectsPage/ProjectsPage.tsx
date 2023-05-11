@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx"
 import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
@@ -13,7 +14,7 @@ interface iProjectsPage {
 }
 
 const ProjectsPage = ({ projects = [], tags = [] }: iProjectsPage) => {
-  const [currentFilter, setCurrentFilter] = useState<string>("all")
+  const [currentFilter, setCurrentFilter] = useState("all")
 
   const allTags = [{ name: "all", projectCount: projects.length }, ...tags]
   return (

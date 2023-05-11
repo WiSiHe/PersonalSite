@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx"
 import Avatar from "components/atoms/Avatar"
 import LoadingDots from "components/atoms/LoadingDots"

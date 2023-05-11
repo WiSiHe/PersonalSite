@@ -1,3 +1,4 @@
+"use client"
 import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"

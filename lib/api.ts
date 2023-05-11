@@ -1,12 +1,21 @@
 import { apiVersion, dataset, projectId, useCdn } from "lib/sanity.api"
 import { createClient, groq } from "next-sanity"
-import { iSanityTag } from "./models/objects/SanityTag"
-import { iSanityPainting } from "./models/objects/sanityPainting"
+import {
+  iSanityPaintingTag,
+  iSanityProjectTag,
+  iSanityTag,
+  iSanityVideoTag,
+} from "./models/objects/SanityTag"
+import {
+  iSanityPainting,
+  iSanityWallpaperPaintings,
+} from "./models/objects/sanityPainting"
 import client from "./sanity"
 import {
   iSanityProject,
   iSanityProjectLight,
 } from "./models/objects/sanityProject"
+import { iSanityVideo } from "./models/objects/sanityVideo"
 
 // const getUniquePosts = (posts) => {
 //   const slugs = new Set()
@@ -106,18 +115,18 @@ export async function getPaintingDetails(
       dataset,
       apiVersion,
       useCdn,
-      token: token || undefined,
+      token: token,
     })
     return await client.fetch(paintingDetailsQuery, { slug })
   }
 
   const results = await client.fetch(
     `*[_type == "painting" && slug.current == $slug]{
-      title, description, format, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+      title, description, format, paintedAt, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
     }[0]`,
     { slug }
   )
-  return results || []
+  return results || {}
 }
 
 export async function getPaintingTags(slug: string): Promise<iSanityTag[]> {
@@ -169,7 +178,10 @@ export async function getAllTagsAndPaintings() {
   return results
 }
 
-export async function getAllTagsAndPaintingsLight() {
+export async function getAllTagsAndPaintingsLight(): Promise<{
+  tags: iSanityPaintingTag[]
+  paintings: iSanityPainting[]
+}> {
   const paintingQuery = /* groq */ `*[_type == "painting"]{
     title, image, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id, tagsV2[]->{name}, video}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, description, "paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
@@ -190,7 +202,10 @@ export async function getAllVideos() {
   return results
 }
 
-export async function getAllVideosAndTags() {
+export async function getAllVideosAndTags(): Promise<{
+  videos: iSanityVideo[]
+  tags: iSanityVideoTag[]
+}> {
   const videoQuery = /* groq */ `*[_type == "video"]| order(_updatedAt desc){title,thumbnail,description, content, linkedPainting->{name, image}, videoUrl, _id, "tags": tags[]->{name}}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, "videoCount": count(*[_type == "video" && references(^._id)].title)}`
 
@@ -211,7 +226,7 @@ export async function getAllNewTags() {
 }
 
 export async function getAllWallpapers(): Promise<{
-  paintings: iSanityPainting[]
+  paintings: iSanityWallpaperPaintings[]
 }> {
   const results = await client.fetch(
     `*[_type == "tag" && name == "Wallpaper"]{"paintings": *[_type == "painting" && references(^._id)]{_id, image}}[0]`
@@ -229,7 +244,10 @@ export async function getAllProjects() {
   return results
 }
 
-export async function getAllProjectsAndTags() {
+export async function getAllProjectsAndTags(): Promise<{
+  projects: iSanityProject[]
+  tags: iSanityProjectTag[]
+}> {
   const projectQuery = /* groq */ `*[_type == "project"]| order(projectStart desc){title, description, projectStart, projectEnd, status, content, name, slug, image, slug, _id, tags[]->{name}}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, "projectCount": count(*[_type == "project" && references(^._id)].title)}`
 
@@ -259,4 +277,13 @@ export async function getProjectDetails(slug: string): Promise<iSanityProject> {
     }
   )
   return results
+}
+
+export async function getAllProjectsSlugs(): Promise<
+  Pick<iSanityPainting, "slug">[]
+> {
+  const data = await client.fetch(
+    `*[_type == "project"]{ 'slug': slug.current }`
+  )
+  return data
 }

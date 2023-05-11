@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import HeroSectionLoader from "components/molecules/HeroSectionLoader/HeroSectionLoader"

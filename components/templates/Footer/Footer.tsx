@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx"
 import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import { motion } from "framer-motion"

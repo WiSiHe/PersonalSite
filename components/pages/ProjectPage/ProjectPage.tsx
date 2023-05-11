@@ -1,3 +1,4 @@
+"use client"
 import { PortableText } from "@portabletext/react"
 import clsx from "clsx"
 import BackButton from "components/atoms/BackButton/BackButton"
@@ -29,7 +30,7 @@ interface PageProps {
 
 const ProjectPage = ({ project }: PageProps) => {
   return (
-    <Main noTopPadding className="flex-col min-h-screen overflow-clip">
+    <Main className="flex-col min-h-screen overflow-clip">
       <BackButton />
       <section className="">
         <div className="relative w-full aspect-square xl:aspect-video">

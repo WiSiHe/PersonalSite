@@ -105,7 +105,7 @@ const Project = ({
 
         <div className="flex items-center justify-end ">
           <Link
-            href={`/project/${slug.current}`}
+            href={`/projects/${slug.current}`}
             className="focus-visible:outline-none group focus-visible:ring ring-highlight focus-visible:border-transparent"
           >
             <motion.div
