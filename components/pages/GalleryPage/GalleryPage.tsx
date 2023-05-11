@@ -1,4 +1,3 @@
-import Main from "components/atoms/Main/Main"
 import dynamic from "next/dynamic"
 
 const FilterBar = dynamic(() => import("components/organisms/FilterBar"))
@@ -13,10 +12,10 @@ interface iPaintingsPageProps {
 
 const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   return (
-    <Main className="relative flex flex-col items-start min-h-screen p-4 mx-auto max-w-screen-3xl">
+    <>
       <FilterBar filters={tags} />
       <PaintingGrid paintings={paintings} />
-    </Main>
+    </>
   )
 }
 

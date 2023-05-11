@@ -37,7 +37,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
     <nav
       aria-label="Main Navigation"
       className={clsx(
-        "z-20 flex items-center justify-between py-2 mx-auto px-4 max-w-screen-3xl",
+        "z-20 flex items-center justify-between py-2 px-4",
         isAbsolute ? "absolute top-0 left-0 right-0" : "relative"
       )}
     >

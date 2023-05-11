@@ -1,3 +1,4 @@
+import Main from "components/atoms/Main/Main"
 import VideosPage from "components/pages/VideosPage"
 import { getAllVideosAndTags } from "lib/api"
 import { notFound } from "next/navigation"
@@ -40,5 +41,9 @@ export default async function ProjectsHomePage() {
 
   const { videos, tags } = allProjects
 
-  return <VideosPage videos={videos} tags={tags} />
+  return (
+    <Main className="flex-col min-h-screen p-4">
+      <VideosPage videos={videos} tags={tags} />
+    </Main>
+  )
 }
