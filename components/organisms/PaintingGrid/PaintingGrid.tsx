@@ -7,9 +7,6 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
-import { BiGame } from "react-icons/bi"
-import { BsFillBrushFill } from "react-icons/bs"
-import { HiOutlineDesktopComputer } from "react-icons/hi"
 import { isEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
@@ -34,7 +31,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
   const scrollPosition = useScrollPosition()
 
-  const [paintingsSlice, setPaintingsSlice] = useState(25)
+  const [paintingsSlice, setPaintingsSlice] = useState(12)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const sorting = useCombinedStore((state) => state.paintingSorting)
@@ -90,51 +87,52 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
   return (
     <section className="grid w-full grid-cols-12 gap-2 mb-10 xl:gap-4">
       <GreeterCard />
-
-      {!isEmptyArray(filterPaintingsV2) ? (
-        filterPaintingsV2.map((painting) => (
-          <div
-            key={painting._id}
-            className="col-span-full lg:col-span-4 xl:col-span-3"
-          >
-            <Painting paintingData={painting} />
-          </div>
-        ))
-      ) : (
-        <AnimatePresence>
-          {isLoading ? (
-            [...Array(9)].map((_, i) => (
-              <div
-                key={i}
-                className="col-span-6 lg:col-span-4 xl:col-span-3 aspect-square"
-              >
-                <div className="w-full h-full rounded-lg bg-dark animate-pulse" />
-              </div>
-            ))
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring" }}
-              key="no-paintings-found"
-              className="flex flex-col items-center gap-2 p-4 rounded-lg col-span-full md:col-span-6 lg:col-span-8 ring xl:col-span-9 ring-primary "
+      <AnimatePresence>
+        {!isEmptyArray(filterPaintingsV2) ? (
+          filterPaintingsV2.slice(0, paintingsSlice).map((painting) => (
+            <div
+              key={painting._id}
+              className="col-span-full lg:col-span-4 xl:col-span-3"
             >
-              <h2 className="text-2xl text-center">
-                No paintings found with the selected filters
-              </h2>
-              <p className="text-center">
-                Try removing some filters to see more paintings
-              </p>
-              <button
-                onClick={handleClearFilter}
-                className="px-4 py-3 text-white rounded bg-primary hover:bg-primary/90"
+              <Painting paintingData={painting} />
+            </div>
+          ))
+        ) : (
+          <>
+            {isLoading ? (
+              [...Array(9)].map((_, i) => (
+                <div
+                  key={i}
+                  className="col-span-6 lg:col-span-4 xl:col-span-3 aspect-square"
+                >
+                  <div className="w-full h-full rounded-lg bg-dark animate-pulse" />
+                </div>
+              ))
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring" }}
+                key="no-paintings-found"
+                className="flex flex-col items-center gap-2 p-4 rounded-lg col-span-full md:col-span-6 lg:col-span-8 ring xl:col-span-9 ring-primary "
               >
-                Clear Filters
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
+                <h2 className="text-2xl text-center">
+                  No paintings found with the selected filters
+                </h2>
+                <p className="text-center">
+                  Try removing some filters to see more paintings
+                </p>
+                <button
+                  onClick={handleClearFilter}
+                  className="px-4 py-3 text-white rounded bg-primary hover:bg-primary/90"
+                >
+                  Clear Filters
+                </button>
+              </motion.div>
+            )}
+          </>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

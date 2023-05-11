@@ -105,7 +105,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ type: "spring", delay: 0.5, duration: 0.5 }}
         key="MainPainting"
-        // layoutId={title}
+        layoutId={title}
         className={clsx(
           "flex relative flex-col h-fit col-span-full w-full xl:col-span-8 pb-4",
           imageAspectStyle[format]
