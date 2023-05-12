@@ -107,7 +107,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         key="MainPainting"
         layoutId={title}
         className={clsx(
-          "flex relative flex-col h-fit col-span-full w-full xl:col-span-8 pb-4",
+          "flex relative flex-col gap-4 h-fit col-span-full w-full xl:col-span-8 pb-4",
           imageAspectStyle[format]
         )}
       >
@@ -121,6 +121,24 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
             .url()}
           className="h-fit"
         />
+        {images?.map((image, index) => {
+          return (
+            <div
+              key={`picture-${index}`}
+              className={clsx("", imageAspectStyle[format])}
+            >
+              <LazyLoadImage
+                alt={title}
+                src={imageBuilder(image)
+                  .width(imageWidth[format])
+                  .height(imageHeight[format])
+                  .quality(75)
+                  .url()}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          )
+        })}
       </motion.div>
 
       <motion.div
@@ -170,28 +188,6 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           )}
         </div>
       </motion.div>
-
-      {images?.map((image, index) => {
-        return (
-          <div
-            key={`picture-${index}`}
-            className={clsx(
-              "bg-white relative col-span-full w-full xl:col-span-8",
-              imageAspectStyle[format]
-            )}
-          >
-            <LazyLoadImage
-              alt={title}
-              src={imageBuilder(image)
-                .width(imageWidth[format])
-                .height(imageHeight[format])
-                .quality(75)
-                .url()}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        )
-      })}
       {video && (
         <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
           <div className="w-full aspect-video">

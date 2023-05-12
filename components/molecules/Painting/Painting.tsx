@@ -89,7 +89,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             sizes="(max-width: 640px) 100vw,
               (max-width: 1280px) 50vw,
               (max-width: 1536px) 33vw,
-              25vw"
+              29vw"
             fill
             alt=""
             priority={!shouldBeLazy}
@@ -112,26 +112,14 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
           )}
         </div>
 
-        <div className="flex items-start justify-between gap-2 p-2 text-xs border-t-4 bg-primary border-t-primary ">
-          <h2 className="text-lg text-white capitalize line-clamp-1">
+        <div className="flex items-center justify-between gap-2 p-4 text-xs ring bg-primary border-t-primary ">
+          <h2 className="text-lg text-white capitalize font-inter line-clamp-1">
             <strong>{title}</strong>
           </h2>
-          <div className="flex items-start gap-2">
-            {video && (
-              <div className="flex items-center justify-center p-2 text-white ring-white">
-                <BsYoutube />
-              </div>
-            )}
-            {imagesCount && imagesCount > 0 && (
-              <div className="flex items-center justify-center p-2 text-white ring-white">
-                <TbBoxMultiple />
-              </div>
-            )}
-            {isNsfw && (
-              <div className="flex items-center justify-center p-2 text-white ring-white">
-                <FaExclamation />
-              </div>
-            )}
+          <div className="flex items-center justify-center gap-4 text-lg text-white">
+            {video && <BsYoutube />}
+            {imagesCount && imagesCount > 0 && <TbBoxMultiple />}
+            {isNsfw && <FaExclamation />}
           </div>
         </div>
       </motion.article>

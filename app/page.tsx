@@ -1,3 +1,4 @@
+import Main from "components/atoms/Main/Main"
 import GalleryPage from "components/pages/GalleryPage"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import { notFound } from "next/navigation"
@@ -44,5 +45,9 @@ export default async function Home() {
 
   const { randomPaintings, tags } = paintings
 
-  return <GalleryPage paintings={randomPaintings} tags={tags} />
+  return (
+    <Main className="relative flex flex-col items-start min-h-screen p-4">
+      <GalleryPage paintings={randomPaintings} tags={tags} />
+    </Main>
+  )
 }

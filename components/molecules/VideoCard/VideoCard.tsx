@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
-import { useState } from "react"
 import { isNotEmptyArray } from "utils/array"
 import { isNotEmptyObject } from "utils/object"
 
@@ -31,7 +29,6 @@ interface VideoCardProps {
 }
 
 const VideoCard = ({ video }: VideoCardProps) => {
-  const [displayTags, setDisplayTags] = useState(true)
   const {
     title = "",
     description = "",
@@ -49,7 +46,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
         whileInView="onscreen"
         viewport={{ once: true }}
         variants={cardVariants}
-        className="relative bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-4"
+        className="relative bg-white rounded-lg shadow-xl overflow-clip col-span-full xl:col-span-3"
       >
         <div className="relative bg-primary aspect-video">
           <ReactPlayer
@@ -57,7 +54,6 @@ const VideoCard = ({ video }: VideoCardProps) => {
             loop
             width="100%"
             height="100%"
-            onStart={() => setDisplayTags(false)}
             // className="w-full h-full"
             light={
               <img

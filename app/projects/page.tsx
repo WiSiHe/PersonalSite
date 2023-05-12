@@ -1,3 +1,4 @@
+import Main from "components/atoms/Main/Main"
 import ProjectsPage from "components/pages/ProjectsPage"
 import { getAllProjectsAndTags } from "lib/api"
 import { notFound } from "next/navigation"
@@ -35,5 +36,9 @@ export default async function ProjectsHomePage() {
 
   const { projects, tags } = allProjects
 
-  return <ProjectsPage projects={projects} tags={tags} />
+  return (
+    <Main className="min-h-screen">
+      <ProjectsPage projects={projects} tags={tags} />
+    </Main>
+  )
 }

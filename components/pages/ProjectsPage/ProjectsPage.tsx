@@ -18,7 +18,7 @@ const ProjectsPage = ({ projects = [], tags = [] }: iProjectsPage) => {
 
   const allTags = [{ name: "all", projectCount: projects.length }, ...tags]
   return (
-    <Main className="min-h-screen mx-auto max-w-screen-3xl">
+    <>
       <section className="relative grid h-full grid-cols-12 gap-4 p-4">
         <div className="col-span-full xl:col-span-8">
           <h1>My Projects</h1>
@@ -69,7 +69,7 @@ const ProjectsPage = ({ projects = [], tags = [] }: iProjectsPage) => {
             return (
               <div
                 className={clsx(
-                  "col-span-full xl:col-span-4 overflow-clip rounded-lg h-full"
+                  "col-span-full xl:col-span-3 overflow-clip rounded-lg h-full"
                 )}
                 key={_id}
               >
@@ -79,7 +79,7 @@ const ProjectsPage = ({ projects = [], tags = [] }: iProjectsPage) => {
           })}
       </section>
       <ScrollToTopButton />
-    </Main>
+    </>
   )
 }
 

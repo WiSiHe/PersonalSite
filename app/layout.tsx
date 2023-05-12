@@ -35,11 +35,23 @@ interface RootProps {
   children: React.ReactNode
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: metadata.title,
+  description: metadata.description,
+  url: "https://wisihe.vercel.app",
+}
+
 export default function RootLayout({ children }: RootProps) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href="/icons/wisihe.svg" sizes="any" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter`}
