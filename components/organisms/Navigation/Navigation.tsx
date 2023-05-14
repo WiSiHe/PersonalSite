@@ -69,7 +69,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex items-center gap-1 xl:gap-4"
+        className="flex items-center gap-1 xl:gap-2"
       >
         <AnimatePresence>
           {NavItems.map((item, i) => {
@@ -79,7 +79,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                 <Link
                   href={item.url}
                   className={clsx(
-                    "transition-all mix-blend-difference text-dark px-4 py-2 rounded-lg hover:bg-primary hover:text-white   active:bg-primary",
+                    "transition-all mix-blend-difference text-dark px-4 py-2 hover:bg-primary hover:text-white   active:bg-primary",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
                       : " text-dark"

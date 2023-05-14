@@ -3,6 +3,5 @@ export const NavItems = [
   // { url: "/paintings", text: "Paintings" },
   { url: "/projects", text: "Projects" },
   { url: "/videos", text: "Videos" },
-
-  // { url: '/about', text: 'About' },
+  { url: "/about", text: "About" },
 ]

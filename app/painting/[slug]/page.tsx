@@ -89,10 +89,10 @@ export default async function LandingPage({ params }: { params: Params }) {
     // width: "1920",
     // height: "1080",
     inLanguage: "en",
-    copyrightHolder: {
-      "@type": "Person",
-      name: "Jane Doe",
-    },
+    // copyrightHolder: {
+    //   "@type": "Person",
+    //   name: "Jane Doe",
+    // },
     // offers: {
     //   "@type": "Offer",
     //   availability: "https://schema.org/InStock",

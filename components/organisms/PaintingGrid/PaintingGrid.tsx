@@ -117,51 +117,42 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
   }, [paintings])
 
   return (
-    <section className="grid w-full grid-cols-12 gap-4 mb-10 xl:gap-4">
-      <GreeterCard />
+    <section className="grid items-start w-full grid-cols-12 gap-2 mb-10 xl:gap-4">
+      <div className="h-full col-span-full md:col-span-8 lg:col-span-6 xl:col-span-6 2xl:col-span-4">
+        <GreeterCard />
+      </div>
       <AnimatePresence>
         {!isEmptyArray(filterPaintingsV2) ? (
           filterPaintingsV2.slice(0, paintingsSlice).map((painting) => (
             <div
               key={painting._id}
-              className="col-span-full lg:col-span-4 xl:col-span-2"
+              className="col-span-6 md:col-span-4 lg:col-span-3 2xl:col-span-2"
             >
               <Painting paintingData={painting} />
             </div>
           ))
         ) : (
           <>
-            {isLoading ? (
-              [...Array(9)].map((_, i) => (
-                <div
-                  key={i}
-                  className="col-span-6 lg:col-span-4 xl:col-span-4 aspect-square"
-                >
-                  <div className="w-full h-full rounded-lg bg-dark animate-pulse" />
-                </div>
-              ))
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: "spring" }}
-                key="no-paintings-found"
-                className="flex flex-col items-center gap-2 p-4 rounded-lg col-span-full md:col-span-6 lg:col-span-8 ring xl:col-span-9 ring-primary "
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring" }}
+              key="no-paintings-found"
+              className="flex flex-col items-center gap-2 p-4 g col-span-full md:col-span-6 lg:col-span-8 ring xl:col-span-9 ring-primary "
+            >
+              <h2 className="text-2xl text-center">
+                No paintings found with the selected filters
+              </h2>
+              <p className="text-center">
+                Try removing some filters to see more paintings
+              </p>
+              <button
+                onClick={handleClearFilter}
+                className="px-4 py-3 text-white bg-primary hover:bg-primary/90"
               >
-                <h2 className="text-2xl text-center">
-                  No paintings found with the selected filters
-                </h2>
-                <p className="text-center">
-                  Try removing some filters to see more paintings
-                </p>
-                <button
-                  onClick={handleClearFilter}
-                  className="px-4 py-3 text-white rounded bg-primary hover:bg-primary/90"
-                >
-                  Clear Filters
-                </button>
-              </motion.div>
-            )}
+                Clear Filters
+              </button>
+            </motion.div>
           </>
         )}
       </AnimatePresence>

@@ -1,5 +1,6 @@
 "use client"
 import clsx from "clsx"
+import BackButton from "components/atoms/BackButton/BackButton"
 const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
 
 import { AnimatePresence, motion } from "framer-motion"
@@ -7,8 +8,7 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { notFound, useRouter } from "next/navigation"
-import { IoArrowBackSharp } from "react-icons/io5"
+import { notFound } from "next/navigation"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { isEmptyObject } from "utils/object"
 import { slugify } from "utils/string"
@@ -31,8 +31,6 @@ interface iPaintingPageProps {
 }
 
 const PaintingPage = ({ painting }: iPaintingPageProps) => {
-  const router = useRouter()
-
   if (isEmptyObject(painting)) return notFound()
 
   const {
@@ -77,27 +75,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     portrait: 650,
   }
 
-  const handleGoBack = () => {
-    router.back()
-  }
-
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed z-10 top-24 left-6 "
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -100 }}
-        transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
-        key="backbutton"
-      >
-        <button
-          onClick={handleGoBack}
-          className="flex items-center justify-center gap-2 px-4 py-2 text-xl text-white transition-all duration-200 ease-in-out shadow-lg bg-primary hover:ring hover:shadow-lg active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
-        >
-          <IoArrowBackSharp /> Back
-        </button>
-      </motion.div>
+      <BackButton />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -107,7 +87,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         key="MainPainting"
         layoutId={title}
         className={clsx(
-          "flex relative flex-col gap-4 h-fit col-span-full w-full xl:col-span-8 pb-4",
+          "flex relative flex-col gap-4 h-fit col-span-full w-full xl:col-span-9 pb-4",
           imageAspectStyle[format]
         )}
       >
@@ -139,6 +119,20 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
             </div>
           )
         })}
+        {video && (
+          <div className="col-span-full xl:col-span-5 xl:col-start-3">
+            <div className="w-full aspect-video">
+              <ReactPlayer
+                url={video}
+                loop
+                muted
+                playing
+                width="100%"
+                height="100%"
+              />
+            </div>
+          </div>
+        )}
       </motion.div>
 
       <motion.div
@@ -147,7 +141,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         exit={{ opacity: 0 }}
         transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
         key="text-section"
-        className="relative justify-between p-0 transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-4"
+        className="relative justify-between p-0 transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-3"
       >
         <div className="space-y-4">
           <h1>
@@ -188,20 +182,6 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           )}
         </div>
       </motion.div>
-      {video && (
-        <div className="mb-20 col-span-full xl:col-span-5 xl:col-start-3">
-          <div className="w-full aspect-video">
-            <ReactPlayer
-              url={video}
-              loop
-              muted
-              playing
-              width="100%"
-              height="100%"
-            />
-          </div>
-        </div>
-      )}
     </AnimatePresence>
   )
 }

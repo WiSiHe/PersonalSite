@@ -66,7 +66,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   const linkString = `/painting/${slug}`
 
   return (
-    <Link href={linkString} className="rounded-lg">
+    <Link href={linkString}>
       <motion.article
         // layout
         // layoutId={title}
@@ -75,7 +75,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
         // viewport={{ once: true, amount: 0.1 }}
         // variants={cardVariants}
         // transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
-        className="relative w-full h-full @container group bg-white rounded-lg overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
+        className="relative w-full h-full @container group bg-white overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
       >
         <div className="relative aspect-square bg-primary overflow-clip">
           <Image
