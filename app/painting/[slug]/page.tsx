@@ -21,8 +21,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }) {
   const painting = await getData(params.slug)
 
-  if (!painting) return null
-
   const { title = "Not found", seoDescription, image } = painting
 
   const cleanSEODescription = seoDescription?.replace(/(<([^>]+)>)/gi, "")
@@ -38,18 +36,33 @@ export async function generateMetadata({ params }: { params: Params }) {
   return {
     title: combinedTitle,
     description: painting.description,
+    locale: "en-US",
+    type: "website",
+    url: `https://wisihe.no/painting/${params.slug}`,
     openGraph: {
       title: combinedTitle,
       description: cleanSEODescription,
-      image: paintingImageUrl,
+      images: [
+        {
+          url: paintingImageUrl,
+          width: 400,
+          height: 400,
+          alt: painting.title,
+        },
+      ],
       url: `https://wisihe.no/painting/${params.slug}`,
       type: "website",
+      site_name: "WiSiHe",
     },
     twitter: {
       title: combinedTitle,
       description: cleanSEODescription,
       cardType: "summary_large_image",
       image: paintingImageUrl,
+      imageAlt: painting.title,
+      url: `https://wisihe.no/painting/${params.slug}`,
+      creator: "@wisihe",
+      site: "https://wisihe.no",
     },
   }
 }
