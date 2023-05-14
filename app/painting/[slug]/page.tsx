@@ -21,9 +21,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Params }) {
   const painting = await getData(params.slug)
 
-  const { title = "Not found", seoDescription, image } = painting
+  const {
+    title = "Not found",
+    seoDescription = "",
+    description = "",
+    image,
+  } = painting
 
-  const cleanSEODescription = seoDescription?.replace(/(<([^>]+)>)/gi, "")
+  // check if we have seoDescription, if not use description
+
+  const selectedDescription = seoDescription || description
+
+  const cleanSEODescription = selectedDescription?.replace(/(<([^>]+)>)/gi, "")
 
   const paintingImageUrl = imageBuilder(image)
     .width(400)
