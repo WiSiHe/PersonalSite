@@ -1,16 +1,11 @@
 "use client"
-import clsx from "clsx"
+
 import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import React from "react"
 
-interface iFooterProps {
-  fixed?: boolean
-  onlyMobile?: boolean
-}
-
-const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
+const Footer = () => {
   return (
     <motion.footer
       initial={{ y: 50 }}
@@ -19,11 +14,7 @@ const Footer = ({ fixed = false, onlyMobile = false }: iFooterProps) => {
       transition={{
         type: "spring",
       }}
-      className={clsx(
-        "w-full p-10  text-white bg-dark flex  items-center justify-center  gap-4",
-        fixed && "fixed bottom-0",
-        onlyMobile && " block lg:hidden"
-      )}
+      className="flex items-center justify-center w-full gap-4 p-10 text-white bg-dark"
     >
       <SocialLinks />
       <Link href="/test">Test Page</Link>

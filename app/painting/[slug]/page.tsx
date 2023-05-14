@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Params }) {
 
   const {
     title = "Not found",
-    seoDescription = "",
+    seoDescription,
     description = "",
     image,
   } = painting
@@ -32,12 +32,10 @@ export async function generateMetadata({ params }: { params: Params }) {
 
   const selectedDescription = seoDescription || description
 
-  const cleanSEODescription = selectedDescription?.replace(/(<([^>]+)>)/gi, "")
-
   const paintingImageUrl = imageBuilder(image)
     .width(400)
     .height(400)
-    .quality(75)
+    .quality(45)
     .url()
 
   const combinedTitle = clsx(title, " | WiSiHe")
@@ -50,7 +48,7 @@ export async function generateMetadata({ params }: { params: Params }) {
     url: `https://wisihe.no/painting/${params.slug}`,
     openGraph: {
       title: combinedTitle,
-      description: cleanSEODescription,
+      description: selectedDescription,
       images: [
         {
           url: paintingImageUrl,
@@ -59,16 +57,25 @@ export async function generateMetadata({ params }: { params: Params }) {
           alt: painting.title,
         },
       ],
+      image: paintingImageUrl,
       url: `https://wisihe.no/painting/${params.slug}`,
       type: "website",
       site_name: "WiSiHe",
     },
     twitter: {
       title: combinedTitle,
-      description: cleanSEODescription,
+      description: selectedDescription,
       cardType: "summary_large_image",
       image: paintingImageUrl,
       imageAlt: painting.title,
+      images: [
+        {
+          url: paintingImageUrl,
+          width: 400,
+          height: 400,
+          alt: painting.title,
+        },
+      ],
       url: `https://wisihe.no/painting/${params.slug}`,
       creator: "@wisihe",
       site: "https://wisihe.no",

@@ -162,8 +162,6 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
               )
             })}
           </div>
-          <p className="">{description && description}</p>
-
           {hasStoreLinks && (
             <div className="p-4 bg-highlight">
               <h3>
@@ -180,6 +178,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
               </div>
             </div>
           )}
+          <p className="whitespace-pre-wrap">{description && description}</p>
         </div>
       </motion.div>
     </AnimatePresence>
