@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: Params }) {
 
   return {
     title: combinedTitle,
-    description: painting.description,
+    description: removedLineBreaks,
     locale: "en-US",
     type: "website",
     url: `https://wisihe.no/painting/${params.slug}`,
