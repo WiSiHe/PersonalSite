@@ -39,12 +39,23 @@ export const metadata = {
     site_name: "WiSiHe",
     images: [
       {
-        url: "https://wisihe.no/icons/wisihe.svg",
+        url: "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
         width: 800,
         height: 600,
         alt: "WiSiHe",
       },
     ],
+  },
+  twitter: {
+    image:
+      "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
+    cardType: "summary_large_image",
+    title: "Home | WiSiHe",
+    description: "A gallery of some of my paintings and other projects",
+    url: "https://wisihe.no",
+    creator: "@wisihe",
+    site: "https://wisihe.no",
+    imageAlt: "WiSiHe",
   },
 }
 
