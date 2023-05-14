@@ -28,9 +28,12 @@ export async function generateMetadata({ params }: { params: Params }) {
     image,
   } = painting
 
-  // check if we have seoDescription, if not use description
-
   const selectedDescription = seoDescription || description
+
+  // regex to remove all html from description text and line breaks
+  const regex = /(<([^>]+)>)/gi
+  const descriptionText = selectedDescription.replace(regex, "")
+  const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
   const paintingImageUrl = imageBuilder(image)
     .width(400)
@@ -48,7 +51,7 @@ export async function generateMetadata({ params }: { params: Params }) {
     url: `https://wisihe.no/painting/${params.slug}`,
     openGraph: {
       title: combinedTitle,
-      description: selectedDescription,
+      description: removedLineBreaks,
       images: [
         {
           url: paintingImageUrl,
@@ -64,7 +67,7 @@ export async function generateMetadata({ params }: { params: Params }) {
     },
     twitter: {
       title: combinedTitle,
-      description: selectedDescription,
+      description: removedLineBreaks,
       cardType: "summary_large_image",
       image: paintingImageUrl,
       imageAlt: painting.title,
@@ -101,13 +104,19 @@ export default async function LandingPage({ params }: { params: Params }) {
 
   const {
     title = "Not found",
-    seoDescription = "placeholder",
+    description = "",
+    seoDescription,
     slug = "",
     image,
     paintedAt,
   } = painting
 
-  const cleanSEODescription = seoDescription?.replace(/(<([^>]+)>)/gi, "")
+  const selectedDescription = seoDescription || description
+
+  // regex to remove all html from description text and line breaks
+  const regex = /(<([^>]+)>)/gi
+  const descriptionText = selectedDescription.replace(regex, "")
+  const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
   const paintingUrl = `https://wisihe.no/painting/${slug}`
 
@@ -130,7 +139,7 @@ export default async function LandingPage({ params }: { params: Params }) {
     },
     artform: "Digital Painting",
     dateCreated: paintedAt,
-    description: cleanSEODescription,
+    description: removedLineBreaks,
     artMedium: "Digital",
     // width: "1920",
     // height: "1080",

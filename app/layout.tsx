@@ -56,6 +56,14 @@ export const metadata = {
     creator: "@wisihe",
     site: "https://wisihe.no",
     imageAlt: "WiSiHe",
+    images: [
+      {
+        url: "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
+        width: 800,
+        height: 600,
+        alt: "WiSiHe",
+      },
+    ],
   },
 }
 
