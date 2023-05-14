@@ -23,7 +23,15 @@ export async function generateMetadata({ params }: { params: Params }) {
 
   if (!painting) return null
 
-  const { title = "Not found" } = painting
+  const { title = "Not found", seoDescription, image } = painting
+
+  const cleanSEODescription = seoDescription?.replace(/(<([^>]+)>)/gi, "")
+
+  const paintingImageUrl = imageBuilder(image)
+    .width(400)
+    .height(400)
+    .quality(75)
+    .url()
 
   const combinedTitle = clsx(title, " | WiSiHe")
 
@@ -31,8 +39,9 @@ export async function generateMetadata({ params }: { params: Params }) {
     title: combinedTitle,
     description: painting.description,
     openGraph: {
-      title: "Acme",
-      description: "Acme is a...",
+      title: combinedTitle,
+      description: cleanSEODescription,
+      image: paintingImageUrl,
     },
   }
 }

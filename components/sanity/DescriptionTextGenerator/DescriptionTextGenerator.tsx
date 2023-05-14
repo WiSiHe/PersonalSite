@@ -76,7 +76,6 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
         }),
       }).then((res) => res.json())
       if (isNotEmptyObject(response)) {
-        console.log(response)
         onChange(response.content ? set(response.content) : unset())
       }
     } catch (err) {
