@@ -29,6 +29,23 @@ export const metadata = {
   description: "A gallery of some of my paintings and other projects",
   locale: "en-US",
   type: "website",
+  url: "https://wisihe.no",
+  openGraph: {
+    title: "Home | WiSiHe",
+    description: "A gallery of some of my paintings and other projects",
+    locale: "en-US",
+    type: "website",
+    url: "https://wisihe.no",
+    site_name: "WiSiHe",
+    images: [
+      {
+        url: "https://wisihe.no/icons/wisihe.svg",
+        width: 800,
+        height: 600,
+        alt: "WiSiHe",
+      },
+    ],
+  },
 }
 
 interface RootProps {
@@ -40,7 +57,12 @@ const jsonLd = {
   "@type": "WebSite",
   name: metadata.title,
   description: metadata.description,
-  url: "https://wisihe.vercel.app",
+  url: "https://wisihe.no",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://wisihe.no/search?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 }
 
 export default function RootLayout({ children }: RootProps) {

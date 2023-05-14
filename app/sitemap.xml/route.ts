@@ -1,5 +1,4 @@
 import { getAllPaintingSlugs, getAllProjectsSlugs } from "lib/api"
-import { getBaseUrl } from "utils/url"
 
 interface SitemapField {
   loc: string
@@ -52,7 +51,7 @@ export async function GET() {
 
   // Add all static pages
   for (const page of staticPages) {
-    const url = new URL(page.loc, getBaseUrl())
+    const url = new URL(page.loc, "https://www.wisihe.no")
     fields.push({
       loc: url.toString(),
       lastmod: new Date().toISOString(),
@@ -65,7 +64,7 @@ export async function GET() {
   for (const article of allPaintings) {
     const slug = article.slug
 
-    const url = new URL(`/paintings/${slug}`, getBaseUrl())
+    const url = new URL(`/paintings/${slug}`, "https://www.wisihe.no")
     fields.push({
       loc: url.toString(),
       lastmod: new Date().toISOString(),
@@ -77,7 +76,7 @@ export async function GET() {
   // Add all projects
   for (const project of allProjects) {
     const slug = project.slug
-    const url = new URL(`/projects/${slug}`, getBaseUrl())
+    const url = new URL(`/projects/${slug}`, "https://www.wisihe.no")
     fields.push({
       loc: url.toString(),
       lastmod: new Date().toISOString(),

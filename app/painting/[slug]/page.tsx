@@ -42,6 +42,14 @@ export async function generateMetadata({ params }: { params: Params }) {
       title: combinedTitle,
       description: cleanSEODescription,
       image: paintingImageUrl,
+      url: `https://wisihe.no/painting/${params.slug}`,
+      type: "website",
+    },
+    twitter: {
+      title: combinedTitle,
+      description: cleanSEODescription,
+      cardType: "summary_large_image",
+      image: paintingImageUrl,
     },
   }
 }
