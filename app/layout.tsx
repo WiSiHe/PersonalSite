@@ -89,6 +89,7 @@ export default function RootLayout({ children }: RootProps) {
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href="/icons/wisihe.svg" sizes="any" />
+        <meta name="theme-color" content="#DE0D92" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -1,4 +1,4 @@
-import { getBaseUrl } from "utils/url"
+// import { getBaseUrl } from "utils/url"
 
 /**
  * This Route is static (default)
@@ -7,12 +7,12 @@ import { getBaseUrl } from "utils/url"
 export async function GET() {
   const body = `# *
     User-agent: *
-    Disallow: *
+    Disallow: /studio
     # Host
-    Host: ${getBaseUrl()}
+    Host: https://wisihe.no/
 
     # Sitemaps
-    Sitemap: ${getBaseUrl()}/sitemap.xml`
+    Sitemap: https://wisihe.no/sitemap.xml`
 
   const headers = {
     "Cache-Control": "max-age=0, s-maxage=3600",
