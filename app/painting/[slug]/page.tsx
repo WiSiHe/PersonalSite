@@ -165,7 +165,7 @@ export default async function LandingPage({ params }: { params: Params }) {
       />
       <Main
         noTopPadding
-        className="flex flex-col min-h-screen p-4 pt-20 mx-auto xl:grid xl:grid-cols-12 xl:gap-4 overflow-clip"
+        className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip"
       >
         <PaintingPage painting={painting} />
       </Main>

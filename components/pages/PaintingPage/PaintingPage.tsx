@@ -56,8 +56,6 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
   const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
   const hasSociety6Link = society6Url !== "" && society6Url !== null
 
-  const hasStoreLinks = hasRedBubleLink || hasSociety6Link
-
   const imageAspectStyle = {
     square: "aspect-square",
     landscape: "aspect-video",
@@ -75,6 +73,8 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     portrait: 650,
   }
 
+  const emailLink = `mailto:hws902@gmail.com?subject=I%20want%20a%20print%20of%20this%20painting:%20${title}&body=Hi%20Henrik,%0D%0A%0D%0AI%20would%20like%20to%20buy%20a%20print%20of%20this%20painting:%20${title}%0D%0A%0D%0A${window.location.href}%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AKind%20regards,%0D%0A%0D%0A`
+
   return (
     <AnimatePresence>
       <BackButton />
@@ -87,7 +87,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         key="MainPainting"
         layoutId={title}
         className={clsx(
-          "flex relative flex-col gap-4 h-fit col-span-full w-full xl:col-span-9 pb-4",
+          "flex relative pb-4 flex-col gap-4 h-fit col-span-full w-full lg:col-span-7 xl:col-span-9",
           imageAspectStyle[format]
         )}
       >
@@ -120,17 +120,15 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           )
         })}
         {video && (
-          <div className="col-span-full xl:col-span-5 xl:col-start-3">
-            <div className="w-full aspect-video">
-              <ReactPlayer
-                url={video}
-                loop
-                muted
-                playing
-                width="100%"
-                height="100%"
-              />
-            </div>
+          <div className="w-full aspect-video">
+            <ReactPlayer
+              url={video}
+              loop
+              muted
+              playing
+              width="100%"
+              height="100%"
+            />
           </div>
         )}
       </motion.div>
@@ -141,7 +139,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         exit={{ opacity: 0 }}
         transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
         key="text-section"
-        className="relative justify-between p-0 transition-all xl:sticky xl:top-4 xl:z-10 col-span-full h-fit xl:bg-white xl:p-6 xl:col-span-3"
+        className="relative justify-between p-0 transition-all lg:sticky lg:col-span-5 lg:top-4 xl:z-10 col-span-full h-fit lg:bg-white lg:p-4 xl:p-6 xl:col-span-3"
       >
         <div className="space-y-4">
           <h1>
@@ -162,22 +160,47 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
               )
             })}
           </div>
-          {hasStoreLinks && (
-            <div className="p-4 bg-highlight">
-              <h3>
-                <strong>Store links</strong>
-              </h3>
-              <p>
-                I also sell prints, posters, and other products of my artwork,
-                available in various formats like framed prints, canvas prints,
-                and phone cases.
-              </p>
-              <div className="flex items-center gap-4 pt-4">
-                <RedbubbleLink href={redbubbleUrl} />
-                <Society6Link href={society6Url} />
+
+          <div className="bg-white ">
+            <h2>
+              <strong>Store links:</strong>
+            </h2>
+            <p>
+              Beyond my original art, I offer prints, posters, and merchandise
+              in various formats, including framed or canvas prints and artful
+              phone cases.
+            </p>
+            <div className="flex flex-col gap-4 pt-4">
+              {hasRedBubleLink && (
+                <div>
+                  <RedbubbleLink href={redbubbleUrl} />
+                  <p className="pt-2 text-xs">
+                    Redbubble is a vibrant online marketplace where I sell my
+                    unique art as prints, posters, and merchandise.
+                  </p>
+                </div>
+              )}
+
+              {hasSociety6Link && (
+                <div>
+                  <Society6Link href={society6Url} />
+                  <p className="pt-2 text-xs">
+                    Society6 is a creative platform where I feature my art on
+                    prints, posters, and a variety of high-quality products.
+                  </p>
+                </div>
+              )}
+              <div>
+                <strong>Do you need a custom print?</strong>
+                <div>
+                  <a className="underline" href={emailLink}>
+                    Contact me
+                  </a>
+                </div>
               </div>
             </div>
-          )}
+          </div>
+          <h2>Desciption</h2>
           <p className="whitespace-pre-wrap">{description && description}</p>
         </div>
       </motion.div>
