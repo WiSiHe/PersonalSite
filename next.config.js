@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    serverActions: true,
+  },
   images: {
     domains: [
       "cdn.sanity.io",

@@ -11,6 +11,8 @@ export interface iSanityPainting {
   imagesCount: number | null
   redbubbleUrl?: string | null
   society6Url?: string | null
+  artstationUrl?: string | null
+  inPrintUrl?: string | null
   description?: string
   seoDescription?: string
   paintedAt: string

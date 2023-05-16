@@ -1,6 +1,7 @@
 "use client"
 import clsx from "clsx"
 import BackButton from "components/atoms/BackButton/BackButton"
+import StoreLinks from "components/molecules/StoreLinks"
 const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
 
 import { AnimatePresence, motion } from "framer-motion"
@@ -9,6 +10,7 @@ import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { FaThumbsUp } from "react-icons/fa"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { isEmptyObject } from "utils/object"
 import { slugify } from "utils/string"
@@ -17,14 +19,6 @@ const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
   ssr: false,
 })
-const RedbubbleLink = dynamic(
-  () => import("components/atoms/RedbubbleLink/RedbubbleLink"),
-  { suspense: true, ssr: false }
-)
-const Society6Link = dynamic(
-  () => import("components/atoms/Society6Link/Society6link"),
-  { suspense: true, ssr: false }
-)
 
 interface iPaintingPageProps {
   painting: iSanityPainting
@@ -42,6 +36,8 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     paintedAt,
     redbubbleUrl = "",
     society6Url = "",
+    artstationUrl = "",
+    inPrintUrl = "",
     tagsV2 = [],
     video = "",
   } = painting
@@ -52,9 +48,6 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d)
     return `${mo} ${ye}`
   }
-
-  const hasRedBubleLink = redbubbleUrl !== "" && redbubbleUrl !== null
-  const hasSociety6Link = society6Url !== "" && society6Url !== null
 
   const imageAspectStyle = {
     square: "aspect-square",
@@ -73,14 +66,16 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     portrait: 650,
   }
 
-  // function to open email client with pre-filled subject and body
-
-  // const emailLink = `mailto:hws902@gmail.com?subject=I%20want%20a%20print%20of%20this%20painting:%20${title}&body=Hi%20Henrik,%0D%0A%0D%0AI%20would%20like%20to%20buy%20a%20print%20of%20this%20painting:%20${title}%0D%0A%0D%0A`
+  const links = {
+    redbubbleUrl,
+    society6Url,
+    artstationUrl,
+    inPrintUrl,
+  }
 
   return (
     <AnimatePresence>
       <BackButton />
-
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -143,68 +138,38 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         key="text-section"
         className="relative justify-between p-0 transition-all lg:sticky lg:col-span-5 lg:top-4 xl:z-10 col-span-full h-fit lg:bg-white lg:p-4 xl:p-6 xl:col-span-3"
       >
-        <div className="space-y-4">
+        <div className="">
           <h1>
             <strong>{title}</strong>
           </h1>
-          <p className="text-sm text-gray-500">
-            {paintedAt && formatDate(paintedAt)}
-          </p>
-
-          <div className="flex flex-wrap gap-1">
-            {tagsV2?.map((tag) => {
+          <div className="flex flex-wrap text-xs">
+            {tagsV2?.map((tag, i) => {
               const { name = "" } = tag
-              const tagSlug = slugify(name)
+              const isLastElement = i === tagsV2.length - 1
+
               return (
-                <Link key={name} href={`/?filter=${tagSlug}`}>
-                  <Chip>{name}</Chip>
-                </Link>
+                <span key={name}>
+                  {name}
+                  {!isLastElement && <span>, </span>}
+                </span>
               )
             })}
           </div>
-
-          <div className="bg-white ">
-            <h2>
-              <strong>Store links:</strong>
-            </h2>
-            <p>
-              Beyond my original art, I offer prints, posters, and merchandise
-              in various formats, including framed or canvas prints and artful
-              phone cases.
-            </p>
-            <div className="flex flex-col gap-4 pt-4">
-              {hasRedBubleLink && (
-                <div>
-                  <RedbubbleLink href={redbubbleUrl} />
-                  <p className="pt-2 text-xs">
-                    Redbubble is a vibrant online marketplace where I sell my
-                    unique art as prints, posters, and merchandise.
-                  </p>
-                </div>
-              )}
-
-              {hasSociety6Link && (
-                <div>
-                  <Society6Link href={society6Url} />
-                  <p className="pt-2 text-xs">
-                    Society6 is a creative platform where I feature my art on
-                    prints, posters, and a variety of high-quality products.
-                  </p>
-                </div>
-              )}
-              <div>
-                <strong>Do you need a custom print?</strong>
-                <div>
-                  <Link href="/contact">Contact</Link>
-                  {/* <a className="underline" href={emailLink}>
-                    Contact me
-                  </a> */}
-                </div>
-              </div>
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <p>{paintedAt && formatDate(paintedAt)}</p>
+            <span>&#183;</span>
+            <div className="flex items-center gap-2">
+              <FaThumbsUp /> <span>0</span>
             </div>
           </div>
-          <h2>Desciption</h2>
-          <p className="whitespace-pre-wrap">{description && description}</p>
+
+          <div className="py-6">
+            <StoreLinks links={links} />
+          </div>
+          <div>
+            <strong>Desciption</strong>
+            <p className="whitespace-pre-wrap">{description && description}</p>
+          </div>
         </div>
       </motion.div>
     </AnimatePresence>

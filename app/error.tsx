@@ -16,7 +16,7 @@ export default function Error({
   }, [error])
 
   return (
-    <Main className="items-center justify-center min-h-screen">
+    <Main className="items-center justify-center min-h-screen p-4">
       <div className="p-10 bg-white rounded h-fit">
         <h1>Something went wrong!</h1>
         <div className="py-4">

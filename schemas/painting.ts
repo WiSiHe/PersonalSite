@@ -139,6 +139,19 @@ export default defineType({
       group: "social",
     }),
     defineField({
+      name: "artstationUrl",
+      title: "ArtStation URL",
+      type: "url",
+      group: "social",
+    }),
+    defineField({
+      name: "inPrintUrl",
+      title: "In Print",
+      type: "url",
+      group: "social",
+    }),
+
+    defineField({
       name: "instagramUrl",
       title: "Instagram URL",
       type: "url",
