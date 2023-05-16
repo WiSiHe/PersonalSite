@@ -73,7 +73,9 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     portrait: 650,
   }
 
-  const emailLink = `mailto:hws902@gmail.com?subject=I%20want%20a%20print%20of%20this%20painting:%20${title}&body=Hi%20Henrik,%0D%0A%0D%0AI%20would%20like%20to%20buy%20a%20print%20of%20this%20painting:%20${title}%0D%0A%0D%0A${window.location.href}%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AKind%20regards,%0D%0A%0D%0A`
+  // function to open email client with pre-filled subject and body
+
+  // const emailLink = `mailto:hws902@gmail.com?subject=I%20want%20a%20print%20of%20this%20painting:%20${title}&body=Hi%20Henrik,%0D%0A%0D%0AI%20would%20like%20to%20buy%20a%20print%20of%20this%20painting:%20${title}%0D%0A%0D%0A`
 
   return (
     <AnimatePresence>
@@ -193,9 +195,10 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
               <div>
                 <strong>Do you need a custom print?</strong>
                 <div>
-                  <a className="underline" href={emailLink}>
+                  <Link href="/contact">Contact</Link>
+                  {/* <a className="underline" href={emailLink}>
                     Contact me
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
