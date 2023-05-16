@@ -15,7 +15,7 @@ export default async function AppContactPage() {
 
   return (
     <>
-      <Main className="min-h-screen">
+      <Main className="grid min-h-screen grid-cols-12 gap-4 p-4">
         <ContactPage />
       </Main>
     </>

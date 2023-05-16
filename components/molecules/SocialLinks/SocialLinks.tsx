@@ -10,10 +10,7 @@ import {
 const SocialLinks = ({ alignLeft = false }) => {
   return (
     <div
-      className={clsx(
-        "flex mix-blend-difference",
-        alignLeft ? "justify-start" : "justify-center"
-      )}
+      className={clsx("flex", alignLeft ? "justify-start" : "justify-center")}
     >
       <ul className="inline-flex space-x-8 ">
         <li className="">
