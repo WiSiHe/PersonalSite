@@ -14,7 +14,7 @@ interface iPaintingGridProps {
   paintings: iSanityPainting[]
 }
 
-const debounce = <F extends (...args: any[]) => any>(
+const debounce = <F extends (...args: any[]) => void>(
   func: F,
   wait: number
 ): ((...args: Parameters<F>) => void) => {
@@ -38,14 +38,16 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
   const router = useRouter()
 
   const searchParams = useSearchParams()
-  const [isLoading, setIsLoading] = useState(true)
 
   const allFilter = searchParams?.getAll("filter")
 
-  const [paintingsSlice, setPaintingsSlice] = useState(25)
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
   const sorting = useCombinedStore((state) => state.paintingSorting)
+
+  // const [paintingsSlice, setPaintingsSlice] = useState(25)
+  const paintingsSlice = useCombinedStore((state) => state.paintingSlice)
+  const setPaintingsSlice = useCombinedStore((state) => state.setPaintingSlice)
 
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
@@ -77,7 +79,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
     // append 25 more paintings to the list
     const newPaintingsSlice = paintingsSlice + 25
-    setPaintingsSlice((prev) => prev + 25)
+    setPaintingsSlice(newPaintingsSlice)
 
     if (newPaintingsSlice >= paintings.length) {
       setHasLoadedAllPaintings(true)
@@ -104,7 +106,6 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
     // Check for empty paintings array
     if (!paintings.length) return
-    setIsLoading(false)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
@@ -113,7 +114,6 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
   useEffect(() => {
     if (isEmptyArray(paintings)) return
-    setIsLoading(false)
   }, [paintings])
 
   return (
