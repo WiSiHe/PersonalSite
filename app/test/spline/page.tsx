@@ -15,7 +15,7 @@ export default async function Home() {
         type="module"
         src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
       />
-      <Main className="min-h-screen">
+      <Main className="min-h-screen" noTopPadding>
         <section className="grid grid-cols-12 p-4">
           <div className="col-span-full">
             Look at

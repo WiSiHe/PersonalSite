@@ -10,7 +10,7 @@ export const metadata = {
 
 export default async function Home() {
   return (
-    <Main>
+    <Main noTopPadding className="min-h-[80vh]">
       <Chat />
     </Main>
   )

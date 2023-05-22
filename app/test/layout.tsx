@@ -7,9 +7,11 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <nav className="p-4 bg-white mt-14">
-        <ul className="flex gap-4">
+      <nav className="p-4 mt-14">
+        <ul className="sticky top-0 flex gap-4 p-4 bg-white rounded-lg drop-shadow-xl">
+          <li>
+            <Link href="/test">Next</Link>
+          </li>
           <li>
             <Link href="/test/open-ai">OpenAI</Link>
           </li>

@@ -157,7 +157,7 @@ const Chat = () => {
   // const test = useGetFromStore(useOpenAIStore, (state: any) => state.messages)
 
   return (
-    <div className="flex flex-col h-[90vh] w-full">
+    <div className="flex flex-col w-full">
       <div className="flex items-end justify-between p-4 border-b border-b-primary drop-shadow-md">
         <div>
           <h1>HenrikGPT</h1>

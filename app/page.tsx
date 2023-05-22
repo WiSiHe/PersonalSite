@@ -1,4 +1,5 @@
 import Main from "components/atoms/Main/Main"
+import GreeterCard from "components/molecules/GreeterCard"
 import GalleryPage from "components/pages/GalleryPage"
 import { getAllTagsAndPaintingsLight } from "lib/api"
 import { notFound } from "next/navigation"

@@ -7,4 +7,5 @@ module.exports = {
   trailingComma: "none",
   arrowParens: "avoid",
   // jsxBracketSameLine: true,
+  plugins: [require("prettier-plugin-tailwindcss")],
 }

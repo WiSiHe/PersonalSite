@@ -88,6 +88,7 @@
     "intl-segmenter-polyfill": "^0.4.4",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0",
     "react-lazy-load-image-component": "^1.5.6",
     "storybook": "^7.0.12",
     "tailwindcss": "^3.3.2",
