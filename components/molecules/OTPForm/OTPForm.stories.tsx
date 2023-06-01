@@ -4,7 +4,7 @@ import { useState } from "react"
 import OTPForm from "./OTPForm"
 
 const meta: Meta<typeof OTPForm> = {
-  title: "Atoms/OTPForm",
+  title: "Molecules/OTPForm",
   component: OTPForm,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
   tags: ["autodocs"],
