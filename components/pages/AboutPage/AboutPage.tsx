@@ -1,18 +1,16 @@
 "use client"
 import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
+import LinkButton from "components/atoms/LinkButton/LinkButton"
 import Main from "components/atoms/Main/Main"
 import HeroSectionDesktop from "components/templates/HeroSectionDesktop/HeroSectionDesktop"
 import HeroSectionMobile from "components/templates/HeroSectionMobile/HeroSectionMobile"
-import ScrollSection from "components/templates/ScrollSection/ScrollSection"
-import { iSanityWallpaperPaintings } from "lib/models/objects/sanityPainting"
-
-import { motion } from "framer-motion"
 import ImageExplotionSection from "components/templates/ImageExplotionSection/ImageExplotionSection"
+import ScrollSection from "components/templates/ScrollSection/ScrollSection"
+import { motion } from "framer-motion"
+import { iSanityWallpaperPaintings } from "lib/models/objects/sanityPainting"
 import Image from "next/image"
-
 import explorer from "public/images/explorer.png"
 import night from "public/images/night-forest.jpeg"
-import LinkButton from "components/atoms/LinkButton/LinkButton"
 
 interface iAboutPage {
   wallpapers: iSanityWallpaperPaintings[]
@@ -20,11 +18,11 @@ interface iAboutPage {
 
 const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
   return (
-    <Main className="flex-col min-h-screen whitespace-pre-wrap">
+    <Main className="flex-col whitespace-pre-wrap lg:min-h-screen">
       {/* <HeroSectionMobile paintings={wallpapers} />
       <HeroSectionDesktop paintings={wallpapers} /> */}
 
-      <section className="p-4">
+      <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
         <h1>About me</h1>
         <p>
           Welcome to my world. My name is Henrik Wilhelm Sissener, a digital
@@ -90,7 +88,7 @@ const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
         </GridStyleWrapper>
       </section>
 
-      <section className="p-4">
+      <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
         <p>
           But it doesn&#39;t stop there. I am an ardent hobbyist in Game
           Development, where I blend my artistic vision with technical
@@ -100,7 +98,7 @@ const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
         </p>
       </section>
 
-      <section className="p-4">
+      <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
         <p>
           When I&#39;m not navigating the vastness of space or immersing myself
           in digital landscapes, I work as a Frontend Developer. With a keen eye
@@ -161,7 +159,7 @@ const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
           </div>
         </GridStyleWrapper>
       </section>
-      <section className="p-4">
+      <section className="max-w-screen-lg p-4 mx-auto bg-blue-200 lg:min-h-screen">
         <p>
           Whether it&#39;s through my digital art, game designs, or web
           development, I am constantly driven by the endless possibilities for
@@ -170,7 +168,7 @@ const AboutPage = ({ wallpapers = [] }: iAboutPage) => {
           can be shared and enjoyed by others.
         </p>
       </section>
-      <section className="p-4">
+      <section className="max-w-screen-lg p-4 mx-auto bg-red-300 lg:min-h-screen">
         <p>
           Feel free to navigate through my portfolio to catch a glimpse of my
           work. Whether you&#39;re interested in a commissioned piece, need a
