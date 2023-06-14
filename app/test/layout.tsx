@@ -18,6 +18,9 @@ export default function DashboardLayout({
           <li>
             <Link href="/test/spline">spline</Link>
           </li>
+          <li>
+            <Link href="/test/search">Search</Link>
+          </li>
         </ul>
       </nav>
       {children}

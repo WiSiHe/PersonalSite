@@ -14,7 +14,7 @@ const Footer = () => {
       transition={{
         type: "spring",
       }}
-      className="flex items-center justify-center w-full gap-4 p-10 text-white bg-dark"
+      className="flex flex-wrap items-center justify-center w-full gap-4 p-10 text-white bg-dark"
     >
       <SocialLinks />
       <Link
