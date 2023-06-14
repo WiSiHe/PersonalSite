@@ -6,7 +6,7 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
-import { isEmptyArray } from "utils/array"
+import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
 
@@ -55,6 +55,8 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
     if (!allFilter || isEmptyArray(allFilter)) return []
     return allFilter.flatMap((f) => f.split(","))
   }, [allFilter])
+
+  const hasFilters = isNotEmptyArray(splitFilters)
 
   const filterPaintingsV2 = useMemo(() => {
     if (isEmptyArray(splitFilters)) return sortPaintings(paintings, sorting)
@@ -118,9 +120,19 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
   return (
     <section className="grid items-start w-full grid-cols-12 gap-2 mb-10 xl:gap-4">
-      <div className="h-full col-span-full md:col-span-8 lg:col-span-6 xl:col-span-6 2xl:col-span-3">
-        <GreeterCard />
-      </div>
+      <AnimatePresence mode="wait">
+        {!hasFilters && (
+          <motion.div
+            key="greeter-card"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: "spring" }}
+            className="h-full col-span-full md:col-span-8 lg:col-span-6 xl:col-span-6 2xl:col-span-3"
+          >
+            <GreeterCard />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {!isEmptyArray(filterPaintingsV2) ? (
           filterPaintingsV2.slice(0, paintingsSlice).map((painting) => (
@@ -128,6 +140,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
               key={painting._id}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 20 }}
               transition={{ type: "spring" }}
               viewport={{ once: true }}
               className="col-span-6 md:col-span-4 lg:col-span-3"

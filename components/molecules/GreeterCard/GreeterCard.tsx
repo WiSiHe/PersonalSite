@@ -1,6 +1,45 @@
+"use client"
+import { motion } from "framer-motion"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"
 import { HiOutlineDesktopComputer } from "react-icons/hi"
+
+const gameIconVariant = {
+  hover: {
+    scale: 1.2,
+    rotate: 360,
+    transition: {
+      type: "spring",
+    },
+  },
+}
+
+const brushVariant = {
+  hover2: {
+    scale: 1.2,
+    rotate: 360,
+    transition: {
+      type: "spring",
+    },
+  },
+}
+
+const desktopVariant = {
+  initial: {
+    scale: 0.8,
+  },
+  animate: {
+    scale: 1,
+    rotate: 0,
+  },
+  hover1: {
+    scale: 1.2,
+    rotate: 360,
+    transition: {
+      type: "spring",
+    },
+  },
+}
 
 const GreeterCard = () => {
   return (
@@ -8,19 +47,30 @@ const GreeterCard = () => {
       <h1 className="text-4xl">
         <strong>Henrik Wilhelm Sissener</strong>
       </h1>
-      <ul>
-        <li className="flex items-center gap-2">
-          <HiOutlineDesktopComputer />
+      <ul className="flex flex-col gap-2">
+        <motion.li
+          className="flex items-center gap-2 p-1"
+          whileHover="hover1"
+          initial="initial"
+          animate="animate"
+        >
+          <motion.div variants={desktopVariant}>
+            <HiOutlineDesktopComputer />
+          </motion.div>
           <span>Senior Front-end developer</span>
-        </li>
-        <li className="flex items-center gap-2">
-          <BsFillBrushFill />
+        </motion.li>
+        <motion.li className="flex items-center gap-2 p-1" whileHover="hover2">
+          <motion.div variants={brushVariant}>
+            <BsFillBrushFill />
+          </motion.div>
           <span>Digital artist</span>
-        </li>
-        <li className="flex items-center gap-2">
-          <BiGame />
+        </motion.li>
+        <motion.li whileHover="hover" className="flex items-center gap-2 p-1">
+          <motion.div variants={gameIconVariant}>
+            <BiGame />
+          </motion.div>
           <span>Game developer</span>
-        </li>
+        </motion.li>
       </ul>
     </section>
   )
