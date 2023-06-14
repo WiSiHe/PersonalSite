@@ -2,18 +2,14 @@
 import clsx from "clsx"
 import BackButton from "components/atoms/BackButton/BackButton"
 import StoreLinks from "components/molecules/StoreLinks"
-const Chip = dynamic(() => import("components/atoms/Chip/Chip"))
-
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { imageBuilder } from "lib/sanity"
 import dynamic from "next/dynamic"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { FaThumbsUp } from "react-icons/fa"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { isEmptyObject } from "utils/object"
-import { slugify } from "utils/string"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   suspense: true,
@@ -142,7 +138,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           <h1>
             <strong>{title}</strong>
           </h1>
-          <div className="flex flex-wrap text-xs">
+          <div className="flex flex-wrap mt-4 text-xs">
             {tagsV2?.map((tag, i) => {
               const { name = "" } = tag
               const isLastElement = i === tagsV2.length - 1

@@ -113,7 +113,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
         </div>
 
         <div className="flex items-center justify-between gap-2 p-4 text-xs ring bg-primary border-t-primary ">
-          <h2 className="text-lg text-white capitalize font-inter line-clamp-1">
+          <h2 className="text-base text-white capitalize font-inter line-clamp-1">
             <strong>{title}</strong>
           </h2>
           <div className="flex items-center justify-center gap-4 text-lg text-white">

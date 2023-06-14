@@ -118,18 +118,22 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
 
   return (
     <section className="grid items-start w-full grid-cols-12 gap-2 mb-10 xl:gap-4">
-      <div className="h-full col-span-full md:col-span-8 lg:col-span-6 xl:col-span-6 2xl:col-span-4">
+      <div className="h-full col-span-full md:col-span-8 lg:col-span-6 xl:col-span-6 2xl:col-span-3">
         <GreeterCard />
       </div>
       <AnimatePresence>
         {!isEmptyArray(filterPaintingsV2) ? (
           filterPaintingsV2.slice(0, paintingsSlice).map((painting) => (
-            <div
+            <motion.div
               key={painting._id}
-              className="col-span-6 md:col-span-4 lg:col-span-3 2xl:col-span-2"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: "spring" }}
+              viewport={{ once: true }}
+              className="col-span-6 md:col-span-4 lg:col-span-3"
             >
               <Painting paintingData={painting} />
-            </div>
+            </motion.div>
           ))
         ) : (
           <>

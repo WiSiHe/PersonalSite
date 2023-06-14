@@ -49,7 +49,7 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
   // const hasTags = isNotEmptyArray(tags)
 
   const basePrompt =
-    "You are an AI designed to provide objective descriptions of stylised paintings. Also imrpove the text where you can. "
+    "You are an AI designed to provide objective descriptions of stylised paintings given a text description. Also improve the text where you can. "
 
   const promptWithBase = `${basePrompt} with the following description: ${prompt}.`
 
