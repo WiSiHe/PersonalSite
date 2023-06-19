@@ -132,29 +132,28 @@ export default async function LandingPage({ params }: { params: Params }) {
     name: title,
     url: paintingUrl,
     image: paintingImageUrl,
+    author: {
+      "@type": "Person",
+      name: "Henrik Wilhelm Sissener",
+      url: "https://wisihe.no/about",
+    },
     creator: {
       "@type": "Person",
       name: "Henrik Wilhelm Sissener",
       url: "https://wisihe.no/about",
     },
+    artworkSurface: "Digital",
+    artMedium: "Digital",
     artform: "Digital Painting",
     dateCreated: paintedAt,
     description: removedLineBreaks,
-    artMedium: "Digital",
-    // width: "1920",
-    // height: "1080",
+
     inLanguage: "en",
-    // copyrightHolder: {
-    //   "@type": "Person",
-    //   name: "Jane Doe",
-    // },
-    // offers: {
-    //   "@type": "Offer",
-    //   availability: "https://schema.org/InStock",
-    //   price: "250",
-    //   priceCurrency: "USD",
-    //   url: "https://example.com/gallery/the-digital-sunrise/order",
-    // },
+    copyrightHolder: {
+      "@type": "Person",
+      name: "Henrik Wilhelm Sissener",
+      url: "https://wisihe.no/about",
+    },
   }
 
   return (
