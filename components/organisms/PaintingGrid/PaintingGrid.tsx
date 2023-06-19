@@ -139,10 +139,10 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
             <motion.div
               key={painting._id}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
               transition={{ type: "spring" }}
-              viewport={{ once: true }}
+              // viewport={{ once: true }}
               className="col-span-6 md:col-span-4 lg:col-span-3"
             >
               <Painting paintingData={painting} />

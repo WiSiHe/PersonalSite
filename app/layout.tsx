@@ -84,6 +84,30 @@ const jsonLd = {
   },
 }
 
+const jsonLdSite = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://wisihe.no",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Projects",
+      item: "https://wisihe.no/projects",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Project1",
+      item: "https://wisihe.no/projects/project1",
+    },
+  ],
+}
 export default function RootLayout({ children }: RootProps) {
   return (
     <html lang="en" className="scroll-smooth">
@@ -93,6 +117,10 @@ export default function RootLayout({ children }: RootProps) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSite) }}
         />
       </head>
       <body
