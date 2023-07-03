@@ -175,5 +175,5 @@ async function queryStalePaintingRoutes(
 
   slugs = await mergeWithMoreStories(client, slugs)
 
-  return ["/", ...slugs.map((slug: string) => `/paintings/${slug}`)]
+  return ["/", ...slugs.map((slug: string) => `/painting/${slug}`)]
 }
