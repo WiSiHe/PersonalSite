@@ -3,6 +3,7 @@ import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
+import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 
 export const revalidate = 3600 // every hour
@@ -19,7 +20,8 @@ export async function generateStaticParams() {
 
 // SEO
 export async function generateMetadata({ params }: { params: Params }) {
-  const painting = await getData(params.slug)
+  const preview = draftMode().isEnabled ? true : false
+  const painting = await getData(params.slug, preview)
 
   const {
     title = "Not found",
@@ -86,8 +88,9 @@ export async function generateMetadata({ params }: { params: Params }) {
   }
 }
 
-async function getData(slug: string) {
-  const painting = await getPaintingDetails(slug)
+async function getData(slug: string, preview: boolean) {
+  const painting = await getPaintingDetails(slug, preview)
+
   return painting
 }
 
@@ -96,7 +99,8 @@ interface Params {
 }
 
 export default async function LandingPage({ params }: { params: Params }) {
-  const painting = await getData(params.slug)
+  const preview = draftMode().isEnabled ? true : false
+  const painting = await getData(params.slug, preview)
 
   if (!painting) {
     return notFound()

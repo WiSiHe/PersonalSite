@@ -58,6 +58,7 @@ export const previewDocumentNode = ({
                 slug={document.displayed.slug?.current}
                 apiVersion={apiVersion}
                 previewSecretId={previewSecretId}
+                id={document.displayed._id}
               />
             ))
             .title("Preview"),
