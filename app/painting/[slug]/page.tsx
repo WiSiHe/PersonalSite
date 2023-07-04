@@ -2,7 +2,7 @@ import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import { notFound } from "next/navigation"
 
 export const revalidate = 3600 // every hour
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   const descriptionText = selectedDescription.replace(regex, "")
   const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
-  const paintingImageUrl = imageBuilder(image)
+  const paintingImageUrl = urlForImage(image)
     .width(400)
     .height(400)
     .quality(45)
@@ -120,7 +120,7 @@ export default async function LandingPage({ params }: { params: Params }) {
 
   const paintingUrl = `https://wisihe.no/painting/${slug}`
 
-  const paintingImageUrl = imageBuilder(image)
+  const paintingImageUrl = urlForImage(image)
     .width(400)
     .height(400)
     .quality(75)

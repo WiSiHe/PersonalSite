@@ -1,7 +1,7 @@
 import clsx from "clsx"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import Link from "next/link"
@@ -79,8 +79,8 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
       >
         <div className="relative aspect-square bg-primary overflow-clip">
           <Image
-            src={imageBuilder(image).width(400).height(400).quality(55).url()}
-            blurDataURL={imageBuilder(image)
+            src={urlForImage(image).width(400).height(400).quality(55).url()}
+            blurDataURL={urlForImage(image)
               .width(20)
               .height(20)
               .quality(10)

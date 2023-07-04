@@ -1,6 +1,6 @@
 import AboutPage from "components/pages/AboutPage"
 import { getAllWallpapers } from "lib/api"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import { notFound } from "next/navigation"
 
 export const metadata = {
@@ -15,12 +15,12 @@ async function getWallPapers() {
 
   const desktopWallpapersWithFetchedImages = paintings.map((wallpaper) => ({
     ...wallpaper,
-    lowResImageUrl: imageBuilder(wallpaper.image)
+    lowResImageUrl: urlForImage(wallpaper.image)
       .width(20)
       .height(20)
       .quality(10)
       .url(),
-    imageUrl: imageBuilder(wallpaper.image)
+    imageUrl: urlForImage(wallpaper.image)
       .width(1920)
       .height(1080)
       .quality(75)

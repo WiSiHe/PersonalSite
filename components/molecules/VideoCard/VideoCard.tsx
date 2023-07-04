@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityVideo } from "lib/models/objects/sanityVideo"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import { isNotEmptyArray } from "utils/array"
 import { isNotEmptyObject } from "utils/object"
@@ -59,7 +59,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
               <img
                 src={
                   hasThumbnail
-                    ? imageBuilder(thumbnail)
+                    ? urlForImage(thumbnail)
                         .width(650)
                         .height(380)
                         .quality(35)

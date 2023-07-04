@@ -7,7 +7,7 @@ import Main from "components/atoms/Main/Main"
 import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import { iSanityProject } from "lib/models/objects/sanityProject"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
@@ -36,7 +36,7 @@ const ProjectPage = ({ project }: PageProps) => {
         <div className="relative w-full aspect-square xl:aspect-video">
           {project?.image && (
             <Image
-              src={imageBuilder(project.image).url()}
+              src={urlForImage(project.image).url()}
               fill
               alt={project.title}
               className="object-cover"
@@ -77,7 +77,7 @@ const ProjectPage = ({ project }: PageProps) => {
               return (
                 <div className="relative aspect-square" key={i}>
                   <Image
-                    src={imageBuilder(image)
+                    src={urlForImage(image)
                       .width(400)
                       .height(400)
                       .quality(35)
@@ -131,7 +131,7 @@ const ProjectPage = ({ project }: PageProps) => {
                 >
                   <Link href={`/painting/${slug}`}>
                     <Image
-                      src={imageBuilder(image)
+                      src={urlForImage(image)
                         .width(paintingImageWidth(format))
                         .height(paintingImageHeight(format))
                         .quality(35)

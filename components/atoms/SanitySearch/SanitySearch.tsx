@@ -1,6 +1,7 @@
 "use client"
 import { iSanityImage } from "lib/models/objects/sanityImage"
-import client, { urlFor } from "lib/sanity"
+import { getClient } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
@@ -21,7 +22,7 @@ const SanitySearch = () => {
     if (!query) return []
     const mQ = `${query}*`
     const limit = 10
-    const results = await client.fetch(
+    const results = await getClient().fetch(
       `*[_type in $types && title match $mQ || name match $mQ ][0...$limit]{title, name, image}`,
       { mQ, types, limit }
     )
@@ -62,7 +63,10 @@ const SanitySearch = () => {
               {image && (
                 <div className="relative aspect-square">
                   <Image
-                    src={urlFor(painting.image).width(200).url()}
+                    src={urlForImage(painting.image)
+                      .height(200)
+                      .width(200)
+                      .url()}
                     alt={painting.title}
                     fill
                     className="object-cover w-full h-full"

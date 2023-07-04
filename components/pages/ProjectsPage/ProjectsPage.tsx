@@ -1,7 +1,6 @@
 "use client"
 import clsx from "clsx"
 import Chip from "components/atoms/Chip/Chip"
-import Main from "components/atoms/Main/Main"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import Project from "components/molecules/Project/Project"
 import { iSanityProject } from "lib/models/objects/sanityProject"

@@ -4,7 +4,7 @@ import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"
 import { AnimatePresence, motion } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityProject } from "lib/models/objects/sanityProject"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
@@ -67,7 +67,7 @@ const Project = ({
         )}
       >
         <Image
-          src={imageBuilder(image)
+          src={urlForImage(image)
             .width(isMobile ? 400 : 1280)
             .height(isMobile ? 400 : 720)
             .quality(65)

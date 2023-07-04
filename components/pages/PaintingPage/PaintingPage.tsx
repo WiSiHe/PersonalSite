@@ -4,7 +4,7 @@ import BackButton from "components/atoms/BackButton/BackButton"
 import StoreLinks from "components/molecules/StoreLinks"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
-import { imageBuilder } from "lib/sanity"
+import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
 import { FaThumbsUp } from "react-icons/fa"
@@ -87,7 +87,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         <LazyLoadImage
           visibleByDefault
           alt={title}
-          src={imageBuilder(image)
+          src={urlForImage(image)
             .width(imageWidth[format])
             .height(imageHeight[format])
             .quality(75)
@@ -102,7 +102,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
             >
               <LazyLoadImage
                 alt={title}
-                src={imageBuilder(image)
+                src={urlForImage(image)
                   .width(imageWidth[format])
                   .height(imageHeight[format])
                   .quality(75)
@@ -138,25 +138,32 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           <h1>
             <strong>{title}</strong>
           </h1>
-          <div className="flex flex-wrap mt-4 text-xs">
-            {tagsV2?.map((tag, i) => {
-              const { name = "" } = tag
-              const isLastElement = i === tagsV2.length - 1
 
-              return (
-                <span key={name}>
-                  {name}
-                  {!isLastElement && <span>, </span>}
-                </span>
-              )
-            })}
-          </div>
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center gap-2 mt-4 text-sm text-stone-400">
             <p>{paintedAt && formatDate(paintedAt)}</p>
             <span>&#183;</span>
             <div className="flex items-center gap-2">
               <FaThumbsUp /> <span>0</span>
             </div>
+          </div>
+          <div className="flex flex-wrap text-xs">
+            {tagsV2?.map((tag, i) => {
+              const { name = "" } = tag
+              const isLastElement = i === tagsV2.length - 1
+
+              return (
+                <div
+                  key={`tag-${i}`}
+                  className={clsx(
+                    "flex items-center gap-2",
+                    isLastElement ? "" : "mr-2"
+                  )}
+                >
+                  <span>{name}</span>
+                  {!isLastElement && <span>&#183;</span>}
+                </div>
+              )
+            })}
           </div>
 
           <div className="py-6">
