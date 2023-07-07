@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
+import PaintingPagePreview from "components/pages/PaintingPagePreview"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
 import { draftMode } from "next/headers"
@@ -158,6 +159,17 @@ export default async function LandingPage({ params }: { params: Params }) {
       name: "Henrik Wilhelm Sissener",
       url: "https://wisihe.no/about",
     },
+  }
+
+  if (preview) {
+    return (
+      <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
+        <div className="fixed top-0 right-0 z-20 p-4 text-white lef t-0 bg-primary">
+          Preview
+        </div>
+        <PaintingPagePreview painting={painting} />
+      </Main>
+    )
   }
 
   return (

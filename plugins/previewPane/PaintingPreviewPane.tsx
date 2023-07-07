@@ -88,7 +88,6 @@ const Iframe = memo(function Iframe(
   props: Omit<Props, "slug"> & Required<Pick<Props, "slug">>
 ) {
   const { apiVersion, previewSecretId, slug, id } = props
-  console.log("id", id)
 
   const client = useClient({ apiVersion })
 

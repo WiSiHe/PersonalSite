@@ -133,14 +133,14 @@ export default function RootLayout({ children }: RootProps) {
       >
         <SkipToMainContentLink />
         <Navigation />
-        {preview && (
+        {/* {preview && (
           <Link
             href="/api/exit-preview"
             className="fixed z-30 p-4 text-white rounded shadow-xl bg-primary top-20 right-4"
           >
             <div>Exit Preview</div>
           </Link>
-        )}
+        )} */}
         {children}
 
         <Footer />

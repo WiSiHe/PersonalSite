@@ -10,8 +10,10 @@ import postType from "schemas/post"
 import paintingType from "schemas/painting"
 
 import AuthorAvatarPreviewPane from "./AuthorAvatarPreviewPane"
-import PostPreviewPane from "./PostPreviewPane"
+
 import PaintingPreviewPane from "./PaintingPreviewPane"
+import PaintingPage from "components/pages/PaintingPage"
+import PaintingPagePreview from "components/pages/PaintingPagePreview"
 
 export const previewDocumentNode = ({
   apiVersion,
@@ -22,47 +24,44 @@ export const previewDocumentNode = ({
 }): DefaultDocumentNodeResolver => {
   return (S, { schemaType }) => {
     switch (schemaType) {
-      case authorType.name:
-        return S.document().views([
-          S.view.form(),
-          S.view
-            .component(({ document }) => (
-              <AuthorAvatarPreviewPane
-                name={document.displayed.name as any}
-                picture={document.displayed.picture as any}
-              />
-            ))
-            .title("Preview"),
-        ])
-
-      case postType.name:
-        return S.document().views([
-          S.view.form(),
-          S.view
-            .component(({ document }) => (
-              <PostPreviewPane
-                slug={document.displayed.slug?.current}
-                apiVersion={apiVersion}
-                previewSecretId={previewSecretId}
-              />
-            ))
-            .title("Preview"),
-        ])
-
       case paintingType.name:
-        return S.document().views([
-          S.view.form(),
-          S.view
-            .component(({ document }) => (
-              <PaintingPreviewPane
-                slug={document.displayed.slug?.current}
-                apiVersion={apiVersion}
-                previewSecretId={previewSecretId}
-                id={document.displayed._id}
-              />
-            ))
-            .title("Preview"),
-        ])
+        return (
+          S.document()
+            // .documentId(documentId)
+            .schemaType(schemaType)
+            .views([
+              S.view.form(),
+              S.view
+                .component(({ document }) => (
+                  <PaintingPreviewPane
+                    slug={document.displayed.slug?.current}
+                    apiVersion={apiVersion}
+                    previewSecretId={previewSecretId}
+                    id={document.displayed._id}
+                    // painting={document.displayed}
+                  />
+                ))
+                .options({
+                  url: (doc: any) => {
+                    return `/painting/${doc.displayed.slug.current}`
+                  },
+                })
+                .title("Preview Painting"),
+              // S.view
+              //   .component(
+              //     ({ document }) =>
+              //       document.displayed && (
+              //         <PaintingPagePreview painting={document.displayed} />
+              //       )
+              //   )
+              //   .options({
+              //     previewURL: (doc: any) => {
+              //       return `/painting/${doc.displayed.slug.current}`
+              //     },
+              //   })
+              //   .title("Realtime Preview"),
+            ])
+        )
       default:
         return null
     }
