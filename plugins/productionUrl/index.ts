@@ -29,7 +29,7 @@ export const productionUrl = definePlugin<{
     name: "productionUrl",
     document: {
       productionUrl: async (prev, { document, getClient }) => {
-        const url = new URL("/api/sanity/preview", location.origin)
+        const url = new URL("/api/preview", location.origin)
 
         const client = getClient({ apiVersion })
         const secret = await getSecret(client, previewSecretId, true)
@@ -41,9 +41,16 @@ export const productionUrl = definePlugin<{
           url.searchParams.set("slug", slug)
         }
 
+        const id = document._id
+        if (id) {
+          url.searchParams.set("id", id)
+        }
+
+        console.log("Open preview URL", url.toString())
+
         if (types.has(document._type)) {
           url.searchParams.set("type", document._type)
-          console.log("Open preview URL", url.toString())
+
           return url.toString()
         }
 

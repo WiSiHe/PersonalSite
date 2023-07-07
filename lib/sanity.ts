@@ -1,20 +1,7 @@
 import { apiVersion, dataset, projectId, useCdn } from "lib/sanity.api"
 import { SanityClient, createClient } from "next-sanity"
 
-// import { Image as MainImage } from "./models/sections/image"
-
-// const config = {
-//   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "undefined",
-//   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
-//   apiVersion: "2021-08-31",
-//   useCdn: process.env.NODE_ENV === "production",
-//   perspective: "published",
-//   // useCdn:
-//   //   typeof document !== 'undefined' && process.env.NODE_ENV === 'production',
-//   // useCdn: true,
-// }
-
-export function getClient(preview?: { token: string }): SanityClient {
+export function getClient(preview?: boolean): SanityClient {
   const client = createClient({
     projectId,
     dataset,
@@ -23,11 +10,13 @@ export function getClient(preview?: { token: string }): SanityClient {
     perspective: "published",
   })
   if (preview) {
-    if (!preview.token) {
+    const token = process.env.SANITY_API_READ_TOKEN
+
+    if (!token) {
       throw new Error("You must provide a token to preview drafts")
     }
     return client.withConfig({
-      token: preview.token,
+      token: token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
       perspective: "previewDrafts",

@@ -17,10 +17,12 @@ type Props = {
   slug?: string
   previewSecretId: `${string}.${string}`
   apiVersion: string
+  id: string
 }
 
 export default function PaintingPreviewPane(props: Props) {
-  const { previewSecretId, apiVersion } = props
+  const { previewSecretId, apiVersion, id } = props
+
   // Whenever the slug changes, wait 3 seconds for GROQ to reach eventual consistency.
   // This helps to prevent displaying "Invalid slug" or returning 404 errors while editing the slug manually.
   const [slug, setSlug] = useState(props.slug)
@@ -53,6 +55,7 @@ export default function PaintingPreviewPane(props: Props) {
           apiVersion={apiVersion}
           previewSecretId={previewSecretId}
           slug={slug}
+          id={id}
         />
       </Suspense>
       <Flex
@@ -84,7 +87,8 @@ const fetchSecret = Symbol("preview.secret")
 const Iframe = memo(function Iframe(
   props: Omit<Props, "slug"> & Required<Pick<Props, "slug">>
 ) {
-  const { apiVersion, previewSecretId, slug } = props
+  const { apiVersion, previewSecretId, slug, id } = props
+
   const client = useClient({ apiVersion })
 
   const secret = suspend(
@@ -94,8 +98,15 @@ const Iframe = memo(function Iframe(
     { lifespan: 60000 }
   )
 
-  const url = new URL("/api/sanity/preview", location.origin)
+  const url = new URL("/api/preview", location.origin)
   url.searchParams.set("slug", slug)
+
+  if (id) {
+    url.searchParams.set("id", id)
+  }
+
+  url.searchParams.set("type", "painting")
+
   if (secret) {
     url.searchParams.set("secret", secret)
   }

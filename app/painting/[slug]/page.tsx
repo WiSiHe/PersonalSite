@@ -1,8 +1,10 @@
 import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
+import PaintingPagePreview from "components/pages/PaintingPagePreview"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
+import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 
 export const revalidate = 3600 // every hour
@@ -19,7 +21,8 @@ export async function generateStaticParams() {
 
 // SEO
 export async function generateMetadata({ params }: { params: Params }) {
-  const painting = await getData(params.slug)
+  const preview = draftMode().isEnabled ? true : false
+  const painting = await getData(params.slug, preview)
 
   const {
     title = "Not found",
@@ -86,8 +89,9 @@ export async function generateMetadata({ params }: { params: Params }) {
   }
 }
 
-async function getData(slug: string) {
-  const painting = await getPaintingDetails(slug)
+async function getData(slug: string, preview: boolean) {
+  const painting = await getPaintingDetails(slug, preview)
+
   return painting
 }
 
@@ -96,7 +100,8 @@ interface Params {
 }
 
 export default async function LandingPage({ params }: { params: Params }) {
-  const painting = await getData(params.slug)
+  const preview = draftMode().isEnabled ? true : false
+  const painting = await getData(params.slug, preview)
 
   if (!painting) {
     return notFound()
@@ -154,6 +159,17 @@ export default async function LandingPage({ params }: { params: Params }) {
       name: "Henrik Wilhelm Sissener",
       url: "https://wisihe.no/about",
     },
+  }
+
+  if (preview) {
+    return (
+      <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
+        <div className="fixed top-0 right-0 z-20 p-4 text-white lef t-0 bg-primary">
+          Preview
+        </div>
+        <PaintingPagePreview painting={painting} />
+      </Main>
+    )
   }
 
   return (
