@@ -132,7 +132,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
             <div
               dangerouslySetInnerHTML={{
                 __html:
-                  '<spline-viewer url="https://prod.spline.design/FVZWbQH2B6ndj9UU/scene.splinecode" events-target="global"></spline-viewer>',
+                  '<spline-viewer url="https://prod.spline.design/NJPbTHKSakGvCHjI/scene.splinecode" events-target="global"></spline-viewer>',
               }}
               className="w-full h-full"
             />
