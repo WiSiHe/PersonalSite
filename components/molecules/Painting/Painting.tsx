@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import { motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
 import { useCombinedStore } from "lib/store"
@@ -43,7 +42,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   const {
     image = {},
     title = "",
-    // format = "square",
+    format,
     slug = "",
     video = "",
     tagsV2 = [],
@@ -65,21 +64,53 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
 
   const linkString = `/painting/${slug}`
 
+  // const formatStyle = {
+  //   square: "aspect-square",
+  //   landscape: "aspect-video",
+  //   portrait: "aspect-[12/16]",
+  // }[format]
+
+  // const colStyle = {
+  //   square: "col-span-6 lg:col-span-2 xl:col-span-2",
+  //   landscape: "col-span-6 lg:col-span-2 xl:col-span-4",
+  //   portrait: "col-span-6 lg:col-span-2 xl:col-span-1",
+  // }[format]
+
+  // const rowStyle = {
+  //   square: "row-span-1  lg:row-span-1 xl:row-span-2",
+  //   landscape: "row-span-1  lg:row-span-1 xl:row-span-2",
+  //   portrait: "row-span-1 lg:row-span-2 xl:row-span-4",
+  // }[format]
+
+  const sanityWidth = {
+    square: 400,
+    landscape: 400,
+    portrait: 400,
+  }[format]
+
+  const sanityHeight = {
+    square: 600,
+    landscape: 600,
+    portrait: 600,
+  }[format]
+
   return (
-    <Link href={linkString}>
-      <motion.article
-        layout
-        layoutId={title}
-        // initial="offscreen"
-        // whileInView="onscreen"
-        // viewport={{ once: true, amount: 0.1 }}
-        // variants={cardVariants}
-        // transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
-        className="relative w-full h-full @container group aspect-square hover:z-10 overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
-      >
-        {/* <div className="relative aspect-square bg-primary"> */}
+    <article
+      className={clsx(
+        "relative @container group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl  ",
+        "aspect-[12/16] col-span-6 xl:col-span-3"
+        // formatStyle
+        // colStyle,
+        // rowStyle
+      )}
+    >
+      <Link href={linkString}>
         <Image
-          src={urlForImage(image).width(400).height(400).quality(70).url()}
+          src={urlForImage(image)
+            .width(sanityWidth)
+            .height(sanityHeight)
+            .quality(70)
+            .url()}
           blurDataURL={urlForImage(image)
             .width(20)
             .height(20)
@@ -100,19 +131,18 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
         />
 
         {isNsfw && !isNsfwUrl && (
-          <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
+          <div className="absolute inset-0 backdrop-blur-xl" />
         )}
         {hasStoreLinks && (
-          <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
+          <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs left-2 top-2 bg-highlight">
             <div className="relative w-2 h-2 rounded-full bg-dark">
               <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
             </div>
             <strong>For sale</strong>
           </div>
         )}
-        {/* </div> */}
 
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs backdrop-blur bg-primary/40 border-t-primary ">
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs bg-primary border-t-primary ">
           <h2 className="text-base text-white capitalize font-inter line-clamp-1">
             <strong>{title}</strong>
           </h2>
@@ -122,8 +152,8 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             {isNsfw && <FaExclamation />}
           </div>
         </div>
-      </motion.article>
-    </Link>
+      </Link>
+    </article>
   )
 }
 

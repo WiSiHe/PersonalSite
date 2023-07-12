@@ -43,7 +43,7 @@ const desktopVariant = {
 
 const GreeterCard = () => {
   return (
-    <section className="relative flex flex-col justify-center h-full gap-4 p-4 text-white bg-primary">
+    <section className="relative flex flex-col justify-center h-full gap-4 p-4 text-white shadow bg-primary">
       <h1 className="text-4xl">
         <strong>Henrik Wilhelm Sissener</strong>
       </h1>

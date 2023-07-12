@@ -5,8 +5,6 @@ import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
 import { Inter, Lobster, Roboto } from "next/font/google"
-import { draftMode } from "next/headers"
-import Link from "next/link"
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -112,7 +110,7 @@ const jsonLdSite = {
 }
 
 export default function RootLayout({ children }: RootProps) {
-  const preview = draftMode().isEnabled ? true : false
+  // const preview = draftMode().isEnabled ? true : false
 
   return (
     <html lang="en" className="scroll-smooth">
