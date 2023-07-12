@@ -66,7 +66,7 @@ export default defineType({
       name: "image",
       title: "Primary Image",
       type: "image",
-      group: "media",
+      group: ["media", "AI"],
       description: "The main image of the painting",
       options: {
         hotspot: true,
