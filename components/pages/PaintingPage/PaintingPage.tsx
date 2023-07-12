@@ -7,7 +7,7 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
-import { FaThumbsUp } from "react-icons/fa"
+import { FaEye, FaThumbsUp } from "react-icons/fa"
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import { isEmptyObject } from "utils/object"
 
@@ -138,15 +138,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
           <h1>
             <strong>{title}</strong>
           </h1>
-
-          <div className="flex items-center gap-2 mt-4 text-sm text-stone-400">
-            <p>{paintedAt && formatDate(paintedAt)}</p>
-            <span>&#183;</span>
-            <div className="flex items-center gap-2">
-              <FaThumbsUp /> <span>0</span>
-            </div>
-          </div>
-          <div className="flex flex-wrap text-xs">
+          <section className="flex flex-wrap mt-4 text-xs">
             {tagsV2?.map((tag, i) => {
               const { name = "" } = tag
               const isLastElement = i === tagsV2.length - 1
@@ -164,14 +156,25 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                 </div>
               )
             })}
+          </section>
+          <div className="flex justify-between gap-2 py-4 text-sm text-stone-400">
+            <div>{paintedAt && formatDate(paintedAt)}</div>
+            <div className="flex items-center gap-2">
+              Likes:
+              <FaThumbsUp /> <span>0</span>
+            </div>
+            <div className="flex items-center gap-2">
+              Views:
+              <FaEye /> 0
+            </div>
           </div>
 
-          <div className="py-6">
-            <StoreLinks links={links} />
-          </div>
           <div>
             <strong>Desciption</strong>
             <p className="whitespace-pre-wrap">{description && description}</p>
+          </div>
+          <div className="py-6">
+            <StoreLinks links={links} />
           </div>
         </div>
       </motion.div>

@@ -68,51 +68,51 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   return (
     <Link href={linkString}>
       <motion.article
-        // layout
-        // layoutId={title}
+        layout
+        layoutId={title}
         // initial="offscreen"
         // whileInView="onscreen"
         // viewport={{ once: true, amount: 0.1 }}
         // variants={cardVariants}
         // transition={{ duration: 0.5, type: "spring", bounce: 0.2 }}
-        className="relative w-full h-full @container group bg-white overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
+        className="relative w-full h-full @container group aspect-square hover:z-10 overflow-clip hover:ring hover:ring-primary drop-shadow-xl"
       >
-        <div className="relative aspect-square bg-primary overflow-clip">
-          <Image
-            src={urlForImage(image).width(400).height(400).quality(55).url()}
-            blurDataURL={urlForImage(image)
-              .width(20)
-              .height(20)
-              .quality(10)
-              .url()}
-            placeholder="blur"
-            sizes="(max-width: 640px) 100vw,
+        {/* <div className="relative aspect-square bg-primary"> */}
+        <Image
+          src={urlForImage(image).width(400).height(400).quality(70).url()}
+          blurDataURL={urlForImage(image)
+            .width(20)
+            .height(20)
+            .quality(10)
+            .url()}
+          placeholder="blur"
+          sizes="(max-width: 640px) 100vw,
               (max-width: 1280px) 50vw,
               (max-width: 1536px) 33vw,
-              29vw"
-            fill
-            alt=""
-            priority={!shouldBeLazy}
-            className={clsx(
-              !isNsfw && !isNsfwUrl && "group-hover:scale-110",
-              "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover bg-gray-100"
-            )}
-          />
-
-          {isNsfw && !isNsfwUrl && (
-            <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
+              25vw"
+          fill
+          alt=""
+          priority={!shouldBeLazy}
+          className={clsx(
+            !isNsfw && !isNsfwUrl && "group-hover:scale-110",
+            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover "
           )}
-          {hasStoreLinks && (
-            <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
-              <div className="relative w-2 h-2 rounded-full bg-dark">
-                <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
-              </div>
-              <strong>For sale</strong>
+        />
+
+        {isNsfw && !isNsfwUrl && (
+          <div className="absolute inset-0 rounded-lg backdrop-blur-xl" />
+        )}
+        {hasStoreLinks && (
+          <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
+            <div className="relative w-2 h-2 rounded-full bg-dark">
+              <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
             </div>
-          )}
-        </div>
+            <strong>For sale</strong>
+          </div>
+        )}
+        {/* </div> */}
 
-        <div className="flex items-center justify-between gap-2 p-4 text-xs ring bg-primary border-t-primary ">
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs backdrop-blur bg-primary/40 border-t-primary ">
           <h2 className="text-base text-white capitalize font-inter line-clamp-1">
             <strong>{title}</strong>
           </h2>

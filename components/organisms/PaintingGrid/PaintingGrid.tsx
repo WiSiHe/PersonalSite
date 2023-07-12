@@ -119,7 +119,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
   }, [paintings])
 
   return (
-    <section className="grid items-start w-full grid-cols-12 gap-2 mb-10 xl:gap-4">
+    <section className="grid items-start w-full grid-cols-12 mb-10">
       <AnimatePresence mode="wait">
         {!hasFilters && (
           <motion.div

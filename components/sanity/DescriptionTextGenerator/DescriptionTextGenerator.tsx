@@ -1,14 +1,5 @@
 import { BlockContentIcon } from "@sanity/icons"
-import {
-  Button,
-  Card,
-  Flex,
-  Label,
-  Switch,
-  Text,
-  TextArea,
-  Tooltip,
-} from "@sanity/ui"
+import { Button, Card, Label, Switch, Text, TextArea } from "@sanity/ui"
 import clsx from "clsx"
 import { getPaintingTags } from "lib/api"
 import { iSanityTag } from "lib/models/objects/SanityTag"
@@ -36,6 +27,8 @@ function getTagNames(tags: Tag[]): string {
 const DescriptionTextGenerator = (props: StringInputProps) => {
   const { value, onChange } = props
   const slug = useFormValue(["slug", "current"]) as string
+  const title = useFormValue(["title"]) as string
+  const tagsV2 = useFormValue(["tagsV2"])
 
   const [isLoading, setIsLoading] = useState(false)
   const [isKeywordsEnabled, setIsKeywordsEnabled] = useState(true)
@@ -43,19 +36,27 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
   const [tags, setTags] = useState<iSanityTag[]>([])
   const [convertedTagString, setConvertedTagString] = useState("")
 
-  const [temperature, setTemperature] = useState(0.7)
-  const [tokens, setTokens] = useState(1000)
+  const [temperature, setTemperature] = useState(0.75)
 
-  // const hasTags = isNotEmptyArray(tags)
+  const basePrompt = `You are an AI designed to provide objective descriptions of digital paintings:
 
-  const basePrompt =
-    "You are an AI designed to provide objective descriptions of stylised paintings given a text description. Also improve the text where you can. "
+  - you are given a painting description
+  - you are to rewrite the description in a more objective way
+  - it has the following title: "${title}".
 
-  const promptWithBase = `${basePrompt} with the following description: ${prompt}.`
+  This is the paintings description:
+`
+
+  const promptWithBase = `${basePrompt} ${prompt}.`
 
   const promptWithTags = `${promptWithBase} Also take these descriptive tags into consideration: ${convertedTagString}.`
 
   const finalPrompt = isKeywordsEnabled ? promptWithTags : promptWithBase
+
+  const handleChangeDescription = (e: any) => {
+    const response = e.target.value
+    onChange(response ? set(response) : unset())
+  }
 
   const handleGenerateDescription = async () => {
     if (!finalPrompt) return
@@ -72,7 +73,7 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
         body: JSON.stringify({
           messages: newChatLogs,
           temperature,
-          maxTokens: tokens,
+          // maxTokens: tokens,
         }),
       }).then((res) => res.json())
       if (isNotEmptyObject(response)) {
@@ -101,74 +102,67 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
   useEffect(() => {
     fetchTags()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [tagsV2])
 
   return (
     <>
       <Card>
-        <div className="flex flex-col">
-          <label htmlFor="enthusiasm">Tokens:{tokens}</label>
-          <input
-            type="range"
-            max={2000}
-            min={100}
-            step={100}
-            id="enthusiasm"
-            value={tokens}
-            onChange={(event) => setTokens(Number(event.currentTarget.value))}
-          />
-          <Tooltip content="The number of tokens to generate."></Tooltip>
+        <div className="text-[6px] p-4 bg-tertiary whitespace-pre-wrap ">
+          {finalPrompt}
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="temperature">Temperature: {temperature}</label>
-          <input
-            type="range"
-            min="-2"
-            max="2"
-            step={0.1}
-            id="temperature"
-            value={temperature}
-            onChange={(event) =>
-              setTemperature(Number(event.currentTarget.value))
-            }
-          />
-        </div>
-
-        <div className="flex flex-col gap-2 py-4">
-          <Label>Include keywords</Label>
-          <div className="flex items-center gap-2">
-            <Switch
-              checked={isKeywordsEnabled}
-              onChange={() => setIsKeywordsEnabled((prev) => !prev)}
+        <section className="flex items-center justify-between gap-2 mb-2">
+          <div className="flex flex-col justify-between flex-1">
+            <label htmlFor="temperature">Temperature: {temperature}</label>
+            <input
+              type="range"
+              min="0.5"
+              max="1.1"
+              step={0.1}
+              id="temperature"
+              value={temperature}
+              onChange={(event) =>
+                setTemperature(Number(event.currentTarget.value))
+              }
             />
-            {isKeywordsEnabled ? "On" : "Off"}
+            <div className="flex flex-col gap-2 py-4">
+              <Label>Include keywords</Label>
+              {convertedTagString && (
+                <Text size={1}>
+                  <strong>Keywords:</strong>{" "}
+                  <span
+                    className={clsx(isKeywordsEnabled ? "" : "line-through")}
+                  >
+                    {convertedTagString}
+                  </span>
+                </Text>
+              )}
+              <div className="flex items-center gap-2">
+                <Switch
+                  checked={isKeywordsEnabled}
+                  onChange={() => setIsKeywordsEnabled((prev) => !prev)}
+                />
+                {isKeywordsEnabled ? "On" : "Off"}
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
 
         <TextArea
           onChange={(event) => setPrompt(event.currentTarget.value)}
           padding={2}
           placeholder="Write a short objective description of a painting."
           value={prompt}
-          rows={4}
+          fontSize={[1, 1, 1, 1]}
+          rows={3}
         />
 
-        <div className="flex items-start justify-between pt-2">
-          {convertedTagString && (
-            <Text size={1}>
-              <strong>Keywords:</strong>{" "}
-              <span className={clsx(isKeywordsEnabled ? "" : "line-through")}>
-                {convertedTagString}
-              </span>
-            </Text>
-          )}
+        <div className="flex items-start justify-end pt-2">
           <Button
             onClick={handleGenerateDescription}
             icon={!isLoading ? BlockContentIcon : Loader}
             text="Generate"
             type="button"
             tone="primary"
-            // padding={2}
             disabled={isLoading}
           />
         </div>
@@ -177,12 +171,14 @@ const DescriptionTextGenerator = (props: StringInputProps) => {
           <Label size={1}>Description: </Label>
           <Label>{value?.length} characters</Label>
         </div>
-        <Card>
-          <div className="p-4 bg-primary/10">
-            <Text size={1}>
-              <p className="whitespace-pre-wrap">{value}</p>
-            </Text>
-          </div>
+        <Card className="text-xs">
+          <TextArea
+            onChange={(event) => handleChangeDescription(event)}
+            size={2}
+            value={value}
+            rows={7}
+            fontSize={[1, 1, 1, 1]}
+          />
         </Card>
       </Card>
     </>
