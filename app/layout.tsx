@@ -127,7 +127,7 @@ export default function RootLayout({ children }: RootProps) {
         />
       </head>
       <body
-        className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter`}
+        className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter selection:bg-primary selection:text-white`}
       >
         <SkipToMainContentLink />
         <Navigation />

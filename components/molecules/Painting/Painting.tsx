@@ -98,7 +98,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
     <article
       className={clsx(
         "relative @container group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl  ",
-        "aspect-[12/16] col-span-6 xl:col-span-3"
+        "lg:aspect-[12/16] aspect-square col-span-6 xl:col-span-3"
         // formatStyle
         // colStyle,
         // rowStyle
