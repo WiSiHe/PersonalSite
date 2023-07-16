@@ -2,15 +2,23 @@
 import clsx from "clsx"
 import AnimatedLogo from "components/atoms/AnimatedLogo"
 import NavigationModal from "components/molecules/NavigationModal"
-import React, { useState } from "react"
+import { usePathname } from "next/navigation"
+import React, { useEffect, useState } from "react"
 import { FaHamburger } from "react-icons/fa"
 
 interface iNavigationProps {
   isAbsolute?: boolean
 }
 const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
+  const pathName = usePathname()
+
   const [isOpen, setIsOpen] = useState(false)
-  console.log("isOpen", isOpen)
+
+  // if router navigates close the modal
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathName])
+
   return (
     <>
       <nav
