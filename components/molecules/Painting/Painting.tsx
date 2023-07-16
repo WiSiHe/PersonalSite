@@ -126,7 +126,7 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
           priority={!shouldBeLazy}
           className={clsx(
             !isNsfw && !isNsfwUrl && "group-hover:scale-110",
-            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover "
+            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover lg:aspect-[12/16] aspect-square"
           )}
         />
 
