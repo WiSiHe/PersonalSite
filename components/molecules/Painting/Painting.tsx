@@ -95,11 +95,14 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   }[format]
 
   return (
-    <Link href={linkString}>
+    <Link
+      href={linkString}
+      className="lg:aspect-[12/16] aspect-square col-span-6 xl:col-span-3"
+    >
       <article
         className={clsx(
-          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl",
-          "lg:aspect-[12/16] aspect-square col-span-6 xl:col-span-3"
+          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl"
+
           // formatStyle
           // colStyle,
           // rowStyle
