@@ -95,16 +95,16 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   }[format]
 
   return (
-    <article
-      className={clsx(
-        "relative @container w-full h-full group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl",
-        "lg:aspect-[12/16] aspect-square col-span-6 xl:col-span-3"
-        // formatStyle
-        // colStyle,
-        // rowStyle
-      )}
-    >
-      <Link href={linkString}>
+    <Link href={linkString}>
+      <article
+        className={clsx(
+          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl",
+          "lg:aspect-[12/16] aspect-square col-span-6 xl:col-span-3"
+          // formatStyle
+          // colStyle,
+          // rowStyle
+        )}
+      >
         <Image
           src={urlForImage(image)
             .width(sanityWidth)
@@ -152,8 +152,8 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             {isNsfw && <FaExclamation />}
           </div>
         </div>
-      </Link>
-    </article>
+      </article>
+    </Link>
   )
 }
 
