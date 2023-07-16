@@ -5,6 +5,7 @@ export const metadata = {
   description: "About me",
   locale: "en-US",
   type: "website",
+  url: "https://wisihe.no/about",
 }
 
 export default async function Home() {
