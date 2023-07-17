@@ -58,18 +58,18 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
 
           <Transition.Child
             as={Fragment}
-            enter="transition ease-in-out duration-300 transform"
-            enterFrom="-translate-x-full"
-            enterTo="translate-x-0"
-            leave="transition ease-in-out duration-300 transform"
-            leaveFrom="translate-x-0"
+            enter="transition ease-in-out duration-500 transform"
+            enterFrom="-translate-x-full "
+            enterTo="translate-x-0 "
+            leave="transition ease-in-out duration-500 transform"
+            leaveFrom="translate-x-0 "
             leaveTo="-translate-x-full"
           >
             <motion.div
               className="inline-block w-full lg:w-[80vw] h-full shadow-xl overflow-y-scroll rounded-xl transition-all transform bg-white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              // initial={{ opacity: 0 }}
+              // animate={{ opacity: 1 }}
+              // exit={{ opacity: 0 }}
             >
               {/* <Dialog.Title
                 as="h3"
@@ -97,7 +97,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                 <Link
                   href="/"
                   className={clsx(
-                    "text-4xl lg:text-8xl hover:text-white p-4 hover:bg-primary active:bg-primary",
+                    "text-4xl lg:text-8xl hover:text-white p-4 hover:bg-primary",
                     isHome && "text-white bg-primary"
                   )}
                 >
