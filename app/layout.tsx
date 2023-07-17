@@ -5,6 +5,7 @@ import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
 import { Inter, Lobster, Roboto } from "next/font/google"
+import NextTopLoader from "nextjs-toploader"
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -130,6 +131,7 @@ export default function RootLayout({ children }: RootProps) {
         className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter selection:bg-primary selection:text-white`}
       >
         <SkipToMainContentLink />
+        <NextTopLoader color="#DE0D92" showSpinner={false} height={4} />
         <Navigation />
         {/* {preview && (
           <Link

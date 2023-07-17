@@ -29,7 +29,10 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         )}
       >
         <AnimatedLogo />
-        <button onClick={() => setIsOpen((prev) => !prev)}>
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="p-2 transition-all hover:bg-primary active:text-white hover:text-white active:bg-primary"
+        >
           <FaHamburger />
         </button>
       </nav>

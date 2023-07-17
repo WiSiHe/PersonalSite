@@ -42,6 +42,7 @@
     "next": "^13.4.8",
     "next-sanity": "^5.1.0",
     "next-sitemap": "^4.1.8",
+    "nextjs-toploader": "^1.4.2",
     "openai": "^3.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

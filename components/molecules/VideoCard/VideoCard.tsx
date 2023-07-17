@@ -46,9 +46,9 @@ const VideoCard = ({ video }: VideoCardProps) => {
         whileInView="onscreen"
         viewport={{ once: true }}
         variants={cardVariants}
-        className="relative bg-white shadow-xl overflow-clip col-span-full xl:col-span-3"
+        className="relative bg-white shadow-xl col-span-full xl:col-span-3"
       >
-        <div className="relative bg-primary aspect-video">
+        <div className="relative w-full h-full bg-primary aspect-video">
           <ReactPlayer
             url={videoUrl}
             loop

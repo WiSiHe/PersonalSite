@@ -3,11 +3,12 @@ import { Dialog, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import AnimatedLogo from "components/atoms/AnimatedLogo"
 import { NavItems } from "constants/navigation"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 import { AiOutlineClose } from "react-icons/ai"
+import { FaLocationArrow } from "react-icons/fa"
 
 const container = {
   hidden: { opacity: 0 },
@@ -36,6 +37,8 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
   const pathName = usePathname()
 
   const asPathWithSpacing = pathName?.replace(/\//g, "/") || ""
+
+  const isHome = asPathWithSpacing === "/"
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -43,7 +46,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
         className="fixed inset-0 z-20 overflow-y-auto"
         onClose={closeModal}
       >
-        <div className="h-full min-h-screen">
+        <div className="h-full min-h-screen p-4">
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
 
           {/* <span
@@ -55,15 +58,15 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
 
           <Transition.Child
             as={Fragment}
-            enter="transition ease-out duration-300"
-            enterFrom="transform opacity-0 scale-75"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-200"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-75"
+            enter="transition ease-in-out duration-300 transform"
+            enterFrom="-translate-x-full"
+            enterTo="translate-x-0"
+            leave="transition ease-in-out duration-300 transform"
+            leaveFrom="translate-x-0"
+            leaveTo="-translate-x-full"
           >
             <motion.div
-              className="inline-block w-full h-full overflow-y-scroll transition-all transform bg-white"
+              className="inline-block w-full lg:w-[80vw] h-full shadow-xl overflow-y-scroll rounded-xl transition-all transform bg-white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -74,11 +77,11 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
               >
                 {title}
               </Dialog.Title> */}
-              <div className="flex justify-between p-4">
+              <div className="sticky top-0 z-10 flex justify-between p-4 bg-white shadow ">
                 <AnimatedLogo />
                 <button
                   type="button"
-                  className="absolute text-2xl top-4 right-4"
+                  className="p-2 text-2xl top-4 right-4 hover:bg-primary hover:text-white"
                   onClick={closeModal}
                 >
                   <AiOutlineClose />
@@ -89,22 +92,54 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="grid h-full gap-4 p-4"
+                className="flex flex-col h-full gap-4 p-4"
               >
+                <Link
+                  href="/"
+                  className={clsx(
+                    "text-4xl lg:text-8xl hover:text-white p-4 hover:bg-primary active:bg-primary",
+                    isHome && "text-white bg-primary"
+                  )}
+                >
+                  <strong className="">Home</strong>
+                  {isHome && (
+                    <div className="pl-1 text-sm">You are currently here!</div>
+                  )}
+                </Link>
                 {NavItems.map((item, i) => {
-                  const isActive = asPathWithSpacing.includes(item.url)
+                  // check if current url is active and but also check if the url is a parent of the current url
+                  const isUrlActive = asPathWithSpacing.includes(item.url)
+
                   return (
                     <Link
                       key={i}
                       href={item.url}
                       className={clsx(
-                        "transition-all duration-75 w-full text-dark ring",
-                        "text-7xl hover:text-white hover:bg-primary active:bg-primary "
+                        "text-4xl lg:text-8xl relative transition-all delay-100 hover:text-white w-full  group",
+                        isUrlActive && "text-white"
                       )}
                     >
-                      <div>
-                        <strong className="h-full">{item.text}</strong>
+                      <div className="absolute inset-0 z-10 flex flex-col p-4">
+                        <strong>{item.text}</strong>
+                        <div className="flex gap-4">
+                          <i className="text-sm">{item.description}</i>
+                          {isUrlActive && (
+                            <div className="flex items-center gap-2 text-sm">
+                              <FaLocationArrow className="" />
+                              You are currently here!
+                            </div>
+                          )}
+                        </div>
                       </div>
+
+                      <div
+                        className={clsx(
+                          "h-24 lg:h-36 delay-150 rounded duration-500 z-0 w-0 transition-all group-hover:w-full",
+                          isUrlActive
+                            ? "group-hover:bg-primary/80 w-full  bg-primary"
+                            : "bg-primary"
+                        )}
+                      />
                     </Link>
                   )
                 })}
