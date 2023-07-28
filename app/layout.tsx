@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
-import { Inter, Lobster, Roboto } from "next/font/google"
+import { Inter, Roboto } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
 
 // If loading a variable font, you don't need to specify the font weight
@@ -14,16 +14,16 @@ const inter = Inter({
 })
 
 const roboto = Roboto({
-  weight: "400",
+  weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-roboto",
 })
 
-const lobster = Lobster({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-lobster",
-})
+// const lobster = Lobster({
+//   weight: "400",
+//   subsets: ["latin"],
+//   variable: "--font-lobster",
+// })
 
 export const metadata = {
   title: "Home | WiSiHe",
@@ -128,7 +128,7 @@ export default function RootLayout({ children }: RootProps) {
         />
       </head>
       <body
-        className={`${inter.variable} ${roboto.variable} ${lobster.variable} font-inter selection:bg-primary selection:text-white`}
+        className={`${inter.variable} ${roboto.variable} font-inter selection:bg-primary selection:text-white`}
       >
         <SkipToMainContentLink />
         <NextTopLoader color="#DE0D92" showSpinner={false} height={4} />

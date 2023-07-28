@@ -15,18 +15,18 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
-      bounce: 0.05,
+      // staggerChildren: 0.2,
+      // delayChildren: 0.2,
+      // bounce: 0.05,
       type: "spring",
     },
   },
 }
 
-const listItem = {
-  hidden: { opacity: 0, y: -100 },
-  show: { opacity: 1, y: 0 },
-}
+// const listItem = {
+//   hidden: { opacity: 0, y: -100 },
+//   show: { opacity: 1, y: 0 },
+// }
 
 interface Modal {
   isOpen: boolean
@@ -115,13 +115,14 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                       key={i}
                       href={item.url}
                       className={clsx(
-                        "text-4xl lg:text-8xl relative transition-all delay-100 hover:text-white w-full  group",
-                        isUrlActive && "text-white"
+                        "text-4xl lg:text-8xl relative hover:text-white w-full hover:bg-primary",
+                        isUrlActive && "text-white",
+                        isUrlActive && "bg-primary"
                       )}
                     >
-                      <div className="absolute inset-0 z-10 flex flex-col p-4">
+                      <div className="inset-0 z-10 flex flex-col p-4 ">
                         <strong>{item.text}</strong>
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 mt-2">
                           <i className="text-sm">{item.description}</i>
                           {isUrlActive && (
                             <div className="flex items-center gap-2 text-sm">
@@ -132,14 +133,14 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                         </div>
                       </div>
 
-                      <div
+                      {/* <div
                         className={clsx(
                           "h-24 lg:h-36 delay-150 rounded duration-500 z-0 w-0 transition-all group-hover:w-full",
                           isUrlActive
                             ? "group-hover:bg-primary/80 w-full  bg-primary"
                             : "bg-primary"
                         )}
-                      />
+                      /> */}
                     </Link>
                   )
                 })}
