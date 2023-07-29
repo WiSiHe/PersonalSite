@@ -26,13 +26,13 @@ export default function PaintingPreviewPane(props: Props) {
   // Whenever the slug changes, wait 3 seconds for GROQ to reach eventual consistency.
   // This helps to prevent displaying "Invalid slug" or returning 404 errors while editing the slug manually.
   const [slug, setSlug] = useState(props.slug)
-  useEffect(() => {
-    const timeout = setTimeout(
-      () => startTransition(() => setSlug(props.slug)),
-      3000
-    )
-    return () => clearTimeout(timeout)
-  }, [props.slug])
+  // useEffect(() => {
+  //   const timeout = setTimeout(
+  //     () => startTransition(() => setSlug(props.slug)),
+  //     3000
+  //   )
+  //   return () => clearTimeout(timeout)
+  // }, [props.slug])
 
   // if the document has no slug for the preview iframe
   if (!slug) {

@@ -42,6 +42,9 @@ export const previewDocumentNode = ({
                   />
                 ))
                 .options({
+                  previewURL: (doc: any) => {
+                    return `/painting/${doc.displayed.slug.current}`
+                  },
                   url: (doc: any) => {
                     return `/painting/${doc.displayed.slug.current}`
                   },

@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
-import { Inter, Roboto } from "next/font/google"
+import { Alice, Inter, Playfair_Display, Roboto, Syne } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
 
 // If loading a variable font, you don't need to specify the font weight
@@ -17,6 +17,19 @@ const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-roboto",
+})
+
+const playfair = Playfair_Display({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-playfair",
+})
+
+const alice = Alice({
+  // weight: ["400", "500", "600", "700"],
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-alice",
 })
 
 // const lobster = Lobster({
@@ -128,7 +141,7 @@ export default function RootLayout({ children }: RootProps) {
         />
       </head>
       <body
-        className={`${inter.variable} ${roboto.variable} font-inter selection:bg-primary selection:text-white`}
+        className={`${inter.variable} ${roboto.variable} ${playfair.variable} ${alice.variable} font-alice selection:bg-primary selection:text-white`}
       >
         <SkipToMainContentLink />
         <NextTopLoader color="#DE0D92" showSpinner={false} height={4} />
