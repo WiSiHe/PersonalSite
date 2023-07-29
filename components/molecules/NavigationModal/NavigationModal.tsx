@@ -47,7 +47,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
         onClose={closeModal}
       >
         <div className="h-full min-h-screen p-4">
-          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+          <Dialog.Overlay className="fixed inset-0 transition-all duration-200 bg-black opacity-30" />
 
           {/* <span
             className="inline-block h-screen"
@@ -58,15 +58,15 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
 
           <Transition.Child
             as={Fragment}
-            enter="transition ease-in-out duration-500 transform"
-            enterFrom="-translate-x-full "
-            enterTo="translate-x-0 "
-            leave="transition ease-in-out duration-500 transform"
-            leaveFrom="translate-x-0 "
-            leaveTo="-translate-x-full"
+            enter="transition ease-in-out duration-500"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition ease-in-out duration-500"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
             <motion.div
-              className="inline-block w-full lg:w-[80vw] h-full shadow-xl overflow-y-scroll rounded-xl transition-all transform bg-white"
+              className="inline-block w-full lg:w-[40vw] h-full shadow-xl overflow-y-scroll rounded-xl transition-all transform bg-white"
               // initial={{ opacity: 0 }}
               // animate={{ opacity: 1 }}
               // exit={{ opacity: 0 }}
