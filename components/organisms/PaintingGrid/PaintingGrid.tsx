@@ -126,17 +126,8 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
         src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
       />
       <section className="grid items-start w-full h-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
-        <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-3">
+        <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-6 aspect-video xl:aspect-auto">
           <GreeterCard />
-          <div className="items-center justify-center hidden h-full text-white shadow-xl bg-dark lg:flex">
-            <div
-              dangerouslySetInnerHTML={{
-                __html:
-                  '<spline-viewer url="https://prod.spline.design/NJPbTHKSakGvCHjI/scene.splinecode" events-target="global"></spline-viewer>',
-              }}
-              className="w-full h-full"
-            />
-          </div>
         </div>
 
         <AnimatePresence>
