@@ -36,6 +36,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     inPrintUrl = "",
     tagsV2 = [],
     video = "",
+    likes = 0,
   } = painting
 
   const formatDate = (date: string) => {
@@ -161,7 +162,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
             <div>{paintedAt && formatDate(paintedAt)}</div>
             <div className="flex items-center gap-2">
               Likes:
-              <FaThumbsUp /> <span>0</span>
+              <FaThumbsUp /> <span>{likes}</span>
             </div>
             <div className="flex items-center gap-2">
               Views:

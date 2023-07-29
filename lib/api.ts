@@ -90,7 +90,7 @@ export async function getPainting(slug: string): Promise<iSanityPainting> {
 
 export const paintingDetailsQuery = groq`
 *[_type == "painting" && slug.current == $slug]{
-  title, description, format, paintedAt, artstationUrl, inPrintUrl, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+  title, description, format, likes, paintedAt, artstationUrl, inPrintUrl, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
 }[0]
 `
 

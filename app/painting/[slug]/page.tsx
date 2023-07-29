@@ -2,6 +2,7 @@ import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
 import PaintingPagePreview from "components/pages/PaintingPagePreview"
+import PreviewProvider from "components/sanity/PreviewProvider"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
 import { draftMode } from "next/headers"
@@ -167,7 +168,9 @@ export default async function LandingPage({ params }: { params: Params }) {
         <div className="fixed top-0 right-0 z-20 p-4 text-white lef t-0 bg-primary">
           Preview
         </div>
-        <PaintingPagePreview painting={painting} />
+        <PreviewProvider preview>
+          <PaintingPagePreview initialPainting={painting} />
+        </PreviewProvider>
       </Main>
     )
   }

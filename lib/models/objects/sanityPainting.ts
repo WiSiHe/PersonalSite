@@ -15,6 +15,7 @@ export interface iSanityPainting {
   inPrintUrl?: string | null
   description?: string
   seoDescription?: string
+  likes?: number
   paintedAt: string
   slug: string
   tagsV2: iSanityTag[]

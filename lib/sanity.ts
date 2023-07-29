@@ -12,9 +12,9 @@ export function getClient(preview?: boolean): SanityClient {
   if (preview) {
     const token = process.env.SANITY_API_READ_TOKEN
 
-    if (!token) {
-      throw new Error("You must provide a token to preview drafts")
-    }
+    // if (!token) {
+    //   throw new Error("You must provide a token to preview drafts")
+    // }
     return client.withConfig({
       token: token,
       useCdn: false,

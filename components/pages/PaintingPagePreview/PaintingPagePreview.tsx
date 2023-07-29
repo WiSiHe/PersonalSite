@@ -2,26 +2,29 @@
 import { paintingDetailsQuery } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useLiveQuery } from "next-sanity/preview"
+import { isEmptyObject } from "utils/object"
 
 import PaintingPage from "../PaintingPage/PaintingPage"
 
 interface iPaintingPageProps {
-  painting: iSanityPainting
+  initialPainting: iSanityPainting
 }
 
-const PaintingPagePreview = ({ painting }: iPaintingPageProps) => {
-  const { slug = "" } = painting
+const PaintingPagePreview = ({ initialPainting }: iPaintingPageProps) => {
+  const { slug = "" } = initialPainting
 
-  const [{ painting: paintingPreview }, loadingPainting] = useLiveQuery<{
-    painting: iSanityPainting
-  }>({ painting }, paintingDetailsQuery, {
-    slug: slug,
-    // refreshInterval: 1000,
-  })
-  console.log({ paintingPreview, loadingPainting })
-  console.log({ painting })
+  const [data, loadingPainting] = useLiveQuery(
+    initialPainting,
+    paintingDetailsQuery,
+    { slug }
+  )
+
   if (loadingPainting) return <div>Loading...</div>
-  return <PaintingPage painting={paintingPreview} />
+
+  if (!data || isEmptyObject(data)) {
+    return <div>Not found</div>
+  }
+  return <PaintingPage painting={data} />
 }
 
 export default PaintingPagePreview

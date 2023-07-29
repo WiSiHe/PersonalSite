@@ -118,13 +118,18 @@ export default defineType({
       name: "format",
       title: "Format",
       type: "string",
-
       initialValue: "square",
       description: "Aspect ratio of the painting",
       validation: (rule) => rule.required(),
       options: {
         list: ["square", "landscape", "portrait"],
       },
+    }),
+    defineField({
+      name: "likes",
+      title: "Likes",
+      type: "number",
+      // readOnly:true,
     }),
     defineField({
       name: "redbubbleUrl",
