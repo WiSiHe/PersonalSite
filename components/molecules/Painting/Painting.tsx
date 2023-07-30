@@ -97,11 +97,11 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
   return (
     <Link
       href={linkString}
-      className="aspect-[12/16] rounded-lg overflow-clip col-span-6 xl:col-span-3"
+      className="aspect-[12/16] rounded-lg overflow-clip col-span-6 xl:col-span-3 drop-shadow-lg hover:ring active:ring ring-primary "
     >
       <article
         className={clsx(
-          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white hover:ring hover:ring-primary drop-shadow-xl"
+          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white "
 
           // formatStyle
           // colStyle,

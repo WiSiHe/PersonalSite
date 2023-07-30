@@ -52,10 +52,10 @@ const GreeterCard = () => {
         className="absolute inset-0 w-full h-full"
       />
       <div className="z-10 flex flex-col items-start justify-center h-full p-4 text-dark">
-        <h1 className="text-2xl  xl:text-5xl">
+        <h1 className="text-2xl xl:text-5xl">
           <strong>Henrik Wilhelm Sissener</strong>
         </h1>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 mt-4 text-base xl:text-2xl">
           <motion.li
             className="flex items-center gap-2 p-1"
             whileHover="hover1"

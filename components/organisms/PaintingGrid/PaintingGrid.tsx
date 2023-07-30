@@ -126,7 +126,7 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
         src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
       />
       <section className="grid items-start w-full h-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
-        <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-6 aspect-square md:aspect-video xl:aspect-auto">
+        <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-6 aspect-video xl:aspect-auto">
           <GreeterCard />
         </div>
 
