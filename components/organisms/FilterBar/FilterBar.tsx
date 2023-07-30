@@ -36,8 +36,9 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
         <ScrollToTopButton isFixed={false} />
       </div>
 
-      <FilterSortButton />
-
+      <div className="pointer-events-auto">
+        <FilterSortButton />
+      </div>
       <div className="flex justify-end flex-1 gap-4 pointer-events-auto">
         {amountOfActiveFilters > 0 && (
           <button

@@ -42,7 +42,7 @@ const FilterSortButton = () => {
         value={sorting}
         onChange={setSorting}
         className={clsx(
-          "bg-white hidden xl:flex p-2 gap-2 rounded-full shadow-xl pointer-events-auto"
+          "bg-white hidden xl:flex p-3 gap-2 rounded-full shadow-xl pointer-events-auto"
         )}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
@@ -75,7 +75,7 @@ const FilterSortButton = () => {
         ))}
       </RadioGroup>
       <Popover className="relative xl:hidden">
-        <Popover.Button className="flex items-center justify-center gap-2 px-8 py-4 capitalize bg-white rounded-full shadow-xl hover:text-white hover:bg-primary">
+        <Popover.Button className="flex items-center justify-center gap-2 px-10 py-5 capitalize bg-white rounded-full shadow-xl hover:text-white hover:bg-primary">
           <AiOutlineOrderedList />
           {sorting}
         </Popover.Button>
