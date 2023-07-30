@@ -17,7 +17,7 @@ export default defineType({
       name: "seo",
       title: "SEO",
       default: true,
-      icon: <FaWeibo />,
+      icon: FaWeibo,
     },
   ],
   fields: [
