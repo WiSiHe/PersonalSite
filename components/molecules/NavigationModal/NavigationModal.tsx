@@ -67,17 +67,11 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
             leaveTo="opacity-0"
           >
             <motion.div
-              className="inline-block w-full lg:w-[40vw] h-full shadow-xl overflow-y-scroll rounded-xl transition-all transform bg-white"
+              className="inline-block w-full h-full overflow-y-scroll transition-all transform bg-white shadow-xl lg:w-1/3 rounded-xl"
               // initial={{ opacity: 0 }}
               // animate={{ opacity: 1 }}
               // exit={{ opacity: 0 }}
             >
-              {/* <Dialog.Title
-                as="h3"
-                className="text-lg font-medium leading-6 text-gray-900"
-              >
-                {title}
-              </Dialog.Title> */}
               <div className="sticky top-0 z-10 flex justify-between p-4 bg-white shadow ">
                 <LogoQR
                   className={(cn("transition-all ease-in-out"), "fill-dark")}
@@ -102,7 +96,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                 <Link
                   href="/"
                   className={clsx(
-                    "text-4xl lg:text-8xl hover:text-white p-4 hover:bg-primary",
+                    "text-4xl hover:text-white p-4 hover:bg-primary",
                     isHome && "text-white bg-primary"
                   )}
                 >
@@ -120,7 +114,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                       key={i}
                       href={item.url}
                       className={clsx(
-                        "text-4xl lg:text-8xl relative hover:text-white w-full hover:bg-primary",
+                        "text-4xl relative hover:text-white w-full hover:bg-primary",
                         isUrlActive && "text-white",
                         isUrlActive && "bg-primary"
                       )}

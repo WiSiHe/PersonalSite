@@ -51,7 +51,7 @@ const GreeterCard = () => {
         }}
         className="absolute inset-0 w-full h-full"
       />
-      <div className="z-10 flex flex-col items-start justify-center h-full p-4 text-dark">
+      <div className="z-10 flex flex-col items-start h-full px-4 pt-4 pb-16 text-white lg:justify-center lg:p-4 mix-blend-difference">
         <h1 className="text-2xl xl:text-5xl">
           <strong>Henrik Wilhelm Sissener</strong>
         </h1>

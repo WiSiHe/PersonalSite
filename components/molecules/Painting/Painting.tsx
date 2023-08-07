@@ -4,6 +4,7 @@ import { urlForImage } from "lib/sanity.image"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import { BsYoutube } from "react-icons/bs"
 import { FaExclamation } from "react-icons/fa"
 import { TbBoxMultiple } from "react-icons/tb"
@@ -38,6 +39,9 @@ const Painting = ({
   storybook = false,
 }: iProjectProps) => {
   const filterList = useCombinedStore((state) => state.filterList)
+  const searchParams = useSearchParams()
+
+  const filters = searchParams?.getAll("filter")
 
   if (!paintingData || isEmptyObject(paintingData)) {
     return (
@@ -48,7 +52,7 @@ const Painting = ({
     )
   }
 
-  const isNsfwUrl = filterList.includes("nsfw")
+  const isNsfwUrl = filterList.includes("nsfw") || filters?.includes("nsfw")
   // const isNsfwUrl = false
 
   const {
