@@ -16,7 +16,7 @@ const meta: Meta<typeof Painting> = {
   tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    // layout: "centered",
+    layout: "padded",
   },
 }
 
@@ -30,6 +30,7 @@ export const WithMultiplePaintings: Story = {
   args: {
     paintingData: dummyPainting,
     shouldBeLazy: false,
+    storybook: true,
   },
   render: (args) => (
     <section className="aspect-video">
@@ -41,7 +42,8 @@ export const WithMultiplePaintings: Story = {
 export const WithLazyLoading: Story = {
   args: {
     paintingData: dummyPainting,
-    shouldBeLazy: true,
+    shouldBeLazy: false,
+    storybook: true,
   },
   render: (args) => (
     <section className="aspect-video">
@@ -54,6 +56,7 @@ export const WithVideo: Story = {
   args: {
     paintingData: dummyPaintingWithVideo,
     shouldBeLazy: false,
+    storybook: true,
   },
   render: (args) => (
     <section className="aspect-video">
@@ -66,6 +69,7 @@ export const WithStoreLink: Story = {
   args: {
     paintingData: dummyPaintingWithStoreLinks,
     shouldBeLazy: false,
+    storybook: true,
   },
   render: (args) => (
     <section className="aspect-video">
@@ -78,6 +82,7 @@ export const WithNSFWLink: Story = {
   args: {
     paintingData: dummyNSFWPainting,
     shouldBeLazy: false,
+    storybook: true,
   },
   render: (args) => (
     <section className="aspect-video">
@@ -90,6 +95,7 @@ export const WithEverything: Story = {
   args: {
     paintingData: dummyPaintingWithALl,
     shouldBeLazy: false,
+    storybook: true,
   },
   render: (args) => (
     <section className="aspect-video">

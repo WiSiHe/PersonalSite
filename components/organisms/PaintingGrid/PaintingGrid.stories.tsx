@@ -10,7 +10,6 @@ const meta: Meta<typeof PaintingGrid> = {
   tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    // layout: "fullscreen",
   },
 }
 
@@ -23,5 +22,6 @@ export const Default: Story = {}
 export const WithImages: Story = {
   args: {
     paintings: dummyPaintings,
+    isStorybook: true,
   },
 }

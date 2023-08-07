@@ -1,7 +1,7 @@
 "use client"
 import { Dialog, Transition } from "@headlessui/react"
 import clsx from "clsx"
-import AnimatedLogo from "components/atoms/AnimatedLogo"
+import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 import { AiOutlineClose } from "react-icons/ai"
 import { FaLocationArrow } from "react-icons/fa"
+import { cn } from "utils/utility"
 
 const container = {
   hidden: { opacity: 0 },
@@ -78,7 +79,11 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                 {title}
               </Dialog.Title> */}
               <div className="sticky top-0 z-10 flex justify-between p-4 bg-white shadow ">
-                <AnimatedLogo />
+                <LogoQR
+                  className={(cn("transition-all ease-in-out"), "fill-dark")}
+                  width="2.5rem"
+                  height="2.5rem"
+                />
                 <button
                   type="button"
                   className="p-2 text-2xl top-4 right-4 hover:bg-primary hover:text-white"

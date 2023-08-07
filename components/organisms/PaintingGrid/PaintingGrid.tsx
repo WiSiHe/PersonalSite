@@ -13,6 +13,7 @@ import { slugify } from "utils/string"
 
 interface iPaintingGridProps {
   paintings: iSanityPainting[]
+  isStorybook?: boolean
 }
 
 const debounce = <F extends (...args: any[]) => void>(
@@ -35,7 +36,10 @@ const debounce = <F extends (...args: any[]) => void>(
   }
 }
 
-const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
+const PaintingGrid = ({
+  paintings = [],
+  isStorybook = false,
+}: iPaintingGridProps) => {
   const router = useRouter()
 
   const searchParams = useSearchParams()
@@ -135,7 +139,11 @@ const PaintingGrid = ({ paintings = [] }: iPaintingGridProps) => {
             filterPaintingsV2
               .slice(0, paintingsSlice)
               .map((painting) => (
-                <Painting paintingData={painting} key={painting._id} />
+                <Painting
+                  paintingData={painting}
+                  key={painting._id}
+                  storybook={isStorybook}
+                />
               ))
           ) : (
             <>

@@ -4,10 +4,11 @@ import { urlForImage } from "lib/sanity.image"
 import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
 import { BsYoutube } from "react-icons/bs"
 import { FaExclamation } from "react-icons/fa"
 import { TbBoxMultiple } from "react-icons/tb"
+import { isEmptyObject } from "sanity"
+import { cn } from "utils/utility"
 
 // const cardVariants = {
 //   offscreen: {
@@ -28,16 +29,27 @@ import { TbBoxMultiple } from "react-icons/tb"
 interface iProjectProps {
   paintingData: iSanityPainting
   shouldBeLazy?: boolean
+  storybook?: boolean
 }
 
-const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
+const Painting = ({
+  paintingData,
+  shouldBeLazy = false,
+  storybook = false,
+}: iProjectProps) => {
   const filterList = useCombinedStore((state) => state.filterList)
 
-  if (!paintingData) {
-    return <div>No painting data</div>
+  if (!paintingData || isEmptyObject(paintingData)) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full h-full">
+        <TbBoxMultiple className="w-10 h-10 text-primary" />
+        <strong>Could not find </strong>
+      </div>
+    )
   }
 
   const isNsfwUrl = filterList.includes("nsfw")
+  // const isNsfwUrl = false
 
   const {
     image = {},
@@ -94,6 +106,10 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
     portrait: 600,
   }[format]
 
+  // const placeholder = await getBase64(
+  //   urlForImage(image).width(sanityWidth).height(sanityHeight).quality(70).url()
+  // )
+
   return (
     <Link
       href={linkString}
@@ -114,20 +130,23 @@ const Painting = ({ paintingData, shouldBeLazy = false }: iProjectProps) => {
             .height(sanityHeight)
             .quality(70)
             .url()}
-          blurDataURL={urlForImage(image)
-            .width(20)
-            .height(20)
-            .quality(10)
-            .url()}
-          placeholder="blur"
+          // blurDataURL={urlForImage(image)
+          //   .width(20)
+          //   .height(20)
+          //   .quality(10)
+          //   .url()}
+          // blurDataURL={placeholder}
+          // placeholder="blur"
           sizes="(max-width: 640px) 100vw,
               (max-width: 1280px) 50vw,
               (max-width: 1536px) 33vw,
               25vw"
           fill
+          priority={shouldBeLazy}
+          loading="eager"
+          unoptimized={storybook}
           alt=""
-          priority={!shouldBeLazy}
-          className={clsx(
+          className={cn(
             !isNsfw && !isNsfwUrl && "group-hover:scale-110",
             "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover lg:aspect-[12/16] aspect-square"
           )}

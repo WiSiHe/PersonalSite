@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs"
+
 const config: StorybookConfig = {
   stories: ["../components/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -8,19 +9,16 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/nextjs",
-    options: {},
+    options: {
+      // image: {
+      //   loading: "eager",
+      // },
+      // nextConfigPath: path.resolve(__dirname, "../next.config.js"),
+    },
   },
   docs: {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
-  // webpackFinal: async (config) => {
-  //   config.module.rules.push({
-  //     test: /\.mjs$/,
-  //     include: /node_modules/,
-  //     type: "javascript/auto",
-  //   })
-  //   return config
-  // },
 }
 export default config

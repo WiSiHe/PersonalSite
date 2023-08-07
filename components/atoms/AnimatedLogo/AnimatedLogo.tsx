@@ -1,10 +1,21 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { cn } from "utils/utility"
 
 import LogoQR from "../icons/LogoQR"
 
-const AnimatedLogo = () => {
+type theme = "light" | "dark"
+
+interface AnimatedLogo {
+  theme: theme
+}
+
+const AnimatedLogo = ({ theme }: AnimatedLogo) => {
+  const colorTheme = {
+    light: "fill-white",
+    dark: "fill-dark",
+  }
   return (
     <motion.div
       initial={{ opacity: 0, x: -100, rotate: -180, scale: 0.5 }}
@@ -23,7 +34,7 @@ const AnimatedLogo = () => {
         className="flex items-center justify-center p-1 text-sm drop-shadow decoration-4"
       >
         <LogoQR
-          className="transition-all ease-in-out fill-dark"
+          className={(cn("transition-all ease-in-out"), colorTheme[theme])}
           width="2.5rem"
           height="2.5rem"
         />

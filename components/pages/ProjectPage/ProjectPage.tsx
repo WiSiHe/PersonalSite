@@ -30,7 +30,7 @@ interface PageProps {
 
 const ProjectPage = ({ project }: PageProps) => {
   return (
-    <Main className="flex-col min-h-screen overflow-clip">
+    <Main noTopPadding className="flex-col min-h-screen overflow-clip">
       <BackButton />
       <section className="">
         <div className="relative w-full aspect-square xl:aspect-video">
