@@ -20,7 +20,7 @@ const AboutPage = () => {
       <Main noTopPadding className="flex-col lg:min-h-screen ">
         <section
           className={cn(
-            "relative flex items-center justify-center min-h-[600px] h-[60vh] lg:h-screen"
+            "relative flex items-center justify-start min-h-[600px] h-[60vh] lg:h-screen"
             // "aspect-square lg:aspect-video "
           )}
         >
@@ -33,66 +33,64 @@ const AboutPage = () => {
           />
           <section className="z-10 w-full p-4 md:w-fit">
             <GreeterCard />
-            <div className="flex flex-wrap justify-center gap-6 pt-6">
-              <LinkButton href="/videos">Videos</LinkButton>
-              <LinkButton href="/projects">Projects</LinkButton>
+            <div className="flex flex-wrap justify-end gap-6 pt-6">
+              {/* <LinkButton href="/videos">Videos</LinkButton>
+              <LinkButton href="/projects">Projects</LinkButton> */}
               <LinkButton href="/paintings">Paintings</LinkButton>
             </div>
           </section>
         </section>
-        <section className="relative xl:aspect-video bg-dark">
-          <GridStyleWrapper>
-            <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-white xl:px-10">
-              <div className="relative mt-4 col-span-full xl:hidden aspect-video">
-                <Image
-                  src={night}
-                  fill
-                  alt="Dark magical woods made in 3D"
-                  className="object-cover w-full h-full"
-                  sizes="(max-width: 768px) 100vw,
+        <section className="relative xl:aspect-video ">
+          <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-dark xl:px-10">
+            <div className="relative mt-4 col-span-full xl:hidden aspect-video">
+              <Image
+                src={night}
+                fill
+                alt="Dark magical woods made in 3D"
+                className="object-cover w-full h-full"
+                sizes="(max-width: 768px) 100vw,
 (max-width: 1200px) 50vw,
 33vw"
-                />
-              </div>
-              <div className="col-start-1 gap-4 pt-4 col-span-full xl:sticky xl:col-span-4">
-                <motion.h2
-                  initial={{
-                    opacity: 0,
-                    scale: 0,
-                  }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="pb-2"
-                >
-                  <strong>Paintings!</strong>
-                </motion.h2>
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 50,
-                  }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="space-y-4 xl:max-w-lg"
-                >
-                  <p>
-                    As a Digital Artist, my passion leans towards creating
-                    stylized portraits, ethereal landscapes, and artwork that
-                    transports you into the cosmos. My unique style has allowed
-                    me to venture into the realm of game concept art, and
-                    I&#39;ve been privileged to bring many ideas to life,
-                    occasionally taking up commissioned work.
-                  </p>
-
-                  <LinkButton href="/paintings">Paintings</LinkButton>
-                </motion.div>
-              </div>
+              />
             </div>
+            <div className="col-start-1 gap-4 pt-4 col-span-full xl:sticky xl:col-span-4">
+              <motion.h2
+                initial={{
+                  opacity: 0,
+                  scale: 0,
+                }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="pb-2"
+              >
+                <strong>Paintings</strong>
+              </motion.h2>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 50,
+                }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="space-y-4 xl:max-w-lg"
+              >
+                <p>
+                  As a Digital Artist, my passion leans towards creating
+                  stylized portraits, ethereal landscapes, and artwork that
+                  transports you into the cosmos. My unique style has allowed me
+                  to venture into the realm of game concept art, and I&#39;ve
+                  been privileged to bring many ideas to life, occasionally
+                  taking up commissioned work.
+                </p>
 
-            <ImageExplotionSection />
-          </GridStyleWrapper>
+                <LinkButton href="/paintings">Paintings</LinkButton>
+              </motion.div>
+            </div>
+          </div>
+
+          <ImageExplotionSection />
         </section>
 
         <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">

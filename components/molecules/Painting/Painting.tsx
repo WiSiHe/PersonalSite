@@ -58,7 +58,6 @@ const Painting = ({
     image = {},
     title = "",
     format,
-    slug = "",
     video = "",
     tagsV2 = [],
     imagesCount = 0,
@@ -76,8 +75,6 @@ const Painting = ({
   const hasStoreLinks = Object.keys(salesTagObj).length > 0
   // check if nsfwTag is empty
   const isNsfw = Object.keys(nsfwTagObj).length > 0
-
-  const linkString = `/painting/${slug}`
 
   // const formatStyle = {
   //   square: "aspect-square",

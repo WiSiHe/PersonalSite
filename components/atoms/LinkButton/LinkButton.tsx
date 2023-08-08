@@ -18,7 +18,7 @@ const LinkButton = ({ children, href }: LinkButtonProps) => {
         animate={{ scale: 1 }}
         transition={{ type: "spring", bounce: 0.4, duration: 1 }}
         whileHover={{ scale: 1.1, boxShadow: "0 0 10px #DE0D92" }}
-        className="flex items-center justify-center px-6 py-2 transition-all ease-linear rounded-lg w-fit whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
+        className="flex items-center justify-center px-6 py-2 text-white transition-all ease-linear rounded-lg w-fit whitespace-nowrap bg-primary hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
       >
         {children}
         <FaChevronRight className="inline-block ml-2 text-base" />
