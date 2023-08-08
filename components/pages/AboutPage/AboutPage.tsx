@@ -20,7 +20,7 @@ const AboutPage = () => {
       <Main noTopPadding className="flex-col lg:min-h-screen ">
         <section
           className={cn(
-            "relative grid items-center grid-cols-12 min-h-[600px] h-[60vh] lg:h-screen"
+            "relative flex items-center justify-center min-h-[600px] h-[60vh] lg:h-screen"
             // "aspect-square lg:aspect-video "
           )}
         >
@@ -31,9 +31,9 @@ const AboutPage = () => {
             }}
             className="absolute inset-0 w-full h-full bg-primary/40"
           />
-          <section className="z-10 p-4 lg:col-start-2 col-span-full lg:col-span-4">
+          <section className="z-10 w-full p-4 md:w-fit">
             <GreeterCard />
-            <div className="flex justify-end gap-4 pt-4">
+            <div className="flex flex-wrap justify-center gap-6 pt-6">
               <LinkButton href="/videos">Videos</LinkButton>
               <LinkButton href="/projects">Projects</LinkButton>
               <LinkButton href="/paintings">Paintings</LinkButton>

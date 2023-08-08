@@ -23,10 +23,11 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
       <nav
         aria-label="Main Navigation"
         className={clsx(
-          "z-20 flex items-center justify-between py-2 px-4 bg-dark/80 text-white",
+          "z-20 flex items-center justify-between py-2 px-4 bg-dark/20 backdrop-blur-sm text-white",
           isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
         )}
       >
+        <AnimatedLogo theme="light" />
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="z-20 p-4 transition-all hover:bg-primary active:text-white hover:text-white active:bg-primary"
@@ -35,7 +36,6 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         >
           <FaHamburger />
         </button>
-        <AnimatedLogo theme="light" />
       </nav>
       <NavigationModal
         isOpen={isOpen}
