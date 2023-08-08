@@ -153,7 +153,7 @@ const PaintingGrid = ({
             className="h-12 px-2 py-1 border border-gray-300 rounded-md"
           />
         </div>
-        <button className="flex items-center justify-center h-12 gap-2 px-8 text-white rounded-md lg:px-4 bg-primary">
+        <button className="flex items-center justify-center h-12 gap-2 px-4 text-white rounded-md lg:px-8 bg-primary">
           <FaSearch />
           Search
         </button>
@@ -190,7 +190,7 @@ const PaintingGrid = ({
               transition={{ type: "spring" }}
               key="no-paintings-found"
               className={cn(
-                "flex flex-col items-center justify-center h-full gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
+                "flex flex-col items-center justify-center gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
                 hasFilters ? "bg-primary/10" : "xl:col-span-6"
               )}
             >

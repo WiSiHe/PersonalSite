@@ -102,7 +102,6 @@ module.exports = {
       },
       fontFamily: {
         inter: ["var(--font-inter)", "sans-serif"],
-        syne: ["var(--font-syne)", "cursive"],
         oswald: ["var(--font-oswald)", "sans-serif"],
       },
       colors: {

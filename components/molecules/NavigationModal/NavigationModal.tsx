@@ -1,7 +1,6 @@
 "use client"
 import { Dialog, Transition } from "@headlessui/react"
 import clsx from "clsx"
-import LogoQR from "components/atoms/icons/LogoQR"
 import { NavItems } from "constants/navigation"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -9,7 +8,6 @@ import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 import { AiOutlineClose } from "react-icons/ai"
 import { FaLocationArrow } from "react-icons/fa"
-import { cn } from "utils/utility"
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,10 +42,10 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 z-20 overflow-y-auto"
+        className="fixed inset-0 z-30 overflow-y-auto"
         onClose={closeModal}
       >
-        <div className="h-full min-h-screen p-4">
+        <div className="relative flex justify-end w-full h-full p-4">
           <Dialog.Overlay className="fixed inset-0 transition-all duration-200 bg-black opacity-30" />
 
           {/* <span
@@ -59,25 +57,20 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
 
           <Transition.Child
             as={Fragment}
-            enter="transition ease-in-out duration-500"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition ease-in-out duration-500"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+            enter="transition-all ease-in-out duration-500"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100 "
+            leave="transition-all ease-in-out duration-500"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
           >
-            <motion.div
-              className="inline-block w-full h-full overflow-y-scroll transition-all transform bg-white shadow-xl lg:w-1/3 rounded-xl"
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: 1 }}
-              // exit={{ opacity: 0 }}
-            >
-              <div className="sticky top-0 z-10 flex justify-between p-4 bg-white shadow ">
-                <LogoQR
-                  className={(cn("transition-all ease-in-out"), "fill-dark")}
-                  width="2.5rem"
-                  height="2.5rem"
-                />
+            <motion.div className="inline-block w-full h-full overflow-y-scroll transition-all transform bg-white shadow-xl top-4 bottom-4 right-4 lg:w-1/3 rounded-xl">
+              <div className="sticky top-0 z-10 flex items-center justify-between p-4 bg-white shadow ">
+                <strong className="text-lg font-oswald">
+                  <span className="text-primary">He</span>nrik{" "}
+                  <span className="text-primary">Wi</span>
+                  lhelm <span className="text-primary">Si</span>ssener
+                </strong>
                 <button
                   type="button"
                   className="p-2 text-2xl top-4 right-4 hover:bg-primary hover:text-white"
@@ -91,16 +84,16 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="flex flex-col h-full gap-4 p-4"
+                className="flex flex-col h-full gap-1 p-4 pb-10"
               >
                 <Link
                   href="/"
                   className={clsx(
-                    "text-4xl hover:text-white p-4 hover:bg-primary",
+                    "text-4xl hover:text-white p-4 hover:bg-primary border-b",
                     isHome && "text-white bg-primary"
                   )}
                 >
-                  <strong className="">Home</strong>
+                  <strong className="font-oswald">Home</strong>
                   {isHome && (
                     <div className="pl-1 text-sm">You are currently here!</div>
                   )}
@@ -114,13 +107,13 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                       key={i}
                       href={item.url}
                       className={clsx(
-                        "text-4xl relative hover:text-white w-full hover:bg-primary",
+                        "text-4xl relative hover:text-white w-full hover:bg-primary border-b",
                         isUrlActive && "text-white",
                         isUrlActive && "bg-primary"
                       )}
                     >
-                      <div className="inset-0 z-10 flex flex-col p-4 ">
-                        <strong>{item.text}</strong>
+                      <div className="inset-0 z-10 flex flex-col p-2 ">
+                        <strong className="font-oswald">{item.text}</strong>
                         <div className="flex gap-4 mt-2">
                           <i className="text-sm">{item.description}</i>
                           {isUrlActive && (

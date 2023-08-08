@@ -7,6 +7,9 @@ import Image from "next/image"
 import Script from "next/script"
 import abstract from "public/images/abstract.jpg"
 import night from "public/images/night-forest.jpeg"
+import bath from "public/images/paintings/bathtub.jpg"
+import celestial from "public/images/paintings/celestial.jpg"
+import sundays from "public/images/paintings/sundays.jpg"
 import { cn } from "utils/utility"
 
 const AboutPage = () => {
@@ -27,8 +30,8 @@ const AboutPage = () => {
             fill
             alt="Abstract painting"
             placeholder="blur"
-            quality={10}
-            className="object-cover scale-150 blur-lg"
+            quality={1}
+            className="object-cover scale-150 blur-2xl"
           />
           <div
             dangerouslySetInnerHTML={{
@@ -37,7 +40,7 @@ const AboutPage = () => {
             }}
             className="absolute inset-0 w-full h-full scale-150 bg-primary/40"
           />
-          <section className="z-10 col-span-full md:col-span-6 ">
+          <section className="z-10 col-span-full md:col-span-6 lg:col-span-6 ">
             <GreeterCard />
             <div className="flex flex-wrap justify-end gap-6 pt-6">
               <LinkButton href="/paintings">Paintings</LinkButton>
@@ -54,26 +57,15 @@ const AboutPage = () => {
         </section>
 
         <section className="relative xl:aspect-video">
-          <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-dark xl:px-10">
-            <div className="relative mt-4 col-span-full xl:hidden aspect-video">
-              <Image
-                src={night}
-                fill
-                alt="Dark magical woods made in 3D"
-                className="object-cover w-full h-full"
-                sizes="(max-width: 768px) 100vw,
-(max-width: 1200px) 50vw,
-33vw"
-              />
-            </div>
-            <div className="col-start-1 gap-4 pt-4 col-span-full xl:sticky xl:col-span-4">
+          <div className="sticky top-0 z-20 grid max-w-screen-xl grid-cols-12 gap-4 px-4 py-10 mx-auto text-dark xl:px-10">
+            <div className="gap-4 pt-4 col-span-full xl:sticky">
               <motion.h2
                 initial={{
                   opacity: 0,
-                  scale: 0,
+                  x: -50,
                 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", duration: 0.5 }}
                 viewport={{ once: true }}
                 className="pb-2"
               >
@@ -82,12 +74,12 @@ const AboutPage = () => {
               <motion.div
                 initial={{
                   opacity: 0,
-                  y: 50,
+                  scale: 0.5,
                 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="space-y-4 xl:max-w-lg"
+                className="space-y-4"
               >
                 <p>
                   As a Digital Artist, my passion leans towards creating
@@ -97,13 +89,53 @@ const AboutPage = () => {
                   been privileged to bring many ideas to life, occasionally
                   taking up commissioned work.
                 </p>
-
-                <LinkButton href="/paintings">Paintings</LinkButton>
               </motion.div>
             </div>
+            <div className="relative col-span-full">
+              <section className="relative flex gap-4 overflow-y-scroll snap-x">
+                <Image
+                  src={celestial}
+                  placeholder="blur"
+                  alt="Dark magical woods made in 3D"
+                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
+                  sizes="(max-width: 768px) 100vw,
+(max-width: 1200px) 50vw,
+33vw"
+                />
+                <Image
+                  src={bath}
+                  placeholder="blur"
+                  alt="Dark magical woods made in 3D"
+                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
+                  sizes="(max-width: 768px) 100vw,
+(max-width: 1200px) 50vw,
+33vw"
+                />
+                <Image
+                  src={sundays}
+                  placeholder="blur"
+                  alt="Dark magical woods made in 3D"
+                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
+                  sizes="(max-width: 768px) 100vw,
+(max-width: 1200px) 50vw,
+33vw"
+                />
+                <Image
+                  src={night}
+                  placeholder="blur"
+                  alt="Dark magical woods made in 3D"
+                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
+                  sizes="(max-width: 768px) 100vw,
+(max-width: 1200px) 50vw,
+33vw"
+                />
+              </section>
+              <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-tertiary" />
+            </div>
+            <div className="flex justify-center w-full pt-12 col-span-full">
+              <LinkButton href="/paintings">More paintings</LinkButton>
+            </div>
           </div>
-
-          {/* <ImageExplotionSection /> */}
         </section>
 
         <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
