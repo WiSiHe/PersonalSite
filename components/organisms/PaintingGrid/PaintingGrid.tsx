@@ -4,6 +4,7 @@ import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
+import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
@@ -125,23 +126,23 @@ const PaintingGrid = ({
 
   return (
     <section className="grid items-start w-full h-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
-      {!hasFilters && (
-        <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-6 aspect-auto xl:aspect-auto">
-          <GreeterCard />
-        </div>
-      )}
+      <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-6 aspect-auto xl:aspect-auto">
+        <GreeterCard />
+      </div>
 
       <AnimatePresence>
         {!isEmptyArray(filterPaintingsV2) ? (
-          filterPaintingsV2
-            .slice(0, paintingsSlice)
-            .map((painting) => (
-              <Painting
-                paintingData={painting}
+          filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
+            return (
+              <Link
                 key={painting._id}
-                storybook={isStorybook}
-              />
-            ))
+                href={`/painting/${painting.slug}`}
+                className="col-span-full xl:col-span-3 aspect-[12/16] rounded-lg overflow-clip  drop-shadow-lg hover:ring active:ring ring-primary "
+              >
+                <Painting paintingData={painting} storybook={isStorybook} />
+              </Link>
+            )
+          })
         ) : (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}

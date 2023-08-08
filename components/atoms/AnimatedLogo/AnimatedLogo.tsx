@@ -18,9 +18,9 @@ const AnimatedLogo = ({ theme }: AnimatedLogo) => {
   }
   return (
     <motion.div
-      initial={{ opacity: 0, x: -100, rotate: -180, scale: 0.5 }}
+      initial={{ opacity: 0, x: 100, rotate: 180, scale: 0.5 }}
       animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
-      transition={{ type: "spring" }}
+      transition={{ type: "spring", duration: 1, bounce: 0.5 }}
       whileHover={{
         rotate: 90,
         scale: 1.1,
