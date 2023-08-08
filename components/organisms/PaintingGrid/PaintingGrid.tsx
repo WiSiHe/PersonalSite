@@ -1,5 +1,4 @@
 "use client"
-import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
@@ -147,11 +146,17 @@ const PaintingGrid = ({
           {!isEmptyArray(filterPaintingsV2) ? (
             filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
               return (
-                <Painting
-                  paintingData={painting}
-                  storybook={isStorybook}
+                // <Painting
+                //   paintingData={painting}
+                //   storybook={isStorybook}
+                //   key={painting._id}
+                // />
+                <div
+                  className="w-full h-full col-span-6 aspect-portrait bg-primary lg:col-span-3"
                   key={painting._id}
-                />
+                >
+                  test
+                </div>
               )
             })
           ) : (
