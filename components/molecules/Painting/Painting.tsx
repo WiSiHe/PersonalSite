@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
-import { useCombinedStore } from "lib/store"
 import Image from "next/image"
 import { useSearchParams } from "next/navigation"
 import { BsYoutube } from "react-icons/bs"
@@ -37,7 +36,6 @@ const Painting = ({
   shouldBeLazy = false,
   storybook = false,
 }: iProjectProps) => {
-  const filterList = useCombinedStore((state) => state.filterList)
   const searchParams = useSearchParams()
 
   const filters = searchParams?.getAll("filter")
@@ -51,8 +49,7 @@ const Painting = ({
     )
   }
 
-  const isNsfwUrl = filterList.includes("nsfw") || filters?.includes("nsfw")
-  // const isNsfwUrl = false
+  const isNsfwUrl = filters?.includes("nsfw")
 
   const {
     image = {},
@@ -113,7 +110,7 @@ const Painting = ({
   return (
     <article
       className={clsx(
-        "relative @container w-full h-full group hover:z-10 overflow-clip bg-white"
+        "relative @container w-full h-full group bg-white"
         // formatStyle
         // colStyle,
         // rowStyle

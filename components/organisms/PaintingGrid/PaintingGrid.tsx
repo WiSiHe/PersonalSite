@@ -152,7 +152,10 @@ const PaintingGrid = ({
                   key={painting._id}
                   className="col-span-full relative xl:col-span-3 aspect-[12/16] focus-within:ring rounded-lg overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
                 >
-                  <Link href={`/painting/${painting.slug}`}>
+                  <Link
+                    href={`/painting/${painting.slug}`}
+                    className="w-full h-full"
+                  >
                     <Painting paintingData={painting} storybook={isStorybook} />
                   </Link>
                 </div>

@@ -5,8 +5,7 @@ import FilterModal from "components/organisms/FilterModal/FilterModal"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { usePathname } from "next/navigation"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { IoFilterSharp } from "react-icons/io5"
 
 interface iFilterBar {
@@ -17,6 +16,10 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
   const router = useRouter()
   const pathName = usePathname()
   const currentPath = pathName ?? "/"
+
+  const searchParams = useSearchParams()
+
+  const filterss = searchParams?.getAll("filter")
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)

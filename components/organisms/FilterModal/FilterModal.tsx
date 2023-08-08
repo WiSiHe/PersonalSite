@@ -3,7 +3,7 @@ import clsx from "clsx"
 import { motion } from "framer-motion"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Fragment } from "react"
 import { IoClose } from "react-icons/io5"
 import { isEmptyArray } from "utils/array"
@@ -17,6 +17,9 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
   const router = useRouter()
 
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  const filterss = searchParams?.getAll("filter")
 
   const filterList: string[] = useCombinedStore((state) => state.filterList)
   const setFilterList = useCombinedStore((state) => state.setFilterList)
@@ -27,8 +30,6 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
 
   const handleToggleFilter = (filter: string) => {
     const slugifiedFilter = slugify(filter)
-
-    // pathname?filter=filter1,filter2,filter3
 
     if (filterList.includes(slugifiedFilter)) {
       const newFilters = filterList.filter((f) => f !== slugifiedFilter)
