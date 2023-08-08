@@ -127,12 +127,12 @@ const Painting = ({
               25vw"
         fill
         priority={shouldBeLazy}
-        loading="eager"
+        // loading="eager"
         unoptimized={storybook}
         alt=""
         className={cn(
           !isNsfw && !isNsfwUrl && "group-hover:scale-110",
-          "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover aspect-square"
+          "object-cover w-full h-full transition-all duration-500 ease-in-out bg-center bg-cover aspect-square"
         )}
       />
 
