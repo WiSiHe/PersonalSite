@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
+import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { FaSearch } from "react-icons/fa"
@@ -151,12 +152,11 @@ const PaintingGrid = ({
                 //   storybook={isStorybook}
                 //   key={painting._id}
                 // />
-                <div
-                  className="w-full h-full col-span-6 aspect-portrait bg-primary lg:col-span-3"
-                  key={painting._id}
-                >
-                  test
-                </div>
+                <Link href={`/painting/${painting.slug}`} key={painting._id}>
+                  <div className="w-full h-full col-span-6 aspect-portrait bg-primary lg:col-span-3">
+                    test
+                  </div>
+                </Link>
               )
             })
           ) : (
