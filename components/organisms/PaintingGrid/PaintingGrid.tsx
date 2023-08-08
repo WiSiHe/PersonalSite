@@ -167,10 +167,12 @@ const PaintingGrid = ({
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", bounce: 0.25 }}
                   key={painting._id + i}
-                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring"
+                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring aspect-portrait"
                 >
                   <Link href={`/painting/${painting.slug}`}>
-                    <div className="aspect-portrait bg-primary">test</div>
+                    <div className="flex items-center justify-center aspect-portrait bg-primary">
+                      test
+                    </div>
                     {/* <Painting
                       paintingData={painting}
                       storybook={isStorybook}
