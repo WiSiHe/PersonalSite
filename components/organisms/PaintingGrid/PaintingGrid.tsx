@@ -3,7 +3,6 @@ import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
-import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { FaSearch } from "react-icons/fa"
@@ -148,13 +147,11 @@ const PaintingGrid = ({
           {!isEmptyArray(filterPaintingsV2) ? (
             filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
               return (
-                <Link
-                  href={`/painting/${painting.slug}`}
+                <Painting
+                  paintingData={painting}
+                  storybook={isStorybook}
                   key={painting._id}
-                  className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
-                >
-                  <Painting paintingData={painting} storybook={isStorybook} />
-                </Link>
+                />
               )
             })
           ) : (
