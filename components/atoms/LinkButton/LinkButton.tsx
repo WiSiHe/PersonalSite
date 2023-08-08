@@ -17,7 +17,7 @@ const LinkButton = ({ children, href }: LinkButtonProps) => {
         animate={{ scale: 1 }}
         transition={{ type: "spring", bounce: 0.4, duration: 1 }}
         whileHover={{ scale: 1.1, boxShadow: "0 0 10px #DE0D92" }}
-        className="px-4 py-2 transition-all ease-linear w-fit whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
+        className="px-4 py-2 transition-all ease-linear rounded-lg w-fit whitespace-nowrap text-dark bg-highlight hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
       >
         {children}
       </motion.div>

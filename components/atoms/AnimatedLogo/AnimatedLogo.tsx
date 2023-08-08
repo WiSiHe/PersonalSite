@@ -20,12 +20,12 @@ const AnimatedLogo = ({ theme }: AnimatedLogo) => {
     <motion.div
       initial={{ opacity: 0, x: 100, rotate: 180, scale: 0.5 }}
       animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
-      transition={{ type: "spring", duration: 1, bounce: 0.5 }}
       whileHover={{
         rotate: 90,
-        scale: 1.1,
-        transition: { type: "spring", stiffness: 300, damping: 10 },
+        scale: 1.05,
+        transition: { stiffness: 300, damping: 10, delay: 0, duration: 0.5 },
       }}
+      transition={{ type: "spring", duration: 1.5, delay: 1, bounce: 0.5 }}
       className="flex items-center gap-2"
     >
       <Link

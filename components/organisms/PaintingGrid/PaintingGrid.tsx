@@ -1,5 +1,4 @@
 "use client"
-import GreeterCard from "components/molecules/GreeterCard"
 import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
@@ -126,10 +125,6 @@ const PaintingGrid = ({
 
   return (
     <section className="grid items-start w-full h-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
-      <div className="flex flex-col h-full gap-4 col-span-full xl:col-span-6 aspect-auto xl:aspect-auto">
-        <GreeterCard />
-      </div>
-
       <AnimatePresence>
         {!isEmptyArray(filterPaintingsV2) ? (
           filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {

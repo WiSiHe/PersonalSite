@@ -44,19 +44,8 @@ const desktopVariant = {
 const GreeterCard = () => {
   return (
     <>
-      {/* <Script
-        type="module"
-        src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
-      /> */}
-      <section className="relative flex flex-col justify-center h-full gap-4 bg-white rounded-lg overflow-clip drop-shadow-lg">
-        {/* <div
-        dangerouslySetInnerHTML={{
-          __html:
-            '<spline-viewer url="https://prod.spline.design/NJPbTHKSakGvCHjI/scene.splinecode" events-target="global"></spline-viewer>',
-        }}
-        className="absolute inset-0 w-full h-full"
-      /> */}
-        <div className="z-10 flex flex-col items-start h-full px-4 pt-4 pb-16 text-white lg:justify-center lg:p-4 mix-blend-difference">
+      <section className="relative flex flex-col justify-center h-full gap-4 p-10 rounded-lg backdrop-blur-lg bg-white/40 overflow-clip drop-shadow-xl">
+        <div className="z-10 flex flex-col items-start h-full text-dark lg:justify-center lg:p-4">
           <h1 className="text-2xl xl:text-5xl">
             <strong>Henrik Wilhelm Sissener</strong>
           </h1>

@@ -2,11 +2,13 @@
 import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import Main from "components/atoms/Main/Main"
+import GreeterCard from "components/molecules/GreeterCard"
 import ImageExplotionSection from "components/templates/ImageExplotionSection/ImageExplotionSection"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Script from "next/script"
 import night from "public/images/night-forest.jpeg"
+import { cn } from "utils/utility"
 
 const AboutPage = () => {
   return (
@@ -16,23 +18,26 @@ const AboutPage = () => {
         src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
       />
       <Main noTopPadding className="flex-col lg:min-h-screen ">
-        <section className="relative grid items-center grid-cols-12 aspect-square lg:aspect-video">
+        <section
+          className={cn(
+            "relative grid items-center grid-cols-12 min-h-[600px] h-[60vh] lg:h-screen"
+            // "aspect-square lg:aspect-video "
+          )}
+        >
           <div
             dangerouslySetInnerHTML={{
               __html:
                 '<spline-viewer url="https://prod.spline.design/NJPbTHKSakGvCHjI/scene.splinecode" events-target="global"></spline-viewer>',
             }}
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full bg-primary/40"
           />
-          <section className="z-10 p-10 lg:p-4 col-span-full lg:col-span-4">
-            <h1>About me</h1>
-            <p>
-              Welcome to my world. My name is Henrik Wilhelm Sissener, a digital
-              artist, game enthusiast, and web developer, all wrapped into one.
-              Born and raised in the scenic landscapes of Norway, I am fortunate
-              enough to live in a country that provides daily inspiration for my
-              artistic endeavors.
-            </p>
+          <section className="z-10 p-4 lg:col-start-2 col-span-full lg:col-span-4">
+            <GreeterCard />
+            <div className="flex justify-end gap-4 pt-4">
+              <LinkButton href="/videos">Videos</LinkButton>
+              <LinkButton href="/projects">Projects</LinkButton>
+              <LinkButton href="/paintings">Paintings</LinkButton>
+            </div>
           </section>
         </section>
         <section className="relative xl:aspect-video bg-dark">
