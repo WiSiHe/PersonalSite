@@ -4,7 +4,7 @@ import { getAllTagsAndPaintingsLight } from "lib/api"
 import { notFound } from "next/navigation"
 
 export const metadata = {
-  title: "Home | WiSiHe",
+  title: "Paintings | WiSiHe",
   description: "A gallery of some of my paintings",
   locale: "en-US",
   type: "website",

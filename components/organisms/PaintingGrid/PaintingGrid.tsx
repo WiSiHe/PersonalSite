@@ -6,6 +6,7 @@ import { useCombinedStore } from "lib/store"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
+import { FaSearch } from "react-icons/fa"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
@@ -124,48 +125,67 @@ const PaintingGrid = ({
   }, [paintings])
 
   return (
-    <section className="grid items-start w-full h-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
-      <AnimatePresence>
-        {!isEmptyArray(filterPaintingsV2) ? (
-          filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
-            return (
-              <Link
-                key={painting._id}
-                href={`/painting/${painting.slug}`}
-                // className="col-span-full relative xl:col-span-3 aspect-[12/16] rounded-lg overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
-                className="aspect-[12/16] rounded-lg overflow-clip col-span-6 xl:col-span-3 drop-shadow-lg hover:ring active:ring ring-primary "
-              >
-                <Painting paintingData={painting} storybook={isStorybook} />
-              </Link>
-            )
-          })
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring" }}
-            key="no-paintings-found"
-            className={cn(
-              "flex flex-col items-center justify-center h-full gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
-              hasFilters ? "bg-primary/10" : "xl:col-span-6"
-            )}
-          >
-            <h2 className="text-2xl text-center">
-              No paintings found with the selected filters
-            </h2>
-            <p className="text-center">
-              Try removing some filters to see more paintings
-            </p>
-            <button
-              onClick={handleClearFilter}
-              className="px-4 py-3 text-white rounded-lg bg-primary hover:bg-primary/90"
+    <>
+      <div className="flex items-center gap-4 pb-8">
+        <div className="flex flex-col">
+          <label htmlFor="search" className="sr-only">
+            Search:
+          </label>
+          <input
+            type="search"
+            placeholder="Search"
+            id="search"
+            className="h-12 px-2 py-1 border border-gray-300 rounded-md"
+          />
+        </div>
+        <button className="flex items-center justify-center h-12 gap-2 px-8 text-white rounded-md bg-primary">
+          <FaSearch />
+          Search
+        </button>
+      </div>
+      <section className="grid items-start w-full h-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
+        <AnimatePresence>
+          {!isEmptyArray(filterPaintingsV2) ? (
+            filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
+              return (
+                <div
+                  key={painting._id}
+                  className="col-span-full relative xl:col-span-3 aspect-[12/16] focus-within:ring rounded-lg overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
+                >
+                  <Link href={`/painting/${painting.slug}`}>
+                    <Painting paintingData={painting} storybook={isStorybook} />
+                  </Link>
+                </div>
+              )
+            })
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring" }}
+              key="no-paintings-found"
+              className={cn(
+                "flex flex-col items-center justify-center h-full gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
+                hasFilters ? "bg-primary/10" : "xl:col-span-6"
+              )}
             >
-              Clear Filters
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
+              <h2 className="text-2xl text-center">
+                No paintings found with the selected filters
+              </h2>
+              <p className="text-center">
+                Try removing some filters to see more paintings
+              </p>
+              <button
+                onClick={handleClearFilter}
+                className="px-4 py-3 text-white rounded-lg bg-primary hover:bg-primary/90"
+              >
+                Clear Filters
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </section>
+    </>
   )
 }
 

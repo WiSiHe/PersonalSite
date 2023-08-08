@@ -14,6 +14,13 @@ const GalleryPage = ({ paintings = [], tags = [] }: iPaintingsPageProps) => {
   return (
     <>
       <FilterBar filters={tags} />
+      <section className="pt-4 pb-10">
+        <h1 className="">Gallery</h1>
+        <p className="pt-2">
+          A gallery of some of my paintings. Click on a painting to see more of
+          it.
+        </p>
+      </section>
       <PaintingGrid paintings={paintings} />
     </>
   )
