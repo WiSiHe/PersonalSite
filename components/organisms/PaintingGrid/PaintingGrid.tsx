@@ -1,4 +1,5 @@
 "use client"
+import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
@@ -166,17 +167,17 @@ const PaintingGrid = ({
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", bounce: 0.25 }}
                   key={painting._id + i}
-                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring "
+                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring"
                 >
                   <Link href={`/painting/${painting.slug}`}>
-                    <div className="flex items-center justify-center text-white bg-primary aspect-portrait">
+                    {/* <div className="flex items-center justify-center text-white bg-primary aspect-portrait">
                       test
-                    </div>
-                    {/* <Painting
+                    </div> */}
+                    <Painting
                       paintingData={painting}
                       storybook={isStorybook}
                       key={painting._id}
-                    /> */}
+                    />
                   </Link>
                 </motion.div>
               )

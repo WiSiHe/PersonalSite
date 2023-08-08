@@ -110,7 +110,8 @@ const Painting = ({
   return (
     <article
       className={cn(
-        "relative w-full h-full aspect-portrait col-span-6 rounded-lg drop-shadow-lg overflow-clip focus-within:ring bg-primary ring-primary"
+        // "relative w-full h-full aspect-portrait col-span-6 rounded-lg drop-shadow-lg overflow-clip focus-within:ring bg-primary ring-primary",
+        " text-white bg-primary aspect-portrait"
         // !isNsfw && !isNsfwUrl && "group-hover:scale-110"
       )}
     >
