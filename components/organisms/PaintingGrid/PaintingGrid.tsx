@@ -152,13 +152,13 @@ const PaintingGrid = ({
             className="h-12 px-2 py-1 border border-gray-300 rounded-md"
           />
         </div>
-        <button className="flex items-center justify-center h-12 gap-2 px-8 text-white rounded-md bg-primary">
+        <button className="flex items-center justify-center h-12 gap-2 px-8 text-white rounded-md lg:px-4 bg-primary">
           <FaSearch />
           Search
         </button>
       </div>
-      <section className="grid w-full h-full grid-cols-12 gap-4 mb-10">
-        <AnimatePresence>
+      <AnimatePresence>
+        <section className="grid w-full h-full grid-cols-12 gap-4 mb-10">
           {!isEmptyArray(filterPaintingsV2) ? (
             filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
               return (
@@ -205,8 +205,8 @@ const PaintingGrid = ({
               </button>
             </motion.div>
           )}
-        </AnimatePresence>
-      </section>
+        </section>
+      </AnimatePresence>
     </>
   )
 }
