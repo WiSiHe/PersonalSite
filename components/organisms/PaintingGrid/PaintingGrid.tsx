@@ -148,17 +148,13 @@ const PaintingGrid = ({
           {!isEmptyArray(filterPaintingsV2) ? (
             filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
               return (
-                <div
+                <Link
+                  href={`/painting/${painting.slug}`}
                   key={painting._id}
-                  className="col-span-full relative xl:col-span-3 aspect-[12/16] focus-within:ring rounded-lg overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
+                  className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
                 >
-                  <Link
-                    href={`/painting/${painting.slug}`}
-                    className="w-full h-full"
-                  >
-                    <Painting paintingData={painting} storybook={isStorybook} />
-                  </Link>
-                </div>
+                  <Painting paintingData={painting} storybook={isStorybook} />
+                </Link>
               )
             })
           ) : (

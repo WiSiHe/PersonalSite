@@ -110,7 +110,7 @@ const Painting = ({
   return (
     <article
       className={clsx(
-        "relative @container w-full h-full group bg-white"
+        "relative @container w-full h-full group bg-white aspect-[12/16]"
         // formatStyle
         // colStyle,
         // rowStyle
