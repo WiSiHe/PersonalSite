@@ -5,6 +5,7 @@ import GreeterCard from "components/molecules/GreeterCard"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Script from "next/script"
+import abstract from "public/images/abstract.jpg"
 import night from "public/images/night-forest.jpeg"
 import { cn } from "utils/utility"
 
@@ -19,9 +20,16 @@ const AboutPage = () => {
         <section
           className={cn(
             "relative grid grid-cols-12 overflow-clip gap-4 lg:gap-10 items-center p-4 min-h-[400px] h-[60vh] lg:h-screen"
-            // "aspect-square lg:aspect-video "
           )}
         >
+          <Image
+            src={abstract}
+            fill
+            alt="Abstract painting"
+            placeholder="blur"
+            quality={50}
+            className="object-cover"
+          />
           <div
             dangerouslySetInnerHTML={{
               __html:
