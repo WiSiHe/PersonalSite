@@ -5,7 +5,6 @@ import { useCombinedStore } from "lib/store"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
-import { FaSearch } from "react-icons/fa"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
@@ -140,7 +139,7 @@ const PaintingGrid = ({
 
   return (
     <>
-      <div className="flex items-center gap-4 pb-8">
+      {/* <div className="flex items-center gap-4 pb-8">
         <div className="flex flex-col">
           <label htmlFor="search" className="sr-only">
             Search:
@@ -156,9 +155,9 @@ const PaintingGrid = ({
           <FaSearch />
           Search
         </button>
-      </div>
+      </div> */}
       <AnimatePresence>
-        <section className="grid w-full h-full grid-cols-12 gap-4 mb-10">
+        <section className="grid grid-cols-12 gap-4 mb-10">
           {!isEmptyArray(filterPaintingsV2) ? (
             filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
               return (
@@ -167,10 +166,10 @@ const PaintingGrid = ({
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", bounce: 0.25 }}
                   key={painting._id + i}
-                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring aspect-portrait"
+                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring aspect-square"
                 >
                   <Link href={`/painting/${painting.slug}`}>
-                    <div className="flex items-center justify-center aspect-portrait bg-primary">
+                    <div className="flex items-center justify-center text-white aspect-portrait bg-primary">
                       test
                     </div>
                     {/* <Painting
