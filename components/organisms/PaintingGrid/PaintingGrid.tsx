@@ -16,6 +16,21 @@ interface iPaintingGridProps {
   isStorybook?: boolean
 }
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5,
+    },
+  },
+}
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+}
+
 const debounce = <F extends (...args: any[]) => void>(
   func: F,
   wait: number
@@ -145,18 +160,24 @@ const PaintingGrid = ({
       <section className="grid w-full h-full grid-cols-12 gap-4 mb-10">
         <AnimatePresence>
           {!isEmptyArray(filterPaintingsV2) ? (
-            filterPaintingsV2.slice(0, paintingsSlice).map((painting) => {
+            filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
               return (
-                // <Painting
-                //   paintingData={painting}
-                //   storybook={isStorybook}
-                //   key={painting._id}
-                // />
-                <Link href={`/painting/${painting.slug}`} key={painting._id}>
-                  <div className="w-full h-full col-span-6 aspect-portrait bg-primary lg:col-span-3">
-                    test
-                  </div>
-                </Link>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ type: "spring", bounce: 0.25 }}
+                  key={painting._id + i}
+                  className="col-span-6 rounded-lg lg:col-span-3 focus-within:ring overflow-clip ring-primary hover:ring"
+                >
+                  <Link href={`/painting/${painting.slug}`}>
+                    <div className="aspect-portrait bg-primary">test</div>
+                    {/* <Painting
+                      paintingData={painting}
+                      storybook={isStorybook}
+                      key={painting._id}
+                    /> */}
+                  </Link>
+                </motion.div>
               )
             })
           ) : (

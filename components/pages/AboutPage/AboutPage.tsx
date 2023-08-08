@@ -28,7 +28,7 @@ const AboutPage = () => {
             alt="Abstract painting"
             placeholder="blur"
             quality={10}
-            className="object-cover scale-150"
+            className="object-cover scale-150 blur-lg"
           />
           <div
             dangerouslySetInnerHTML={{
