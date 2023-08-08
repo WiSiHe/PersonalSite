@@ -110,64 +110,67 @@ const Painting = ({
   // )
 
   return (
-    <Link
-      href={`/painting/${slug}`}
-      // className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
-      className="aspect-[12/16] rounded-lg overflow-clip col-span-6 xl:col-span-3 drop-shadow-lg hover:ring active:ring ring-primary "
-    >
-      <article
-        className={clsx(
-          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white"
-          // formatStyle
-          // colStyle,
-          // rowStyle
-        )}
+    <div className="col-span-6 xl:col-span-3 aspect-[12/16] relative drop-shadow-lg rounded-lg overflow-clip focus-within:ring ring-primary">
+      <Link
+        href={`/painting/${slug}`}
+        // className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
+        className="w-full h-full rounded-lg overflow-clip "
       >
-        <Image
-          src={urlForImage(image)
-            .width(sanityWidth)
-            .height(sanityHeight)
-            .quality(70)
-            .url()}
-          sizes="(max-width: 640px) 100vw,
+        <article
+          className={
+            clsx()
+            // "relative @container w-full h-full group hover:z-10 overflow-clip bg-white"
+            // formatStyle
+            // colStyle,
+            // rowStyle
+          }
+        >
+          <Image
+            src={urlForImage(image)
+              .width(sanityWidth)
+              .height(sanityHeight)
+              .quality(70)
+              .url()}
+            sizes="(max-width: 640px) 100vw,
               (max-width: 1280px) 50vw,
               (max-width: 1536px) 33vw,
               25vw"
-          fill
-          priority={shouldBeLazy}
-          loading="eager"
-          unoptimized={storybook}
-          alt=""
-          className={cn(
-            !isNsfw && !isNsfwUrl && "group-hover:scale-110",
-            "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover lg:aspect-[12/16] aspect-square"
+            fill
+            priority={shouldBeLazy}
+            loading="eager"
+            unoptimized={storybook}
+            alt=""
+            className={cn(
+              !isNsfw && !isNsfwUrl && "group-hover:scale-110",
+              "object-cover w-full h-full transition-all duration-[2000ms] ease-in-out transform bg-center bg-cover aspect-[12/16]"
+            )}
+          />
+
+          {isNsfw && !isNsfwUrl && (
+            <div className="absolute inset-0 backdrop-blur-xl" />
           )}
-        />
-
-        {isNsfw && !isNsfwUrl && (
-          <div className="absolute inset-0 backdrop-blur-xl" />
-        )}
-        {hasStoreLinks && (
-          <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
-            <div className="relative w-2 h-2 rounded-full bg-dark">
-              <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+          {hasStoreLinks && (
+            <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
+              <div className="relative w-2 h-2 rounded-full bg-dark">
+                <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
+              </div>
+              <strong>For sale</strong>
             </div>
-            <strong>For sale</strong>
-          </div>
-        )}
+          )}
 
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs bg-primary border-t-primary ">
-          <h2 className="text-base text-white capitalize font-inter line-clamp-1">
-            <strong>{title}</strong>
-          </h2>
-          <div className="flex items-center justify-center gap-4 text-lg text-white">
-            {video && <BsYoutube />}
-            {imagesCount && imagesCount > 0 && <TbBoxMultiple />}
-            {isNsfw && <FaExclamation />}
+          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs bg-primary border-t-primary ">
+            <h2 className="text-base text-white capitalize font-inter line-clamp-1">
+              <strong>{title}</strong>
+            </h2>
+            <div className="flex items-center justify-center gap-4 text-lg text-white">
+              {video && <BsYoutube />}
+              {imagesCount && imagesCount > 0 && <TbBoxMultiple />}
+              {isNsfw && <FaExclamation />}
+            </div>
           </div>
-        </div>
-      </article>
-    </Link>
+        </article>
+      </Link>
+    </div>
   )
 }
 
