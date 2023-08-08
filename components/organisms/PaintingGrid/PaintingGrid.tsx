@@ -157,7 +157,7 @@ const PaintingGrid = ({
         </button>
       </div> */}
       <AnimatePresence>
-        <section className="grid grid-cols-12 gap-4 mb-10">
+        <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
           {!isEmptyArray(filterPaintingsV2) ? (
             filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
               return (
