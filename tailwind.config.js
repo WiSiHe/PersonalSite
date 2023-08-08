@@ -10,6 +10,9 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      aspectRatio: {
+        portrait: "12 / 16",
+      },
       maxWidth: {
         "screen-3xl": "1920px",
       },

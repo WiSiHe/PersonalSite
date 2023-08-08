@@ -110,7 +110,7 @@ const Painting = ({
   // )
 
   return (
-    <div className="col-span-6 xl:col-span-3 aspect-[12/16] relative drop-shadow-lg rounded-lg overflow-clip focus-within:ring ring-primary">
+    <div className="relative w-full h-full col-span-6 rounded-lg xl:col-span-3 aspect-portrait drop-shadow-lg overflow-clip focus-within:ring bg-primary ring-primary">
       <Link
         href={`/painting/${slug}`}
         // className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
