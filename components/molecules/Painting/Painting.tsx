@@ -112,11 +112,12 @@ const Painting = ({
   return (
     <Link
       href={`/painting/${slug}`}
-      className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
+      // className="relative w-full h-full rounded-lg col-span-full xl:col-span-3 focus-within:ring overflow-clip drop-shadow-lg hover:ring active:ring ring-primary"
+      className="aspect-[12/16] rounded-lg overflow-clip col-span-6 xl:col-span-3 drop-shadow-lg hover:ring active:ring ring-primary "
     >
       <article
         className={clsx(
-          "relative @container w-full h-full group bg-white aspect-[12/16]"
+          "relative @container w-full h-full group hover:z-10 overflow-clip bg-white"
           // formatStyle
           // colStyle,
           // rowStyle

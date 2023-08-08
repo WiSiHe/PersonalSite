@@ -1,9 +1,7 @@
 "use client"
-import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import Main from "components/atoms/Main/Main"
 import GreeterCard from "components/molecules/GreeterCard"
-import ImageExplotionSection from "components/templates/ImageExplotionSection/ImageExplotionSection"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Script from "next/script"
@@ -20,7 +18,7 @@ const AboutPage = () => {
       <Main noTopPadding className="flex-col lg:min-h-screen ">
         <section
           className={cn(
-            "relative grid grid-cols-12 overflow-clip gap-10 items-center p-4 min-h-[400px] h-[60vh] lg:h-screen"
+            "relative grid grid-cols-12 overflow-clip gap-4 lg:gap-10 items-center p-4 min-h-[400px] h-[60vh] lg:h-screen"
             // "aspect-square lg:aspect-video "
           )}
         >
@@ -31,7 +29,7 @@ const AboutPage = () => {
             }}
             className="absolute inset-0 w-full h-full scale-150 bg-primary/40"
           />
-          <section className="z-10 col-span-full lg:col-span-4">
+          <section className="z-10 col-span-full md:col-span-6 ">
             <GreeterCard />
             <div className="flex flex-wrap justify-end gap-6 pt-6">
               <LinkButton href="/paintings">Paintings</LinkButton>
@@ -97,7 +95,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <ImageExplotionSection />
+          {/* <ImageExplotionSection /> */}
         </section>
 
         <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
@@ -123,55 +121,53 @@ const AboutPage = () => {
         </section>
 
         <section className="relative p-4 bg-dark overflow-clip">
-          <GridStyleWrapper>
-            <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
-              <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
-                <iframe
-                  src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
-                  width="100%"
-                  height="100%"
-                />
-              </div>
-              <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
-                <motion.h2
-                  initial={{
-                    opacity: 0,
-                    scale: 0,
-                  }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <strong>
-                    Fancy <span className="text-primary">animations!</span>
-                  </strong>
-                </motion.h2>
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 50,
-                  }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                >
-                  <p className="drop-shadow">
-                    I enjoy playing around with 3D modeling and animation. The
-                    object{" "}
-                    <strong className="hidden text-xl text-primary xl:inline">
-                      on the left
-                    </strong>
-                    <strong className="inline xl:hidden text-primary">
-                      above
-                    </strong>{" "}
-                    is a quick creation I put together using Spline. In the
-                    past, I&#39;ve designed a variety of game assets including
-                    trees, rocks, and structures.
-                    <br />
-                    <br /> More information coming soon!
-                  </p>
-                </motion.div>
-              </div>
+          <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
+            <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
+              <iframe
+                src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
+                width="100%"
+                height="100%"
+              />
             </div>
-          </GridStyleWrapper>
+            <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
+              <motion.h2
+                initial={{
+                  opacity: 0,
+                  scale: 0,
+                }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <strong>
+                  Fancy <span className="text-primary">animations!</span>
+                </strong>
+              </motion.h2>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 50,
+                }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <p className="drop-shadow">
+                  I enjoy playing around with 3D modeling and animation. The
+                  object{" "}
+                  <strong className="hidden text-xl text-primary xl:inline">
+                    on the left
+                  </strong>
+                  <strong className="inline xl:hidden text-primary">
+                    above
+                  </strong>{" "}
+                  is a quick creation I put together using Spline. In the past,
+                  I&#39;ve designed a variety of game assets including trees,
+                  rocks, and structures.
+                  <br />
+                  <br /> More information coming soon!
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </section>
         <section className="max-w-screen-lg p-4 mx-auto bg-blue-200 lg:min-h-screen">
           <p>
