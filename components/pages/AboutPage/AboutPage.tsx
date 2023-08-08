@@ -20,7 +20,7 @@ const AboutPage = () => {
       <Main noTopPadding className="flex-col lg:min-h-screen ">
         <section
           className={cn(
-            "relative flex items-center justify-start min-h-[600px] h-[60vh] lg:h-screen"
+            "relative grid grid-cols-12 overflow-clip gap-10 items-center p-4 min-h-[400px] h-[60vh] lg:h-screen"
             // "aspect-square lg:aspect-video "
           )}
         >
@@ -29,18 +29,25 @@ const AboutPage = () => {
               __html:
                 '<spline-viewer url="https://prod.spline.design/NJPbTHKSakGvCHjI/scene.splinecode" events-target="global"></spline-viewer>',
             }}
-            className="absolute inset-0 w-full h-full bg-primary/40"
+            className="absolute inset-0 w-full h-full scale-150 bg-primary/40"
           />
-          <section className="z-10 w-full p-4 md:w-fit">
+          <section className="z-10 col-span-full lg:col-span-4">
             <GreeterCard />
             <div className="flex flex-wrap justify-end gap-6 pt-6">
-              {/* <LinkButton href="/videos">Videos</LinkButton>
-              <LinkButton href="/projects">Projects</LinkButton> */}
               <LinkButton href="/paintings">Paintings</LinkButton>
             </div>
           </section>
+          <section className="relative hidden col-span-4 rounded-xl aspect-video overflow-clip">
+            <Image
+              src={night}
+              fill
+              alt="Dark magical woods made in 3D"
+              className="object-cover"
+            />
+          </section>
         </section>
-        <section className="relative xl:aspect-video ">
+
+        <section className="relative xl:aspect-video">
           <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-dark xl:px-10">
             <div className="relative mt-4 col-span-full xl:hidden aspect-video">
               <Image
@@ -94,6 +101,7 @@ const AboutPage = () => {
         </section>
 
         <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
+          <h3>Game dev</h3>
           <p>
             But it doesn&#39;t stop there. I am an ardent hobbyist in Game
             Development, where I blend my artistic vision with technical
@@ -104,6 +112,7 @@ const AboutPage = () => {
         </section>
 
         <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
+          <h3>Frontend</h3>
           <p>
             When I&#39;m not navigating the vastness of space or immersing
             myself in digital landscapes, I work as a Frontend Developer. With a

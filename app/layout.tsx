@@ -4,38 +4,37 @@ import { Analytics } from "@vercel/analytics/react"
 import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
-import { Alice, Inter, Playfair_Display, Roboto, Syne } from "next/font/google"
+import { Inter, Oswald } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-inter",
 })
-
-const roboto = Roboto({
-  weight: ["400", "700"],
+const oswald = Oswald({
   subsets: ["latin"],
-  variable: "--font-roboto",
+  display: "swap",
+  variable: "--font-oswald",
 })
 
-const playfair = Playfair_Display({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-playfair",
-})
-
-const alice = Alice({
-  // weight: ["400", "500", "600", "700"],
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-alice",
-})
-
-// const lobster = Lobster({
-//   weight: "400",
+// const roboto = Roboto({
+//   weight: ["400", "700"],
 //   subsets: ["latin"],
-//   variable: "--font-lobster",
+//   variable: "--font-roboto",
+// })
+
+// const playfair = Playfair_Display({
+//   weight: ["400", "500", "600", "700"],
+//   subsets: ["latin"],
+//   variable: "--font-playfair",
+// })
+
+// const syne = Syne({
+//   weight: ["400", "500", "600", "700"],
+//   subsets: ["latin"],
+//   variable: "--font-syne",
 // })
 
 export const metadata = {
@@ -141,7 +140,7 @@ export default function RootLayout({ children }: RootProps) {
         />
       </head>
       <body
-        className={`${inter.variable} ${roboto.variable} ${playfair.variable} ${alice.variable} font-alice selection:bg-primary selection:text-white`}
+        className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
       >
         <SkipToMainContentLink />
         <NextTopLoader color="#DE0D92" showSpinner={false} height={4} />

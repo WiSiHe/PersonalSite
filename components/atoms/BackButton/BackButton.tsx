@@ -12,16 +12,6 @@ const buttonVariant = {
   },
 }
 
-const iconVariant = {
-  rest: { opacity: 0, ease: "easeOut", duration: 0.2, type: "tween" },
-  hover: {
-    display: "hidden",
-    transition: {
-      type: "spring",
-    },
-  },
-}
-
 const BackButton = () => {
   const router = useRouter()
 
@@ -44,7 +34,7 @@ const BackButton = () => {
         onClick={handleGoBack}
         className="flex items-center gap-2 min-w-[120px] justify-center px-4 py-2 text-xl text-white transition-all ease-in-out overflow-clip group bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence>
           {!isHovered && (
             <motion.div
               key="icon-1"

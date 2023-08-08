@@ -98,10 +98,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        playfair: "'Playfair Display', serif",
-        roboto: "'Roboto', sansSerif",
         inter: ["var(--font-inter)", "sans-serif"],
-        lobster: ["var(--font-lobster)", "cursive"],
+        syne: ["var(--font-syne)", "cursive"],
+        oswald: ["var(--font-oswald)", "sans-serif"],
       },
       colors: {
         dark: "#2B061E",

@@ -44,11 +44,9 @@ const desktopVariant = {
 const GreeterCard = () => {
   return (
     <>
-      <section className="relative flex flex-col justify-center h-full gap-4 p-10 rounded-xl backdrop-blur-lg bg-white/30 overflow-clip drop-shadow-xl">
+      <section className="relative flex flex-col justify-center h-full gap-4 p-10 rounded-xl backdrop-blur-lg bg-white/60 overflow-clip drop-shadow-xl">
         <div className="z-10 flex flex-col items-start h-full text-dark lg:justify-center lg:p-4">
-          <h1 className="text-2xl xl:text-5xl">
-            <strong>Henrik Wilhelm Sissener</strong>
-          </h1>
+          <h1 className="text-2xl xl:text-5xl">Henrik Wilhelm Sissener</h1>
           <ul className="flex flex-col gap-2 mt-4 text-base xl:text-2xl">
             <motion.li
               className="flex items-center gap-2 p-1"
