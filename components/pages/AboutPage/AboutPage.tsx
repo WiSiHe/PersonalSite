@@ -3,7 +3,7 @@ import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import CarouselStatic from "components/molecules/CarouselStatic"
 import GreeterCard from "components/molecules/GreeterCard"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 import Image from "next/image"
 import Link from "next/link"
@@ -129,51 +129,54 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
 
       <section className="relative text-white pt-14 xl:pt-24">
         <div className="relative block w-full gap-4 px-4 text-dark xl:px-10">
-          <motion.h2
-            initial={{
-              opacity: 0,
-              y: 50,
-            }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring" }}
-            viewport={{ once: true }}
-            className="pb-2"
-          >
-            Paintings
-          </motion.h2>
-          <motion.div
-            key="description"
-            initial={{
-              opacity: 0,
-              y: 50,
-            }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.1 }}
-            className="max-w-2xl"
-          >
-            As a Digital Artist, my passion leans towards creating stylized
-            portraits, ethereal landscapes, and artwork that transports you into
-            the cosmos. I also occasionally taking up commissioned work.{" "}
-            <Link href="/paintings" className="underline">
-              Check out my gallery
-            </Link>
-          </motion.div>
+          <AnimatePresence>
+            <motion.h2
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring" }}
+              viewport={{ once: true }}
+              className="pb-2"
+            >
+              Paintings
+            </motion.h2>
+            <motion.div
+              key="description"
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", delay: 0.1 }}
+              className="max-w-2xl"
+            >
+              As a Digital Artist, my passion leans towards creating stylized
+              portraits, ethereal landscapes, and artwork that transports you
+              into the cosmos. I also occasionally taking up commissioned work.{" "}
+              <Link href="/paintings" className="underline">
+                Check out my gallery
+              </Link>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 50,
-        }}
-        transition={{ type: "spring", delay: 0.5 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="w-full pt-8 xl:pl-6"
-      >
-        <CarouselStatic />
-      </motion.div>
+      <AnimatePresence>
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 50,
+          }}
+          transition={{ type: "spring", delay: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="w-full pt-8 xl:pl-6"
+        >
+          <CarouselStatic />
+        </motion.div>
+      </AnimatePresence>
 
       <div className="flex flex-col items-center justify-center w-full gap-4 py-10">
         <strong>Like what you see?</strong>

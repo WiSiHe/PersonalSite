@@ -9,8 +9,10 @@ import space from "public/images/paintings/Space.jpg"
 import sundays from "public/images/paintings/sundays.jpg"
 import sunlight from "public/images/paintings/sunlight.jpg"
 import winter from "public/images/paintings/winter.jpg"
+import { useEffect, useState } from "react"
+import { isEmptyArray } from "utils/array"
 
-const Paintings = [
+const paintings = [
   {
     id: 1,
     name: "Celestial",
@@ -77,13 +79,20 @@ const CarouselStatic = () => {
   // const ref = useRef(null)
   // const { scrollXProgress } = useScroll({ container: ref })
 
+  const [sortedPaintings, setSortedPaintings] = useState(paintings)
+
+  useEffect(() => {
+    if (!paintings || isEmptyArray(paintings)) return
+    setSortedPaintings(paintings.sort(() => 0.5 - Math.random()))
+  }, [])
+
   return (
     <div className="relative w-full">
       <section
         className="relative flex gap-4 pl-4 overflow-y-scroll pr-14 snap-mandatory snap-x"
         // ref={ref}
       >
-        {Paintings.sort(() => 0.5 - Math.random()).map((painting) => (
+        {sortedPaintings.map((painting) => (
           <Image
             key={painting.id}
             src={painting.image}
