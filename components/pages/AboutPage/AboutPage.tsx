@@ -89,7 +89,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           alt=""
           placeholder="blur"
           quality={1}
-          className="object-cover scale-150 blur-3xl"
+          className="object-cover scale-105 xl:scale-150 blur-3xl"
         />
 
         <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">
@@ -127,61 +127,58 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </section>
       </section>
 
-      <section className="relative py-24 text-white xl:aspect-video ">
-        <div className="relative z-20 grid grid-cols-12 gap-4 text-dark xl:px-10">
-          <div className="px-4 col-span-full xl:col-span-5">
-            <motion.h2
-              initial={{
-                opacity: 0,
-                x: -50,
-              }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              viewport={{ once: true }}
-              className="pb-2"
-            >
-              Paintings
-            </motion.h2>
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.5,
-              }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="max-w-xl space-y-4"
-            >
-              <p>
-                As a Digital Artist, my passion leans towards creating stylized
-                portraits, ethereal landscapes, and artwork that transports you
-                into the cosmos. I also occasionally taking up commissioned
-                work.{" "}
-                <Link href="/paintings" className="underline">
-                  Check out my gallery
-                </Link>
-              </p>
-            </motion.div>
-          </div>
-        </div>
-        <div className="grid grid-cols-12 gap-10 py-12 pl-4 xl:pl-12">
-          <motion.div
+      <section className="relative text-white pt-14 xl:pt-24">
+        <div className="relative block w-full gap-4 px-4 text-dark xl:px-10">
+          <motion.h2
             initial={{
               opacity: 0,
-              y: 50,
+              x: -50,
             }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ type: "spring", duration: 0.5 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className=" col-span-full"
+            viewport={{ once: true }}
+            className="pb-2"
           >
-            <CarouselStatic />
+            Paintings
+          </motion.h2>
+          <motion.div
+            key="description"
+            initial={{
+              opacity: 0,
+              scale: 0.5,
+            }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl"
+          >
+            As a Digital Artist, my passion leans towards creating stylized
+            portraits, ethereal landscapes, and artwork that transports you into
+            the cosmos. I also occasionally taking up commissioned work.{" "}
+            <Link href="/paintings" className="underline">
+              Check out my gallery
+            </Link>
           </motion.div>
         </div>
-        <div className="flex justify-center w-full col-span-full">
-          <LinkButton href="/paintings">More paintings</LinkButton>
-        </div>
       </section>
+
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 50,
+        }}
+        transition={{ type: "spring", duration: 0.5 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="w-full pt-8 xl:pl-6"
+      >
+        <CarouselStatic />
+      </motion.div>
+
+      <div className="flex flex-col items-center justify-center w-full gap-4 py-10">
+        <strong>Like what you see?</strong>
+        <LinkButton href="/paintings">More paintings</LinkButton>
+      </div>
 
       {/* <section className="p-4 py-24 lg:min-h-screen bg-dark/20">
         <div className="max-w-screen-lg mx-auto">
