@@ -1,15 +1,12 @@
 "use client"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import Main from "components/atoms/Main/Main"
+import CarouselStatic from "components/molecules/CarouselStatic"
 import GreeterCard from "components/molecules/GreeterCard"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Script from "next/script"
 import abstract from "public/images/abstract.jpg"
-import night from "public/images/night-forest.jpeg"
-import bath from "public/images/paintings/bathtub.jpg"
-import celestial from "public/images/paintings/Celestial.jpg"
-import sundays from "public/images/paintings/sundays.jpg"
 import { cn } from "utils/utility"
 
 const AboutPage = () => {
@@ -46,19 +43,11 @@ const AboutPage = () => {
               <LinkButton href="/paintings">Paintings</LinkButton>
             </div>
           </section>
-          <section className="relative hidden col-span-4 rounded-xl aspect-video overflow-clip">
-            <Image
-              src={night}
-              fill
-              alt="Dark magical woods made in 3D"
-              className="object-cover"
-            />
-          </section>
         </section>
 
-        <section className="relative xl:aspect-video">
-          <div className="sticky top-0 z-20 grid max-w-screen-xl grid-cols-12 gap-4 px-4 py-10 mx-auto text-dark xl:px-10">
-            <div className="gap-4 pt-4 col-span-full xl:sticky">
+        <section className="relative py-24 xl:aspect-video">
+          <div className="relative z-20 grid grid-cols-12 gap-4 text-dark xl:px-10">
+            <div className="px-4 col-span-full lg:col-span-5 lg:col-start-3">
               <motion.h2
                 initial={{
                   opacity: 0,
@@ -91,66 +80,32 @@ const AboutPage = () => {
                 </p>
               </motion.div>
             </div>
-            <div className="relative col-span-full">
-              <section className="relative flex gap-4 overflow-y-scroll snap-x">
-                <Image
-                  src={celestial}
-                  placeholder="blur"
-                  alt="Dark magical woods made in 3D"
-                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
-                  sizes="(max-width: 768px) 100vw,
-(max-width: 1200px) 50vw,
-33vw"
-                />
-                <Image
-                  src={bath}
-                  placeholder="blur"
-                  alt="Dark magical woods made in 3D"
-                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
-                  sizes="(max-width: 768px) 100vw,
-(max-width: 1200px) 50vw,
-33vw"
-                />
-                <Image
-                  src={sundays}
-                  placeholder="blur"
-                  alt="Dark magical woods made in 3D"
-                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
-                  sizes="(max-width: 768px) 100vw,
-(max-width: 1200px) 50vw,
-33vw"
-                />
-                <Image
-                  src={night}
-                  placeholder="blur"
-                  alt="Dark magical woods made in 3D"
-                  className="object-cover w-full h-full aspect-square rounded-xl snap-center"
-                  sizes="(max-width: 768px) 100vw,
-(max-width: 1200px) 50vw,
-33vw"
-                />
-              </section>
-              <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-tertiary" />
+          </div>
+          <div className="grid grid-cols-12 gap-10 py-12">
+            <div className=" col-span-full lg:col-span-10 lg:col-start-3">
+              <CarouselStatic />
             </div>
-            <div className="flex justify-center w-full pt-12 col-span-full">
-              <LinkButton href="/paintings">More paintings</LinkButton>
-            </div>
+          </div>
+          <div className="flex justify-center w-full col-span-full">
+            <LinkButton href="/paintings">More paintings</LinkButton>
           </div>
         </section>
 
-        <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
-          <h3>Game dev</h3>
-          <p>
-            But it doesn&#39;t stop there. I am an ardent hobbyist in Game
-            Development, where I blend my artistic vision with technical
-            expertise. Crafting stylized 3D games using Unreal Engine and Unity,
-            I strive to provide immersive experiences that evoke emotion and
-            provoke thought.
-          </p>
+        <section className="p-4 py-24 lg:min-h-screen bg-dark/20">
+          <div className="max-w-screen-lg mx-auto">
+            <h2>Game dev</h2>
+            <p>
+              But it doesn&#39;t stop there. I am an ardent hobbyist in Game
+              Development, where I blend my artistic vision with technical
+              expertise. Crafting stylized 3D games using Unreal Engine and
+              Unity, I strive to provide immersive experiences that evoke
+              emotion and provoke thought.
+            </p>
+          </div>
         </section>
 
-        <section className="max-w-screen-lg p-4 mx-auto lg:min-h-screen">
-          <h3>Frontend</h3>
+        <section className="p-4 py-24 mx-auto lg:min-h-screen">
+          <h2>Frontend</h2>
           <p>
             When I&#39;m not navigating the vastness of space or immersing
             myself in digital landscapes, I work as a Frontend Developer. With a
