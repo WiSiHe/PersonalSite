@@ -133,10 +133,8 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             <motion.h2
               initial={{
                 opacity: 0,
-                y: 50,
               }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring" }}
               viewport={{ once: true }}
               className="pb-2"
             >
@@ -146,11 +144,9 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
               key="description"
               initial={{
                 opacity: 0,
-                y: 50,
               }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", delay: 0.1 }}
               className="max-w-2xl"
             >
               As a Digital Artist, my passion leans towards creating stylized
@@ -167,10 +163,8 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         <motion.div
           initial={{
             opacity: 0,
-            y: 50,
           }}
-          transition={{ type: "spring", delay: 0.5 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="w-full pt-8 xl:pl-6"
         >

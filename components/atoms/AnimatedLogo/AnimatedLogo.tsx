@@ -19,14 +19,12 @@ const AnimatedLogo = ({ theme }: AnimatedLogo) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, x: -100, rotate: -180 }}
-        animate={{ opacity: 1, x: 0, rotate: 0 }}
-        // whileHover={{
-        //   rotate: 90,
-        //   scale: 1.05,
-        //   transition: { stiffness: 300, damping: 10, delay: 0, duration: 0.5 },
-        // }}
-        transition={{ type: "spring", duration: 1.5, bounce: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        whileHover={{
+          rotate: 90,
+        }}
+        transition={{ type: "spring", delay: 0.5, duration: 1 }}
         className="flex items-center gap-2"
       >
         <Link
