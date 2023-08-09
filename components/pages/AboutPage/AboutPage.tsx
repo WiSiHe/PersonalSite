@@ -80,10 +80,13 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     setCurrentBackground(nextBackground)
   }
   return (
-    <Main noTopPadding className="flex-col lg:min-h-screen overflow-clip">
+    <Main
+      noTopPadding
+      className="relative flex-col xl:min-h-screen overflow-clip"
+    >
       <section
         className={cn(
-          "relative grid grid-cols-12 w-full overflow-clip gap-4 lg:gap-10 items-end lg:items-center p-4 min-h-[400px] lg:h-screen"
+          "relative grid grid-cols-12 w-full overflow-clip h-full gap-4 xl:gap-10 items-end xl:items-center pt-24 p-4 xl:min-h-screen xl:h-screen"
         )}
       >
         <Image
@@ -95,10 +98,10 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           className="object-cover scale-150 blur-3xl"
         />
 
-        <section className="z-10 w-full pt-24 lg:pt-0 col-span-full lg:col-span-4">
+        <section className="z-10 w-full mt-24 col-span-full xl:col-span-4">
           <GreeterCard />
         </section>
-        <div className="relative z-10 pb-12 col-span-full lg:block lg:col-span-8">
+        <section className="relative z-10 col-span-full xl:col-span-8">
           <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-center pt-4 rounded-full">
             <Chip hasStatus="selected">
               <FaStar /> Featured
@@ -110,7 +113,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             alt={currentBackground ? currentBackground.description : ""}
             className="z-10 object-cover aspect-video rounded-xl drop-shadow-xl"
           />
-          <div className="flex items-center justify-between gap-4 pt-6 capitalize lg:justify-center lg:gap-6">
+          <section className="z-10 flex items-center justify-between gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
             <button
               className="p-3 text-white rounded-lg bg-primary"
               onClick={handleNextBackground}
@@ -126,13 +129,13 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             >
               <FaChevronRight />
             </button>
-          </div>
-        </div>
+          </section>
+        </section>
       </section>
 
-      <section className="relative py-24 xl:aspect-video">
+      <section className="relative py-24 text-white xl:aspect-video ">
         <div className="relative z-20 grid grid-cols-12 gap-4 text-dark xl:px-10">
-          <div className="px-4 col-span-full lg:col-span-5">
+          <div className="px-4 col-span-full xl:col-span-5">
             <motion.h2
               initial={{
                 opacity: 0,
@@ -167,7 +170,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             </motion.div>
           </div>
         </div>
-        <div className="grid grid-cols-12 gap-10 py-12 pl-4 lg:pl-12">
+        <div className="grid grid-cols-12 gap-10 py-12 pl-4 xl:pl-12">
           <motion.div
             initial={{
               opacity: 0,
