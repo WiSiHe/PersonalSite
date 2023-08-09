@@ -50,14 +50,20 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         )}
       >
         <AnimatedLogo theme="light" />
-        <button
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="z-20 p-4 transition-all lg:hidden hover:bg-primary active:text-white hover:text-white active:bg-primary"
-          aria-expanded={isOpen}
-          aria-label="Open Navigation"
-        >
-          <FaHamburger />
-        </button>
+        <AnimatePresence>
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, y: -100 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: "spring", duration: 1 }}
+            key="hamburger"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="z-20 p-4 transition-all lg:hidden hover:bg-primary active:text-white hover:text-white active:bg-primary"
+            aria-expanded={isOpen}
+            aria-label="Open Navigation"
+          >
+            <FaHamburger />
+          </motion.button>
+        </AnimatePresence>
         <AnimatePresence>
           <motion.ul
             key="nav"

@@ -19,8 +19,9 @@ const AnimatedLogo = ({ theme }: AnimatedLogo) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        key="logo"
+        initial={{ opacity: 0, rotate: 0, scale: 0 }}
+        animate={{ opacity: 1, rotate: 360, scale: 1 }}
         whileHover={{
           rotate: 90,
         }}

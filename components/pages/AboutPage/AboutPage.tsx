@@ -132,10 +132,9 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           <AnimatePresence>
             <motion.h2
               key="title"
-              initial={{
-                opacity: 0,
-              }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring" }}
               viewport={{ once: true }}
               className="pb-2"
             >
@@ -143,10 +142,9 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             </motion.h2>
             <motion.div
               key="description"
-              initial={{
-                opacity: 0,
-              }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring" }}
               viewport={{ once: true }}
               className="max-w-2xl"
             >
@@ -164,7 +162,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", bounce: 0.25 }}
+          transition={{ type: "spring" }}
           viewport={{ once: true }}
           key="carousel"
           className="w-full pt-8 xl:pl-6"
