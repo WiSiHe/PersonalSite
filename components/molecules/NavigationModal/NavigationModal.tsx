@@ -7,7 +7,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 import { AiOutlineClose } from "react-icons/ai"
-import { FaLocationArrow } from "react-icons/fa"
 
 const container = {
   hidden: { opacity: 0 },
@@ -94,9 +93,9 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                   )}
                 >
                   <strong className="font-oswald">Home</strong>
-                  {isHome && (
+                  {/* {isHome && (
                     <div className="pl-1 text-sm">You are currently here!</div>
-                  )}
+                  )} */}
                 </Link>
                 {NavItems.map((item, i) => {
                   // check if current url is active and but also check if the url is a parent of the current url
@@ -114,14 +113,14 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                     >
                       <div className="inset-0 z-10 flex flex-col p-2 ">
                         <strong className="font-oswald">{item.text}</strong>
-                        <div className="flex gap-4 mt-2">
+                        <div className="flex flex-col gap-4 mt-2">
                           <i className="text-sm">{item.description}</i>
-                          {isUrlActive && (
+                          {/* {isUrlActive && (
                             <div className="flex items-center gap-2 text-sm">
                               <FaLocationArrow className="" />
                               You are currently here!
                             </div>
-                          )}
+                          )} */}
                         </div>
                       </div>
 
