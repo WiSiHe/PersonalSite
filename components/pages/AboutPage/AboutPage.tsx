@@ -131,11 +131,11 @@ const AboutPage = () => {
         <section className="relative p-4 bg-dark overflow-clip">
           <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
             <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto ">
-              <iframe
+              {/* <iframe
                 src="https://my.spline.design/untitled-1d78fd428f4d7531d03185f67d730969/"
                 width="100%"
                 height="100%"
-              />
+              /> */}
             </div>
             <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
               <motion.h2

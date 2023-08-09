@@ -83,7 +83,7 @@ const CarouselStatic = () => {
           />
         ))}
       </section>
-      <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary" />
+      <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary via-tertiary" />
     </div>
   )
 }
