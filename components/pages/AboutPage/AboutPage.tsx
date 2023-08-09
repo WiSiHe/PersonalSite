@@ -83,7 +83,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     <Main noTopPadding className="flex-col lg:min-h-screen overflow-clip">
       <section
         className={cn(
-          "relative grid grid-cols-12 w-full overflow-clip gap-4 lg:gap-10 items-end lg:items-center p-4 min-h-[400px] h-fit lg:h-screen"
+          "relative grid grid-cols-12 w-full overflow-clip gap-4 lg:gap-10 items-end lg:items-center p-4 min-h-[400px] lg:h-screen"
         )}
       >
         <Image
@@ -167,7 +167,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             </motion.div>
           </div>
         </div>
-        <div className="grid grid-cols-12 gap-10 py-12 pl-12">
+        <div className="grid grid-cols-12 gap-10 py-12 pl-4 lg:pl-12">
           <motion.div
             initial={{
               opacity: 0,
