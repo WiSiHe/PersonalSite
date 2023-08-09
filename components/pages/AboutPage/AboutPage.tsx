@@ -165,6 +165,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             opacity: 0,
           }}
           whileInView={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
           viewport={{ once: true }}
           className="w-full pt-8 xl:pl-6"
         >
