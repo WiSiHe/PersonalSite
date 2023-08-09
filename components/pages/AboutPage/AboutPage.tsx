@@ -9,9 +9,11 @@ import { iSanityImage } from "lib/models/objects/sanityImage"
 import Image from "next/image"
 import Link from "next/link"
 import celestial from "public/images/paintings/Celestial.jpg"
+import cloud from "public/images/paintings/cloud.jpg"
+import fire from "public/images/paintings/fire.jpg"
 import forestMorning from "public/images/paintings/forestMorning.jpg"
 import woods from "public/images/paintings/hell.jpg"
-import sunlight from "public/images/paintings/sunlight.jpg"
+import icecave from "public/images/paintings/icecave.png"
 import winter from "public/images/paintings/winter.jpg"
 import { useState } from "react"
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa"
@@ -48,9 +50,21 @@ const backgrounds = [
   },
   {
     id: 5,
-    name: "Sunlight",
-    image: sunlight,
-    description: "Sunlight",
+    name: "Ice Cave",
+    image: icecave,
+    description: "Ice Cave",
+  },
+  {
+    id: 6,
+    name: "Cloud",
+    image: cloud,
+    description: "Cloud",
+  },
+  {
+    id: 7,
+    name: "Fire",
+    image: fire,
+    description: "Fire",
   },
 ]
 
@@ -69,7 +83,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     <Main noTopPadding className="flex-col lg:min-h-screen overflow-clip">
       <section
         className={cn(
-          "relative grid grid-cols-12 w-full overflow-clip gap-4 lg:gap-10 items-end lg:items-center p-4 min-h-[400px] lg:h-screen"
+          "relative grid grid-cols-12 w-full overflow-clip gap-4 lg:gap-10 items-end lg:items-center p-4 min-h-[400px] h-fit lg:h-screen"
         )}
       >
         <Image
@@ -96,7 +110,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             alt={currentBackground ? currentBackground.description : ""}
             className="z-10 object-cover aspect-video rounded-xl drop-shadow-xl"
           />
-          <div className="flex items-center justify-center gap-6 pt-6">
+          <div className="flex items-center justify-between gap-4 pt-6 capitalize lg:justify-center lg:gap-6">
             <button
               className="p-3 text-white rounded-lg bg-primary"
               onClick={handleNextBackground}
@@ -104,7 +118,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
               <FaChevronLeft />
             </button>
             <LinkButton href="/paintings">
-              Check out the painting gallery
+              <span className="hidden">Check out the</span> painting gallery
             </LinkButton>
             <button
               className="p-3 text-white rounded-lg bg-primary"
