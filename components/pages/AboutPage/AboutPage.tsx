@@ -86,7 +86,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     >
       <section
         className={cn(
-          "relative grid grid-cols-12 w-full overflow-clip h-full gap-4 xl:gap-10 min-h-screen items-end xl:items-center pt-24 p-4 xl:min-h-screen xl:h-screen"
+          "relative grid grid-cols-12 w-full overflow-clip gap-4 xl:gap-10 items-start xl:items-center p-4 xl:min-h-screen xl:h-screen"
         )}
       >
         <Image
@@ -98,7 +98,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           className="object-cover scale-150 blur-3xl"
         />
 
-        <section className="z-10 w-full mt-24 col-span-full xl:col-span-4">
+        <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">
           <GreeterCard />
         </section>
         <section className="relative z-10 col-span-full xl:col-span-8">
