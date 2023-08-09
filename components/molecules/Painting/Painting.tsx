@@ -148,7 +148,7 @@ const Painting = ({
         </div>
       )}
 
-      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs bg-primary border-t-primary ">
+      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-4 text-xs duration-200 backdrop-blur-sm transition-color group-hover:bg-primary bg-dark/50 border-t-dark ">
         <h2 className="text-base text-white capitalize font-inter line-clamp-1">
           <strong>{title}</strong>
         </h2>

@@ -6,7 +6,6 @@ import { useCombinedStore } from "lib/store"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
-import { FaSearch } from "react-icons/fa"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
@@ -141,7 +140,7 @@ const PaintingGrid = ({
 
   return (
     <>
-      <div className="flex items-center w-full gap-4 pb-8">
+      {/* <div className="flex items-center w-full gap-4 pb-8">
         <div className="flex flex-col flex-1">
           <label htmlFor="search" className="sr-only">
             Search:
@@ -157,7 +156,7 @@ const PaintingGrid = ({
           <FaSearch />
           Search
         </button>
-      </div>
+      </div> */}
       <div className="pb-4">
         Total Paintings: {paintings.length} | Filtered Paintings:{" "}
       </div>
@@ -171,7 +170,7 @@ const PaintingGrid = ({
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", bounce: 0.25 }}
                   key={painting._id + i}
-                  className="relative rounded-lg shadow-md col-span-full lg:col-span-3 focus-within:ring ring-primary hover:ring overflow-clip"
+                  className="relative rounded-lg shadow-md col-span-full lg:col-span-3 group focus-within:ring ring-primary hover:ring overflow-clip"
                 >
                   <Link href={`/painting/${painting.slug}`}>
                     <Painting

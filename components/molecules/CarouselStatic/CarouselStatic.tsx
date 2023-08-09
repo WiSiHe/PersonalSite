@@ -3,6 +3,7 @@ import night from "public/images/night-forest.jpeg"
 import bath from "public/images/paintings/bathtub.jpg"
 import celestial from "public/images/paintings/Celestial.jpg"
 import creepy from "public/images/paintings/creepy.jpg"
+import darkSouls from "public/images/paintings/darksouls.jpg"
 import hell from "public/images/paintings/hell.jpg"
 import space from "public/images/paintings/Space.jpg"
 import sundays from "public/images/paintings/sundays.jpg"
@@ -64,6 +65,12 @@ const Paintings = [
     image: winter,
     description: "Winter",
   },
+  {
+    id: 10,
+    name: "Dark Souls",
+    image: darkSouls,
+    description: "Dark Souls",
+  },
 ]
 
 const CarouselStatic = () => {
@@ -76,14 +83,15 @@ const CarouselStatic = () => {
             src={painting.image}
             placeholder="blur"
             alt={painting.description}
-            className="object-cover w-full h-full aspect-video lg:aspect-portrait rounded-xl snap-center"
+            quality={75}
+            className="object-cover w-full h-full aspect-video lg:aspect-portrait rounded-xl snap-start drop-shadow-xl"
             sizes="(max-width: 768px) 100vw,
   (max-width: 1200px) 50vw,
   33vw"
           />
         ))}
       </section>
-      <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary via-tertiary" />
+      {/* <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary via-tertiary" /> */}
     </div>
   )
 }

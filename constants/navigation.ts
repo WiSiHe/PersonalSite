@@ -17,5 +17,5 @@ export const NavItems = [
     text: "Contact",
     description: "Some various ways to contact me",
   },
-  { url: "test", text: "Test", description: "Some test pages for development" },
+  // { url: "test", text: "Test", description: "Some test pages for development" },
 ]

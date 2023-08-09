@@ -3,6 +3,7 @@ import StoreLink from "components/atoms/StoreLink"
 import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import Image from "next/image"
 import Link from "next/link"
+import sloth from "public/images/paintings/cute.jpg"
 import { FaMailBulk } from "react-icons/fa"
 import {
   SiArtstation,
@@ -119,9 +120,10 @@ const ContactPage = () => {
 
       <div className="relative hidden lg:block lg:col-span-8">
         <Image
-          src="/images/paintings/cute.jpg"
+          src={sloth}
           alt="contact"
           fill
+          placeholder="blur"
           className="object-cover"
         />
       </div>
