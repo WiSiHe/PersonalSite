@@ -108,13 +108,7 @@ const Painting = ({
   // )
 
   return (
-    <article
-      className={cn(
-        // "relative w-full h-full aspect-portrait col-span-6 rounded-lg drop-shadow-lg overflow-clip focus-within:ring bg-primary ring-primary",
-        " text-white bg-white aspect-portrait relative"
-        // !isNsfw && !isNsfwUrl && "group-hover:scale-110"
-      )}
-    >
+    <article className={cn("text-white bg-white aspect-portrait relative")}>
       <Image
         src={urlForImage(image)
           .width(sanityWidth)

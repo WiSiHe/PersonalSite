@@ -1,4 +1,3 @@
-import { motion, useScroll } from "framer-motion"
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
 import bath from "public/images/paintings/bathtub.jpg"
@@ -10,7 +9,6 @@ import space from "public/images/paintings/Space.jpg"
 import sundays from "public/images/paintings/sundays.jpg"
 import sunlight from "public/images/paintings/sunlight.jpg"
 import winter from "public/images/paintings/winter.jpg"
-import { useRef } from "react"
 
 const Paintings = [
   {
@@ -76,33 +74,33 @@ const Paintings = [
 ]
 
 const CarouselStatic = () => {
-  const ref = useRef(null)
-  const { scrollXProgress } = useScroll({ container: ref })
+  // const ref = useRef(null)
+  // const { scrollXProgress } = useScroll({ container: ref })
 
   return (
     <div className="relative w-full">
       <section
-        className="relative flex gap-4 pl-4 pr-10 overflow-y-scroll snap-mandatory snap-x"
-        ref={ref}
+        className="relative flex gap-4 pl-4 overflow-y-scroll pr-14 snap-mandatory snap-x"
+        // ref={ref}
       >
         {Paintings.sort(() => 0.5 - Math.random()).map((painting) => (
           <Image
             key={painting.id}
             src={painting.image}
             placeholder="blur"
+            quality={50}
             alt={painting.description}
-            quality={75}
-            className="object-cover w-full h-full aspect-square lg:aspect-portrait rounded-xl snap-center drop-shadow-xl"
+            className="object-cover w-full h-64 aspect-portrait rounded-xl snap-center drop-shadow-xl"
             sizes="(max-width: 768px) 100vw,
   (max-width: 1200px) 50vw,
   33vw"
           />
         ))}
       </section>
-      <motion.div
+      {/* <motion.div
         className="absolute left-0 h-2 origin-left rounded-full -top-4 right-10 bg-primary"
         style={{ scaleX: scrollXProgress }}
-      />
+      /> */}
       {/* <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary via-tertiary" /> */}
     </div>
   )

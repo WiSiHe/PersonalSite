@@ -169,6 +169,7 @@ const PaintingGrid = ({
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", bounce: 0.25 }}
+                  viewport={{ once: true }}
                   key={painting._id + i}
                   className="relative rounded-lg shadow-md col-span-full lg:col-span-3 group focus-within:ring ring-primary hover:ring overflow-clip"
                 >

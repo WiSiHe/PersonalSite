@@ -1,7 +1,6 @@
 "use client"
 import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
-import Main from "components/atoms/Main/Main"
 import CarouselStatic from "components/molecules/CarouselStatic"
 import GreeterCard from "components/molecules/GreeterCard"
 import { motion } from "framer-motion"
@@ -17,7 +16,6 @@ import icecave from "public/images/paintings/icecave.png"
 import winter from "public/images/paintings/winter.jpg"
 import { useState } from "react"
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa"
-import { cn } from "utils/utility"
 
 interface AboutPageProps {
   paintings?: iSanityImage[]
@@ -80,14 +78,10 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     setCurrentBackground(nextBackground)
   }
   return (
-    <Main
-      noTopPadding
-      className="relative flex-col xl:min-h-screen overflow-clip"
-    >
+    <>
       <section
-        className={cn(
-          "relative grid grid-cols-12 w-full overflow-clip gap-4 xl:gap-10 items-start xl:items-center p-4 xl:min-h-screen xl:h-screen"
-        )}
+        key="hero"
+        className="relative flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 px-8 xl:px-4 py-10 xl:gap-10 xl:items-center xl:h-[100dvh] overflow-clip"
       >
         <Image
           src={currentBackground ? currentBackground.image : ""}
@@ -102,7 +96,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           <GreeterCard />
         </section>
         <section className="relative z-10 col-span-full xl:col-span-8">
-          <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-center pt-4 rounded-full">
+          <div className="absolute left-0 right-0 z-10 flex items-center justify-center rounded-full -top-2 drop-shadow-xl">
             <Chip hasStatus="selected">
               <FaStar /> Featured
             </Chip>
@@ -173,10 +167,6 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         <div className="grid grid-cols-12 gap-10 py-12 pl-4 xl:pl-12">
           <motion.div
             initial={{
-              opacity: 0,
-              y: 50,
-            }}
-            exit={{
               opacity: 0,
               y: 50,
             }}
@@ -277,7 +267,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           my passion and creativity with you!
         </p>
       </section> */}
-    </Main>
+    </>
   )
 }
 
