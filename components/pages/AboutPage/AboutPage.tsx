@@ -8,7 +8,7 @@ import Script from "next/script"
 import abstract from "public/images/abstract.jpg"
 import night from "public/images/night-forest.jpeg"
 import bath from "public/images/paintings/bathtub.jpg"
-import celestial from "public/images/paintings/celestial.jpg"
+import celestial from "public/images/paintings/Celestial.jpg"
 import sundays from "public/images/paintings/sundays.jpg"
 import { cn } from "utils/utility"
 
