@@ -60,6 +60,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         </button>
         <AnimatePresence>
           <motion.ul
+            key="nav"
             variants={container}
             initial="hidden"
             animate="show"

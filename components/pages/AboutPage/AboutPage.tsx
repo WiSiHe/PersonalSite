@@ -131,6 +131,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         <div className="relative block w-full gap-4 px-4 text-dark xl:px-10">
           <AnimatePresence>
             <motion.h2
+              key="title"
               initial={{
                 opacity: 0,
               }}
@@ -161,12 +162,11 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
       </section>
       <AnimatePresence>
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", bounce: 0.25 }}
           viewport={{ once: true }}
+          key="carousel"
           className="w-full pt-8 xl:pl-6"
         >
           <CarouselStatic />
