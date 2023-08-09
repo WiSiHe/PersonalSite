@@ -5,17 +5,17 @@ import CarouselStatic from "components/molecules/CarouselStatic"
 import GreeterCard from "components/molecules/GreeterCard"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import Script from "next/script"
+// import Script from "next/script"
 import abstract from "public/images/abstract.jpg"
 import { cn } from "utils/utility"
 
 const AboutPage = () => {
   return (
     <>
-      <Script
+      {/* <Script
         type="module"
         src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
-      />
+      /> */}
       <Main noTopPadding className="flex-col lg:min-h-screen ">
         <section
           className={cn(
@@ -30,13 +30,13 @@ const AboutPage = () => {
             quality={1}
             className="object-cover scale-150 blur-2xl"
           />
-          <div
+          {/* <div
             dangerouslySetInnerHTML={{
               __html:
                 '<spline-viewer url="https://prod.spline.design/NJPbTHKSakGvCHjI/scene.splinecode" events-target="global"></spline-viewer>',
             }}
             className="absolute inset-0 w-full h-full scale-150 bg-primary/40"
-          />
+          /> */}
           <section className="z-10 col-span-full md:col-span-6 lg:col-span-6 ">
             <GreeterCard />
             <div className="flex flex-wrap justify-end gap-6 pt-6">
