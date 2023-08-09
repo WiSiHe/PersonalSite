@@ -1,12 +1,10 @@
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
-import bath from "public/images/paintings/bathtub.jpg"
 import celestial from "public/images/paintings/Celestial.jpg"
 import creepy from "public/images/paintings/creepy.jpg"
 import darkSouls from "public/images/paintings/darksouls.jpg"
 import hell from "public/images/paintings/hell.jpg"
 import space from "public/images/paintings/Space.jpg"
-import sundays from "public/images/paintings/sundays.jpg"
 import sunlight from "public/images/paintings/sunlight.jpg"
 import winter from "public/images/paintings/winter.jpg"
 import { useEffect, useState } from "react"
@@ -18,18 +16,6 @@ const paintings = [
     name: "Celestial",
     image: celestial,
     description: "Celesital",
-  },
-  {
-    id: 2,
-    name: "Sundays",
-    image: sundays,
-    description: "Sundays",
-  },
-  {
-    id: 3,
-    name: "Bathtub",
-    image: bath,
-    description: "Bathtub",
   },
   {
     id: 4,
@@ -100,9 +86,9 @@ const CarouselStatic = () => {
             quality={50}
             alt={painting.description}
             className="object-cover w-full h-80 xl:h-auto aspect-portrait rounded-xl snap-center drop-shadow-xl"
-            sizes="(max-width: 768px) 100vw,
-  (max-width: 1200px) 50vw,
-  33vw"
+            sizes="(max-width: 768px) 33vw,
+                  (max-width: 1200px) 33vw,
+                  33vw"
           />
         ))}
       </section>

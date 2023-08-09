@@ -1,10 +1,11 @@
 "use client"
 import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
-import CarouselStatic from "components/molecules/CarouselStatic"
+// import CarouselStatic from "components/molecules/CarouselStatic"
 import GreeterCard from "components/molecules/GreeterCard"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityImage } from "lib/models/objects/sanityImage"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
 import celestial from "public/images/paintings/Celestial.jpg"
@@ -16,6 +17,13 @@ import icecave from "public/images/paintings/icecave.png"
 import winter from "public/images/paintings/winter.jpg"
 import { useState } from "react"
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa"
+
+const CarouselStatic = dynamic(
+  () => import("components/molecules/CarouselStatic"),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+)
 
 interface AboutPageProps {
   paintings?: iSanityImage[]
@@ -89,6 +97,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           alt=""
           placeholder="blur"
           quality={1}
+          priority
           className="object-cover scale-105 xl:scale-150 blur-3xl"
         />
 
@@ -103,8 +112,10 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           </div>
           <Image
             src={currentBackground ? currentBackground.image : ""}
-            placeholder="blur"
             alt={currentBackground ? currentBackground.description : ""}
+            placeholder="blur"
+            quality={75}
+            priority
             className="z-10 object-cover aspect-video rounded-xl drop-shadow-xl"
           />
           <section className="z-10 flex items-center justify-between gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
