@@ -86,7 +86,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     >
       <section
         className={cn(
-          "relative grid grid-cols-12 w-full overflow-clip h-full gap-4 xl:gap-10 items-end xl:items-center pt-24 p-4 xl:min-h-screen xl:h-screen"
+          "relative grid grid-cols-12 w-full overflow-clip h-full gap-4 xl:gap-10 min-h-screen items-end xl:items-center pt-24 p-4 xl:min-h-screen xl:h-screen"
         )}
       >
         <Image
