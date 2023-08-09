@@ -40,7 +40,7 @@ const AboutPage = () => {
           <section className="z-10 col-span-full md:col-span-6 lg:col-span-6 ">
             <GreeterCard />
             <div className="flex flex-wrap justify-end gap-6 pt-6">
-              <LinkButton href="/paintings">Paintings</LinkButton>
+              <LinkButton href="/paintings">Painting gallery</LinkButton>
             </div>
           </section>
         </section>
@@ -58,7 +58,7 @@ const AboutPage = () => {
                 viewport={{ once: true }}
                 className="pb-2"
               >
-                <strong>Paintings</strong>
+                Paintings
               </motion.h2>
               <motion.div
                 initial={{
@@ -82,9 +82,22 @@ const AboutPage = () => {
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10 py-12">
-            <div className=" col-span-full lg:col-span-10 lg:col-start-3">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              exit={{
+                opacity: 0,
+                y: 50,
+              }}
+              transition={{ type: "spring", duration: 0.5 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className=" col-span-full lg:col-span-10 lg:col-start-3"
+            >
               <CarouselStatic />
-            </div>
+            </motion.div>
           </div>
           <div className="flex justify-center w-full col-span-full">
             <LinkButton href="/paintings">More paintings</LinkButton>

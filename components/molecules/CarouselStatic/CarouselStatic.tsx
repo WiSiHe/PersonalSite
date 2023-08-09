@@ -69,8 +69,8 @@ const Paintings = [
 const CarouselStatic = () => {
   return (
     <div className="relative col-span-full">
-      <section className="relative flex gap-4 pl-4 pr-20 overflow-y-scroll snap-x">
-        {Paintings.map((painting) => (
+      <section className="relative flex gap-4 pl-4 pr-24 overflow-y-scroll snap-x">
+        {Paintings.sort(() => 0.5 - Math.random()).map((painting) => (
           <Image
             key={painting.id}
             src={painting.image}
@@ -83,7 +83,7 @@ const CarouselStatic = () => {
           />
         ))}
       </section>
-      <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-tertiary" />
+      <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary" />
     </div>
   )
 }
