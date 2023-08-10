@@ -89,7 +89,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     <>
       <section
         key="hero"
-        className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 px-8 xl:px-4 py-10 xl:gap-10 xl:items-center xl:h-[100dvh] xl:min-h-screen overflow-clip"
+        className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 min-h-[600px] px-8 xl:px-4 py-10 xl:gap-10 xl:items-center h-fit xl:min-h-[100dvh overflow-clip"
       >
         <Image
           src={currentBackground ? currentBackground.image : ""}
