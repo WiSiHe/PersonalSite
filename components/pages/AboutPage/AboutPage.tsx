@@ -89,7 +89,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     <>
       <section
         key="hero"
-        className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 px-8 xl:px-4 py-10 xl:gap-10 xl:items-center xl:h-[100dvh] overflow-clip"
+        className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 px-8 xl:px-4 py-10 xl:gap-10 xl:items-center xl:h-[100dvh] xl:min-h-screen overflow-clip"
       >
         <Image
           src={currentBackground ? currentBackground.image : ""}
@@ -118,7 +118,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             priority
             className="z-10 object-cover aspect-video rounded-xl drop-shadow-xl"
           />
-          <section className="z-10 flex items-center justify-between gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
+          <section className="z-10 flex items-center justify-between w-full gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
             <button
               className="p-3 text-white rounded-lg bg-primary"
               onClick={handleNextBackground}
