@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <Main
       noTopPadding
-      className="relative flex flex-col items-start min-h-screen overflow-clip"
+      className="relative flex flex-col items-start w-full min-h-screen overflow-clip"
     >
       <AboutPage />
     </Main>
