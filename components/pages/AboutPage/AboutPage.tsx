@@ -141,30 +141,23 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
       <section className="relative text-white pt-14 xl:pt-24">
         <div className="relative block w-full gap-4 px-4 text-dark xl:px-10">
           <AnimatePresence>
-            <motion.h2
+            <motion.div
               key="title"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring" }}
               viewport={{ once: true }}
-              className="pb-2"
             >
-              Paintings
-            </motion.h2>
-            <motion.div
-              key="description"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring" }}
-              viewport={{ once: true }}
-              className="max-w-2xl"
-            >
-              As a Digital Artist, my passion leans towards creating stylized
-              portraits, ethereal landscapes, and artwork that transports you
-              into the cosmos. I also occasionally taking up commissioned work.{" "}
-              <Link href="/paintings" className="underline">
-                Check out my gallery
-              </Link>
+              <h2 className="pb-2">Paintings</h2>
+              <div className="max-w-2xl">
+                As a Digital Artist, my passion leans towards creating stylized
+                portraits, ethereal landscapes, and artwork that transports you
+                into the cosmos. I also occasionally taking up commissioned
+                work.{" "}
+                <Link href="/paintings" className="underline">
+                  Check out my gallery
+                </Link>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
