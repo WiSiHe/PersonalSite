@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
 import celestial from "public/images/paintings/Celestial.jpg"

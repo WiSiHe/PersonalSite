@@ -1,3 +1,4 @@
+"use client"
 import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import GreeterCard from "components/molecules/GreeterCard"

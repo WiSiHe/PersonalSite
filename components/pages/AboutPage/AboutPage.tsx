@@ -1,7 +1,5 @@
-"use client"
 import HeroImageSection from "components/templates/HeroImageSection"
 import PaintingSection from "components/templates/PantingSection"
-import { motion } from "framer-motion"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 
 interface AboutPageProps {
@@ -13,7 +11,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     <>
       <HeroImageSection />
       <PaintingSection />
-      <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
+      {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 100 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -44,7 +42,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
             provoke thought.
           </p>
         </motion.div>
-      </section>
+      </section> */}
 
       {/* <section className="relative p-4 bg-dark overflow-clip">
         <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">

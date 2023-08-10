@@ -1,3 +1,4 @@
+"use client"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import CarouselStatic from "components/molecules/CarouselStatic"
 import { motion } from "framer-motion"
