@@ -138,7 +138,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </section>
       </section>
 
-      <section className="relative min-h-screen text-white pt-14 xl:pt-24">
+      <section className="relative text-white pt-14 xl:pt-24">
         <div className="relative w-full px-4 text-dark xl:px-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 100 }}
@@ -158,14 +158,9 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </div>
       </section>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 100 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ type: "spring", duration: 1.5 }}
-        className="w-full pt-8 xl:pl-6"
-      >
+      <div className="w-full pt-8 xl:pl-6">
         <CarouselStatic />
-      </motion.div>
+      </div>
 
       <div className="flex flex-col items-center justify-center w-full gap-4 py-10">
         <strong>Like what you see?</strong>
