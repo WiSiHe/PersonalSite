@@ -10,9 +10,10 @@ const PaintingSection = () => {
       <section className="relative flex flex-col items-center justify-center min-h-screen text-white pt-14 xl:pt-24">
         <div className="relative w-full px-4 text-dark xl:px-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 100 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: "spring", duration: 1.5 }}
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", duration: 0.8 }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             <h2 className="pb-2">Paintings</h2>
             <p className="max-w-2xl">
@@ -27,9 +28,15 @@ const PaintingSection = () => {
         </div>
         <motion.div
           className="w-full pt-8 xl:pl-6"
-          initial={{ opacity: 0, scale: 0.8, y: 100 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: "spring", duration: 1.5 }}
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{
+            type: "spring",
+            bounce: 0.4,
+            delay: 0.5,
+            duration: 0.8,
+          }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <CarouselStatic />
         </motion.div>
