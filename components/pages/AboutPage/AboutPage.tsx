@@ -150,7 +150,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
               className="scale-75 opacity-0"
             >
               <h2 className="pb-2">Paintings</h2>
-              <div className="max-w-2xl">
+              <p className="max-w-2xl">
                 As a Digital Artist, my passion leans towards creating stylized
                 portraits, ethereal landscapes, and artwork that transports you
                 into the cosmos. I also occasionally taking up commissioned
@@ -158,7 +158,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
                 <Link href="/paintings" className="underline">
                   Check out my gallery
                 </Link>
-              </div>
+              </p>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -181,29 +181,38 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         <LinkButton href="/paintings">More paintings</LinkButton>
       </div>
 
-      {/* <section className="p-4 py-24 lg:min-h-screen bg-dark/20">
-        <div className="max-w-screen-lg mx-auto">
-          <h2>Game dev</h2>
-          <p>
+      <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 100 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: "spring", duration: 1.5 }}
+        >
+          <h2 className="pb-2">Frontend</h2>
+          <p className="max-w-2xl">
+            I also work as a Frontend Developer. With a keen eye for design and
+            user experience, I build and optimize websites for various clients,
+            taking pride in delivering sites that not only look good but also
+            function seamlessly.
+          </p>
+        </motion.div>
+      </section>
+
+      <section className="flex flex-col items-center justify-center w-full min-h-screen p-4 py-24 ">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 100 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ type: "spring", duration: 1.5 }}
+        >
+          <h2 className="pb-2">Game dev</h2>
+          <p className="max-w-2xl">
             But it doesn&#39;t stop there. I am an ardent hobbyist in Game
             Development, where I blend my artistic vision with technical
             expertise. Crafting stylized 3D games using Unreal Engine and Unity,
             I strive to provide immersive experiences that evoke emotion and
             provoke thought.
           </p>
-        </div>
-      </section> */}
-
-      {/* <section className="p-4 py-24 mx-auto lg:min-h-screen">
-        <h2>Frontend</h2>
-        <p>
-          When I&#39;m not navigating the vastness of space or immersing myself
-          in digital landscapes, I work as a Frontend Developer. With a keen eye
-          for design and user experience, I build and optimize websites for
-          various clients, taking pride in delivering sites that not only look
-          good but also function seamlessly.
-        </p>
-      </section> */}
+        </motion.div>
+      </section>
 
       {/* <section className="relative p-4 bg-dark overflow-clip">
         <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
