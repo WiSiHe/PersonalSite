@@ -1,7 +1,8 @@
 import HeroImageSection from "components/templates/HeroImageSection"
 import PaintingSection from "components/templates/PantingSection"
 import { iSanityImage } from "lib/models/objects/sanityImage"
-
+import Image from "next/image"
+import winter from "public/images/paintings/winter.jpg"
 interface AboutPageProps {
   paintings?: iSanityImage[]
 }
@@ -10,6 +11,9 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
   return (
     <>
       <HeroImageSection />
+      <section className="relative w-full aspect-video">
+        <Image src={winter} alt="winter" fill className="" />
+      </section>
       <PaintingSection />
       {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <motion.div
