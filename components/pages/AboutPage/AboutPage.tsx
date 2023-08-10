@@ -138,7 +138,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </section>
       </section>
 
-      <section className="relative text-white pt-14 xl:pt-24">
+      <section className="relative pt-32 text-white xl:pt-24">
         <div className="relative block w-full gap-4 px-4 text-dark xl:px-10">
           <AnimatePresence>
             <motion.h2
@@ -169,7 +169,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           </AnimatePresence>
         </div>
       </section>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -185,7 +185,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
       <div className="flex flex-col items-center justify-center w-full gap-4 py-10">
         <strong>Like what you see?</strong>
         <LinkButton href="/paintings">More paintings</LinkButton>
-      </div>
+      </div> */}
 
       {/* <section className="p-4 py-24 lg:min-h-screen bg-dark/20">
         <div className="max-w-screen-lg mx-auto">
