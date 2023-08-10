@@ -1,4 +1,7 @@
+"use client"
+import HeroImageSection from "components/templates/HeroImageSection"
 import PaintingSection from "components/templates/PantingSection"
+import { motion } from "framer-motion"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 interface AboutPageProps {
   paintings?: iSanityImage[]
@@ -7,12 +10,9 @@ interface AboutPageProps {
 const AboutPage = ({ paintings = [] }: AboutPageProps) => {
   return (
     <>
-      {/* <HeroImageSection />
-      <section className="relative w-full aspect-video">
-        <Image src={winter} alt="winter" fill className="" />
-      </section> */}
+      <HeroImageSection />
       <PaintingSection />
-      {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
+      <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 100 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -28,7 +28,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </motion.div>
       </section>
 
-      <section className="flex flex-col items-center justify-center w-full min-h-screen p-4 py-24 ">
+      {/* <section className="flex flex-col items-center justify-center w-full min-h-screen p-4 py-24 ">
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 100 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}

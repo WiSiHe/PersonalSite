@@ -86,7 +86,7 @@ const CarouselStatic = () => {
             placeholder="blur"
             quality={50}
             alt={painting.description}
-            className="object-cover w-full h-80 xl:h-auto aspect-portrait rounded-xl snap-center drop-shadow-xl"
+            className="object-cover w-full h-80 xl:h-[720px] aspect-portrait rounded-xl snap-center drop-shadow-xl"
             sizes="(max-width: 768px) 33vw,
                   (max-width: 1200px) 33vw,
                   33vw"
