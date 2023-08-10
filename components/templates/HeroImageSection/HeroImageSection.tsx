@@ -99,6 +99,7 @@ const HeroImageSection = () => {
           alt={currentBackground ? currentBackground.description : ""}
           placeholder="blur"
           quality={75}
+          sizes="(min-width: 1024px) 60vw, (min-width: 768px) 90vw, 100vw"
           priority
           className="z-10 object-cover aspect-video rounded-xl drop-shadow-xl"
         />
