@@ -143,10 +143,11 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           <AnimatePresence>
             <motion.div
               key="title"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.75 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ type: "spring" }}
               viewport={{ once: true }}
+              className="scale-75 opacity-0"
             >
               <h2 className="pb-2">Paintings</h2>
               <div className="max-w-2xl">
