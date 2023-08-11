@@ -74,7 +74,7 @@ const CarouselStatic = () => {
   return (
     <section className="relative">
       <AnimatePresence>
-        <ul className="flex flex-no-wrap items-start gap-4 py-4 pl-4 pr-10 overflow-x-scroll scrolling-touch snap-x snap-mandatory">
+        <ul className="flex flex-no-wrap items-start gap-4 py-4 pl-4 pr-10 overflow-x-scroll scrolling-touch snap-x">
           {sortedPaintings.map((painting, i) => (
             <motion.li
               key={i}
