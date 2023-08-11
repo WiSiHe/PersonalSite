@@ -1,10 +1,9 @@
 "use client"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
 import celestial from "public/images/paintings/Celestial.jpg"
 import creepy from "public/images/paintings/creepy.jpg"
-import darkSouls from "public/images/paintings/darksouls.jpg"
 import hell from "public/images/paintings/hell.jpg"
 import space from "public/images/paintings/Space.jpg"
 import sunlight from "public/images/paintings/sunlight.jpg"
@@ -55,12 +54,6 @@ const paintings = [
     image: winter,
     description: "Winter",
   },
-  {
-    id: 10,
-    name: "Dark Souls",
-    image: darkSouls,
-    description: "Dark Souls",
-  },
 ]
 
 const CarouselStatic = () => {
@@ -72,29 +65,29 @@ const CarouselStatic = () => {
   }, [])
 
   return (
-    <section className="relative">
-      <AnimatePresence>
-        <ul className="flex flex-no-wrap items-start gap-4 py-4 pl-4 pr-10 overflow-x-scroll scrolling-touch snap-x">
-          {sortedPaintings.map((painting, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ stiffness: 260, damping: 20, bounce: 0.8 }}
-              className="relative flex-none w-2/3 rounded-lg md:w-1/3 xl:w-2/3 snap-start h-80 xl:h-[820px] overflow-clip drop-shadow"
-            >
-              <Image
-                src={painting.image}
-                placeholder="blur"
-                quality={50}
-                alt={painting.description}
-                className="object-cover w-full h-full"
-                sizes="(min-width: 1280px) 540px, 224px"
-              />
-            </motion.li>
-          ))}
-        </ul>
-      </AnimatePresence>
+    <section className="relative ">
+      <ul className="flex flex-no-wrap items-start w-full gap-4 py-8 pl-4 pr-8 overflow-x-scroll scrolling-touch snap-x">
+        {sortedPaintings.map((painting, i) => (
+          <motion.li
+            key={i}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ stiffness: 260, damping: 20, bounce: 0.8 }}
+            viewport={{ once: true }}
+            className="relative flex-none aspect-square xl:aspect-portrait rounded-lg h-80 xl:h-[820px] overflow-clip drop-shadow"
+          >
+            <Image
+              src={painting.image}
+              placeholder="blur"
+              quality={50}
+              alt={painting.description}
+              className="object-cover w-full h-full"
+              sizes="(min-width: 1280px) 540px, 224px"
+              fill
+            />
+          </motion.li>
+        ))}
+      </ul>
     </section>
   )
 }

@@ -6,7 +6,7 @@ type iPaintingFormat = "square" | "landscape" | "portrait"
 export interface iSanityPainting {
   _id: string
   format: iPaintingFormat
-  image: iSanityImage | string
+  image: iSanityImage
   images?: iSanityImage[] | null
   imagesCount: number | null
   redbubbleUrl?: string | null

@@ -1,8 +1,8 @@
 import { ImageIcon } from "@sanity/icons"
 import DescriptionTextGenerator from "components/sanity/DescriptionTextGenerator"
-import { defineField, defineType } from "sanity"
-import { FaWeibo } from "react-icons/fa"
 import SEODescriptionGenerator from "components/sanity/SEODescriptionGenerator"
+import { FaWeibo } from "react-icons/fa"
+import { defineField, defineType } from "sanity"
 
 export default defineType({
   name: "painting",
@@ -70,6 +70,7 @@ export default defineType({
       description: "The main image of the painting",
       options: {
         hotspot: true,
+        metadata: ["lqip"],
       },
       validation: (rule) => rule.required(),
     }),

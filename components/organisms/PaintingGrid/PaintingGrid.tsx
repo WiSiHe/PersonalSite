@@ -178,6 +178,7 @@ const PaintingGrid = ({
                       paintingData={painting}
                       storybook={isStorybook}
                       key={painting._id}
+                      // shouldBeLazy={i < 4}
                     />
                   </Link>
                 </motion.div>

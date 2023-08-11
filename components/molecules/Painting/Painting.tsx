@@ -51,14 +51,15 @@ const Painting = ({
   const isNsfwUrl = filters?.includes("nsfw")
 
   const {
-    image = {},
+    image,
     title = "",
     format,
-    slug = "",
     video = "",
     tagsV2 = [],
     imagesCount = 0,
   } = paintingData
+
+  const { lqip } = image
 
   // filter out null values of tagsV2
   const filteredTags = tagsV2?.filter((t) => t !== null)
@@ -115,13 +116,12 @@ const Painting = ({
           .height(sanityHeight)
           .quality(70)
           .url()}
-        sizes="(max-width: 640px) 100vw,
-              (max-width: 1280px) 50vw,
-              (max-width: 1536px) 33vw,
-              25vw"
+        sizes="(min-width: 1040px) calc(25vw - 32px), calc(100vw - 32px)"
         fill
         priority={shouldBeLazy}
-        // loading="eager"
+        placeholder="blur"
+        blurDataURL={lqip}
+        quality={40}
         unoptimized={storybook}
         alt=""
         className={cn(

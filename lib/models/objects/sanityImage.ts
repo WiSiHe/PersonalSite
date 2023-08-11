@@ -24,4 +24,5 @@ export interface iSanityImage {
   asset: iSanityImageAsset
   crop?: iSanityImageCrop
   hotspot?: iSanityImageHotspot
+  lqip?: string
 }

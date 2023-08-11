@@ -87,7 +87,7 @@ const HeroImageSection = () => {
   return (
     <section
       key="hero"
-      className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 xl:pt-32 min-h-[600px] px-4 py-10 xl:gap-10 xl:items-center h-fit xl:min-h-[100dvh overflow-clip"
+      className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 xl:pt-32 min-h-[600px] px-4 py-10 xl:gap-10 xl:items-center h-fit xl:min-h-[100dvh] overflow-clip"
     >
       <Image
         src={currentBackground.image}
@@ -96,8 +96,8 @@ const HeroImageSection = () => {
         placeholder="blur"
         quality={1}
         priority
-        sizes="10vw"
-        className="object-cover scale-105 xl:scale-150 blur-3xl"
+        sizes="5vw"
+        className="object-fill scale-150 xl:object-cover blur-3xl"
       />
 
       <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">

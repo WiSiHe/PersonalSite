@@ -10,10 +10,7 @@ import {
   iSanityWallpaperPaintings,
 } from "./models/objects/sanityPainting"
 
-import {
-  iSanityProject,
-  iSanityProjectLight,
-} from "./models/objects/sanityProject"
+import { iSanityProject } from "./models/objects/sanityProject"
 import { iSanityVideo } from "./models/objects/sanityVideo"
 import { getClient } from "./sanity"
 
@@ -88,9 +85,19 @@ export async function getPainting(slug: string): Promise<iSanityPainting> {
   return results
 }
 
+// export const paintingDetailsQuery = groq`
+// *[_type == "painting" && slug.current == $slug]{
+//   title, description, format, likes, paintedAt, artstationUrl, inPrintUrl, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+// }[0]
+// `
+
 export const paintingDetailsQuery = groq`
 *[_type == "painting" && slug.current == $slug]{
-  title, description, format, likes, paintedAt, artstationUrl, inPrintUrl, image, seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+  title, description, format, likes, paintedAt, artstationUrl, inPrintUrl, image{
+    ...,
+    "lqip": asset->metadata.lqip
+    },
+    seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
 }[0]
 `
 
@@ -163,7 +170,12 @@ export async function getAllTagsAndPaintingsLight(): Promise<{
   paintings: iSanityPainting[]
 }> {
   const paintingQuery = /* groq */ `*[_type == "painting"]{
-    title, image, format, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id, tagsV2[]->{name}, video}`
+    title, image, format, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id,
+    image{
+      ...,
+      "lqip": asset->metadata.lqip
+      },
+    tagsV2[]->{name}, video}`
   const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, description, "paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
 
   const query = `{
