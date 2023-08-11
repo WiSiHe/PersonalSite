@@ -12,7 +12,7 @@ interface GenerateNextApiRequest extends NextApiRequest {
 
 export default async function handler(
   req: GenerateNextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   const baseUrl = "https://v2.jokeapi.dev/joke/Any"
 

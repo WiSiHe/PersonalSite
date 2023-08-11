@@ -46,7 +46,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         aria-label="Main Navigation"
         className={clsx(
           "z-30 flex items-center justify-between py-2 px-4 bg-dark/40 backdrop-blur-sm text-white",
-          isAbsolute ? "fixed top-0 left-0 right-0" : "relative"
+          isAbsolute ? "fixed top-0 left-0 right-0" : "relative",
         )}
       >
         <AnimatedLogo theme="light" />
@@ -87,7 +87,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                     "transition-all gap-2 flex items-center mix-blend-difference text-white px-4 py-2 hover:bg-primary hover:text-white active:bg-primary",
                     isActive
                       ? "underline decoration-primary text-white decoration-2 bg-primary"
-                      : " text-white"
+                      : " text-white",
                   )}
                 >
                   {Icon && <Icon />}

@@ -45,7 +45,7 @@ function resolvePath(
   type: string,
   id: string,
   collection?: string,
-  slug?: string
+  slug?: string,
 ): string {
   const path = getTypePath(type, id, collection, slug)
   return path ? path : getPathForId(id)
@@ -75,7 +75,7 @@ function getTypePath(
   type: string,
   id: string,
   collection?: string,
-  slug?: string
+  slug?: string,
 ): string | null {
   if (type === "pageArticle") {
     return buildTypePath("/", id, `articles/${collection}/${slug}`)

@@ -1,5 +1,5 @@
-import { useState } from "react"
 import clsx from "clsx"
+import { useState } from "react"
 
 type CheckboxProps = {
   label: string
@@ -55,7 +55,7 @@ const Checkbox = ({
           sizeStyle[size],
           colorStyle[color],
           disabled && "cursor-not-allowed opacity-50",
-          className
+          className,
         )}
       >
         {label}

@@ -16,7 +16,7 @@ const PaintingPagePreview = ({ initialPainting }: iPaintingPageProps) => {
   const [data, loadingPainting] = useLiveQuery(
     initialPainting,
     paintingDetailsQuery,
-    { slug }
+    { slug },
   )
 
   if (loadingPainting) return <div>Loading...</div>

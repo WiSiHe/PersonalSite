@@ -82,7 +82,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         layoutId={title}
         className={clsx(
           "flex relative pb-4 flex-col gap-4 h-fit col-span-full w-full lg:col-span-7 xl:col-span-9",
-          imageAspectStyle[format]
+          imageAspectStyle[format],
         )}
       >
         <LazyLoadImage
@@ -149,7 +149,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                   key={`tag-${i}`}
                   className={clsx(
                     "flex items-center gap-2",
-                    isLastElement ? "" : "mr-2"
+                    isLastElement ? "" : "mr-2",
                   )}
                 >
                   <span>{name}</span>

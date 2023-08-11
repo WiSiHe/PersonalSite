@@ -126,7 +126,7 @@ const ProjectPage = ({ project }: PageProps) => {
                   key={_id}
                   className={clsx(
                     "relative col-span-4",
-                    paintingAspectRatio(format)
+                    paintingAspectRatio(format),
                   )}
                 >
                   <Link href={`/painting/${slug}`}>
@@ -140,7 +140,7 @@ const ProjectPage = ({ project }: PageProps) => {
                       alt={title}
                       className={clsx(
                         "object-cover w-full h-full",
-                        paintingAspectRatio(format)
+                        paintingAspectRatio(format),
                       )}
                       //           sizes="(max-width: 768px) 100vw,
                       // (max-width: 1200px) 50vw,

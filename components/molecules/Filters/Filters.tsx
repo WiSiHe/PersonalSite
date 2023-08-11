@@ -29,7 +29,7 @@ const Filters = ({
         <button
           onClick={() => setActive((prev) => !prev)}
           className={clsx(
-            "flex gap-1 items-center overflow-clip px-4 py-1 text-sm font-medium text-white bg-primary hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-highlight focus:outline-none"
+            "flex gap-1 items-center overflow-clip px-4 py-1 text-sm font-medium text-white bg-primary hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-highlight focus:outline-none",
           )}
         >
           {active && (
@@ -73,7 +73,7 @@ const Filters = ({
         <div
           className={clsx(
             "relative snap-start uppercase transition py-2 pointer-events-none px-4 text-xs whitespace-nowrap hover:opacity-90 active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
-            "bg-dark hover:bg-dark text-white"
+            "bg-dark hover:bg-dark text-white",
           )}
         >
           <motion.strong
@@ -110,7 +110,7 @@ const Filters = ({
                       isBuyable && "ring ring-highlight",
                       isActive
                         ? "bg-highlight hover:bg-highlight text-dark"
-                        : "text-white bg-primary hover:bg-primary/90"
+                        : "text-white bg-primary hover:bg-primary/90",
                     )}
                   >
                     <strong className="capitalize">

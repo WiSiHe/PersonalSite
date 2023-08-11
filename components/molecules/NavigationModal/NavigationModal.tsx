@@ -85,7 +85,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                   href="/"
                   className={clsx(
                     "text-4xl hover:text-white p-4 hover:bg-primary",
-                    isHome ? "text-white bg-primary" : " border-b"
+                    isHome ? "text-white bg-primary" : " border-b",
                   )}
                 >
                   <div className="flex gap-2">
@@ -105,7 +105,7 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                       href={item.url}
                       className={clsx(
                         "text-4xl relative hover:text-white w-full hover:bg-primary ",
-                        isUrlActive ? "bg-primary text-white" : "border-b"
+                        isUrlActive ? "bg-primary text-white" : "border-b",
                       )}
                     >
                       <div className="inset-0 z-10 flex flex-col p-2 ">

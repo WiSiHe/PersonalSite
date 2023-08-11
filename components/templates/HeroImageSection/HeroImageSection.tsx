@@ -96,7 +96,7 @@ const HeroImageSection = () => {
         placeholder="blur"
         quality={1}
         priority
-        sizes="100vw"
+        sizes="10vw"
         className="object-cover scale-105 xl:scale-150 blur-3xl"
       />
 
@@ -124,8 +124,8 @@ const HeroImageSection = () => {
               alt={currentBackground.description}
               placeholder="blur"
               quality={65}
-              fill
               sizes="(min-width: 1280px) 64.01vw, calc(98.85vw - 18px)"
+              fill
               priority
               className={cn("object-cover w-10 rounded-2xl")}
             />

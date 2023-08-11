@@ -60,7 +60,7 @@ const paintingFields = `
 
 export async function getAllPostsWithSlug() {
   const data = await getClient().fetch(
-    `*[_type == "post"]{ 'slug': slug.current }`
+    `*[_type == "post"]{ 'slug': slug.current }`,
   )
   return data
 }
@@ -83,7 +83,7 @@ export async function getPainting(slug: string): Promise<iSanityPainting> {
     `*[_type == "painting" && slug.current == $slug]`,
     {
       slug,
-    }
+    },
   )
   return results
 }
@@ -96,7 +96,7 @@ export const paintingDetailsQuery = groq`
 
 export async function getPaintingDetails(
   slug: string,
-  preview: boolean
+  preview: boolean,
 ): Promise<iSanityPainting> {
   if (preview) {
     const results = await getClient(preview).fetch(paintingDetailsQuery, {
@@ -114,7 +114,7 @@ export async function getPaintingTags(slug: string): Promise<iSanityTag[]> {
     `*[_type == "painting" && slug.current == $slug]{
       tagsV2[]->{name},
     }[0]`,
-    { slug }
+    { slug },
   )
 
   const { tagsV2 } = results
@@ -129,7 +129,7 @@ export const paintingBySlugQuery = groq`
 
 export async function getAllTags(): Promise<iSanityTag[]> {
   const results = await getClient().fetch(
-    `*[_type == "tag"]{_id,name,"paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
+    `*[_type == "tag"]{_id,name,"paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`,
   )
   return results
 }
@@ -138,7 +138,7 @@ export async function getAllPaintingSlugs(): Promise<
   Pick<iSanityPainting, "slug">[]
 > {
   const data = await getClient().fetch(
-    `*[_type == "painting"]{ 'slug': slug.current }`
+    `*[_type == "painting"]{ 'slug': slug.current }`,
   )
   return data
 }
@@ -177,7 +177,7 @@ export async function getAllTagsAndPaintingsLight(): Promise<{
 
 export async function getAllVideos() {
   const results = await getClient().fetch(
-    `*[_type == "video"]| order(_updatedAt desc){title,thumbnail,description, content, linkedPainting->{name, image}, videoUrl, _id, "tags": tags[]->{name}}`
+    `*[_type == "video"]| order(_updatedAt desc){title,thumbnail,description, content, linkedPainting->{name, image}, videoUrl, _id, "tags": tags[]->{name}}`,
   )
   return results
 }
@@ -200,7 +200,7 @@ export async function getAllVideosAndTags(): Promise<{
 
 export async function getAllNewTags() {
   const results = await getClient().fetch(
-    `*[_type == "tag"]{_id,name,"paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
+    `*[_type == "tag"]{_id,name,"paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`,
   )
   return results
 }
@@ -209,7 +209,7 @@ export async function getAllWallpapers(): Promise<{
   paintings: iSanityWallpaperPaintings[]
 }> {
   const results = await getClient().fetch(
-    `*[_type == "tag" && name == "Wallpaper"]{"paintings": *[_type == "painting" && references(^._id)]{_id, image}}[0]`
+    `*[_type == "tag" && name == "Wallpaper"]{"paintings": *[_type == "painting" && references(^._id)]{_id, image}}[0]`,
   )
 
   return results
@@ -219,7 +219,7 @@ export async function getAllWallpapers(): Promise<{
 
 export async function getAllProjects() {
   const results = await getClient().fetch(
-    `*[_type == "project"]| order(projectStart desc){title, description, projectStart, projectEnd, status, content, name, image, 'slug': slug.current, _id, tags[]->{name}}`
+    `*[_type == "project"]| order(projectStart desc){title, description, projectStart, projectEnd, status, content, name, image, 'slug': slug.current, _id, tags[]->{name}}`,
   )
   return results
 }
@@ -244,7 +244,7 @@ export async function getAllProjectsLight(): Promise<
   Pick<iSanityPainting, "slug">[]
 > {
   const results = await getClient().fetch(
-    `*[_type == "project"]{'slug': slug.current}`
+    `*[_type == "project"]{'slug': slug.current}`,
   )
   return results
 }
@@ -254,7 +254,7 @@ export async function getProjectDetails(slug: string): Promise<iSanityProject> {
     `*[_type == "project" && slug.current == $slug]| order(_updatedAt desc){title, description, extraImages, projectStart, projectEnd, status, content, name, 'slug': slug.current, image, slug, _id, connectedVideo->{videoUrl}, connectedPaintings[]->{title, 'slug': slug.current, format, image}, tags[]->{name}}[0]`,
     {
       slug,
-    }
+    },
   )
   return results
 }
@@ -263,7 +263,7 @@ export async function getAllProjectsSlugs(): Promise<
   Pick<iSanityPainting, "slug">[]
 > {
   const data = await getClient().fetch(
-    `*[_type == "project"]{ 'slug': slug.current }`
+    `*[_type == "project"]{ 'slug': slug.current }`,
   )
   return data
 }

@@ -34,7 +34,7 @@ const openai = new OpenAIApi(configuration)
 
 export default async function handler(
   req: GenerateNextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   const messages = req.body.messages
   const maxTokens = req.body.maxTokens || 1000
@@ -68,7 +68,7 @@ export default async function handler(
         top_p: 1, // 1,
         messages: messages, // [  { role: 'user', content: 'How many stars are in the sky?' } ],
       },
-      { timeout: 0 }
+      { timeout: 0 },
     )
 
     const response = aiResult?.data?.choices[0]?.message || {

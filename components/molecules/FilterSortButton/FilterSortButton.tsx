@@ -42,7 +42,7 @@ const FilterSortButton = () => {
         value={sorting}
         onChange={setSorting}
         className={clsx(
-          "bg-white hidden xl:flex p-3 gap-2 rounded-full shadow-xl pointer-events-auto"
+          "bg-white hidden xl:flex p-3 gap-2 rounded-full shadow-xl pointer-events-auto",
         )}
       >
         <RadioGroup.Label className="sr-only">Filter</RadioGroup.Label>
@@ -56,7 +56,7 @@ const FilterSortButton = () => {
               <div
                 className={clsx(
                   "cursor-pointer relative py-2 px-4 hover:bg-primary/40 rounded-full hover:text-white",
-                  checked ? "text-white" : "text-primary"
+                  checked ? "text-white" : "text-primary",
                 )}
               >
                 {checked && (
@@ -97,7 +97,7 @@ const FilterSortButton = () => {
                   <div
                     className={clsx(
                       "cursor-pointer relative px-8 py-5 transition-all",
-                      checked ? "text-white bg-primary" : "text-primary"
+                      checked ? "text-white bg-primary" : "text-primary",
                     )}
                   >
                     <div className="relative flex items-center gap-1">

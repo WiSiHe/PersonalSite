@@ -95,7 +95,7 @@ const HeroSectionDesktop = ({ paintings = [] }: HeroSectionProps) => {
     <section
       className={clsx(
         "transition-all w-full duration-500 ease-in-out hidden items-center relative xl:grid grid-cols-12",
-        "w-full h-full min-h-screen"
+        "w-full h-full min-h-screen",
       )}
     >
       <div className="absolute z-20 flex h-full col-span-3 col-start-1 my-auto bg-primary">

@@ -12,7 +12,7 @@ import { getSecret } from "plugins/productionUrl/utils"
 
 function redirectToPreview(
   res: NextApiResponse<string | void>,
-  Location: "/" | `/painting/${string}`
+  Location: "/" | `/painting/${string}`,
 ): void {
   // Enable Draft Mode by setting the cookies
   res.setDraftMode({ enable: true })
@@ -25,7 +25,7 @@ const _client = createClient({ projectId, dataset, apiVersion, useCdn })
 
 export default async function preview(
   req: NextApiRequest,
-  res: NextApiResponse<string | void>
+  res: NextApiResponse<string | void>,
 ) {
   // If you want to require preview mode sessions to be started from the Studio, set the SANITY_REQUIRE_PREVIEW_SECRET
   // environment variable to 'true'. The benefit of doing this that unauthorized users attempting to brute force into your
@@ -43,7 +43,7 @@ export default async function preview(
     const token = process.env.SANITY_API_READ_TOKEN
     if (!token) {
       throw new Error(
-        "A secret is provided but there is no `SANITY_API_READ_TOKEN` environment variable setup."
+        "A secret is provided but there is no `SANITY_API_READ_TOKEN` environment variable setup.",
       )
     }
 

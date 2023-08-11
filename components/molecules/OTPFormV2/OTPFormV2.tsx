@@ -6,7 +6,7 @@ export default function OTPFormV3() {
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     const { value } = event.target
     if (value !== "") {

@@ -24,7 +24,7 @@ const SanitySearch = () => {
     const limit = 10
     const results = await getClient().fetch(
       `*[_type in $types && title match $mQ || name match $mQ ][0...$limit]{title, name, image}`,
-      { mQ, types, limit }
+      { mQ, types, limit },
     )
     setPaintings(results)
   }

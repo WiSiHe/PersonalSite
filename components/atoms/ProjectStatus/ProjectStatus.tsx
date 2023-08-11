@@ -42,7 +42,7 @@ const ProjectStatus = ({ status = "unknown" }: iStatus) => {
     <div
       className={clsx(
         "flex items-center text-xs gap-1 py-2 px-4 rounded backdrop-blur text-dark",
-        projectStatusColor[status]
+        projectStatusColor[status],
       )}
     >
       <div>{projectStatusIcon[status]}</div>

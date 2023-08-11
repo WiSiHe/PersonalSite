@@ -18,7 +18,7 @@ const Loader = ({ color = "white" }: iLoaderProps) => {
     <div
       className={clsx(
         colorStyle[color],
-        "absolute inset-0 flex items-center justify-center"
+        "absolute inset-0 flex items-center justify-center",
       )}
     >
       <BiLoaderCircle className="text-2xl animate-spin-slow" />

@@ -54,7 +54,7 @@ export default defineConfig({
   },
   tools: (prev, { currentUser }) => {
     const isAdmin = currentUser?.roles.some(
-      (role) => role.name === "administrator"
+      (role) => role.name === "administrator",
     )
 
     if (isAdmin) {

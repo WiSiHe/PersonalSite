@@ -10,7 +10,7 @@ function extractCodeBlocks(str: string) {
       <p key={`str-${index}`}>{parts[0]}</p>,
       <pre key={`code-${index}`} className="p-4 text-xs bg-gray-200 rounded">
         <code>{codeBlock.replaceAll("```", "")}</code>
-      </pre>
+      </pre>,
     )
     filteredStr = parts.slice(1).join("")
   })

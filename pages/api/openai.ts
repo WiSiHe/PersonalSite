@@ -23,7 +23,7 @@ const openai = new OpenAIApi(configuration)
 
 export default async function handler(
   req: GenerateNextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   const promt = req.body.prompt
   const maxTokens = req.body.maxTokens || 100
@@ -46,7 +46,7 @@ export default async function handler(
         frequency_penalty: frequencyPenalty, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
         presence_penalty: presencePenalty, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
       },
-      { timeout: 0 }
+      { timeout: 0 },
     )
     const response = aiResult.data.choices[0].text || "Sorry, I don't know"
     res.status(200).json({ text: response })

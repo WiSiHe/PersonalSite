@@ -4,7 +4,7 @@ export const getCurrentDate = () => {
 
 export const getCurrentDay = () => {
   return new Intl.DateTimeFormat("en-us", { day: "2-digit" }).format(
-    getCurrentDate()
+    getCurrentDate(),
   )
 }
 export const getDay = (date: Date) => {
@@ -13,7 +13,7 @@ export const getDay = (date: Date) => {
 
 export const getCurrentMonth = () => {
   return new Intl.DateTimeFormat("en-us", { month: "short" }).format(
-    getCurrentDate()
+    getCurrentDate(),
   )
 }
 
@@ -23,7 +23,7 @@ export const getMonth = (date: Date) => {
 
 export const getCurrentYear = () => {
   return new Intl.DateTimeFormat("en-us", { year: "numeric" }).format(
-    getCurrentDate()
+    getCurrentDate(),
   )
 }
 
@@ -33,7 +33,7 @@ export const getYear = (date: Date) => {
 
 export const getCurrentHour = () => {
   return new Intl.DateTimeFormat("en-us", { hour: "numeric" }).format(
-    getCurrentDate()
+    getCurrentDate(),
   )
 }
 
@@ -43,7 +43,7 @@ export const getHour = (date: Date) => {
 
 export const getCurrentMinute = () => {
   return new Intl.DateTimeFormat("en-us", { minute: "numeric" }).format(
-    getCurrentDate()
+    getCurrentDate(),
   )
 }
 
@@ -53,7 +53,7 @@ export const getMinute = (date: Date) => {
 
 export const getCurrentSecond = () => {
   return new Intl.DateTimeFormat("en-us", { second: "numeric" }).format(
-    getCurrentDate()
+    getCurrentDate(),
   )
 }
 

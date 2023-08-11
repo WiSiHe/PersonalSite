@@ -86,7 +86,7 @@ const Carousel = ({
           gradientStyle[gradientColor],
           hasGradient
             ? "absolute top-0 bottom-0 right-0 z-20 flex items-center justify-center h-full pointer-events-none bg-gradient-to-l aspect-square"
-            : "hidden"
+            : "hidden",
         )}
       />
 
@@ -94,7 +94,7 @@ const Carousel = ({
         <button
           className={clsx(
             "p-2 text-xl text-white drop-shadow ring ring-highlight bg-primary",
-            !hasPaintings && "opacity-50 cursor-not-allowed"
+            !hasPaintings && "opacity-50 cursor-not-allowed",
           )}
           onClick={handleStepLeft}
           disabled={!hasPaintings}
@@ -104,7 +104,7 @@ const Carousel = ({
         <button
           className={clsx(
             "p-2 text-xl text-white drop-shadow ring ring-highlight bg-primary",
-            !hasPaintings && "opacity-50 cursor-not-allowed"
+            !hasPaintings && "opacity-50 cursor-not-allowed",
           )}
           onClick={handleStepRight}
           disabled={!hasPaintings}

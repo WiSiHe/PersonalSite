@@ -29,7 +29,7 @@ export default function PaintingPreviewPane(props: Props) {
   useEffect(() => {
     const timeout = setTimeout(
       () => startTransition(() => setSlug(props.slug)),
-      3000
+      3000,
     )
     return () => clearTimeout(timeout)
   }, [props.slug])
@@ -85,7 +85,7 @@ export default function PaintingPreviewPane(props: Props) {
 // Used as a cache key that doesn't risk collision or getting affected by other components that might be using `suspend-react`
 const fetchSecret = Symbol("preview.secret")
 const Iframe = memo(function Iframe(
-  props: Omit<Props, "slug"> & Required<Pick<Props, "slug">>
+  props: Omit<Props, "slug"> & Required<Pick<Props, "slug">>,
 ) {
   const { apiVersion, previewSecretId, slug, id } = props
 
@@ -95,7 +95,7 @@ const Iframe = memo(function Iframe(
     () => getSecret(client, previewSecretId, true),
     ["getSecret", previewSecretId, fetchSecret],
     // The secret fetch has a TTL of 1 minute, just to check if it's necessary to recreate the secret which has a TTL of 60 minutes
-    { lifespan: 60000 }
+    { lifespan: 60000 },
   )
 
   const url = new URL("/api/preview", location.origin)

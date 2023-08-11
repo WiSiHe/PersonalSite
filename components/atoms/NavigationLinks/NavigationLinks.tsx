@@ -19,7 +19,7 @@ const NavigationLinks = () => {
                 href={item.url}
                 className={clsx(
                   "transition-all flex items-center justify-between p-2 rounded-lg hover:bg-primary hover:text-white active:bg-highlight focus:outline-none focus:ring focus:ring-highlight",
-                  isActive && "text-white bg-primary"
+                  isActive && "text-white bg-primary",
                 )}
               >
                 <strong>{item.text}</strong>

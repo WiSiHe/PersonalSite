@@ -33,7 +33,7 @@ const item = {
 
 const debounce = <F extends (...args: any[]) => void>(
   func: F,
-  wait: number
+  wait: number,
 ): ((...args: Parameters<F>) => void) => {
   let timeout: ReturnType<typeof setTimeout> | null = null
   return (...args: Parameters<F>) => {
@@ -191,7 +191,7 @@ const PaintingGrid = ({
               key="no-paintings-found"
               className={cn(
                 "flex flex-col items-center justify-center gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
-                hasFilters ? "bg-primary/10" : "xl:col-span-6"
+                hasFilters ? "bg-primary/10" : "xl:col-span-6",
               )}
             >
               <h2 className="text-2xl text-center">

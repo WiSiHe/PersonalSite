@@ -40,6 +40,6 @@ export const useOpenAIStore = create<Store & Actions>()(
       name: "ai-chat-log", // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
       //   partialize: (state) => ({ messages: state.messages }), // (optional) if you only want to persist a subset of the store
-    }
-  )
+    },
+  ),
 )

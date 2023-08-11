@@ -115,7 +115,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
                     className={clsx(
                       "flex justify-between py-2 px-4 hover:bg-primary/10",
                       !isLastElement && "border-b",
-                      isStoreFilter && "bg-highlight"
+                      isStoreFilter && "bg-highlight",
                     )}
                   >
                     <label htmlFor={name} className="w-full cursor-pointer">

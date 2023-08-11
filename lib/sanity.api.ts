@@ -7,7 +7,7 @@ export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || ""
 
 export const dataset = assertValue(
   process.env.NEXT_PUBLIC_SANITY_DATASET,
-  "Missing environment variable: NEXT_PUBLIC_SANITY_DATASET"
+  "Missing environment variable: NEXT_PUBLIC_SANITY_DATASET",
 )
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works

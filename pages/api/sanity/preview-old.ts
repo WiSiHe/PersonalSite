@@ -23,7 +23,7 @@ export const config: PageConfig = { runtime: "nodejs" }
 function redirectToPreview(
   res: NextApiResponse<string | void>,
   previewData: { token?: string },
-  Location: "/" | `/painting/${string}`
+  Location: "/" | `/painting/${string}`,
 ): void {
   // Enable Preview Mode by setting the cookies
   res.setPreviewData(previewData)
@@ -36,7 +36,7 @@ const _client = createClient({ projectId, dataset, apiVersion, useCdn })
 
 export default async function preview(
   req: NextApiRequest,
-  res: NextApiResponse<string | void>
+  res: NextApiResponse<string | void>,
 ) {
   const previewData: { token?: string } = {}
   // If you want to require preview mode sessions to be started from the Studio, set the SANITY_REQUIRE_PREVIEW_SECRET
@@ -55,7 +55,7 @@ export default async function preview(
     const token = process.env.SANITY_API_READ_TOKEN
     if (!token) {
       throw new Error(
-        "A secret is provided but there is no `SANITY_API_READ_TOKEN` environment variable setup."
+        "A secret is provided but there is no `SANITY_API_READ_TOKEN` environment variable setup.",
       )
     }
     const client = _client.withConfig({ useCdn: false, token })

@@ -64,9 +64,6 @@ const paintings = [
 ]
 
 const CarouselStatic = () => {
-  // const ref = useRef(null)
-  // const { scrollXProgress } = useScroll({ container: ref })
-
   const [sortedPaintings, setSortedPaintings] = useState(paintings)
 
   useEffect(() => {
@@ -77,21 +74,21 @@ const CarouselStatic = () => {
   return (
     <section className="relative">
       <AnimatePresence>
-        <ul className="flex flex-no-wrap items-start gap-4 py-4 pr-10 overflow-x-scroll scrolling-touch">
+        <ul className="flex flex-no-wrap items-start gap-4 py-4 pl-4 pr-10 overflow-x-scroll scrolling-touch snap-x snap-mandatory">
           {sortedPaintings.map((painting, i) => (
             <motion.li
               key={i}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ stiffness: 260, damping: 20, bounce: 0.8 }}
-              className="flex-none w-2/3 rounded-lg md:w-1/3 "
+              className="relative flex-none w-2/3 rounded-lg md:w-1/3 xl:w-2/3 snap-start h-80 xl:h-[820px] overflow-clip drop-shadow"
             >
               <Image
                 src={painting.image}
                 placeholder="blur"
                 quality={50}
                 alt={painting.description}
-                className="object-cover w-full h-80 xl:h-[720px] aspect-portrait rounded-xl snap-center drop-shadow-lg"
+                className="object-cover w-full h-full"
                 sizes="(min-width: 1280px) 540px, 224px"
               />
             </motion.li>
@@ -103,14 +100,3 @@ const CarouselStatic = () => {
 }
 
 export default CarouselStatic
-
-{
-  /* <Image
-src={painting.image}
-placeholder="blur"
-quality={50}
-alt={painting.description}
-className="object-cover w-full h-80 xl:h-[720px] aspect-portrait rounded-xl snap-center drop-shadow-xl"
-sizes="(min-width: 1280px) 540px, 224px"
-/>  */
-}

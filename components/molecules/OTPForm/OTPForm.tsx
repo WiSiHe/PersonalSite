@@ -48,7 +48,7 @@ const OTPForm = ({
         <button
           className={clsx(
             "flex px-4 py-2 text-white bg-green-500",
-            isSubmitting && "opacity-50"
+            isSubmitting && "opacity-50",
           )}
           disabled={isSubmitting}
         >

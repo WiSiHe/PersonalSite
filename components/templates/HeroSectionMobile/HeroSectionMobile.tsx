@@ -39,7 +39,7 @@ const HeroSectionMobile = ({ paintings = [] }: HeroSectionProps) => {
     <section
       className={clsx(
         "transition-all w-full duration-500 ease-in-out relative xl:hidden",
-        "w-full h-[100svh]"
+        "w-full h-[100svh]",
       )}
     >
       <HeroSectionLoader />
@@ -61,7 +61,7 @@ const HeroSectionMobile = ({ paintings = [] }: HeroSectionProps) => {
           fill
           placeholder="blur"
           className={clsx(
-            "object-cover b w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform md:block bg-gray-50"
+            "object-cover b w-full h-full transition-all duration-[3000ms] delay-500 ease-in-out transform md:block bg-gray-50",
           )}
           alt="headerImage"
         />

@@ -19,7 +19,7 @@ const openai = new OpenAIApi(configuration)
 
 export default async function handler(
   req: GenerateNextApiRequest,
-  res: NextApiResponse<ResponseData>
+  res: NextApiResponse<ResponseData>,
 ) {
   const promt = req.body.prompt
 
@@ -35,7 +35,7 @@ export default async function handler(
         prompt: promt,
         size: "512x512",
       },
-      { timeout: 0 }
+      { timeout: 0 },
     )
     const response = aiResult.data.data[0].url || "Sorry, I don't know"
     res.status(200).json({ text: response })

@@ -63,7 +63,7 @@ const Project = ({
         viewport={{ once: true, amount: 0.01 }}
         variants={cardVariants}
         className={clsx(
-          "relative w-full h-full  grid bg-white shadow grid-cols-3 aspect-[4/3]"
+          "relative w-full h-full  grid bg-white shadow grid-cols-3 aspect-[4/3]",
         )}
       >
         <Image
@@ -79,7 +79,7 @@ const Project = ({
 
         <div
           className={clsx(
-            "p-6 col-span-full z-10 bg-dark/60 text-white flex flex-col justify-between"
+            "p-6 col-span-full z-10 bg-dark/60 text-white flex flex-col justify-between",
           )}
         >
           <div className="w-full">

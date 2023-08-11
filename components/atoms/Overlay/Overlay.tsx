@@ -11,7 +11,7 @@ const Overlay: FC<Props> = ({ display = false }) => {
     <div
       className={clsx(
         "fixed inset-0 pointer-events-none z-20 transition-all duration-1000 ease-in-out",
-        display ? " bg-dark/40" : "bg-dark/0"
+        display ? " bg-dark/40" : "bg-dark/0",
       )}
     />
   )

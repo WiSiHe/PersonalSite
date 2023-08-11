@@ -118,7 +118,7 @@ const Chat = () => {
   }
 
   const handleRegenerateImage = async (
-    e: React.MouseEvent<HTMLButtonElement>
+    e: React.MouseEvent<HTMLButtonElement>,
   ) => {
     e.preventDefault()
     if (!lastSentMessage) return
@@ -199,7 +199,7 @@ const Chat = () => {
               key={index}
               className={clsx(
                 "flex gap-2 items-start",
-                isBot ? "self-start" : "self-end"
+                isBot ? "self-start" : "self-end",
               )}
             >
               {isBot && (
@@ -286,7 +286,7 @@ const Chat = () => {
             disabled={isLoading || !requestMessage}
             className={clsx(
               "flex items-center gap-2 px-4 py-2 text-white  rounded-md hover:bg-blue-600",
-              isDisabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-500"
+              isDisabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-500",
             )}
           >
             {isLoading ? <FaSpinner className="animate-spin" /> : <FaRobot />}
@@ -298,7 +298,7 @@ const Chat = () => {
             disabled={isLoading}
             className={clsx(
               "flex items-center gap-2 px-4 py-2 text-white rounded-md hover:bg-blue-600",
-              isDisabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-500"
+              isDisabled ? "cursor-not-allowed bg-gray-400" : "bg-blue-500",
             )}
           >
             {isLoading ? <FaSpinner className="animate-spin" /> : <FaImage />}

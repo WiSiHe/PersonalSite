@@ -17,10 +17,10 @@ export function getFullUrlFromDomain(domainName: string): string {
  */
 export function getBaseUrl() {
   if (typeof process.env.VERCEL_URL === "string") {
-    const protocol = process.env.VERCEL_URL.includes("localhost:3000")
+    const protocol = process.env.VERCEL_URL.includes("localhost:1992")
       ? "http"
       : "https"
     return `${protocol}://${process.env.VERCEL_URL.replace(/\/$/, "")}`
   }
-  return "http://localhost:3000"
+  return "http://localhost:1992"
 }
