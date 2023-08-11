@@ -12,6 +12,7 @@ import icecave from "public/images/paintings/icecave.png"
 import winter from "public/images/paintings/winter.jpg"
 import { useState } from "react"
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa"
+import { cn } from "utils/utility"
 
 const backgrounds = [
   {
@@ -59,6 +60,7 @@ const backgrounds = [
 ]
 
 const HeroImageSection = () => {
+  const [isSwapping, setIsSwapping] = useState(false)
   const [currentBackground, setCurrentBackground] = useState(backgrounds.at(0))
 
   const handleNextBackground = () => {
@@ -82,6 +84,7 @@ const HeroImageSection = () => {
         placeholder="blur"
         quality={1}
         priority
+        sizes="100vw"
         className="object-cover scale-105 xl:scale-150 blur-3xl"
       />
 
@@ -94,15 +97,42 @@ const HeroImageSection = () => {
             <FaStar /> Featured
           </Chip>
         </div>
-        <Image
+        <div
+          className={cn(
+            " object-cover relative overflow-clip aspect-video bg-white rounded-xl drop-shadow-xl"
+          )}
+        >
+          {/* {backgrounds.map((background) => (
+            <Image
+              key={background.id}
+              src={background.image}
+              alt={background.description}
+              placeholder="blur"
+              quality={65}
+              sizes="100vw"
+              priority
+              className={cn(
+                "absolute inset-0 object-cover scale-105 xl:scale-150 blur-3xl",
+                currentBackground !== background && "opacity-0"
+              )}
+              onLoad={() => setIsSwapping(false)}
+              onLoadingComplete={() => setIsSwapping(true)}
+            />
+          ))} */}
+        </div>
+        {/* <Image
           src={currentBackground ? currentBackground.image : ""}
           alt={currentBackground ? currentBackground.description : ""}
           placeholder="blur"
-          quality={75}
-          sizes="(min-width: 1024px) 60vw, (min-width: 768px) 90vw, 100vw"
+          quality={65}
+          // sizes="(min-width: 1024px) 60vw, (min-width: 768px) 90vw, 100vw"
+          sizes="(min-width: 1280px) 64.01vw, calc(98.85vw - 18px)"
           priority
-          className="z-10 object-cover aspect-video rounded-xl drop-shadow-xl"
-        />
+          className={cn(
+            "z-10 object-cover aspect-video rounded-xl drop-shadow-xl",
+            isSwapping && "opacity-0"
+          )}
+        /> */}
         <section className="z-10 flex items-center justify-between w-full gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
           <button
             className="p-3 text-white rounded-lg bg-primary"

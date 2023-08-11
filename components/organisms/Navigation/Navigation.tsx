@@ -3,7 +3,7 @@ import clsx from "clsx"
 import AnimatedLogo from "components/atoms/AnimatedLogo"
 import NavigationModal from "components/molecules/NavigationModal"
 import { NavItems } from "constants/navigation"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -50,48 +50,53 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
         )}
       >
         <AnimatedLogo theme="light" />
-        <AnimatePresence>
-          <motion.button
-            initial={{ opacity: 0, scale: 0.5, y: -100 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ type: "spring", duration: 1 }}
-            key="hamburger"
-            onClick={() => setIsOpen((prev) => !prev)}
-            className="z-20 p-4 transition-all lg:hidden hover:bg-primary active:text-white hover:text-white active:bg-primary"
-            aria-expanded={isOpen}
-            aria-label="Open Navigation"
-          >
-            <FaHamburger />
-          </motion.button>
-        </AnimatePresence>
-        <AnimatePresence>
-          <motion.ul
-            key="nav"
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="items-center hidden gap-1 xl:gap-4 lg:flex"
-          >
-            {NavItems.map((item, i) => {
-              const isActive = pathName?.includes(item.url)
-              return (
-                <motion.li key={i} variants={listItem}>
-                  <Link
-                    href={item.url}
-                    className={cn(
-                      "transition-all mix-blend-difference text-white px-4 py-2 hover:bg-primary hover:text-white active:bg-primary",
-                      isActive
-                        ? "underline decoration-primary text-white decoration-2 bg-primary"
-                        : " text-white"
-                    )}
-                  >
-                    <strong className="drop-shadow">{item.text}</strong>
-                  </Link>
-                </motion.li>
-              )
-            })}
-          </motion.ul>
-        </AnimatePresence>
+        <motion.button
+          initial={{ opacity: 0, scale: 0, x: 100 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{
+            type: "spring",
+            bounce: 0.05,
+            // stiffness: 100,
+            // damping: 5,
+            duration: 1,
+            // delay: 0.5,
+          }}
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="p-4 transition-all duration-500 lg:hidden hover:bg-primary active:text-white hover:text-white active:bg-primary"
+          aria-expanded={isOpen}
+          aria-label="Open Navigation"
+        >
+          <FaHamburger />
+        </motion.button>
+
+        <motion.ul
+          key="nav"
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="items-center hidden gap-1 xl:gap-4 lg:flex"
+        >
+          {NavItems.map((item, i) => {
+            const isActive = pathName?.includes(item.url)
+            const { url, text, Icon } = item
+            return (
+              <motion.li key={i} variants={listItem}>
+                <Link
+                  href={url}
+                  className={cn(
+                    "transition-all gap-2 flex items-center mix-blend-difference text-white px-4 py-2 hover:bg-primary hover:text-white active:bg-primary",
+                    isActive
+                      ? "underline decoration-primary text-white decoration-2 bg-primary"
+                      : " text-white"
+                  )}
+                >
+                  {Icon && <Icon />}
+                  <strong className="drop-shadow">{text}</strong>
+                </Link>
+              </motion.li>
+            )
+          })}
+        </motion.ul>
       </nav>
       <NavigationModal
         isOpen={isOpen}
