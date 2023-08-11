@@ -1,4 +1,5 @@
 "use client"
+import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
 import celestial from "public/images/paintings/Celestial.jpg"
@@ -74,30 +75,42 @@ const CarouselStatic = () => {
   }, [])
 
   return (
-    <div className="relative w-full">
-      <section
-        className="relative flex gap-4 pl-4 overflow-y-scroll pr-14 snap-mandatory snap-x"
-        // ref={ref}
-      >
-        {sortedPaintings.map((painting) => (
-          <Image
-            key={painting.id}
-            src={painting.image}
-            placeholder="blur"
-            quality={50}
-            alt={painting.description}
-            className="object-cover w-full h-80 xl:h-[720px] aspect-portrait rounded-xl snap-center drop-shadow-xl"
-            sizes="(min-width: 1280px) 540px, 224px"
-          />
-        ))}
-      </section>
-      {/* <motion.div
-        className="absolute left-0 h-2 origin-left rounded-full -top-4 right-10 bg-primary"
-        style={{ scaleX: scrollXProgress }}
-      /> */}
-      {/* <div className="absolute top-0 bottom-0 right-0 w-28 bg-gradient-to-l from-tertiary via-tertiary" /> */}
-    </div>
+    <section className="relative">
+      <AnimatePresence>
+        <ul className="flex flex-no-wrap items-start gap-4 py-4 pr-10 overflow-x-scroll scrolling-touch">
+          {sortedPaintings.map((painting, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ stiffness: 260, damping: 20, bounce: 0.8 }}
+              className="flex-none w-2/3 rounded-lg md:w-1/3 "
+            >
+              <Image
+                src={painting.image}
+                placeholder="blur"
+                quality={50}
+                alt={painting.description}
+                className="object-cover w-full h-80 xl:h-[720px] aspect-portrait rounded-xl snap-center drop-shadow-lg"
+                sizes="(min-width: 1280px) 540px, 224px"
+              />
+            </motion.li>
+          ))}
+        </ul>
+      </AnimatePresence>
+    </section>
   )
 }
 
 export default CarouselStatic
+
+{
+  /* <Image
+src={painting.image}
+placeholder="blur"
+quality={50}
+alt={painting.description}
+className="object-cover w-full h-80 xl:h-[720px] aspect-portrait rounded-xl snap-center drop-shadow-xl"
+sizes="(min-width: 1280px) 540px, 224px"
+/>  */
+}

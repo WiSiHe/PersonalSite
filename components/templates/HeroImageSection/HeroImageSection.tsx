@@ -2,6 +2,7 @@
 import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import GreeterCard from "components/molecules/GreeterCard"
+import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import celestial from "public/images/paintings/Celestial.jpg"
 import cloud from "public/images/paintings/cloud.jpg"
@@ -60,17 +61,28 @@ const backgrounds = [
 ]
 
 const HeroImageSection = () => {
-  const [isSwapping, setIsSwapping] = useState(false)
-  const [currentBackground, setCurrentBackground] = useState(backgrounds.at(0))
+  const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0)
 
   const handleNextBackground = () => {
-    const currentIndex = backgrounds.findIndex(
-      (background) => background === currentBackground
-    )
-    const nextIndex = currentIndex + 1
-    const nextBackground = backgrounds.at(nextIndex % backgrounds.length)
-    setCurrentBackground(nextBackground)
+    const nextIndex = currentBackgroundIndex + 1
+    if (nextIndex > backgrounds.length - 1) {
+      setCurrentBackgroundIndex(0)
+    } else {
+      setCurrentBackgroundIndex(nextIndex)
+    }
   }
+
+  const handlePreviousBackground = () => {
+    const previousIndex = currentBackgroundIndex - 1
+    if (previousIndex < 0) {
+      setCurrentBackgroundIndex(backgrounds.length - 1)
+    } else {
+      setCurrentBackgroundIndex(previousIndex)
+    }
+  }
+
+  const currentBackground =
+    backgrounds.at(currentBackgroundIndex) || backgrounds[0]
 
   return (
     <section
@@ -78,7 +90,7 @@ const HeroImageSection = () => {
       className="relative w-full flex gap-8 flex-col xl:grid items-center xl:grid-cols-12 xl:pt-32 min-h-[600px] px-4 py-10 xl:gap-10 xl:items-center h-fit xl:min-h-[100dvh overflow-clip"
     >
       <Image
-        src={currentBackground ? currentBackground.image : ""}
+        src={currentBackground.image}
         fill
         alt=""
         placeholder="blur"
@@ -91,35 +103,35 @@ const HeroImageSection = () => {
       <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">
         <GreeterCard />
       </section>
-      <section className="relative z-10 col-span-full xl:col-span-8">
-        <div className="absolute left-0 right-0 z-10 flex items-center justify-center rounded-full -top-2 drop-shadow-xl">
-          <Chip hasStatus="selected">
-            <FaStar /> Featured
-          </Chip>
-        </div>
-        <div
-          className={cn(
-            " object-cover relative overflow-clip aspect-video bg-white rounded-xl drop-shadow-xl"
-          )}
-        >
-          {/* {backgrounds.map((background) => (
+      <section className="relative z-10 w-full col-span-full xl:col-span-8">
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={currentBackgroundIndex}
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.95 }}
+            className="relative w-full h-full aspect-video rounded-xl drop-shadow-xl"
+            transition={{ duration: 1, damping: 20, stiffness: 260 }}
+          >
+            <div className="absolute left-0 right-0 z-10 flex items-center justify-center rounded-full -top-2 drop-shadow-xl">
+              <Chip hasStatus="selected">
+                <FaStar /> Featured
+              </Chip>
+            </div>
             <Image
-              key={background.id}
-              src={background.image}
-              alt={background.description}
+              key={currentBackground.id}
+              src={currentBackground.image}
+              alt={currentBackground.description}
               placeholder="blur"
               quality={65}
-              sizes="100vw"
+              fill
+              sizes="(min-width: 1280px) 64.01vw, calc(98.85vw - 18px)"
               priority
-              className={cn(
-                "absolute inset-0 object-cover scale-105 xl:scale-150 blur-3xl",
-                currentBackground !== background && "opacity-0"
-              )}
-              onLoad={() => setIsSwapping(false)}
-              onLoadingComplete={() => setIsSwapping(true)}
+              className={cn("object-cover w-10 rounded-2xl")}
             />
-          ))} */}
-        </div>
+          </motion.div>
+        </AnimatePresence>
+
         {/* <Image
           src={currentBackground ? currentBackground.image : ""}
           alt={currentBackground ? currentBackground.description : ""}
@@ -136,7 +148,7 @@ const HeroImageSection = () => {
         <section className="z-10 flex items-center justify-between w-full gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
           <button
             className="p-3 text-white rounded-lg bg-primary"
-            onClick={handleNextBackground}
+            onClick={handlePreviousBackground}
           >
             <FaChevronLeft />
           </button>

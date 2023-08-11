@@ -7,6 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 import { AiOutlineClose } from "react-icons/ai"
+import { FaHome } from "react-icons/fa"
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,11 +21,6 @@ const container = {
     },
   },
 }
-
-// const listItem = {
-//   hidden: { opacity: 0, y: -100 },
-//   show: { opacity: 1, y: 0 },
-// }
 
 interface Modal {
   isOpen: boolean
@@ -88,50 +84,39 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
                 <Link
                   href="/"
                   className={clsx(
-                    "text-4xl hover:text-white p-4 hover:bg-primary border-b",
-                    isHome && "text-white bg-primary"
+                    "text-4xl hover:text-white p-4 hover:bg-primary",
+                    isHome ? "text-white bg-primary" : " border-b"
                   )}
                 >
-                  <strong className="font-oswald">Home</strong>
-                  {/* {isHome && (
-                    <div className="pl-1 text-sm">You are currently here!</div>
-                  )} */}
+                  <div className="flex gap-2">
+                    <FaHome />
+                    <strong className="font-oswald">Home</strong>
+                  </div>
                 </Link>
                 {NavItems.map((item, i) => {
                   // check if current url is active and but also check if the url is a parent of the current url
                   const isUrlActive = asPathWithSpacing.includes(item.url)
+
+                  const { Icon } = item
 
                   return (
                     <Link
                       key={i}
                       href={item.url}
                       className={clsx(
-                        "text-4xl relative hover:text-white w-full hover:bg-primary border-b",
-                        isUrlActive && "text-white",
-                        isUrlActive && "bg-primary"
+                        "text-4xl relative hover:text-white w-full hover:bg-primary ",
+                        isUrlActive ? "bg-primary text-white" : "border-b"
                       )}
                     >
                       <div className="inset-0 z-10 flex flex-col p-2 ">
-                        <strong className="font-oswald">{item.text}</strong>
+                        <div className="flex items-center gap-2">
+                          <Icon />
+                          <strong className="font-oswald">{item.text}</strong>
+                        </div>
                         <div className="flex flex-col gap-4 mt-2">
                           <i className="text-sm">{item.description}</i>
-                          {/* {isUrlActive && (
-                            <div className="flex items-center gap-2 text-sm">
-                              <FaLocationArrow className="" />
-                              You are currently here!
-                            </div>
-                          )} */}
                         </div>
                       </div>
-
-                      {/* <div
-                        className={clsx(
-                          "h-24 lg:h-36 delay-150 rounded duration-500 z-0 w-0 transition-all group-hover:w-full",
-                          isUrlActive
-                            ? "group-hover:bg-primary/80 w-full  bg-primary"
-                            : "bg-primary"
-                        )}
-                      /> */}
                     </Link>
                   )
                 })}
