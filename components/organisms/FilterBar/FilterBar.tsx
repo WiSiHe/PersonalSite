@@ -19,17 +19,13 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
 
   const searchParams = useSearchParams()
 
-  const filterss = searchParams?.getAll("filter")
-
-  const filterList: string[] = useCombinedStore((state) => state.filterList)
-  const clearFilterList = useCombinedStore((state) => state.clearFilterList)
+  const filterList = searchParams?.getAll("filter") as string[]
 
   const setFilterModalOpen = useCombinedStore((state) => state.setModalOpen)
 
   const amountOfActiveFilters = filterList.length
 
   const handleClearFilterList = () => {
-    clearFilterList()
     router.replace(currentPath)
   }
 

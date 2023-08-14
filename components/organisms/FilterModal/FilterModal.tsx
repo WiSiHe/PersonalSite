@@ -19,78 +19,69 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const filterss = searchParams?.getAll("filter")
-
-  const filterList: string[] = useCombinedStore((state) => state.filterList)
-  const setFilterList = useCombinedStore((state) => state.setFilterList)
+  const filterList = searchParams?.getAll("filter") as string[]
 
   const isFilterModalOpen = useCombinedStore((state) => state.modalOpen)
   const setFilterModalOpen = useCombinedStore((state) => state.setModalOpen)
-  const clearFilterList = useCombinedStore((state) => state.clearFilterList)
 
   const handleToggleFilter = (filter: string) => {
     const slugifiedFilter = slugify(filter)
 
     if (filterList.includes(slugifiedFilter)) {
       const newFilters = filterList.filter((f) => f !== slugifiedFilter)
-      setFilterList(newFilters)
-
       if (isEmptyArray(newFilters)) {
         return router.replace(pathname ?? "/")
       }
 
-      const newRouteWithFilters = `${pathname}?filter=${newFilters.join(",")}`
+      const newParams = newFilters.map((f) => `filter=${f}`).join("&")
+      const newRouteWithFilters = `${pathname}?${newParams}`
+
       router.replace(newRouteWithFilters)
     } else {
       const newFilters = [...filterList, slugifiedFilter]
-      setFilterList(newFilters)
-      router.replace(`${pathname}?filter=${newFilters.join(",")}`)
+      const newParams = newFilters.map((f) => `filter=${f}`).join("&")
+      router.replace(`${pathname}?${newParams}`)
     }
   }
 
   const handleClearFilterList = () => {
-    clearFilterList()
     router.replace(pathname ?? "/")
   }
 
   return (
-    <Transition show={isFilterModalOpen} as={Fragment}>
+    <Transition appear show={isFilterModalOpen} as={Fragment}>
       <Dialog
-        open={isFilterModalOpen}
+        as="div"
         onClose={setFilterModalOpen}
-        className="fixed right-0 flex pointer-events-auto items-center justify-end w-full h-full max-w-xs my-auto max-h-[100svh] xl:max-h-[100svh] z-20  overflow-y-scroll top-0 bottom-0"
+        className="fixed inset-0 z-30 p-4 overflow-y-auto"
       >
-        {isFilterModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ type: "spring", duration: 3 }}
-            className="fixed inset-0 bg-dark/40 backdrop-filter backdrop-blur-sm"
-            key="overlay"
-            aria-hidden="true"
-          />
-        )}
+        <Dialog.Overlay className="fixed inset-0 transition-all duration-200 bg-black opacity-30" />
         <Transition.Child
           as={Fragment}
-          enter="ease-out duration-300"
+          enter="transition-all ease-in-out duration-500"
           enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="ease-in duration-200"
+          enterTo="opacity-100 scale-100 "
+          leave="transition-all ease-in-out duration-500"
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Dialog.Panel className="relative z-10 w-full h-full overflow-y-scroll bg-white">
+          <motion.div className="w-full h-full overflow-y-scroll transition-all transform bg-white shadow-xl top-4 bottom-4 right-4 lg:w-1/3 rounded-xl">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              // transition={{ duration: 0.4, delay: 0.2 }}
               className="sticky top-0 flex flex-col gap-8 p-4 pb-4 bg-white shadow-lg"
             >
               <div className="flex items-center justify-between">
-                <strong>Filter</strong>
-                <button onClick={setFilterModalOpen} className="text-2xl">
+                <div>
+                  <strong className="font-oswald">Filters</strong>
+                  <p>Filter by tags</p>
+                </div>
+                <button
+                  onClick={setFilterModalOpen}
+                  className="p-3 text-2xl hover:bg-primary hover:text-white"
+                >
                   <IoClose />
                 </button>
               </div>
@@ -132,7 +123,7 @@ const FilterModal = ({ filters = [] }: iFilterModal) => {
                 )
               })}
             </ul>
-          </Dialog.Panel>
+          </motion.div>
         </Transition.Child>
       </Dialog>
     </Transition>

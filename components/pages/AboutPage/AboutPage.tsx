@@ -1,6 +1,16 @@
-import HeroImageSection from "components/templates/HeroImageSection"
-import PaintingSection from "components/templates/PantingSection"
+"use client"
+import LinkButton from "components/atoms/LinkButton/LinkButton"
 import { iSanityImage } from "lib/models/objects/sanityImage"
+import dynamic from "next/dynamic"
+
+const PaintingSection = dynamic(
+  () => import("components/templates/PantingSection"),
+)
+
+const HeroImageSection = dynamic(
+  () => import("components/templates/HeroImageSection"),
+)
+
 interface AboutPageProps {
   paintings?: iSanityImage[]
 }
@@ -31,34 +41,6 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </p>
       </section>
 
-      {/* <section className="relative p-4 bg-dark overflow-clip">
-        <div className="grid h-full max-w-screen-xl grid-cols-12 gap-4 mx-auto my-auto items xl:aspect-video">
-          <div className="xl:inset-0 xl:-translate-x-72 col-span-full xl:absolute aspect-square xl:aspect-auto "></div>
-          <div className="z-10 p-4 my-auto text-white col-span-full xl:col-start-8 xl:col-span-6">
-            <h2>
-              <strong>
-                Fancy <span className="text-primary">animations!</span>
-              </strong>
-            </h2>
-            <div>
-              <p className="drop-shadow">
-                I enjoy playing around with 3D modeling and animation. The
-                object{" "}
-                <strong className="hidden text-xl text-primary xl:inline">
-                  on the left
-                </strong>
-                <strong className="inline xl:hidden text-primary">above</strong>{" "}
-                is a quick creation I put together using Spline. In the past,
-                I&#39;ve designed a variety of game assets including trees,
-                rocks, and structures.
-                <br />
-                <br /> More information coming soon!
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       <section className="flex items-center justify-center w-full p-4 text-white bg-dark lg:min-h-screen">
         <div className="flex items-center justify-center h-full max-w-screen-lg mx-auto">
           <p>
@@ -78,6 +60,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           gaming, don&#39;t hesitate to get in touch. I&#39;m excited to share
           my passion and creativity with you!
         </p>
+        <LinkButton href="/contact">Contact me</LinkButton>
       </section>
     </>
   )

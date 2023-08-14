@@ -43,13 +43,6 @@ const NavigationModal = ({ isOpen, closeModal }: Modal) => {
         <div className="relative flex justify-end w-full h-full p-4">
           <Dialog.Overlay className="fixed inset-0 transition-all duration-200 bg-black opacity-30" />
 
-          {/* <span
-            className="inline-block h-screen"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span> */}
-
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-500"
