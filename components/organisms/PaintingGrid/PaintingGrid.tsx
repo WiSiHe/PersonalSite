@@ -47,7 +47,7 @@ const PaintingGrid = ({
 
   const searchParams = useSearchParams()
 
-  const allFilter = searchParams?.getAll("filter")
+  const filterList = searchParams?.getAll("filter") as string[]
 
   const [hasLoadedAllPaintings, setHasLoadedAllPaintings] = useState(false)
 
@@ -55,31 +55,34 @@ const PaintingGrid = ({
 
   // const [paintingsSlice, setPaintingsSlice] = useState(25)
   const paintingsSlice = useCombinedStore((state) => state.paintingSlice)
-
   const setPaintingsSlice = useCombinedStore((state) => state.setPaintingSlice)
 
-  const clearFilterList = useCombinedStore((state) => state.clearFilterList)
+  // const filterPaintingsV2 = useMemo(() => {
+  //   if (isEmptyArray(filterList)) return sortPaintings(paintings, sorting)
 
-  const splitFilters = useMemo(() => {
-    if (!allFilter || isEmptyArray(allFilter)) return []
-    return allFilter.flatMap((f) => f.split(","))
-  }, [allFilter])
+  //   const filterSet = new Set(filterList.map((f) => slugify(f)))
+  //   const filteredPaintings = paintings.filter((p) => {
+  //     const paintingTags = p.tagsV2.map((t) => slugify(t.name))
+  //     return paintingTags.some((tag) => filterSet.has(tag))
+  //   })
 
-  const filterPaintingsV2 = useMemo(() => {
-    if (isEmptyArray(splitFilters)) return sortPaintings(paintings, sorting)
+  //   return sortPaintings(filteredPaintings, sorting)
+  // }, [filterList, paintings, sorting])
 
-    const filteredPaintings = paintings.filter((p) => {
+  const filterPaintingsV3 = useMemo(() => {
+    const sortedPaintings = sortPaintings([...paintings], sorting)
+
+    const filteredPaintings = sortedPaintings.filter((p) => {
       const paintingTags = p.tagsV2.map((t) => slugify(t.name))
-      return splitFilters.every((f) => paintingTags.includes(f))
+      return filterList.every((f) => paintingTags.includes(slugify(f)))
     })
 
-    return sortPaintings(filteredPaintings, sorting)
-  }, [splitFilters, paintings, sorting])
+    return filteredPaintings
+  }, [filterList, paintings, sorting])
 
   // functions that load more paintings, and at the end of the list, load more paintings
 
   function handleClearFilter() {
-    clearFilterList()
     router.replace("/paintings")
   }
 
@@ -121,11 +124,7 @@ const PaintingGrid = ({
     }
   }, [handleScroll, paintings])
 
-  useEffect(() => {
-    if (isEmptyArray(paintings)) return
-  }, [paintings])
-
-  if (isEmptyArray(filterPaintingsV2)) {
+  if (isEmptyArray(filterPaintingsV3)) {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -156,18 +155,18 @@ const PaintingGrid = ({
     <>
       <AnimatePresence>
         <section className="grid w-full grid-cols-12 gap-4 mb-10 lg:gap-8 grid-flow-dense">
-          {filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
+          {filterPaintingsV3.slice(0, paintingsSlice).map((painting, i) => {
             const isMobile = width < 640
             let amountOfLazyImages = 1
             if (!isMobile) amountOfLazyImages = 8
 
             return (
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", bounce: 0.25 }}
                 viewport={{ once: true }}
-                key={painting._id + i}
+                key={painting._id}
                 className="relative rounded-lg drop-shadow-lg col-span-full lg:col-span-3 group focus-within:ring ring-primary hover:ring overflow-clip"
               >
                 <Link href={`/paintings/${painting.slug}`}>
