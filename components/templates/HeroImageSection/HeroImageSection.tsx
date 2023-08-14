@@ -97,19 +97,19 @@ const HeroImageSection = () => {
         quality={1}
         priority
         sizes="5vw"
-        className="object-fill scale-150 xl:object-cover blur-3xl"
+        className="object-cover xl:scale-150 blur-3xl"
       />
 
       <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">
         <GreeterCard />
       </section>
       <section className="relative z-10 w-full col-span-full xl:col-span-8">
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence mode="wait">
           <motion.div
             key={currentBackgroundIndex}
-            initial={{ scale: 0.95 }}
+            initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-            exit={{ scale: 0.95 }}
+            exit={{ scale: 0.9 }}
             className="relative w-full h-full aspect-video rounded-xl drop-shadow-xl"
             transition={{ duration: 1, damping: 20, stiffness: 260 }}
           >
@@ -124,7 +124,7 @@ const HeroImageSection = () => {
               alt={currentBackground.description}
               placeholder="blur"
               quality={65}
-              sizes="(min-width: 1280px) 64.01vw, calc(98.85vw - 18px)"
+              sizes="(min-width: 1280px) 64.01vw, calc(58.85vw - 18px)"
               fill
               priority
               className={cn("object-cover w-10 rounded-2xl")}
@@ -132,19 +132,6 @@ const HeroImageSection = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* <Image
-          src={currentBackground ? currentBackground.image : ""}
-          alt={currentBackground ? currentBackground.description : ""}
-          placeholder="blur"
-          quality={65}
-          // sizes="(min-width: 1024px) 60vw, (min-width: 768px) 90vw, 100vw"
-          sizes="(min-width: 1280px) 64.01vw, calc(98.85vw - 18px)"
-          priority
-          className={cn(
-            "z-10 object-cover aspect-video rounded-xl drop-shadow-xl",
-            isSwapping && "opacity-0"
-          )}
-        /> */}
         <section className="z-10 flex items-center justify-between w-full gap-4 pt-6 pb-10 capitalize xl:col-start-5 col-span-full xl:justify-center xl:gap-6">
           <button
             className="p-3 text-white rounded-lg bg-primary"
