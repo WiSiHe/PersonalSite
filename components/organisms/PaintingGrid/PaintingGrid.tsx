@@ -1,12 +1,13 @@
 "use client"
 import Painting from "components/molecules/Painting/Painting"
 import { AnimatePresence, motion } from "framer-motion"
+import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { useCombinedStore } from "lib/store"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
-import { isEmptyArray, isNotEmptyArray } from "utils/array"
+import { isEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
 import { cn } from "utils/utility"
@@ -14,21 +15,6 @@ import { cn } from "utils/utility"
 interface iPaintingGridProps {
   paintings: iSanityPainting[]
   isStorybook?: boolean
-}
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.5,
-    },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
 }
 
 const debounce = <F extends (...args: any[]) => void>(
@@ -57,6 +43,8 @@ const PaintingGrid = ({
 }: iPaintingGridProps) => {
   const router = useRouter()
 
+  const { width = 0 } = useWindowDimensions()
+
   const searchParams = useSearchParams()
 
   const allFilter = searchParams?.getAll("filter")
@@ -67,6 +55,7 @@ const PaintingGrid = ({
 
   // const [paintingsSlice, setPaintingsSlice] = useState(25)
   const paintingsSlice = useCombinedStore((state) => state.paintingSlice)
+
   const setPaintingsSlice = useCombinedStore((state) => state.setPaintingSlice)
 
   const clearFilterList = useCombinedStore((state) => state.clearFilterList)
@@ -75,8 +64,6 @@ const PaintingGrid = ({
     if (!allFilter || isEmptyArray(allFilter)) return []
     return allFilter.flatMap((f) => f.split(","))
   }, [allFilter])
-
-  const hasFilters = isNotEmptyArray(splitFilters)
 
   const filterPaintingsV2 = useMemo(() => {
     if (isEmptyArray(splitFilters)) return sortPaintings(paintings, sorting)
@@ -93,14 +80,14 @@ const PaintingGrid = ({
 
   function handleClearFilter() {
     clearFilterList()
-    router.replace("/")
+    router.replace("/paintings")
   }
 
   const loadMorePaintings = () => {
     if (hasLoadedAllPaintings) return
 
     // append 25 more paintings to the list
-    const newPaintingsSlice = paintingsSlice + 25
+    const newPaintingsSlice = paintingsSlice + 12
     setPaintingsSlice(newPaintingsSlice)
 
     if (newPaintingsSlice >= paintings.length) {
@@ -138,77 +125,62 @@ const PaintingGrid = ({
     if (isEmptyArray(paintings)) return
   }, [paintings])
 
+  if (isEmptyArray(filterPaintingsV2)) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring" }}
+        key="no-paintings-found"
+        className={cn(
+          "flex w-full flex-col items-center justify-center gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
+        )}
+      >
+        <h2 className="text-2xl text-center">
+          No paintings found with the selected filters
+        </h2>
+        <p className="text-center">
+          Try removing some filters to see more paintings
+        </p>
+        <button
+          onClick={handleClearFilter}
+          className="px-4 py-3 text-white rounded-lg bg-primary hover:bg-primary/90"
+        >
+          Clear Filters
+        </button>
+      </motion.div>
+    )
+  }
+
   return (
     <>
-      {/* <div className="flex items-center w-full gap-4 pb-8">
-        <div className="flex flex-col flex-1">
-          <label htmlFor="search" className="sr-only">
-            Search:
-          </label>
-          <input
-            type="search"
-            placeholder="Search"
-            id="search"
-            className="h-12 px-2 py-1 border border-gray-300 rounded-md"
-          />
-        </div>
-        <button className="flex items-center justify-center h-12 gap-2 px-4 text-white rounded-md lg:px-8 bg-primary">
-          <FaSearch />
-          Search
-        </button>
-      </div> */}
-      <div className="pb-4">
-        Total Paintings: {paintings.length} | Filtered Paintings:{" "}
-      </div>
       <AnimatePresence>
         <section className="grid w-full grid-cols-12 gap-4 mb-10 lg:gap-8 grid-flow-dense">
-          {!isEmptyArray(filterPaintingsV2) ? (
-            filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
-              return (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ type: "spring", bounce: 0.25 }}
-                  viewport={{ once: true }}
-                  key={painting._id + i}
-                  className="relative rounded-lg shadow-md col-span-full lg:col-span-3 group focus-within:ring ring-primary hover:ring overflow-clip"
-                >
-                  <Link href={`/painting/${painting.slug}`}>
-                    <Painting
-                      paintingData={painting}
-                      storybook={isStorybook}
-                      key={painting._id}
-                      // shouldBeLazy={i < 4}
-                    />
-                  </Link>
-                </motion.div>
-              )
-            })
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring" }}
-              key="no-paintings-found"
-              className={cn(
-                "flex flex-col items-center justify-center gap-2 p-4 rounded-lg col-span-full ring  ring-primary",
-                hasFilters ? "bg-primary/10" : "xl:col-span-6",
-              )}
-            >
-              <h2 className="text-2xl text-center">
-                No paintings found with the selected filters
-              </h2>
-              <p className="text-center">
-                Try removing some filters to see more paintings
-              </p>
-              <button
-                onClick={handleClearFilter}
-                className="px-4 py-3 text-white rounded-lg bg-primary hover:bg-primary/90"
+          {filterPaintingsV2.slice(0, paintingsSlice).map((painting, i) => {
+            const isMobile = width < 640
+            let amountOfLazyImages = 1
+            if (!isMobile) amountOfLazyImages = 8
+
+            return (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring", bounce: 0.25 }}
+                viewport={{ once: true }}
+                key={painting._id + i}
+                className="relative rounded-lg drop-shadow-lg col-span-full lg:col-span-3 group focus-within:ring ring-primary hover:ring overflow-clip"
               >
-                Clear Filters
-              </button>
-            </motion.div>
-          )}
+                <Link href={`/paintings/${painting.slug}`}>
+                  <Painting
+                    paintingData={painting}
+                    storybook={isStorybook}
+                    key={painting._id}
+                    shouldBeLazy={i < amountOfLazyImages}
+                  />
+                </Link>
+              </motion.div>
+            )
+          })}
         </section>
       </AnimatePresence>
     </>

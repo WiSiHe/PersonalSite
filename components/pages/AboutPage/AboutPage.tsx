@@ -1,5 +1,4 @@
 "use client"
-import LinkButton from "components/atoms/LinkButton/LinkButton"
 import { iSanityImage } from "lib/models/objects/sanityImage"
 import dynamic from "next/dynamic"
 
@@ -20,7 +19,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
     <>
       <HeroImageSection />
       <PaintingSection />
-      <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
+      {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <h2 className="pb-2">Frontend</h2>
         <p className="max-w-2xl">
           I also work as a Frontend Developer. With a keen eye for design and
@@ -61,7 +60,7 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
           my passion and creativity with you!
         </p>
         <LinkButton href="/contact">Contact me</LinkButton>
-      </section>
+      </section> */}
     </>
   )
 }

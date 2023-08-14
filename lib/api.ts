@@ -170,13 +170,13 @@ export async function getAllTagsAndPaintingsLight(): Promise<{
   paintings: iSanityPainting[]
 }> {
   const paintingQuery = /* groq */ `*[_type == "painting"]{
-    title, image, format, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id,
+    title, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id,
     image{
       ...,
       "lqip": asset->metadata.lqip
       },
     tagsV2[]->{name}, video}`
-  const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, description, "paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
+  const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, "paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
 
   const query = `{
     "paintings": ${paintingQuery},

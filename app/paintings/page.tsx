@@ -8,6 +8,13 @@ export const metadata = {
   description: "A gallery of some of my paintings",
   locale: "en-US",
   type: "website",
+  image: {
+    url: "https://wisihe.no/images/paintings/cloud.jpg",
+    width: 1200,
+    height: 630,
+    alt: "Paintings | WiSiHe",
+  },
+  url: "https://wisihe.no/paintings",
 }
 
 export const revalidate = 60 * 60 * 3 // 3 hours
@@ -46,7 +53,7 @@ export default async function Home() {
   const { randomPaintings, tags } = paintings
 
   return (
-    <Main className="relative flex flex-col items-start min-h-screen p-4">
+    <Main className="relative flex flex-col min-h-screen p-4">
       <GalleryPage paintings={randomPaintings} tags={tags} />
     </Main>
   )

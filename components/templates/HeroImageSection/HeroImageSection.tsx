@@ -87,7 +87,7 @@ const HeroImageSection = () => {
   return (
     <section
       key="hero"
-      className="relative w-full min-h-[600px] flex flex-col justify-center px-4 py-10 h-fit xl:min-h-[100dvh] overflow-clip"
+      className="relative w-full min-h-[600px] flex flex-col justify-center px-4 py-10 h-fit xl:min-h-screen overflow-clip"
     >
       <Image
         src={currentBackground.image}

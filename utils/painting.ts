@@ -27,8 +27,8 @@ export const sortPaintings = (paintings: iSanityPainting[], sort: iSort) => {
         return dateA.getTime() - dateB.getTime()
       })
     case "random":
-      // return paintings.sort(() => Math.random() - 0.5)
-      return paintings
+      return paintings.sort(() => Math.random() - 0.5)
+    // return paintings
     default:
       return paintings
   }
