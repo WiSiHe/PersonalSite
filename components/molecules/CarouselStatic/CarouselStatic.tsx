@@ -65,7 +65,7 @@ const CarouselStatic = () => {
   }, [])
 
   return (
-    <section className="relative ">
+    <section className="relative">
       <ul className="flex flex-no-wrap items-start w-full gap-4 py-8 pl-4 pr-8 overflow-x-scroll scrolling-touch snap-x">
         {sortedPaintings.map((painting, i) => (
           <motion.li
@@ -82,7 +82,7 @@ const CarouselStatic = () => {
               quality={50}
               alt={painting.description}
               className="object-cover w-full h-full"
-              sizes="(min-width: 1280px) 540px, 224px"
+              sizes="(min-width: 1280px) 615px, 320px"
               fill
             />
           </motion.li>
