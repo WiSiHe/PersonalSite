@@ -70,15 +70,20 @@ const CarouselStatic = () => {
         {sortedPaintings.map((painting, i) => (
           <motion.li
             key={i}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.4 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ stiffness: 260, damping: 20, bounce: 0.8 }}
+            transition={{
+              stiffness: 260,
+              damping: 20,
+              bounce: 0.8,
+              type: "spring",
+            }}
             viewport={{ once: true }}
             className="relative flex-none aspect-square xl:aspect-portrait rounded-lg h-80 xl:h-[820px] overflow-clip drop-shadow"
           >
             <Image
               src={painting.image}
-              placeholder="blur"
+              // placeholder="blur"
               quality={50}
               alt={painting.description}
               className="object-cover w-full h-full"

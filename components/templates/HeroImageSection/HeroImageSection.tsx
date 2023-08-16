@@ -107,10 +107,11 @@ const HeroImageSection = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentBackgroundIndex}
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              className="relative w-full h-full aspect-video rounded-xl drop-shadow-xl"
+              initial={{ scale: 0.95, opacity: 0.9 }}
+              animate={{ scale: 1.0, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0.9 }}
+              transition={{ type: "spring" }}
+              className="relative w-full h-full aspect-video rounded-xl bg-dark/20 backdrop-blur-lg drop-shadow-xl"
               // transition={{ duration: 1, damping: 20, stiffness: 260 }}
             >
               <div className="absolute left-0 right-0 z-10 flex items-center justify-center rounded-full -top-2 drop-shadow-xl">
@@ -124,9 +125,6 @@ const HeroImageSection = () => {
                 alt={currentBackground.description}
                 placeholder="blur"
                 quality={65}
-                // Full Width mobile, 50% width tablet, 33% width desktop
-                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
                 sizes="(min-width: 1280px) 64.01vw, calc(58.85vw - 18px)"
                 fill
                 priority
