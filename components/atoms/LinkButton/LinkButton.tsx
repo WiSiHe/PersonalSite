@@ -1,13 +1,15 @@
 "use client"
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
+import { FaChevronRight } from "react-icons/fa"
 
-interface LinkButtonProps {
+type LinkButtonProps = {
   href: string
   children: React.ReactNode
+  hasIcon?: boolean
 }
 
-const LinkButton = ({ children, href }: LinkButtonProps) => {
+const LinkButton = ({ children, href, hasIcon = true }: LinkButtonProps) => {
   return (
     <Link
       href={href}
@@ -20,7 +22,9 @@ const LinkButton = ({ children, href }: LinkButtonProps) => {
           className="flex items-center justify-center px-6 py-2 text-white transition-all ease-linear rounded-lg w-fit whitespace-nowrap bg-primary hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
         >
           {children}
-          {/* <FaChevronRight className="inline-block ml-2 text-base" /> */}
+          {hasIcon && (
+            <FaChevronRight className="inline-block ml-2 text-base" />
+          )}
         </motion.div>
       </AnimatePresence>
     </Link>

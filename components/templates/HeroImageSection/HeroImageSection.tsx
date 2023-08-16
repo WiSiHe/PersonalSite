@@ -1,6 +1,7 @@
 "use client"
 import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
+import Loader from "components/atoms/Loader/Loader"
 import GreeterCard from "components/molecules/GreeterCard"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
@@ -62,6 +63,7 @@ const backgrounds = [
 
 const HeroImageSection = () => {
   const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0)
+  const [isLoadingBackground, setIsLoadingBackground] = useState(false)
 
   const handleNextBackground = () => {
     const nextIndex = currentBackgroundIndex + 1
@@ -87,7 +89,7 @@ const HeroImageSection = () => {
   return (
     <section
       key="hero"
-      className="relative w-full min-h-[600px] flex flex-col justify-center px-4 py-10 h-fit xl:min-h-screen overflow-clip"
+      className="relative w-full min-h-[600px] bg-dark flex flex-col justify-center px-4 py-10 h-fit xl:min-h-screen overflow-clip"
     >
       <Image
         src={currentBackground.image}
@@ -95,9 +97,9 @@ const HeroImageSection = () => {
         alt=""
         placeholder="blur"
         quality={1}
-        priority
+        // priority
         sizes="100vw"
-        className="object-cover xl:scale-150 blur-3xl"
+        className="object-cover xl:scale-150 blur-xl"
       />
       <div className="relative z-10 flex flex-col items-center w-full gap-8 mx-auto max-w-screen-3xl xl:grid xl:grid-cols-12 xl:pt-32 xl:gap-10 xl:items-center">
         <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">
@@ -107,11 +109,11 @@ const HeroImageSection = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentBackgroundIndex}
-              initial={{ scale: 0.95, opacity: 0.9 }}
-              animate={{ scale: 1.0, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0.9 }}
-              transition={{ type: "spring" }}
-              className="relative w-full h-full aspect-video rounded-xl bg-dark/20 backdrop-blur-lg drop-shadow-xl"
+              initial={{ scale: 0.98 }}
+              animate={{ scale: 1.0 }}
+              exit={{ scale: 0.98 }}
+              transition={{ type: "spring", duration: 1 }}
+              className="relative w-full h-full aspect-video rounded-2xl bg-dark/20"
               // transition={{ duration: 1, damping: 20, stiffness: 260 }}
             >
               <div className="absolute left-0 right-0 z-10 flex items-center justify-center rounded-full -top-2 drop-shadow-xl">
@@ -129,7 +131,14 @@ const HeroImageSection = () => {
                 fill
                 priority
                 className={cn("object-cover w-10 rounded-2xl")}
+                onLoad={() => setIsLoadingBackground(true)}
+                onLoadingComplete={() => setIsLoadingBackground(false)}
               />
+              {isLoadingBackground && (
+                <div className="absolute inset-0 flex items-center justify-center w-full h-full rounded-2xl bg-dark">
+                  <Loader />
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -140,7 +149,7 @@ const HeroImageSection = () => {
             >
               <FaChevronLeft />
             </button>
-            <LinkButton href="/paintings">
+            <LinkButton href="/paintings" hasIcon={false}>
               <span className="hidden">Check out the</span> painting gallery
             </LinkButton>
             <button

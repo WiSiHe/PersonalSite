@@ -78,8 +78,8 @@ const CarouselStatic = () => {
               bounce: 0.8,
               type: "spring",
             }}
-            viewport={{ once: true }}
-            className="relative flex-none aspect-square xl:aspect-portrait rounded-lg h-80 xl:h-[820px] overflow-clip drop-shadow"
+            viewport={{ once: true, amount: "some" }}
+            className="relative flex-none aspect-square xl:aspect-portrait snap-center rounded-lg h-80 xl:h-[820px] overflow-clip"
           >
             <Image
               src={painting.image}
