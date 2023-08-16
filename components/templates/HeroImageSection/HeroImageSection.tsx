@@ -123,7 +123,7 @@ const HeroImageSection = () => {
                 key={currentBackground.id}
                 src={currentBackground.image}
                 alt={currentBackground.description}
-                placeholder="blur"
+                // placeholder="blur"
                 quality={65}
                 sizes="(min-width: 1280px) 64.01vw, calc(58.85vw - 18px)"
                 fill
