@@ -33,7 +33,7 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/ui": "^1.8.2",
     "@sanity/vision": "^3.16.7",
-    "@sanity/webhook": "^2.0.0",
+    "@sanity/webhook": "^3.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/styled-components": "^5.1.27",
     "@vercel/analytics": "^1.0.2",

@@ -33,8 +33,8 @@ dependencies:
     specifier: ^3.16.7
     version: 3.16.7(@babel/runtime@7.23.1)(@codemirror/lint@6.4.2)(@codemirror/state@6.2.1)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.1.0)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.0.8)
   '@sanity/webhook':
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: ^3.0.0
+    version: 3.0.1
   '@tailwindcss/container-queries':
     specifier: ^0.1.1
     version: 0.1.1(tailwindcss@3.3.3)
@@ -3494,14 +3494,6 @@ packages:
       - codemirror
       - react-dom
       - react-is
-    dev: false
-
-  /@sanity/webhook@2.0.0:
-    resolution: {integrity: sha512-KusHeWVy6yW3hcgVHbGx6qVv//bUj3CD9Nr0EOw086+mo/ESrUV21HjOCrNQ+AYqXvJ9H5qhqmMiuc8H5dXUGA==}
-    engines: {node: '>=12.0.0'}
-    dependencies:
-      base64url: 3.0.1
-      tslib: 2.6.2
     dev: false
 
   /@sanity/webhook@3.0.1:
