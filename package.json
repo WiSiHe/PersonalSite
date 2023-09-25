@@ -74,7 +74,7 @@
     "@storybook/nextjs": "^7.2.3",
     "@storybook/react": "^7.2.3",
     "@storybook/testing-library": "^0.2.0",
-    "@types/node": "20.4.9",
+    "@types/node": "20.6.5",
     "@types/react": "^18.2.20",
     "@types/react-lazy-load-image-component": "^1.5.3",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
