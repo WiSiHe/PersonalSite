@@ -1,9 +1,9 @@
 interface Dropdown {
-  props?: any
+    props?: any
 }
 
 const Dropdown = ({ props }: Dropdown) => {
-  return <div {...props} />
+    return <div {...props} />
 }
 
 export default Dropdown

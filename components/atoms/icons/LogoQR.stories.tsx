@@ -3,14 +3,14 @@ import type { Meta, StoryObj } from "@storybook/react"
 import LogoQR from "./LogoQR"
 
 const meta: Meta<typeof LogoQR> = {
-  title: "Atoms/LogoQR",
-  component: LogoQR,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
-  tags: ["autodocs"],
-  parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-    layout: "centered",
-  },
+    title: "Atoms/LogoQR",
+    component: LogoQR,
+    // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
+    tags: ["autodocs"],
+    parameters: {
+        // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
+        layout: "centered",
+    },
 }
 
 export default meta
@@ -20,9 +20,9 @@ type Story = StoryObj<typeof LogoQR>
 export const Default: Story = {}
 
 export const WithCustomSize: Story = {
-  args: {
-    height: 200,
-    width: 200,
-    titleId: "custom-size",
-  },
+    args: {
+        height: 200,
+        width: 200,
+        titleId: "custom-size",
+    },
 }

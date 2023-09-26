@@ -1,47 +1,47 @@
 import { useEffect, useState } from "react"
 
 const getReturnValues = (countDown: number) => {
-  // calculate time left
-  const days = Math.floor(countDown / (1000 * 60 * 60 * 24))
-  const hours = Math.floor(
-    (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-  )
-  const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))
-  const seconds = Math.floor((countDown % (1000 * 60)) / 1000)
+    // calculate time left
+    const days = Math.floor(countDown / (1000 * 60 * 60 * 24))
+    const hours = Math.floor(
+        (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    )
+    const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((countDown % (1000 * 60)) / 1000)
 
-  return [days, hours, minutes, seconds]
+    return [days, hours, minutes, seconds]
 }
 
 const useCountdownDate = (initialCountdown: number) => {
-  const countDownDate = new Date(initialCountdown).getTime()
+    const countDownDate = new Date(initialCountdown).getTime()
 
-  const [countDown, setCountDown] = useState(
-    countDownDate - new Date().getTime(),
-  )
+    const [countDown, setCountDown] = useState(
+        countDownDate - new Date().getTime(),
+    )
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountDown(countDownDate - new Date().getTime())
-    }, 1000)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCountDown(countDownDate - new Date().getTime())
+        }, 1000)
 
-    return () => clearInterval(interval)
-  }, [countDownDate])
+        return () => clearInterval(interval)
+    }, [countDownDate])
 
-  return getReturnValues(countDown)
+    return getReturnValues(countDown)
 }
 
 const useCountdownSeconds = (initialCountdown: number) => {
-  const [countDown, setCountDown] = useState(initialCountdown)
+    const [countDown, setCountDown] = useState(initialCountdown)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountDown(countDown - 1)
-    }, 1000)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCountDown(countDown - 1)
+        }, 1000)
 
-    return () => clearInterval(interval)
-  }, [countDown])
+        return () => clearInterval(interval)
+    }, [countDown])
 
-  return getReturnValues(countDown * 1000)
+    return getReturnValues(countDown * 1000)
 }
 
 export { useCountdownDate, useCountdownSeconds }

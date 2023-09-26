@@ -7,24 +7,24 @@ import { isEmptyObject } from "utils/object"
 import PaintingPage from "../PaintingPage/PaintingPage"
 
 interface iPaintingPageProps {
-  initialPainting: iSanityPainting
+    initialPainting: iSanityPainting
 }
 
 const PaintingPagePreview = ({ initialPainting }: iPaintingPageProps) => {
-  const { slug = "" } = initialPainting
+    const { slug = "" } = initialPainting
 
-  const [data, loadingPainting] = useLiveQuery(
-    initialPainting,
-    paintingDetailsQuery,
-    { slug },
-  )
+    const [data, loadingPainting] = useLiveQuery(
+        initialPainting,
+        paintingDetailsQuery,
+        { slug },
+    )
 
-  if (loadingPainting) return <div>Loading...</div>
+    if (loadingPainting) return <div>Loading...</div>
 
-  if (!data || isEmptyObject(data)) {
-    return <div>Not found</div>
-  }
-  return <PaintingPage painting={data} />
+    if (!data || isEmptyObject(data)) {
+        return <div>Not found</div>
+    }
+    return <PaintingPage painting={data} />
 }
 
 export default PaintingPagePreview

@@ -38,19 +38,19 @@ import { Preview } from "@storybook/react"
 import "styles/globals.css"
 
 const preview: Preview = {
-  parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    layout: "padded",
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
+    parameters: {
+        actions: { argTypesRegex: "^on[A-Z].*" },
+        layout: "padded",
+        controls: {
+            matchers: {
+                color: /(background|color)$/i,
+                date: /Date$/,
+            },
+        },
+        nextjs: {
+            appDirectory: true,
+        },
     },
-    nextjs: {
-      appDirectory: true,
-    },
-  },
 }
 
 export default preview

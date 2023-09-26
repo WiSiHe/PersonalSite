@@ -4,53 +4,53 @@ import { FaLightbulb, FaPause, FaRegLightbulb } from "react-icons/fa"
 import { MdOutlineCancel } from "react-icons/md"
 
 interface iStatus {
-  status?:
-    | "inProgress"
-    | "completed"
-    | "onHold"
-    | "cancelled"
-    | "abandoned"
-    | "unknown"
-    | "notStarted"
-    | "planned"
+    status?:
+        | "inProgress"
+        | "completed"
+        | "onHold"
+        | "cancelled"
+        | "abandoned"
+        | "unknown"
+        | "notStarted"
+        | "planned"
 }
 
 const ProjectStatus = ({ status = "unknown" }: iStatus) => {
-  const projectStatusColor = {
-    inProgress: "bg-blue-500 text-white",
-    completed: "bg-green-500 text-white",
-    onHold: "bg-gray-500",
-    cancelled: "bg-red-500 text-white",
-    abandoned: "bg-yellow-500",
-    unknown: "bg-gray-500",
-    notStarted: "bg-gray-500 text-white",
-    planned: "bg-yellow-500",
-  }
+    const projectStatusColor = {
+        inProgress: "bg-blue-500 text-white",
+        completed: "bg-green-500 text-white",
+        onHold: "bg-gray-500",
+        cancelled: "bg-red-500 text-white",
+        abandoned: "bg-yellow-500",
+        unknown: "bg-gray-500",
+        notStarted: "bg-gray-500 text-white",
+        planned: "bg-yellow-500",
+    }
 
-  const projectStatusIcon = {
-    inProgress: <BsCheck />,
-    completed: <BsCheck />,
-    onHold: <BsFillPauseFill />,
-    cancelled: <MdOutlineCancel />,
-    abandoned: <FaRegLightbulb />,
-    unknown: <BsQuestionLg />,
-    notStarted: <FaPause />,
-    planned: <FaLightbulb />,
-  }
+    const projectStatusIcon = {
+        inProgress: <BsCheck />,
+        completed: <BsCheck />,
+        onHold: <BsFillPauseFill />,
+        cancelled: <MdOutlineCancel />,
+        abandoned: <FaRegLightbulb />,
+        unknown: <BsQuestionLg />,
+        notStarted: <FaPause />,
+        planned: <FaLightbulb />,
+    }
 
-  return (
-    <div
-      className={clsx(
-        "flex items-center text-xs gap-1 py-2 px-4 rounded backdrop-blur text-dark",
-        projectStatusColor[status],
-      )}
-    >
-      <div>{projectStatusIcon[status]}</div>
-      <div className="capitalize">
-        <strong>{status}</strong>
-      </div>
-    </div>
-  )
+    return (
+        <div
+            className={clsx(
+                "flex items-center text-xs gap-1 py-2 px-4 rounded backdrop-blur text-dark",
+                projectStatusColor[status],
+            )}
+        >
+            <div>{projectStatusIcon[status]}</div>
+            <div className="capitalize">
+                <strong>{status}</strong>
+            </div>
+        </div>
+    )
 }
 
 export default ProjectStatus

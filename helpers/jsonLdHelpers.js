@@ -1,19 +1,19 @@
 import { imageBuilder } from "../lib/sanity"
 
 function generatePaintingJsonLd(paintingData) {
-  const {
-    slug = {},
-    desciption = "",
-    image = {},
-    _createdAt = "",
-    title = "",
-  } = paintingData
+    const {
+        slug = {},
+        desciption = "",
+        image = {},
+        _createdAt = "",
+        title = "",
+    } = paintingData
 
-  const smallImage = imageBuilder(image).width(50).url()
+    const smallImage = imageBuilder(image).width(50).url()
 
-  const url = `https://wisihe.no/painting/${slug.current}}`
+    const url = `https://wisihe.no/painting/${slug.current}}`
 
-  const jsonLd = `{
+    const jsonLd = `{
     "@context": "http://schema.org",
     "@type": "Painting",
     "url": "${url}",
@@ -27,7 +27,7 @@ function generatePaintingJsonLd(paintingData) {
     }
   }`
 
-  return jsonLd
+    return jsonLd
 }
 
 export default generatePaintingJsonLd

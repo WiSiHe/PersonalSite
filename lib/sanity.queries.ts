@@ -40,25 +40,25 @@ export const postBySlugQuery = groq`
 `
 
 export interface Author {
-  name?: string
-  picture?: any
+    name?: string
+    picture?: any
 }
 
 export interface Post {
-  _id: string
-  title?: string
-  coverImage?: any
-  date?: string
-  excerpt?: string
-  author?: Author
-  slug?: string
-  content?: any
+    _id: string
+    title?: string
+    coverImage?: any
+    date?: string
+    excerpt?: string
+    author?: Author
+    slug?: string
+    content?: any
 }
 
 export interface Settings {
-  title?: string
-  description?: any[]
-  ogImage?: {
     title?: string
-  }
+    description?: any[]
+    ogImage?: {
+        title?: string
+    }
 }

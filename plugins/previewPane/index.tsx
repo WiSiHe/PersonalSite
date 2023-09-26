@@ -16,57 +16,57 @@ import PaintingPage from "components/pages/PaintingPage"
 import PaintingPagePreview from "components/pages/PaintingPagePreview"
 
 export const previewDocumentNode = ({
-  apiVersion,
-  previewSecretId,
+    apiVersion,
+    previewSecretId,
 }: {
-  apiVersion: string
-  previewSecretId: `${string}.${string}`
+    apiVersion: string
+    previewSecretId: `${string}.${string}`
 }): DefaultDocumentNodeResolver => {
-  return (S, { schemaType }) => {
-    switch (schemaType) {
-      case paintingType.name:
-        return (
-          S.document()
-            // .documentId(documentId)
-            .schemaType(schemaType)
-            .views([
-              S.view.form(),
-              S.view
-                .component(({ document }) => (
-                  <PaintingPreviewPane
-                    slug={document.displayed.slug?.current}
-                    apiVersion={apiVersion}
-                    previewSecretId={previewSecretId}
-                    id={document.displayed._id}
-                    // painting={document.displayed}
-                  />
-                ))
-                .options({
-                  previewURL: (doc: any) => {
-                    return `/painting/${doc.displayed.slug.current}`
-                  },
-                  url: (doc: any) => {
-                    return `/painting/${doc.displayed.slug.current}`
-                  },
-                })
-                .title("Preview Painting"),
-              // S.view
-              //   .component(
-              //     ({ document }) =>
-              //       document.displayed && (
-              //         <PaintingPagePreview painting={document.displayed} />
-              //       )
-              //   )
-              //   .options({
-              //     previewURL: (doc: any) => {
-              //       return `/painting/${doc.displayed.slug.current}`
-              //     },
-              //   })
-              //   .title("Realtime Preview"),
-            ])
-        )
-      default:
-        return null
+    return (S, { schemaType }) => {
+        switch (schemaType) {
+            case paintingType.name:
+                return (
+                    S.document()
+                        // .documentId(documentId)
+                        .schemaType(schemaType)
+                        .views([
+                            S.view.form(),
+                            S.view
+                                .component(({ document }) => (
+                                    <PaintingPreviewPane
+                                        slug={document.displayed.slug?.current}
+                                        apiVersion={apiVersion}
+                                        previewSecretId={previewSecretId}
+                                        id={document.displayed._id}
+                                        // painting={document.displayed}
+                                    />
+                                ))
+                                .options({
+                                    previewURL: (doc: any) => {
+                                        return `/painting/${doc.displayed.slug.current}`
+                                    },
+                                    url: (doc: any) => {
+                                        return `/painting/${doc.displayed.slug.current}`
+                                    },
+                                })
+                                .title("Preview Painting"),
+                            // S.view
+                            //   .component(
+                            //     ({ document }) =>
+                            //       document.displayed && (
+                            //         <PaintingPagePreview painting={document.displayed} />
+                            //       )
+                            //   )
+                            //   .options({
+                            //     previewURL: (doc: any) => {
+                            //       return `/painting/${doc.displayed.slug.current}`
+                            //     },
+                            //   })
+                            //   .title("Realtime Preview"),
+                        ])
+                )
+            default:
+                return null
+        }
     }
-  }
 }

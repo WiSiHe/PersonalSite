@@ -1,40 +1,40 @@
 import { getAllPaintingSlugs, getAllProjectsSlugs } from "lib/api"
 
 interface SitemapField {
-  loc: string
-  lastmod: string
-  changefreq: "daily"
-  priority?: number
+    loc: string
+    lastmod: string
+    changefreq: "daily"
+    priority?: number
 }
 
 // Invalidate the sitemap every 24 hours, matching the changefreq
 export const revalidate = 86400
 
 const staticPages = [
-  {
-    loc: "",
-    priority: 1,
-  },
-  {
-    loc: "/",
-    priority: 1,
-  },
-  {
-    loc: "/projects",
-    priority: 0.9,
-  },
-  {
-    loc: "/videos",
-    priority: 0.9,
-  },
-  {
-    loc: "/style",
-    priority: 0.3,
-  },
-  {
-    loc: "/about",
-    priority: 0.3,
-  },
+    {
+        loc: "",
+        priority: 1,
+    },
+    {
+        loc: "/",
+        priority: 1,
+    },
+    {
+        loc: "/projects",
+        priority: 0.9,
+    },
+    {
+        loc: "/videos",
+        priority: 0.9,
+    },
+    {
+        loc: "/style",
+        priority: 0.3,
+    },
+    {
+        loc: "/about",
+        priority: 0.3,
+    },
 ]
 
 /**
@@ -42,59 +42,59 @@ const staticPages = [
  * Returns a sitemap
  */
 export async function GET() {
-  const allPaintings = await getAllPaintingSlugs()
+    const allPaintings = await getAllPaintingSlugs()
 
-  const allProjects = await getAllProjectsSlugs()
+    const allProjects = await getAllProjectsSlugs()
 
-  // Sitemap fields
-  const fields: Array<SitemapField> = []
+    // Sitemap fields
+    const fields: Array<SitemapField> = []
 
-  // Add all static pages
-  for (const page of staticPages) {
-    const url = new URL(page.loc, "https://www.wisihe.no")
-    fields.push({
-      loc: url.toString(),
-      lastmod: new Date().toISOString(),
-      changefreq: "daily",
-      priority: page.priority,
-    })
-  }
+    // Add all static pages
+    for (const page of staticPages) {
+        const url = new URL(page.loc, "https://www.wisihe.no")
+        fields.push({
+            loc: url.toString(),
+            lastmod: new Date().toISOString(),
+            changefreq: "daily",
+            priority: page.priority,
+        })
+    }
 
-  // Add all articles
-  for (const article of allPaintings) {
-    const slug = article.slug
+    // Add all articles
+    for (const article of allPaintings) {
+        const slug = article.slug
 
-    const url = new URL(`/paintings/${slug}`, "https://www.wisihe.no")
-    fields.push({
-      loc: url.toString(),
-      lastmod: new Date().toISOString(),
-      changefreq: "daily",
-      priority: 0.7,
-    })
-  }
+        const url = new URL(`/paintings/${slug}`, "https://www.wisihe.no")
+        fields.push({
+            loc: url.toString(),
+            lastmod: new Date().toISOString(),
+            changefreq: "daily",
+            priority: 0.7,
+        })
+    }
 
-  // Add all projects
-  for (const project of allProjects) {
-    const slug = project.slug
-    const url = new URL(`/projects/${slug}`, "https://www.wisihe.no")
-    fields.push({
-      loc: url.toString(),
-      lastmod: new Date().toISOString(),
-      changefreq: "daily",
-      priority: 0.7,
-    })
-  }
+    // Add all projects
+    for (const project of allProjects) {
+        const slug = project.slug
+        const url = new URL(`/projects/${slug}`, "https://www.wisihe.no")
+        fields.push({
+            loc: url.toString(),
+            lastmod: new Date().toISOString(),
+            changefreq: "daily",
+            priority: 0.7,
+        })
+    }
 
-  const urlArray = fields.map((field) => {
-    return `<url>
+    const urlArray = fields.map((field) => {
+        return `<url>
 		<loc>${field.loc}</loc>
         <changefreq>${field.changefreq}</changefreq>
 		<lastmod>${field.lastmod}</lastmod>
         <priority>${field.priority}</priority>
 		</url>`
-  })
+    })
 
-  const body = `<?xml version="1.0" encoding="UTF-8" ?>
+    const body = `<?xml version="1.0" encoding="UTF-8" ?>
 	<urlset
 	  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
 	  xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
@@ -106,10 +106,10 @@ export async function GET() {
 	  ${urlArray.join("")}
 	</urlset>`
 
-  const headers = {
-    "Cache-Control": "max-age=0, s-maxage=3600",
-    "Content-Type": "application/xml",
-  }
+    const headers = {
+        "Cache-Control": "max-age=0, s-maxage=3600",
+        "Content-Type": "application/xml",
+    }
 
-  return new Response(body, { headers })
+    return new Response(body, { headers })
 }

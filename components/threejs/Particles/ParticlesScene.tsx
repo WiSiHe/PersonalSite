@@ -16,12 +16,12 @@ import Particles from "./Particles"
 // export default Scene
 
 const ParticlesScene = () => {
-  return (
-    <div>
-      <h1>Particles Scene</h1>
-      <Particles />
-    </div>
-  )
+    return (
+        <div>
+            <h1>Particles Scene</h1>
+            <Particles />
+        </div>
+    )
 }
 
 export default ParticlesScene

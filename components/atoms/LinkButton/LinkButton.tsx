@@ -4,31 +4,31 @@ import Link from "next/link"
 import { FaChevronRight } from "react-icons/fa"
 
 type LinkButtonProps = {
-  href: string
-  children: React.ReactNode
-  hasIcon?: boolean
+    href: string
+    children: React.ReactNode
+    hasIcon?: boolean
 }
 
 const LinkButton = ({ children, href, hasIcon = true }: LinkButtonProps) => {
-  return (
-    <Link
-      href={href}
-      className="relative block focus-visible:outline-none max-w-min group focus-visible:ring ring-highlight focus-visible:border-transparent"
-    >
-      <AnimatePresence>
-        <motion.div
-          transition={{ type: "spring", bounce: 0.4, duration: 1 }}
-          whileHover={{ scale: 1.1, boxShadow: "0 0 10px #DE0D92" }}
-          className="flex items-center justify-center px-6 py-2 text-white transition-all ease-linear rounded-lg w-fit whitespace-nowrap bg-primary hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
+    return (
+        <Link
+            href={href}
+            className="relative block focus-visible:outline-none max-w-min group focus-visible:ring ring-highlight focus-visible:border-transparent"
         >
-          {children}
-          {hasIcon && (
-            <FaChevronRight className="inline-block ml-2 text-base" />
-          )}
-        </motion.div>
-      </AnimatePresence>
-    </Link>
-  )
+            <AnimatePresence>
+                <motion.div
+                    transition={{ type: "spring", bounce: 0.4, duration: 1 }}
+                    whileHover={{ scale: 1.1, boxShadow: "0 0 10px #DE0D92" }}
+                    className="flex items-center justify-center px-6 py-2 text-white transition-all ease-linear rounded-lg w-fit whitespace-nowrap bg-primary hover:bg-primary group-focus-visible:bg-primary group-focus-visible:text-white hover:text-white"
+                >
+                    {children}
+                    {hasIcon && (
+                        <FaChevronRight className="inline-block ml-2 text-base" />
+                    )}
+                </motion.div>
+            </AnimatePresence>
+        </Link>
+    )
 }
 
 export default LinkButton

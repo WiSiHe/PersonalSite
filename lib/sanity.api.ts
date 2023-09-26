@@ -6,13 +6,13 @@
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || ""
 
 export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-  "Missing environment variable: NEXT_PUBLIC_SANITY_DATASET",
+    process.env.NEXT_PUBLIC_SANITY_DATASET,
+    "Missing environment variable: NEXT_PUBLIC_SANITY_DATASET",
 )
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-06-21"
+    process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-06-21"
 // useCdn == true gives fast, cheap responses using a globally distributed cache.
 // It makes sense to use the CDN if the GROQ webhook outlined in `pages/api/revalidate.ts` isn't setup yet.
 // With the hook setup though it's more important to newer return stale data since the request count is so low, especially after removing the `export const revalidate = 1` statements in `page.tsx` files.
@@ -29,9 +29,9 @@ export const previewSecretId: `${string}.${string}` = "preview.secret"
 export const readToken = process.env.SANITY_API_READ_TOKEN || ""
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
-  if (v === undefined) {
-    throw new Error(errorMessage)
-  }
+    if (v === undefined) {
+        throw new Error(errorMessage)
+    }
 
-  return v
+    return v
 }

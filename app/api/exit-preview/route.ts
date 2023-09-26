@@ -3,14 +3,14 @@ import { draftMode } from "next/headers"
 
 // export async function GET(req: Request) {
 export async function GET() {
-  draftMode().disable()
-  // Redirect to the preview path
-  // Note: Not using «redirect()» because it has a bug at the time of writing this»
+    draftMode().disable()
+    // Redirect to the preview path
+    // Note: Not using «redirect()» because it has a bug at the time of writing this»
 
-  return new Response(null, {
-    status: 307,
-    headers: {
-      Location: "/",
-    },
-  })
+    return new Response(null, {
+        status: 307,
+        headers: {
+            Location: "/",
+        },
+    })
 }

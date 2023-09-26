@@ -63,7 +63,7 @@
 // export default Particles
 
 const Particles = () => {
-  return <div>particles</div>
+    return <div>particles</div>
 }
 
 export default Particles

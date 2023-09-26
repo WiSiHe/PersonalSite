@@ -3,23 +3,23 @@ import { iSanityImage } from "lib/models/objects/sanityImage"
 import dynamic from "next/dynamic"
 
 const PaintingSection = dynamic(
-  () => import("components/templates/PantingSection"),
+    () => import("components/templates/PantingSection"),
 )
 
 const HeroImageSection = dynamic(
-  () => import("components/templates/HeroImageSection"),
+    () => import("components/templates/HeroImageSection"),
 )
 
 interface AboutPageProps {
-  paintings?: iSanityImage[]
+    paintings?: iSanityImage[]
 }
 
 const AboutPage = ({ paintings = [] }: AboutPageProps) => {
-  return (
-    <>
-      <HeroImageSection />
-      <PaintingSection />
-      {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
+    return (
+        <>
+            <HeroImageSection />
+            <PaintingSection />
+            {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <h2 className="pb-2">Frontend</h2>
         <p className="max-w-2xl">
           I also work as a Frontend Developer. With a keen eye for design and
@@ -61,8 +61,8 @@ const AboutPage = ({ paintings = [] }: AboutPageProps) => {
         </p>
         <LinkButton href="/contact">Contact me</LinkButton>
       </section> */}
-    </>
-  )
+        </>
+    )
 }
 
 export default AboutPage

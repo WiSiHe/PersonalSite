@@ -1,3 +1,3 @@
 export function time() {
-  return new Date().getTime()
+    return new Date().getTime()
 }
