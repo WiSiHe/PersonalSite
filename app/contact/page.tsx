@@ -1,6 +1,5 @@
 import Main from "components/atoms/Main/Main"
 import ContactPage from "components/pages/ContactPage"
-// import { revalidatePath } from "next/cache"
 
 export const metadata = {
     title: "Contact | WiSiHe",

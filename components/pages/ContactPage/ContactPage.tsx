@@ -17,26 +17,26 @@ const mailtoLabel = "mailto:hws902@gmail.com"
 const ContactPage = () => {
     return (
         <>
-            <div className="flex flex-col gap-8 col-span-full lg:col-span-4">
+            <div className="flex flex-col gap-8 p-4 lg:p-10 col-span-full lg:col-span-4">
                 <section>
                     <h1>Contact</h1>
-                    <p>
+                    <p className="pt-2">
                         I&#39;m always happy to hear from you. If you have any
                         questions or comments, please feel free to reach out to
                         me via email or social media.
                     </p>
                 </section>
 
-                <section className="grid grid-cols-2 gap-4 pt-3">
+                <section className="grid grid-cols-1 gap-4">
                     <div className="col-span-full">
                         <h2>Store</h2>
-                        <p>
+                        <p className="pt-2">
                             Beyond my original art, I offer prints, posters, and
                             merchandise in various formats, including framed or
                             canvas prints and artful phone cases.
                         </p>
                     </div>
-                    <div className="flex flex-col justify-between gap-2 p-4 bg-white drop-shadow">
+                    <div className="flex flex-col justify-between gap-4 p-4 bg-white drop-shadow">
                         <h3>Redbubble</h3>
                         <p className="text-xs ">
                             Redbubble is a vibrant online marketplace where I
@@ -111,7 +111,7 @@ const ContactPage = () => {
                     </Link>
                 </section>
 
-                <section>
+                <section className="pb-10">
                     <h2>Social links</h2>
                     <p className="pb-4">
                         I&#39;m active on social media. Follow me to stay up to
@@ -121,13 +121,13 @@ const ContactPage = () => {
                 </section>
             </div>
 
-            <div className="relative hidden lg:block lg:col-span-8">
+            <div className="relative hidden lg:m-10 lg:block lg:col-span-8">
                 <Image
                     src={sloth}
                     alt="contact"
                     fill
                     placeholder="blur"
-                    className="object-cover"
+                    className="object-cover rounded-xl "
                 />
             </div>
         </>
