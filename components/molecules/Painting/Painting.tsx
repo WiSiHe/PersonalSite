@@ -109,7 +109,11 @@ const Painting = ({
     // )
 
     return (
-        <article className={cn("text-white bg-white aspect-portrait relative")}>
+        <article
+            className={cn(
+                "text-white bg-white aspect-portrait relative overflow-clip",
+            )}
+        >
             <Image
                 src={urlForImage(image)
                     .width(sanityWidth)
@@ -121,12 +125,12 @@ const Painting = ({
                 priority={shouldBeLazy}
                 placeholder="blur"
                 blurDataURL={lqip}
-                quality={40}
+                quality={30}
                 unoptimized={storybook}
                 alt=""
                 className={cn(
                     !isNsfw && !isNsfwUrl && "group-hover:scale-110",
-                    "object-cover w-full h-full transition-all duration-500 ease-in-out bg-center bg-cover aspect-square",
+                    "object-cover w-full h-full transition-all pointer-events-none duration-500 ease-in-out bg-center bg-cover aspect-square",
                 )}
             />
 

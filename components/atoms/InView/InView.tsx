@@ -2,9 +2,10 @@ import { ReactNode, useEffect, useRef, useState } from "react"
 
 interface InViewProps {
     children: ReactNode
+    className?: string
 }
 
-function InView({ children }: InViewProps) {
+function InView({ children, className }: InViewProps) {
     const [isVisible, setIsVisible] = useState<boolean>(false)
 
     const targetRef = useRef<HTMLDivElement | null>(null)
@@ -39,7 +40,11 @@ function InView({ children }: InViewProps) {
         }
     }, [])
 
-    return <div ref={targetRef}>{isVisible && children}</div>
+    return (
+        <div ref={targetRef} className={className}>
+            {isVisible && children}
+        </div>
+    )
 }
 
 export default InView

@@ -169,19 +169,72 @@ export async function getAllTagsAndPaintingsLight(): Promise<{
     tags: iSanityPaintingTag[]
     paintings: iSanityPainting[]
 }> {
-    const paintingQuery = /* groq */ `*[_type == "painting"]{
-    title, paintedAt, "imagesCount": count(images), 'slug': slug.current, redbubbleUrl, _id,
-    image{
-      ...,
-      "lqip": asset->metadata.lqip
+    const query = `
+    {
+      "paintings": *[_type == "painting"] | order(_createdAt desc) {
+        title,
+        paintedAt,
+        "imagesCount": count(images),
+        'slug': slug.current,
+        redbubbleUrl,
+        _id,
+        image {
+          ...,
+          "lqip": asset->metadata.lqip
+        },
+        tagsV2[]->{
+          name
+        },
+        video
       },
-    tagsV2[]->{name}, video}`
-    const tagsQuery = /* groq */ `*[_type == "tag"]| order(name asc){_id, name, "paintingsCount": count(*[_type == "painting" && references(^._id)].title)}`
+      "tags": *[_type == "tag"] | order(name asc) {
+        _id,
+        name,
+        "paintingsCount": count(*[_type == "painting" && references(^._id)].title)
+      }
+    }
+  `
 
-    const query = `{
-    "paintings": ${paintingQuery},
-    "tags": ${tagsQuery},
-  }`
+    const results = await getClient().fetch(query)
+    return results
+}
+
+export async function getAllTagsAndPaintingsLightPagenated(
+    page: number = 1,
+    perPage: number = 16,
+): Promise<{
+    tags: iSanityPaintingTag[]
+    paintings: iSanityPainting[]
+}> {
+    const skip = (page - 1) * perPage
+
+    const query = `
+    {
+      "paintings": *[_type == "painting"] | order(_createdAt desc)  [${skip}...${
+          skip + perPage
+      }] {
+        title,
+        paintedAt,
+        "imagesCount": count(images),
+        'slug': slug.current,
+        redbubbleUrl,
+        _id,
+        image {
+          ...,
+          "lqip": asset->metadata.lqip
+        },
+        tagsV2[]->{
+          name
+        },
+        video
+      },
+      "tags": *[_type == "tag"] | order(name asc) {
+        _id,
+        name,
+        "paintingsCount": count(*[_type == "painting" && references(^._id)].title)
+      }
+    }
+  `
 
     const results = await getClient().fetch(query)
     return results

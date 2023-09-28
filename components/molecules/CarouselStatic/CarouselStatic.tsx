@@ -65,35 +65,32 @@ const CarouselStatic = () => {
     }, [])
 
     return (
-        <section className="relative">
+        <motion.section
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: "some" }}
+            transition={{ type: "spring", delay: 0.5 }}
+            className="relative"
+        >
             <ul className="flex flex-no-wrap items-start w-full gap-4 py-8 pl-4 pr-8 overflow-x-scroll scrolling-touch snap-x">
                 {sortedPaintings.map((painting, i) => (
-                    <motion.li
+                    <li
                         key={i}
-                        initial={{ opacity: 0, scale: 0.4 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{
-                            stiffness: 260,
-                            damping: 20,
-                            bounce: 0.8,
-                            type: "spring",
-                        }}
-                        viewport={{ once: true, amount: "some" }}
-                        className="relative flex-none aspect-square xl:aspect-portrait snap-center rounded-lg h-80 xl:h-[820px] overflow-clip"
+                        className="relative flex-none aspect-square xl:aspect-video snap-center rounded-lg h-80 xl:h-[720px] overflow-clip"
                     >
                         <Image
                             src={painting.image}
-                            // placeholder="blur"
+                            placeholder="blur"
                             quality={50}
                             alt={painting.description}
                             className="object-cover w-full h-full"
                             sizes="(min-width: 1280px) 615px, 320px"
                             fill
                         />
-                    </motion.li>
+                    </li>
                 ))}
             </ul>
-        </section>
+        </motion.section>
     )
 }
 

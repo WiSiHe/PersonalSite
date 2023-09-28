@@ -12,7 +12,7 @@ const PaintingSection = () => {
                     initial={{ y: 100, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true, amount: "some" }}
-                    transition={{ type: "spring", duration: 1 }}
+                    transition={{ type: "spring" }}
                     className="relative w-full px-4 text-dark"
                 >
                     <h2 className="pb-2">Paintings</h2>
