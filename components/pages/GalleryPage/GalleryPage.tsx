@@ -217,19 +217,15 @@ const GalleryPage = ({
                 <h1 className="">Gallery</h1>
                 <p className="pt-2">A gallery of some of my paintings.</p>
             </section>
-            <section className="sticky left-0 right-0 z-10 flex flex-col items-start gap-4 p-4 py-4 mb-4 -ml-4 -mr-4 bg-tertiary top-16">
-                <div className="flex justify-between w-full gap-2">
-                    <div className="flex flex-col flex-1 w-full">
-                        <DebouncedInput
-                            onDebounce={setSearchFilter}
-                            placeholder="search"
-                        />
-                    </div>
-                    <button className="flex items-center justify-center h-12 gap-2 px-4 text-white rounded-md lg:px-8 bg-primary">
-                        <FaSearch />
-                        Search
-                    </button>
+            <section className="left-0 right-0 z-10 flex flex-col items-start gap-4 p-4 py-4 mb-4 -ml-4 -mr-4 bg-tertiary top-16">
+                <div className="flex flex-col flex-1 w-full">
+                    <DebouncedInput
+                        onDebounce={setSearchFilter}
+                        placeholder="search"
+                        type="search"
+                    />
                 </div>
+
                 <AnimatePresence>
                     {isNotEmptyArray(allFilter) && (
                         <div className="flex items-center w-full h-8 gap-2">
@@ -281,7 +277,9 @@ const GalleryPage = ({
                 </div>
             </section>
 
-            <PaintingGrid paintings={filterPaintings} />
+            <PaintingGrid
+                paintings={filterPaintings.slice(0, paintingsSlice)}
+            />
         </>
     )
 }

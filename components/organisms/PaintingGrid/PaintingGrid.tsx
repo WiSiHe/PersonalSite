@@ -1,7 +1,7 @@
 "use client"
 import InView from "components/atoms/InView"
 import Painting from "components/molecules/Painting/Painting"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import Link from "next/link"
@@ -54,28 +54,33 @@ const PaintingGrid = ({
     }
 
     return (
-        <section className="grid w-full grid-cols-12 gap-4 mb-10 lg:gap-8 grid-flow-dense">
-            {paintings.map((painting, i) => {
-                const isMobile = width < 640
-                let amountOfLazyImages = 1
-                if (!isMobile) amountOfLazyImages = 8
+        <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
+            <AnimatePresence>
+                {paintings.map((painting, i) => {
+                    const isMobile = width < 640
+                    let amountOfLazyImages = 1
+                    if (!isMobile) amountOfLazyImages = 8
 
-                return (
-                    <InView
-                        key={painting._id}
-                        className="relative bg-white rounded-lg col-span-full lg:col-span-3 drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip"
-                    >
-                        <Link href={`/paintings/${painting.slug}`}>
-                            <Painting
-                                paintingData={painting}
-                                storybook={isStorybook}
-                                key={painting._id}
-                                shouldBeLazy={i < amountOfLazyImages}
-                            />
-                        </Link>
-                    </InView>
-                )
-            })}
+                    return (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: false, amount: 0.5 }}
+                            key={painting._id}
+                            className="relative col-span-6 bg-white rounded-lg lg:col-span-3 xl:col-span-2 drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip"
+                        >
+                            <Link href={`/paintings/${painting.slug}`}>
+                                <Painting
+                                    paintingData={painting}
+                                    storybook={isStorybook}
+                                    key={painting._id}
+                                    shouldBeLazy={i < amountOfLazyImages}
+                                />
+                            </Link>
+                        </motion.div>
+                    )
+                })}
+            </AnimatePresence>
         </section>
     )
 }

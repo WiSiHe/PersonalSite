@@ -7,6 +7,7 @@ interface InViewProps {
 
 function InView({ children, className }: InViewProps) {
     const [isVisible, setIsVisible] = useState<boolean>(false)
+    console.log("isVisible", isVisible)
 
     const targetRef = useRef<HTMLDivElement | null>(null)
 
@@ -14,7 +15,7 @@ function InView({ children, className }: InViewProps) {
         const options: IntersectionObserverInit = {
             root: null, // Use the viewport as the root
             rootMargin: "0px", // Margin around the root
-            threshold: 0.5, // 50% of the component must be visible
+            threshold: 0.1, // 50% of the component must be visible
         }
         const { current } = targetRef
 
@@ -33,9 +34,12 @@ function InView({ children, className }: InViewProps) {
             observer.observe(current)
         }
 
+        // Create a ref to store the observer
+        const observerRef = { current: observer }
+
         return () => {
             if (current) {
-                observer.unobserve(current)
+                observerRef.current.unobserve(current)
             }
         }
     }, [])

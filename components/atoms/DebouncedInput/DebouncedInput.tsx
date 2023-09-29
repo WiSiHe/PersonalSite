@@ -13,7 +13,7 @@ type DebouncedInputProps = {
 const DebouncedInput = ({
     placeholder,
     onDebounce,
-    debounceDelay = 300,
+    debounceDelay = 500,
     type = "text",
     name = "search",
     hiddenLabel = false,
@@ -40,7 +40,7 @@ const DebouncedInput = ({
                 htmlFor={name}
                 className={cn("capitalize ml-4", hiddenLabel && "sr-only")}
             >
-                {placeholder}
+                <strong>{placeholder}</strong>
             </label>
             <input
                 id={name}

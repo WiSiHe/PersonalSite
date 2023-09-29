@@ -138,7 +138,7 @@ const Painting = ({
                 <div className="absolute inset-0 backdrop-blur-xl" />
             )}
             {hasStoreLinks && (
-                <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight">
+                <div className="absolute flex items-center flex-shrink-0 gap-2 p-2 text-xs rounded-lg left-2 top-2 bg-highlight text-dark">
                     <div className="relative w-2 h-2 rounded-full bg-dark">
                         <span className="absolute inset-0 inline-flex w-full h-full rounded-full opacity-100 bg-dark animate-ping"></span>
                     </div>
