@@ -228,7 +228,13 @@ const GalleryPage = ({
 
                 <AnimatePresence>
                     {isNotEmptyArray(allFilter) && (
-                        <div className="flex items-center w-full h-8 gap-2">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ type: "spring", delay: 0.5 }}
+                            className="flex items-center w-full h-8 gap-2"
+                        >
                             {allFilter.map((filter, i) => {
                                 if (!filter) return null
                                 const key = `${filter}-${i}`
@@ -257,7 +263,7 @@ const GalleryPage = ({
                                         <Chip>
                                             {filter}
                                             <button
-                                                className="ml-2 pointer-events-auto"
+                                                className="p-1 ml-2 cursor-pointer pointer-events-auto hover:bg-gray-200 hover:bg-opacity-50"
                                                 onClick={() =>
                                                     handleToggleFilter(filter)
                                                 }
@@ -268,7 +274,7 @@ const GalleryPage = ({
                                     </motion.div>
                                 )
                             })}
-                        </div>
+                        </motion.div>
                     )}
                 </AnimatePresence>
                 <div>

@@ -7,8 +7,8 @@ interface iChipProps {
 
 const Chip = ({ children, hasStatus = "notSelected" }: iChipProps) => {
     const statusStyle = {
-        notSelected: "bg-primary text-white hover:bg-primary/80",
-        selected: "bg-highlight text-dark hover:bg-highlight/80",
+        notSelected: "bg-primary text-white",
+        selected: "bg-highlight text-dark",
     }
     return (
         <div

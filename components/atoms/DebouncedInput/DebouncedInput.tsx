@@ -38,7 +38,7 @@ const DebouncedInput = ({
         <>
             <label
                 htmlFor={name}
-                className={cn("capitalize ml-4", hiddenLabel && "sr-only")}
+                className={cn("capitalize pb-1", hiddenLabel && "sr-only")}
             >
                 <strong>{placeholder}</strong>
             </label>
@@ -48,7 +48,7 @@ const DebouncedInput = ({
                 placeholder={placeholder}
                 value={inputValue}
                 onChange={handleInputChange}
-                className="w-full px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                className="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
             />
         </>
     )

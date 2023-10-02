@@ -69,24 +69,24 @@ export async function generateMetadata({ params }: { params: Params }) {
             type: "website",
             site_name: "WiSiHe",
         },
-        twitter: {
-            title: combinedTitle,
-            description: removedLineBreaks,
-            cardType: "summary_large_image",
-            image: paintingImageUrl,
-            imageAlt: painting.title,
-            images: [
-                {
-                    url: paintingImageUrl,
-                    width: 400,
-                    height: 400,
-                    alt: painting.title,
-                },
-            ],
-            url: `https://wisihe.no/painting/${params.slug}`,
-            creator: "@wisihe",
-            site: "https://wisihe.no",
-        },
+        // twitter: {
+        //     title: combinedTitle,
+        //     description: removedLineBreaks,
+        //     cardType: "summary_large_image",
+        //     image: paintingImageUrl,
+        //     imageAlt: painting.title,
+        //     images: [
+        //         {
+        //             url: paintingImageUrl,
+        //             width: 400,
+        //             height: 400,
+        //             alt: painting.title,
+        //         },
+        //     ],
+        //     url: `https://wisihe.no/painting/${params.slug}`,
+        //     creator: "@wisihe",
+        //     site: "https://wisihe.no",
+        // },
     }
 }
 
