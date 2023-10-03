@@ -25,6 +25,7 @@
     "tabWidth": 4
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.25.1",
     "@headlessui/react": "^1.7.17",
     "@next/env": "^13.5.3",
     "@portabletext/react": "^3.0.7",

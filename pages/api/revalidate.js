@@ -74,7 +74,7 @@ async function queryStaleRoutes(body) {
             id: body._id,
         })
         if (!exists) {
-            const staleRoutes = ["/"]
+            const staleRoutes = ["/paintings"]
             if (body.slug?.current) {
                 staleRoutes.push(`/painting/${body.slug.current}`)
             }
@@ -169,5 +169,5 @@ async function queryStalePaintingRoutes(client, id) {
 
     slugs = await mergeWithMoreStories(client, slugs)
 
-    return ["/", ...slugs.map((slug) => `/painting/${slug}`)]
+    return ["/paintings", ...slugs.map((slug) => `/paintings/${slug}`)]
 }

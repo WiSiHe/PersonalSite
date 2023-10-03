@@ -1,3 +1,4 @@
+import { ClerkProvider, UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 
 export default function DashboardLayout({
@@ -6,9 +7,9 @@ export default function DashboardLayout({
     children: React.ReactNode
 }) {
     return (
-        <>
-            <nav className="p-4 mt-14">
-                <ul className="sticky top-0 flex gap-4 p-4 bg-white rounded-lg drop-shadow-xl">
+        <ClerkProvider>
+            <nav className="sticky top-0 flex justify-between gap-4 p-4 mx-4 mt-20 bg-white rounded-lg left-4 right-4 drop-shadow-xl">
+                <ul className="flex gap-4">
                     <li>
                         <Link href="/test">Next</Link>
                     </li>
@@ -21,9 +22,13 @@ export default function DashboardLayout({
                     <li>
                         <Link href="/test/search">Search</Link>
                     </li>
+                    <li>
+                        <Link href="/test/functions">Functions</Link>
+                    </li>
                 </ul>
+                <UserButton afterSignOutUrl="/" />
             </nav>
             {children}
-        </>
+        </ClerkProvider>
     )
 }

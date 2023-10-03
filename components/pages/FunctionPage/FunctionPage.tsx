@@ -1,8 +1,10 @@
 "use client"
 
+import { useAuth, UserButton } from "@clerk/nextjs"
+import useSessionStorage from "hooks/useSessionStorage"
 import Lottie from "lottie-react"
 import walkingAnimation from "public/animations/lottie-walking.json"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // const defaultOptions = {
 //     loop: true,
@@ -14,43 +16,59 @@ import { useState } from "react"
 // }
 
 const FunctionPage = () => {
-    const [url, setUrl] = useState("")
-    const [smallUrl, setSmallUrl] = useState("")
+    const { isLoaded, userId, sessionId, getToken } = useAuth()
 
-    function generateShortenedUrl(originalUrl: string): string {
-        const characters =
-            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        const shortLength = 6
-        let shortenedUrl = originalUrl
+    const jwtToken = useSessionStorage("jwtToken")
 
-        for (let i = 0; i < shortLength; i++) {
-            const randomIndex = Math.floor(Math.random() * characters.length)
-            shortenedUrl += characters[randomIndex]
-        }
-
-        return shortenedUrl
+    // In case the user signs out while on the page.
+    if (!isLoaded || !userId) {
+        return <div>Loading...</div>
     }
 
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        setSmallUrl(generateShortenedUrl(url))
+    if (userId) {
+        console.log("userId", userId)
+    }
+
+    const handleAddToSessionStorage = () => {
+        // generate 5 random numbers
+        const randomNumbers = Array.from(
+            { length: 5 },
+            () => Math.floor(Math.random() * 40) + 1,
+        )
+
+        const newToken = randomNumbers.join("")
+
+        const updateTokenEvent = new Event("updateToken")
+        sessionStorage.setItem("jwtToken", newToken)
+        window.dispatchEvent(updateTokenEvent)
+    }
+
+    const handleRemoveSessionStorage = () => {
+        const updateTokenEvent = new Event("updateToken")
+        sessionStorage.removeItem("jwtToken")
+        window.dispatchEvent(updateTokenEvent)
     }
 
     return (
         <section>
             <h1>Function Page</h1>
-            <div>URL:{url}</div>
-            <div>Small URL: {smallUrl}</div>
+
             <hr className="my-10 border-dark" />
-            <input type="text" onChange={(e) => setUrl(e.target.value)} />
-            <div className="">
-                <button
-                    className="px-3 py-2 ring ring-primary"
-                    onClick={handleSubmit}
-                >
-                    Click me
-                </button>
-            </div>
+            <h3>Session storage item</h3>
+
+            <button
+                onClick={handleAddToSessionStorage}
+                className="px-4 py-3 text-white bg-primary"
+            >
+                Add to session storage
+            </button>
+            <div>Session storage: {jwtToken}</div>
+            <button
+                onClick={handleRemoveSessionStorage}
+                className="px-4 py-3 text-white bg-primary"
+            >
+                Remove session storage
+            </button>
             <hr className="my-10 border-dark" />
             <h2>Lottie animation</h2>
             <section className="grid items-center justify-center grid-cols-12 py-10">
