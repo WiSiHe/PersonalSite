@@ -40,9 +40,49 @@ const oswald = Oswald({
 export const metadata = {
     title: "Home | WiSiHe",
     description: "A gallery of some of my paintings and other projects",
-    locale: "en-US",
+    locale: "no_NO",
+    lang: "en",
     type: "website",
     url: "https://wisihe.no",
+    keywords: [
+        "wisihe",
+        "art",
+        "painting",
+        "gallery",
+        "projects",
+        "portfolio",
+        "website",
+        "web development",
+        "web design",
+        "web developer",
+        "web designer",
+        "developer",
+        "designer",
+        "react",
+        "nextjs",
+        "sanity",
+        "tailwindcss",
+        "typescript",
+        "javascript",
+        "html",
+        "css",
+        "scss",
+        "sass",
+        "git",
+        "github",
+        "vercel",
+        "netlify",
+        "nodejs",
+        "npm",
+        "yarn",
+        "vscode",
+        "visual studio code",
+        "figma",
+    ],
+    colorScheme: "light",
+    author: { name: "Henrik Wilhelm Sissener", url: "https://wisihe.no" },
+    applicationName: "WiSiHe",
+    themeColor: "#DE0D92",
     openGraph: {
         title: "Home | WiSiHe",
         description: "A gallery of some of my paintings and other projects",
@@ -146,16 +186,7 @@ export default function RootLayout({ children }: RootProps) {
                 <SkipToMainContentLink />
                 <NextTopLoader color="#DE0D92" showSpinner={false} height={4} />
                 <Navigation />
-                {/* {preview && (
-          <Link
-            href="/api/exit-preview"
-            className="fixed z-30 p-4 text-white rounded shadow-xl bg-primary top-20 right-4"
-          >
-            <div>Exit Preview</div>
-          </Link>
-        )} */}
                 {children}
-
                 <Footer />
                 <Analytics />
             </body>
