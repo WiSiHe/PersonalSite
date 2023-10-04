@@ -12,7 +12,7 @@ export default async function Home() {
     return (
         <Main
             noTopPadding
-            className="grid w-full min-h-[70dvh] grid-cols-12 mt-8"
+            className="grid w-full h-[80dvh] grid-cols-12 gap-4 p-4"
         >
             <Chat />
         </Main>

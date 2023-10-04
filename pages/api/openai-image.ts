@@ -31,7 +31,8 @@ export default async function handler(
             size: "512x512",
         })
 
-        const response = aiResult.data[0].url || "Sorry, I don't know"
+        const response = aiResult?.data[0]?.url || "Sorry, I don't know"
+
         res.status(200).json({ text: response })
     } catch (error) {
         console.error(error)

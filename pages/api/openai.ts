@@ -33,21 +33,17 @@ export default async function handler(
     }
 
     try {
-        const aiResult = await openai.completions.create(
-            {
-                model: "text-davinci-003",
-                prompt: promt,
-                max_tokens: maxTokens, // max number of tokens to generate
-                temperature: temperature, // higher temperature means more creative, less coherent
-                frequency_penalty: frequencyPenalty, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
-                presence_penalty: presencePenalty, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
-            },
-            { timeout: 0 },
-        )
+        const aiResult = await openai.completions.create({
+            model: "gpt-3.5-turbo-instruct",
+            prompt: promt,
+            max_tokens: maxTokens, // max number of tokens to generate
+            temperature: temperature, // higher temperature means more creative, less coherent
+            frequency_penalty: frequencyPenalty, // penalize new tokens based on their existing frequency, between -2.0 and 2.0
+            presence_penalty: presencePenalty, // penalize new tokens based on whether they appear in the text so far,between -2.0 and 2.0
+        })
         const response = aiResult.choices[0].text || "Sorry, I don't know"
         res.status(200).json({ text: response })
     } catch (error) {
-        console.error(error)
         res.status(500).json({ text: "Sorry, I don't know" })
         return
     }
