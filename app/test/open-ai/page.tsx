@@ -10,7 +10,10 @@ export const metadata = {
 
 export default async function Home() {
     return (
-        <Main noTopPadding className="min-h-[80vh]">
+        <Main
+            noTopPadding
+            className="grid w-full min-h-[70dvh] grid-cols-12 mt-8"
+        >
             <Chat />
         </Main>
     )

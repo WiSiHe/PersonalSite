@@ -16,18 +16,18 @@ import { useEffect, useState } from "react"
 // }
 
 const FunctionPage = () => {
-    const { isLoaded, userId, sessionId, getToken } = useAuth()
+    // const { isLoaded, userId, sessionId, getToken } = useAuth()
 
     const jwtToken = useSessionStorage("jwtToken")
 
     // In case the user signs out while on the page.
-    if (!isLoaded || !userId) {
-        return <div>Loading...</div>
-    }
+    // if (!isLoaded || !userId) {
+    //     return <div>Loading...</div>
+    // }
 
-    if (userId) {
-        console.log("userId", userId)
-    }
+    // if (userId) {
+    //     console.log("userId", userId)
+    // }
 
     const handleAddToSessionStorage = () => {
         // generate 5 random numbers

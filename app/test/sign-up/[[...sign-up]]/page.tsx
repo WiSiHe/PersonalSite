@@ -1,5 +1,8 @@
-import { SignUp } from "@clerk/nextjs"
-
 export default function Page() {
-    return <SignUp />
+    return (
+        <>
+            <p>not currently implemented</p>
+            {/* <SignUp /> */}
+        </>
+    )
 }

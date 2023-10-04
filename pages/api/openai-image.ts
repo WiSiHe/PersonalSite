@@ -25,14 +25,12 @@ export default async function handler(
     }
 
     try {
-        const aiResult = await openai.images.generate(
-            {
-                n: 2,
-                prompt: promt,
-                size: "512x512",
-            },
-            { timeout: 0 },
-        )
+        const aiResult = await openai.images.generate({
+            n: 1,
+            prompt: promt,
+            size: "512x512",
+        })
+
         const response = aiResult.data[0].url || "Sorry, I don't know"
         res.status(200).json({ text: response })
     } catch (error) {

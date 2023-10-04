@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { OpenAI } from "openai"
+import OpenAI from "openai"
 
 type Role = "assistant" | "user"
 
@@ -49,9 +49,9 @@ export default async function handler(
     }
 
     try {
-        const aiResult = await openai.chat.completions.create(
+        const chatCompletion = await openai.chat.completions.create(
             {
-                model: "gpt-4",
+                model: "gpt-3.5-turbo",
                 max_tokens: maxTokens, // 1000,
                 stream: false,
                 frequency_penalty: frequencyPenalty, // 0.5,
@@ -60,10 +60,12 @@ export default async function handler(
                 top_p: 1, // 1,
                 messages: messages, // [  { role: 'user', content: 'How many stars are in the sky?' } ],
             },
-            { timeout: 0 },
+            {
+                timeout: 10000,
+            },
         )
 
-        const response = aiResult?.choices[0]?.message || {
+        const response = chatCompletion?.choices[0]?.message || {
             role: "assistant",
             content: "Sorry, I don't know",
         }
@@ -78,7 +80,6 @@ export default async function handler(
 
         res.status(200).json({ role: "assistant", content: response.content })
     } catch (error) {
-        console.error(error)
         res.status(500).json({
             role: "assistant",
             content: "Sorry, I don't know",
