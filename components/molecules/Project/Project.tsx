@@ -63,32 +63,22 @@ const Project = ({
                 viewport={{ once: true, amount: 0.01 }}
                 variants={cardVariants}
                 className={clsx(
-                    "relative w-full h-full  grid bg-white shadow grid-cols-3 aspect-[4/3]",
+                    "relative w-full h-full flex flex-col justify-start bg-white text-dark",
                 )}
             >
-                <Image
-                    src={urlForImage(image)
-                        .width(isMobile ? 400 : 1280)
-                        .height(isMobile ? 400 : 720)
-                        .quality(65)
-                        .url()}
-                    alt={title}
-                    className={clsx("object-cover w-full h-full")}
-                    fill
-                />
-
-                <div
-                    className={clsx(
-                        "p-6 col-span-full z-10 bg-dark/60 text-white flex flex-col justify-between",
-                    )}
-                >
-                    <div className="w-full">
-                        <div className="flex items-center gap-2">
-                            <h2 className="text-2xl xl:text-4xl">
-                                <strong>{title}</strong>
-                            </h2>
-                        </div>
-                        <ul className="flex flex-wrap items-baseline gap-2 py-2 text-sm xl:text-base xl:max-w-xl">
+                <div className="relative w-full col-span-full aspect-square">
+                    <Image
+                        src={urlForImage(image)
+                            .width(isMobile ? 400 : 1280)
+                            .height(isMobile ? 400 : 720)
+                            .quality(65)
+                            .url()}
+                        alt={title}
+                        className={clsx("object-cover w-full h-full")}
+                        fill
+                    />
+                    <div className="absolute inset-0 flex items-start p-4 bg-dark/40">
+                        <ul className="flex flex-wrap items-end gap-2 py-2 text-sm xl:text-base xl:max-w-xl">
                             <ProjectStatus status={status} />
                             {tags.map((tag, i) => {
                                 const { name = "" } = tag
@@ -99,6 +89,20 @@ const Project = ({
                                 )
                             })}
                         </ul>
+                    </div>
+                </div>
+
+                <div
+                    className={clsx(
+                        "p-4 col-span-full ring flex-1 gap-4  flex flex-col justify-between",
+                    )}
+                >
+                    <div className="w-full">
+                        <div className="flex items-center gap-2">
+                            <h2 className="text-2xl xl:text-4xl">
+                                <strong>{title}</strong>
+                            </h2>
+                        </div>
                         {description && (
                             <div className="drop-shadow-md xl:max-w-xl">
                                 {description}

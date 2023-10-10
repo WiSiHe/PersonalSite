@@ -74,7 +74,7 @@ const ProjectsPage = ({ projects = [], tags = [] }: iProjectsPage) => {
                         return (
                             <div
                                 className={clsx(
-                                    "col-span-full xl:col-span-3 overflow-clip h-full",
+                                    "col-span-full xl:col-span-3 overflow-clip rounded h-full drop-shadow-lg",
                                 )}
                                 key={_id}
                             >
