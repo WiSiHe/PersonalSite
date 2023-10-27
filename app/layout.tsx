@@ -79,10 +79,10 @@ export const metadata = {
         "visual studio code",
         "figma",
     ],
-    colorScheme: "light",
+    // colorScheme: "light",
     author: { name: "Henrik Wilhelm Sissener", url: "https://wisihe.no" },
     applicationName: "WiSiHe",
-    themeColor: "#DE0D92",
+    // themeColor: "#DE0D92",
     openGraph: {
         title: "Home | WiSiHe",
         description: "A gallery of some of my paintings and other projects",
