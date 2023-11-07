@@ -7,7 +7,6 @@ interface InViewProps {
 
 function InView({ children, className }: InViewProps) {
     const [isVisible, setIsVisible] = useState<boolean>(false)
-    console.log("isVisible", isVisible)
 
     const targetRef = useRef<HTMLDivElement | null>(null)
 

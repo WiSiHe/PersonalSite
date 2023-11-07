@@ -1,6 +1,8 @@
 import { ImageIcon } from "@sanity/icons"
-import DescriptionTextGenerator from "components/sanity/DescriptionTextGenerator"
+import ImageAltTextGenerator from "components/sanity/ImageAltTextGenerator"
+import ImageDescriptionGenerator from "components/sanity/ImageDescriptionGenerator"
 import SEODescriptionGenerator from "components/sanity/SEODescriptionGenerator"
+
 import { FaWeibo } from "react-icons/fa"
 import { defineField, defineType } from "sanity"
 
@@ -75,12 +77,23 @@ export default defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: "altText",
+            title: "Alt Text",
+            type: "string",
+            group: ["AI"],
+            description: "Alt text for the primary image",
+            components: {
+                input: ImageAltTextGenerator,
+            },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             name: "description",
             title: "Description",
             type: "text",
             group: ["AI"],
             components: {
-                input: DescriptionTextGenerator,
+                input: ImageDescriptionGenerator,
             },
             description: "Description of the painting",
             validation: (rule) => rule.required(),
@@ -106,6 +119,7 @@ export default defineType({
             description: "Additional images of the painting",
             //   validation: (rule) => rule.required(),
         }),
+
         defineField({
             name: "video",
             title: "Video",

@@ -9,11 +9,7 @@ interface SanityAIProps {
 const SanityAI = ({ value = "", inputRef }: SanityAIProps) => {
     const [prompt, setPrompt] = useState("")
 
-    //   console.log("value", value)
-
     const callApi = async () => {
-        // const myMessage = "What does, Hello, world! mean?"
-
         const response = await fetch("/api/generate-answer", {
             method: "POST",
             headers: {
@@ -25,17 +21,17 @@ const SanityAI = ({ value = "", inputRef }: SanityAIProps) => {
         if (response.text) {
             inputRef.current.value = response.text
         } else {
-            console.log("error")
+            console.error("error")
         }
     }
 
     function generateDescription(e: any) {
         e.preventDefault()
-        // overwrite inputref value with promt value
+
         try {
             callApi()
         } catch (error) {
-            console.log("error", error)
+            console.error(error)
         }
     }
 

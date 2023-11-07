@@ -11,11 +11,7 @@ import { productionUrl } from "plugins/productionUrl"
 import { settingsPlugin, settingsStructure } from "plugins/settings"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
-// import { media } from "sanity-plugin-media"
-// import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash"
-// import authorType from "schemas/author"
 import paintingType from "schemas/painting"
-// import postType from "schemas/post"
 import projectType from "schemas/project"
 import settingsType from "schemas/settings"
 import tagType from "schemas/tag"
@@ -30,28 +26,10 @@ export default defineConfig({
     projectId,
     dataset,
     title,
-    // form: {
-    //   components: {
-    //     input: (props) => {
-    //       const { elementProps } = props
-    //       console.log("elementProps", elementProps)
 
-    //       return <TextInput {...elementProps} />
-    //     },
-    //   },
-    // },
     schema: {
         // If you want more content types, you can add them to this array
-        types: [
-            // authorType,
-            // postType,
-            settingsType,
-            paintingType,
-            tagType,
-            videoType,
-            projectType,
-        ],
-        // types: [],
+        types: [settingsType, paintingType, tagType, videoType, projectType],
     },
     tools: (prev, { currentUser }) => {
         const isAdmin = currentUser?.roles.some(

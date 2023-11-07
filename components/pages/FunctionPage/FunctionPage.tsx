@@ -1,33 +1,11 @@
 "use client"
 
-import { useAuth, UserButton } from "@clerk/nextjs"
 import useSessionStorage from "hooks/useSessionStorage"
 import Lottie from "lottie-react"
 import walkingAnimation from "public/animations/lottie-walking.json"
-import { useEffect, useState } from "react"
-
-// const defaultOptions = {
-//     loop: true,
-//     autoplay: true,
-//     animationData: "/public/animations/lottie1.json",
-//     rendererSettings: {
-//         preserveAspectRatio: "xMidYMid slice",
-//     },
-// }
 
 const FunctionPage = () => {
-    // const { isLoaded, userId, sessionId, getToken } = useAuth()
-
     const jwtToken = useSessionStorage("jwtToken")
-
-    // In case the user signs out while on the page.
-    // if (!isLoaded || !userId) {
-    //     return <div>Loading...</div>
-    // }
-
-    // if (userId) {
-    //     console.log("userId", userId)
-    // }
 
     const handleAddToSessionStorage = () => {
         // generate 5 random numbers
@@ -73,7 +51,6 @@ const FunctionPage = () => {
             <h2>Lottie animation</h2>
             <section className="grid items-center justify-center grid-cols-12 py-10">
                 <Lottie
-                    // onLoopComplete={() => console.log("loop complete")}
                     animationData={walkingAnimation}
                     loop
                     className="col-span-4 col-start-5 p-1 mt-4"

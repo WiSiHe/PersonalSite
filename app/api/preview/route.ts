@@ -85,7 +85,7 @@ function getTypePath(
         return buildTypePath("/", undefined, slug)
     }
     if (type === "painting") {
-        return buildTypePath("/painting", id, slug)
+        return buildTypePath("/paintings", id, slug)
     }
     return null
 }

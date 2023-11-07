@@ -46,8 +46,6 @@ export const productionUrl = definePlugin<{
                     url.searchParams.set("id", id)
                 }
 
-                console.log("Open preview URL", url.toString())
-
                 if (types.has(document._type)) {
                     url.searchParams.set("type", document._type)
 

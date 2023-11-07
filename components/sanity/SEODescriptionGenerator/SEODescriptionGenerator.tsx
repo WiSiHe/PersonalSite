@@ -27,7 +27,7 @@ const SEODescriptionGenerator = (props: StringInputProps) => {
         if (response.text) {
             onChange(response.text ? set(response.text) : unset())
         } else {
-            console.log("error")
+            console.error("error")
         }
         setIsLoading(false)
     }
@@ -37,7 +37,7 @@ const SEODescriptionGenerator = (props: StringInputProps) => {
         try {
             callApi()
         } catch (error) {
-            console.log("error", error)
+            console.error(error)
         }
     }
     return (
