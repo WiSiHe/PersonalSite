@@ -7,9 +7,8 @@ const meta: Meta<typeof Accordion> = {
     component: Accordion,
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
     tags: ["autodocs"],
-    parameters: {
-        // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-        layout: "fullscreen",
+    render: ({ children = "placeholder", ...args }) => {
+        return <Accordion label={args.label}>{children}</Accordion>
     },
 }
 
@@ -17,4 +16,18 @@ export default meta
 
 type Story = StoryObj<typeof Accordion>
 
-export const Default: Story = {}
+export const Default: Story = {
+    args: {
+        label: "Accordion",
+        open: false,
+        children: "Accordion content",
+    },
+}
+
+export const Open: Story = {
+    args: {
+        label: "Accordion label",
+        open: true,
+        children: "Accordion content",
+    },
+}

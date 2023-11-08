@@ -1,5 +1,7 @@
 // import { forwardRef } from "react"
 
+import { cn } from "utils/utility"
+
 interface InputProps {
     type: "text" | "email" | "password" | "number"
     placeholder: string
@@ -55,10 +57,10 @@ const Input = ({
         <div className="flex flex-col">
             <label htmlFor="email">{label}</label>
             <input
-                className={
-                    "w-full px-4 py-2 text-gray-900 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" +
-                    (error ? " border-red-500" : "")
-                }
+                className={cn(
+                    "w-full dark:bg-gray-600 dark:text-white dark:border-gray-900 px-4 py-2 text-gray-900 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500",
+                    error && "border-red-500",
+                )}
                 type={type}
                 placeholder={placeholder}
                 value={value}

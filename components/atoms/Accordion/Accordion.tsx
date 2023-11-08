@@ -1,12 +1,19 @@
-interface Accordion {
+type Accordion = {
     children: React.ReactNode
     className?: string
-    props?: any
+    label: string
+    open?: boolean
 }
 
-const Accordion = ({ children, className, ...props }: Accordion) => {
+const Accordion = ({
+    children,
+    open,
+    className,
+    label = "placeholder",
+}: Accordion) => {
     return (
-        <details className={className} {...props}>
+        <details className={className} open={open}>
+            <summary className="font-bold">{label}</summary>
             {children}
         </details>
     )

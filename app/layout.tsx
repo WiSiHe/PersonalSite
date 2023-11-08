@@ -188,7 +188,14 @@ export default function RootLayout({ children }: RootProps) {
                 <Navigation />
                 {children}
                 <Footer />
-                <Analytics />
+                <Analytics
+                // beforeSend={(event) => {
+                //     if (event.url.includes("/studio")) {
+                //         return null
+                //     }
+                //     return event
+                // }}
+                />
             </body>
         </html>
     )

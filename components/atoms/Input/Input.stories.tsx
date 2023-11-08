@@ -19,7 +19,11 @@ export default meta
 
 type Story = StoryObj<typeof Input>
 
-export const Default: Story = {}
+export const Default: Story = {
+    args: {
+        type: "text",
+    },
+}
 
 export const WithLabel: Story = {
     args: {
