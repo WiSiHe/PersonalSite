@@ -51,7 +51,7 @@ export default async function handler(
     try {
         const chatCompletion = await openai.chat.completions.create(
             {
-                model: "gpt-3.5-turbo",
+                model: "gpt-4-1106-preview",
                 max_tokens: maxTokens, // 1000,
                 stream: false,
                 frequency_penalty: frequencyPenalty, // 0.5,

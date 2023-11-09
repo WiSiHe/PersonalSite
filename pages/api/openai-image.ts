@@ -26,9 +26,10 @@ export default async function handler(
 
     try {
         const aiResult = await openai.images.generate({
-            n: 1,
+            model: "dall-e-3",
             prompt: promt,
-            size: "512x512",
+            n: 1,
+            size: "1024x1024",
         })
 
         const response = aiResult?.data[0]?.url || "Sorry, I don't know"
