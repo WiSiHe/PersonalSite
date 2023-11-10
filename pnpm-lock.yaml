@@ -191,8 +191,8 @@ devDependencies:
     specifier: ^9.1.3
     version: 9.1.3(@babel/core@7.23.2)(webpack@5.89.0)
   chromatic:
-    specifier: ^7.6.0
-    version: 7.6.0
+    specifier: ^9.0.0
+    version: 9.0.0
   eslint:
     specifier: ^8.53.0
     version: 8.53.0
@@ -7066,8 +7066,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chromatic@7.6.0:
-    resolution: {integrity: sha512-4MwlX8EDMyfQKf1NXTdUhJ2b0EYueByaVrF75pdFaOzHH7n3OhzknmQYbUSegLiFhKvHuvM8nZvf9SCajO+Cow==}
+  /chromatic@9.0.0:
+    resolution: {integrity: sha512-PczbWYOfqsf/SM0yIzI3ZOpFznEyf9Fc96EkxoYkhztFaA9CEOcpA9nk8zpmNgPUQWmIWNyG7z4xEK40sApFzw==}
     hasBin: true
     dev: true
 
