@@ -27,14 +27,14 @@ const StoreLinks = ({ links }: StoreLinks) => {
     const hasInPrintLink = inPrintUrl !== "" && inPrintUrl !== null
 
     return (
-        <section className="p-4 bg-highlight">
+        <section className="p-4 rounded bg-highlight">
             <strong>Store</strong>
             <p className="text-xs">
                 Beyond my original art, I offer prints, posters, and merchandise
                 in various formats, including framed or canvas prints and artful
                 phone cases.
             </p>
-            <div className="grid grid-cols-4 gap-2 pt-4">
+            <div className="flex flex-wrap gap-2 pt-4">
                 {hasRedBubleLink && (
                     <div>
                         <StoreLink

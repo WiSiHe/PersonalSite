@@ -97,7 +97,7 @@ export const paintingDetailsQuery = groq`
     ...,
     "lqip": asset->metadata.lqip
     },
-    seoDescription, 'slug': slug.current, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+    seoDescription, 'slug': slug.current, altText, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
 }[0]
 `
 

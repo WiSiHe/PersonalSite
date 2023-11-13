@@ -1,11 +1,13 @@
 "use client"
 import clsx from "clsx"
-import BackButton from "components/atoms/BackButton/BackButton"
+import BackButton from "components/molecules/BackButton/BackButton"
+import ShareButton from "components/molecules/ShareButton"
 import StoreLinks from "components/molecules/StoreLinks"
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { FaEye, FaThumbsUp } from "react-icons/fa"
 import { LazyLoadImage } from "react-lazy-load-image-component"
@@ -20,13 +22,19 @@ interface iPaintingPageProps {
     painting: iSanityPainting
 }
 
-const PaintingPage = ({ painting }: iPaintingPageProps) => {
-    if (isEmptyObject(painting)) return notFound()
+const formatDate = (date: string) => {
+    const d = new Date(date)
+    const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d)
+    const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d)
+    return `${mo} ${ye}`
+}
 
+const PaintingPage = ({ painting }: iPaintingPageProps) => {
     const {
         images,
         title = "",
         description = "",
+        altText = "",
         image,
         format = "square",
         paintedAt,
@@ -38,13 +46,6 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
         video = "",
         likes = 0,
     } = painting
-
-    const formatDate = (date: string) => {
-        const d = new Date(date)
-        const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d)
-        const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d)
-        return `${mo} ${ye}`
-    }
 
     const imageAspectStyle = {
         square: "aspect-square",
@@ -73,28 +74,29 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
     return (
         <AnimatePresence>
             <BackButton />
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", delay: 0.5, duration: 0.5 }}
-                key="MainPainting"
-                layoutId={title}
-                className={clsx(
-                    "flex relative pb-4 flex-col gap-4 h-fit col-span-full w-full lg:col-span-7 xl:col-span-9",
-                    imageAspectStyle[format],
-                )}
-            >
-                <LazyLoadImage
-                    visibleByDefault
-                    alt={title}
-                    src={urlForImage(image)
-                        .width(imageWidth[format])
-                        .height(imageHeight[format])
-                        .quality(75)
-                        .url()}
-                    className="h-fit"
-                />
+            <section className="flex flex-col gap-4 pb-4 col-span-full lg:col-span-7 xl:col-span-9">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ type: "spring", delay: 0.5, duration: 0.5 }}
+                    key="MainPainting"
+                    layoutId={title}
+                    className={clsx("flex relative", imageAspectStyle[format])}
+                >
+                    <Image
+                        priority
+                        fill
+                        alt={altText}
+                        src={urlForImage(image)
+                            .width(imageWidth[format])
+                            .height(imageHeight[format])
+                            .quality(75)
+                            .url()}
+                        sizes="(min-width: 2080px) 1267px, (min-width: 1280px) calc(57.44vw + 84px), calc(100vw - 32px)"
+                        className="object-cover h-fit"
+                    />
+                </motion.div>
                 {images?.map((image, index) => {
                     return (
                         <div
@@ -102,7 +104,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                             className={clsx("", imageAspectStyle[format])}
                         >
                             <LazyLoadImage
-                                alt={title}
+                                alt={`${altText}-${index}`}
                                 src={urlForImage(image)
                                     .width(imageWidth[format])
                                     .height(imageHeight[format])
@@ -125,7 +127,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                         />
                     </div>
                 )}
-            </motion.div>
+            </section>
 
             <motion.div
                 initial={{ opacity: 0 }}
@@ -133,7 +135,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                 exit={{ opacity: 0 }}
                 transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
                 key="text-section"
-                className="relative justify-between p-0 transition-all lg:sticky lg:col-span-5 lg:top-4 xl:z-10 col-span-full h-fit lg:bg-white lg:p-4 xl:p-6 xl:col-span-3"
+                className="relative justify-between p-0 transition-all rounded lg:sticky lg:col-span-5 lg:top-4 xl:z-10 col-span-full h-fit lg:bg-white lg:p-4 xl:p-6 xl:col-span-3"
             >
                 <div className="">
                     <h1>
@@ -176,6 +178,8 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                             {description && description}
                         </p>
                     </div>
+
+                    <ShareButton />
                     <div className="py-6">
                         <StoreLinks links={links} />
                     </div>

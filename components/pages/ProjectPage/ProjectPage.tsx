@@ -1,7 +1,7 @@
 "use client"
 import { PortableText } from "@portabletext/react"
 import clsx from "clsx"
-import BackButton from "components/atoms/BackButton/BackButton"
+import BackButton from "components/molecules/BackButton/BackButton"
 import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
 import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"

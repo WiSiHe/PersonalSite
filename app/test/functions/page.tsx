@@ -1,5 +1,4 @@
 import Main from "components/atoms/Main/Main"
-import FunctionPage from "components/pages/FunctionPage"
 
 export const metadata = {
     title: "My Gallery",
@@ -11,7 +10,7 @@ export const metadata = {
 export default async function Home() {
     return (
         <Main noTopPadding className="flex-col p-4">
-            <FunctionPage />
+            {/* <FunctionPage /> */}
         </Main>
     )
 }

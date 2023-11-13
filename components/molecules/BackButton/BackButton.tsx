@@ -14,11 +14,8 @@ const BackButton = () => {
         <div className="fixed z-20 top-24 left-2">
             <button
                 key="backButton"
-                // initial={{ x: -200 }}
-                // animate={{ x: 0 }}
-                // transition={{ type: "spring", bounce: 0.4, duration: 0.5 }}
                 onClick={handleGoBack}
-                className="flex items-center gap-2 min-w-[120px] justify-center px-4 py-2  text-white transition-all ease-in-out duration-500 hover:bg-highlight hover:text-dark group bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight "
+                className="flex items-center gap-2 min-w-[120px] justify-center px-4 py-2  text-white transition-all ease-in-out duration-500 hover:bg-highlight hover:text-dark group bg-primary active:bg-highlight focus:outline-none focus:ring focus:ring-highlight"
             >
                 <motion.div
                     key="icon-1"

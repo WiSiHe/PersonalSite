@@ -184,7 +184,7 @@ export default function RootLayout({ children }: RootProps) {
                 className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
             >
                 <SkipToMainContentLink />
-                <NextTopLoader color="#DE0D92" showSpinner={true} height={5} />
+                <NextTopLoader color="#DE0D92" showSpinner={false} height={5} />
                 <Navigation />
                 {children}
                 <Footer />

@@ -15,6 +15,7 @@ export const dummyPaintings: iSanityPainting[] = [
         paintedAt: "2018-08-02T07:24:00.000Z",
         redbubbleUrl: null,
         slug: "woman-smiling",
+        altText: "",
         tagsV2: [
             {
                 name: "Woman",

@@ -22,6 +22,7 @@ export interface iSanityPainting {
     tagCount?: number | null
     title: string
     video?: string | null
+    altText?: string
 }
 
 export interface iSanityWallpaperPaintings {
