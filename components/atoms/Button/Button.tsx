@@ -7,10 +7,12 @@ interface Button {
     color?: "primary" | "secondary" | "tertiary" | "dark" | "light" | "default"
     size?: "small" | "medium" | "large"
     onClick?: () => void
+    label?: string
 }
 
 const Button = ({
     children,
+    label,
     color = "default",
     size = "medium",
     isDisabled,
@@ -53,12 +55,14 @@ const Button = ({
     return (
         <button
             className={cn(
+                "flex gap-2 items-center justify-center rounded",
                 buttonStyle,
                 buttonSize,
                 isOutlined && outlineStyle,
                 isOutlined && "border-2",
                 isDisabled && isDisabledStyle,
             )}
+            aria-label={label}
             disabled={isDisabled}
             onClick={onClick}
         >

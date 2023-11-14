@@ -10,6 +10,7 @@ import space from "public/images/paintings/Space.jpg"
 import sunlight from "public/images/paintings/sunlight.jpg"
 import winter from "public/images/paintings/winter.jpg"
 import { useEffect, useRef, useState } from "react"
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { isEmptyArray } from "utils/array"
 
 const paintings = [
@@ -103,7 +104,7 @@ const CarouselStatic = () => {
         >
             <ul
                 ref={scrollRef}
-                className="flex flex-no-wrap items-start w-full gap-4 py-8 pl-4 pr-8 overflow-x-scroll scrolling-touch"
+                className="flex flex-no-wrap items-start w-full gap-4 pt-8 pb-16 pl-4 pr-8 overflow-x-scroll scrolling-touch"
             >
                 {sortedPaintings.map((painting, i) => (
                     <li
@@ -122,12 +123,20 @@ const CarouselStatic = () => {
                     </li>
                 ))}
             </ul>
-            <div className="absolute flex gap-4 right-4 ring">
-                <Button color="primary" onClick={handleScrollLeft}>
-                    Left
+            <div className="absolute flex gap-4 bottom-4 right-4">
+                <Button
+                    color="primary"
+                    onClick={handleScrollLeft}
+                    label="Scroll Left"
+                >
+                    <FaChevronLeft />
                 </Button>
-                <Button color="primary" onClick={handleScrollRight}>
-                    Right
+                <Button
+                    color="primary"
+                    onClick={handleScrollRight}
+                    label="Scroll Right"
+                >
+                    <FaChevronRight />
                 </Button>
             </div>
         </motion.section>
