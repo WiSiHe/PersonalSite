@@ -6,6 +6,7 @@ interface Button {
     isOutlined?: boolean
     color?: "primary" | "secondary" | "tertiary" | "dark" | "light" | "default"
     size?: "small" | "medium" | "large"
+    onClick?: () => void
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
     size = "medium",
     isDisabled,
     isOutlined,
+    onClick,
 }: Button) => {
     const buttonStyle = {
         primary: "bg-primary text-white",
@@ -53,11 +55,12 @@ const Button = ({
             className={cn(
                 buttonStyle,
                 buttonSize,
-                outlineStyle,
+                isOutlined && outlineStyle,
                 isOutlined && "border-2",
                 isDisabled && isDisabledStyle,
             )}
             disabled={isDisabled}
+            onClick={onClick}
         >
             {children}
         </button>

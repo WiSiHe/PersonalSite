@@ -60,7 +60,7 @@ export default async function revalidate(req, res) {
     log(`Querying post slug for _id '${id}', type '${_type}' ..`)
     const slug = await getClient().fetch(getQueryForType(_type), { id })
     const slugs = (Array.isArray(slug) ? slug : [slug]).map(
-        (_slug) => `/painting/${_slug}`,
+        (_slug) => `/paintings/${_slug}`,
     )
     const staleRoutes = ["/", ...slugs]
 

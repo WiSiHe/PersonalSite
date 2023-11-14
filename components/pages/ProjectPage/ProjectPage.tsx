@@ -1,11 +1,11 @@
 "use client"
 import { PortableText } from "@portabletext/react"
 import clsx from "clsx"
-import BackButton from "components/molecules/BackButton/BackButton"
 import Chip from "components/atoms/Chip/Chip"
 import Main from "components/atoms/Main/Main"
 import ProjectStatus from "components/atoms/ProjectStatus/ProjectStatus"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
+import BackButton from "components/molecules/BackButton/BackButton"
 import { iSanityProject } from "lib/models/objects/sanityProject"
 import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
@@ -139,7 +139,7 @@ const ProjectPage = ({ project }: PageProps) => {
                                         paintingAspectRatio(format),
                                     )}
                                 >
-                                    <Link href={`/painting/${slug}`}>
+                                    <Link href={`/paintings/${slug}`}>
                                         <Image
                                             src={urlForImage(image)
                                                 .width(

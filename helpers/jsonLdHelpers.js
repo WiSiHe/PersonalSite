@@ -11,7 +11,7 @@ function generatePaintingJsonLd(paintingData) {
 
     const smallImage = imageBuilder(image).width(50).url()
 
-    const url = `https://wisihe.no/painting/${slug.current}}`
+    const url = `https://wisihe.no/paintings/${slug.current}}`
 
     const jsonLd = `{
     "@context": "http://schema.org",

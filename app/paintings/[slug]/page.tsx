@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Params }) {
         description: removedLineBreaks,
         locale: "en-US",
         type: "website",
-        url: `https://wisihe.no/painting/${params.slug}`,
+        url: `https://wisihe.no/paintings/${params.slug}`,
         openGraph: {
             title: combinedTitle,
             description: removedLineBreaks,
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Params }) {
                 },
             ],
             image: paintingImageUrl,
-            url: `https://wisihe.no/painting/${params.slug}`,
+            url: `https://wisihe.no/paintings/${params.slug}`,
             type: "website",
             site_name: "WiSiHe",
         },
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: { params: Params }) {
         //             alt: painting.title,
         //         },
         //     ],
-        //     url: `https://wisihe.no/painting/${params.slug}`,
+        //     url: `https://wisihe.no/paintings/${params.slug}`,
         //     creator: "@wisihe",
         //     site: "https://wisihe.no",
         // },
@@ -124,7 +124,7 @@ export default async function LandingPage({ params }: { params: Params }) {
     const descriptionText = selectedDescription.replace(regex, "")
     const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
-    const paintingUrl = `https://wisihe.no/painting/${slug}`
+    const paintingUrl = `https://wisihe.no/paintings/${slug}`
 
     const paintingImageUrl = urlForImage(image)
         .width(400)

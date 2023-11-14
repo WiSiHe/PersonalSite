@@ -74,7 +74,7 @@ async function queryStaleRoutes(body) {
         if (!exists) {
             const staleRoutes = ["/paintings"]
             if (body.slug?.current) {
-                staleRoutes.push(`/painting/${body.slug.current}`)
+                staleRoutes.push(`/paintings/${body.slug.current}`)
             }
             // Assume that the post document was deleted. Query the datetime used to sort "More stories" to determine if the post was in the list.
             const moreStories = await client.fetch(

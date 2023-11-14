@@ -1,4 +1,5 @@
 "use client"
+import Button from "components/atoms/Button"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import night from "public/images/night-forest.jpeg"
@@ -8,7 +9,7 @@ import hell from "public/images/paintings/hell.jpg"
 import space from "public/images/paintings/Space.jpg"
 import sunlight from "public/images/paintings/sunlight.jpg"
 import winter from "public/images/paintings/winter.jpg"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { isEmptyArray } from "utils/array"
 
 const paintings = [
@@ -57,7 +58,35 @@ const paintings = [
 ]
 
 const CarouselStatic = () => {
+    const scrollRef = useRef<HTMLUListElement>(null)
+
     const [sortedPaintings, setSortedPaintings] = useState(paintings)
+
+    const imageWidth = 500 // Replace with your image width
+
+    const handleScrollLeft = () => {
+        if (!scrollRef.current) return
+        if (scrollRef.current.scrollWidth > scrollRef.current.clientWidth) {
+            scrollRef.current.scrollTo({
+                left: scrollRef.current.scrollLeft - imageWidth,
+                behavior: "smooth",
+            })
+        } else {
+            console.log("Element does not have overflow content")
+        }
+    }
+
+    const handleScrollRight = () => {
+        if (!scrollRef.current) return
+        if (scrollRef.current.scrollWidth > scrollRef.current.clientWidth) {
+            scrollRef.current.scrollTo({
+                left: scrollRef.current.scrollLeft + imageWidth,
+                behavior: "smooth",
+            })
+        } else {
+            console.log("Element does not have overflow content")
+        }
+    }
 
     useEffect(() => {
         if (!paintings || isEmptyArray(paintings)) return
@@ -72,11 +101,14 @@ const CarouselStatic = () => {
             transition={{ type: "spring", delay: 0.5 }}
             className="relative"
         >
-            <ul className="flex flex-no-wrap items-start w-full gap-4 py-8 pl-4 pr-8 overflow-x-scroll scrolling-touch snap-x">
+            <ul
+                ref={scrollRef}
+                className="flex flex-no-wrap items-start w-full gap-4 py-8 pl-4 pr-8 overflow-x-scroll scrolling-touch"
+            >
                 {sortedPaintings.map((painting, i) => (
                     <li
                         key={i}
-                        className="relative flex-none aspect-square xl:aspect-video snap-center rounded-lg h-80 xl:h-[720px] overflow-clip"
+                        className="relative flex-none aspect-square rounded-lg h-80 xl:h-[520px] overflow-clip"
                     >
                         <Image
                             src={painting.image}
@@ -90,6 +122,14 @@ const CarouselStatic = () => {
                     </li>
                 ))}
             </ul>
+            <div className="absolute flex gap-4 right-4 ring">
+                <Button color="primary" onClick={handleScrollLeft}>
+                    Left
+                </Button>
+                <Button color="primary" onClick={handleScrollRight}>
+                    Right
+                </Button>
+            </div>
         </motion.section>
     )
 }

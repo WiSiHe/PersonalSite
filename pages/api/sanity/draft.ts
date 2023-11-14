@@ -12,7 +12,7 @@ import { getSecret } from "plugins/productionUrl/utils"
 
 function redirectToPreview(
     res: NextApiResponse<string | void>,
-    Location: "/" | `/painting/${string}`,
+    Location: "/" | `/paintings/${string}`,
 ): void {
     // Enable Draft Mode by setting the cookies
     res.setDraftMode({ enable: true })
@@ -87,5 +87,5 @@ export default async function preview(
 
     // Redirect to the path from the fetched post
     // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-    redirectToPreview(res, `/painting/${painting.slug}`)
+    redirectToPreview(res, `/paintings/${painting.slug}`)
 }
