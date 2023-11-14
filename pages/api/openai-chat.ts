@@ -49,21 +49,16 @@ export default async function handler(
     }
 
     try {
-        const chatCompletion = await openai.chat.completions.create(
-            {
-                model: "gpt-4-1106-preview",
-                max_tokens: maxTokens, // 1000,
-                stream: false,
-                frequency_penalty: frequencyPenalty, // 0.5,
-                presence_penalty: presencePenalty, // 0.5,
-                temperature: temperature, // 0.7,
-                top_p: 1, // 1,
-                messages: messages, // [  { role: 'user', content: 'How many stars are in the sky?' } ],
-            },
-            {
-                timeout: 10000,
-            },
-        )
+        const chatCompletion = await openai.chat.completions.create({
+            model: "gpt-4-1106-preview",
+            max_tokens: maxTokens, // 1000,
+            stream: false,
+            frequency_penalty: frequencyPenalty, // 0.5,
+            presence_penalty: presencePenalty, // 0.5,
+            temperature: temperature, // 0.7,
+            top_p: 1, // 1,
+            messages: messages, // [  { role: 'user', content: 'How many stars are in the sky?' } ],
+        })
 
         const response = chatCompletion?.choices[0]?.message || {
             role: "assistant",

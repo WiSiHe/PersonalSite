@@ -1,0 +1,72 @@
+
+Chromatic CLI v7.6.0
+https://www.chromatic.com/docs/cli
+
+Authenticating with Chromatic
+    → Connecting to https://index.chromatic.com
+Authenticated with Chromatic
+    → Using project token '********1106'
+Retrieving git information
+⚠ Using outdated package
+You are using an outdated version of the Chromatic CLI (v7.6.0).
+A new major version is available (v9.0.0).
+Run yarn upgrade chromatic --latest to upgrade.
+Retrieved git information
+    → Commit '814870f' on branch 'master'; found 1 parent build
+Collecting Storybook metadata
+Collected Storybook metadata
+    → Storybook 7.5.3 for React; no supported addons found
+Initializing build
+Initialized build
+    → Build 8 initialized
+Building your Storybook
+    → Running command: pnpm run build-storybook --output-dir /var/folders/z0/yxzd4xw501j_7d69p0xs_cyh0000gn/T/chromatic--84297-ZhEQOTUZ7Iys
+    → [*                   ]
+    → [ *                  ]
+    → [  *                 ]
+Storybook built in 25 seconds
+    → View build log at /Users/henrik.sissener/Dev/Personal/PersonalSite/build-storybook.log
+Publish your built Storybook
+    → Validating Storybook files
+Publishing your built Storybook
+    → Retrieving target location
+    → Starting publish
+    → [                    ] 0%
+    → [=                   ] 7%
+    → [===                 ] 14%
+    → [====                ] 21%
+    → [======              ] 31%
+    → [========            ] 39%
+    → [==========          ] 48%
+    → [===========         ] 57%
+    → [==============      ] 69%
+    → [===============     ] 76%
+    → [================    ] 80%
+    → [=================   ] 86%
+    → [==================  ] 91%
+    → [====================] 98%
+Publish complete in 2 minutes 17 seconds
+    → View your Storybook at https://643465dda2acbd1c279ba003-ovxodqvncw.chromatic.com
+Verifying your Storybook
+    → This may take a few minutes
+    → [*                   ]
+    → [ *                  ]
+Started build 8
+    → View build details at https://www.chromatic.com/build?appId=643465dda2acbd1c279ba003&number=8
+Running 113 tests
+    → This may take a few minutes
+ℹ Speed up Continuous Integration
+Your project is linked to GitHub so Chromatic will report results there.
+This means you can pass the --exit-once-uploaded flag to skip waiting for build results.
+Read more here: https://www.chromatic.com/docs/cli#chromatic-options
+    → [                    ] 1/113  
+    → [===                 ] 16/113 (2 component errors)  
+    → [=========           ] 50/113 (7 component errors)  
+    → [============        ] 68/113 (10 component errors)  
+    → [=================== ] 109/113 (13 component errors)  
+    → [====================] 111/113 (13 component errors)  
+✖ Encountered 13 build errors: failing with exit code 2
+Pass --allow-console-errors to succeed this command regardless of runtime build errors.
+ℹ Review the errors at https://www.chromatic.com/build?appId=643465dda2acbd1c279ba003&number=8
+Build 8 failed after 1 minute 27 seconds
+    → Tested 113 stories across 68 components; captured 113 snapshots and found 13 component errors
