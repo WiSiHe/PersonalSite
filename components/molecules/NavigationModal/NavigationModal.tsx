@@ -27,7 +27,10 @@ interface Modal {
     closeModal: () => void
 }
 
-const NavigationModal = ({ isOpen, closeModal }: Modal) => {
+const NavigationModal = ({
+    isOpen = false,
+    closeModal = () => null,
+}: Modal) => {
     const pathName = usePathname()
 
     const asPathWithSpacing = pathName?.replace(/\//g, "/") || ""

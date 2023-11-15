@@ -8,10 +8,8 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import { notFound } from "next/navigation"
 import { FaEye, FaThumbsUp } from "react-icons/fa"
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import { isEmptyObject } from "utils/object"
 
 const ReactPlayer = dynamic(() => import("react-player"), {
     suspense: true,
@@ -30,6 +28,8 @@ const formatDate = (date: string) => {
 }
 
 const PaintingPage = ({ painting }: iPaintingPageProps) => {
+    if (!painting) return <h1>Painting not found</h1>
+
     const {
         images,
         title = "",

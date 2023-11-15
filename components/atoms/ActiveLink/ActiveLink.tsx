@@ -1,4 +1,4 @@
-import { useRouter } from "next/router"
+import { usePathname, useRouter } from "next/navigation"
 import React from "react"
 
 interface iActiveLinkProps {
@@ -14,8 +14,9 @@ function ActiveLink({
     scrollToTop = true,
     shallow = false,
 }: iActiveLinkProps) {
+    const pathName = usePathname()
     const router = useRouter()
-    const isActive = router.asPath === href
+    const isActive = href === pathName
 
     const lightStyle = `text-black hover:border-b-2 border-purple-800  ${
         isActive && "text-purple-800"
@@ -23,7 +24,7 @@ function ActiveLink({
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
-        router.push(href, undefined, { scroll: scrollToTop, shallow: shallow })
+        router.push(href)
     }
 
     return (

@@ -123,8 +123,8 @@ const Painting = ({
                 sizes="(min-width: 1040px) calc(25vw - 32px), calc(100vw - 32px)"
                 fill
                 priority={shouldBeLazy}
-                placeholder="blur"
-                blurDataURL={lqip}
+                placeholder={lqip ? "blur" : "empty"}
+                blurDataURL={lqip ? lqip : undefined}
                 quality={30}
                 unoptimized={storybook}
                 alt=""
