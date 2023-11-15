@@ -4,27 +4,27 @@ https://www.chromatic.com/docs/cli
 
 Authenticating with Chromatic
     → Connecting to https://index.chromatic.com
+Authenticated with Chromatic
+    → Using project token '********1106'
+Retrieving git information
 ⚠ Using outdated package
 You are using an outdated version of the Chromatic CLI (v7.6.0).
 A new major version is available (v9.0.0).
 Run yarn upgrade chromatic --latest to upgrade.
-Authenticated with Chromatic
-    → Using project token '********1106'
-Retrieving git information
 Retrieved git information
-    → Commit 'f368451' on branch 'master'; found 1 parent build
+    → Commit '104be09' on branch 'master'; found 1 parent build
 Collecting Storybook metadata
 Collected Storybook metadata
     → Storybook 7.5.3 for React; no supported addons found
 Initializing build
 Initialized build
-    → Build 12 initialized
+    → Build 13 initialized
 Building your Storybook
-    → Running command: pnpm run build-storybook --output-dir /var/folders/z0/yxzd4xw501j_7d69p0xs_cyh0000gn/T/chromatic--84297-ws4bbx5kf6uH
+    → Running command: pnpm run build-storybook --output-dir /var/folders/z0/yxzd4xw501j_7d69p0xs_cyh0000gn/T/chromatic--84297-q4N4zxkxznCZ
     → [*                   ]
     → [ *                  ]
     → [  *                 ]
-Storybook built in 28 seconds
+Storybook built in 25 seconds
     → View build log at /Users/henrik.sissener/Dev/Personal/PersonalSite/build-storybook.log
 Publish your built Storybook
     → Validating Storybook files
@@ -32,36 +32,35 @@ Publishing your built Storybook
     → Retrieving target location
     → Starting publish
     → [                    ] 0%
-    → [=                   ] 7%
-    → [===                 ] 13%
-    → [======              ] 28%
-    → [========            ] 39%
-    → [==========          ] 52%
+    → [==                  ] 12%
+    → [====                ] 19%
+    → [======              ] 29%
+    → [========            ] 42%
+    → [===========         ] 53%
     → [==============      ] 69%
-    → [=================   ] 84%
-    → [==================  ] 92%
-    → [====================] 99%
-Publish complete in 1 minute 33 seconds
-    → View your Storybook at https://643465dda2acbd1c279ba003-gpchhqitlq.chromatic.com
+    → [================    ] 82%
+    → [==================  ] 90%
+Publish complete in 1 minute 32 seconds
+    → View your Storybook at https://643465dda2acbd1c279ba003-tqgqcciukz.chromatic.com
 Verifying your Storybook
     → This may take a few minutes
     → [*                   ]
     → [ *                  ]
-Started build 12
-    → View build details at https://www.chromatic.com/build?appId=643465dda2acbd1c279ba003&number=12
+Started build 13
+    → View build details at https://www.chromatic.com/build?appId=643465dda2acbd1c279ba003&number=13
 Running 113 tests
     → This may take a few minutes
 ℹ Speed up Continuous Integration
 Your project is linked to GitHub so Chromatic will report results there.
 This means you can pass the --exit-once-uploaded flag to skip waiting for build results.
 Read more here: https://www.chromatic.com/docs/cli#chromatic-options
-    → [                    ] 1/113  
-    → [====                ] 24/113  
-    → [===========         ] 60/113  
-    → [=================   ] 96/113 (2 component errors)  
-    → [====================] 113/113 (2 component errors)  
-✖ Encountered 2 build errors: failing with exit code 2
-Pass --allow-console-errors to succeed this command regardless of runtime build errors.
-ℹ Review the errors at https://www.chromatic.com/build?appId=643465dda2acbd1c279ba003&number=12
-Build 12 failed after 1 minute 28 seconds
-    → Tested 113 stories across 68 components; captured 113 snapshots and found 2 component errors
+    → [=                   ] 6/113  
+    → [=============       ] 71/113  
+    → [=================== ] 107/113  
+✖ Found 6 visual changes: Review the changes at https://www.chromatic.com/build?appId=643465dda2acbd1c279ba003&number=13
+
+ℹ For CI/CD use cases, this command failed with exit code 1
+Pass --exit-zero-on-changes to succeed this command regardless of changes.
+Pass --auto-accept-changes to succeed and automatically accept any changes.
+Build 13 completed
+    → Tested 113 stories across 68 components; captured 113 snapshots in 30 seconds
