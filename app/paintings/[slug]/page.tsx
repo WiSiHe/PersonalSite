@@ -1,3 +1,4 @@
+import { loadPainting } from "@/sanity/loader/loadQuery"
 import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
@@ -101,10 +102,13 @@ interface Params {
 }
 
 export default async function LandingPage({ params }: { params: Params }) {
-    const preview = draftMode().isEnabled ? true : false
+    const preview = draftMode().isEnabled
+
+    const initial = await loadPainting(params.slug)
+
     const painting = await getData(params.slug, preview)
 
-    if (!painting) {
+    if (!painting || !initial) {
         return notFound()
     }
 
@@ -162,15 +166,23 @@ export default async function LandingPage({ params }: { params: Params }) {
         },
     }
 
+    // if (preview) {
+    //     return (
+    //         <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
+    //             <div className="fixed top-0 left-0 right-0 z-20 p-4 text-white bg-primary">
+    //                 Preview
+    //             </div>
+    //             <PreviewProvider preview>
+    //                 <PaintingPagePreview initialPainting={painting} />
+    //             </PreviewProvider>
+    //         </Main>
+    //     )
+    // }
+
     if (preview) {
         return (
             <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
-                <div className="fixed top-0 right-0 z-20 p-4 text-white lef t-0 bg-primary">
-                    Preview
-                </div>
-                <PreviewProvider preview>
-                    <PaintingPagePreview initialPainting={painting} />
-                </PreviewProvider>
+                <PaintingPagePreview params={params} initial={initial} />
             </Main>
         )
     }

@@ -2,63 +2,21 @@
 import Button from "components/atoms/Button"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import night from "public/images/night-forest.jpeg"
-import celestial from "public/images/paintings/Celestial.jpg"
-import creepy from "public/images/paintings/creepy.jpg"
-import hell from "public/images/paintings/hell.jpg"
-import space from "public/images/paintings/Space.jpg"
-import sunlight from "public/images/paintings/sunlight.jpg"
-import winter from "public/images/paintings/winter.jpg"
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { isEmptyArray } from "utils/array"
 
-const paintings = [
-    {
-        id: 1,
-        name: "Celestial",
-        image: celestial,
-        description: "Celesital",
-    },
-    {
-        id: 4,
-        name: "Night",
-        image: night,
-        description: "Night",
-    },
-    {
-        id: 5,
-        name: "Space",
-        image: space,
-        description: "Space",
-    },
-    {
-        id: 6,
-        name: "Hell",
-        image: hell,
-        description: "Hell",
-    },
-    {
-        id: 7,
-        name: "Creepy",
-        image: creepy,
-        description: "Creepy",
-    },
-    {
-        id: 8,
-        name: "Sunlight",
-        image: sunlight,
-        description: "Sunlight",
-    },
-    {
-        id: 9,
-        name: "Winter",
-        image: winter,
-        description: "Winter",
-    },
-]
+import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
+import { urlForImage } from "@/lib/sanity.image"
+import { cn } from "@/utils/utility"
 
-const CarouselStatic = () => {
+import Painting from "../Painting/Painting"
+
+type CarouselStatic = {
+    paintings?: iSanityPainting[]
+}
+const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
     const scrollRef = useRef<HTMLUListElement>(null)
 
     const [sortedPaintings, setSortedPaintings] = useState(paintings)
@@ -90,9 +48,9 @@ const CarouselStatic = () => {
     }
 
     useEffect(() => {
-        if (!paintings || isEmptyArray(paintings)) return
+        if (isEmptyArray(paintings) || !isEmptyArray(sortedPaintings)) return
         setSortedPaintings(paintings.sort(() => 0.5 - Math.random()))
-    }, [])
+    }, [paintings, sortedPaintings])
 
     return (
         <motion.section
@@ -104,24 +62,70 @@ const CarouselStatic = () => {
         >
             <ul
                 ref={scrollRef}
-                className="flex flex-no-wrap items-start w-full gap-4 pt-8 pb-16 pl-4 pr-8 overflow-x-scroll scrolling-touch"
+                className="flex items-stretch w-full gap-4 pt-8 pb-16 pl-4 pr-8 h-96 lg:h-[520px] overflow-x-scroll scrolling-touch "
             >
-                {sortedPaintings.map((painting, i) => (
-                    <li
-                        key={i}
-                        className="relative flex-none aspect-square rounded-lg h-80 xl:h-[520px] overflow-clip"
-                    >
-                        <Image
-                            src={painting.image}
-                            placeholder="blur"
-                            quality={50}
-                            alt={painting.description}
-                            className="object-cover w-full h-full"
-                            sizes="(min-width: 1280px) 615px, 320px"
-                            fill
-                        />
-                    </li>
-                ))}
+                {sortedPaintings.map((painting, i) => {
+                    const { format, image } = painting
+
+                    const { lqip } = image
+
+                    const formatStyle = {
+                        square: "aspect-square",
+                        landscape: "aspect-video",
+                        portrait: "aspect-[12/16]",
+                    }[format]
+
+                    const sanityWidth = {
+                        square: 400,
+                        landscape: 600,
+                        portrait: 400,
+                    }[format]
+
+                    const sanityHeight = {
+                        square: 400,
+                        landscape: 300,
+                        portrait: 600,
+                    }[format]
+
+                    return (
+                        <li
+                            key={i}
+                            className={cn(
+                                "relative flex-shrink-0 bg-white rounded-lg hover:drop-shadow-lg group  hover:ring",
+                                // formatStyle,
+                            )}
+                        >
+                            <Link href={`/paintings/${painting.slug}`}>
+                                <article
+                                    className={cn(
+                                        "relative w-full h-full rounded-lg overflow-clip group",
+                                        formatStyle,
+                                    )}
+                                >
+                                    <Image
+                                        src={urlForImage(image)
+                                            .width(sanityWidth)
+                                            .height(sanityHeight)
+                                            .quality(70)
+                                            .url()}
+                                        // sizes="(min-width: 1040px) calc(25vw - 32px), calc(100vw - 32px)"
+                                        fill
+                                        placeholder={lqip ? "blur" : "empty"}
+                                        blurDataURL={lqip ? lqip : undefined}
+                                        quality={30}
+                                        // unoptimized={storybook}
+                                        alt=""
+                                        className={cn(
+                                            "group-hover:scale-110",
+                                            "object-cover w-full h-full transition-all pointer-events-none duration-500 ease-in-out bg-center bg-cover aspect-square",
+                                        )}
+                                    />
+                                </article>
+                                {/* <Painting paintingData={painting} /> */}
+                            </Link>
+                        </li>
+                    )
+                })}
             </ul>
             <div className="absolute flex gap-4 bottom-4 right-4">
                 <Button

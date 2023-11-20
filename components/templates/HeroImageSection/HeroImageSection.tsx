@@ -131,10 +131,6 @@ const HeroImageSection = () => {
                                 fill
                                 priority
                                 className={cn("object-cover w-10 rounded-2xl")}
-                                onLoad={() => setIsLoadingBackground(true)}
-                                onLoadingComplete={() =>
-                                    setIsLoadingBackground(false)
-                                }
                             />
                             {isLoadingBackground && (
                                 <div className="absolute inset-0 flex items-center justify-center w-full h-full rounded-2xl bg-dark">

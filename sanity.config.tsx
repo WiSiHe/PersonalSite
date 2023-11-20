@@ -1,46 +1,35 @@
-/**
- * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
- */
-
-// import { Stack, Text, TextInput } from "@sanity/ui"
 import { visionTool } from "@sanity/vision"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { apiVersion, dataset, previewSecretId, projectId } from "lib/sanity.api"
-import { previewDocumentNode } from "plugins/previewPane"
+import { locate } from "./sanity/plugins/locate"
+
 import { productionUrl } from "plugins/productionUrl"
-import { settingsPlugin, settingsStructure } from "plugins/settings"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
+import { presentationTool } from "sanity/presentation"
 import paintingType from "schemas/painting"
 import projectType from "schemas/project"
-import settingsType from "schemas/settings"
 import tagType from "schemas/tag"
 import videoType from "schemas/video"
+import { pageStructure, singletonPlugin } from "./sanity/plugins/settings"
+
+import home from "./sanity/schemas/singletons/home"
 
 const title =
     process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
     "Next.js Blog with Sanity.io"
 
+const SANITY_STUDIO_PREVIEW_URL =
+    process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:1992"
+
 export default defineConfig({
     basePath: "/studio",
-    projectId,
-    dataset,
+    projectId: projectId || "",
+    dataset: dataset || "",
     title,
-
     schema: {
         // If you want more content types, you can add them to this array
-        types: [settingsType, paintingType, tagType, videoType, projectType],
-    },
-    tools: (prev, { currentUser }) => {
-        const isAdmin = currentUser?.roles.some(
-            (role) => role.name === "administrator",
-        )
-
-        if (isAdmin) {
-            return prev
-        }
-
-        return prev.filter((tool) => tool.name !== "vision")
+        types: [home, paintingType, tagType, videoType, projectType],
     },
     studio: {
         components: {
@@ -63,27 +52,29 @@ export default defineConfig({
         },
     },
     plugins: [
-        // media(),
         deskTool({
-            structure: settingsStructure(settingsType),
-            // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
-            defaultDocumentNode: previewDocumentNode({
-                apiVersion,
-                previewSecretId,
-            }),
+            structure: pageStructure([home]),
         }),
-        // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-        settingsPlugin({ type: settingsType.name }),
-        // Add the "Open preview" action
+        presentationTool({
+            locate,
+            previewUrl: {
+                origin:
+                    typeof location === "undefined"
+                        ? SANITY_STUDIO_PREVIEW_URL
+                        : location.origin,
+                draftMode: {
+                    enable: "/api/sanity-v2/draft",
+                },
+            },
+        }),
+        singletonPlugin([home.name]),
+
         productionUrl({
             apiVersion,
             previewSecretId,
             types: [paintingType.name, videoType.name, projectType.name],
         }),
-        // Add an image asset source for Unsplash
-        // unsplashImageAsset(),
-        // Vision lets you query your content with GROQ in the studio
-        // https://www.sanity.io/docs/the-vision-plugin
+
         visionTool({ defaultApiVersion: apiVersion }),
     ],
 })

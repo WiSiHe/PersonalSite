@@ -5,26 +5,22 @@ import { useLiveQuery } from "next-sanity/preview"
 import { isEmptyObject } from "utils/object"
 
 import PaintingPage from "../PaintingPage/PaintingPage"
+import { useQuery } from "@/sanity/loader/useQuery"
+import { QueryResponseInitial } from "@sanity/react-loader/rsc"
 
 interface iPaintingPageProps {
-    initialPainting: iSanityPainting
+    params: { slug: string }
+    initial: QueryResponseInitial<iSanityPainting | null>
 }
 
-const PaintingPagePreview = ({ initialPainting }: iPaintingPageProps) => {
-    const { slug = "" } = initialPainting
-
-    const [data, loadingPainting] = useLiveQuery(
-        initialPainting,
+const PaintingPagePreview = ({ initial, params }: iPaintingPageProps) => {
+    const { data } = useQuery<iSanityPainting | null>(
         paintingDetailsQuery,
-        { slug },
+        params,
+        { initial },
     )
 
-    if (loadingPainting) return <div>Loading...</div>
-
-    if (!data || isEmptyObject(data)) {
-        return <div>Not found</div>
-    }
-    return <PaintingPage painting={data} />
+    return <PaintingPage painting={data!} />
 }
 
 export default PaintingPagePreview

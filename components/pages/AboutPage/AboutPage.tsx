@@ -1,6 +1,7 @@
-"use client"
-import { iSanityImage } from "lib/models/objects/sanityImage"
 import dynamic from "next/dynamic"
+
+import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
+import { ShowcaseProject } from "@/types"
 
 const PaintingSection = dynamic(
     () => import("components/templates/PantingSection"),
@@ -11,14 +12,15 @@ const HeroImageSection = dynamic(
 )
 
 interface AboutPageProps {
-    paintings?: iSanityImage[]
+    paintings?: iSanityPainting[]
+    projects?: ShowcaseProject[]
 }
 
-const AboutPage = ({ paintings = [] }: AboutPageProps) => {
+const AboutPage = ({ paintings = [], projects = [] }: AboutPageProps) => {
     return (
         <>
             <HeroImageSection />
-            <PaintingSection />
+            <PaintingSection paintings={paintings} />
             {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <h2 className="pb-2">Frontend</h2>
         <p className="max-w-2xl">

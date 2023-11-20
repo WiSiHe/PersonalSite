@@ -6,6 +6,8 @@ import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
 import { Inter, Oswald } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
+import { draftMode } from "next/headers"
+import VisualEditing from "@/sanity/loader/VisualEditing"
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
@@ -165,38 +167,47 @@ export default function RootLayout({ children }: RootProps) {
     // const preview = draftMode().isEnabled ? true : false
 
     return (
-        <html lang="en" className="scroll-smooth">
-            <head>
-                <link rel="icon" href="/icons/wisihe.svg" sizes="any" />
-                <meta name="theme-color" content="#DE0D92" />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(jsonLdSite),
-                    }}
-                />
-            </head>
-            <body
-                className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
-            >
-                <SkipToMainContentLink />
-                <NextTopLoader color="#DE0D92" showSpinner={false} height={5} />
-                <Navigation />
-                {children}
-                <Footer />
-                <Analytics
-                // beforeSend={(event) => {
-                //     if (event.url.includes("/studio")) {
-                //         return null
-                //     }
-                //     return event
-                // }}
-                />
-            </body>
-        </html>
+        <>
+            <html lang="en" className="scroll-smooth">
+                <head>
+                    <link rel="icon" href="/icons/wisihe.svg" sizes="any" />
+                    <meta name="theme-color" content="#DE0D92" />
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify(jsonLd),
+                        }}
+                    />
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify(jsonLdSite),
+                        }}
+                    />
+                </head>
+                <body
+                    className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
+                >
+                    <SkipToMainContentLink />
+                    <NextTopLoader
+                        color="#DE0D92"
+                        showSpinner={false}
+                        height={5}
+                    />
+                    <Navigation />
+                    {children}
+                    <Footer />
+                    <Analytics
+                    // beforeSend={(event) => {
+                    //     if (event.url.includes("/studio")) {
+                    //         return null
+                    //     }
+                    //     return event
+                    // }}
+                    />
+                </body>
+            </html>
+            {draftMode().isEnabled && <VisualEditing />}
+        </>
     )
 }

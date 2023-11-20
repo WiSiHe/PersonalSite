@@ -4,7 +4,14 @@ import CarouselStatic from "components/molecules/CarouselStatic"
 import { motion } from "framer-motion"
 import Link from "next/link"
 
-const PaintingSection = () => {
+import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
+
+type PaintingSection = {
+    paintings?: iSanityPainting[]
+    paintinDescription?: string
+}
+
+const PaintingSection = ({ paintings = [] }: PaintingSection) => {
     return (
         <>
             <section className="relative w-full text-white py-14 xl:py-24">
@@ -26,7 +33,7 @@ const PaintingSection = () => {
                         </Link>
                     </p>
                 </motion.div>
-                <CarouselStatic />
+                <CarouselStatic paintings={paintings} />
                 <div className="flex flex-col items-center justify-center w-full gap-4 px-4 text-dark">
                     <strong>Like what you see?</strong>
                     <LinkButton href="/paintings" hasIcon>
