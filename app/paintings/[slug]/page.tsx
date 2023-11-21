@@ -1,4 +1,3 @@
-import { loadPainting } from "@/sanity/loader/loadQuery"
 import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
@@ -8,6 +7,8 @@ import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
 import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
+
+import { loadPainting } from "@/sanity/loader/loadQuery"
 
 export const revalidate = 3600 // every hour
 
@@ -102,13 +103,17 @@ interface Params {
 }
 
 export default async function LandingPage({ params }: { params: Params }) {
-    const preview = draftMode().isEnabled
-
     const initial = await loadPainting(params.slug)
 
-    const painting = await getData(params.slug, preview)
+    // const painting = await getData(params.slug, draftMode().isEnabled)
 
-    if (!painting || !initial) {
+    if (!initial) {
+        return notFound()
+    }
+
+    const { data } = initial
+
+    if (!data) {
         return notFound()
     }
 
@@ -119,7 +124,7 @@ export default async function LandingPage({ params }: { params: Params }) {
         slug = "",
         image,
         paintedAt,
-    } = painting
+    } = data
 
     const selectedDescription = seoDescription || description
 
@@ -166,20 +171,7 @@ export default async function LandingPage({ params }: { params: Params }) {
         },
     }
 
-    // if (preview) {
-    //     return (
-    //         <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
-    //             <div className="fixed top-0 left-0 right-0 z-20 p-4 text-white bg-primary">
-    //                 Preview
-    //             </div>
-    //             <PreviewProvider preview>
-    //                 <PaintingPagePreview initialPainting={painting} />
-    //             </PreviewProvider>
-    //         </Main>
-    //     )
-    // }
-
-    if (preview) {
+    if (draftMode().isEnabled) {
         return (
             <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
                 <PaintingPagePreview params={params} initial={initial} />
@@ -197,7 +189,7 @@ export default async function LandingPage({ params }: { params: Params }) {
                 noTopPadding
                 className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip"
             >
-                <PaintingPage painting={painting} />
+                <PaintingPage painting={data} />
             </Main>
         </>
     )
