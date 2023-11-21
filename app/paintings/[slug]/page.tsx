@@ -101,19 +101,19 @@ interface Params {
 }
 
 export default async function LandingPage({ params }: { params: Params }) {
-    const initial = await loadPainting(params.slug)
+    // const initial = await loadPainting(params.slug)
 
-    // const painting = await getData(params.slug, draftMode().isEnabled)
+    const painting = await getData(params.slug, draftMode().isEnabled)
 
-    if (!initial) {
-        return notFound()
-    }
+    // if (!initial) {
+    //     return notFound()
+    // }
 
-    const { data } = initial
+    // const { data } = initial
 
-    if (!data) {
-        return notFound()
-    }
+    // if (!data) {
+    //     return notFound()
+    // }
 
     const {
         title = "Not found",
@@ -122,7 +122,7 @@ export default async function LandingPage({ params }: { params: Params }) {
         slug = "",
         image,
         paintedAt,
-    } = data
+    } = painting
 
     const selectedDescription = seoDescription || description
 
@@ -187,7 +187,7 @@ export default async function LandingPage({ params }: { params: Params }) {
                 noTopPadding
                 className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip"
             >
-                <PaintingPage painting={data} />
+                <PaintingPage painting={painting} />
             </Main>
         </>
     )
