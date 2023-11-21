@@ -1,8 +1,7 @@
+import { assist } from "@sanity/assist"
 import { visionTool } from "@sanity/vision"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { apiVersion, dataset, previewSecretId, projectId } from "lib/sanity.api"
-import { locate } from "./sanity/plugins/locate"
-
 import { productionUrl } from "plugins/productionUrl"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
@@ -11,8 +10,9 @@ import paintingType from "schemas/painting"
 import projectType from "schemas/project"
 import tagType from "schemas/tag"
 import videoType from "schemas/video"
-import { pageStructure, singletonPlugin } from "./sanity/plugins/settings"
 
+import { locate } from "./sanity/plugins/locate"
+import { pageStructure, singletonPlugin } from "./sanity/plugins/settings"
 import home from "./sanity/schemas/singletons/home"
 
 const title =
@@ -76,5 +76,6 @@ export default defineConfig({
         }),
 
         visionTool({ defaultApiVersion: apiVersion }),
+        assist(),
     ],
 })
