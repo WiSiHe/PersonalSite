@@ -6,20 +6,24 @@ import { urlForImage } from "lib/sanity.image"
 import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 
+import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"
 import { loadPainting } from "@/sanity/loader/loadQuery"
 
 export const revalidate = 3600 // every hour
 
-export async function generateStaticParams() {
-    const allPaintings = await getAllPaintingSlugs()
+// export async function generateStaticParams() {
+//     const allPaintings = await getAllPaintingSlugs()
 
-    const paths = allPaintings?.map((painting) => ({
-        slug: painting.slug,
-    }))
+//     const paths = allPaintings?.map((painting) => ({
+//         slug: painting.slug,
+//     }))
 
-    return [paths]
+//     return [paths]
+// }
+
+export function generateStaticParams() {
+    return generateStaticSlugs("painting")
 }
-
 // SEO
 export async function generateMetadata({ params }: { params: Params }) {
     const preview = draftMode().isEnabled ? true : false
@@ -101,19 +105,19 @@ interface Params {
 }
 
 export default async function LandingPage({ params }: { params: Params }) {
-    // const initial = await loadPainting(params.slug)
+    const initial = await loadPainting(params.slug)
 
-    const painting = await getData(params.slug, draftMode().isEnabled)
+    // const painting = await getData(params.slug, draftMode().isEnabled)
 
     // if (!initial) {
     //     return notFound()
     // }
 
-    // const { data } = initial
+    const { data } = initial
 
-    // if (!data) {
-    //     return notFound()
-    // }
+    if (!data) {
+        return notFound()
+    }
 
     const {
         title = "Not found",
@@ -122,7 +126,7 @@ export default async function LandingPage({ params }: { params: Params }) {
         slug = "",
         image,
         paintedAt,
-    } = painting
+    } = data
 
     const selectedDescription = seoDescription || description
 
@@ -187,7 +191,7 @@ export default async function LandingPage({ params }: { params: Params }) {
                 noTopPadding
                 className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip"
             >
-                <PaintingPage painting={painting} />
+                <PaintingPage painting={data!} />
             </Main>
         </>
     )
