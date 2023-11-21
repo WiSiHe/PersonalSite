@@ -1,8 +1,6 @@
 import clsx from "clsx"
 import Main from "components/atoms/Main/Main"
 import PaintingPage from "components/pages/PaintingPage"
-import PaintingPagePreview from "components/pages/PaintingPagePreview"
-import PreviewProvider from "components/sanity/PreviewProvider"
 import { getAllPaintingSlugs, getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
 import { draftMode } from "next/headers"
@@ -171,13 +169,13 @@ export default async function LandingPage({ params }: { params: Params }) {
         },
     }
 
-    if (draftMode().isEnabled) {
-        return (
-            <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
-                <PaintingPagePreview params={params} initial={initial} />
-            </Main>
-        )
-    }
+    // if (draftMode().isEnabled) {
+    //     return (
+    //         <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
+    //             <PaintingPagePreview params={params} initial={initial} />
+    //         </Main>
+    //     )
+    // }
 
     return (
         <>
