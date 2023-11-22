@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
-    "@chromaui/addon-visual-tests": "^0.0.116",
+    "@chromaui/addon-visual-tests": "^0.0.120",
     "@next/bundle-analyzer": "^14.0.3",
     "@next/eslint-plugin-next": "^14.0.3",
     "@sanity/types": "^3.20.0",

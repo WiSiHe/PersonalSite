@@ -143,8 +143,8 @@ devDependencies:
     specifier: ^7.23.3
     version: 7.23.3
   '@chromaui/addon-visual-tests':
-    specifier: ^0.0.116
-    version: 0.0.116(@storybook/blocks@7.5.3)(@storybook/client-logger@7.5.3)(@storybook/components@7.5.3)(@storybook/core-events@7.5.3)(@storybook/manager-api@7.5.3)(@storybook/preview-api@7.5.3)(@storybook/theming@7.5.3)(@storybook/types@7.5.3)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^0.0.120
+    version: 0.0.120(@storybook/blocks@7.5.3)(@storybook/client-logger@7.5.3)(@storybook/components@7.5.3)(@storybook/core-events@7.5.3)(@storybook/manager-api@7.5.3)(@storybook/preview-api@7.5.3)(@storybook/theming@7.5.3)(@storybook/types@7.5.3)(react-dom@18.2.0)(react@18.2.0)
   '@next/bundle-analyzer':
     specifier: ^14.0.3
     version: 14.0.3
@@ -1681,8 +1681,8 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@chromaui/addon-visual-tests@0.0.116(@storybook/blocks@7.5.3)(@storybook/client-logger@7.5.3)(@storybook/components@7.5.3)(@storybook/core-events@7.5.3)(@storybook/manager-api@7.5.3)(@storybook/preview-api@7.5.3)(@storybook/theming@7.5.3)(@storybook/types@7.5.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-mEDACogw5azbAUdgbm2UnzvFxGZfIZI1yO3UyC4SijwQyK+PPF1xbfp1lGaeh/p8zH8ubbonqqwi2R8Z0m1vyA==}
+  /@chromaui/addon-visual-tests@0.0.120(@storybook/blocks@7.5.3)(@storybook/client-logger@7.5.3)(@storybook/components@7.5.3)(@storybook/core-events@7.5.3)(@storybook/manager-api@7.5.3)(@storybook/preview-api@7.5.3)(@storybook/theming@7.5.3)(@storybook/types@7.5.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uf4b8e/RtLWphf4lNsjwor6ftwjrtT/LNE+AAaFqM3pe3l16hRN4jUopM4KBF01QUYp0v3N9s1An6gmCzxJ2Cw==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       '@storybook/blocks': ^7.2.0
@@ -1711,7 +1711,7 @@ packages:
       '@storybook/theming': 7.5.3(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.5.3
       '@urql/exchange-auth': 2.1.6
-      chromatic: 7.6.0
+      chromatic: 9.1.0
       date-fns: 2.30.0
       filesize: 10.1.0
       jsonfile: 6.1.0
@@ -7398,11 +7398,6 @@ packages:
   /chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
-    dev: true
-
-  /chromatic@7.6.0:
-    resolution: {integrity: sha512-4MwlX8EDMyfQKf1NXTdUhJ2b0EYueByaVrF75pdFaOzHH7n3OhzknmQYbUSegLiFhKvHuvM8nZvf9SCajO+Cow==}
-    hasBin: true
     dev: true
 
   /chromatic@9.1.0:
