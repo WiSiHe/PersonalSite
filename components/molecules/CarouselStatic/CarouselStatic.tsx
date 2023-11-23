@@ -90,7 +90,7 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                             key={i}
                             className={cn(
                                 "relative flex-shrink-0 bg-white rounded-lg hover:drop-shadow-lg group  hover:ring",
-                                // formatStyle,
+                                formatStyle,
                             )}
                         >
                             <Link
@@ -99,7 +99,7 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                             >
                                 <article
                                     className={cn(
-                                        "relative w-full h-full rounded-lg overflow-clip group",
+                                        "relative w-full h-full bg-primary rounded-lg overflow-clip group",
                                         formatStyle,
                                     )}
                                 >
