@@ -5,11 +5,11 @@ import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
 import { Inter, Oswald } from "next/font/google"
-import NextTopLoader from "nextjs-toploader"
 import { draftMode } from "next/headers"
+import NextTopLoader from "nextjs-toploader"
+
 import VisualEditing from "@/sanity/loader/VisualEditing"
 
-// If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
     subsets: ["latin"],
     display: "swap",
@@ -20,24 +20,6 @@ const oswald = Oswald({
     display: "swap",
     variable: "--font-oswald",
 })
-
-// const roboto = Roboto({
-//   weight: ["400", "700"],
-//   subsets: ["latin"],
-//   variable: "--font-roboto",
-// })
-
-// const playfair = Playfair_Display({
-//   weight: ["400", "500", "600", "700"],
-//   subsets: ["latin"],
-//   variable: "--font-playfair",
-// })
-
-// const syne = Syne({
-//   weight: ["400", "500", "600", "700"],
-//   subsets: ["latin"],
-//   variable: "--font-syne",
-// })
 
 export const metadata = {
     title: "Home | WiSiHe",
@@ -101,24 +83,6 @@ export const metadata = {
             },
         ],
     },
-    // twitter: {
-    //     image: "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
-    //     cardType: "summary_large_image",
-    //     title: "Home | WiSiHe",
-    //     description: "A gallery of some of my paintings and other projects",
-    //     url: "https://wisihe.no",
-    //     creator: "@wisihe",
-    //     site: "https://wisihe.no",
-    //     imageAlt: "WiSiHe",
-    //     images: [
-    //         {
-    //             url: "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
-    //             width: 800,
-    //             height: 600,
-    //             alt: "WiSiHe",
-    //         },
-    //     ],
-    // },
 }
 
 interface RootProps {
@@ -164,50 +128,42 @@ const jsonLdSite = {
 }
 
 export default function RootLayout({ children }: RootProps) {
-    // const preview = draftMode().isEnabled ? true : false
-
     return (
-        <>
-            <html lang="en" className="scroll-smooth">
-                <head>
-                    <link rel="icon" href="/icons/wisihe.svg" sizes="any" />
-                    <meta name="theme-color" content="#DE0D92" />
-                    <script
-                        type="application/ld+json"
-                        dangerouslySetInnerHTML={{
-                            __html: JSON.stringify(jsonLd),
-                        }}
-                    />
-                    <script
-                        type="application/ld+json"
-                        dangerouslySetInnerHTML={{
-                            __html: JSON.stringify(jsonLdSite),
-                        }}
-                    />
-                </head>
-                <body
-                    className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
-                >
-                    <SkipToMainContentLink />
-                    <NextTopLoader
-                        color="#DE0D92"
-                        showSpinner={false}
-                        height={5}
-                    />
-                    <Navigation />
-                    {children}
-                    <Footer />
-                    <Analytics
-                    // beforeSend={(event) => {
-                    //     if (event.url.includes("/studio")) {
-                    //         return null
-                    //     }
-                    //     return event
-                    // }}
-                    />
-                </body>
-            </html>
-            {draftMode().isEnabled && <VisualEditing />}
-        </>
+        <html lang="en" className="scroll-smooth">
+            <head>
+                <link rel="icon" href="/icons/wisihe.svg" sizes="any" />
+                <meta name="theme-color" content="#DE0D92" />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(jsonLd),
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(jsonLdSite),
+                    }}
+                />
+            </head>
+            <body
+                className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
+            >
+                <SkipToMainContentLink />
+                <NextTopLoader color="#DE0D92" showSpinner={false} height={5} />
+                <Navigation />
+                {children}
+                <Footer />
+                <Analytics
+                // beforeSend={(event) => {
+                //     if (event.url.includes("/studio")) {
+                //         return null
+                //     }
+                //     return event
+                // }}
+                />
+                {draftMode().isEnabled && <VisualEditing />}
+            </body>
+        </html>
     )
 }

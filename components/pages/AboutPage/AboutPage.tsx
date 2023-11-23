@@ -14,13 +14,21 @@ const HeroImageSection = dynamic(
 interface AboutPageProps {
     paintings?: iSanityPainting[]
     projects?: ShowcaseProject[]
+    paintingsDescription?: string
 }
 
-const AboutPage = ({ paintings = [], projects = [] }: AboutPageProps) => {
+const AboutPage = ({
+    paintings = [],
+    paintingsDescription = "",
+    projects = [],
+}: AboutPageProps) => {
     return (
         <>
-            <HeroImageSection />
-            <PaintingSection paintings={paintings} />
+            <HeroImageSection paintings={paintings} />
+            <PaintingSection
+                paintings={paintings}
+                description={paintingsDescription}
+            />
             {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <h2 className="pb-2">Frontend</h2>
         <p className="max-w-2xl">

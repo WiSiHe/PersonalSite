@@ -1,8 +1,9 @@
 "use client"
 
-import Main from "@/components/atoms/Main/Main"
 import { NextStudio } from "next-sanity/studio"
 import config from "sanity.config"
+
+import Main from "@/components/atoms/Main/Main"
 
 export default function Studio() {
     return (

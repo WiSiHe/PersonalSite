@@ -1,21 +1,16 @@
 import clsx from "clsx"
 import ProjectPage from "components/pages/ProjectPage"
-import { getAllProjectsLight, getProjectDetails } from "lib/api"
+import { getProjectDetails } from "lib/api"
 import { notFound } from "next/navigation"
+
+import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"
 
 export const revalidate = 3600 // every hour
 
-export async function generateStaticParams() {
-    const allProjects = await getAllProjectsLight()
-
-    const paths = allProjects?.map((project) => ({
-        slug: project.slug,
-    }))
-
-    return [paths]
+export function generateStaticParams() {
+    return generateStaticSlugs("project")
 }
 
-// SEO
 export async function generateMetadata({ params }: { params: Params }) {
     const painting = await getData(params.slug)
 

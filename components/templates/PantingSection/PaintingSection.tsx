@@ -1,17 +1,24 @@
 "use client"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
-import CarouselStatic from "components/molecules/CarouselStatic"
 import { motion } from "framer-motion"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 
 import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
 
+const CarouselStatic = dynamic(
+    () => import("@/components/molecules/CarouselStatic"),
+)
+
 type PaintingSection = {
     paintings?: iSanityPainting[]
-    paintinDescription?: string
+    description?: string
 }
 
-const PaintingSection = ({ paintings = [] }: PaintingSection) => {
+const PaintingSection = ({ paintings = [], description }: PaintingSection) => {
+    const descriptionText =
+        description ||
+        "As a Digital Artist, my passion leans towards creating stylized portraits, ethereal landscapes, and artwork that transports you into the cosmos. I also occasionally taking up commissioned work."
     return (
         <>
             <section className="relative w-full text-white py-14 xl:py-24">
@@ -24,10 +31,7 @@ const PaintingSection = ({ paintings = [] }: PaintingSection) => {
                 >
                     <h2 className="pb-2">Paintings</h2>
                     <p className="max-w-2xl">
-                        As a Digital Artist, my passion leans towards creating
-                        stylized portraits, ethereal landscapes, and artwork
-                        that transports you into the cosmos. I also occasionally
-                        taking up commissioned work.{" "}
+                        {descriptionText}
                         <Link href="/paintings" className="underline">
                             Check out my gallery
                         </Link>

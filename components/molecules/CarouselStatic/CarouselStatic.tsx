@@ -11,8 +11,6 @@ import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
 import { urlForImage } from "@/lib/sanity.image"
 import { cn } from "@/utils/utility"
 
-import Painting from "../Painting/Painting"
-
 type CarouselStatic = {
     paintings?: iSanityPainting[]
 }
@@ -95,7 +93,10 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                                 // formatStyle,
                             )}
                         >
-                            <Link href={`/paintings/${painting.slug}`}>
+                            <Link
+                                href={`/paintings/${painting.slug}`}
+                                aria-label="View painting"
+                            >
                                 <article
                                     className={cn(
                                         "relative w-full h-full rounded-lg overflow-clip group",
@@ -108,7 +109,7 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                                             .height(sanityHeight)
                                             .quality(70)
                                             .url()}
-                                        // sizes="(min-width: 1040px) calc(25vw - 32px), calc(100vw - 32px)"
+                                        sizes="(min-width: 1024px) 400px, (min-width: 768px) 300px, 200px"
                                         fill
                                         placeholder={lqip ? "blur" : "empty"}
                                         blurDataURL={lqip ? lqip : undefined}
