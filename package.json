@@ -86,7 +86,7 @@
     "@storybook/react": "^7.5.3",
     "@storybook/test-runner": "^0.15.1",
     "@storybook/testing-library": "^0.2.2",
-    "@types/node": "20.9.1",
+    "@types/node": "20.10.0",
     "@types/react": "^18.2.37",
     "@types/react-lazy-load-image-component": "^1.6.3",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
