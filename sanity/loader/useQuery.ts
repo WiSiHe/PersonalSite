@@ -2,7 +2,6 @@ import {
     type QueryParams,
     type QueryResponseInitial,
     useEncodeDataAttribute,
-    type UseQueryOptions,
 } from "@sanity/react-loader/rsc"
 import { SettingsPayload } from "types"
 
@@ -20,7 +19,7 @@ export const useQuery = <
 >(
     query: string,
     params?: QueryParams,
-    options?: UseQueryOptions<QueryResponseResult>,
+    options?: any,
 ) => {
     const snapshot = queryStore.useQuery<
         QueryResponseResult,
