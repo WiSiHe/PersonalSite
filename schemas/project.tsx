@@ -1,11 +1,8 @@
 import { PackageIcon } from "@sanity/icons"
 import { defineField, defineType } from "sanity"
 
-import { Stack, Text, TextInput } from "@sanity/ui"
-
-import tagType from "./tag"
-import SanityAI from "components/molecules/SanityAI/SanityAI"
 import { FaWeibo } from "react-icons/fa"
+import tagType from "./tag"
 
 export default defineType({
     name: "project",

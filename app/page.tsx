@@ -37,7 +37,13 @@ export default async function Home() {
         )
     }
 
-    const { showcasePaintings, showcaseProjects } = data
+    const {
+        showcasePaintings,
+        showcaseProjects,
+        projectsDescription,
+        paintingsDescription,
+        paintingsCount,
+    } = data
 
     return (
         <Main
@@ -47,6 +53,8 @@ export default async function Home() {
             <AboutPage
                 paintings={showcasePaintings}
                 projects={showcaseProjects}
+                projectsDescription={projectsDescription}
+                paintingsDescription={paintingsDescription}
             />
         </Main>
     )

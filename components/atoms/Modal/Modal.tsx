@@ -1,7 +1,7 @@
 "use client"
 import { Dialog, Transition } from "@headlessui/react"
 import { motion } from "framer-motion"
-import { Fragment, useState } from "react"
+import { Fragment } from "react"
 
 interface Modal {
     isOpen: boolean

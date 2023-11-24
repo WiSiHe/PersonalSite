@@ -1,21 +1,3 @@
-// "use client"
-// import Main from "components/atoms/Main/Main"
-// import { NextStudio } from "next-sanity/studio"
-// import { StudioLayout, StudioProvider } from "sanity"
-// import config from "sanity.config"
-
-// export default async function StudioPage() {
-//     return (
-//         <Main className="flex-col h-[95vh] pt-2">
-//             <NextStudio config={config}>
-//                 <StudioProvider config={config}>
-//                     <StudioLayout />
-//                 </StudioProvider>
-//             </NextStudio>
-//         </Main>
-//     )
-// }
-
 /**
  * This route is responsible for the built-in authoring environment using Sanity Studio v3.
  * All routes under /studio will be handled by this file using Next.js' catch-all routes:

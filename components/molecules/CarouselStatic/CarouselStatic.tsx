@@ -11,13 +11,18 @@ import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
 import { urlForImage } from "@/lib/sanity.image"
 import { cn } from "@/utils/utility"
 
+const randomSortPaintings = (paintings: iSanityPainting[]) => {
+    if (isEmptyArray(paintings)) return paintings
+    return paintings.sort(() => 0.5 - Math.random())
+}
+
 type CarouselStatic = {
     paintings?: iSanityPainting[]
 }
 const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
     const scrollRef = useRef<HTMLUListElement>(null)
 
-    const [sortedPaintings, setSortedPaintings] = useState(paintings)
+    const [sortedPaintings] = useState(randomSortPaintings(paintings))
 
     const imageWidth = 500 // Replace with your image width
 
@@ -45,11 +50,6 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
         }
     }
 
-    useEffect(() => {
-        if (isEmptyArray(paintings) || !isEmptyArray(sortedPaintings)) return
-        setSortedPaintings(paintings.sort(() => 0.5 - Math.random()))
-    }, [paintings, sortedPaintings])
-
     return (
         <motion.section
             initial={{ x: 100, opacity: 0 }}
@@ -60,7 +60,7 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
         >
             <ul
                 ref={scrollRef}
-                className="flex items-stretch w-full gap-4 pt-8 pb-16 pl-4 pr-8 h-96 lg:h-[520px] overflow-x-scroll scrolling-touch "
+                className="flex items-stretch w-full gap-4 pt-8 pb-16 pl-4 pr-8 h-72 lg:h-[520px] overflow-x-scroll scrolling-touch "
             >
                 {sortedPaintings.map((painting, i) => {
                     const { format, image } = painting
@@ -122,7 +122,6 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                                         )}
                                     />
                                 </article>
-                                {/* <Painting paintingData={painting} /> */}
                             </Link>
                         </li>
                     )
@@ -134,13 +133,14 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                     onClick={handleScrollLeft}
                     label="Scroll Left"
                 >
-                    <FaChevronLeft />
+                    <FaChevronLeft /> Scroll Left
                 </Button>
                 <Button
                     color="primary"
                     onClick={handleScrollRight}
                     label="Scroll Right"
                 >
+                    Scroll Right
                     <FaChevronRight />
                 </Button>
             </div>

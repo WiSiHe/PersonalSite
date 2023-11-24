@@ -1,4 +1,3 @@
-import { assist } from "@sanity/assist"
 import { visionTool } from "@sanity/vision"
 import LogoQR from "components/atoms/icons/LogoQR"
 import { apiVersion, dataset, previewSecretId, projectId } from "lib/sanity.api"
@@ -76,6 +75,6 @@ export default defineConfig({
         }),
 
         visionTool({ defaultApiVersion: apiVersion }),
-        assist(),
+        // assist(), For when AI assist becoems available
     ],
 })

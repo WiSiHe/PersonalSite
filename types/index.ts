@@ -1,6 +1,35 @@
-// import type { PortableTextBlock } from "@portabletext/types"
+import { PortableTextBlockComponent } from "@portabletext/react"
+import type { Image, TypedObject } from "sanity"
+
 import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
-import type { Image } from "sanity"
+
+export type paintingAspectRatio = "square" | "landscape" | "portrait"
+
+export type Painting = {
+    _id: string
+    format: paintingAspectRatio
+    description?: string
+    image: Image
+    images?: Image[] | null
+    imagesCount: number | null
+    seoDescription?: string
+    likes?: number
+    paintedAt: string
+    slug: string
+    tagsV2: Tag[]
+    tagCount: number | null
+    title: string
+    video?: string | null
+    altText?: string
+    redbubbleUrl?: string | null
+    society6Url?: string | null
+    artstationUrl?: string | null
+    inPrintUrl?: string | null
+}
+
+export type Tag = {
+    name: string
+}
 
 export interface MenuItem {
     _type: string
@@ -8,34 +37,27 @@ export interface MenuItem {
     title?: string
 }
 
-export interface MilestoneItem {
-    description?: string
-    duration?: {
-        start?: string
-        end?: string
-    }
-    image?: Image
-    tags?: string[]
-    title?: string
-}
-
 export interface ShowcaseProject {
     _type: string
-    coverImage?: Image
-    // overview?: PortableTextBlock[]
-    slug?: string
-    tags?: string[]
-    title?: string
+    image: Image
+    slug: string
+    tags?: Tag[]
+    title: string
+    status?: string
+    description: string
 }
 
 // Page payloads
 
 export interface HomePagePayload {
-    // footer?: PortableTextBlock[]
-    // overview?: PortableTextBlock[]
+    title?: string
+    paintingsTitle?: string
+    projectsTitle?: string
+    paintingsCount?: number
+    projectsDescription?: TypedObject[]
+    paintingsDescription?: TypedObject[]
     showcasePaintings?: iSanityPainting[]
     showcaseProjects?: ShowcaseProject[]
-    title?: string
 }
 
 export interface PagePayload {

@@ -3,9 +3,9 @@ import { groq } from "next-sanity"
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
-    overview,
-    // amountofPaintings: count(*[_type == "painting"]),
-    paintingDescription,
+    title,
+    paintingsDescription,
+    "paintingsCount": count(*[_type == "painting"]),
     showcasePaintings[]->{
       _type,
       altText,
@@ -17,15 +17,25 @@ export const homePageQuery = groq`
         "lqip": asset->metadata.lqip
       }
     },
+    projectsDescription,
     showcaseProjects[]->{
       _type,
-      coverImage,
-      overview,
-      "slug": slug.current,
-      tags,
       title,
+      description,
+      projectStart,
+      projectEnd,
+      status,
+      content,
+      name,
+      slug,
+      image{
+        ...,
+        "lqip": asset->metadata.lqip
+      },
+      "slug": slug.current,
+      _id,
+      tags[]->{name}
     },
-    title,
   }
 `
 
