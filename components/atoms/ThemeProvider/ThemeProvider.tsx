@@ -1,9 +1,16 @@
+"use client"
+
+import { useThemeStore } from "@/lib/store"
+import { cn } from "@/utils/utility"
+
 interface ThemeProviderProps {
     children: React.ReactNode
 }
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    return <div>{children}</div>
+    const theme = useThemeStore((state) => state.theme)
+
+    return <div className={cn(theme)}>{children}</div>
 }
 
 export default ThemeProvider

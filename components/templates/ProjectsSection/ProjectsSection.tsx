@@ -2,9 +2,10 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState } from "react"
-import { TypedObject } from "sanity"
+import { set, TypedObject } from "sanity"
 
 import CustomPortableText from "@/components/molecules/CustomPortableText"
+import { useThemeStore } from "@/lib/store"
 import { ShowcaseProject } from "@/types"
 
 type ProjectsSection = {
@@ -14,12 +15,30 @@ type ProjectsSection = {
 
 const ProjectsSection = ({ projects = [], description }: ProjectsSection) => {
     const [displayImage, setDisplayImage] = useState(false)
+    // const setChatLogs = useOpenAIStore((state) => state.addMessage)
+    const theme = useThemeStore((state) => state.theme)
+    const setTheme = useThemeStore((state) => state.setTheme)
+
+    const toggleTHeme = () => {
+        switch (theme) {
+            case "":
+                setTheme("dark")
+                break
+            case "dark":
+                setTheme("neon")
+                break
+            default:
+                setTheme("")
+                break
+        }
+    }
 
     return (
         <section className="w-full px-4 py-10 text-white bg-dark">
             <div className="flex flex-col items-center justify-center gap-4 col-span-full">
                 <h2>Projects</h2>
                 <CustomPortableText value={description} />
+                <button onClick={toggleTHeme}>switch</button>
             </div>
             <div className="grid grid-cols-12 gap-4 py-10 empty:hidden">
                 {projects

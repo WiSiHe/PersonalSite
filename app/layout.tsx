@@ -6,9 +6,10 @@ import Navigation from "components/organisms/Navigation"
 import Footer from "components/templates/Footer"
 import { Inter, Oswald } from "next/font/google"
 import { draftMode } from "next/headers"
-import NextTopLoader from "nextjs-toploader"
 
+import ThemeProvider from "@/components/atoms/ThemeProvider"
 import VisualEditing from "@/sanity/loader/VisualEditing"
+import { cn } from "@/utils/utility"
 
 const inter = Inter({
     subsets: ["latin"],
@@ -147,22 +148,22 @@ export default function RootLayout({ children }: RootProps) {
                 />
             </head>
             <body
-                className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
+                // className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
+                className={cn(
+                    inter.variable,
+                    oswald.variable,
+                    "font-inter selection:bg-primary selection:text-white",
+                )}
             >
-                <SkipToMainContentLink />
-                <NextTopLoader color="#DE0D92" showSpinner={false} height={5} />
-                <Navigation />
-                {children}
-                <Footer />
-                <Analytics
-                // beforeSend={(event) => {
-                //     if (event.url.includes("/studio")) {
-                //         return null
-                //     }
-                //     return event
-                // }}
-                />
-                {draftMode().isEnabled && <VisualEditing />}
+                <ThemeProvider>
+                    <SkipToMainContentLink />
+                    {/* <NextTopLoader color="#DE0D92" showSpinner={false} height={5} /> */}
+                    <Navigation />
+                    {children}
+                    <Footer />
+                    <Analytics />
+                    {draftMode().isEnabled && <VisualEditing />}
+                </ThemeProvider>
             </body>
         </html>
     )
