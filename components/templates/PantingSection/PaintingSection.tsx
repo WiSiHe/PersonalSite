@@ -3,7 +3,6 @@
 import LinkButton from "components/atoms/LinkButton/LinkButton"
 import { motion } from "framer-motion"
 import dynamic from "next/dynamic"
-import Link from "next/link"
 import { TypedObject } from "sanity"
 
 import CustomPortableText from "@/components/molecules/CustomPortableText"
@@ -31,9 +30,6 @@ const PaintingSection = ({ paintings = [], description }: PaintingSection) => {
                 <h2 className="pb-2">Paintings</h2>
                 <p className="flex flex-wrap max-w-2xl">
                     <CustomPortableText value={description} />
-                    <Link href="/paintings" className="underline">
-                        Check out my gallery
-                    </Link>
                 </p>
             </motion.div>
             <CarouselStatic paintings={paintings} />

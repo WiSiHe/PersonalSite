@@ -90,6 +90,18 @@ export default defineType({
                                     },
                                 ],
                             },
+                            {
+                                name: "internalLink",
+                                title: "Internal link",
+                                type: "object",
+                                fields: [
+                                    {
+                                        name: "reference",
+                                        type: "string",
+                                        title: "Reference",
+                                    },
+                                ],
+                            },
                         ],
                         decorators: [
                             {

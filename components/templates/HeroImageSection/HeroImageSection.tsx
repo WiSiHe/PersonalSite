@@ -72,10 +72,10 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentPaintingsIndex}
-                            initial={{ scale: 0.98 }}
+                            initial={{ scale: 0.9 }}
                             animate={{ scale: 1.0 }}
-                            exit={{ scale: 0.98 }}
-                            transition={{ type: "spring", duration: 1.5 }}
+                            exit={{ scale: 0.9 }}
+                            transition={{ type: "spring", duration: 1 }}
                             className="relative w-full h-full aspect-video rounded-2xl bg-dark/20"
                         >
                             <div className="absolute left-0 right-0 z-10 flex items-center justify-center rounded-full -top-2 drop-shadow-xl">
@@ -93,11 +93,13 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
                                 alt={altText}
                                 placeholder={lqip ? "blur" : "empty"}
                                 blurDataURL={lqip ? lqip : undefined}
-                                quality={65}
+                                quality={40}
                                 fill
                                 priority
                                 sizes="(min-width: 2080px) 1267px, (min-width: 1280px) calc(57.44vw + 84px), calc(100vw - 32px)"
-                                className={cn("object-cover w-10 rounded-2xl")}
+                                className={cn(
+                                    "object-cover w-10 rounded-2xl bg-tertiary",
+                                )}
                             />
                         </motion.div>
                     </AnimatePresence>

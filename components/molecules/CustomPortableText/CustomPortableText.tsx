@@ -32,10 +32,11 @@ export function CustomPortableText({
                 )
             },
             internalLink: ({ children, value }) => {
+                const { reference } = value ?? {}
                 return (
                     <Link
                         className="underline transition hover:opacity-50"
-                        href={value?.reference}
+                        href={reference}
                     >
                         {children}
                     </Link>
