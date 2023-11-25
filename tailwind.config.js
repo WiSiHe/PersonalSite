@@ -8,7 +8,12 @@ module.exports = {
         "./components/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                inter: "var(--font-inter)",
+                oswald: "var(--font-oswald)",
+            },
+        },
     },
     plugins: [
         require("@tailwindcss/container-queries"),
@@ -35,20 +40,9 @@ module.exports = {
                     maxWidth: {
                         "screen-3xl": "1920px",
                     },
-                    animation: {
-                        "spin-slow": "spin 3s linear infinite",
-                        blob: "blob 20s ease-in-out infinite",
-                        "gradient-x": "gradient-x 15s ease-in-out infinite",
-                        "gradient-y": "gradient-y 15s ease-in-out infinite",
-                        "gradient-xy": "gradient-xy 15s linear infinite",
-                        progress: "progress 15s linear infinite",
-                        tilt: "tilt 10s linear infinite",
-                        "animated-gradient":
-                            "animated-gradient 10s ease-in-out infinite",
-                    },
                     fontFamily: {
-                        inter: ["var(--font-inter)", "sans-serif"],
-                        oswald: ["var(--font-oswald)", "sans-serif"],
+                        inter: "var(--font-inter)",
+                        oswald: "var(--font-oswald)",
                     },
                     colors: {
                         primary: "#DE0D92",

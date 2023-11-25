@@ -23,6 +23,7 @@
 
     body {
         @apply bg-tertiary;
+        @apply font-inter;
     }
 
     h1 {
