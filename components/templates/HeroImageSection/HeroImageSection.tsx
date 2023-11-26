@@ -93,7 +93,7 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
                                 quality={40}
                                 fill
                                 priority
-                                sizes="(min-width: 2080px) 1267px, (min-width: 1280px) calc(57.44vw + 84px), calc(100vw - 32px)"
+                                sizes="(min-width: 2080px) 780px, (min-width: 1280px) calc(47.44vw + 84px), calc(100vw - 32px)"
                                 className={cn(
                                     "object-cover w-10 rounded-2xl bg-tertiary",
                                 )}

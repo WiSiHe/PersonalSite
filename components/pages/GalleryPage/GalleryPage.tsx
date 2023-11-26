@@ -4,8 +4,12 @@ import dynamic from "next/dynamic"
 const FilterBar = dynamic(() => import("components/organisms/FilterBar"))
 const PaintingGrid = dynamic(() => import("components/organisms/PaintingGrid"))
 
-import Chip from "components/atoms/Chip/Chip"
-import DebouncedInput from "components/atoms/DebouncedInput"
+const Chip = dynamic(() => import("@/components/atoms/Chip/Chip"))
+
+const DebouncedInput = dynamic(
+    () => import("@/components/atoms/DebouncedInput"),
+)
+
 import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
@@ -13,7 +17,6 @@ import { useCombinedStore } from "lib/store"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { AiOutlineClose } from "react-icons/ai"
-import { FaSearch } from "react-icons/fa"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
@@ -55,54 +58,6 @@ const GalleryPage = ({
     const [searchFilter, setSearchFilter] = useState("")
 
     const allFilter = searchParams?.getAll("filter") as string[]
-
-    // let lastId: string | null = ""
-
-    // async function fetchNextPageTest() {
-    //     if (lastId === null) {
-    //         return []
-    //     }
-    //     const query = `
-    //    *[_type == "painting" && _id > $lastId] | order(_id) [0...25] {
-    //         title,
-    //         paintedAt,
-    //         "imagesCount": count(images),
-    //         'slug': slug.current,
-    //         redbubbleUrl,
-    //         _id,
-    //         image {
-    //           ...,
-    //           "lqip": asset->metadata.lqip
-    //         },
-    //         tagsV2[]->{
-    //           name
-    //         },
-    //         video
-    //     }
-    //   `
-
-    //     const results = await getClient().fetch(query, { lastId })
-
-    //     if (!results) {
-    //         return []
-    //     }
-
-    //     if (results.length > 0) {
-    //         lastId = results[results.length - 1]._id
-    //     } else {
-    //         lastId = null // Reached the end
-    //     }
-    //     return results
-    // }
-
-    // const handleButtonClick = () => {
-    //     fetchNextPageTest().then((results) => {
-    //         // new array with no duplicates
-    //         const newPaintings = [...new Set([...paintings, ...results])]
-
-    //         setPaintings(newPaintings)
-    //     })
-    // }
 
     const handleToggleFilter = (filter: string) => {
         const slugifiedFilter = slugify(filter)

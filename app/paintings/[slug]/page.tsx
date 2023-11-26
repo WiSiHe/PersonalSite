@@ -1,26 +1,20 @@
 import clsx from "clsx"
-import Main from "components/atoms/Main/Main"
-import PaintingPage from "components/pages/PaintingPage"
 import { getPaintingDetails } from "lib/api"
 import { urlForImage } from "lib/sanity.image"
+import dynamic from "next/dynamic"
 import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 
-import PaintingPagePreview from "@/components/pages/PaintingPagePreview"
+import Main from "@/components/atoms/Main/Main"
+import PaintingPage from "@/components/pages/PaintingPage"
+
+const PaintingPagePreview = dynamic(
+    () => import("components/pages/PaintingPagePreview"),
+)
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"
 import { loadPainting } from "@/sanity/loader/loadQuery"
 
 export const revalidate = 3600 // every hour
-
-// export async function generateStaticParams() {
-//     const allPaintings = await getAllPaintingSlugs()
-
-//     const paths = allPaintings?.map((painting) => ({
-//         slug: painting.slug,
-//     }))
-
-//     return [paths]
-// }
 
 export function generateStaticParams() {
     return generateStaticSlugs("painting")
@@ -34,7 +28,7 @@ export async function generateMetadata({ params }: { params: Params }) {
         title = "Not found",
         seoDescription,
         description = "",
-        image,
+        // image,
     } = painting
 
     const selectedDescription = seoDescription || description
@@ -44,11 +38,11 @@ export async function generateMetadata({ params }: { params: Params }) {
     const descriptionText = selectedDescription.replace(regex, "")
     const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
-    const paintingImageUrl = urlForImage(image)
-        .width(400)
-        .height(400)
-        .quality(45)
-        .url()
+    // const paintingImageUrl = urlForImage(image)
+    //     .width(400)
+    //     .height(400)
+    //     .quality(45)
+    //     .url()
 
     const combinedTitle = clsx(title, " | WiSiHe")
 
@@ -58,22 +52,22 @@ export async function generateMetadata({ params }: { params: Params }) {
         locale: "en-US",
         type: "website",
         url: `https://wisihe.no/paintings/${params.slug}`,
-        openGraph: {
-            title: combinedTitle,
-            description: removedLineBreaks,
-            images: [
-                {
-                    url: paintingImageUrl,
-                    width: 400,
-                    height: 400,
-                    alt: painting.title,
-                },
-            ],
-            image: paintingImageUrl,
-            url: `https://wisihe.no/paintings/${params.slug}`,
-            type: "website",
-            site_name: "WiSiHe",
-        },
+        // openGraph: {
+        //     title: combinedTitle,
+        //     description: removedLineBreaks,
+        //     images: [
+        //         {
+        //             url: paintingImageUrl,
+        //             width: 400,
+        //             height: 400,
+        //             alt: painting.title,
+        //         },
+        //     ],
+        //     image: paintingImageUrl,
+        //     url: `https://wisihe.no/paintings/${params.slug}`,
+        //     type: "website",
+        //     site_name: "WiSiHe",
+        // },
         // twitter: {
         //     title: combinedTitle,
         //     description: removedLineBreaks,
@@ -174,7 +168,7 @@ export default async function LandingPage({ params }: { params: Params }) {
 
     if (draftMode().isEnabled) {
         return (
-            <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip">
+            <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto max-w-screen-3xl lg:gap-4 overflow-clip">
                 <PaintingPagePreview params={params} initial={initial} />
             </Main>
         )
@@ -188,7 +182,7 @@ export default async function LandingPage({ params }: { params: Params }) {
             />
             <Main
                 noTopPadding
-                className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto lg:gap-4 overflow-clip"
+                className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto max-w-screen-3xl lg:gap-4 overflow-clip"
             >
                 <PaintingPage painting={data!} />
             </Main>
