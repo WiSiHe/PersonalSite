@@ -11,6 +11,7 @@ export default async function Home() {
     return (
         <Main noTopPadding className="flex-col p-4">
             {/* <FunctionPage /> */}
+            <p>test</p>
         </Main>
     )
 }

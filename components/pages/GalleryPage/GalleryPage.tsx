@@ -2,7 +2,6 @@
 import dynamic from "next/dynamic"
 
 const FilterBar = dynamic(() => import("components/organisms/FilterBar"))
-const PaintingGrid = dynamic(() => import("components/organisms/PaintingGrid"))
 
 const Chip = dynamic(() => import("@/components/atoms/Chip/Chip"))
 
@@ -20,6 +19,8 @@ import { AiOutlineClose } from "react-icons/ai"
 import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
+
+import PaintingGrid from "@/components/organisms/PaintingGrid"
 
 const debounce = <F extends (...args: any[]) => void>(
     func: F,

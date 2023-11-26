@@ -67,7 +67,7 @@ const PaintingGrid = ({
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: false, amount: 0.5 }}
                             key={painting._id}
-                            className="relative col-span-6 bg-white rounded-lg lg:col-span-3 xl:col-span-2 drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip"
+                            className="relative col-span-6 bg-white rounded-lg lg:col-span-3 drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip"
                         >
                             <Link href={`/paintings/${painting.slug}`}>
                                 <Painting

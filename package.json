@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
-    "@chromaui/addon-visual-tests": "^0.0.116",
+    "@chromaui/addon-visual-tests": "^0.0.120",
     "@next/bundle-analyzer": "^14.0.3",
     "@next/eslint-plugin-next": "^14.0.3",
     "@sanity/types": "^3.20.1",
@@ -86,7 +86,7 @@
     "@storybook/react": "^7.5.3",
     "@storybook/test-runner": "^0.15.2",
     "@storybook/testing-library": "^0.2.2",
-    "@types/node": "20.9.1",
+    "@types/node": "20.10.0",
     "@types/react": "^18.2.38",
     "@types/react-lazy-load-image-component": "^1.6.3",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
@@ -110,7 +110,7 @@
     "tailwindcss": "^3.3.5",
     "tailwindcss-themer": "^4.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "5.2.2",
+    "typescript": "5.3.2",
     "zod": "^3.22.4"
   },
   "engines": {
