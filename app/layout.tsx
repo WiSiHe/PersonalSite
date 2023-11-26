@@ -68,22 +68,22 @@ export const metadata = {
     author: { name: "Henrik Wilhelm Sissener", url: "https://wisihe.no" },
     applicationName: "WiSiHe",
     // themeColor: "#DE0D92",
-    openGraph: {
-        title: "Home | WiSiHe",
-        description: "A gallery of some of my paintings and other projects",
-        locale: "en-US",
-        type: "website",
-        url: "https://wisihe.no",
-        site_name: "WiSiHe",
-        images: [
-            {
-                url: "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
-                width: 800,
-                height: 600,
-                alt: "WiSiHe",
-            },
-        ],
-    },
+    // openGraph: {
+    //     title: "Home | WiSiHe",
+    //     description: "A gallery of some of my paintings and other projects",
+    //     locale: "en-US",
+    //     type: "website",
+    //     url: "https://wisihe.no",
+    //     site_name: "WiSiHe",
+    //     images: [
+    //         {
+    //             url: "https://cdn.sanity.io/images/cbjsv7wi/production/52654b01089c1b59a58b89c06ac9ddfd151359f8-3840x2160.png?rect=679,0,3161,2160&w=1200&h=820&q=75&fit=max&auto=format",
+    //             width: 800,
+    //             height: 600,
+    //             alt: "WiSiHe",
+    //         },
+    //     ],
+    // },
 }
 
 interface RootProps {

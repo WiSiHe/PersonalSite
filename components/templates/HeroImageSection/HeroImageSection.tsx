@@ -45,10 +45,7 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
     const sanityHeight = 720
 
     return (
-        <section
-            key="hero"
-            className="relative w-full min-h-[600px] bg-dark flex flex-col justify-center px-4 py-10 h-fit xl:min-h-screen overflow-clip"
-        >
+        <section className="relative w-full min-h-[600px] bg-dark flex flex-col justify-center px-4 py-10 h-fit xl:min-h-screen overflow-clip">
             <Image
                 src={urlForImage(currentBackground.image)
                     .width(sanityWidth)

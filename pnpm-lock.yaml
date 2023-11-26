@@ -4074,7 +4074,7 @@ packages:
       '@sanity/color': 2.2.5
       '@sanity/icons': 2.7.0(react@18.2.0)
       '@sanity/ui': 1.9.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.1)
-      '@uiw/react-codemirror': 4.21.20(@babel/runtime@7.23.4)(@codemirror/autocomplete@6.11.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.22.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
+      '@uiw/react-codemirror': 4.21.21(@babel/runtime@7.23.4)(@codemirror/autocomplete@6.11.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.22.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
       hashlru: 2.3.0
       is-hotkey: 0.1.8
       json5: 2.2.3
@@ -6083,8 +6083,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@uiw/codemirror-extensions-basic-setup@4.21.20(@codemirror/autocomplete@6.11.0)(@codemirror/commands@6.3.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/view@6.22.0):
-    resolution: {integrity: sha512-Wyi9q4uw0xGYd/tJ6bULG7tkCLqcUsQT0AQBfCDtnkV3LdiLU0LceTrzJoHJyIKSHsKDJxFQxa1qg3QLt4gIUA==}
+  /@uiw/codemirror-extensions-basic-setup@4.21.21(@codemirror/autocomplete@6.11.0)(@codemirror/commands@6.3.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/view@6.22.0):
+    resolution: {integrity: sha512-+0i9dPrRSa8Mf0CvyrMvnAhajnqwsP3IMRRlaHDRgsSGL8igc4z7MhvUPn+7cWFAAqWzQRhMdMSWzo6/TEa3EA==}
     peerDependencies:
       '@codemirror/autocomplete': '>=6.0.0'
       '@codemirror/commands': '>=6.0.0'
@@ -6103,8 +6103,8 @@ packages:
       '@codemirror/view': 6.22.0
     dev: false
 
-  /@uiw/react-codemirror@4.21.20(@babel/runtime@7.23.4)(@codemirror/autocomplete@6.11.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.22.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-PdyewPvNXnvT3JHj888yjpbWsAGw5qlxW6w1sMdsqJ0R6vPV++ob1iZXCGrM1FVpbqPK0DNfpXvjzp2gIr3lYw==}
+  /@uiw/react-codemirror@4.21.21(@babel/runtime@7.23.4)(@codemirror/autocomplete@6.11.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.22.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-PaxBMarufMWoR0qc5zuvBSt76rJ9POm9qoOaJbqRmnNL2viaF+d+Paf2blPSlm1JSnqn7hlRjio+40nZJ9TKzw==}
     peerDependencies:
       '@babel/runtime': '>=7.11.0'
       '@codemirror/state': '>=6.0.0'
@@ -6119,7 +6119,7 @@ packages:
       '@codemirror/state': 6.3.1
       '@codemirror/theme-one-dark': 6.1.2
       '@codemirror/view': 6.22.0
-      '@uiw/codemirror-extensions-basic-setup': 4.21.20(@codemirror/autocomplete@6.11.0)(@codemirror/commands@6.3.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/view@6.22.0)
+      '@uiw/codemirror-extensions-basic-setup': 4.21.21(@codemirror/autocomplete@6.11.0)(@codemirror/commands@6.3.0)(@codemirror/language@6.9.2)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.4)(@codemirror/state@6.3.1)(@codemirror/view@6.22.0)
       codemirror: 6.0.1(@lezer/common@1.1.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7176,7 +7176,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001564
-      electron-to-chromium: 1.4.593
+      electron-to-chromium: 1.4.594
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
@@ -7437,8 +7437,8 @@ packages:
       restore-cursor: 3.1.0
     dev: true
 
-  /cli-spinners@2.9.1:
-    resolution: {integrity: sha512-jHgecW0pxkonBJdrKsqxgRX9AcG+u/5k0Q7WPDfi8AogLAdwxEkyYYNWwZ5GvVFoFx2uiY1eNcSK00fh+1+FyQ==}
+  /cli-spinners@2.9.2:
+    resolution: {integrity: sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==}
     engines: {node: '>=6'}
     dev: true
 
@@ -8359,6 +8359,7 @@ packages:
   /domexception@4.0.0:
     resolution: {integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==}
     engines: {node: '>=12'}
+    deprecated: Use your platform's native DOMException instead
     dependencies:
       webidl-conversions: 7.0.0
     dev: false
@@ -8451,8 +8452,8 @@ packages:
       jake: 10.8.7
     dev: true
 
-  /electron-to-chromium@1.4.593:
-    resolution: {integrity: sha512-c7+Hhj87zWmdpmjDONbvNKNo24tvmD4mjal1+qqTYTrlF0/sNpAcDlU0Ki84ftA/5yj3BF2QhSGEC0Rky6larg==}
+  /electron-to-chromium@1.4.594:
+    resolution: {integrity: sha512-xT1HVAu5xFn7bDfkjGQi9dNpMqGchUkebwf1GL7cZN32NSwwlHRPMSDJ1KN6HkS0bWUtndbSQZqvpQftKG2uFQ==}
 
   /elliptic@6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
@@ -12552,7 +12553,7 @@ packages:
       bl: 4.1.0
       chalk: 4.1.2
       cli-cursor: 3.1.0
-      cli-spinners: 2.9.1
+      cli-spinners: 2.9.2
       is-interactive: 1.0.0
       is-unicode-supported: 0.1.0
       log-symbols: 4.1.0

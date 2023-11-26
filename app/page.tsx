@@ -1,9 +1,12 @@
 import Main from "components/atoms/Main/Main"
 import AboutPage from "components/pages/AboutPage"
-import { getAllTagsAndPaintingsLight } from "lib/api"
+import dynamic from "next/dynamic"
 import { draftMode } from "next/headers"
 
-import AboutPagePreview from "@/components/pages/AboutPage/AboutPagePreview"
+const AboutPagePreview = dynamic(
+    () => import("@/components/pages/AboutPage/AboutPagePreview"),
+)
+
 import { loadHomePage } from "@/sanity/loader/loadQuery"
 
 export const metadata = {
