@@ -3,13 +3,15 @@ import "styles/globals.css"
 import { Analytics } from "@vercel/analytics/react"
 import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
 import Navigation from "components/organisms/Navigation"
-import Footer from "components/templates/Footer"
+import dynamic from "next/dynamic"
 import { Inter, Oswald } from "next/font/google"
 import { draftMode } from "next/headers"
 
 import ThemeProvider from "@/components/atoms/ThemeProvider"
 import VisualEditing from "@/sanity/loader/VisualEditing"
 import { cn } from "@/utils/utility"
+
+const Footer = dynamic(() => import("@/components/templates/Footer"))
 
 const inter = Inter({
     subsets: ["latin"],
@@ -148,7 +150,6 @@ export default function RootLayout({ children }: RootProps) {
                 />
             </head>
             <body
-                // className={`${inter.variable} ${oswald.variable} font-inter selection:bg-primary selection:text-white`}
                 className={cn(
                     inter.variable,
                     oswald.variable,

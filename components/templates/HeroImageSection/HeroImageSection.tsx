@@ -50,7 +50,7 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
                 src={urlForImage(currentBackground.image)
                     .width(sanityWidth)
                     .height(sanityHeight)
-                    .quality(70)
+                    .quality(1)
                     .url()}
                 fill
                 alt=""
