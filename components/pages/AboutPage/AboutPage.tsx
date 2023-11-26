@@ -1,20 +1,17 @@
 import dynamic from "next/dynamic"
 import { TypedObject } from "sanity"
 
+import HeroImageSection from "@/components/templates/HeroImageSection"
 import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
 import { ShowcaseProject } from "@/types"
 
-const PaintingSection = dynamic(
-    () => import("components/templates/PantingSection"),
-)
+// const PaintingSection = dynamic(
+//     () => import("components/templates/PantingSection"),
+// )
 
-const HeroImageSection = dynamic(
-    () => import("components/templates/HeroImageSection"),
-)
-
-const ProjectsSection = dynamic(
-    () => import("components/templates/ProjectsSection"),
-)
+// const ProjectsSection = dynamic(
+//     () => import("components/templates/ProjectsSection"),
+// )
 
 interface AboutPageProps {
     paintings?: iSanityPainting[]
@@ -32,14 +29,14 @@ const AboutPage = ({
     return (
         <>
             <HeroImageSection paintings={paintings} />
-            <PaintingSection
+            {/* <PaintingSection
                 paintings={paintings}
                 description={paintingsDescription}
             />
             <ProjectsSection
                 projects={projects}
                 description={projectsDescription}
-            />
+            /> */}
             {/* <section className="flex flex-col items-center justify-center w-full min-h-screen gap-4 p-4 py-24 text-white bg-dark">
         <h2 className="pb-2">Frontend</h2>
         <p className="max-w-2xl">
