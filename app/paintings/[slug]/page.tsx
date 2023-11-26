@@ -112,59 +112,59 @@ export default async function LandingPage({ params }: { params: Params }) {
         return notFound()
     }
 
-    const {
-        title = "Not found",
-        description = "",
-        seoDescription,
-        slug = "",
-        image,
-        paintedAt,
-    } = data
+    // const {
+    //     title = "Not found",
+    //     description = "",
+    //     seoDescription,
+    //     slug = "",
+    //     image,
+    //     paintedAt,
+    // } = data
 
-    const selectedDescription = seoDescription || description
+    // const selectedDescription = seoDescription || description
 
     // regex to remove all html from description text and line breaks
-    const regex = /(<([^>]+)>)/gi
-    const descriptionText = selectedDescription.replace(regex, "")
-    const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
+    // const regex = /(<([^>]+)>)/gi
+    // const descriptionText = selectedDescription.replace(regex, "")
+    // const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
-    const paintingUrl = `https://wisihe.no/paintings/${slug}`
+    // const paintingUrl = `https://wisihe.no/paintings/${slug}`
 
-    const paintingImageUrl = urlForImage(image)
-        .width(400)
-        .height(400)
-        .quality(75)
-        .url()
+    // const paintingImageUrl = urlForImage(image)
+    //     .width(400)
+    //     .height(400)
+    //     .quality(75)
+    //     .url()
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "VisualArtwork",
-        name: title,
-        url: paintingUrl,
-        image: paintingImageUrl,
-        author: {
-            "@type": "Person",
-            name: "Henrik Wilhelm Sissener",
-            url: "https://wisihe.no/about",
-        },
-        creator: {
-            "@type": "Person",
-            name: "Henrik Wilhelm Sissener",
-            url: "https://wisihe.no/about",
-        },
-        artworkSurface: "Digital",
-        artMedium: "Digital",
-        artform: "Digital Painting",
-        dateCreated: paintedAt,
-        description: removedLineBreaks,
+    // const jsonLd = {
+    //     "@context": "https://schema.org",
+    //     "@type": "VisualArtwork",
+    //     name: title,
+    //     url: paintingUrl,
+    //     image: paintingImageUrl,
+    //     author: {
+    //         "@type": "Person",
+    //         name: "Henrik Wilhelm Sissener",
+    //         url: "https://wisihe.no/about",
+    //     },
+    //     creator: {
+    //         "@type": "Person",
+    //         name: "Henrik Wilhelm Sissener",
+    //         url: "https://wisihe.no/about",
+    //     },
+    //     artworkSurface: "Digital",
+    //     artMedium: "Digital",
+    //     artform: "Digital Painting",
+    //     dateCreated: paintedAt,
+    //     description: removedLineBreaks,
 
-        inLanguage: "en",
-        copyrightHolder: {
-            "@type": "Person",
-            name: "Henrik Wilhelm Sissener",
-            url: "https://wisihe.no/about",
-        },
-    }
+    //     inLanguage: "en",
+    //     copyrightHolder: {
+    //         "@type": "Person",
+    //         name: "Henrik Wilhelm Sissener",
+    //         url: "https://wisihe.no/about",
+    //     },
+    // }
 
     if (draftMode().isEnabled) {
         return (
@@ -176,10 +176,10 @@ export default async function LandingPage({ params }: { params: Params }) {
 
     return (
         <>
-            <script
+            {/* <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            /> */}
             <Main
                 noTopPadding
                 className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto max-w-screen-3xl lg:gap-4 overflow-clip"

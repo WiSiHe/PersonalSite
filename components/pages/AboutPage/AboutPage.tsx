@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic"
 import { TypedObject } from "sanity"
 
 import HeroImageSection from "@/components/templates/HeroImageSection"
