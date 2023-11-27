@@ -25,6 +25,7 @@ export default function VisualEditing() {
     useEffect(() => {
         routerRef.current = router
     }, [router])
+
     useEffect(() => {
         const disable = enableOverlays({
             allowStudioOrigin,

@@ -14,9 +14,7 @@ import { locate } from "./sanity/plugins/locate"
 import { pageStructure, singletonPlugin } from "./sanity/plugins/settings"
 import home from "./sanity/schemas/singletons/home"
 
-const title =
-    process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
-    "Next.js Blog with Sanity.io"
+const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "test"
 
 const SANITY_STUDIO_PREVIEW_URL =
     process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:1992"
@@ -27,8 +25,15 @@ export default defineConfig({
     dataset: dataset || "",
     title,
     schema: {
-        // If you want more content types, you can add them to this array
-        types: [home, paintingType, tagType, videoType, projectType],
+        types: [
+            // singletons
+            home,
+            // documents
+            tagType,
+            videoType,
+            projectType,
+            paintingType,
+        ],
     },
     studio: {
         components: {
@@ -54,17 +59,21 @@ export default defineConfig({
         deskTool({
             structure: pageStructure([home]),
         }),
+        // presentationTool({
+        //     locate,
+        //     previewUrl: {
+        //         origin:
+        //             typeof location === "undefined"
+        //                 ? SANITY_STUDIO_PREVIEW_URL
+        //                 : location.origin,
+        //         draftMode: {
+        //             enable: "/api/sanity-v2/draft",
+        //         },
+        //     },
+        // }),
         presentationTool({
             locate,
-            previewUrl: {
-                origin:
-                    typeof location === "undefined"
-                        ? SANITY_STUDIO_PREVIEW_URL
-                        : location.origin,
-                draftMode: {
-                    enable: "/api/sanity-v2/draft",
-                },
-            },
+            previewUrl: SANITY_STUDIO_PREVIEW_URL,
         }),
         singletonPlugin([home.name]),
 
