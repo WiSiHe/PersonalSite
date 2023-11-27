@@ -71,10 +71,10 @@ export default defineConfig({
         //         },
         //     },
         // }),
-        // presentationTool({
-        //     locate,
-        //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
-        // }),
+        presentationTool({
+            // locate,
+            previewUrl: SANITY_STUDIO_PREVIEW_URL,
+        }),
         // Configures the global "new document" button, and document actions, to suit the Settings document singleton
         singletonPlugin([home.name]),
 
