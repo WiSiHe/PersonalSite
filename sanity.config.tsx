@@ -58,19 +58,19 @@ export default defineConfig({
         deskTool({
             structure: pageStructure([home]),
         }),
-        // presentationTool({
-        //     locate,
-        //     previewUrl: {
-        //         origin:
-        //             typeof location === "undefined"
-        //                 ? SANITY_STUDIO_PREVIEW_URL
-        //                 : location.origin,
-        //         draftMode: {
-        //             enable: "/api/sanity-v2/draft",
-        //             disable: "/api/sanity-v2/disable-draft",
-        //         },
-        //     },
-        // }),
+        presentationTool({
+            locate,
+            previewUrl: {
+                origin:
+                    typeof location === "undefined"
+                        ? SANITY_STUDIO_PREVIEW_URL
+                        : location.origin,
+                draftMode: {
+                    enable: "/api/sanity-v2/draft",
+                    disable: "/api/sanity-v2/disable-draft",
+                },
+            },
+        }),
         // presentationTool({
         //     locate,
         //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
