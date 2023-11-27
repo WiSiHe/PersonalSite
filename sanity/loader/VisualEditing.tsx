@@ -67,6 +67,7 @@ export default function VisualEditing() {
     }, [navigate, pathname, searchParams])
 
     useLiveMode({ allowStudioOrigin, client: stegaClient })
+
     useEffect(() => {
         // If not an iframe or a Vercel Preview deployment, turn off Draft Mode
         if (
