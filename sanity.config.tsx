@@ -1,7 +1,6 @@
 import { visionTool } from "@sanity/vision"
 import LogoQR from "components/atoms/icons/LogoQR"
-import { apiVersion, dataset, previewSecretId, projectId } from "lib/sanity.api"
-import { productionUrl } from "plugins/productionUrl"
+import { apiVersion, dataset, projectId } from "lib/sanity.api"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
 import { presentationTool } from "sanity/presentation"
@@ -17,7 +16,7 @@ import home from "./sanity/schemas/singletons/home"
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "test"
 
 const SANITY_STUDIO_PREVIEW_URL =
-    process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:1992"
+    process.env.NEXT_PUBLIC_SANITY_STUDIO_PREVIEW_URL || "http://localhost:1992"
 
 export default defineConfig({
     basePath: "/studio",
@@ -59,24 +58,23 @@ export default defineConfig({
         deskTool({
             structure: pageStructure([home]),
         }),
+        presentationTool({
+            locate,
+            previewUrl: {
+                origin:
+                    typeof location === "undefined"
+                        ? SANITY_STUDIO_PREVIEW_URL
+                        : location.origin,
+                draftMode: {
+                    enable: "/api/sanity-v2/draft",
+                    disable: "/api/sanity-v2/disable-draft",
+                },
+            },
+        }),
         // presentationTool({
         //     locate,
-        //     previewUrl: {
-        //         origin:
-        //             typeof location === "undefined"
-        //                 ? SANITY_STUDIO_PREVIEW_URL
-        //                 : location.origin,
-        //         draftMode: {
-        //             enable: "/api/sanity-v2/draft",
-        //             disable: "/api/sanity-v2/disable-draft",
-        //         },
-        //     },
+        //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
         // }),
-        presentationTool({
-            // locate,
-            previewUrl: "https://wisihe.no/",
-            // previewUrl: SANITY_STUDIO_PREVIEW_URL,
-        }),
         // Configures the global "new document" button, and document actions, to suit the Settings document singleton
         singletonPlugin([home.name]),
 
