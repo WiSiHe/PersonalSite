@@ -59,23 +59,24 @@ export default defineConfig({
         deskTool({
             structure: pageStructure([home]),
         }),
-        presentationTool({
-            locate,
-            previewUrl: {
-                origin:
-                    typeof location === "undefined"
-                        ? SANITY_STUDIO_PREVIEW_URL
-                        : location.origin,
-                draftMode: {
-                    enable: "/api/sanity-v2/draft",
-                    disable: "/api/sanity-v2/disable-draft",
-                },
-            },
-        }),
         // presentationTool({
         //     locate,
-        //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
+        //     previewUrl: {
+        //         origin:
+        //             typeof location === "undefined"
+        //                 ? SANITY_STUDIO_PREVIEW_URL
+        //                 : location.origin,
+        //         draftMode: {
+        //             enable: "/api/sanity-v2/draft",
+        //             disable: "/api/sanity-v2/disable-draft",
+        //         },
+        //     },
         // }),
+        presentationTool({
+            // locate,
+            previewUrl: "https://wisihe.no/",
+            // previewUrl: SANITY_STUDIO_PREVIEW_URL,
+        }),
         // Configures the global "new document" button, and document actions, to suit the Settings document singleton
         singletonPlugin([home.name]),
 
