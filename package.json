@@ -39,7 +39,7 @@
     "@sanity/react-loader": "^1.1.0",
     "@sanity/ui": "^1.9.3",
     "@sanity/vision": "^3.20.1",
-    "@sanity/webhook": "^3.0.1",
+    "@sanity/webhook": "^4.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/styled-components": "^5.1.32",
     "@vercel/analytics": "^1.1.1",
