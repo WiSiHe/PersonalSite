@@ -59,31 +59,30 @@ export default defineConfig({
         deskTool({
             structure: pageStructure([home]),
         }),
-        // presentationTool({
-        //     locate,
-        //     previewUrl: {
-        //         origin:
-        //             typeof location === "undefined"
-        //                 ? SANITY_STUDIO_PREVIEW_URL
-        //                 : location.origin,
-        //         draftMode: {
-        //             enable: "/api/sanity-v2/draft",
-        //         },
-        //     },
-        // }),
+        presentationTool({
+            locate,
+            previewUrl: {
+                origin:
+                    typeof location === "undefined"
+                        ? SANITY_STUDIO_PREVIEW_URL
+                        : location.origin,
+                draftMode: {
+                    enable: "/api/sanity-v2/draft",
+                    disable: "/api/sanity-v2/disable-draft",
+                },
+            },
+        }),
         // presentationTool({
         //     locate,
         //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
         // }),
+        // Configures the global "new document" button, and document actions, to suit the Settings document singleton
         singletonPlugin([home.name]),
 
-        // productionUrl({
-        //     apiVersion,
-        //     previewSecretId,
-        //     types: [paintingType.name, videoType.name, projectType.name],
-        // }),
-
+        // Vision lets you query your content with GROQ in the studio
+        // https://www.sanity.io/docs/the-vision-plugin
         visionTool({ defaultApiVersion: apiVersion }),
+        // For when AI assist becoems available
         // assist(), For when AI assist becoems available
     ],
 })
