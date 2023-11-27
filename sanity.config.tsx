@@ -59,29 +59,29 @@ export default defineConfig({
         deskTool({
             structure: pageStructure([home]),
         }),
-        // presentationTool({
-        //     locate,
-        //     previewUrl: {
-        //         origin:
-        //             typeof location === "undefined"
-        //                 ? SANITY_STUDIO_PREVIEW_URL
-        //                 : location.origin,
-        //         draftMode: {
-        //             enable: "/api/sanity-v2/draft",
-        //         },
-        //     },
-        // }),
         presentationTool({
             locate,
-            previewUrl: SANITY_STUDIO_PREVIEW_URL,
+            previewUrl: {
+                origin:
+                    typeof location === "undefined"
+                        ? SANITY_STUDIO_PREVIEW_URL
+                        : location.origin,
+                draftMode: {
+                    enable: "/api/sanity-v2/draft",
+                },
+            },
         }),
+        // presentationTool({
+        //     locate,
+        //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
+        // }),
         singletonPlugin([home.name]),
 
-        productionUrl({
-            apiVersion,
-            previewSecretId,
-            types: [paintingType.name, videoType.name, projectType.name],
-        }),
+        // productionUrl({
+        //     apiVersion,
+        //     previewSecretId,
+        //     types: [paintingType.name, videoType.name, projectType.name],
+        // }),
 
         visionTool({ defaultApiVersion: apiVersion }),
         // assist(), For when AI assist becoems available
