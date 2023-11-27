@@ -9,9 +9,9 @@ import projectType from "schemas/project"
 import tagType from "schemas/tag"
 import videoType from "schemas/video"
 
-import { locate } from "./sanity/plugins/locate"
-import { pageStructure, singletonPlugin } from "./sanity/plugins/settings"
-import home from "./sanity/schemas/singletons/home"
+import { locate } from "@/sanity/plugins/locate"
+import { pageStructure, singletonPlugin } from "@/sanity/plugins/settings"
+import home from "@/sanity/schemas/singletons/home"
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "test"
 
