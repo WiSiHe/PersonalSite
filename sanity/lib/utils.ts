@@ -1,5 +1,6 @@
 import createImageUrlBuilder from "@sanity/image-url"
-import type { Image } from "sanity"
+
+import { iSanityImage } from "@/lib/models/objects/sanityImage"
 
 import { dataset, projectId } from "./api"
 
@@ -8,7 +9,7 @@ const imageBuilder = createImageUrlBuilder({
     dataset: dataset || "",
 })
 
-export const urlForImage = (source: Image | undefined) => {
+export const urlForImage = (source: iSanityImage | undefined) => {
     // Ensure that source image contains a valid reference
     if (!source?.asset?._ref) {
         return undefined
@@ -17,7 +18,7 @@ export const urlForImage = (source: Image | undefined) => {
     return imageBuilder?.image(source).auto("format").fit("max")
 }
 
-export function urlForOpenGraphImage(image: Image | undefined) {
+export function urlForOpenGraphImage(image: iSanityImage | undefined) {
     return urlForImage(image)?.width(1200).height(627).fit("crop").url()
 }
 

@@ -6,6 +6,7 @@ import Navigation from "components/organisms/Navigation"
 import dynamic from "next/dynamic"
 import { Inter, Oswald } from "next/font/google"
 import { draftMode } from "next/headers"
+import { Suspense } from "react"
 
 import ThemeProvider from "@/components/atoms/ThemeProvider"
 import VisualEditing from "@/sanity/loader/VisualEditing"
@@ -25,6 +26,7 @@ const oswald = Oswald({
 })
 
 export const metadata = {
+    metadataBase: new URL("/", "https://wisihe.no"),
     title: "Home | WiSiHe",
     description: "A gallery of some of my paintings and other projects",
     locale: "no_NO",
@@ -159,9 +161,13 @@ export default function RootLayout({ children }: RootProps) {
                 <ThemeProvider>
                     <SkipToMainContentLink />
                     {/* <NextTopLoader color="#DE0D92" showSpinner={false} height={5} /> */}
-                    <Navigation />
-                    {children}
-                    <Footer />
+                    <Suspense>
+                        <Navigation />
+                    </Suspense>
+                    <Suspense>{children}</Suspense>
+                    <Suspense>
+                        <Footer />
+                    </Suspense>
                     <Analytics />
                     {draftMode().isEnabled && <VisualEditing />}
                 </ThemeProvider>

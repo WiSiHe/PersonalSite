@@ -1,3 +1,5 @@
+import { Image } from "sanity"
+
 export interface iSanityImageAsset {
     _ref: string
     _type: string

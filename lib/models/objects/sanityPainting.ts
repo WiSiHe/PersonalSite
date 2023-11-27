@@ -7,7 +7,7 @@ export interface iSanityPainting {
     _id: string
     format: iPaintingFormat
     image: iSanityImage
-    images?: iSanityImage[] | null
+    images?: iSanityImage[]
     imagesCount: number | null
     redbubbleUrl?: string | null
     society6Url?: string | null

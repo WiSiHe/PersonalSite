@@ -1,6 +1,3 @@
-import clsx from "clsx"
-import { getPaintingDetails } from "lib/api"
-import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
@@ -11,95 +8,53 @@ import PaintingPage from "@/components/pages/PaintingPage"
 const PaintingPagePreview = dynamic(
     () => import("components/pages/PaintingPagePreview"),
 )
+
+import { Metadata, ResolvingMetadata } from "next"
+
+import { urlForOpenGraphImage } from "@/sanity/lib/utils"
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"
 import { loadPainting } from "@/sanity/loader/loadQuery"
+
+type Props = {
+    params: { slug: string }
+}
+
+export async function generateMetadata(
+    { params }: Props,
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+    const { data: painting } = await loadPainting(params.slug)
+
+    if (!painting) {
+        return {
+            title: "Not found",
+            description: "",
+        }
+    }
+
+    const previousImages = (await parent).openGraph?.images || []
+
+    const { title, seoDescription, image } = painting
+
+    const ogImage = urlForOpenGraphImage(image) || ""
+
+    return {
+        // metadataBase: new URL(`/paintings/${params.slug}`),
+        title: title,
+        description: seoDescription,
+        openGraph: {
+            images: [ogImage, ...previousImages],
+        },
+    }
+}
 
 export const revalidate = 3600 // every hour
 
 export function generateStaticParams() {
     return generateStaticSlugs("painting")
 }
-// SEO
-export async function generateMetadata({ params }: { params: Params }) {
-    const preview = draftMode().isEnabled ? true : false
-    const painting = await getData(params.slug, preview)
 
-    const {
-        title = "Not found",
-        seoDescription,
-        description = "",
-        // image,
-    } = painting
-
-    const selectedDescription = seoDescription || description
-
-    // regex to remove all html from description text and line breaks
-    const regex = /(<([^>]+)>)/gi
-    const descriptionText = selectedDescription.replace(regex, "")
-    const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
-
-    // const paintingImageUrl = urlForImage(image)
-    //     .width(400)
-    //     .height(400)
-    //     .quality(45)
-    //     .url()
-
-    const combinedTitle = clsx(title, " | WiSiHe")
-
-    return {
-        title: combinedTitle,
-        description: removedLineBreaks,
-        locale: "en-US",
-        type: "website",
-        url: `https://wisihe.no/paintings/${params.slug}`,
-        // openGraph: {
-        //     title: combinedTitle,
-        //     description: removedLineBreaks,
-        //     images: [
-        //         {
-        //             url: paintingImageUrl,
-        //             width: 400,
-        //             height: 400,
-        //             alt: painting.title,
-        //         },
-        //     ],
-        //     image: paintingImageUrl,
-        //     url: `https://wisihe.no/paintings/${params.slug}`,
-        //     type: "website",
-        //     site_name: "WiSiHe",
-        // },
-        // twitter: {
-        //     title: combinedTitle,
-        //     description: removedLineBreaks,
-        //     cardType: "summary_large_image",
-        //     image: paintingImageUrl,
-        //     imageAlt: painting.title,
-        //     images: [
-        //         {
-        //             url: paintingImageUrl,
-        //             width: 400,
-        //             height: 400,
-        //             alt: painting.title,
-        //         },
-        //     ],
-        //     url: `https://wisihe.no/paintings/${params.slug}`,
-        //     creator: "@wisihe",
-        //     site: "https://wisihe.no",
-        // },
-    }
-}
-
-async function getData(slug: string, preview: boolean) {
-    const painting = await getPaintingDetails(slug, preview)
-
-    return painting
-}
-
-interface Params {
-    slug: string
-}
-
-export default async function LandingPage({ params }: { params: Params }) {
+export default async function LandingPage({ params }: Props) {
     const initial = await loadPainting(params.slug)
 
     if (!initial) {
