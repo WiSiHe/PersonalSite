@@ -25,7 +25,6 @@
     "tabWidth": 4
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.27.2",
     "@headlessui/react": "^1.7.17",
     "@next/env": "^14.0.3",
     "@portabletext/react": "^3.0.11",
@@ -112,8 +111,5 @@
     "ts-node": "^10.9.1",
     "typescript": "5.3.2",
     "zod": "^3.22.4"
-  },
-  "engines": {
-    "node": ">=16"
   }
 }

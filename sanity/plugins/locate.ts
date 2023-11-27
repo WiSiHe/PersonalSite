@@ -39,21 +39,21 @@ export const locate: DocumentLocationResolver = (params, context) => {
                     (doc) => doc._type === "settings",
                 )
                 switch (params.type) {
-                    // case "home":
-                    //     return {
-                    //         locations: [
-                    //             {
-                    //                 title:
-                    //                     docs?.find(
-                    //                         (doc) => doc._type === "home",
-                    //                     )?.title || "Home",
-                    //                 href: resolveHref(params.type)!,
-                    //             },
-                    //         ],
-                    //         tone: "positive",
-                    //         message:
-                    //             "This document is used to render the front page",
-                    //     } satisfies DocumentLocationsState
+                    case "home":
+                        return {
+                            locations: [
+                                {
+                                    title:
+                                        docs?.find(
+                                            (doc) => doc._type === "home",
+                                        )?.title || "Home",
+                                    href: resolveHref(params.type)!,
+                                },
+                            ],
+                            tone: "positive",
+                            message:
+                                "This document is used to render the front page",
+                        } satisfies DocumentLocationsState
                     case "project":
                         return {
                             locations: docs
@@ -96,27 +96,27 @@ export const locate: DocumentLocationResolver = (params, context) => {
                                 ? "This document is used on all pages as it is in the top menu"
                                 : undefined,
                         } satisfies DocumentLocationsState
-                    // case "tag":
-                    //     return {
-                    //         locations: docs
-                    //             ?.map((doc) => {
-                    //                 const href = resolveHref(
-                    //                     doc._type,
-                    //                     doc?.slug?.current,
-                    //                 )
-                    //                 return {
-                    //                     title: doc?.title || "Untitled",
-                    //                     href: href!,
-                    //                 }
-                    //             })
-                    //             .filter((doc) => doc.href !== undefined),
-                    //         tone: isReferencedBySettings
-                    //             ? "caution"
-                    //             : undefined,
-                    //         message: isReferencedBySettings
-                    //             ? "This document is used on all pages as it is in the top menu"
-                    //             : undefined,
-                    //     } satisfies DocumentLocationsState
+                    case "tag":
+                        return {
+                            locations: docs
+                                ?.map((doc) => {
+                                    const href = resolveHref(
+                                        doc._type,
+                                        doc?.slug?.current,
+                                    )
+                                    return {
+                                        title: doc?.title || "Untitled",
+                                        href: href!,
+                                    }
+                                })
+                                .filter((doc) => doc.href !== undefined),
+                            tone: isReferencedBySettings
+                                ? "caution"
+                                : undefined,
+                            message: isReferencedBySettings
+                                ? "This document is used on all pages as it is in the top menu"
+                                : undefined,
+                        } satisfies DocumentLocationsState
                     default:
                         return {
                             message: "Unable to map document type to locations",
