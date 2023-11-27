@@ -12,7 +12,7 @@ import { loadHomePage } from "@/sanity/loader/loadQuery"
 export const metadata = {
     title: "Home | WiSiHe",
     description: "A gallery of some of my paintings",
-    locale: "en-US",
+    locale: "no_NO",
     type: "website",
 }
 
