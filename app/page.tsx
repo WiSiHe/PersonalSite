@@ -58,6 +58,7 @@ export default async function Home() {
                 projects={showcaseProjects}
                 projectsDescription={projectsDescription}
                 paintingsDescription={paintingsDescription}
+                paintingsCount={paintingsCount}
             />
         </Main>
     )

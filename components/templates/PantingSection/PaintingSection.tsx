@@ -1,10 +1,7 @@
-// "use client"
-
-import LinkButton from "components/atoms/LinkButton/LinkButton"
-import { motion } from "framer-motion"
 import dynamic from "next/dynamic"
 import { TypedObject } from "sanity"
 
+import LinkButton from "@/components/atoms/LinkButton/LinkButton"
 import CustomPortableText from "@/components/molecules/CustomPortableText"
 import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
 
@@ -15,32 +12,26 @@ const CarouselStatic = dynamic(
 type PaintingSection = {
     paintings: iSanityPainting[]
     description?: TypedObject[]
+    paintingsCount?: number
 }
 
-const PaintingSection = ({ paintings = [], description }: PaintingSection) => {
+const PaintingSection = ({
+    paintings = [],
+    description,
+    paintingsCount,
+}: PaintingSection) => {
     return (
         <section className="relative w-full text-white py-14 xl:py-24">
-            {/* <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true, amount: "some" }}
-                transition={{ type: "spring" }}
-                className="relative w-full px-4 text-dark"
-            >
-                <h2 className="pb-2">Paintings</h2>
-                <p className="flex flex-wrap max-w-2xl">
-                    <CustomPortableText value={description} />
-                </p>
-            </motion.div> */}
-            <div className="relative w-full px-4 text-dark">
+            <div className="relative px-4 text-dark">
                 <h2 className="pb-2">Paintings</h2>
                 <p className="flex flex-wrap max-w-3xl">
                     <CustomPortableText value={description} />
                 </p>
             </div>
             <CarouselStatic paintings={paintings} />
-            <div className="flex flex-col items-center justify-center w-full max-w-screen-lg gap-4 px-4 text-dark">
-                <strong>Like what you see?</strong>
+            <div className="flex flex-col items-center justify-center w-full gap-4 px-4 text-dark">
+                <strong>Like what you see?</strong> I have {paintingsCount}{" "}
+                paintings in total.
                 <LinkButton href="/paintings" hasIcon>
                     More paintings
                 </LinkButton>

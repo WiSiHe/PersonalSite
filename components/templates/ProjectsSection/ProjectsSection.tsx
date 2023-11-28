@@ -1,11 +1,13 @@
 "use client"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { set, TypedObject } from "sanity"
+import { TypedObject } from "sanity"
 
+import LinkButton from "@/components/atoms/LinkButton/LinkButton"
 import CustomPortableText from "@/components/molecules/CustomPortableText"
-import { useThemeStore } from "@/lib/store"
+import { urlForImage } from "@/lib/sanity.image"
 import { ShowcaseProject } from "@/types"
 
 type ProjectsSection = {
@@ -14,77 +16,102 @@ type ProjectsSection = {
 }
 
 const ProjectsSection = ({ projects = [], description }: ProjectsSection) => {
-    const [displayImage, setDisplayImage] = useState(false)
-    // const setChatLogs = useOpenAIStore((state) => state.addMessage)
-    const theme = useThemeStore((state) => state.theme)
-    const setTheme = useThemeStore((state) => state.setTheme)
-
-    const toggleTHeme = () => {
-        switch (theme) {
-            case "":
-                setTheme("dark")
-                break
-            case "dark":
-                setTheme("neon")
-                break
-            default:
-                setTheme("")
-                break
-        }
-    }
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
     return (
-        <section className="w-full px-4 py-10 text-white bg-dark">
-            <div className="flex flex-col items-center justify-center gap-4 col-span-full">
+        <section className="relative flex flex-col items-center justify-center w-full px-4 py-10 text-white bg-dark xl:aspect-video">
+            <div className="absolute inset-0">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentImageIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5, type: "spring" }}
+                        className="relative w-full h-full"
+                    >
+                        <Image
+                            fill
+                            alt=""
+                            src={urlForImage(projects[currentImageIndex].image)
+                                .width(400)
+                                .height(400)
+                                .quality(70)
+                                .url()}
+                            quality={50}
+                            className="object-cover"
+                            // alt={title}
+                        />
+                    </motion.div>
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-dark/40" />
+            </div>
+            <div className="relative z-10 text-center">
                 <h2>Projects</h2>
                 <CustomPortableText value={description} />
-                <button onClick={toggleTHeme}>switch</button>
             </div>
-            <div className="grid grid-cols-12 gap-4 py-10 empty:hidden">
-                {projects
-                    // .filter((project) => project._type === "painting")
-                    .map((project, i) => {
-                        const {
-                            image,
-                            tags = [],
-                            description = "",
-                            title = "",
-                            slug,
-                            status,
-                        } = project
+            <div className="relative z-10 flex gap-8 py-10 empty:hidden">
+                {projects.map((project, i) => {
+                    const {
+                        image,
+                        description = "",
+                        title = "",
+                        slug,
+                    } = project
 
-                        // const { lqip } = image
+                    // const { lqip } = image
 
-                        return (
-                            <motion.article
-                                initial={{ y: 100, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ once: false, amount: "some" }}
-                                key={i}
-                                className="p-8 rounded col-span-full lg:col-span-3 bg-tertiary text-dark lg:first:col-start-2"
-                                onMouseOver={() => {
-                                    console.log("hover")
-                                }}
-                            >
+                    return (
+                        <motion.article
+                            initial={{ y: 100, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: false, amount: "some" }}
+                            transition={{
+                                type: "spring",
+                                // duration: 0.4,
+                            }}
+                            whileHover={{
+                                scale: 1.02,
+                                boxShadow: "0 0 20px #DE0D92",
+                                zIndex: 1,
+                            }}
+                            key={i}
+                            className="hidden rounded-lg first:block lg:block overflow-clip bg-tertiary text-dark lg:first:col-start-2"
+                            onMouseOver={() => {
+                                setCurrentImageIndex(i)
+                            }}
+                        >
+                            <div className="relative aspect-video">
+                                <Image
+                                    fill
+                                    alt=""
+                                    className="object-cover"
+                                    src={urlForImage(image).url()}
+                                />
+                            </div>
+                            <div className="p-4">
                                 <h3>
                                     <strong>{title}</strong>
                                 </h3>
-                                <p className="pt-4 text-sm">{description}</p>
-                                <Link href={`/projects/${slug}`}>
-                                    <span className="underline">Read more</span>
-                                </Link>
-                                {/* <Project
-                            image={image}
-                            tags={tags}
-                            description={description}
-                            title={title}
-                            slug={slug}
-                            status={status}
-                        /> */}
-                            </motion.article>
-                        )
-                    })}
+                                <p className="pt-2 text-sm line-clamp-3">
+                                    {description}
+                                </p>
+                                <div className="flex justify-end pt-4">
+                                    <Link
+                                        href={`/projects/${slug}`}
+                                        className="underline"
+                                    >
+                                        Check it out
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.article>
+                    )
+                })}
             </div>
+            <LinkButton href="/projects" hasIcon>
+                More projects
+            </LinkButton>
         </section>
     )
 }

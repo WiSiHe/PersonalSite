@@ -9,15 +9,16 @@ const PaintingSection = dynamic(
     () => import("components/templates/PantingSection"),
 )
 
-// const ProjectsSection = dynamic(
-//     () => import("components/templates/ProjectsSection"),
-// )
+const ProjectsSection = dynamic(
+    () => import("components/templates/ProjectsSection"),
+)
 
 interface AboutPageProps {
     paintings?: iSanityPainting[]
     projects?: ShowcaseProject[]
     paintingsDescription?: TypedObject[]
     projectsDescription?: TypedObject[]
+    paintingsCount?: number
 }
 
 const AboutPage = ({
@@ -25,6 +26,7 @@ const AboutPage = ({
     projects = [],
     paintingsDescription,
     projectsDescription,
+    paintingsCount,
 }: AboutPageProps) => {
     return (
         <>
@@ -32,12 +34,13 @@ const AboutPage = ({
             <PaintingSection
                 paintings={paintings}
                 description={paintingsDescription}
+                paintingsCount={paintingsCount}
             />
-            {/*
+
             <ProjectsSection
                 projects={projects}
                 description={projectsDescription}
-            /> */}
+            />
         </>
     )
 }
