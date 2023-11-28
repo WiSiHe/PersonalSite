@@ -5,11 +5,15 @@ import { notFound } from "next/navigation"
 import Main from "@/components/atoms/Main/Main"
 import PaintingPage from "@/components/pages/PaintingPage"
 
-const PaintingPagePreview = dynamic(
-    () => import("components/pages/PaintingPagePreview"),
+const AboutPagePreview = dynamic(
+    () => import("@/components/pages/AboutPage/AboutPagePreview"),
 )
 
 import { Metadata, ResolvingMetadata } from "next"
+
+const PaintingPagePreview = dynamic(
+    () => import("@/components/pages/PaintingPage/PaintingPagePreview"),
+)
 
 import { urlForOpenGraphImage } from "@/sanity/lib/utils"
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"

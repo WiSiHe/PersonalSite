@@ -5,14 +5,17 @@ import { iSanityPainting } from "lib/models/objects/sanityPainting"
 
 import { useQuery } from "@/sanity/loader/useQuery"
 
-import PaintingPage from "../PaintingPage/PaintingPage"
+import PaintingPage from "./PaintingPage"
 
 interface iPaintingPageProps {
     params: { slug: string }
     initial: QueryResponseInitial<iSanityPainting | null>
 }
 
-const PaintingPagePreview = ({ initial, params }: iPaintingPageProps) => {
+export default function PaintingPagePreview({
+    initial,
+    params,
+}: iPaintingPageProps) {
     const { data } = useQuery<iSanityPainting | null>(
         paintingDetailsQuery,
         params,
@@ -21,5 +24,3 @@ const PaintingPagePreview = ({ initial, params }: iPaintingPageProps) => {
 
     return <PaintingPage painting={data!} />
 }
-
-export default PaintingPagePreview
