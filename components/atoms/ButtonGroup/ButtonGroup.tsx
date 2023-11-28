@@ -1,13 +1,20 @@
-interface ButtonGroup {
-    children: React.ReactNode
-    props?: any
+type ButtonGroup = {
+    options: string[]
 }
 
-const ButtonGroup = ({ children, ...props }: ButtonGroup) => {
+const ButtonGroup = ({ options = [] }: ButtonGroup) => {
     return (
-        <div className="flex flex-row space-x-2" {...props}>
-            {children}
-        </div>
+        <ul className="flex flex-row space-x-2">
+            {options.map((option, i) => {
+                return (
+                    <li key={i}>
+                        <button className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-primary/90">
+                            {option}
+                        </button>
+                    </li>
+                )
+            })}
+        </ul>
     )
 }
 

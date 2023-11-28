@@ -9,6 +9,12 @@ const config: StorybookConfig = {
         "@storybook/addon-themes",
         "@storybook/addon-a11y",
         "@chromaui/addon-visual-tests",
+        {
+            name: "@chromaui/addon-visual-tests",
+            options: {
+                debug: true,
+            },
+        },
     ],
     framework: "@storybook/nextjs",
     docs: {

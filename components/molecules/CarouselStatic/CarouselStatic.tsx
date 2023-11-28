@@ -133,14 +133,13 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                     onClick={handleScrollLeft}
                     label="Scroll Left"
                 >
-                    <FaChevronLeft /> Scroll Left
+                    <FaChevronLeft />
                 </Button>
                 <Button
                     color="primary"
                     onClick={handleScrollRight}
                     label="Scroll Right"
                 >
-                    Scroll Right
                     <FaChevronRight />
                 </Button>
             </div>

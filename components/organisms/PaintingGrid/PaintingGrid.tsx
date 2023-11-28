@@ -58,7 +58,7 @@ const PaintingGrid = ({
             <AnimatePresence>
                 {paintings.map((painting, i) => {
                     const isMobile = width < 640
-                    let amountOfLazyImages = 1
+                    let amountOfLazyImages = 4
                     if (!isMobile) amountOfLazyImages = 8
 
                     return (
