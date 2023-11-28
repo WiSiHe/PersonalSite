@@ -60,7 +60,7 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
         >
             <ul
                 ref={scrollRef}
-                className="flex items-stretch w-full gap-4 pt-8 pb-16 pl-4 pr-8 h-72 lg:h-[520px] overflow-x-scroll scrolling-touch "
+                className="flex items-stretch w-full gap-4 pt-8 pb-16 pl-8 pr-4 h-72 lg:h-[520px] overflow-x-scroll snap-x scroll-px-4"
             >
                 {sortedPaintings.map((painting, i) => {
                     const { format, image } = painting
@@ -89,7 +89,7 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                         <li
                             key={i}
                             className={cn(
-                                "relative flex-shrink-0 bg-white rounded-lg hover:drop-shadow-lg group  hover:ring",
+                                "relative flex-shrink-0 bg-white rounded-lg hover:drop-shadow-lg group h-full snap-start",
                                 formatStyle,
                             )}
                         >

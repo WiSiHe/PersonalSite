@@ -1,12 +1,13 @@
+import dynamic from "next/dynamic"
 import { TypedObject } from "sanity"
 
 import HeroImageSection from "@/components/templates/HeroImageSection"
 import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
 import { ShowcaseProject } from "@/types"
 
-// const PaintingSection = dynamic(
-//     () => import("components/templates/PantingSection"),
-// )
+const PaintingSection = dynamic(
+    () => import("components/templates/PantingSection"),
+)
 
 // const ProjectsSection = dynamic(
 //     () => import("components/templates/ProjectsSection"),
@@ -28,10 +29,11 @@ const AboutPage = ({
     return (
         <>
             <HeroImageSection paintings={paintings} />
-            {/* <PaintingSection
+            <PaintingSection
                 paintings={paintings}
                 description={paintingsDescription}
             />
+            {/*
             <ProjectsSection
                 projects={projects}
                 description={projectsDescription}

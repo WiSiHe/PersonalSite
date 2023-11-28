@@ -123,7 +123,7 @@ export default async function LandingPage({ params }: Props) {
 
     if (draftMode().isEnabled) {
         return (
-            <Main className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto max-w-screen-3xl lg:gap-4 overflow-clip">
+            <Main className="grid min-h-screen grid-cols-12 pt-16 mx-auto lg:pt-20 lg:p-4 max-w-screen-3xl lg:gap-4 overflow-clip">
                 <PaintingPagePreview params={params} initial={initial} />
             </Main>
         )
@@ -137,7 +137,7 @@ export default async function LandingPage({ params }: Props) {
             /> */}
             <Main
                 noTopPadding
-                className="grid min-h-screen grid-cols-12 p-4 pt-20 mx-auto max-w-screen-3xl lg:gap-4 overflow-clip"
+                className="grid min-h-screen grid-cols-12 pt-16 mx-auto lg:pt-20 lg:p-4 max-w-screen-3xl lg:gap-4 overflow-clip"
             >
                 <PaintingPage painting={data!} />
             </Main>

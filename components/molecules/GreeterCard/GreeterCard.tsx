@@ -1,4 +1,3 @@
-"use client"
 import { motion } from "framer-motion"
 import { BiGame } from "react-icons/bi"
 import { BsFillBrushFill } from "react-icons/bs"

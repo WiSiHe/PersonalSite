@@ -1,6 +1,10 @@
 "use client"
 import clsx from "clsx"
-import BackButton from "components/molecules/BackButton/BackButton"
+
+const BackButton = dynamic(
+    () => import("components/molecules/BackButton/BackButton"),
+)
+
 import ShareButton from "components/molecules/ShareButton"
 import StoreLinks from "components/molecules/StoreLinks"
 import { AnimatePresence, motion } from "framer-motion"
@@ -101,7 +105,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                                 .quality(65)
                                 .url()}
                             sizes="(min-width: 2040px) 1253px, (min-width: 1280px) calc(57.57vw + 90px), (min-width: 1040px) 50vw, calc(100vw - 32px)"
-                            className="object-cover h-fit"
+                            className="object-cover h-fit bg-dark"
                         />
                     </motion.div>
                     {images?.map((image, index) => {
@@ -164,12 +168,10 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                     exit={{ opacity: 0 }}
                     transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
                     key="text-section"
-                    className="relative justify-between p-0 transition-all rounded lg:sticky lg:col-span-6 lg:top-20 xl:z-10 col-span-full h-fit lg:bg-white lg:p-4 xl:p-6 xl:col-span-4"
+                    className="relative justify-between p-0 transition-all rounded drop-shadow-xl lg:sticky lg:col-span-6 lg:top-20 xl:z-10 col-span-full h-fit lg:bg-tertiary lg:p-4 xl:p-6 xl:col-span-4"
                 >
                     <div>
-                        <h1>
-                            <strong>{title}</strong>
-                        </h1>
+                        <h1>{title}</h1>
                         <section className="flex flex-wrap mt-4 text-xs">
                             {tagsV2?.map((tag, i) => {
                                 const { name = "" } = tag
@@ -189,16 +191,18 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                                 )
                             })}
                         </section>
-                        <div className="flex justify-between gap-2 py-4 text-sm text-stone-400">
-                            <div>{paintedAt && formatDate(paintedAt)}</div>
-                            <div className="flex items-center gap-2">
+                        <div className="flex justify-between gap-2 py-4 text-sm text-stone-700">
+                            <div>
+                                Created: {paintedAt && formatDate(paintedAt)}
+                            </div>
+                            {/* <div className="flex items-center gap-2">
                                 Likes:
                                 <FaThumbsUp /> <span>{likes}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 Views:
                                 <FaEye /> 0
-                            </div>
+                            </div> */}
                         </div>
 
                         <div>
