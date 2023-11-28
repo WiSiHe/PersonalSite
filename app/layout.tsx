@@ -1,16 +1,21 @@
 import "styles/globals.css"
 
 import { Analytics } from "@vercel/analytics/react"
-import SkipToMainContentLink from "components/atoms/SkipToMainContentLink"
-import Navigation from "components/organisms/Navigation"
+import { Viewport } from "next"
 import dynamic from "next/dynamic"
 import { Inter, Oswald } from "next/font/google"
 import { draftMode } from "next/headers"
 import { Suspense } from "react"
 
+import SkipToMainContentLink from "@/components/atoms/SkipToMainContentLink"
 import ThemeProvider from "@/components/atoms/ThemeProvider"
+import Navigation from "@/components/organisms/Navigation"
 import VisualEditing from "@/sanity/loader/VisualEditing"
 import { cn } from "@/utils/utility"
+
+interface RootProps {
+    children: React.ReactNode
+}
 
 const Footer = dynamic(() => import("@/components/templates/Footer"))
 
@@ -90,8 +95,8 @@ export const metadata = {
     // },
 }
 
-interface RootProps {
-    children: React.ReactNode
+export const viewport: Viewport = {
+    themeColor: "#DE0D92",
 }
 
 const jsonLd = {

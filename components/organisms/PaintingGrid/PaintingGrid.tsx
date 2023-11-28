@@ -65,7 +65,7 @@ const PaintingGrid = ({
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            viewport={{ once: false, amount: 0.5 }}
+                            viewport={{ once: true }}
                             key={painting._id}
                             className="relative col-span-6 bg-white rounded-lg lg:col-span-3 drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip"
                         >
