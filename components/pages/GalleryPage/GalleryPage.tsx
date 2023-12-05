@@ -20,6 +20,8 @@ import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
 
+import ScrollToTopButton from "@/components/atoms/ScrollToTopButton/ScrollToTopButton"
+import GallerySideBar from "@/components/organisms/GallerySideBar/GallerySideBar"
 import PaintingGrid from "@/components/organisms/PaintingGrid"
 
 const debounce = <F extends (...args: any[]) => void>(
@@ -59,26 +61,6 @@ const GalleryPage = ({
     const [searchFilter, setSearchFilter] = useState("")
 
     const allFilter = searchParams?.getAll("filter") as string[]
-
-    const handleToggleFilter = (filter: string) => {
-        const slugifiedFilter = slugify(filter)
-
-        if (filterList.includes(slugifiedFilter)) {
-            const newFilters = filterList.filter((f) => f !== slugifiedFilter)
-            if (isEmptyArray(newFilters)) {
-                return router.replace(pathname ?? "/")
-            }
-
-            const newParams = newFilters.map((f) => `filter=${f}`).join("&")
-            const newRouteWithFilters = `${pathname}?${newParams}`
-
-            router.replace(newRouteWithFilters)
-        } else {
-            const newFilters = [...filterList, slugifiedFilter]
-            const newParams = newFilters.map((f) => `filter=${f}`).join("&")
-            router.replace(`${pathname}?${newParams}`)
-        }
-    }
 
     const filterList = searchParams?.getAll("filter") as string[]
 
@@ -167,82 +149,25 @@ const GalleryPage = ({
     }, [handleScroll, paintings])
 
     return (
-        <>
-            <FilterBar filters={tags} />
-            <section className="pt-4 pb-4">
-                <h1 className="">Gallery</h1>
-                <p className="pt-2">A gallery of some of my paintings.</p>
-            </section>
-            <section className="left-0 right-0 z-10 flex flex-col items-start gap-4 p-4 py-4 mb-4 -ml-4 -mr-4 bg-tertiary top-16">
-                <div className="flex flex-col flex-1 w-full">
-                    <DebouncedInput
-                        onDebounce={setSearchFilter}
-                        placeholder="search"
-                        type="search"
-                    />
-                </div>
-
-                <AnimatePresence>
-                    {isNotEmptyArray(allFilter) && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ type: "spring", delay: 0.5 }}
-                            className="flex items-center w-full h-8 gap-2"
-                        >
-                            {allFilter.map((filter, i) => {
-                                if (!filter) return null
-                                const key = `${filter}-${i}`
-                                return (
-                                    <motion.div
-                                        key={key}
-                                        initial={{
-                                            opacity: 0,
-                                            y: 0,
-                                            x: 40,
-                                            scale: 0.3,
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            y: 0,
-                                            x: 0,
-                                            scale: 1,
-                                        }}
-                                        exit={{
-                                            opacity: 0,
-                                            y: 0,
-                                            x: -40,
-                                            scale: 0,
-                                        }}
-                                    >
-                                        <Chip>
-                                            {filter}
-                                            <button
-                                                className="p-1 ml-2 cursor-pointer pointer-events-auto hover:bg-gray-200 hover:bg-opacity-50"
-                                                onClick={() =>
-                                                    handleToggleFilter(filter)
-                                                }
-                                            >
-                                                <AiOutlineClose />
-                                            </button>
-                                        </Chip>
-                                    </motion.div>
-                                )
-                            })}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-                <div>
-                    Results:
-                    {filterPaintings.length}
-                </div>
+        <section className="grid items-start grid-cols-12 gap-4">
+            <section className="relative lg:rounded lg:sticky col-span-full lg:col-span-2 top-20">
+                <GallerySideBar
+                    filters={tags}
+                    filterPaintings={filterPaintings}
+                    handleChangeSearch={setSearchFilter}
+                    searchValue={searchFilter}
+                />
             </section>
 
-            <PaintingGrid
-                paintings={filterPaintings.slice(0, paintingsSlice)}
-            />
-        </>
+            <section className="relative col-span-full lg:col-span-10">
+                <div className="absolute flex flex-1 gap-4 pointer-events-auto">
+                    <ScrollToTopButton isFixed={false} />
+                </div>
+                <PaintingGrid
+                    paintings={filterPaintings.slice(0, paintingsSlice)}
+                />
+            </section>
+        </section>
     )
 }
 

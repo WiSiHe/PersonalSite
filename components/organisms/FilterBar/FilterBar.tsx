@@ -31,10 +31,6 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
 
     return (
         <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-4 pt-4 pb-10 pointer-events-none xl:pb-4 xl:px-6">
-            <div className="relative flex flex-1 gap-4 pointer-events-auto">
-                <ScrollToTopButton isFixed={false} />
-            </div>
-
             <div className="pointer-events-auto">
                 <FilterSortButton />
             </div>
@@ -63,7 +59,6 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
                     </AnimatePresence>
                 </motion.button>
             </div>
-            <FilterModal filters={filters} />
         </section>
     )
 }
