@@ -47,7 +47,7 @@
     "framer-motion": "10.16.5",
     "lottie-react": "^2.4.0",
     "next": "^14.0.3",
-    "next-sanity": "^6.1.4",
+    "next-sanity": "^7.0.0",
     "next-sitemap": "^4.2.3",
     "nextjs-toploader": "^1.6.4",
     "openai": "^4.20.1",
