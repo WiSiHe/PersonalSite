@@ -1,6 +1,5 @@
 "use client"
 import Painting from "components/molecules/Painting/Painting"
-import useWindowDimensions from "hooks/useWindowDimension"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -18,7 +17,7 @@ const PaintingGrid = ({
 }: iPaintingGridProps) => {
     const router = useRouter()
 
-    const { width = 0 } = useWindowDimensions()
+    // const { width = 0 } = useWindowDimensions()
 
     function handleClearFilter() {
         router.replace("/paintings")
@@ -54,9 +53,9 @@ const PaintingGrid = ({
     return (
         <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
             {paintings.map((painting, i) => {
-                const isMobile = width < 640
-                let amountOfLazyImages = 4
-                if (!isMobile) amountOfLazyImages = 8
+                // const isMobile = width < 640
+                // let amountOfLazyImages = 4
+                // if (!isMobile) amountOfLazyImages = 8
 
                 return (
                     <div
@@ -71,7 +70,7 @@ const PaintingGrid = ({
                                 paintingData={painting}
                                 storybook={isStorybook}
                                 key={painting._id}
-                                shouldBeLazy={i < amountOfLazyImages}
+                                // shouldBeLazy={i < amountOfLazyImages}
                             />
                         </Link>
                     </div>

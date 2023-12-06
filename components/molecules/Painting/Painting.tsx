@@ -1,3 +1,4 @@
+"use client"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
 import Image from "next/image"
