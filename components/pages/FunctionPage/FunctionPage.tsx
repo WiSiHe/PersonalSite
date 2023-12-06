@@ -1,8 +1,6 @@
 "use client"
 
 import useSessionStorage from "hooks/useSessionStorage"
-import Lottie from "lottie-react"
-import walkingAnimation from "public/animations/lottie-walking.json"
 
 const FunctionPage = () => {
     const jwtToken = useSessionStorage("jwtToken")
@@ -48,14 +46,6 @@ const FunctionPage = () => {
                 Remove session storage
             </button>
             <hr className="my-10 border-dark" />
-            <h2>Lottie animation</h2>
-            <section className="grid items-center justify-center grid-cols-12 py-10">
-                <Lottie
-                    animationData={walkingAnimation}
-                    loop
-                    className="col-span-4 col-start-5 p-1 mt-4"
-                />
-            </section>
         </section>
     )
 }

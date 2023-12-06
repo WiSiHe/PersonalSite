@@ -1,7 +1,6 @@
 "use client"
 import clsx from "clsx"
 import AnimatedLogo from "components/atoms/AnimatedLogo"
-import NavigationModal from "components/molecules/NavigationModal"
 import { NavItems } from "constants/navigation"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -10,6 +9,11 @@ import { useEffect, useState } from "react"
 import { FaHamburger } from "react-icons/fa"
 import { cn } from "utils/utility"
 
+const NavigationModal = dynamic(
+    () => import("@/components/molecules/NavigationModal"),
+)
+
+import dynamic from "next/dynamic"
 const container = {
     hidden: { opacity: 0 },
     show: {
