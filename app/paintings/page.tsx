@@ -10,8 +10,8 @@ export const metadata = {
     type: "website",
     image: {
         url: "https://wisihe.no/images/paintings/cloud.jpg",
-        width: 1200,
-        height: 630,
+        width: 720,
+        height: 430,
         alt: "Paintings | WiSiHe",
     },
     url: "https://wisihe.no/paintings",

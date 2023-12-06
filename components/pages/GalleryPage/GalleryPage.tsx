@@ -149,25 +149,25 @@ const GalleryPage = ({
     }, [handleScroll, paintings])
 
     return (
-        <section className="grid items-start grid-cols-12 gap-4">
-            <section className="relative lg:rounded lg:sticky col-span-full lg:col-span-2 top-20">
-                <GallerySideBar
-                    filters={tags}
-                    filterPaintings={filterPaintings}
-                    handleChangeSearch={setSearchFilter}
-                    searchValue={searchFilter}
-                />
-            </section>
+        <>
+            <section className="grid items-start grid-cols-12 gap-4">
+                <section className="relative lg:rounded lg:sticky col-span-full lg:col-span-2 lg:top-20">
+                    <GallerySideBar
+                        filters={tags}
+                        filterPaintings={filterPaintings}
+                        handleChangeSearch={setSearchFilter}
+                        searchValue={searchFilter}
+                    />
+                </section>
 
-            <section className="relative col-span-full lg:col-span-10">
-                <div className="absolute flex flex-1 gap-4 pointer-events-auto">
-                    <ScrollToTopButton isFixed={false} />
-                </div>
-                <PaintingGrid
-                    paintings={filterPaintings.slice(0, paintingsSlice)}
-                />
+                <section className="relative col-span-full lg:col-span-10">
+                    <FilterBar />
+                    <PaintingGrid
+                        paintings={filterPaintings.slice(0, paintingsSlice)}
+                    />
+                </section>
             </section>
-        </section>
+        </>
     )
 }
 

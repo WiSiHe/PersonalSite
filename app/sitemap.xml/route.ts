@@ -1,4 +1,4 @@
-import { getAllPaintingSlugs, getAllProjectsSlugs } from "lib/api"
+import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"
 
 interface SitemapField {
     loc: string
@@ -42,9 +42,8 @@ const staticPages = [
  * Returns a sitemap
  */
 export async function GET() {
-    const allPaintings = await getAllPaintingSlugs()
-
-    const allProjects = await getAllProjectsSlugs()
+    const allPaintings = await generateStaticSlugs("painting")
+    const allProjects = await generateStaticSlugs("project")
 
     // Sitemap fields
     const fields: Array<SitemapField> = []
@@ -62,7 +61,7 @@ export async function GET() {
 
     // Add all articles
     for (const article of allPaintings) {
-        const slug = article.slug
+        const slug = article
 
         const url = new URL(`/paintings/${slug}`, "https://www.wisihe.no")
         fields.push({
@@ -75,7 +74,7 @@ export async function GET() {
 
     // Add all projects
     for (const project of allProjects) {
-        const slug = project.slug
+        const slug = project
         const url = new URL(`/projects/${slug}`, "https://www.wisihe.no")
         fields.push({
             loc: url.toString(),

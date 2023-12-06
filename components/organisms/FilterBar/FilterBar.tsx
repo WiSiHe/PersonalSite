@@ -1,18 +1,12 @@
 "use client"
 import ScrollToTopButton from "components/atoms/ScrollToTopButton/ScrollToTopButton"
 import FilterSortButton from "components/molecules/FilterSortButton/FilterSortButton"
-import FilterModal from "components/organisms/FilterModal/FilterModal"
 import { AnimatePresence, motion } from "framer-motion"
-import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { IoFilterSharp } from "react-icons/io5"
 
-interface iFilterBar {
-    filters?: iSanityPaintingTag[]
-}
-
-const FilterBar = ({ filters = [] }: iFilterBar) => {
+const FilterBar = () => {
     const router = useRouter()
     const pathName = usePathname()
     const currentPath = pathName ?? "/"
@@ -30,11 +24,14 @@ const FilterBar = ({ filters = [] }: iFilterBar) => {
     }
 
     return (
-        <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-4 pt-4 pb-10 pointer-events-none xl:pb-4 xl:px-6">
-            <div className="pointer-events-auto">
+        <section className="fixed bottom-0 left-0 right-0 z-20 flex items-end justify-between w-full px-4 pt-4 pb-10 pointer-events-none lg:justify-end xl:pb-4 xl:px-6">
+            <div className="flex flex-1 gap-4 pointer-events-auto lg:justify-end">
+                <ScrollToTopButton isFixed={false} />
+            </div>
+            <div className="pointer-events-auto lg:hidden">
                 <FilterSortButton />
             </div>
-            <div className="flex justify-end flex-1 gap-4 pointer-events-auto">
+            <div className="flex justify-end flex-1 gap-4 pointer-events-auto lg:hidden">
                 {amountOfActiveFilters > 0 && (
                     <button
                         className="hidden px-4 text-xs uppercase bg-white rounded-full hover:text-white text-dark drop-shadow xl:block hover:bg-primary"

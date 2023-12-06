@@ -27,15 +27,7 @@ const testFilter = [
 const FilterSortButton = () => {
     const sorting = useCombinedStore((state) => state.paintingSorting)
     const setSorting = useCombinedStore((state) => state.setPaintingSorting)
-    // const handleToggleSorting = () => {
-    //     if (sorting === "random") {
-    //       setSorting("newest")
-    //     } else if (sorting === "newest") {
-    //       setSorting("oldest")
-    //     } else if (sorting === "oldest") {
-    //       setSorting("random")
-    //     }
-    //   }
+
     return (
         <>
             <RadioGroup
