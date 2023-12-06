@@ -105,10 +105,6 @@ const Painting = ({
         portrait: 600,
     }[format]
 
-    // const placeholder = await getBase64(
-    //   urlForImage(image).width(sanityWidth).height(sanityHeight).quality(70).url()
-    // )
-
     return (
         <article
             className={cn(
@@ -119,14 +115,14 @@ const Painting = ({
                 src={urlForImage(image)
                     .width(sanityWidth)
                     .height(sanityHeight)
-                    .quality(70)
+                    .quality(60)
                     .url()}
-                sizes="(min-width: 1040px) calc(25vw - 32px), calc(100vw - 32px)"
+                sizes="(min-width: 1040px) calc(20.87vw - 20px), calc(50vw - 24px)"
                 fill
                 priority={shouldBeLazy}
                 placeholder={lqip ? "blur" : "empty"}
                 blurDataURL={lqip ? lqip : undefined}
-                quality={30}
+                quality={60}
                 unoptimized={storybook}
                 alt=""
                 className={cn(
