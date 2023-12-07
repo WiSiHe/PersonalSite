@@ -1,6 +1,7 @@
 import "styles/globals.css"
 
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Viewport } from "next"
 import dynamic from "next/dynamic"
 import { Inter, Oswald } from "next/font/google"
@@ -174,6 +175,7 @@ export default function RootLayout({ children }: RootProps) {
                         <Footer />
                     </Suspense>
                     <Analytics />
+                    <SpeedInsights />
                     {draftMode().isEnabled && <VisualEditing />}
                 </ThemeProvider>
             </body>
