@@ -3,19 +3,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { AiOutlineClose } from "react-icons/ai"
 import { BiSortDown, BiSortUp } from "react-icons/bi"
-import { FaRandom } from "react-icons/fa"
+import { FaChevronLeft, FaRandom } from "react-icons/fa"
 import { IoFilterSharp } from "react-icons/io5"
 
+import Button from "@/components/atoms/Button"
 import Chip from "@/components/atoms/Chip/Chip"
 import DebouncedInput from "@/components/atoms/DebouncedInput"
 import { useCombinedStore } from "@/lib/store"
 import { isEmptyArray, isNotEmptyArray } from "@/utils/array"
 import { slugify } from "@/utils/string"
 import { cn } from "@/utils/utility"
-
-import FilterBar from "../FilterBar"
-import FilterDrawer from "../FilterDrawer/FilterDrawer"
-import FilterModal from "../FilterModal/FilterModal"
 
 const testFilter = [
     {
@@ -44,6 +41,8 @@ const GallerySideBar = ({
     const searchParams = useSearchParams()
     const router = useRouter()
     const pathname = usePathname()
+
+    const [isOpen, setIsOpen] = useState(true)
 
     const allFilter = searchParams?.getAll("filter") as string[]
     const filterList = searchParams?.getAll("filter") as string[]
@@ -75,45 +74,49 @@ const GallerySideBar = ({
     }
 
     return (
-        <section className="">
-            <div className="flex flex-col gap-1">
+        <section
+            className={cn(
+                "@container lg:sticky lg:top-20 lg:h-[91.5dvh] transition-all p-4 drop-shadow shrink-0 bg-tertiary rounded",
+                isOpen ? "w-full lg:w-96" : "lg:w-20 w-full",
+            )}
+        >
+            <div className="flex-col gap-1 hidden @xs:flex">
                 <h1 className="">Gallery</h1>
                 <p className="pt-2">A gallery of some of my paintings.</p>
-            </div>
-            <div className="flex flex-col ">
                 <DebouncedInput
                     onDebounce={handleChangeSearch}
                     placeholder="Search"
                     type="search"
                 />
-            </div>
-            <div className="flex gap-1 pt-4">
-                <strong>Results:</strong>
-                {filterPaintings.length}
-            </div>
-            <div className="flex-col hidden gap-2 pt-4 lg:flex">
-                <strong>Sort</strong>
-                <div className="items-stretch hidden rounded lg:flex ring ring-dark justify-stretch overflow-clip strech">
-                    {testFilter.map((filter) => {
-                        const isActive = sorting === filter.value
-                        return (
-                            <button
-                                key={filter.value}
-                                onClick={() => setSorting(filter.value)}
-                                className={cn(
-                                    "w-full px-2 py-2 hover:bg-primary hover:text-tertiary active:bg-primary/90 active:text-white",
-                                    isActive
-                                        ? "bg-primary text-white"
-                                        : "bg-white text-dark",
-                                )}
-                            >
-                                {filter.name}
-                            </button>
-                        )
-                    })}
+                <div className="flex gap-1 pt-4">
+                    <strong>Results:</strong>
+                    {filterPaintings.length}
+                </div>
+                <div className="flex-col hidden gap-2 pt-4 lg:flex">
+                    <strong>Sort</strong>
+                    <div className="items-stretch hidden rounded lg:flex ring ring-dark justify-stretch overflow-clip strech">
+                        {testFilter.map((filter) => {
+                            const isActive = sorting === filter.value
+                            return (
+                                <button
+                                    key={filter.value}
+                                    onClick={() => setSorting(filter.value)}
+                                    className={cn(
+                                        "w-full px-2 py-2 hover:bg-primary hover:text-tertiary active:bg-primary/90 active:text-white",
+                                        isActive
+                                            ? "bg-primary text-white"
+                                            : "bg-white text-dark",
+                                    )}
+                                >
+                                    {filter.name}
+                                </button>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
-            <section className="flex flex-col items-start pt-4">
+
+            <section className="flex-col items-start pt-4 hidden @xs:flex">
                 <div className="flex items-start justify-between w-full pb-2">
                     <strong>Filters: {allFilter.length}</strong>
                     <button
@@ -185,7 +188,16 @@ const GallerySideBar = ({
                     )}
                 </AnimatePresence>
             </section>
-            <FilterModal filters={filters} />
+            <div className="absolute bottom-4 right-4">
+                <Button onClick={() => setIsOpen((prev) => !prev)}>
+                    <FaChevronLeft
+                        className={cn(
+                            "rotate-180 transition-all",
+                            isOpen && " rotate-0",
+                        )}
+                    />
+                </Button>
+            </div>
         </section>
     )
 }

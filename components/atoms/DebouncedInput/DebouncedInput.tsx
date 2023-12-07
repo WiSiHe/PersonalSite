@@ -35,7 +35,7 @@ const DebouncedInput = ({
     }
 
     return (
-        <>
+        <div className="flex flex-col">
             <label
                 htmlFor={name}
                 className={cn("capitalize pb-1", hiddenLabel && "sr-only")}
@@ -50,7 +50,7 @@ const DebouncedInput = ({
                 onChange={handleInputChange}
                 className="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
             />
-        </>
+        </div>
     )
 }
 

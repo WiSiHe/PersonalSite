@@ -9,18 +9,15 @@ const DebouncedInput = dynamic(
     () => import("@/components/atoms/DebouncedInput"),
 )
 
-import { AnimatePresence, motion } from "framer-motion"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 import { iSanityPaintingTag } from "lib/models/objects/SanityTag"
 import { useCombinedStore } from "lib/store"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
-import { AiOutlineClose } from "react-icons/ai"
-import { isEmptyArray, isNotEmptyArray } from "utils/array"
 import { sortPaintings } from "utils/painting"
 import { slugify } from "utils/string"
 
-import ScrollToTopButton from "@/components/atoms/ScrollToTopButton/ScrollToTopButton"
+import FilterModal from "@/components/organisms/FilterModal/FilterModal"
 import GallerySideBar from "@/components/organisms/GallerySideBar/GallerySideBar"
 import PaintingGrid from "@/components/organisms/PaintingGrid"
 
@@ -150,23 +147,22 @@ const GalleryPage = ({
 
     return (
         <>
-            <section className="grid items-start grid-cols-12 gap-4">
-                <section className="relative lg:rounded lg:sticky col-span-full lg:col-span-2 lg:top-20">
-                    <GallerySideBar
-                        filters={tags}
-                        filterPaintings={filterPaintings}
-                        handleChangeSearch={setSearchFilter}
-                        searchValue={searchFilter}
-                    />
-                </section>
+            <section className="flex gap-6">
+                <GallerySideBar
+                    filters={tags}
+                    filterPaintings={filterPaintings}
+                    handleChangeSearch={setSearchFilter}
+                    searchValue={searchFilter}
+                />
 
-                <section className="relative col-span-full lg:col-span-10">
+                <section className="relative flex-1 w-full">
                     <FilterBar />
                     <PaintingGrid
                         paintings={filterPaintings.slice(0, paintingsSlice)}
                     />
                 </section>
             </section>
+            <FilterModal filters={tags} />
         </>
     )
 }
