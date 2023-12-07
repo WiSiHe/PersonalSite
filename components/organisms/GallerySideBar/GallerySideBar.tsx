@@ -50,7 +50,7 @@ const GallerySideBar = ({
     const sorting = useCombinedStore((state) => state.paintingSorting)
 
     const setSorting = useCombinedStore((state) => state.setPaintingSorting)
-
+    const test = ""
     const setFilterModalOpen = useCombinedStore((state) => state.setModalOpen)
 
     const handleToggleFilter = (filter: string) => {
