@@ -9,6 +9,7 @@ import {
 } from "types"
 
 import { iSanityPainting } from "@/lib/models/objects/sanityPainting"
+import { studioUrl } from "@/sanity/lib/api"
 import { client } from "@/sanity/lib/client"
 import {
     homePageQuery,
@@ -25,8 +26,9 @@ const serverClient = client.withConfig({
     token,
     stega: {
         // Enable stega if it's a Vercel preview deployment, as the Vercel Toolbar has controls that shows overlays
-        // enabled: process.env.VERCEL_ENV !== "production",
-        enabled: false,
+        enabled: process.env.VERCEL_ENV !== "production",
+        studioUrl,
+        // studioUrl: process.env.SANITY_STUDIO_URL,
     },
 })
 
@@ -38,21 +40,21 @@ const serverClient = client.withConfig({
  */
 queryStore.setServerClient(serverClient)
 
-const usingCdn = serverClient.config().useCdn
+// const usingCdn = serverClient.config().useCdn
 // Automatically handle draft mode
 export const loadQuery = ((query, params = {}, options = {}) => {
     const {
         perspective = draftMode().isEnabled ? "previewDrafts" : "published",
     } = options
     // Don't cache by default
-    let cache: RequestCache = "no-store"
+    // const cache: RequestCache = "no-store"
     // If `next.tags` is set, and we're not using the CDN, then it's safe to cache
-    if (!usingCdn && Array.isArray(options.next?.tags)) {
-        cache = "force-cache"
-    }
+    // if (!usingCdn && Array.isArray(options.next?.tags)) {
+    //     cache = "force-cache"
+    // }
     return queryStore.loadQuery(query, params, {
-        cache,
-        ...options,
+        // cache,
+        // ...options,
         perspective,
     })
 }) satisfies typeof queryStore.loadQuery
@@ -65,7 +67,7 @@ export function loadSettings() {
     return loadQuery<SettingsPayload>(
         settingsQuery,
         {},
-        { next: { tags: ["settings", "home", "page", "project"] } },
+        // { next: { tags: ["settings", "home", "page", "project"] } },
     )
 }
 
@@ -73,7 +75,7 @@ export function loadHomePage() {
     return loadQuery<HomePagePayload | null>(
         homePageQuery,
         {},
-        { next: { tags: ["painting", "project", "home"] } },
+        // { next: { tags: ["painting", "project", "home"] } },
     )
 }
 
@@ -81,7 +83,7 @@ export function loadProject(slug: string) {
     return loadQuery<ProjectPayload | null>(
         projectBySlugQuery,
         { slug },
-        { next: { tags: [`project:${slug}`] } },
+        // { next: { tags: [`project:${slug}`] } },
     )
 }
 
@@ -89,7 +91,7 @@ export function loadPage(slug: string) {
     return loadQuery<PagePayload | null>(
         pagesBySlugQuery,
         { slug },
-        { next: { tags: [`page:${slug}`] } },
+        // { next: { tags: [`page:${slug}`] } },
     )
 }
 
@@ -97,6 +99,6 @@ export function loadPainting(slug: string) {
     return loadQuery<iSanityPainting | null>(
         paintingsQuery,
         { slug },
-        { next: { tags: [`painting/${slug}`] } },
+        // { next: { tags: [`painting/${slug}`] } },
     )
 }
