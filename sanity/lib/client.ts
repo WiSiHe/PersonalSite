@@ -17,7 +17,8 @@ export const client = createClient({
     perspective: "published",
     stega: {
         studioUrl,
-        enabled: process.env.NODE_ENV !== "production",
+        // enabled: process.env.NODE_ENV !== "production",
+        enabled: false,
         // logger: console,
     },
 })

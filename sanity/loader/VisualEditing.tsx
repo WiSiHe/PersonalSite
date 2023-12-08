@@ -9,7 +9,7 @@ import { client } from "@/sanity/lib/client"
 import { useLiveMode } from "./useQuery"
 
 // Always enable stega in Live Mode
-const stegaClient = client.withConfig({ stega: true })
+const stegaClient = client.withConfig({ stega: false })
 
 // Only allow same-origin Studios to connect
 const allowStudioOrigin =
