@@ -13,6 +13,10 @@ const ProjectsSection = dynamic(
     () => import("components/templates/ProjectsSection"),
 )
 
+const NotFoundSection = dynamic(
+    () => import("components/templates/NotFoundSection"),
+)
+
 interface AboutPageProps {
     paintings?: iSanityPainting[]
     projects?: ShowcaseProject[]
@@ -36,11 +40,11 @@ const AboutPage = ({
                 description={paintingsDescription}
                 paintingsCount={paintingsCount}
             />
-
             <ProjectsSection
                 projects={projects}
                 description={projectsDescription}
             />
+            <NotFoundSection />
         </>
     )
 }
