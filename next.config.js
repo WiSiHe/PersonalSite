@@ -1,15 +1,30 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const nextConfig = {
     reactStrictMode: true,
-    // experimental: {
-    //   serverActions: true,
-    // },
     images: {
-        domains: [
-            "cdn.sanity.io",
-            "cdna.artstation.com",
-            "images.unsplash.com",
-            "oaidalleapiprodscus.blob.core.windows.net",
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "example.com",
+                port: "",
+                pathname: "/account123/**",
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+            },
+            {
+                protocol: "https",
+                hostname: "cdna.artstation.com",
+            },
+            {
+                protocol: "https",
+                hostname: "images.unsplash.com",
+            },
+            {
+                protocol: "https",
+                hostname: "oaidalleapiprodscus.blob.core.windows.net",
+            },
         ],
     },
 }
@@ -19,14 +34,3 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 })
 
 module.exports = withBundleAnalyzer(nextConfig)
-
-// module.exports = {
-//   /* config options here */
-//   images: {
-//     domains: ["cdn.sanity.io", "cdna.artstation.com"]
-//   }
-// }
-
-// module.exports = (phase, { defaultConfig }) => {
-//   return withBundleAnalyzer(nextConfig)
-// }

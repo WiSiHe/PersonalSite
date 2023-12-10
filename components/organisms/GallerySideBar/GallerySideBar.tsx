@@ -1,12 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useState } from "react"
 import { AiOutlineClose } from "react-icons/ai"
 import { BiSortDown, BiSortUp } from "react-icons/bi"
-import { FaChevronLeft, FaRandom } from "react-icons/fa"
+import { FaRandom } from "react-icons/fa"
 import { IoFilterSharp } from "react-icons/io5"
 
-import Button from "@/components/atoms/Button"
 import Chip from "@/components/atoms/Chip/Chip"
 import DebouncedInput from "@/components/atoms/DebouncedInput"
 import { useCombinedStore } from "@/lib/store"
@@ -42,15 +40,13 @@ const GallerySideBar = ({
     const router = useRouter()
     const pathname = usePathname()
 
-    const [isOpen, setIsOpen] = useState(true)
-
     const allFilter = searchParams?.getAll("filter") as string[]
     const filterList = searchParams?.getAll("filter") as string[]
 
     const sorting = useCombinedStore((state) => state.paintingSorting)
 
     const setSorting = useCombinedStore((state) => state.setPaintingSorting)
-    const test = ""
+
     const setFilterModalOpen = useCombinedStore((state) => state.setModalOpen)
 
     const handleToggleFilter = (filter: string) => {
@@ -77,10 +73,10 @@ const GallerySideBar = ({
         <section
             className={cn(
                 "@container h-fit lg:sticky lg:top-20 lg:h-[91.5dvh] transition-all p-4 drop-shadow shrink-0 bg-tertiary rounded",
-                isOpen ? "w-full lg:w-96" : "lg:w-20 w-full",
+                "w-full lg:w-96",
             )}
         >
-            <div className="flex-col gap-1 hidden @xs:flex">
+            <div className="flex flex-col gap-1">
                 <h1 className="">Gallery</h1>
                 <p className="pt-2">A gallery of some of my paintings.</p>
                 <DebouncedInput
@@ -188,16 +184,6 @@ const GallerySideBar = ({
                     )}
                 </AnimatePresence>
             </section>
-            <div className="absolute bottom-4 right-4">
-                <Button onClick={() => setIsOpen((prev) => !prev)}>
-                    <FaChevronLeft
-                        className={cn(
-                            "rotate-180 transition-all",
-                            isOpen && " rotate-0",
-                        )}
-                    />
-                </Button>
-            </div>
         </section>
     )
 }

@@ -147,7 +147,7 @@ const GalleryPage = ({
 
     return (
         <>
-            <section className="flex flex-col gap-6 lg:flex-row">
+            <section className="flex flex-col h-screen gap-6 lg:flex-row overflow-clip">
                 <GallerySideBar
                     filters={tags}
                     filterPaintings={filterPaintings}

@@ -93,28 +93,28 @@ const Painting = ({
     //   portrait: "row-span-1 lg:row-span-2 xl:row-span-4",
     // }[format]
 
-    const sanityWidth = {
-        square: 400,
-        landscape: 400,
-        portrait: 400,
-    }[format]
+    // const sanityWidth = {
+    //     square: 400,
+    //     landscape: 400,
+    //     portrait: 400,
+    // }[format]
 
-    const sanityHeight = {
-        square: 600,
-        landscape: 600,
-        portrait: 600,
-    }[format]
+    // const sanityHeight = {
+    //     square: 600,
+    //     landscape: 600,
+    //     portrait: 600,
+    // }[format]
 
     return (
         <article
             className={cn(
-                "text-white bg-white aspect-portrait relative overflow-clip",
+                "text-white bg-white aspect-square relative overflow-clip",
             )}
         >
             <Image
                 src={urlForImage(image)
-                    .width(sanityWidth)
-                    .height(sanityHeight)
+                    .width(400)
+                    .height(400)
                     .quality(60)
                     .url()}
                 sizes="(min-width: 1040px) calc(20.87vw - 20px), calc(50vw - 24px)"

@@ -53,7 +53,7 @@ const PaintingGrid = ({
     }
 
     return (
-        <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense">
+        <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense @container pt-2">
             {paintings.map((painting, i) => {
                 const isMobile = width < 640
                 let amountOfLazyImages = 4
@@ -65,7 +65,10 @@ const PaintingGrid = ({
                         // whileInView={{ opacity: 1 }}
                         // viewport={{ once: true }}
                         key={painting._id}
-                        className="relative col-span-6 bg-white rounded-lg lg:col-span-3 drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip"
+                        className={cn(
+                            "col-span-full @lg:col-span-6 @xl:col-span-4 @2xl:col-span-3",
+                            "relative bg-white rounded-lg col-span-full drop-shadow-lg group focus-within:ring ring-primary hover:ring overflow-clip",
+                        )}
                     >
                         <Link href={`/paintings/${painting.slug}`}>
                             <Painting
