@@ -5,19 +5,18 @@ const BackButton = dynamic(
     () => import("components/molecules/BackButton/BackButton"),
 )
 
-import ShareButton from "components/molecules/ShareButton"
-import StoreLinks from "components/molecules/StoreLinks"
 import { AnimatePresence, motion } from "framer-motion"
-import { iSanityPainting } from "lib/models/objects/sanityPainting"
+import { type iSanityPainting } from "lib/models/objects/sanityPainting"
 import { urlForImage } from "lib/sanity.image"
 import dynamic from "next/dynamic"
 import Image from "next/image"
-import { FaEye, FaThumbsUp } from "react-icons/fa"
 
-const ReactPlayer = dynamic(() => import("react-player"), {
-    suspense: true,
-    // ssr: false,
-})
+import Chip from "@/components/atoms/Chip/Chip"
+import ShareButton from "@/components/molecules/ShareButton"
+import StoreLinks from "@/components/molecules/StoreLinks"
+import { cn } from "@/utils/utility"
+
+const ReactPlayer = dynamic(() => import("react-player"))
 
 interface iPaintingPageProps {
     painting: iSanityPainting
@@ -90,8 +89,8 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                             duration: 0.5,
                         }}
                         key="MainPainting"
-                        className={clsx(
-                            "flex relative",
+                        className={cn(
+                            "flex relative rounded overflow-clip",
                             imageAspectStyle[format],
                         )}
                     >
@@ -114,6 +113,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                                 key={`picture-${index}`}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
                                 transition={{
                                     type: "spring",
                                     delay: 0.5,
@@ -168,29 +168,21 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                     exit={{ opacity: 0 }}
                     transition={{ type: "spring", delay: 0.2, duration: 0.5 }}
                     key="text-section"
-                    className="relative justify-between p-0 transition-all rounded drop-shadow-xl lg:sticky lg:col-span-6 lg:top-20 xl:z-10 col-span-full h-fit lg:bg-tertiary lg:p-4 xl:p-6 xl:col-span-4"
+                    className="relative justify-between p-4 transition-all rounded drop-shadow-xl lg:sticky lg:col-span-6 lg:top-20 xl:z-10 col-span-full h-fit lg:bg-tertiary lg:p-4 xl:p-6 xl:col-span-4"
                 >
                     <div>
                         <h1>{title}</h1>
-                        <section className="flex flex-wrap mt-4 text-xs">
+                        <ul className="flex flex-wrap gap-1 mt-4">
                             {tagsV2?.map((tag, i) => {
                                 const { name = "" } = tag
-                                const isLastElement = i === tagsV2.length - 1
 
                                 return (
-                                    <div
-                                        key={`tag-${i}`}
-                                        className={clsx(
-                                            "flex items-center gap-2",
-                                            isLastElement ? "" : "mr-2",
-                                        )}
-                                    >
-                                        <span>{name}</span>
-                                        {!isLastElement && <span>&#183;</span>}
-                                    </div>
+                                    <li key={`tag-${i}`}>
+                                        <Chip>{name}</Chip>
+                                    </li>
                                 )
                             })}
-                        </section>
+                        </ul>
                         <div className="flex justify-between gap-2 py-4 text-sm text-stone-700">
                             <div>
                                 Created: {paintedAt && formatDate(paintedAt)}

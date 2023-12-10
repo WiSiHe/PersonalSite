@@ -54,7 +54,7 @@ const Painting = ({
     const {
         image,
         title = "",
-        format,
+
         video = "",
         tagsV2 = [],
         imagesCount = 0,
@@ -108,7 +108,7 @@ const Painting = ({
     return (
         <article
             className={cn(
-                "text-white bg-white aspect-square relative overflow-clip",
+                "text-white bg-dark aspect-square relative overflow-clip",
             )}
         >
             <Image
