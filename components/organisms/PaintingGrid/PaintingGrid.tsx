@@ -53,7 +53,7 @@ const PaintingGrid = ({
     }
 
     return (
-        <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense @container pt-2">
+        <section className="grid w-full grid-cols-12 gap-4 mb-10 grid-flow-dense @container">
             {paintings.map((painting, i) => {
                 const isMobile = width < 640
                 let amountOfLazyImages = 4

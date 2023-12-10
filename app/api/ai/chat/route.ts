@@ -1,33 +1,5 @@
-// import OpenAI from "openai"
-
-// const openai = new OpenAI({
-//     apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-// })
-
-export async function GET(req: Request) {
-    const { searchParams } = new URL(req.url)
-    const blacklistFlags = searchParams.get("blacklistFlags")
-    const contains = searchParams.get("contains")
-
-    const baseUrl = "https://v2.jokeapi.dev/joke/Any"
-
-    // https://v2.jokeapi.dev/joke/Programming?blacklistFlags=sexist&contains=christmas
-    let queryUrl = baseUrl
-
-    if (blacklistFlags) queryUrl += `?blacklistFlags=${blacklistFlags}`
-    if (contains) queryUrl += `?contains=${contains}`
-    if (blacklistFlags && contains) {
-        queryUrl += `?blacklistFlags=${blacklistFlags}&contains=${contains}`
-    }
-
-    const res = await fetch(queryUrl, {
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-    const data = await res.json()
-
-    return Response.json(data)
+export async function GET() {
+    return Response.json({ message: "Hello world" })
 }
 
 // import type { NextApiRequest, NextApiResponse } from "next"
@@ -45,9 +17,15 @@ export async function GET(req: Request) {
 //     content: string
 // }
 
+// // const exampleResponse = {"role":"assistant","content":"As an AI language model, I don't have personal beliefs, but according to scientific research, the sun's brightness is measured on a scale called luminosity, and it has a luminosity of approximately 3.828 x 10^26 watts. This means that the sun is incredibly bright and can cause damage to human eyes if directly observed without proper protection."},"types":{"role":"assistant","content":"text"}
+
 // interface GenerateNextApiRequest extends NextApiRequest {
 //     body: {
 //         prompt: string
+//         maxTokens?: number
+//         temperature?: number
+//         frequencyPenalty?: number
+//         presencePenalty?: number
 //         messages: Message[]
 //     }
 // }
@@ -61,6 +39,10 @@ export async function GET(req: Request) {
 //     res: NextApiResponse<ResponseData>,
 // ) {
 //     const messages = req.body.messages
+//     const maxTokens = req.body.maxTokens || 1000
+//     const temperature = req.body.temperature || 0.7
+//     const frequencyPenalty = req.body.frequencyPenalty || 0.5
+//     const presencePenalty = req.body.presencePenalty || 0.5
 
 //     if (!messages || messages.length === 0) {
 //         res.status(400).json({
@@ -72,10 +54,14 @@ export async function GET(req: Request) {
 
 //     try {
 //         const chatCompletion = await openai.chat.completions.create({
-//             model: "gpt-4-vision-preview",
+//             model: "gpt-4-1106-preview",
+//             max_tokens: maxTokens, // 1000,
+//             stream: false,
+//             frequency_penalty: frequencyPenalty, // 0.5,
+//             presence_penalty: presencePenalty, // 0.5,
+//             temperature: temperature, // 0.7,
+//             top_p: 1, // 1,
 //             messages: messages, // [  { role: 'user', content: 'How many stars are in the sky?' } ],
-//             max_tokens: 1000,
-//             // detail: "low",
 //         })
 
 //         const response = chatCompletion?.choices[0]?.message || {

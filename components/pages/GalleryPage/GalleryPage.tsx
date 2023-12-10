@@ -147,7 +147,7 @@ const GalleryPage = ({
 
     return (
         <>
-            <section className="flex flex-col h-screen gap-6 lg:flex-row overflow-clip">
+            <section className="flex flex-col h-full gap-6 p-4 lg:flex-row">
                 <GallerySideBar
                     filters={tags}
                     filterPaintings={filterPaintings}
@@ -155,7 +155,7 @@ const GalleryPage = ({
                     searchValue={searchFilter}
                 />
 
-                <section className="relative flex-1 w-full">
+                <section className="relative flex-1 w-full h-full overflow-y-scroll">
                     <FilterBar />
                     <PaintingGrid
                         paintings={filterPaintings.slice(0, paintingsSlice)}

@@ -53,7 +53,10 @@ export default async function Home() {
     const { randomPaintings, tags } = paintings
 
     return (
-        <Main className="relative flex flex-col min-h-screen p-4">
+        <Main
+            noTopPadding
+            className="relative flex flex-col h-screen pt-16 overflow-y-clip"
+        >
             <GalleryPage paintings={randomPaintings} tags={tags} />
         </Main>
     )
