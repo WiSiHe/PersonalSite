@@ -1,23 +1,20 @@
-import { Switch } from "@headlessui/react"
-import React, { useState } from "react"
+import { Switch as AriaSwitch, type SwitchProps } from "react-aria-components"
 
-export default function SwitchComponent() {
-    const [enabled, setEnabled] = useState(false)
+type MySwitchProps = Omit<SwitchProps, "children"> & {
+    children: React.ReactNode
+}
 
+function Switch({ children, ...props }: MySwitchProps) {
     return (
-        <Switch
-            checked={enabled}
-            onChange={setEnabled}
-            className={`${
-                enabled ? "bg-blue-600" : "bg-gray-200"
-            } relative inline-flex items-center h-6 rounded-full w-11`}
+        <AriaSwitch
+            {...props}
+            className="flex items-center gap-2 text-lg font-semibold text-black group"
         >
-            <span className="sr-only">Enable notifications</span>
-            <span
-                className={`${
-                    enabled ? "translate-x-6" : "translate-x-1"
-                } inline-block w-4 h-4 transform bg-white rounded-full`}
-            />
-        </Switch>
+            <div className="w-12 h-12 bg-primary" />
+
+            {children}
+        </AriaSwitch>
     )
 }
+
+export default Switch

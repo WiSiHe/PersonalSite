@@ -1,6 +1,50 @@
-import { cn } from "utils/utility"
+import { useState } from "react"
+import { Button as AriaButton } from "react-aria-components"
 
-interface Button {
+import { cn } from "@/utils/utility"
+
+// interface Button {
+//     children: React.ReactNode
+//     isDisabled?: boolean
+//     isOutlined?: boolean
+//     color?: "primary" | "secondary" | "tertiary" | "dark" | "light" | "default"
+//     size?: "small" | "medium" | "large"
+//     onClick?: () => void
+//     label?: string
+// }
+
+// const Button = ({
+//     children,
+//     label,
+//     color = "default",
+//     size = "medium",
+//     isDisabled,
+//     isOutlined,
+//     onClick,
+// }: Button) => {
+
+//     return (
+//         <button
+//             className={cn(
+//                 "flex gap-2 items-center justify-center rounded",
+//                 buttonStyle,
+//                 buttonSize,
+//                 isOutlined && outlineStyle,
+//                 isOutlined && "border-2",
+//                 isDisabled && isDisabledStyle,
+//             )}
+//             aria-label={label}
+//             disabled={isDisabled}
+//             onClick={onClick}
+//         >
+//             {children}
+//         </button>
+//     )
+// }
+
+// export default Button
+
+type Button = {
     children: React.ReactNode
     isDisabled?: boolean
     isOutlined?: boolean
@@ -12,13 +56,12 @@ interface Button {
 
 const Button = ({
     children,
-    label,
     color = "default",
     size = "medium",
-    isDisabled,
-    isOutlined,
-    onClick,
+    ...props
 }: Button) => {
+    const [pointerType, setPointerType] = useState("")
+
     const buttonStyle = {
         primary: "bg-primary text-white",
         secondary: "bg-secondary text-white",
@@ -53,21 +96,42 @@ const Button = ({
     }[color]
 
     return (
-        <button
-            className={cn(
-                "flex gap-2 items-center justify-center rounded",
-                buttonStyle,
-                buttonSize,
-                isOutlined && outlineStyle,
-                isOutlined && "border-2",
-                isDisabled && isDisabledStyle,
-            )}
-            aria-label={label}
-            disabled={isDisabled}
-            onClick={onClick}
-        >
-            {children}
-        </button>
+        <>
+            <AriaButton
+                onPressStart={(e) => setPointerType(e.pointerType)}
+                onPressEnd={() => setPointerType("")}
+                {...props}
+                className={({
+                    isPressed,
+                    isFocused,
+                    isHovered,
+                    isFocusVisible,
+                    isDisabled,
+                }) =>
+                    cn(
+                        "transition-all duration-300 ease-in-out flex gap-2 items-center justify-center rounded",
+                        buttonStyle,
+                        buttonSize,
+
+                        isFocusVisible &&
+                            "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
+                        isFocused &&
+                            "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
+                        isPressed &&
+                            "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
+                        isHovered && "bg-gray-700",
+                        isDisabled && "opacity-50",
+                    )
+                }
+            >
+                {children}
+            </AriaButton>
+            <p>
+                {pointerType
+                    ? `You are pressing the button with a ${pointerType}!`
+                    : "Ready to be pressed."}
+            </p>
+        </>
     )
 }
 

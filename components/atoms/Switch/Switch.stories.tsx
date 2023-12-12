@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { useState } from "react"
 
 import Switch from "./Switch"
 
 const meta: Meta<typeof Switch> = {
     title: "Atoms/Switch",
     component: Switch,
-    // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/7.0/react/writing-docs/docs-page
     tags: ["autodocs"],
-    parameters: {
-        // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
-        layout: "centered",
+    render: ({ children = "placeholder", ...args }) => {
+        return <Switch {...args}>{children}</Switch>
     },
 }
 
@@ -17,4 +16,16 @@ export default meta
 
 type Story = StoryObj<typeof Switch>
 
-export const Default: Story = {}
+export const Default: Story = {
+    args: {
+        children: "Switch content",
+        defaultSelected: false,
+        isDisabled: false,
+        name: "switch",
+        onChange: () => undefined,
+        value: "switch",
+        isReadOnly: false,
+        isSelected: false,
+        autoFocus: false,
+    },
+}

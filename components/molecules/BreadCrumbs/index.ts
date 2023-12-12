@@ -1,3 +1,3 @@
-import BreadCrumbs from "./BreadCrumbs"
+import BreadCrumbs from "./Breadcrumbs"
 
 export default BreadCrumbs

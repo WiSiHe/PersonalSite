@@ -13,13 +13,19 @@ import {
 import Image from "next/image"
 import explorer from "public/images/explorer.png"
 import night from "public/images/night-forest.jpeg"
+import { useRef, useState } from "react"
+// import ImageExplotionSection from "../ImageExplotionSection"
+import { useButton } from "react-aria"
+import { Button as BT, FieldError, Text } from "react-aria-components"
+
+import Input from "@/components/molecules/Input"
+import { cn } from "@/utils/utility"
 
 import ImageExplotionSection from "../ImageExplotionSection/ImageExplotionSection"
 
-// import ImageExplotionSection from "../ImageExplotionSection"
-
 const ScrollSection = () => {
     const { scrollYProgress } = useScroll()
+    const [value, setValue] = useState("")
 
     const scaleY = useSpring(scrollYProgress, {
         stiffness: 100,
@@ -47,7 +53,20 @@ const ScrollSection = () => {
                 />
             </svg>
 
-            <section className="relative xl:aspect-video bg-dark">
+            <section className="aspect-video">
+                <h3>React Aria</h3>
+                <BT className="p-4 bg-primary">Click me</BT>
+                <section className="p-4">
+                    <Input
+                        label="Email"
+                        description="add email here"
+                        defaultValue="test"
+                        onChange={setValue}
+                    />
+                </section>
+                <p>Mirrored text: {value}</p>
+            </section>
+            {/* <section className="relative xl:aspect-video bg-dark">
                 <GridStyleWrapper>
                     <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-white xl:px-10">
                         <div className="relative mt-4 col-span-full xl:hidden aspect-video">
@@ -157,46 +176,7 @@ const ScrollSection = () => {
                         </div>
                     </div>
                 </GridStyleWrapper>
-            </section>
-
-            <section className="relative grid h-full grid-flow-col-dense aspect-square xl:aspect-video overflow-clip">
-                <motion.div
-                    initial={{ opacity: 0, x: -200 }}
-                    viewport={{ once: false, amount: 0.5 }}
-                    transition={{ duration: 0.5 }}
-                    whileInView={{
-                        opacity: 1,
-                        x: 0,
-                    }}
-                    className="relative"
-                >
-                    <Image
-                        src={explorer}
-                        alt="Female explorer"
-                        className="object-cover w-full h-full"
-                        fill
-                        sizes="(max-width: 768px) 100vw,
-      (max-width: 1200px) 50vw,
-      33vw"
-                    />
-                </motion.div>
-
-                <div className="absolute inset-0 flex flex-col items-center p-4 mx-auto my-auto text-center text-dark h-fit w-fit">
-                    <div className="text-xs">
-                        <h2>
-                            <strong>Still not convinced?</strong>
-                        </h2>
-                        <div className="pb-4">
-                            Come on, just a little peak, I dare you!
-                        </div>
-                    </div>
-                    <div className="flex justify-center pt-4">
-                        <LinkButton href="/paintings">
-                            <strong>Paintings</strong>
-                        </LinkButton>
-                    </div>
-                </div>
-            </section>
+            </section> */}
         </>
     )
 }
