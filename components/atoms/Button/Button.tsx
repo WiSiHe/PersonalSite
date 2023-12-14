@@ -58,6 +58,8 @@ const Button = ({
     children,
     color = "default",
     size = "medium",
+    isDisabled,
+    isOutlined,
     ...props
 }: Button) => {
     const [pointerType, setPointerType] = useState("")
@@ -112,15 +114,17 @@ const Button = ({
                         "transition-all duration-300 ease-in-out flex gap-2 items-center justify-center rounded",
                         buttonStyle,
                         buttonSize,
-
-                        isFocusVisible &&
-                            "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
-                        isFocused &&
-                            "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
-                        isPressed &&
-                            "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
-                        isHovered && "bg-gray-700",
-                        isDisabled && "opacity-50",
+                        isOutlined && outlineStyle,
+                        isOutlined && "border-2",
+                        // isFocusVisible &&
+                        //     "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
+                        // isFocused &&
+                        //     "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
+                        // isPressed &&
+                        //     "ring-2 ring-offset-2 ring-offset-gray-100 ring-white ring-opacity-60",
+                        // isHovered && "bg-gray-700",
+                        isHovered && "opacity-90",
+                        isDisabled && isDisabledStyle,
                     )
                 }
             >

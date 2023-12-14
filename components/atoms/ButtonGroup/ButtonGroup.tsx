@@ -1,20 +1,42 @@
-type ButtonGroup = {
-    options: string[]
+import { cn } from "@/utils/utility"
+
+type item = {
+    label: string
+    value: string
+    Icon?: React.ReactNode
 }
 
-const ButtonGroup = ({ options = [] }: ButtonGroup) => {
+type ButtonGroup = {
+    activeValue: string
+    items: item[]
+    handleChangeItem: (item: string) => void
+}
+
+const ButtonGroup = ({
+    activeValue,
+    handleChangeItem,
+    items = [],
+}: ButtonGroup) => {
     return (
-        <ul className="flex flex-row space-x-2">
-            {options.map((option, i) => {
+        <div className="items-stretch rounded lg:flex ring ring-dark justify-stretch overflow-clip strech">
+            {items.map((item) => {
+                const isActive = activeValue === item.value || false
                 return (
-                    <li key={i}>
-                        <button className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-primary/90">
-                            {option}
-                        </button>
-                    </li>
+                    <button
+                        key={item.value}
+                        onClick={() => handleChangeItem(item.value)}
+                        className={cn(
+                            "w-full px-2 py-2 hover:bg-primary hover:text-tertiary active:bg-primary/90 active:text-white",
+                            isActive
+                                ? "bg-primary text-white"
+                                : "bg-white text-dark",
+                        )}
+                    >
+                        {item.label}
+                    </button>
                 )
             })}
-        </ul>
+        </div>
     )
 }
 

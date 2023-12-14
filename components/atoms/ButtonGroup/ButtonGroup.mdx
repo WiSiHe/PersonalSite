@@ -1,0 +1,33 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks"
+
+import * as ButtonGroup from "./ButtonGroup.stories"
+
+<Meta title="ButtonGroup Component" of={ButtonGroup} />
+
+# ButtonGroup Component
+
+The `ButtonGroup` component is a collection of buttons designed to group related actions together. It provides a more organized and intuitive user interface.
+
+## Usage
+
+`ButtonGroup` offers several variants including `primary`, `secondary`, `large`, and `small`. These variants allow you to customize the appearance and feel of the buttons to suit your application's design.
+
+## Properties
+
+The `ButtonGroup` component has the following properties:
+
+<Controls />
+
+## Examples
+
+### Default ButtonGroup
+
+This is a basic `ButtonGroup` without a selected `ActiveValue`.
+
+<Canvas of={ButtonGroup.Default} />
+
+### Active ButtonGroup
+
+This is a `ButtonGroup` with a selected `ActiveValue`, demonstrating how an active button within the group is highlighted.
+
+<Canvas of={ButtonGroup.Active} />
