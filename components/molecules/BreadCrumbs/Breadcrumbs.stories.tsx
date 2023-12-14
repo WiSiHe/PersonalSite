@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import Breadcrumbs from "./Breadcrumbs"
+import BreadCrumbs from "./BreadCrumbs"
 
-const meta: Meta<typeof Breadcrumbs> = {
+const meta: Meta<typeof BreadCrumbs> = {
     title: "Molecules/Navigation/Breadcrumbs",
-    component: Breadcrumbs,
+    component: BreadCrumbs,
     tags: ["autodocs"],
 }
 
 export default meta
 
-type Story = StoryObj<typeof Breadcrumbs>
+type Story = StoryObj<typeof BreadCrumbs>
 
 export const Default: Story = {
     args: {
