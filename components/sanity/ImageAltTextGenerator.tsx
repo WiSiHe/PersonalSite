@@ -44,7 +44,7 @@ const ImageAltTextGenerator = (props: StringInputProps) => {
         ]
 
         try {
-            const response = await fetch("/api/openai-vision", {
+            const response = await fetch("/api/ai/vision", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
