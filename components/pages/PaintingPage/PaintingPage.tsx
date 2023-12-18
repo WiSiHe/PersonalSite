@@ -125,7 +125,7 @@ const PaintingPage = ({ painting }: iPaintingPageProps) => {
                                 )}
                             >
                                 <Image
-                                    priority
+                                    unoptimized
                                     fill
                                     alt={altText}
                                     src={urlForImage(image)
