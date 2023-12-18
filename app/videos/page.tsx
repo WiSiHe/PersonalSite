@@ -6,9 +6,11 @@ import { notFound } from "next/navigation"
 export const metadata = {
     title: "Videos | WiSiHe",
     description: "A gallery of some of my videos",
+    locale: "no-NO",
+    type: "website",
 }
 
-export const revalidate = 60 * 60 * 3 // 3 hours
+// export const revalidate = 60 * 60 * 3 // 3 hours
 
 async function getAllProjects() {
     const { videos = [], tags = [] } = await getAllVideosAndTags()

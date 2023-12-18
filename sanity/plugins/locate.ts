@@ -16,7 +16,6 @@ export const locate: DocumentLocationResolver = (params, context) => {
 
     if (
         params.type === "home" ||
-        params.type === "page" ||
         params.type === "project" ||
         params.type === "painting" ||
         params.type === "tag"

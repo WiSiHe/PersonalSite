@@ -10,7 +10,7 @@ export const metadata = {
     type: "website",
 }
 
-export const revalidate = 60 * 60 * 3 // 3 hours
+// export const revalidate = 60 * 60 * 3 // 3 hours
 
 async function getAllProjects() {
     // const data = await getAllProjects()

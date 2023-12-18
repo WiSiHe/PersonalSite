@@ -5,7 +5,7 @@ import { notFound } from "next/navigation"
 
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs"
 
-export const revalidate = 3600 // every hour
+// export const revalidate = 3600 // every hour
 
 export function generateStaticParams() {
     return generateStaticSlugs("project")

@@ -17,7 +17,7 @@ export const metadata = {
     url: "https://wisihe.no/paintings",
 }
 
-export const revalidate = 60 * 60 * 3 // 3 hours
+export const revalidate = 60 * 60 * 24 // 3 hours
 
 async function getAllPaintings() {
     const { paintings = [], tags = [] } = await getAllTagsAndPaintingsLight()

@@ -103,6 +103,6 @@ export function loadPainting(slug: string) {
     return loadQuery<iSanityPainting | null>(
         paintingsQuery,
         { slug },
-        { next: { tags: [`painting/${slug}`] } },
+        { next: { tags: [`painting:${slug}`] } },
     )
 }
