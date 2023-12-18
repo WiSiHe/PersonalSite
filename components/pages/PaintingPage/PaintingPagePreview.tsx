@@ -1,5 +1,5 @@
 "use client"
-import { QueryResponseInitial } from "@sanity/react-loader/rsc"
+import { QueryResponseInitial } from "@sanity/react-loader"
 import { paintingDetailsQuery } from "lib/api"
 import { iSanityPainting } from "lib/models/objects/sanityPainting"
 

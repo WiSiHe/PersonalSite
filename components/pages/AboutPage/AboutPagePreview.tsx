@@ -1,6 +1,6 @@
 "use client"
 
-import { type QueryResponseInitial } from "@sanity/react-loader/rsc"
+import { type QueryResponseInitial } from "@sanity/react-loader"
 
 import { homePageQuery } from "@/sanity/lib/queries"
 import { useQuery } from "@/sanity/loader/useQuery"
@@ -9,7 +9,7 @@ import { HomePagePayload } from "@/types"
 import AboutPage from "./AboutPage"
 
 type Props = {
-    initial?: QueryResponseInitial<HomePagePayload | null>
+    initial: QueryResponseInitial<HomePagePayload | null>
 }
 
 export default function AboutPagePreview(props: Props) {

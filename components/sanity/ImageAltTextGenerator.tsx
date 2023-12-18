@@ -8,6 +8,10 @@ import { isNotEmptyObject } from "utils/object"
 
 const Loader = () => <BiLoader className="animate-spin" />
 
+// Constants for image dimensions
+const IMAGE_HEIGHT = 512
+const IMAGE_WIDTH = 512
+
 const basePrompt =
     "Create an alt text for this image. keep it max 96 characters."
 
@@ -17,7 +21,7 @@ const ImageAltTextGenerator = (props: StringInputProps) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const [imageUrl, setImageUrl] = useState<string>("")
+    const [imageUrl, setImageUrl] = useState("")
 
     const handleChangeDescription = (e: any) => {
         const response = e.target.value
@@ -64,8 +68,17 @@ const ImageAltTextGenerator = (props: StringInputProps) => {
     }
 
     useEffect(() => {
+        // If there's no image, don't do anything
         if (!image) return
-        setImageUrl(urlForImage(image).height(512).width(512).url() || "")
+
+        // If urlForImage is defined, use it to set the image URL
+        if (typeof urlForImage === "function") {
+            const imageUrl = urlForImage(image)
+                .height(IMAGE_HEIGHT)
+                .width(IMAGE_WIDTH)
+                .url()
+            setImageUrl(imageUrl || "")
+        }
     }, [image])
 
     return (

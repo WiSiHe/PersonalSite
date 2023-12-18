@@ -1,4 +1,4 @@
-// import { getBaseUrl } from "utils/url"
+const BASE_URL = "https://wisihe.no/"
 
 /**
  * This Route is static (default)
@@ -9,10 +9,10 @@ export async function GET() {
     User-agent: *
     Disallow: /studio
     # Host
-    Host: https://wisihe.no/
+    Host: ${BASE_URL}
 
     # Sitemaps
-    Sitemap: https://wisihe.no/sitemap.xml`
+    Sitemap: ${BASE_URL}/sitemap.xml`
 
     const headers = {
         "Cache-Control": "max-age=0, s-maxage=3600",
