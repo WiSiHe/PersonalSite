@@ -26,10 +26,7 @@ const serverClient = client.withConfig({
     token,
     stega: {
         // Enable stega if it's a Vercel preview deployment, as the Vercel Toolbar has controls that shows overlays
-        // enabled: process.env.VERCEL_ENV !== "production",
-        enabled: false,
-        studioUrl,
-        // studioUrl: process.env.SANITY_STUDIO_URL,
+        enabled: process.env.VERCEL_ENV === "preview",
     },
 })
 
@@ -41,25 +38,31 @@ const serverClient = client.withConfig({
  */
 queryStore.setServerClient(serverClient)
 
-// const usingCdn = serverClient.config().useCdn
+const usingCdn = serverClient.config().useCdn
 // Automatically handle draft mode
 export const loadQuery = ((query, params = {}, options = {}) => {
     const {
         perspective = draftMode().isEnabled ? "previewDrafts" : "published",
     } = options
     // Don't cache by default
-    // const cache: RequestCache = "no-store"
+    let revalidate: NextFetchRequestConfig["revalidate"] = 0
     // If `next.tags` is set, and we're not using the CDN, then it's safe to cache
-    // if (!usingCdn && Array.isArray(options.next?.tags)) {
-    //     cache = "force-cache"
-    // }
+    if (!usingCdn && Array.isArray(options.next?.tags)) {
+        revalidate = false
+    } else if (usingCdn) {
+        revalidate = 60
+    }
     return queryStore.loadQuery(query, params, {
-        // cache,
-        // ...options,
+        ...options,
+        next: {
+            revalidate,
+            ...(options.next || {}),
+        },
         perspective,
+        // @TODO add support in `@sanity/client/stega` for the below
+        // stega: {enabled: draftMode().isEnabled}
     })
 }) satisfies typeof queryStore.loadQuery
-
 /**
  * Loaders that are used in more than one place are declared here, otherwise they're colocated with the component
  */
@@ -68,7 +71,7 @@ export function loadSettings() {
     return loadQuery<SettingsPayload>(
         settingsQuery,
         {},
-        // { next: { tags: ["settings", "home", "page", "project"] } },
+        { next: { tags: ["settings", "home", "page", "project"] } },
     )
 }
 
@@ -76,7 +79,7 @@ export function loadHomePage() {
     return loadQuery<HomePagePayload | null>(
         homePageQuery,
         {},
-        // { next: { tags: ["painting", "project", "home"] } },
+        { next: { tags: ["painting", "project", "home"] } },
     )
 }
 
@@ -84,7 +87,7 @@ export function loadProject(slug: string) {
     return loadQuery<ProjectPayload | null>(
         projectBySlugQuery,
         { slug },
-        // { next: { tags: [`project:${slug}`] } },
+        { next: { tags: [`project:${slug}`] } },
     )
 }
 
@@ -92,7 +95,7 @@ export function loadPage(slug: string) {
     return loadQuery<PagePayload | null>(
         pagesBySlugQuery,
         { slug },
-        // { next: { tags: [`page:${slug}`] } },
+        { next: { tags: [`page:${slug}`] } },
     )
 }
 
@@ -100,6 +103,6 @@ export function loadPainting(slug: string) {
     return loadQuery<iSanityPainting | null>(
         paintingsQuery,
         { slug },
-        // { next: { tags: [`painting/${slug}`] } },
+        { next: { tags: [`painting/${slug}`] } },
     )
 }

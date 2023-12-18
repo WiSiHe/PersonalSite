@@ -9,7 +9,7 @@ import { client } from "@/sanity/lib/client"
 import { useLiveMode } from "./useQuery"
 
 // Always enable stega in Live Mode
-const stegaClient = client.withConfig({ stega: false })
+const stegaClient = client.withConfig({ stega: true })
 
 // Only allow same-origin Studios to connect
 const allowStudioOrigin =
@@ -54,6 +54,7 @@ export default function VisualEditing() {
     }, [])
 
     const pathname = usePathname()
+
     const searchParams = useSearchParams()
     useEffect(() => {
         if (navigate) {
@@ -66,7 +67,7 @@ export default function VisualEditing() {
         }
     }, [navigate, pathname, searchParams])
 
-    useLiveMode({ allowStudioOrigin, client: stegaClient })
+    useLiveMode({ client: stegaClient })
 
     useEffect(() => {
         // If not an iframe or a Vercel Preview deployment, turn off Draft Mode
