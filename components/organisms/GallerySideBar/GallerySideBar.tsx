@@ -72,7 +72,7 @@ const GallerySideBar = ({
     return (
         <section
             className={cn(
-                "@container h-fit transition-all p-4 drop-shadow shrink-0 bg-tertiary rounded",
+                "@container h-fit lg:sticky lg:top-20 transition-all p-4 drop-shadow shrink-0 bg-tertiary rounded",
                 "w-full lg:w-96",
             )}
         >

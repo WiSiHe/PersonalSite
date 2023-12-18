@@ -172,12 +172,12 @@ export async function getAllTagsAndPaintingsLight(): Promise<{
     const query = `
     {
       "paintings": *[_type == "painting"] | order(_createdAt desc) {
+        _id,
+        redbubbleUrl,
         title,
         paintedAt,
         "imagesCount": count(images),
         'slug': slug.current,
-        redbubbleUrl,
-        _id,
         image {
           ...,
           "lqip": asset->metadata.lqip

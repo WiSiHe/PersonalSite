@@ -108,23 +108,23 @@ const Painting = ({
     return (
         <article
             className={cn(
-                "text-white bg-dark aspect-square relative overflow-clip",
+                "text-white bg-dark aspect-portrait relative overflow-clip",
             )}
         >
             <Image
-                src={urlForImage(image)
-                    .width(400)
-                    .height(400)
-                    .quality(60)
-                    .url()}
                 sizes="(min-width: 1040px) calc(20.87vw - 20px), calc(50vw - 24px)"
                 fill
                 priority={shouldBeLazy}
-                placeholder={lqip ? "blur" : "empty"}
-                blurDataURL={lqip ? lqip : undefined}
+                placeholder="blur"
+                blurDataURL={lqip}
                 quality={60}
                 unoptimized={storybook}
                 alt=""
+                src={urlForImage(image)
+                    .width(400)
+                    .height(600)
+                    .quality(60)
+                    .url()}
                 className={cn(
                     !isNsfw && !isNsfwUrl && "group-hover:scale-110",
                     "object-cover w-full h-full transition-all pointer-events-none duration-500 ease-in-out bg-center bg-cover aspect-square",

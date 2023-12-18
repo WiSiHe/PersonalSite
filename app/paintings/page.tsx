@@ -17,7 +17,7 @@ export const metadata = {
     url: "https://wisihe.no/paintings",
 }
 
-export const revalidate = 60 * 60 * 24 // 3 hours
+export const revalidate = 60 * 60 * 24 // 24 hours
 
 async function getAllPaintings() {
     const { paintings = [], tags = [] } = await getAllTagsAndPaintingsLight()
@@ -55,7 +55,7 @@ export default async function Home() {
     return (
         <Main
             noTopPadding
-            className="relative flex flex-col h-screen pt-16 overflow-y-clip"
+            className="relative flex flex-col min-h-screen pt-16"
         >
             <GalleryPage paintings={randomPaintings} tags={tags} />
         </Main>
