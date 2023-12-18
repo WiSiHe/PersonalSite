@@ -88,7 +88,7 @@ const Navigation = ({ isAbsolute = true }: iNavigationProps) => {
                                 <Link
                                     href={url}
                                     className={cn(
-                                        "transition-all gap-2 flex items-center mix-blend-difference text-white px-4 py-2 hover:bg-primary hover:text-white active:bg-primary",
+                                        "transition-all gap-2 flex items-center text-white px-4 py-2 hover:bg-primary hover:text-white active:bg-primary",
                                         isActive
                                             ? "underline decoration-primary text-white decoration-2 bg-primary"
                                             : " text-white",

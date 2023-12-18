@@ -86,12 +86,27 @@ export const settingsQuery = groq`
   }
 `
 
-export const paintingsQuery = groq`
+export const paintingQuery = groq`
 *[_type == "painting" && slug.current == $slug][0]{
-  title, description, format, likes, paintedAt, artstationUrl, inPrintUrl, image{
+  _id,
+  title,
+  'slug': slug.current,
+  description,
+  seoDescription,
+  format,
+  likes,
+  paintedAt,
+  artstationUrl,
+  redbubbleUrl,
+  society6Url,
+  inPrintUrl,
+  image{
     ...,
     "lqip": asset->metadata.lqip
-    },
-    seoDescription, 'slug': slug.current, altText, redbubbleUrl, society6Url, _id, images, "tagCount": count(tagsV2), "imagesCount": count(images),tagsV2[]->{name}, video
+  },
+  altText,
+  images,
+  tagsV2[]->{name},
+  video
 }
 `

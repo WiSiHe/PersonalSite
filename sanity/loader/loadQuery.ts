@@ -14,7 +14,7 @@ import { client } from "@/sanity/lib/client"
 import {
     homePageQuery,
     pagesBySlugQuery,
-    paintingsQuery,
+    paintingQuery,
     projectBySlugQuery,
     settingsQuery,
 } from "@/sanity/lib/queries"
@@ -101,7 +101,7 @@ export function loadPage(slug: string) {
 
 export function loadPainting(slug: string) {
     return loadQuery<iSanityPainting | null>(
-        paintingsQuery,
+        paintingQuery,
         { slug },
         { next: { tags: [`painting:${slug}`] } },
     )
