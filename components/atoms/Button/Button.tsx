@@ -130,11 +130,11 @@ const Button = ({
             >
                 {children}
             </AriaButton>
-            <p>
+            {/* <p>
                 {pointerType
                     ? `You are pressing the button with a ${pointerType}!`
                     : "Ready to be pressed."}
-            </p>
+            </p> */}
         </>
     )
 }

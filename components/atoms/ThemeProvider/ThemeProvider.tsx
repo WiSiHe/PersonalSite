@@ -8,7 +8,7 @@ interface ThemeProviderProps {
 }
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const theme = useThemeStore((state) => state.theme)
+    const theme = useThemeStore((state) => state.theme) || "light"
 
     return <div className={cn(theme)}>{children}</div>
 }

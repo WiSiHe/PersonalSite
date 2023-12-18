@@ -24,9 +24,9 @@ const PaintingSection = ({
         <section className="relative w-full text-white py-14 xl:py-24">
             <div className="relative px-4 text-dark">
                 <h2 className="pb-2">Paintings</h2>
-                <p className="flex flex-wrap max-w-3xl">
+                <div className="flex flex-wrap max-w-3xl">
                     <CustomPortableText value={description} />
-                </p>
+                </div>
             </div>
             <CarouselStatic paintings={paintings} />
             <div className="flex flex-col items-center justify-center w-full gap-4 px-4 text-dark">

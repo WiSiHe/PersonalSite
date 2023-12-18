@@ -104,6 +104,9 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                                     )}
                                 >
                                     <Image
+                                        placeholder="blur"
+                                        blurDataURL={lqip}
+                                        loading="lazy"
                                         src={urlForImage(image)
                                             .width(sanityWidth)
                                             .height(sanityHeight)
@@ -111,8 +114,6 @@ const CarouselStatic = ({ paintings = [] }: CarouselStatic) => {
                                             .url()}
                                         sizes="(min-width: 1024px) 400px, (min-width: 768px) 300px, 200px"
                                         fill
-                                        placeholder={lqip ? "blur" : "empty"}
-                                        blurDataURL={lqip ? lqip : undefined}
                                         quality={30}
                                         // unoptimized={storybook}
                                         alt=""

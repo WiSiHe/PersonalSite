@@ -12,10 +12,6 @@ export const revalidate = 86400
 
 const staticPages = [
     {
-        loc: "",
-        priority: 1,
-    },
-    {
         loc: "/",
         priority: 1,
     },

@@ -28,9 +28,20 @@ export default function AboutPagePreview(props: Props) {
         )
     }
 
-    const { showcasePaintings, showcaseProjects } = data
-
+    const {
+        showcasePaintings,
+        showcaseProjects,
+        projectsDescription,
+        paintingsDescription,
+        paintingsCount,
+    } = data
     return (
-        <AboutPage paintings={showcasePaintings} projects={showcaseProjects} />
+        <AboutPage
+            paintings={showcasePaintings}
+            projects={showcaseProjects}
+            projectsDescription={projectsDescription}
+            paintingsDescription={paintingsDescription}
+            paintingsCount={paintingsCount}
+        />
     )
 }

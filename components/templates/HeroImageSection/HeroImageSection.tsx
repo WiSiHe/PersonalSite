@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import Chip from "components/atoms/Chip/Chip"
 import LinkButton from "components/atoms/LinkButton/LinkButton"
@@ -46,20 +47,15 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
 
     return (
         <section className="relative w-full min-h-[600px] bg-dark flex flex-col justify-center px-4 py-10 h-fit xl:min-h-screen overflow-clip">
-            <Image
-                src={urlForImage(currentBackground.image)
-                    .width(sanityWidth)
-                    .height(sanityHeight)
-                    .quality(1)
-                    .url()}
-                fill
+            <img
+                src={lqip}
                 alt=""
-                placeholder={lqip ? "blur" : "empty"}
-                blurDataURL={lqip ? lqip : undefined}
-                quality={1}
-                priority
+                className="absolute inset-0 object-cover w-full h-full blur-xl"
                 sizes="100vw"
-                className="object-cover xl:scale-150 blur-xl"
+                // onError={(e) =>
+                //     ((e.target as HTMLImageElement).src =
+                //         "/images/paintings/cloud.jpg")
+                // }
             />
             <div className="relative z-10 flex flex-col items-center w-full gap-8 mx-auto max-w-screen-2xl xl:grid xl:grid-cols-12 xl:pt-32 xl:gap-10 xl:items-center">
                 <section className="z-10 w-full pt-24 col-span-full xl:col-span-4 xl:pt-0">
@@ -85,11 +81,11 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
                                 src={urlForImage(currentBackground.image)
                                     .width(sanityWidth)
                                     .height(sanityHeight)
-                                    .quality(70)
+                                    .quality(60)
                                     .url()}
                                 alt={altText}
-                                placeholder={lqip ? "blur" : "empty"}
-                                blurDataURL={lqip ? lqip : undefined}
+                                placeholder={"blur"}
+                                blurDataURL={lqip}
                                 quality={40}
                                 fill
                                 priority
