@@ -149,8 +149,8 @@ devDependencies:
     specifier: ^7.23.6
     version: 7.23.6
   '@chromaui/addon-visual-tests':
-    specifier: ^0.0.122
-    version: 0.0.122(@storybook/blocks@7.6.5)(@storybook/client-logger@7.6.5)(@storybook/components@7.6.5)(@storybook/core-events@7.6.5)(@storybook/manager-api@7.6.5)(@storybook/preview-api@7.6.5)(@storybook/theming@7.6.5)(@storybook/types@7.6.5)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^0.0.124
+    version: 0.0.124(@storybook/blocks@7.6.5)(@storybook/client-logger@7.6.5)(@storybook/components@7.6.5)(@storybook/core-events@7.6.5)(@storybook/manager-api@7.6.5)(@storybook/preview-api@7.6.5)(@storybook/theming@7.6.5)(@storybook/types@7.6.5)(react-dom@18.2.0)(react@18.2.0)
   '@next/bundle-analyzer':
     specifier: ^14.0.4
     version: 14.0.4
@@ -1657,8 +1657,8 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@chromaui/addon-visual-tests@0.0.122(@storybook/blocks@7.6.5)(@storybook/client-logger@7.6.5)(@storybook/components@7.6.5)(@storybook/core-events@7.6.5)(@storybook/manager-api@7.6.5)(@storybook/preview-api@7.6.5)(@storybook/theming@7.6.5)(@storybook/types@7.6.5)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-YVAXvegHOHdw1BRgpSSSTxRqoS69rKuwIWHprITbQhcPDMZ3Y+5KfkeWTpdrCBhVM+cHPpx1WCobT7B2mfRUBA==}
+  /@chromaui/addon-visual-tests@0.0.124(@storybook/blocks@7.6.5)(@storybook/client-logger@7.6.5)(@storybook/components@7.6.5)(@storybook/core-events@7.6.5)(@storybook/manager-api@7.6.5)(@storybook/preview-api@7.6.5)(@storybook/theming@7.6.5)(@storybook/types@7.6.5)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-zPHwOGrX6xIFug2XlvzkQA/KAFrv2yVqh8jEM4pIdVOvcwIO4XK1jlikJqtdccdzDmnjtkuYc+nJA5SdNaJy+Q==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       '@storybook/blocks': ^7.2.0
