@@ -17,6 +17,7 @@ import { useRef, useState } from "react"
 // import ImageExplotionSection from "../ImageExplotionSection"
 import { useButton } from "react-aria"
 import { Button as BT, FieldError, Text } from "react-aria-components"
+import { Button } from "tine-ui"
 
 import Input from "@/components/molecules/Input"
 import { cn } from "@/utils/utility"
@@ -65,6 +66,10 @@ const ScrollSection = () => {
                     />
                 </section>
                 <p>Mirrored text: {value}</p>
+            </section>
+            <section>
+                <p>Tine_UI</p>
+                <Button>Clidwack me</Button>
             </section>
             {/* <section className="relative xl:aspect-video bg-dark">
                 <GridStyleWrapper>

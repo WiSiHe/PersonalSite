@@ -4,10 +4,11 @@ export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
     title,
-    paintingsDescription,
     "paintingsCount": count(*[_type == "painting"]),
+    paintingsDescription,
     showcasePaintings[]->{
       _type,
+      _id,
       altText,
       "slug": slug.current,
       title,
@@ -20,6 +21,7 @@ export const homePageQuery = groq`
     projectsDescription,
     showcaseProjects[]->{
       _type,
+      _id,
       title,
       description,
       projectStart,
@@ -27,14 +29,11 @@ export const homePageQuery = groq`
       status,
       content,
       name,
-      slug,
+      "slug": slug.current,
       image{
         ...,
         "lqip": asset->metadata.lqip
       },
-      "slug": slug.current,
-      _id,
-      tags[]->{name}
     },
   }
 `

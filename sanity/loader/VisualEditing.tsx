@@ -57,6 +57,8 @@ export default function VisualEditing() {
 
     const searchParams = useSearchParams()
     useEffect(() => {
+        if (!searchParams) return
+        if (!pathname) return
         if (navigate) {
             navigate({
                 type: "push",
