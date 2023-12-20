@@ -1,9 +1,18 @@
-"use client"
 import StoreLink from "components/atoms/StoreLink"
 import SocialLinks from "components/molecules/SocialLinks/SocialLinks"
 import Image from "next/image"
 import Link from "next/link"
+import explorer from "public/images/explorer.png"
+import bathtub from "public/images/paintings/bathtub.jpg"
+import celestial from "public/images/paintings/Celestial.jpg"
+import cloud from "public/images/paintings/cloud.jpg"
+import creepy from "public/images/paintings/creepy.jpg"
 import sloth from "public/images/paintings/cute.jpg"
+import fire from "public/images/paintings/fire.jpg"
+import iceCave from "public/images/paintings/icecave.png"
+import sunlight from "public/images/paintings/sunlight.jpg"
+import winter from "public/images/paintings/winter.jpg"
+import woods from "public/images/woods.png"
 import { FaMailBulk } from "react-icons/fa"
 import {
     SiArtstation,
@@ -12,12 +21,89 @@ import {
     SiSociety6,
 } from "react-icons/si"
 
+import { cn } from "@/utils/utility"
+
 const mailtoLabel = "mailto:hws902@gmail.com"
+
+const paintings = [
+    {
+        label: "Cute",
+        src: sloth,
+        alt: "cute",
+        height: 24,
+        aspectRatio: "aspect-square",
+    },
+    {
+        label: "Bathtub",
+        src: bathtub,
+        alt: "bathtub",
+        height: 32,
+        aspectRatio: "aspect-portrait",
+    },
+    {
+        label: "Winter",
+        src: winter,
+        alt: "winter",
+        height: 24,
+        aspectRatio: "aspect-video",
+    },
+    {
+        label: "Creepy",
+        src: creepy,
+        alt: "creepy",
+        height: 32,
+        aspectRatio: "aspect-video",
+    },
+    {
+        label: "Fire",
+        src: fire,
+        alt: "fire",
+        height: 24,
+        aspectRatio: "aspect-square",
+    },
+    {
+        label: "Ice Cave",
+        src: iceCave,
+        alt: "ice cave",
+        height: 24,
+        aspectRatio: "aspect-video",
+    },
+    {
+        label: "Sunlight",
+        src: sunlight,
+        alt: "sunlight",
+        height: 24,
+        aspectRatio: "aspect-square",
+    },
+    {
+        label: "Celestial",
+        src: celestial,
+        alt: "celestial",
+        height: 24,
+        aspectRatio: "aspect-square",
+    },
+    {
+        label: "Cloud",
+        src: cloud,
+        alt: "cloud",
+        height: 24,
+        aspectRatio: "aspect-video",
+    },
+    {
+        label: "Explorer",
+        src: woods,
+        alt: "explorer",
+        height: 24,
+        aspectRatio: "aspect-portrait",
+    },
+]
+
+paintings.sort(() => Math.random() - 0.5)
 
 const ContactPage = () => {
     return (
         <>
-            <div className="flex flex-col gap-8 p-4 lg:p-10 col-span-full lg:col-span-4">
+            <div className="flex flex-col gap-8 p-4 col-span-full lg:col-span-3">
                 <section>
                     <h1>Contact</h1>
                     <p className="pt-2">
@@ -121,14 +207,26 @@ const ContactPage = () => {
                 </section>
             </div>
 
-            <div className="relative hidden lg:m-10 lg:block lg:col-span-8">
-                <Image
-                    src={sloth}
-                    alt="contact"
-                    fill
-                    placeholder="blur"
-                    className="object-cover rounded-xl "
-                />
+            <div className="sticky hidden gap-4 top-20 lg:flex lg:col-span-9">
+                <div className="w-full gap-4 columns-3">
+                    {paintings.map((painting, index) => (
+                        <div
+                            className={cn(
+                                "mb-4 bg-dark  relative break-inside-avoid rounded-xl",
+                                painting.aspectRatio,
+                            )}
+                            key={index}
+                        >
+                            <Image
+                                src={painting.src}
+                                alt="contact"
+                                fill
+                                placeholder="blur"
+                                className="object-cover rounded-xl "
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     )

@@ -48,7 +48,7 @@ type Button = {
     children: React.ReactNode
     isDisabled?: boolean
     isOutlined?: boolean
-    color?: "primary" | "secondary" | "tertiary" | "dark" | "light" | "default"
+    color?: "primary" | "secondary" | "tertiary" | "default"
     size?: "small" | "medium" | "large"
     onClick?: () => void
     label?: string
@@ -68,8 +68,6 @@ const Button = ({
         primary: "bg-primary text-white",
         secondary: "bg-secondary text-white",
         tertiary: "bg-tertiary text-white",
-        dark: "bg-dark text-white",
-        light: "bg-light text-black",
         default: "bg-primary text-white",
     }[color]
 
@@ -83,8 +81,7 @@ const Button = ({
         primary: "bg-primary text-white opacity-50 cursor-not-allowed",
         secondary: "bg-secondary text-white opacity-50 cursor-not-allowed",
         tertiary: "bg-tertiary text-white opacity-50 cursor-not-allowed",
-        dark: "bg-dark text-white opacity-50 cursor-not-allowed",
-        light: "bg-light text-black opacity-50 cursor-not-allowed",
+
         default: "bg-primary text-white opacity-50 cursor-not-allowed",
     }[color]
 
@@ -92,8 +89,7 @@ const Button = ({
         primary: "bg-transparent border-primary text-primary",
         secondary: "bg-transparent border-secondary text-secondary",
         tertiary: "bg-transparent border-tertiary text-tertiary",
-        dark: "bg-transparent border-dark text-dark",
-        light: "bg-transparent border-light text-light",
+
         default: "bg-transparent border-primary text-primary",
     }[color]
 

@@ -7,6 +7,10 @@ import { isNotEmptyObject } from "utils/object"
 
 const Loader = () => <BiLoader className="animate-spin" />
 
+// Constants for image dimensions
+const IMAGE_HEIGHT = 512
+const IMAGE_WIDTH = 512
+
 const basePrompt = "Create a SEO friendly description for this image."
 
 const ImageSEOGenerator = (props: StringInputProps) => {
@@ -62,9 +66,17 @@ const ImageSEOGenerator = (props: StringInputProps) => {
     }
 
     useEffect(() => {
+        // If there's no image, don't do anything
         if (!image) return
 
-        setImageUrl(urlForImage(image).height(512).width(512).url() || "")
+        // If urlForImage is defined, use it to set the image URL
+        if (typeof urlForImage === "function") {
+            const imageUrl = urlForImage(image)
+                .height(IMAGE_HEIGHT)
+                .width(IMAGE_WIDTH)
+                .url()
+            setImageUrl(imageUrl || "")
+        }
     }, [image])
 
     return (

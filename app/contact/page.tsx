@@ -12,7 +12,7 @@ export const metadata = {
 export default async function AppContactPage() {
     return (
         <>
-            <Main className="grid min-h-screen grid-cols-12 gap-4 p-4">
+            <Main className="grid items-start min-h-screen grid-cols-12 gap-4 p-4">
                 <ContactPage />
             </Main>
         </>
