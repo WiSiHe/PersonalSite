@@ -94,6 +94,7 @@ const ChatWindow = ({
                                     alt="image"
                                     width={512}
                                     height={512}
+                                    unoptimized
                                 />
 
                                 <div className="flex items-end justify-end gap-4 p-4 text-xs">
