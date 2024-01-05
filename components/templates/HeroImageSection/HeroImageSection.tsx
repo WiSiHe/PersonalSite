@@ -50,7 +50,7 @@ const HeroImageSection = ({ paintings = [] }: HeroImageSection) => {
             <img
                 src={lqip}
                 alt=""
-                className="absolute inset-0 object-cover w-full h-full blur-xl"
+                className="absolute inset-0 object-cover w-full h-full scale-105 blur-xl"
                 sizes="100vw"
                 // onError={(e) =>
                 //     ((e.target as HTMLImageElement).src =
