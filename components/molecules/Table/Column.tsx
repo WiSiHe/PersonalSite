@@ -1,20 +1,10 @@
-import { Column as AriaColumn, type ColumnProps } from "react-aria-components"
+type ColumnProps = {
+    children: React.ReactNode
+    className?: string
+}
 
-function Column<T extends object>(props: ColumnProps<T>) {
-    return (
-        <AriaColumn {...props}>
-            {({ allowsSorting, sortDirection }) => (
-                <>
-                    {props.children}
-                    {allowsSorting && (
-                        <span aria-hidden="true" className="sort-indicator">
-                            {sortDirection === "ascending" ? "▲" : "▼"}
-                        </span>
-                    )}
-                </>
-            )}
-        </AriaColumn>
-    )
+const Column = ({ children, ...props }: ColumnProps) => {
+    return <div {...props}>{children}</div>
 }
 
 export default Column
