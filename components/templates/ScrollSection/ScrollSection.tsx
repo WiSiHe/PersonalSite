@@ -7,7 +7,6 @@ import {
     useSpring,
 } from "framer-motion"
 import Image from "next/image"
-import explorer from "public/images/explorer.png"
 import bathtub from "public/images/paintings/bathtub.jpg"
 import celestial from "public/images/paintings/Celestial.jpg"
 import cloud from "public/images/paintings/cloud.jpg"
@@ -19,13 +18,14 @@ import sunlight from "public/images/paintings/sunlight.jpg"
 import winter from "public/images/paintings/winter.jpg"
 import woods from "public/images/woods.png"
 import { useState } from "react"
-// import ImageExplotionSection from "../ImageExplotionSection"
 import { Button as BT } from "react-aria-components"
 import { Button } from "tine-ui"
 
 import Input from "@/components/molecules/Input"
 import { Marquee } from "@/components/molecules/Marquee"
 import { cn } from "@/utils/utility"
+
+import ImageExplotionSection from "../ImageExplotionSection/ImageExplotionSection"
 
 const paintings = [
     {
@@ -168,6 +168,7 @@ const ScrollSection = () => {
                 <p>Tine_UI</p>
                 <Button>Clidwack me</Button>
             </section>
+            <ImageExplotionSection />
             {/* <section className="relative xl:aspect-video bg-dark">
                 <GridStyleWrapper>
                     <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-white xl:px-10">
@@ -220,7 +221,7 @@ const ScrollSection = () => {
                         </div>
                     </div>
 
-                    <ImageExplotionSection />
+                    
                 </GridStyleWrapper>
             </section>
 
