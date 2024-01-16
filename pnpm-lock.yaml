@@ -262,6 +262,9 @@ devDependencies:
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1(ts-node@10.9.2)
+  tailwindcss-animated:
+    specifier: ^1.0.1
+    version: 1.0.1(tailwindcss@3.4.1)
   tailwindcss-themer:
     specifier: ^4.0.0
     version: 4.0.0(tailwindcss@3.4.1)
@@ -16345,6 +16348,14 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.8
     dev: false
+
+  /tailwindcss-animated@1.0.1(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-u5wusj89ZwP8I+s8WZlaAd7aZTWBN/XEG6QgMKpkIKmAf3xP1A6WYf7oYIKmGaB10UAQaSqWopi/i1ozzZEs8Q==}
+    peerDependencies:
+      tailwindcss: '>=3.1.0'
+    dependencies:
+      tailwindcss: 3.4.1(ts-node@10.9.2)
+    dev: true
 
   /tailwindcss-themer@4.0.0(tailwindcss@3.4.1):
     resolution: {integrity: sha512-kngKDW+z36JtjvaNziX0aesO95r8f5+3FFdANVFDt1uzNHZsL6XLla1YDK6EBAYFqPichoPDbO4lrrTyB+UAbA==}
