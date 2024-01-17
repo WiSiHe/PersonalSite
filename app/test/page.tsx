@@ -11,7 +11,8 @@ export const metadata = {
 export default async function Home() {
     return (
         <Main noTopPadding className="flex-col">
-            <ScrollSection />
+            <p>dwa</p>
+            {/* <ScrollSection /> */}
         </Main>
     )
 }

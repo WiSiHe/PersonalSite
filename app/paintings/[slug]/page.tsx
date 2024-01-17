@@ -139,7 +139,8 @@ export default async function LandingPage({ params }: Props) {
                 noTopPadding
                 className="grid min-h-screen grid-cols-12 pt-16 mx-auto lg:pt-20 lg:p-4 max-w-screen-3xl lg:gap-4 overflow-clip"
             >
-                <PaintingPage painting={data!} />
+                <p>dw</p>
+                {/* <PaintingPage painting={data!} /> */}
             </Main>
         </>
     )

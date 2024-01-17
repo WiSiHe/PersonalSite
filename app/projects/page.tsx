@@ -38,7 +38,8 @@ export default async function ProjectsHomePage() {
 
     return (
         <Main className="min-h-screen">
-            <ProjectsPage projects={projects} tags={tags} />
+            <p>dwa</p>
+            {/* <ProjectsPage projects={projects} tags={tags} /> */}
         </Main>
     )
 }
