@@ -79,9 +79,9 @@ export default async function LandingPage({ params }: Props) {
     const selectedDescription = seoDescription || description
 
     // regex to remove all html from description text and line breaks
-    const regex = /(<([^>]+)>)/gi
-    const descriptionText = selectedDescription.replace(regex, "")
-    const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
+    // const regex = /(<([^>]+)>)/gi
+    // const descriptionText = selectedDescription.replace(regex, "")
+    // const removedLineBreaks = descriptionText.replace(/(\r\n|\n|\r)/gm, "")
 
     const paintingUrl = `https://wisihe.no/paintings/${slug}`
 
@@ -111,7 +111,7 @@ export default async function LandingPage({ params }: Props) {
         artMedium: "Digital",
         artform: "Digital Painting",
         dateCreated: paintedAt,
-        description: removedLineBreaks,
+        // description: removedLineBreaks,
 
         inLanguage: "en",
         copyrightHolder: {
