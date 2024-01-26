@@ -105,7 +105,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.15",
-    "husky": "^8.0.3",
+    "husky": "^9.0.0",
     "intl-segmenter-polyfill": "^0.4.4",
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
