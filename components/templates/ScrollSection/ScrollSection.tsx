@@ -1,8 +1,6 @@
 "use client"
 // import clsx from "clsx"
 // import { Mask } from "components/atoms"
-import GridStyleWrapper from "components/atoms/GridStyleWrapper/GridStyleWrapper"
-import LinkButton from "components/atoms/LinkButton/LinkButton"
 import {
     motion,
     // useMotionValue,
@@ -10,19 +8,11 @@ import {
     useScroll,
     useSpring,
 } from "framer-motion"
-import Image from "next/image"
-import explorer from "public/images/explorer.png"
-import night from "public/images/night-forest.jpeg"
-import { useRef, useState } from "react"
+import { useState } from "react"
 // import ImageExplotionSection from "../ImageExplotionSection"
-import { useButton } from "react-aria"
-import { Button as BT, FieldError, Text } from "react-aria-components"
-import { Button } from "tine-ui"
+import { Button as BT } from "react-aria-components"
 
 import Input from "@/components/molecules/Input"
-import { cn } from "@/utils/utility"
-
-import ImageExplotionSection from "../ImageExplotionSection/ImageExplotionSection"
 
 const ScrollSection = () => {
     const { scrollYProgress } = useScroll()
