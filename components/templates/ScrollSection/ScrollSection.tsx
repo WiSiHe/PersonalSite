@@ -57,10 +57,6 @@ const ScrollSection = () => {
                 </section>
                 <p>Mirrored text: {value}</p>
             </section>
-            <section>
-                <p>Tine_UI</p>
-                <Button>Clidwack me</Button>
-            </section>
             {/* <section className="relative xl:aspect-video bg-dark">
                 <GridStyleWrapper>
                     <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-white xl:px-10">
