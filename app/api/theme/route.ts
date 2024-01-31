@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 
 export async function GET() {
-    cookies().set("theme", "dark")
+    cookies().set("theme", "")
 
     const data = `Dark mode enabled`
 
