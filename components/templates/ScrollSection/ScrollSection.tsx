@@ -10,9 +10,6 @@ import {
 } from "framer-motion"
 import { useState } from "react"
 // import ImageExplotionSection from "../ImageExplotionSection"
-import { Button as BT } from "react-aria-components"
-
-import Input from "@/components/molecules/Input"
 
 const ScrollSection = () => {
     const { scrollYProgress } = useScroll()
@@ -44,19 +41,6 @@ const ScrollSection = () => {
                 />
             </svg>
 
-            <section className="aspect-video">
-                <h3>React Aria</h3>
-                <BT className="p-4 bg-primary">Click me</BT>
-                <section className="p-4">
-                    <Input
-                        label="Email"
-                        description="add email here"
-                        defaultValue="test"
-                        onChange={setValue}
-                    />
-                </section>
-                <p>Mirrored text: {value}</p>
-            </section>
             {/* <section className="relative xl:aspect-video bg-dark">
                 <GridStyleWrapper>
                     <div className="sticky top-0 z-20 grid grid-cols-12 px-4 py-10 text-white xl:px-10">
