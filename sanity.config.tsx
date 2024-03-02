@@ -4,6 +4,7 @@ import { apiVersion, dataset, projectId } from "lib/sanity.api"
 import { defineConfig } from "sanity"
 import { deskTool } from "sanity/desk"
 import { presentationTool } from "sanity/presentation"
+import { structureTool } from "sanity/structure"
 import paintingType from "schemas/painting"
 import projectType from "schemas/project"
 import tagType from "schemas/tag"
@@ -55,9 +56,10 @@ export default defineConfig({
         },
     },
     plugins: [
-        deskTool({
-            structure: pageStructure([home]),
-        }),
+        structureTool(),
+        // deskTool({
+        //     structure: pageStructure([home]),
+        // }),
         presentationTool({
             locate,
             previewUrl: {
@@ -71,10 +73,6 @@ export default defineConfig({
                 },
             },
         }),
-        // presentationTool({
-        //     // locate,
-        //     previewUrl: SANITY_STUDIO_PREVIEW_URL,
-        // }),
         // Configures the global "new document" button, and document actions, to suit the Settings document singleton
         singletonPlugin([home.name]),
 

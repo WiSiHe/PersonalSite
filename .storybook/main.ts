@@ -12,7 +12,7 @@ const config: StorybookConfig = {
         "@storybook/addon-interactions",
         "@storybook/addon-themes",
         "@storybook/addon-a11y",
-        "@chromaui/addon-visual-tests",
+        "@chromatic-com/storybook",
     ],
     framework: {
         name: "@storybook/nextjs",

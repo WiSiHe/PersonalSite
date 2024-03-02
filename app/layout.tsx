@@ -6,12 +6,14 @@ import { Viewport } from "next"
 import dynamic from "next/dynamic"
 import { Inter, Oswald } from "next/font/google"
 import { draftMode } from "next/headers"
+// import VisualEditing from "@/sanity/loader/VisualEditing"
+import { VisualEditing } from "next-sanity"
 import { Suspense } from "react"
 
 import SkipToMainContentLink from "@/components/atoms/SkipToMainContentLink"
 import ThemeProvider from "@/components/atoms/ThemeProvider"
 import Navigation from "@/components/organisms/Navigation"
-import VisualEditing from "@/sanity/loader/VisualEditing"
+import LiveVisualEditing from "@/sanity/loader/LiveVisaulEditing"
 import { cn } from "@/utils/utility"
 
 interface RootProps {
@@ -176,7 +178,7 @@ export default function RootLayout({ children }: RootProps) {
                     </Suspense>
                     <Analytics />
                     <SpeedInsights />
-                    {draftMode().isEnabled && <VisualEditing />}
+                    {draftMode().isEnabled && <LiveVisualEditing />}
                 </ThemeProvider>
             </body>
         </html>
