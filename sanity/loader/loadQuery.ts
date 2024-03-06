@@ -59,10 +59,11 @@ export const loadQuery = ((query, params = {}, options = {}) => {
             ...(options.next || {}),
         },
         perspective,
-        // @TODO add support in `@sanity/client/stega` for the below
-        // stega: {enabled: draftMode().isEnabled}
+        // Enable stega if in Draft Mode, to enable overlays when outside Sanity Studio
+        stega: draftMode().isEnabled,
     })
 }) satisfies typeof queryStore.loadQuery
+
 /**
  * Loaders that are used in more than one place are declared here, otherwise they're colocated with the component
  */
