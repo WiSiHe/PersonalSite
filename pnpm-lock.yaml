@@ -49,7 +49,7 @@ dependencies:
     version: 3.32.0(@babel/runtime@7.24.0)(@codemirror/lint@6.5.0)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.2.1)(codemirror@6.0.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
   '@sanity/visual-editing':
     specifier: ^1.6.0
-    version: 1.6.0(@sanity/client@6.15.1)(next@14.1.2)
+    version: 1.7.0(@sanity/client@6.15.1)(next@14.1.2)
   '@sanity/webhook':
     specifier: ^4.0.2
     version: 4.0.2
@@ -5443,6 +5443,38 @@ packages:
       valibot: 0.29.0
     dev: false
 
+  /@sanity/visual-editing@1.7.0(@sanity/client@6.15.1)(next@14.1.2):
+    resolution: {integrity: sha512-jQm5hKZs9+Bu/8nXDSMl3IQkyIJnu87Xjk4Ca/FHtnfJ2D3JY3TJgcHnUlaBJPKi45lwmqq1VcstcACvtLT5lw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@remix-run/react': '>= 2'
+      '@sanity/client': ^6.15.2
+      '@sveltejs/kit': '>= 2'
+      next: '>= 13'
+      svelte: '>= 4'
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sanity/client':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      svelte:
+        optional: true
+    dependencies:
+      '@sanity/client': 6.15.1
+      '@sanity/preview-url-secret': 1.6.4(@sanity/client@6.15.1)
+      '@vercel/stega': 0.1.0
+      next: 14.1.2(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 18.2.0
+      scroll-into-view-if-needed: 3.1.0
+      valibot: 0.30.0
+    dev: false
+
   /@sanity/webhook@4.0.2:
     resolution: {integrity: sha512-lJEr6mPl//k1oT1Y4UXE206N8ca5bWx2qJTbJn2c1K/3ef4LBexu2syoOtA09qqPPQ1Eu7gOcuUFjNllEK7fkg==}
     engines: {node: '>=20.0.0'}
@@ -9043,7 +9075,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
-    bundledDependencies: false
 
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -17261,6 +17292,10 @@ packages:
 
   /valibot@0.29.0:
     resolution: {integrity: sha512-JhZn08lwZPhAamOCfBwBkv/btQt4KeQhekULPH8crH053zUCLSOGEF2zKExu3bFf245tsj6J1dY0ysd/jUiMIQ==}
+    dev: false
+
+  /valibot@0.30.0:
+    resolution: {integrity: sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==}
     dev: false
 
   /validate-npm-package-license@3.0.4:
