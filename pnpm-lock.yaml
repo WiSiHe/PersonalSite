@@ -34,7 +34,7 @@ dependencies:
     version: 1.0.2
   '@sanity/overlays':
     specifier: ^2.3.23
-    version: 2.3.23(@sanity/client@6.15.1)(next@14.1.2)
+    version: 2.3.24(@sanity/client@6.15.1)(next@14.1.2)
   '@sanity/preview-url-secret':
     specifier: ^1.6.4
     version: 1.6.4(@sanity/client@6.15.1)
@@ -5182,11 +5182,11 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/overlays@2.3.23(@sanity/client@6.15.1)(next@14.1.2):
-    resolution: {integrity: sha512-yLdtYYRGVwh0pAi9kkrUsQJ4zmDOlkH4PdEe74IL9xYfoMjpKZFl1h58ERwwNk3z32Q26cxPjQWyD4FMazpi4Q==}
+  /@sanity/overlays@2.3.24(@sanity/client@6.15.1)(next@14.1.2):
+    resolution: {integrity: sha512-S6Ux5xm/aw3toPl/qcTO2FAFJYisMaw11K+bJWr/LzvooGvgL+CINSFIw2aLDOG696vBVZLGAz9hG/DUSHfIoQ==}
     engines: {node: '>=16.14'}
     dependencies:
-      '@sanity/visual-editing': 1.6.0(@sanity/client@6.15.1)(next@14.1.2)
+      '@sanity/visual-editing': 1.7.0(@sanity/client@6.15.1)(next@14.1.2)
     transitivePeerDependencies:
       - '@remix-run/react'
       - '@sanity/client'
@@ -5441,6 +5441,38 @@ packages:
       react-is: 18.2.0
       scroll-into-view-if-needed: 3.1.0
       valibot: 0.29.0
+    dev: false
+
+  /@sanity/visual-editing@1.7.0(@sanity/client@6.15.1)(next@14.1.2):
+    resolution: {integrity: sha512-jQm5hKZs9+Bu/8nXDSMl3IQkyIJnu87Xjk4Ca/FHtnfJ2D3JY3TJgcHnUlaBJPKi45lwmqq1VcstcACvtLT5lw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@remix-run/react': '>= 2'
+      '@sanity/client': ^6.15.2
+      '@sveltejs/kit': '>= 2'
+      next: '>= 13'
+      svelte: '>= 4'
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sanity/client':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      svelte:
+        optional: true
+    dependencies:
+      '@sanity/client': 6.15.1
+      '@sanity/preview-url-secret': 1.6.4(@sanity/client@6.15.1)
+      '@vercel/stega': 0.1.0
+      next: 14.1.2(@babel/core@7.24.0)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-is: 18.2.0
+      scroll-into-view-if-needed: 3.1.0
+      valibot: 0.30.0
     dev: false
 
   /@sanity/webhook@4.0.2:
@@ -9043,7 +9075,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
-    bundledDependencies: false
 
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -17261,6 +17292,10 @@ packages:
 
   /valibot@0.29.0:
     resolution: {integrity: sha512-JhZn08lwZPhAamOCfBwBkv/btQt4KeQhekULPH8crH053zUCLSOGEF2zKExu3bFf245tsj6J1dY0ysd/jUiMIQ==}
+    dev: false
+
+  /valibot@0.30.0:
+    resolution: {integrity: sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==}
     dev: false
 
   /validate-npm-package-license@3.0.4:
