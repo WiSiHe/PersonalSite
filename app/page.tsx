@@ -40,6 +40,8 @@ export default async function Home() {
         )
     }
 
+    console.log(data)
+
     const {
         showcasePaintings,
         showcaseProjects,
